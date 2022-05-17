@@ -133,8 +133,8 @@ class ProgramPackage extends React.Component {
   renderSelectPackage() {
     const { weightLossGoals, durationWeightLoss } = this.state;
     const { allProgram } = this.props;
-    const priceStarter = allProgram.filter(element => element.program_id === "starter_stay_fit_01");
-    const priceSubscription = allProgram.filter(element => element.program_id === "subscription_stay_fit_01");
+    const priceStarter = allProgram && allProgram.filter(element => element.program_id === "starter_stay_fit_01");
+    const priceSubscription = allProgram && allProgram.filter(element => element.program_id === "subscription_stay_fit_01");
     return (
       <>
         <div className="col-12 col-sm-12 col-md-12 col-lg-12  padding-top2 information-box ">
