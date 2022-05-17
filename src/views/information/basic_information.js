@@ -1,11 +1,36 @@
 import React, { Component } from "react";
 import { Link } from 'react-router-dom';
 class Basic_Information extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+          checked: true,
+          typeHei_Wig: "กก_ซม",
+          typeHeight: "เซนติเมตร",
+          typeWeight: "กิโลกรัม"
+        }
+      }
 
+      checkBoxes = (e) => {
+        const { checked } = e.target
+        if (checked === true) {
+            var  typeHei_Wig = "กก_ซม"
+            var  typeHeight = "เซนติเมตร"
+            var  typeWeight = "กิโลกรัม"
+        }else{
+            var typeHei_Wig = "ปอนด์_ฟุต"
+            var typeHeight = "ปอนด์"
+            var typeWeight = "ฟุต"
+        } 
+        this.setState({
+            checked: checked,
+            typeHei_Wig: typeHei_Wig,
+            typeHeight: typeHeight,
+            typeWeight: typeWeight
+         })
+      }
 
     render() {
-
-
         return (
             <>
                 <div className="col-12 col-sm-12 col-md-12 col-lg-12  padding-top2 information-box ">
@@ -41,24 +66,27 @@ class Basic_Information extends React.Component {
                                     <div className="padding-top2">
                                         <label className="form-label bold font-size4 between color1">เลือกหน่วย 
                                             <span className="font-size7 light section">
-                                                <div class="form-check form-switch">
-                                                    <input class="form-check-input switch" type="checkbox" role="switch" data-on-text="normal" data-off-text="abnormal" data-size="large"   />
-                                                
+                                            <div className="onoffswitch">
+                                                    <input type="checkbox" name="onoffswitch" className="onoffswitch-checkbox " id="myonoffswitch"   onChange={e => this.checkBoxes(e)}       defaultChecked={this.state.checked}/>
+                                                    <label className="onoffswitch-label" htmlFor="myonoffswitch">
+                                                        <span className="onoffswitch-inner">
+                                                            <div className="between">
+                                                                 <p className="text-float">ปอนด์/ฟ. <span className="text-float1"> กก./ซม.</span></p>
+                                                            </div>
+                                                        </span>
+                                                        <span className="onoffswitch-switch"></span>
+                                                    </label>
                                                 </div>
-                                               
-
-
-
                                             </span> 
                                         </label>
                                     </div>
                                     <div className="padding-top2">
                                         <label className="form-label bold font-size4 between">น้ำหนัก</label>
-                                        <input type="email" className="form-control right" id="exampleFormControlInput1" placeholder="กิโลกรัม" />
+                                        <input type="email" className="form-control right" id="exampleFormControlInput1" placeholder={this.state.typeHeight} />
                                     </div>
                                     <div className="padding-top2">
                                         <label className="form-label bold font-size4">ส่วนสูง </label>
-                                        <input type="email" className="form-control right" id="exampleFormControlInput1" placeholder="เซนติเมตร" />
+                                        <input type="email" className="form-control right" id="exampleFormControlInput1" placeholder={this.state.typeWeight} />
                                     </div>
                                     <div className="padding-top2">
                                         <p className="bold font-size4 ">คุณสามารถฝึกท่าฝึกยากๆ เช่นท่า Squat, ท่ากระโดด ได้อย่างถูกต้อง </p>
