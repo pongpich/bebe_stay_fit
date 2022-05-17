@@ -1,0 +1,117 @@
+import React, { Component } from "react";
+import { Link } from 'react-router-dom';
+class Basic_Information extends React.Component {
+
+
+    render() {
+
+
+        return (
+            <>
+                <div className="col-12 col-sm-12 col-md-12 col-lg-12  padding-top2 information-box ">
+                    <div className="container">
+                        <div className="row row-cols-2">
+                            <h4 className="color1">BEBEStayFit</h4>
+                            <h6 className="right">ลงทะเบียน</h6>
+                        </div>
+                    </div>
+                </div>
+                <div className="col-12 col-sm-12 col-md-12 col-lg-12  App-headerBackground center2 padding-top2 ">
+                    <div className="col-12 col-sm-12 col-md-6 col-lg-6 center2 margin-head">
+                        <div className="box-protein margin-bottom1">
+                            <div className="padding-top">
+                                <p className="font-size6 bold color-protein"> กรอกข้อมูลเบื้องต้นเพื่อเริ่มต้นการใช้งาน</p>
+                                <p>การกรอกข้อมูลจะทำให้เราสามารถออกแบบ<br />โปรแกรมออกกำลังกายให้เหมาะสมกับคุณได้ดียิ่งขึ้น</p>
+                                <div className="box-proteinAddress padding-top">
+                                    <div className="padding-top2">
+                                        <p className="form-label bold font-size4">เพศ</p>
+                                        <div className="form-check form-check-inline">
+                                            <input className="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1" />
+                                            <label className="form-check-label">ชาย</label>
+                                        </div>
+                                        <div className="form-check form-check-inline">
+                                            <input className="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2" />
+                                            <label className="form-check-label">หญิง</label>
+                                        </div>
+                                    </div>
+                                    <div className="padding-top2">
+                                        <label className="form-label bold font-size4">อายุ</label>
+                                        <input type="email" className="form-control right" id="exampleFormControlInput1" placeholder="ปี" />
+                                    </div>
+                                    <div className="padding-top2">
+                                        <label className="form-label bold font-size4 between color1">เลือกหน่วย 
+                                            <span className="font-size7 light section">
+                                                <div class="form-check form-switch">
+                                                    <input class="form-check-input switch" type="checkbox" role="switch" data-on-text="normal" data-off-text="abnormal" data-size="large"   />
+                                                
+                                                </div>
+                                               
+
+
+
+                                            </span> 
+                                        </label>
+                                    </div>
+                                    <div className="padding-top2">
+                                        <label className="form-label bold font-size4 between">น้ำหนัก</label>
+                                        <input type="email" className="form-control right" id="exampleFormControlInput1" placeholder="กิโลกรัม" />
+                                    </div>
+                                    <div className="padding-top2">
+                                        <label className="form-label bold font-size4">ส่วนสูง </label>
+                                        <input type="email" className="form-control right" id="exampleFormControlInput1" placeholder="เซนติเมตร" />
+                                    </div>
+                                    <div className="padding-top2">
+                                        <p className="bold font-size4 ">คุณสามารถฝึกท่าฝึกยากๆ เช่นท่า Squat, ท่ากระโดด ได้อย่างถูกต้อง </p>
+                                        <div className="form-check form-check-inline">
+                                            <input className="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1" />
+                                            <label className="form-check-label">ใช่</label>
+                                        </div>
+                                        <div className="form-check form-check-inline">
+                                            <input className="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2" />
+                                            <label className="form-check-label">ไม่ใช่</label>
+                                        </div>
+                                        <div className="form-check form-check-inline">
+                                            <input className="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2" />
+                                            <label className="form-check-label">ไม่แน่ใจ</label>
+                                        </div>
+                                    </div>
+                                    <div className="padding-top2">
+                                        <p className="bold font-size4 ">คุณมีอาการบาดเจ็บที่ข้อต่อหรือกระดูกสันหลัง หรือไม่ </p>
+                                        <div className="form-check form-check-inline">
+                                            <input className="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1" />
+                                            <label className="form-check-label">ใช่</label>
+                                        </div>
+                                        <div className="form-check form-check-inline">
+                                            <input className="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2" />
+                                            <label className="form-check-label">ไม่ใช่</label>
+                                        </div>
+                                    </div>
+                                    <div className="padding-top2">
+                                        <p className="bold font-size4 ">กำลังตั้งครรภ์ หรือให้นมบุตรอยู่</p>
+                                        <div className="form-check form-check-inline">
+                                            <input className="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1" />
+                                            <label className="form-check-label">ใช่</label>
+                                        </div>
+                                        <div className="form-check form-check-inline">
+                                            <input className="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2" />
+                                            <label className="form-check-label">ไม่ใช่</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="d-grid gap-2  mx-auto   col-10 col-sm-10  col-md-10 col-lg-10 distance">
+                                {/*   <button className="btn bottom-pink" type="button" >
+                                    ถัดไป
+                                </button> */}
+                                <Link to="/your_program" className="btn bottom-pink" type="button">สร้างโปรแกรมออกกำลังกาย</Link>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </>
+
+        );
+    }
+}
+export default Basic_Information;
