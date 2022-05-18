@@ -1,8 +1,50 @@
-import React, { Component } from "react";
+import React, { Component ,} from "react";
 import group19 from "../../assets/img/group19.png";
 import { Link } from 'react-router-dom';
+const fitto = [
+                "ฟิตโตะ เเพลนท์ โปรตีน - คลาสสิค มอลต์", 
+                "ฟิตโตะ เเพลนท์ โปรตีน - มิลค์ ที", 
+                "ฟิตโตะ เเพลนท์ โปรตีน - ดับเบิ้ล ช็อคโก้ ฟัดจ์",
+                "ฟิตโตะ เเพลนท์ โปรตีน - สตรอว์เบอร์รี่ ครัช",
+                "ฟิตโตะ เเพลนท์ โปรตีน - ฮอกไกโด มิลค์"
+            ];
 
 class Fitto_Plant_Protein extends React.Component {
+
+    constructor(props) {
+        super(props);
+        this.state = {
+          box1: "box1",
+          valuebox1:  "ฟิตโตะ เเพลนท์ โปรตีน - คลาสสิค มอลต์",
+          box2: "box2",
+          valuebox2:  "ฟิตโตะ เเพลนท์ โปรตีน - คลาสสิค มอลต์",
+          box3: "box3",
+          valuebox3:  "ฟิตโตะ เเพลนท์ โปรตีน - คลาสสิค มอลต์",
+          box4: "box4",
+          valuebox4:  "ฟิตโตะ เเพลนท์ โปรตีน - คลาสสิค มอลต์",
+          box5: "box5",
+          valuebox5:  "ฟิตโตะ เเพลนท์ โปรตีน - คลาสสิค มอลต์",
+          box6: "box6",
+          valuebox6:  "ฟิตโตะ เเพลนท์ โปรตีน - คลาสสิค มอลต์"
+          
+        };
+      }
+
+
+    
+
+    boxFitto = (event) => {
+            let box = event.target.name;
+            let value = event.target.value;
+            let valuebox = `value${box}`;
+        this.setState({
+                [box]:box,
+                [valuebox]:value
+            })
+
+    }
+
+
     render() {
         return (
             <>
@@ -29,44 +71,56 @@ class Fitto_Plant_Protein extends React.Component {
                                     </div>
                                     <div>
                                         <label className="form-label bold font-size4">กล่องที่ 1</label>
-                                        <select className="form-select" aria-label="Default select example">
-                                            <option>Classic malt Flavor</option>
-                                            <option>Classic malt Flavor</option>
+                                        <select className="form-select" onChange={this.boxFitto} name="box1" aria-label="Default select example">
+                                            {fitto.map((fitto, i) => (
+                                                <option key={i} value={fitto}>{fitto}</option>
+                                                )
+                                            )}
                                         </select>
                                     </div>
                                     <div className="padding-top2">
                                         <label className="form-label bold font-size4">กล่องที่ 2</label>
-                                        <select className="form-select" aria-label="Default select example">
-                                            <option>Classic malt Flavor</option>
-                                            <option>Classic malt Flavor</option>
+                                        <select className="form-select" onFocus={this.boxFitto}  onChange={this.boxFitto} name="box2" aria-label="Default select example">
+                                            {fitto.map((fitto, i) => (
+                                                <option key={i} value={fitto}>{fitto}</option>
+                                                )
+                                            )}
                                         </select>
                                     </div>
                                     <div className="padding-top2">
                                         <label className="form-label bold font-size4">กล่องที่ 3</label>
-                                        <select className="form-select" aria-label="Default select example">
-                                            <option>Classic malt Flavor</option>
-                                            <option>Classic malt Flavor</option>
+                                        <select className="form-select" onChange={this.boxFitto} name="box3" aria-label="Default select example">
+                                            {fitto.map((fitto, i) => (
+                                                <option key={i} value={fitto}>{fitto}</option>
+                                                )
+                                            )}
                                         </select>
                                     </div>
                                     <div className="padding-top2">
                                         <label className="form-label bold font-size4">กล่องที่ 4</label>
-                                        <select className="form-select" aria-label="Default select example">
-                                            <option>Classic malt Flavor</option>
-                                            <option>Classic malt Flavor</option>
+                                        <select className="form-select"  onChange={this.boxFitto} name="box4" aria-label="Default select example">
+                                            {fitto.map((fitto, i) => (
+                                                <option key={i} value={fitto}>{fitto}</option>
+                                                )
+                                            )}
                                         </select>
                                     </div>
                                     <div className="padding-top2">
                                         <label className="form-label bold font-size4">กล่องที่ 5</label>
-                                        <select className="form-select" aria-label="Default select example">
-                                            <option>Classic malt Flavor</option>
-                                            <option>Classic malt Flavor</option>
+                                        <select className="form-select"  onChange={this.boxFitto} name="box5" aria-label="Default select example">
+                                            {fitto.map((fitto, i) => (
+                                                <option key={i} value={fitto}>{fitto}</option>
+                                                )
+                                            )}
                                         </select>
                                     </div>
                                     <div className="padding-top2">
                                         <label className="form-label bold font-size4">กล่องที่ 6</label>
-                                        <select className="form-select" aria-label="Default select example">
-                                            <option>Classic malt Flavor</option>
-                                            <option>Classic malt Flavor</option>
+                                        <select className="form-select" onChange={this.boxFitto} name="box6" aria-label="Default select example">
+                                            {fitto.map((fitto, i) => (
+                                                <option key={i} value={fitto}>{fitto}</option>
+                                                )
+                                            )}
                                         </select>
                                     </div>
                                 </div>

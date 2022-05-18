@@ -8,6 +8,31 @@ import payment5 from "../../assets/img/payment5.png";
 import { Link } from 'react-router-dom';
 
 class Payment extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            outlinePinkModel: "btn btn-outline-pink",
+            outlinePinkModelFocus: "btn btn-outline-pinkFocus",
+        };
+      }
+  
+    pinkModelFocus = (e) => {
+        if (e === "1") {
+          var  outlinePinkModel = "btn btn-outline-pink";
+          var  outlinePinkModelFocus = "btn btn-outline-pinkFocus";
+        }else{
+          var  outlinePinkModel = "btn btn-outline-pinkFocus";
+          var  outlinePinkModelFocus = "btn btn-outline-pink";
+        }
+
+        this.setState({
+            outlinePinkModel: outlinePinkModel,
+            outlinePinkModelFocus:  outlinePinkModelFocus,
+        })
+          
+    } 
+
+
     render() {
         return (
             <>
@@ -27,8 +52,8 @@ class Payment extends React.Component {
                         <p className="font-size6 bold color-protein"> การชำระเงิน</p>
                     </div>
                     <div className="col-12 col-sm-12 col-md-10 col-lg-10 center2">
-                        <button type="button" className="btn btn-outline-pink">บัตรเครดิต/เดบิต</button>&nbsp;&nbsp;&nbsp;
-                        <button type="button" className="btn btn-outline-pink">ชำระด้วย QR Code</button>
+                        <button type="button" className={this.state.outlinePinkModelFocus} onClick={e => this.pinkModelFocus("1")}>บัตรเครดิต/เดบิต</button>&nbsp;&nbsp;&nbsp;
+                        <button type="button" className={this.state.outlinePinkModel} onClick={e => this.pinkModelFocus("2")}>ชำระด้วย QR Code</button>
                     </div>
                     <div className="col-12 col-sm-12 col-md-6 col-lg-6 center2 margin-head">
                         <div className="box-protein">

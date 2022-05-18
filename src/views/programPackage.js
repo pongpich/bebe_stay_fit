@@ -150,7 +150,7 @@ class ProgramPackage extends React.Component {
           <div className="container center ">
             <div className="box2">
               <div className="center  head-box">
-                <div className="head-width font-size5">
+                <div className="head-width font-size6">
                   <p>คุณจะสามารถลดน้ำหนัก {weightLossGoals} กิโลกรัม  <span className="bold">ภายใน{durationWeightLoss}เดือน</span></p>
                 </div>
               </div>

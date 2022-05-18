@@ -225,7 +225,12 @@ body{
   color: #000000;
   border-color: #FFA0C8;
   background-color: #FFA0C8;
+}
 
+.btn-outline-pinkFocus {
+  color: #000000;
+  border-color: #FFA0C8;
+  background-color: #FFA0C8;
 }
 
 .btn-outline-pink:focus-within {
@@ -262,6 +267,15 @@ body{
   border-radius: 30px;
 }
 .btn-outline-pinkModel:focus {
+  padding-left: 20px;
+  padding-right: 20px;
+  color: #FFFFFF;
+  border-color: #E25E96;
+  background-color: #E25E96;
+  border-radius: 30px;
+}
+
+.btn-outline-pinkModelFocus {
   padding-left: 20px;
   padding-right: 20px;
   color: #FFFFFF;
@@ -448,6 +462,26 @@ padding-left: 10%;
 }
 
 .btn:focus {
+  outline: 0;
+  box-shadow: 0 0 0 .25rem hsl(335, 69%, 63% ,0.25);
+}
+
+.form-check-input:focus {
+  border-color: #E25E96;
+  outline: 0;
+  box-shadow: 0 0 0 .25rem hsl(335, 69%, 63% ,0.25);
+}
+
+.form-control:focus {
+  color: #212529;
+  background-color: #fff;
+  border-color: #E25E96;
+  outline: 0;
+  box-shadow: 0 0 0 .25rem hsl(335, 69%, 63% ,0.25);
+}
+
+.form-select:focus {
+  border-color: #86b7fe;
   outline: 0;
   box-shadow: 0 0 0 .25rem hsl(335, 69%, 63% ,0.25);
 }

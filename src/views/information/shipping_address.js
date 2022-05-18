@@ -2,8 +2,34 @@ import React, { Component } from "react";
 import group20 from "../../assets/img/group20.png";
 import { Link } from 'react-router-dom';
 
+
+
 class Shipping_Address extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            pinkModel: "btn btn-outline-pinkModel",
+            pinkModelFocus: "btn btn-outline-pinkModelFocus",
+        };
+      }
+  
+    taxInvoice = (e) => {
+        const { checked } = e.target;
+
+        if (checked === true) {
+            document.getElementById('clickModal').click();
+        } 
+
+    }
+
+  /*   pinkModelFocus = (e) => {
+        this.setState({
+            pinkModelFocus: "btn btn-outline-pinkModel",
+          })
+    } */
+   
     render() {
+        
         return (
             <>
                 <div className="col-12 col-sm-12 col-md-12 col-lg-12  padding-top2 information-box ">
@@ -71,7 +97,7 @@ class Shipping_Address extends React.Component {
                                     </div>
                                     <div className="padding-top2">
                                         <div className="form-check">
-                                            <input className="form-check-input" type="checkbox" id="flexCheckDefault" data-bs-toggle="modal" data-bs-target="#exampleModal" />
+                                            <input className="form-check-input" type="checkbox"   onClick={e => this.taxInvoice(e)}   /*  data-bs-toggle="modal" data-bs-target="#exampleModal"  *//>
                                             <label className="form-check-label">
                                                 ขอใบเสร็จรับเงิน/ใบกำกับภาษี
                                             </label>
@@ -83,6 +109,11 @@ class Shipping_Address extends React.Component {
                                 {/*   <button className="btn bottom-pink" type="button" >
                                     ถัดไป
                                 </button> */}
+                               <div  style={{display: 'none'}}>
+                                <button className="btn bottom-pink" id="clickModal" data-bs-toggle="modal" data-bs-target="#exampleModal" >
+                                    cLick
+                                </button> 
+                               </div>
                                 <Link to="/payment" className="btn bottom-pink" type="button">ถัดไป</Link>
                             </div>
                         </div>
@@ -90,8 +121,8 @@ class Shipping_Address extends React.Component {
                 </div>
 
 
-                <div className="modal fade" id="exampleModal" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div className="modal-dialog">
+                <div className="modal fade"   id="exampleModal" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div className="modal-dialog ">
                         <div className="modal-content padding-leftRight">
                             <div className="modal-headerIn margin-headText">
                                 <p className="bold font-size5  color-protein" id="exampleModalLabel">ที่อยู่ใบเสร็จรับเงิน/ใบกำกับภาษี</p>
@@ -143,7 +174,7 @@ class Shipping_Address extends React.Component {
                                 <div className="row">
                                     <div className=" col-12 col-sm-12 col-md-6 col-lg-6">
                                         <div className="mb-3">
-                                            <label className="form-label bold">จังหวัด</label>
+                                            <label className="form-label bold">แขวง/ตำบล</label>
                                             <select className="form-select" aria-label="Default select example">
                                                 <option >เลือก</option>
                                             </select>
@@ -161,7 +192,7 @@ class Shipping_Address extends React.Component {
                                 <div className="row">
                                     <div className=" col-12 col-sm-12 col-md-6 col-lg-6">
                                         <div className="mb-3">
-                                            <label className="form-label bold">แขวง/ตำบล</label>
+                                            <label className="form-label bold">จังหวัด</label>
                                             <select className="form-select" aria-label="Default select example">
                                                 <option >เลือก</option>
                                             </select>
@@ -176,9 +207,9 @@ class Shipping_Address extends React.Component {
                                         </div>
                                     </div>
                                 </div>
-                                <div className="modal-footerIn">
-                                <button type="button" className="btn btn-outline-pinkModel" data-bs-dismiss="modal">ยกเลิก</button>&nbsp;&nbsp;&nbsp;
-                                <button type="button" className="btn btn-outline-pinkModel">ชำระด้วย QR Code</button>
+                                <div className="col-12 col-sm-12  col-md-12 col-lg-12 center">
+                                <button type="button" className={this.state.pinkModel}   /*  onClick={e => this.pinkModelFocus(e)}  */  data-bs-dismiss="modal" >ยกเลิก</button>&nbsp;&nbsp;&nbsp;
+                                <button type="button" className={this.state.pinkModelFocus}>ชำระด้วย QR Code</button>
                                 </div>
                             </div>
                         </div>
