@@ -10,6 +10,7 @@ import Payment from "../src/views/information/payment";
 import Welcome_NewMember from "../src/views/information/welcome_new_member";
 import Basic_Information from "../src/views/information/basic_information";
 import Your_Program from "../src/views/information/your_program";
+import Cc_token from "../src/views/information/cc_token";
 import Profile from "./views/profile/profile";
 import EditProfile from "./views/profile/editProfile";
 import Cancel_Package from "./views/profile/cancel_package";
@@ -44,6 +45,7 @@ class App extends Component {
             <Route path='/information_calculate' component={InformationCalculate} />
             <Route path='/buy_program' component={Buy_program} />
             <Route path='/register' component={Register} />
+            <Route path='/cc_token' component={Cc_token} />
             <Route path='/fitto_plant_protein' component={Fitto_Plant_Protein} />
             <Route path='/shipping_address' component={Shipping_Address} />
             <Route path='/payment' component={Payment} />

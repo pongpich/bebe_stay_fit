@@ -16,7 +16,7 @@ class Payment extends React.Component {
       outlinePinkModelFocus: "btn btn-outline-pinkFocus",
       merchantID: "23xlw1vxcVi8OKGjTqE2sbQbOXHyzNaGN9XK5ALvRrYtdt7J/kL0ROmE59mzRhDhzICLvm6LF9i45eI8EiyFisGPGloHPKnrp7Ma+JH6O+CBVLZfS/NemVtmxm1J4yQ0cLFNTQUnGvhUO+w8/wvlJI3kw8LPuYpF2960XDgMvZA0R9i5",
       refNo: Date.now(),
-      backgroundUrl: `http://localhost:3003/bebe/gbqr`,
+      backgroundUrl: `https://api.planforfit.com/bebe/gbqr`,
       price: 1.00,
       productName: "bebe stay fit",
       name: "Akkkk Yodsss",
@@ -84,8 +84,16 @@ class Payment extends React.Component {
               <input id="qr_email" type="hidden" name="customerEmail" />
               <input id="qr_phone" type="hidden" name="customerTelephone" />
               <input id="qr_programID" type="hidden" name="merchantDefined1" />
-             {/*  <input id="qr_button" type="submit" class="btn" value="จ่ายด้วย QR Code" /> */}
+              <input id="qr_button" type="submit" class="btn" value="จ่ายด้วย QR Code" />
             </form>
+
+            {/* <form id="cc_form" action="./#/cc_token" method="GET" class="hidden-form">
+              <input id="cc_button" type="submit" class="btn" value="ชำระดัวยบัตรเครดิต" />
+            </form> */}
+            <form id="cc_form" action="https://pot.planforfit.com/cc_token.html" method="GET" class="hidden-form">
+              <input id="cc_button" type="submit" class="btn" value="ชำระดัวยบัตรเครดิต" />
+            </form>
+
           </div>
           <div className="col-12 col-sm-12 col-md-10 col-lg-10 center2">
             <button type="button" className={this.state.outlinePinkModelFocus} onClick={e => this.pinkModelFocus("1")}>บัตรเครดิต/เดบิต</button>&nbsp;&nbsp;&nbsp;
