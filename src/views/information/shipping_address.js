@@ -2,13 +2,15 @@ import React, { Component } from "react";
 import group20 from "../../assets/img/group20.png";
 import { Link } from 'react-router-dom';
 import InputAddress from 'react-thailand-address-autocomplete';
+import { connect } from "react-redux";
+import { shippingAddress } from "../../redux/shippingAddress";
 
 
 class Shipping_Address extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            taxInvoice: false,
+            invoice: false,
             subdistrict: null, // เอาไว้ใส่ใน value
             district: null, // เอาไว้ใส่ใน value
             province: null, // เอาไว้ใส่ใน value
@@ -36,11 +38,33 @@ class Shipping_Address extends React.Component {
         };
     }
 
+
+shippingAddress(invoice, username, lastname, telephone,addressUser,subdistrictUser,districtUser,provinceUser,zipcodeUser,
+                InvoicePerson,InvoiceTaxpayerName,InvoiceTaxIdentificationNumber,InvoiceTelephone,useShippingAddress,
+                InvoiceAddressUser,InvoiceSubdistrict,InvoiceDistrict,InvoiceProvince,InvoiceZipcode ) {
+/*      this.props.shippingAddress(
+        this.state.invoice, this.state.username, this.state.lastname, this.state.telephone,this.state.addressUser,this.state.subdistrictUser,this.state.districtUser,this.state.provinceUser,this.state.zipcodeUser,
+        this.state.InvoicePerson,this.state.InvoiceTaxpayerName,this.state.InvoiceTaxIdentificationNumber,this.state.InvoiceTelephone,this.state.useShippingAddress,
+        this.state.InvoiceAddressUser,this.state.InvoiceSubdistrict,this.state.InvoiceDistrict,this.state.InvoiceProvince,this.state.InvoiceZipcode 
+        );  */
+          this.props.shippingAddress(
+            invoice, username, lastname, telephone,addressUser,subdistrictUser,districtUser,provinceUser,zipcodeUser,
+            InvoicePerson,InvoiceTaxpayerName,InvoiceTaxIdentificationNumber,InvoiceTelephone,useShippingAddress,
+            InvoiceAddressUser,InvoiceSubdistrict,InvoiceDistrict,InvoiceProvince,InvoiceZipcode 
+            );   
+
+     this.props.history.push('/payment');  
+
+     console.log(  invoice, username, lastname, telephone,addressUser,subdistrictUser,districtUser,provinceUser,zipcodeUser,
+        InvoicePerson,InvoiceTaxpayerName,InvoiceTaxIdentificationNumber,InvoiceTelephone,useShippingAddress,
+        InvoiceAddressUser,InvoiceSubdistrict,InvoiceDistrict,InvoiceProvince,InvoiceZipcode );  
+  }
+
     taxInvoice = (e) => {
         const { checked } = e.target;
 
         this.setState({
-            taxInvoice: checked,
+            invoice: checked,
         })
 
         if (checked === true) {
@@ -96,7 +120,9 @@ class Shipping_Address extends React.Component {
 
 
     render() {
-
+        const {  invoice, username, lastname, telephone,addressUser,subdistrictUser,districtUser,provinceUser,zipcodeUser,
+            InvoicePerson,InvoiceTaxpayerName,InvoiceTaxIdentificationNumber,InvoiceTelephone,useShippingAddress,
+            InvoiceAddressUser,InvoiceSubdistrict,InvoiceDistrict,InvoiceProvince,InvoiceZipcode } = this.state;
         return (
             <>
                 <div className="col-12 col-sm-12 col-md-12 col-lg-12  padding-top2 information-box ">
@@ -190,7 +216,13 @@ class Shipping_Address extends React.Component {
                                         chick
                                     </button>
                                 </div>
-                                <Link to="/payment" className="btn bottom-pink" type="button">ถัดไป</Link>
+                                <button className="btn bottom-pink" type="button" onClick={() => this.shippingAddress( 
+                                   invoice, username, lastname, telephone,addressUser,subdistrictUser,districtUser,provinceUser,zipcodeUser,
+                                   InvoicePerson,InvoiceTaxpayerName,InvoiceTaxIdentificationNumber,InvoiceTelephone,useShippingAddress,
+                                   InvoiceAddressUser,InvoiceSubdistrict,InvoiceDistrict,InvoiceProvince,InvoiceZipcode 
+                                    )}  >
+                                    ถัดไป
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -310,4 +342,14 @@ class Shipping_Address extends React.Component {
     }
 }
 
-export default Shipping_Address;
+
+const mapStateToProps = ({ }) => {
+    return {};
+  };
+  
+  const mapActionsToProps = { shippingAddress };
+  
+  export default connect(
+    mapStateToProps,
+    mapActionsToProps
+  )(Shipping_Address);
