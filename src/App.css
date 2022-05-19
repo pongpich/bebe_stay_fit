@@ -774,6 +774,7 @@ padding-left: 10%;
 }
 
 .box-proteinAddress {
+  position: relative;
   padding: 10px;
   border-radius: 5px;
   padding-right: 10px;
@@ -981,3 +982,16 @@ margin-left: 20px;
 .onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-switch {
   right: 0px; 
 }
+
+
+
+.elementStyle input:focus {
+  border-color: #E25E96 !important;
+  outline: 0;
+  box-shadow: 0 0 0 .25rem hsl(335, 69%, 63% ,0.25);
+}
+
+ .elementStyle div {
+  display:block !important;
+}
+  
