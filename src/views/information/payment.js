@@ -12,8 +12,9 @@ class Payment extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      outlinePinkModel: "btn btn-outline-pink",
-      outlinePinkModelFocus: "btn btn-outline-pinkFocus",
+      creditCardFocus: "btn btn-outline-pinkFocus",
+      qrCodeFocus: "btn btn-outline-pink",
+      paymentMethod: "creditCard",
       merchantID: "23xlw1vxcVi8OKGjTqE2sbQbOXHyzNaGN9XK5ALvRrYtdt7J/kL0ROmE59mzRhDhzICLvm6LF9i45eI8EiyFisGPGloHPKnrp7Ma+JH6O+CBVLZfS/NemVtmxm1J4yQ0cLFNTQUnGvhUO+w8/wvlJI3kw8LPuYpF2960XDgMvZA0R9i5",
       refNo: Date.now(),
       backgroundUrl: `https://api.planforfit.com/bebe/gbqr`,
@@ -41,16 +42,20 @@ class Payment extends React.Component {
 
   pinkModelFocus = (e) => {
     if (e === "1") {
-      var outlinePinkModel = "btn btn-outline-pink";
-      var outlinePinkModelFocus = "btn btn-outline-pinkFocus";
+      var qrCodeFocus = "btn btn-outline-pink";
+      var creditCardFocus = "btn btn-outline-pinkFocus";
+      this.setState({ paymentMethod: "creditCard" })
+      console.log("บัตรเครดิต");
     } else {
-      var outlinePinkModel = "btn btn-outline-pinkFocus";
-      var outlinePinkModelFocus = "btn btn-outline-pink";
+      var qrCodeFocus = "btn btn-outline-pinkFocus";
+      var creditCardFocus = "btn btn-outline-pink";
+      this.setState({ paymentMethod: "qrCode" })
+      console.log("QR code");
     }
-
+    console.log("e :", e);
     this.setState({
-      outlinePinkModel: outlinePinkModel,
-      outlinePinkModelFocus: outlinePinkModelFocus,
+      qrCodeFocus: qrCodeFocus,
+      creditCardFocus: creditCardFocus,
     })
 
   }
@@ -73,34 +78,13 @@ class Payment extends React.Component {
           </div>
           <div className="col-12 col-sm-12 col-md-10 col-lg-10 center2  margin-headText">
             <p className="font-size6 bold color-protein"> การชำระเงิน</p>
-
-            <form id="qr_form" action={"https://api.gbprimepay.com/gbp/gateway/qrcode"} method="POST">
-              <input id="qr_token" type="hidden" name="token" />
-              <input id="qr_refNo" type="hidden" name="referenceNo" />
-              <input id="qr_bgUrl" type="hidden" name="backgroundUrl" />
-              <input id="qr_amount" type="hidden" name="amount" />
-              <input id="qr_detail" type="hidden" name="detail" />
-              <input id="qr_name" type="hidden" name="customerName" />
-              <input id="qr_email" type="hidden" name="customerEmail" />
-              <input id="qr_phone" type="hidden" name="customerTelephone" />
-              <input id="qr_programID" type="hidden" name="merchantDefined1" />
-              <input id="qr_button" type="submit" class="btn" value="จ่ายด้วย QR Code" />
-            </form>
-
-            {/* <form id="cc_form" action="./#/cc_token" method="GET" class="hidden-form">
-              <input id="cc_button" type="submit" class="btn" value="ชำระดัวยบัตรเครดิต" />
-            </form> */}
-            <form id="cc_form" action="https://pot.planforfit.com/cc_token.html" method="GET" class="hidden-form">
-              <input id="cc_button" type="submit" class="btn" value="ชำระดัวยบัตรเครดิต" />
-            </form>
-
           </div>
           <div className="col-12 col-sm-12 col-md-10 col-lg-10 center2">
-            <button type="button" className={this.state.outlinePinkModelFocus} onClick={e => this.pinkModelFocus("1")}>บัตรเครดิต/เดบิต</button>&nbsp;&nbsp;&nbsp;
-                        <button type="button" className={this.state.outlinePinkModel} onClick={e => this.pinkModelFocus("2")}>ชำระด้วย QR Code</button>
+            <button type="button" className={this.state.creditCardFocus} onClick={e => this.pinkModelFocus("1")}>บัตรเครดิต/เดบิต</button>&nbsp;&nbsp;&nbsp;
+                        <button type="button" className={this.state.qrCodeFocus} onClick={e => this.pinkModelFocus("2")}>ชำระด้วย QR Code</button>
           </div>
           <div className="col-12 col-sm-12 col-md-6 col-lg-6 center2 margin-head">
-            <div className="box-protein">
+            {/* <div className="box-protein">
               <div className="padding-top">
                 <div className="box-proteinAddress padding-top">
                   <div>
@@ -128,7 +112,7 @@ class Payment extends React.Component {
                   </div>
                 </div>
               </div>
-            </div>
+            </div> */}
             <div className="box-protein  margin-head">
               <div className="padding-top">
                 <div className="box-proteinAddress padding-top">
@@ -149,12 +133,33 @@ class Payment extends React.Component {
                 </div>
               </div>
             </div>
-            <div className="d-grid gap-2 col-10 ol-sm-10  mx-auto   col-md-10 col-lg-10 distance">
-              {/*   <button className="btn bottom-pink" type="button" >
-                                                    ถัดไป
-                                                </button> */}
-              <Link to="/welcome_new_nember" className="btn bottom-pink" type="button">ชำระเงิน</Link>
-            </div>
+
+
+            <form id="cc_form" action="https://pot.planforfit.com/cc_token.html" method="GET" className="hidden-form d-grid gap-2 col-10 ol-sm-10  mx-auto   col-md-10 col-lg-10 distance">
+              {
+                (this.state.paymentMethod === "creditCard") &&
+                <input id="cc_button" type="submit" className="btn bottom-pink" value="ชำระเงิน" />
+              }
+            </form>
+
+            <form id="qr_form" action={"https://api.gbprimepay.com/gbp/gateway/qrcode"} method="POST" className="d-grid gap-2 col-10 ol-sm-10  mx-auto   col-md-10 col-lg-10 distance">
+              <input id="qr_token" type="hidden" name="token" />
+              <input id="qr_refNo" type="hidden" name="referenceNo" />
+              <input id="qr_bgUrl" type="hidden" name="backgroundUrl" />
+              <input id="qr_amount" type="hidden" name="amount" />
+              <input id="qr_detail" type="hidden" name="detail" />
+              <input id="qr_name" type="hidden" name="customerName" />
+              <input id="qr_email" type="hidden" name="customerEmail" />
+              <input id="qr_phone" type="hidden" name="customerTelephone" />
+              <input id="qr_programID" type="hidden" name="merchantDefined1" />
+              {
+                (this.state.paymentMethod === "qrCode") &&
+                <input id="qr_button" type="submit" className="btn bottom-pink" value="ชำระเงิน" />
+              }
+            </form>
+
+            {/*  <Link to="/welcome_new_nember" className="btn bottom-pink" type="button">ชำระเงิน</Link> */}
+
           </div>
         </div>
 
