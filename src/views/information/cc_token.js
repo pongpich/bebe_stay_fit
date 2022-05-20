@@ -1,9 +1,11 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
 
 class Cc_token extends React.Component {
 
   componentDidMount() {
-    window.gbFunc()
+    //window.gbFunc(this.props.program.price) //ใช้จริง
+    window.gbFunc(1) // สำหรับเทส
   }
 
   render() {
@@ -17,4 +19,14 @@ class Cc_token extends React.Component {
   }
 }
 
-export default Cc_token;
+const mapStateToProps = ({  exerciseProgram }) => {
+  const { program } = exerciseProgram;
+  return { program };
+};
+
+const mapActionsToProps = { };
+
+export default connect(
+  mapStateToProps,
+  mapActionsToProps
+)(Cc_token);

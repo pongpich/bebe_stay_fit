@@ -50,12 +50,12 @@
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
   <script>
-    window.gbFunc = function () {
+    window.gbFunc = function (amount) {
       new GBPrimePay({
         publicKey: 'HZUfYchqY3T49pWGoookdeS9eelqfOo7',
         gbForm: '#gb-form',
         merchantForm: '#checkout-form',
-        amount: 1.00,
+        amount: amount,
         customStyle: {
           backgroundColor: '#eaeaea'
         },
