@@ -23,7 +23,7 @@ class Payment extends React.Component {
       name: "Akkkk Yodsss",
       email: this.props.create_user_email,
       phone: this.props.create_user_phone,
-      program_id: this.props.program,
+      program: this.props.program,
       username: this.props.create_username,
       lastname:  this.props.create_lastname,
       telephone:  this.props.create_ltelephone, 
@@ -37,7 +37,7 @@ class Payment extends React.Component {
 
  
   componentDidMount() {
-    const { merchantID, refNo, backgroundUrl, price, productName, name, email, phone, program_id } = this.state;
+    const { merchantID, refNo, backgroundUrl, price, productName, name, email, phone, program } = this.state;
     document.getElementById("qr_token").value = merchantID;
     document.getElementById("qr_refNo").value = refNo;
     document.getElementById("qr_bgUrl").value = backgroundUrl;
@@ -46,10 +46,10 @@ class Payment extends React.Component {
     document.getElementById("qr_name").value = name;
     document.getElementById("qr_email").value = email;
     document.getElementById("qr_phone").value = phone;
-    document.getElementById("qr_programID").value = program_id;
+    document.getElementById("qr_programID").value = program.program_id;
 
 
-    console.log();
+    console.log("program_id :", program.program_id);
   }
 
   pinkModelFocus = (e) => {
@@ -73,15 +73,15 @@ class Payment extends React.Component {
   }
 
   onChickprice = (e) => {
-   let id = this.state.program_id.program_id
+   let id = this.state.program.program_id
     if (id === "starter_stay_fit_01") {
         this.setState({
-          program_id: this.props.allProgram[2],
+          program: this.props.allProgram[2],
         });
    /*    console.log("3900",id,id, this.props.allProgram[1]); */
     }else{
       this.setState({
-        program_id: this.props.allProgram[1],
+        program: this.props.allProgram[1],
       });
 /*       console.log("3700",id, this.props.allProgram[2]); */
     }
@@ -90,8 +90,8 @@ class Payment extends React.Component {
 
 
   render() {
-    console.log("aa",this.state.program_id);
-   const programId = this.state.program_id.program_id;
+    console.log("aa",this.state.program.program_id);
+   const programId = this.state.program.program_id;
     return (
       <>
         <div className="col-12 col-sm-12 col-md-12 col-lg-12  padding-top2 information-box ">
@@ -151,7 +151,7 @@ class Payment extends React.Component {
                     <p>สมัครตามระยะเวลาของโปรแกรม</p>
                    
                     <p className=" bold font-size5">
-                      {programId === "starter_stay_fit_01" ? `${this.state.program_id.price.toLocaleString('en') }  บาท`:  `${this.state.program_id.price.toLocaleString('en') }   บาท / 2 เดือน` }
+                      {programId === "starter_stay_fit_01" ? `${this.state.program.price.toLocaleString('en') }  บาท`:  `${this.state.program.price.toLocaleString('en') }   บาท / 2 เดือน` }
                     </p>
                     <p className="font-size4">เราจะทำการเรียกเก็บเงินทุกๆ 2 เดือน</p>
                   </div>
