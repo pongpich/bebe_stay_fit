@@ -146,7 +146,8 @@ class Payment extends React.Component {
                 </div>
               </div>
             </div>
-            <form id="cc_form" action="https://pot.planforfit.com/cc_token.html" method="GET" className="hidden-form d-grid gap-2 col-10 ol-sm-10  mx-auto   col-md-10 col-lg-10 distance">
+            
+            <form id="cc_form" action="#/cc_token" method="GET" className="hidden-form d-grid gap-2 col-10 ol-sm-10  mx-auto   col-md-10 col-lg-10 distance">
               {
                 (this.state.paymentMethod === "creditCard") &&
                 <input id="cc_button" type="submit" className="btn bottom-pink" value="ชำระเงิน" />
