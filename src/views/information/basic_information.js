@@ -1,5 +1,8 @@
 import React, { Component } from "react";
 import { Link } from 'react-router-dom';
+import { connect } from "react-redux";
+import { basicInFormation } from "../../redux/basicInFormation";
+
 class Basic_Information extends React.Component {
     constructor(props) {
         super(props);
@@ -7,9 +10,24 @@ class Basic_Information extends React.Component {
           checked: true,
           typeHei_Wig: "กก_ซม",
           typeHeight: "เซนติเมตร",
-          typeWeight: "กิโลกรัม"
+          typeWeight: "กิโลกรัม",
+          basicSex: null,
+          basicAge: null,
+          basicHeight: null,
+          basicWeight: null,
+          practiceDifficultExercises: null,
+          injury: null,
+          arePregnant: null
         }
       }
+
+      basicInFormation( basicSex, basicAge,typeHei_Wig, basicHeight,basicWeight, practiceDifficultExercises,injury, arePregnant) {
+        this.props.basicInFormation(
+            basicSex, basicAge,typeHei_Wig, basicHeight,basicWeight, practiceDifficultExercises,injury, arePregnant
+            );   
+            console.log(basicSex, basicAge,typeHei_Wig, basicHeight,basicWeight, practiceDifficultExercises,injury, arePregnant);
+         this.props.history.push('/your_program');   
+    }
 
       checkBoxes = (e) => {
         const { checked } = e.target
@@ -30,7 +48,19 @@ class Basic_Information extends React.Component {
          })
       }
 
+      onCheckBasix = (e) => {
+            this.setState({
+                [e.target.name]: e.target.value,
+            })
+      }
+
+  
+
+      
     render() {
+     
+
+        const {basicSex, basicAge, typeHei_Wig,basicHeight,basicWeight, practiceDifficultExercises,injury, arePregnant} = this.state;
         return (
             <>
                 <div className="col-12 col-sm-12 col-md-12 col-lg-12  padding-top2 information-box ">
@@ -51,17 +81,17 @@ class Basic_Information extends React.Component {
                                     <div className="padding-top2">
                                         <p className="form-label bold font-size4">เพศ</p>
                                         <div className="form-check form-check-inline">
-                                            <input className="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1" />
+                                            <input className="form-check-input" type="radio" name="basicSex"   onChange={e => this.onCheckBasix(e)} id="inlineRadio1" value="ชาย" />
                                             <label className="form-check-label">ชาย</label>
                                         </div>
                                         <div className="form-check form-check-inline">
-                                            <input className="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2" />
+                                            <input className="form-check-input" type="radio" name="basicSex"  onChange={e => this.onCheckBasix(e)}  id="inlineRadio2" value="หญิง" />
                                             <label className="form-check-label">หญิง</label>
                                         </div>
                                     </div>
                                     <div className="padding-top2">
                                         <label className="form-label bold font-size4">อายุ</label>
-                                        <input type="email" className="form-control right" id="exampleFormControlInput1" placeholder="ปี" />
+                                        <input type="email" className="form-control right" id="exampleFormControlInput1"  name="basicAge" onChange={e => this.onCheckBasix(e)}  placeholder="ปี" />
                                     </div>
                                     <div className="padding-top2">
                                         <label className="form-label bold font-size4 between color1">เลือกหน่วย 
@@ -82,56 +112,56 @@ class Basic_Information extends React.Component {
                                     </div>
                                     <div className="padding-top2">
                                         <label className="form-label bold font-size4 between">น้ำหนัก</label>
-                                        <input type="email" className="form-control right" id="exampleFormControlInput1" placeholder={this.state.typeHeight} />
+                                        <input type="email" className="form-control right" id="exampleFormControlInput1" name="basicHeight"  onChange={e => this.onCheckBasix(e)} placeholder={this.state.typeHeight} />
                                     </div>
                                     <div className="padding-top2">
                                         <label className="form-label bold font-size4">ส่วนสูง </label>
-                                        <input type="email" className="form-control right" id="exampleFormControlInput1" placeholder={this.state.typeWeight} />
+                                        <input type="email" className="form-control right" id="exampleFormControlInput1" name="basicWeight"  onChange={e => this.onCheckBasix(e)} placeholder={this.state.typeWeight} />
                                     </div>
                                     <div className="padding-top2">
                                         <p className="bold font-size4 ">คุณสามารถฝึกท่าฝึกยากๆ เช่นท่า Squat, ท่ากระโดด ได้อย่างถูกต้อง </p>
                                         <div className="form-check form-check-inline">
-                                            <input className="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1" />
+                                            <input className="form-check-input" type="radio" name="practiceDifficultExercises" id="inlineRadio1"  onChange={e => this.onCheckBasix(e)} value="ใช่" />
                                             <label className="form-check-label">ใช่</label>
                                         </div>
                                         <div className="form-check form-check-inline">
-                                            <input className="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2" />
+                                            <input className="form-check-input" type="radio" name="practiceDifficultExercises" id="inlineRadio2"  onChange={e => this.onCheckBasix(e)} value="ไม่ใช่" />
                                             <label className="form-check-label">ไม่ใช่</label>
                                         </div>
                                         <div className="form-check form-check-inline">
-                                            <input className="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2" />
+                                            <input className="form-check-input" type="radio" name="practiceDifficultExercises" id="inlineRadio2"  onChange={e => this.onCheckBasix(e)} value="ไม่แน่ใจ" />
                                             <label className="form-check-label">ไม่แน่ใจ</label>
                                         </div>
                                     </div>
                                     <div className="padding-top2">
                                         <p className="bold font-size4 ">คุณมีอาการบาดเจ็บที่ข้อต่อหรือกระดูกสันหลัง หรือไม่ </p>
                                         <div className="form-check form-check-inline">
-                                            <input className="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1" />
+                                            <input className="form-check-input" type="radio" name="injury" id="inlineRadio1"  onChange={e => this.onCheckBasix(e)} value="ใช่" />
                                             <label className="form-check-label">ใช่</label>
                                         </div>
                                         <div className="form-check form-check-inline">
-                                            <input className="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2" />
+                                            <input className="form-check-input" type="radio" name="injury" id="inlineRadio2"  onChange={e => this.onCheckBasix(e)} value="ไม่ใช่" />
                                             <label className="form-check-label">ไม่ใช่</label>
                                         </div>
                                     </div>
                                     <div className="padding-top2">
                                         <p className="bold font-size4 ">กำลังตั้งครรภ์ หรือให้นมบุตรอยู่</p>
                                         <div className="form-check form-check-inline">
-                                            <input className="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1" />
+                                            <input className="form-check-input" type="radio" name="arePregnant" id="inlineRadio1"  onChange={e => this.onCheckBasix(e)} value="ใช่" />
                                             <label className="form-check-label">ใช่</label>
                                         </div>
                                         <div className="form-check form-check-inline">
-                                            <input className="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2" />
+                                            <input className="form-check-input" type="radio" name="arePregnant" id="inlineRadio2"  onChange={e => this.onCheckBasix(e)} value="ไม่ใช่" />
                                             <label className="form-check-label">ไม่ใช่</label>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             <div className="d-grid gap-2  mx-auto   col-10 col-sm-10  col-md-10 col-lg-10 distance">
-                                {/*   <button className="btn bottom-pink" type="button" >
-                                    ถัดไป
-                                </button> */}
-                                <Link to="/your_program" className="btn bottom-pink" type="button">สร้างโปรแกรมออกกำลังกาย</Link>
+                                   <button className="btn bottom-pink" type="button" onClick={() => this.basicInFormation(basicSex, basicAge,typeHei_Wig, basicHeight,basicWeight, practiceDifficultExercises,injury, arePregnant)}  >
+                                   สร้างโปรแกรมออกกำลังกาย
+                                </button> 
+                             {/*    <Link to="/your_program" className="btn bottom-pink" type="button">สร้างโปรแกรมออกกำลังกาย</Link> */}
                             </div>
                         </div>
                     </div>
@@ -142,4 +172,15 @@ class Basic_Information extends React.Component {
         );
     }
 }
-export default Basic_Information;
+
+const mapStateToProps = ({ }) => {
+    const {} = basicInFormation;
+    return {};
+  };
+  
+  const mapActionsToProps = { basicInFormation };
+  
+  export default connect(
+    mapStateToProps,
+    mapActionsToProps
+  )(Basic_Information);

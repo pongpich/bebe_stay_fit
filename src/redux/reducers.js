@@ -7,6 +7,7 @@ import { reducer as authUser} from './auth';
 import { reducer as createUser} from './createUser';
 import { reducer as exerciseProgram} from './exerciseProgram';
 import { reducer as shippingAddress} from './shippingAddress';
+import { reducer as basicInFormation} from './basicInFormation';
 
 
 const persistConfig = {
@@ -19,7 +20,8 @@ const reducers = combineReducers({
   authUser,
   createUser,
   exerciseProgram,
-  shippingAddress
+  shippingAddress,
+  basicInFormation
 });
 
 const persistedReducer = persistReducer(persistConfig, reducers)
