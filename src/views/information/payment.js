@@ -23,10 +23,19 @@ class Payment extends React.Component {
       name: "Akkkk Yodsss",
       email: this.props.create_user_email,
       phone: this.props.create_user_phone,
-      program_id: this.props.program
+      program_id: this.props.program,
+      username: this.props.create_username,
+      lastname:  this.props.create_lastname,
+      telephone:  this.props.create_ltelephone, 
+      addressUser:  this.props.create_addressUser,
+      subdistrictUser:  this.props.create_subdistrictUser,
+      districtUser:  this.props.create_districtUser,
+      provinceUser: this.props.create_provinceUser,
+      zipcodeUser:  this.props.create_zipcodeUser
     };
   }
 
+ 
   componentDidMount() {
     const { merchantID, refNo, backgroundUrl, price, productName, name, email, phone, program_id } = this.state;
     document.getElementById("qr_token").value = merchantID;
@@ -38,6 +47,9 @@ class Payment extends React.Component {
     document.getElementById("qr_email").value = email;
     document.getElementById("qr_phone").value = phone;
     document.getElementById("qr_programID").value = program_id;
+
+
+    console.log();
   }
 
   pinkModelFocus = (e) => {
@@ -62,6 +74,7 @@ class Payment extends React.Component {
 
 
   render() {
+    console.log('user:',this.state.username);
     return (
       <>
         <div className="col-12 col-sm-12 col-md-12 col-lg-12  padding-top2 information-box ">
@@ -119,22 +132,20 @@ class Payment extends React.Component {
                   <div className="padding-top2">
                     <p className=" bold font-size5 between">แพ็คเกจของคุณ <span className="font-size4 light decoration">เปลี่ยน</span></p>
                     <p>สมัครตามระยะเวลาของโปรแกรม</p>
-                    <p className=" bold font-size5"> 3,750 บาท / 2 เดือน</p>
+                    <p className=" bold font-size5"> 3,750 บาท / 2 เดือน </p>
                     <p className="font-size4">เราจะทำการเรียกเก็บเงินทุกๆ 2 เดือน</p>
                   </div>
                   <p className="border-bottom "></p>
                   <div className="padding-top2">
-                    <p className=" bold font-size5 between">ที่อยู่ในการจัดส่งสินค้า <span className="font-size4 light decoration">เปลี่ยน</span></p>
-                    <p>บพิตร์ เตชะวัฒนานันท์ </p>
-                    <p>086959239 </p>
-                    <p>367/173 จรัฐพิบาล บางกอใหญ่ ศรีน้อย </p>
-                    <p>กรุงเทพมหานคร 10600</p>
+                    <p className=" bold font-size5 between">ที่อยู่ในการจัดส่งสินค้า <span className="font-size4 light decoration" onClick={() => this.props.history.push('/shipping_address')}>เปลี่ยน</span></p>
+                    <p>{this.state.username} &nbsp; {this.state.lastname}  </p>
+                    <p>{this.state.telephone} </p>
+                    <p>{this.state.addressUser} &nbsp;{this.state.subdistrictUser}&nbsp;{this.state.districtUser}</p>
+                    <p>{this.state.provinceUser}&nbsp;{this.state.zipcodeUser} </p>
                   </div>
                 </div>
               </div>
             </div>
-
-
             <form id="cc_form" action="https://pot.planforfit.com/cc_token.html" method="GET" className="hidden-form d-grid gap-2 col-10 ol-sm-10  mx-auto   col-md-10 col-lg-10 distance">
               {
                 (this.state.paymentMethod === "creditCard") &&
@@ -169,11 +180,17 @@ class Payment extends React.Component {
   }
 }
 
-const mapStateToProps = ({ createUser, exerciseProgram }) => {
+const mapStateToProps = ({ createUser, exerciseProgram,shippingAddress }) => {
   const { create_user_email, create_user_password, create_user_phone } = createUser;
   const { program } = exerciseProgram;
-  return { create_user_email, create_user_password, create_user_phone, program };
+  const {create_username,create_lastname,create_telephone, create_addressUser,
+    create_subdistrictUser,create_districtUser,create_provinceUser,create_zipcodeUser} = shippingAddress;
+  return { create_user_email, create_user_password, create_user_phone, program, 
+    create_username,create_lastname,create_telephone, create_addressUser,
+    create_subdistrictUser,create_districtUser,create_provinceUser,create_zipcodeUser
+  };
 };
+
 
 const mapActionsToProps = {};
 

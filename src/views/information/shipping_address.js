@@ -37,27 +37,35 @@ class Shipping_Address extends React.Component {
             InvoiceZipcode: null
         };
     }
+    componentDidMount() {
+
+        this.setState({ 
+            username: this.props.create_username,
+            lastname: this.props.create_lastname,
+            telephone: this.props.create_telephone,
+            addressUser: this.props.create_addressUser,
+            subdistrict: this.props.create_subdistrictUser,// เอาไว้ใส่ใน value
+            district: this.props.create_districtUser, // เอาไว้ใส่ใน value
+            province: this.props.create_provinceUser, // เอาไว้ใส่ใน value
+            zipcode: this.props.create_zipcodeUser, // เอาไว้ใส่ใน value
+            subdistrictUser: this.props.create_subdistrictUser,
+            districtUser: this.props.create_districtUser,
+            provinceUser: this.props.create_provinceUser,
+            zipcodeUser: this.props.create_zipcodeUser
+         })
+  
+    }
 
 
 shippingAddress(invoice, username, lastname, telephone,addressUser,subdistrictUser,districtUser,provinceUser,zipcodeUser,
                 InvoicePerson,InvoiceTaxpayerName,InvoiceTaxIdentificationNumber,InvoiceTelephone,useShippingAddress,
                 InvoiceAddressUser,InvoiceSubdistrict,InvoiceDistrict,InvoiceProvince,InvoiceZipcode ) {
-/*      this.props.shippingAddress(
-        this.state.invoice, this.state.username, this.state.lastname, this.state.telephone,this.state.addressUser,this.state.subdistrictUser,this.state.districtUser,this.state.provinceUser,this.state.zipcodeUser,
-        this.state.InvoicePerson,this.state.InvoiceTaxpayerName,this.state.InvoiceTaxIdentificationNumber,this.state.InvoiceTelephone,this.state.useShippingAddress,
-        this.state.InvoiceAddressUser,this.state.InvoiceSubdistrict,this.state.InvoiceDistrict,this.state.InvoiceProvince,this.state.InvoiceZipcode 
-        );  */
           this.props.shippingAddress(
             invoice, username, lastname, telephone,addressUser,subdistrictUser,districtUser,provinceUser,zipcodeUser,
             InvoicePerson,InvoiceTaxpayerName,InvoiceTaxIdentificationNumber,InvoiceTelephone,useShippingAddress,
             InvoiceAddressUser,InvoiceSubdistrict,InvoiceDistrict,InvoiceProvince,InvoiceZipcode 
             );   
-
      this.props.history.push('/payment');  
-
-     console.log(  invoice, username, lastname, telephone,addressUser,subdistrictUser,districtUser,provinceUser,zipcodeUser,
-        InvoicePerson,InvoiceTaxpayerName,InvoiceTaxIdentificationNumber,InvoiceTelephone,useShippingAddress,
-        InvoiceAddressUser,InvoiceSubdistrict,InvoiceDistrict,InvoiceProvince,InvoiceZipcode );  
   }
 
     taxInvoice = (e) => {
@@ -146,20 +154,20 @@ shippingAddress(invoice, username, lastname, telephone,addressUser,subdistrictUs
                                     <div className="row">
                                         <div className="col-12 col-sm-12 col-md-6 col-lg-6">
                                             <label className="form-label bold font-size4">ชื่อ</label>
-                                            <input type="email" className="form-control" id="exampleFormControlInput1" name="username" onChange={e => this.onChange(e)} placeholder="" />
+                                            <input type="email" className="form-control" id="exampleFormControlInput1" name="username"  value={this.state.username} onChange={e => this.onChange(e)} placeholder="" />
                                         </div>
                                         <div className="col-12 col-sm-12 col-md-6 col-lg-6">
                                             <label className="form-label bold font-size4">นามสกุล</label>
-                                            <input type="email" className="form-control" id="exampleFormControlInput1" name="lastname" onChange={e => this.onChange(e)} placeholder="" />
+                                            <input type="email" className="form-control" id="exampleFormControlInput1" name="lastname" value={this.state.lastname} onChange={e => this.onChange(e)} placeholder="" />
                                         </div>
                                     </div>
                                     <div className="padding-top2">
                                         <label className="form-label bold font-size4">เบอร์โทรศัพท์</label>
-                                        <input type="number" className="form-control" id="exampleFormControlInput1" name="telephone" onChange={e => this.onChange(e)} placeholder="" />
+                                        <input type="number" className="form-control" id="exampleFormControlInput1" name="telephone"   value={this.state.telephone} onChange={e => this.onChange(e)} placeholder="" />
                                     </div>
                                     <div className="padding-top2">
                                         <label className="form-label bold font-size4">ที่อยู่</label>
-                                        <textarea className="form-control" rows="3" placeholder="กรอกบ้านเลขที่, หมู่, ซอย, อาคาร, ถนน และจัดสุงเกต(ถ้ามี)" name="addressUser" onChange={e => this.onChange(e)}  ></textarea>
+                                        <textarea className="form-control" rows="3" placeholder="กรอกบ้านเลขที่, หมู่, ซอย, อาคาร, ถนน และจัดสุงเกต(ถ้ามี)" name="addressUser" onChange={e => this.onChange(e)} value={this.state.addressUser}  ></textarea>
                                     </div>
                                     <div className="padding-top2 elementStyle">
                                         <label className="form-label bold font-size4">แขวง/ตำบล</label>
@@ -343,8 +351,15 @@ shippingAddress(invoice, username, lastname, telephone,addressUser,subdistrictUs
 }
 
 
-const mapStateToProps = ({ }) => {
+/* const mapStateToProps = ({ }) => {
     return {};
+  };
+   */
+
+
+const mapStateToProps = ({ shippingAddress }) => {
+    const {create_username,create_lastname,create_telephone,create_addressUser,create_subdistrictUser,create_districtUser,create_provinceUser,create_zipcodeUser} = shippingAddress;
+    return { create_username,create_lastname,create_telephone,create_addressUser,create_subdistrictUser,create_districtUser,create_provinceUser,create_zipcodeUser};
   };
   
   const mapActionsToProps = { shippingAddress };
