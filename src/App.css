@@ -995,3 +995,6 @@ margin-left: 20px;
   display:block !important;
 }
   
+.pointer {
+  cursor: pointer;
+}

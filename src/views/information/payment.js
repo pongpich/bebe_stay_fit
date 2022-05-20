@@ -72,9 +72,26 @@ class Payment extends React.Component {
 
   }
 
+  onChickprice = (e) => {
+   let id = this.state.program_id.program_id
+    if (id === "starter_stay_fit_01") {
+        this.setState({
+          program_id: this.props.allProgram[2],
+        });
+   /*    console.log("3900",id,id, this.props.allProgram[1]); */
+    }else{
+      this.setState({
+        program_id: this.props.allProgram[1],
+      });
+/*       console.log("3700",id, this.props.allProgram[2]); */
+    }
+ 
+  }
+
 
   render() {
-    console.log('user:',this.state.username);
+    console.log("aa",this.state.program_id);
+   const programId = this.state.program_id.program_id;
     return (
       <>
         <div className="col-12 col-sm-12 col-md-12 col-lg-12  padding-top2 information-box ">
@@ -130,14 +147,17 @@ class Payment extends React.Component {
               <div className="padding-top">
                 <div className="box-proteinAddress padding-top">
                   <div className="padding-top2">
-                    <p className=" bold font-size5 between">แพ็คเกจของคุณ <span className="font-size4 light decoration">เปลี่ยน</span></p>
+                    <p className=" bold font-size5 between">แพ็คเกจของคุณ <span className="font-size4 light decoration pointer" onClick={e => this.onChickprice(e)}>เปลี่ยน</span></p>
                     <p>สมัครตามระยะเวลาของโปรแกรม</p>
-                    <p className=" bold font-size5"> 3,750 บาท / 2 เดือน </p>
+                   
+                    <p className=" bold font-size5">
+                      {programId === "starter_stay_fit_01" ? `${this.state.program_id.price.toLocaleString('en') }  บาท`:  `${this.state.program_id.price.toLocaleString('en') }   บาท / 2 เดือน` }
+                    </p>
                     <p className="font-size4">เราจะทำการเรียกเก็บเงินทุกๆ 2 เดือน</p>
                   </div>
                   <p className="border-bottom "></p>
                   <div className="padding-top2">
-                    <p className=" bold font-size5 between">ที่อยู่ในการจัดส่งสินค้า <span className="font-size4 light decoration" onClick={() => this.props.history.push('/shipping_address')}>เปลี่ยน</span></p>
+                    <p className=" bold font-size5 between">ที่อยู่ในการจัดส่งสินค้า <span className="font-size4 light decoration pointer" onClick={() => this.props.history.push('/shipping_address')}>เปลี่ยน</span></p>
                     <p>{this.state.username} &nbsp; {this.state.lastname}  </p>
                     <p>{this.state.telephone} </p>
                     <p>{this.state.addressUser} &nbsp;{this.state.subdistrictUser}&nbsp;{this.state.districtUser}</p>
@@ -183,10 +203,10 @@ class Payment extends React.Component {
 
 const mapStateToProps = ({ createUser, exerciseProgram,shippingAddress }) => {
   const { create_user_email, create_user_password, create_user_phone } = createUser;
-  const { program } = exerciseProgram;
+  const { program,allProgram } = exerciseProgram;
   const {create_username,create_lastname,create_telephone, create_addressUser,
     create_subdistrictUser,create_districtUser,create_provinceUser,create_zipcodeUser} = shippingAddress;
-  return { create_user_email, create_user_password, create_user_phone, program, 
+  return { create_user_email, create_user_password, create_user_phone, program, allProgram,
     create_username,create_lastname,create_telephone, create_addressUser,
     create_subdistrictUser,create_districtUser,create_provinceUser,create_zipcodeUser
   };
