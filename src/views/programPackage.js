@@ -56,8 +56,9 @@ class ProgramPackage extends React.Component {
   }
 
   selectProgram(program_id) {
+     
     this.props.selectProgram(program_id);
-    this.props.history.push('/register');
+    this.props.history.push('/register'); 
   }
 
   renderInformationCalculate() {

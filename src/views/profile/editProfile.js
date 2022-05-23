@@ -12,8 +12,12 @@ class EditProfile extends React.Component {
                 <div className="col-12 col-sm-12 col-md-12 col-lg-12  padding-top2 information-box ">
                     <div className="container">
                         <div className="row row-cols-2">
-                            <h4 className="color1">BEBEStayFit</h4>
-                            <h6 className="right">    <img src={user_circle} alt="vector" className="padding-right" />บพิตร์ เตชะวัฒนานันท์</h6>
+                            <div className="col-2 col-sm-2 col-md-12 col-lg-12">
+                                <h4 className="color1">BEBEStayFit</h4>
+                            </div>
+                            <div className="col-10 col-sm-10 col-md-12 col-lg-12">
+                                <h6 className="right"><img src={user_circle} alt="vector" className="padding-right" />บพิตร์ เตชะวัฒนานันท์</h6>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -148,14 +152,14 @@ class EditProfile extends React.Component {
                 <div className="col-12 col-sm-12 col-md-12 col-lg-12  center2  margin-top-3">
                     <div className="col-12 col-sm-12 col-md-6 col-lg-6 center2">
                         <div className="margin-bottom1">
-                        <div className="row">
-                        <div className="col-6 col-sm-6 col-md-6 col-lg-6 center2">
-                            <button type="button" className="btn bottom-outlinePink margin-top-4 col-lg-12">ยกเลิก</button>
-                        </div>
-                        <div className="col-6 col-sm-6 col-md-6 col-lg-6 center2">
-                            <button type="button" className="btn bottom-pink col-lg-12">บันทึก</button>
-                        </div>
-                    </div>
+                            <div className="row">
+                                <div className="col-6 col-sm-6 col-md-6 col-lg-6 center2">
+                                    <button type="button" className="btn bottom-outlinePink margin-top-4 col-lg-12">ยกเลิก</button>
+                                </div>
+                                <div className="col-6 col-sm-6 col-md-6 col-lg-6 center2">
+                                    <button type="button" className="btn bottom-pink col-lg-12">บันทึก</button>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

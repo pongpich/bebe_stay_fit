@@ -2,6 +2,10 @@ import React, { Component } from "react";
 import { Link } from 'react-router-dom';
 
 class Home extends React.Component {
+  onChickprice = (e) => {
+  
+    this.props.history.push('/videoList');
+   }
   render() {
     return (
       <div>
@@ -78,10 +82,9 @@ class Home extends React.Component {
                     <input type="text" className="form-control" id="exampleFormControlInput1" />
                   </div>
                   <div className="d-grid gap-2  mx-auto   col-12 col-sm-12  col-md-12 col-lg-12 distance">
-                    <button className="btn bottom-pinkLogin   font-size6" type="button" data-bs-dismiss="modal">
+                   <button className="btn bottom-pinkLogin   font-size6" type="button" onClick={e => this.onChickprice(e)} data-bs-dismiss="modal">
                       เข้าสู่ระบบ
-                    </button>
-                    {/*  <Link to="/information_calculate" className="btn bottom-pinkLogin   font-size6" type="button" data-bs-dismiss="modal">เข้าสู่ระบบ</Link> */}
+                    </button> 
                   </div>
                   <p className="between margin-top-2 font-size4"><a href="#">ลืมรหัสผ่าน</a> <span>ยังไม่เป็นสมาชิก? <a href="#">ลงทะเบียน</a></span></p>
                 </div>

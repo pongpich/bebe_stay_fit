@@ -9,8 +9,12 @@ class CancelPackage extends React.Component {
                 <div className="col-12 col-sm-12 col-md-12 col-lg-12  padding-top2 information-box ">
                     <div className="container">
                         <div className="row row-cols-2">
-                            <h4 className="color1">BEBEStayFit</h4>
-                            <h6 className="right">    <img src={user_circle} alt="vector" className="padding-right" />บพิตร์ เตชะวัฒนานันท์</h6>
+                            <div className="col-2 col-sm-2 col-md-12 col-lg-12">
+                                <h4 className="color1">BEBEStayFit</h4>
+                            </div>
+                            <div className="col-10 col-sm-10 col-md-12 col-lg-12">
+                                <h6 className="right"><img src={user_circle} alt="vector" className="padding-right" />บพิตร์ เตชะวัฒนานันท์</h6>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -35,7 +39,7 @@ class CancelPackage extends React.Component {
                             </div>
                             <div className="d-grid gap-2  mx-auto   col-10 col-sm-10  col-md-10 col-lg-10 margin-top-2 ">
                                 <button className="btn bottom-pink" type="button" >
-                                ยืนยัน
+                                    ยืนยัน
                                 </button>
                             </div>
                         </div>

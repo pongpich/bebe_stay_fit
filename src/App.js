@@ -16,6 +16,7 @@ import EditProfile from "./views/profile/editProfile";
 import Cancel_Package from "./views/profile/cancel_package";
 import Cancel_Package_Succeed from "./views/profile/cancel_packag_ succeed";
 import ProgramPackage from "./views/programPackage";
+import videoList from "./views/information/video_List";
 //import Summary_details from '../views/summary_details';
 //import Home from '../views/home';Welcome_NewMember
 import {
@@ -56,6 +57,7 @@ class App extends Component {
             <Route path='/edit_profile' component={EditProfile} />
             <Route path='/cancel_package_succeed' component={Cancel_Package_Succeed} />
             <Route path='/programPackage' component={ProgramPackage} />
+            <Route path='/videoList' component={videoList} />
           </Switch>
         </header>
       </div>
