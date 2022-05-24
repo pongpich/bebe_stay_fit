@@ -7,6 +7,7 @@ import payment4 from "../../assets/img/payment4.png";
 import payment5 from "../../assets/img/payment5.png";
 import { Link } from 'react-router-dom';
 import { connect } from "react-redux";
+import { testPostService } from "../../redux/auth";
 
 class Payment extends React.Component {
   constructor(props) {
@@ -25,17 +26,17 @@ class Payment extends React.Component {
       phone: this.props.create_user_phone,
       program: this.props.program,
       username: this.props.create_username,
-      lastname:  this.props.create_lastname,
-      telephone:  this.props.create_ltelephone, 
-      addressUser:  this.props.create_addressUser,
-      subdistrictUser:  this.props.create_subdistrictUser,
-      districtUser:  this.props.create_districtUser,
+      lastname: this.props.create_lastname,
+      telephone: this.props.create_ltelephone,
+      addressUser: this.props.create_addressUser,
+      subdistrictUser: this.props.create_subdistrictUser,
+      districtUser: this.props.create_districtUser,
       provinceUser: this.props.create_provinceUser,
-      zipcodeUser:  this.props.create_zipcodeUser
+      zipcodeUser: this.props.create_zipcodeUser
     };
   }
 
- 
+
   componentDidMount() {
     const { merchantID, refNo, backgroundUrl, price, productName, name, email, phone, program } = this.state;
     document.getElementById("qr_token").value = merchantID;
@@ -48,8 +49,7 @@ class Payment extends React.Component {
     document.getElementById("qr_phone").value = phone;
     document.getElementById("qr_programID").value = program.program_id;
 
-
-    console.log("program_id :", program.program_id);
+    this.props.testPostService();
   }
 
   pinkModelFocus = (e) => {
@@ -73,25 +73,25 @@ class Payment extends React.Component {
   }
 
   onChickprice = (e) => {
-   let id = this.state.program.program_id
+    let id = this.state.program.program_id
     if (id === "starter_stay_fit_01") {
-        this.setState({
-          program: this.props.allProgram[2],
-        });
-   /*    console.log("3900",id,id, this.props.allProgram[1]); */
-    }else{
+      this.setState({
+        program: this.props.allProgram[2],
+      });
+      /*    console.log("3900",id,id, this.props.allProgram[1]); */
+    } else {
       this.setState({
         program: this.props.allProgram[1],
       });
-/*       console.log("3700",id, this.props.allProgram[2]); */
+      /*       console.log("3700",id, this.props.allProgram[2]); */
     }
- 
+
   }
 
 
   render() {
-    console.log("aa",this.state.program.program_id);
-   const programId = this.state.program.program_id;
+    console.log("aa", this.state.program.program_id);
+    const programId = this.state.program.program_id;
     return (
       <>
         <div className="col-12 col-sm-12 col-md-12 col-lg-12  padding-top2 information-box ">
@@ -149,9 +149,9 @@ class Payment extends React.Component {
                   <div className="padding-top2">
                     <p className=" bold font-size5 between">แพ็คเกจของคุณ <span className="font-size4 light decoration pointer" onClick={e => this.onChickprice(e)}>เปลี่ยน</span></p>
                     <p>สมัครตามระยะเวลาของโปรแกรม</p>
-                   
+
                     <p className=" bold font-size5">
-                      {programId === "starter_stay_fit_01" ? `${this.state.program.price.toLocaleString('en') }  บาท`:  `${this.state.program.price.toLocaleString('en') }   บาท / 2 เดือน` }
+                      {programId === "starter_stay_fit_01" ? `${this.state.program.price.toLocaleString('en')}  บาท` : `${this.state.program.price.toLocaleString('en')}   บาท / 2 เดือน`}
                     </p>
                     <p className="font-size4">เราจะทำการเรียกเก็บเงินทุกๆ 2 เดือน</p>
                   </div>
@@ -166,7 +166,7 @@ class Payment extends React.Component {
                 </div>
               </div>
             </div>
-            
+
             <form id="cc_form" action="#/cc_token" method="GET" className="hidden-form d-grid gap-2 col-10 ol-sm-10  mx-auto   col-md-10 col-lg-10 distance">
               {
                 (this.state.paymentMethod === "creditCard") &&
@@ -201,19 +201,20 @@ class Payment extends React.Component {
   }
 }
 
-const mapStateToProps = ({ createUser, exerciseProgram,shippingAddress }) => {
+const mapStateToProps = ({ createUser, exerciseProgram, shippingAddress }) => {
   const { create_user_email, create_user_password, create_user_phone } = createUser;
-  const { program,allProgram } = exerciseProgram;
-  const {create_username,create_lastname,create_telephone, create_addressUser,
-    create_subdistrictUser,create_districtUser,create_provinceUser,create_zipcodeUser} = shippingAddress;
-  return { create_user_email, create_user_password, create_user_phone, program, allProgram,
-    create_username,create_lastname,create_telephone, create_addressUser,
-    create_subdistrictUser,create_districtUser,create_provinceUser,create_zipcodeUser
+  const { program, allProgram } = exerciseProgram;
+  const { create_username, create_lastname, create_telephone, create_addressUser,
+    create_subdistrictUser, create_districtUser, create_provinceUser, create_zipcodeUser } = shippingAddress;
+  return {
+    create_user_email, create_user_password, create_user_phone, program, allProgram,
+    create_username, create_lastname, create_telephone, create_addressUser,
+    create_subdistrictUser, create_districtUser, create_provinceUser, create_zipcodeUser
   };
 };
 
 
-const mapActionsToProps = {};
+const mapActionsToProps = { testPostService };
 
 export default connect(
   mapStateToProps,

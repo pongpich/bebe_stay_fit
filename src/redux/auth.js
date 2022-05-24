@@ -29,8 +29,15 @@ export const types = {
   GET_GROUP_ID: "GET_GROUP_ID",
   GET_GROUP_ID_SUCCESS: "GET_GROUP_ID_SUCCESS",
   CHANGE_EMAIL: "CHANGE_EMAIL",
-  CHANGE_EMAIL_SUCCESS: "CHANGE_EMAIL_SUCCESS"
+  CHANGE_EMAIL_SUCCESS: "CHANGE_EMAIL_SUCCESS",
+  TEST_POST_SERVICE: "TEST_POST_SERVICE",
 }
+
+export const testPostService = (
+
+) => ({
+  type: types.TEST_POST_SERVICE
+})
 
 export const changeEmail = (
   email,
@@ -132,13 +139,11 @@ export const importMembers = (members, start_date, expire_date) => ({
 })
 
 
-export const register = (email, password, firstname, lastname, phone) => ({
+export const register = (email, password, phone) => ({
   type: types.REGISTER,
   payload: {
     email,
     password,
-    firstname,
-    lastname,
     phone
   }
 });
@@ -228,17 +233,13 @@ const importMembersSagaAsync = async (
 const registerSagaAsync = async (
   email,
   password,
-  firstname,
-  lastname,
   phone
 ) => {
   try {
-    const apiResult = await API.post("bebe", "/register", {
+    const apiResult = await API.post("bebe", "/registerBebeStayFit", {
       body: {
         email: email,
         password: password,
-        first_name: firstname,
-        last_name: lastname,
         phone: phone
       }
     });
@@ -327,6 +328,21 @@ const getGroupIDSagaAsync = async (
     const apiResult = await API.get("bebe", "/getGroupID", {
       queryStringParameters: {
         user_id
+      }
+    });
+    return apiResult
+  } catch (error) {
+    return { error, messsage: error.message };
+  }
+}
+
+const testPostServiceSagaAsync = async (
+  
+) => {
+  try {
+    const apiResult = await API.post("bebe", "/testPostService", {
+      body: {
+  
       }
     });
     return apiResult
@@ -513,8 +529,6 @@ function* registerSaga({ payload }) {
   const {
     email,
     password,
-    firstname,
-    lastname,
     phone
   } = payload
 
@@ -523,8 +537,6 @@ function* registerSaga({ payload }) {
       registerSagaAsync,
       email,
       password,
-      firstname,
-      lastname,
       phone
     );
     yield put({
@@ -570,6 +582,18 @@ function* getGroupIDSaga({ payload }) {
     })
   } catch (error) {
     console.log("error from getGroupIDSaga :", error);
+  }
+}
+
+function* testPostServiceSaga({ }) {
+
+  try {
+    yield call(
+      testPostServiceSagaAsync
+    );
+
+  } catch (error) {
+    console.log("error from testPostServiceSaga :", error);
   }
 }
 
@@ -720,6 +744,10 @@ export function* watchChangeEmail() {
   yield takeEvery(types.CHANGE_EMAIL, changeEmailSaga);
 }
 
+export function* watchTestPostService() {
+  yield takeEvery(types.TEST_POST_SERVICE, testPostServiceSaga);
+}
+
 export function* saga() {
   yield all([
     fork(watchLoginUser),
@@ -734,7 +762,8 @@ export function* saga() {
     fork(watchResetPassword),
     fork(watchImportMembers),
     fork(watchGetGroupID),
-    fork(watchChangeEmail)
+    fork(watchChangeEmail),
+    fork(watchTestPostService),
   ]);
 }
 

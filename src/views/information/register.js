@@ -4,6 +4,7 @@ import group18 from "../../assets/img/group18.png";
 import { Link } from 'react-router-dom';
 import { connect } from "react-redux";
 import { createUser } from "../../redux/createUser";
+import { register } from "../../redux/auth";
 
 class Register extends React.Component {
   constructor(props) {
@@ -28,6 +29,7 @@ class Register extends React.Component {
       status_submit: "default"
     })
     if ((email && password && confirm_password && phone) && (password === confirm_password) && (password && password.length >= 6)) {
+      this.props.register(email, password, phone);
       this.props.createUser(email, password, phone);
       this.props.history.push('/fitto_plant_protein');
     } else if (password !== confirm_password) {
@@ -168,7 +170,7 @@ const mapStateToProps = ({ }) => {
   return {};
 };
 
-const mapActionsToProps = { createUser };
+const mapActionsToProps = { createUser, register };
 
 export default connect(
   mapStateToProps,
