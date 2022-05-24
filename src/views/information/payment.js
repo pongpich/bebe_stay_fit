@@ -7,7 +7,6 @@ import payment4 from "../../assets/img/payment4.png";
 import payment5 from "../../assets/img/payment5.png";
 import { Link } from 'react-router-dom';
 import { connect } from "react-redux";
-import { testPostService } from "../../redux/auth";
 
 class Payment extends React.Component {
   constructor(props) {
@@ -48,8 +47,6 @@ class Payment extends React.Component {
     document.getElementById("qr_email").value = email;
     document.getElementById("qr_phone").value = phone;
     document.getElementById("qr_programID").value = program.program_id;
-
-    this.props.testPostService();
   }
 
   pinkModelFocus = (e) => {
@@ -214,7 +211,7 @@ const mapStateToProps = ({ createUser, exerciseProgram, shippingAddress }) => {
 };
 
 
-const mapActionsToProps = { testPostService };
+const mapActionsToProps = {  };
 
 export default connect(
   mapStateToProps,
