@@ -1,4 +1,4 @@
-import React, { Component, } from "react";
+import React, { Component,useRef } from "react";
 import user_circle from "../../assets/img/user_circle.svg";
 import play_circle_filled from "../images/play_circle_filled.png";
 import rectangle13 from "../images/rectangle13.png";
@@ -14,6 +14,7 @@ import e5 from "../images/5.png";
 import group47 from "../images/group47.png";
 import alarm from "../images/alarm.png";
 import ellipse61 from "../images/ellipse61.png";
+import { loadingLogo } from "aws-amplify";
 
 
 class videoList extends React.Component {
@@ -58,6 +59,14 @@ class videoList extends React.Component {
     });
 
   }
+  playVideo(e) {
+    const vidRef = e;
+   /*  vidRef.current.play(); */
+    console.log("vidRef",vidRef);
+   /*  const handlePlayVideo = () => {
+      vidRef.current.play();
+    } */
+}
 
   render() {
     console.log(this.state.borderBottom1, this.state.borderBottom2, this.state.borderBottom3);
@@ -144,19 +153,19 @@ class videoList extends React.Component {
               <div className="rectangle14"></div>
             </div>
           </div>
-          <div class="containerli">
-            <div class="row">
-              <div class="col">
+          <div className="containerli">
+            <div className="row">
+              <div className="col">
                 รวมเวลาฝึกทั้งหมด 55 นาที
               </div>
-              <div class="col-md-auto">
+              <div className="col-md-auto">
                 <img src={edit} className="icon-edit" />
                 แก้ไขคลิปออกกำลังกาย
               </div>
-              <div class="col col-lg-3">
-                <div class="form-check form-switch form-check-reverse">
-                  <input class="form-check-input" type="checkbox" id="flexSwitchCheckReverse" />
-                  <label class="form-check-label" for="flexSwitchCheckReverse">เล่นต่อเนื่องอัตโนมัติ</label>
+              <div className="col col-lg-3">
+                <div className="form-check form-switch form-check-reverse">
+                  <input className="form-check-input" type="checkbox" id="flexSwitchCheckReverse" />
+                  <label className="form-check-label" >เล่นต่อเนื่องอัตโนมัติ</label>
                 </div>
               </div>
             </div>
@@ -164,7 +173,6 @@ class videoList extends React.Component {
           <div className="containerli2">
             <div className="row">
               <div className="col col-sm col-md-2 col-lg-2 ">
-     
                 <div className="iconCenter ">
                 <div className="start-e">
                   <p className="bold">เริ่มกันเลย!</p>
@@ -209,11 +217,40 @@ class videoList extends React.Component {
               <div className="col-10 col-sm-10 col-md-10 col-lg-10">
                 <div className=" box-playVdieo">
                   <div className="row">
+                    <div className="col-12  col-sm-12 col-md-6 col-lg-6 ">
+                      <div className="box-paly1">
+                        <div className=" background-icon-play">
+                          <div className="icon-play-video">
+                            <img src={play_circle_filled}  className="pointer"   data-bs-toggle="modal" data-bs-target="#exampleModal"/>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div className=" col-12  col-sm-12 col-md-6 col-lg-6">
+                      <div className="box-paly2">
+                          <div className="text-video">
+                            <p className="high-impact"><img src={group47}  className="col-2"/><span className="bold color1">High Impact</span> </p>
+                            <p className="alarm"> <img src={alarm}  className="col-2"/> 5.06 นาที</p>
+                          </div>
+                          <div className="rectangle15"></div>
+                          <p className="warmup">Warm up {">"}</p>
+                          <p className="warmup2 bold">Warm up</p>
+                          <img src={ellipse61}  className="ellipse61 ellipse61-size" />
+                          <img src={ellipse61}  className="ellipse61-2 ellipse61-size"/>
+                          <img src={ellipse61}  className="ellipse61-2 ellipse61-size"/>
+                          <img src={ellipse61}  className="ellipse61-2 ellipse61-size"/>
+                          <img src={ellipse61}  className="ellipse61-2 ellipse61-size"/>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div className=" box-playVdieo">
+                  <div className="row">
                     <div className="col-12  col-sm-12 col-md-6 col-lg-6">
                       <div className="box-paly1">
                         <div className=" background-icon-play">
                           <div className="icon-play-video">
-                            <img src={play_circle_filled} />
+                            <img src={play_circle_filled} /> 
                           </div>
                         </div>
                       </div>
@@ -250,36 +287,7 @@ class videoList extends React.Component {
                     <div className=" col-12  col-sm-12 col-md-6 col-lg-6">
                       <div className="box-paly2">
                           <div className="text-video">
-                            <p className="high-impact"><img src={group47}  className="col-2"/><span className="bold color1">High Impact</span> </p>
-                            <p className="alarm"> <img src={alarm}  className="col-2"/> 5.06 นาที</p>
-                          </div>
-                          <div className="rectangle15"></div>
-                          <p className="warmup">Warm up {">"}</p>
-                          <p className="warmup2 bold">Warm up</p>
-                          <img src={ellipse61}  className="ellipse61 ellipse61-size" />
-                          <img src={ellipse61}  className="ellipse61-2 ellipse61-size"/>
-                          <img src={ellipse61}  className="ellipse61-2 ellipse61-size"/>
-                          <img src={ellipse61}  className="ellipse61-2 ellipse61-size"/>
-                          <img src={ellipse61}  className="ellipse61-2 ellipse61-size"/>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className=" box-playVdieo">
-                  <div className="row">
-                    <div className="col-12  col-sm-12 col-md-6 col-lg-6">
-                      <div className="box-paly1">
-                        <div className=" background-icon-play">
-                          <div className="icon-play-video">
-                            <img src={play_circle_filled} />
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div className=" col-12  col-sm-12 col-md-6 col-lg-6">
-                      <div className="box-paly2">
-                          <div className="text-video">
-                            <p className="high-impact"><img src={group47}  className="col-2"/><span className="bold color1">High Impact</span> </p>
+                            <p className="high-impact"> </p>
                             <p className="alarm"> <img src={alarm}  className="col-2"/> 5.06 นาที</p>
                           </div>
                           <div className="rectangle15"></div>
@@ -361,21 +369,13 @@ class videoList extends React.Component {
                 <div className="col-12 col-sm-12 col-md-12 col-lg-12">
                   <p className="clip-all between bold">คลิปแบบซื้อ <span className="family-normal "> ดูทั้งหมด {">"}</span> </p>
                 </div>
-              
-                <div className="scrolloverflow">
-                <ul>
-                  <li>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam semper diam at erat pulvinar, at pulvinar felis blandit. Vestibulum volutpat tellus diam, consequat gravida libero rhoncus ut. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam semper diam at erat pulvinar, at pulvinar felis blandit. Vestibulum volutpat tellus diam, consequat gravida libero rhoncus ut. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam semper diam at erat pulvinar, at pulvinar felis blandit. Vestibulum volutpat tellus diam, consequat gravida libero rhoncus ut
-                  </li>
-                </ul>
-              </div>
                 <div className="">
                     <div className="scrolloverflow">
                       <ul>
                         <li>
-                        <div className="boxvideo" >
+                        <div className="boxvideo-1" >
                           <div className="box-video">
-                            zxczxc
+                          {/*   zxczxc */}
                           </div>
                           <div className="box-video1">
                             <div className="text-videobox">
@@ -389,7 +389,7 @@ class videoList extends React.Component {
                         </div> 
                         <div className="boxvideo" >
                           <div className="box-video">
-                            zxczxc
+                           {/*  zxczxc */}
                           </div>
                           <div className="box-video1">
                             <div className="text-videobox">
@@ -403,7 +403,7 @@ class videoList extends React.Component {
                         </div> 
                         <div className="boxvideo" >
                           <div className="box-video">
-                            zxczxc
+                           {/*  zxczxc */}
                           </div>
                           <div className="box-video1">
                             <div className="text-videobox">
@@ -417,11 +417,11 @@ class videoList extends React.Component {
                         </div> 
                         <div className="boxvideo" >
                           <div className="box-video">
-                            zxczxc
+                           {/*  zxczxc */}
                           </div>
                           <div className="box-video1">
                             <div className="text-videobox">
-                              <p className="bold"> โดยเชือก 1,000 ยกระชับสัดส่วน ต้นขาเห็นผลภายใน 5 วัน </p>
+                              <p className="bold" > โดยเชือก 1,000 ยกระชับสัดส่วน ต้นขาเห็นผลภายใน 5 วัน </p>
                               <p className="text-box-video1"> ในคลิปประกอบไปด้วยการโดดเชือก 20 คลิปทำให้เห็นผลการลดน้ำหนักภายใน 5 วัน จะลดลงไปถึง...</p>
                             </div>
                               <button button className="btn bottom-pink-video" type="button" >
@@ -431,7 +431,7 @@ class videoList extends React.Component {
                         </div> 
                         <div className="boxvideo" >
                           <div className="box-video">
-                            zxczxc
+                            { /*  zxczxc */}
                           </div>
                           <div className="box-video1">
                             <div className="text-videobox">
@@ -448,6 +448,21 @@ class videoList extends React.Component {
                     </div>
                 </div>
              </div>
+          </div>
+        </div>
+        {/* modal  */}
+        <div className="modal fade" id="exampleModal"  aria-labelledby="exampleModalLabel" >
+          <div className="modal-dialog modal-xl">
+            <div className="modal-content">
+              <div className="modal-header">
+                <h5 className="modal-title" id="exampleModalLabel"> <img src={ellipse61}  className="ellipse61-model" /> <span className="span-model bold color1"> Chest</span></h5>
+                <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close" ></button>
+                <button onClick={this.playVideo.bind(this)}>PLAY</button>
+              </div>
+              <div className="modal-body">
+                <iframe className="video" ref="vidRef" src="https://vod-progressive.akamaized.net/exp=1653432536~acl=%2Fvimeo-prod-skyfire-std-us%2F01%2F2928%2F16%2F414644989%2F1784130174.mp4~hmac=6ce4602e19a6429824b03e6d208998e18a37fe88cf31f33024bbda622537baf4/vimeo-prod-skyfire-std-us/01/2928/16/414644989/1784130174.mp4?filename=Warm+up.mp4" ></iframe>
+              </div>
+            </div>
           </div>
         </div>
       </>
