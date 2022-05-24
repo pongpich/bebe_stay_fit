@@ -324,7 +324,7 @@ shippingAddress(invoice, username, lastname, telephone,addressUser,subdistrictUs
                                         </div>
                                     </div>
                                     <div className=" col-12 col-sm-12  col-md-6 col-lg-6">
-                                        <div className="mb-3">
+                                        <div className="mb-3 elementStyle">
                                             <label className="form-label bold">รหัสไปรษณีย์</label>
                                             <InputAddress style={{ width: "100%" }}
                                                 address="zipcode"

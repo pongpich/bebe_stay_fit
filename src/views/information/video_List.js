@@ -3,6 +3,14 @@ import user_circle from "../../assets/img/user_circle.svg";
 import play_circle_filled from "../images/play_circle_filled.png";
 import rectangle13 from "../images/rectangle13.png";
 import edit from "../images/edit.png";
+import ellipse2 from "../images/ellipse2.png";
+import line1 from "../images/line1.png";
+import ellipse5 from "../images/ellipse5.png";
+import eCheck from "../images/check.svg";
+import e2 from "../images/2.png";
+import e3 from "../images/3.png";
+import e4 from "../images/4.png";
+import e5 from "../images/5.png";
 
 class videoList extends React.Component {
 
@@ -110,16 +118,16 @@ class videoList extends React.Component {
                 <div className="container-fluid">
                   <ul>
                     <li className="video-li2 ">
-                      <a className="video-link2">DAY 1</a>
+                      <a className="video-link2 color1">DAY 1</a>
                     </li>
                     <li className="video-li2  video-liPadding-left2">
-                      <a className="video-link2">DAY 2</a>
+                      <a className="video-link2 day2-4">DAY 2</a>
                     </li>
                     <li className="video-li2 video-liPadding-left2">
-                      <a className="video-link2">DAY 3</a>
+                      <a className="video-link2 day2-4">DAY 3</a>
                     </li>
                     <li className="video-li2  video-liPadding-left2">
-                      <a className="video-link2">DAY 4</a>
+                      <a className="video-link2 day2-4">DAY 4</a>
                     </li>
                   </ul>
                   <ul>
@@ -135,18 +143,73 @@ class videoList extends React.Component {
           <div class="containerli">
             <div class="row">
               <div class="col">
-              รวมเวลาฝึกทั้งหมด 55 นาที
+                รวมเวลาฝึกทั้งหมด 55 นาที
               </div>
               <div class="col-md-auto">
-              <img src={edit}  className="icon-edit"/>
-              แก้ไขคลิปออกกำลังกาย
+                <img src={edit} className="icon-edit" />
+                แก้ไขคลิปออกกำลังกาย
               </div>
-              <div class="col col-lg-4 ">
-              <div class="form-check form-switch form-check-reverse">
-            
-                <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" />
-                <label class="form-check-label" for="flexSwitchCheckDefault">เล่นต่อเนื่องอัตโนมัติ</label>
+              <div class="col col-lg-3">
+                <div class="form-check form-switch form-check-reverse">
+                  <input class="form-check-input" type="checkbox" id="flexSwitchCheckReverse" />
+                  <label class="form-check-label" for="flexSwitchCheckReverse">เล่นต่อเนื่องอัตโนมัติ</label>
+                </div>
               </div>
+            </div>
+          </div>
+          <div className="containerli">
+            <div className="row">
+              <div className="col-2 col-sm-2 col-md-2 col-lg-2 ">
+                <div className="iconCenter">
+                  <div className="start-e">
+                    <p className="bold">เริ่มกันเลย!</p>
+                  </div>
+                  <div className="ellipse-1">
+                    <img src={ellipse2} className="" />
+                    <img src={eCheck} className="eCheck" />
+                  </div>
+                  <div className="line1">
+                    <img src={line1} className="ellipse2-1" />
+                  </div>
+                  <div className="ellipse-2">
+                    <img src={ellipse5} className="ellipse2-1" />
+                    <img src={e2} className="e2" />
+                  </div>
+                  <div className="line2">
+                    <img src={line1} className="" />
+                  </div>
+                  <div className="ellipse-2">
+                    <img src={ellipse5} className="ellipse2-1" />
+                    <img src={e3} className="e2" />
+                  </div>
+                  <div className="line2">
+                    <img src={line1} className="" />
+                  </div>
+                  <div className="ellipse-2">
+                    <img src={ellipse5} className="ellipse2-1" />
+                    <img src={e4} className="e2" />
+                  </div>
+                  <div className="line2">
+                    <img src={line1} className="" />
+                  </div>
+                  <div className="ellipse-2">
+                    <img src={ellipse5} className="ellipse2-1" />
+                    <img src={e5} className="e2" />
+                  </div>
+                  <div className="end-e">
+                    <p className="bold color1">สำเร็จแล้ว!</p>
+                  </div>
+                </div>
+              </div>
+              <div className="col-10 col-sm-10 col-md-10 col-lg-10 ">
+                <div className="box-playVdieo">
+                  <div className="box-paly1">
+
+                  </div>
+                  <div>
+
+                  </div>
+                </div>
               </div>
             </div>
           </div>

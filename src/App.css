@@ -122,6 +122,9 @@
 
   }
 
+
+
+
 }
 
 
@@ -143,7 +146,7 @@
   .padding-left3 {
     padding-left: 60px;
    }
-  
+
   
 }
 
@@ -240,9 +243,9 @@ body{
 }
 
 .btn-outline-pinkFocus {
-  color: #000000;
-  border-color: #FFA0C8;
-  background-color: #FFA0C8;
+  color: #000000 !important;
+  border-color: #FFA0C8 !important;
+  background-color: #FFA0C8 !important;
 }
 
 .btn-outline-pink:focus-within {
@@ -295,7 +298,14 @@ body{
   background-color: #E25E96;
   border-radius: 30px;
 }
-
+.btn-outline-pinkModelFocus:hover {
+  padding-left: 20px;
+  padding-right: 20px;
+  color: #FFFFFF;
+  border-color: #E25E96;
+  background-color: #E25E96;
+  border-radius: 30px;
+}
 
 .center {
   display: flex;
@@ -444,7 +454,15 @@ padding-left: 10%;
   border-radius: 25px;
   padding-top: 10px;
 }
-
+.bottom-pink:hover  {
+  background-color: #E25E96;
+  margin-top: 40px;
+  height: 50px;
+  color: #FFFFFF !important;
+  margin-bottom: 50px;
+  border-radius: 25px;
+  padding-top: 10px;
+}
 
 .bottom-outlinePink  {
   background-color: #FFFFFF;
@@ -1039,6 +1057,7 @@ margin-left: 20px;
   padding-top: 30px;
   padding-bottom: 50px;
   position: relative;
+  height: 100%;
 
 }
 
@@ -1102,13 +1121,12 @@ a:hover {
 }
 .rightRig {
   float: right;
-  text-align: center
+
 }
 
 .video-link2 {
   font-weight: bold;
   font-family: BdCondHe;
-  color: #000000;
   cursor: pointer;
   font-size: 24px !important;
 } 
@@ -1152,4 +1170,57 @@ a:hover {
 .icon-edit {
   width: 25px !important;
   padding-right: 5px;
+}
+.day2-4 {
+  color: #C4C4C4 !important;
+}
+.iconCenter {
+  padding-left: 50px;
+  position: relative;
+  padding-top: 50px ;
+}
+
+.eCheck {
+  margin-left: -47px;
+}
+.line1 {
+  position: relative;
+  padding-top: 40px;
+  margin-left: 22px;
+}
+  .ellipse-1 {
+    position: absolute;
+  }
+.ellipse-2 {
+  position: relative;
+  margin-top: 0px;
+}
+.e2 {
+  margin-left: -32px;
+}
+.line2 {
+  position: relative;
+  padding-top: 0px;
+  margin-left: 22px;
+}
+.start-e {
+  position: relative;
+  margin-left: -10px;
+}
+.end-e {
+  position: relative;
+  padding-top: 10px;
+  margin-left: -10px;
+}
+.box-playVdieo {
+  width: 900px;
+  height: 200px;
+  position: relative;
+  border-radius: 10px;
+  background-color: #333333;
+}
+.box-paly1 {
+  width: 400px;
+  height: 200px;
+  background-color: #333333;
 }
