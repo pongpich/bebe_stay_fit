@@ -18,7 +18,17 @@ class ProgramPackage extends React.Component {
   }
 
   componentDidMount() {
+    const { user_program_id, statusRegister } = this.props;
+
     this.props.getAllProgram()
+
+    if (user_program_id) { //ถ้ามี user_program_id แสดงว่าชำระเงินสำเร็จแล้ว
+      this.props.history.push('/welcome_new_nember');
+    }
+
+    if (statusRegister === "success") { //success แสดงว่าสร้าง email นี้ใน table member แล้ว
+      this.props.history.push('/fitto_plant_protein');
+    }
   }
 
   exerciseActivatedCheck(event) {
@@ -56,9 +66,9 @@ class ProgramPackage extends React.Component {
   }
 
   selectProgram(program_id) {
-     
+
     this.props.selectProgram(program_id);
-    this.props.history.push('/register'); 
+    this.props.history.push('/register');
   }
 
   renderInformationCalculate() {
@@ -92,7 +102,7 @@ class ProgramPackage extends React.Component {
                     value="exercise"
                   />
                   <label className="form-check-label">
-                  คุมอาหาร และ ออกกำลังกาย
+                    คุมอาหาร และ ออกกำลังกาย
                                     </label>
                 </div>
                 <div className="form-check font-size4" onChange={(event) => this.exerciseActivatedCheck(event)}>
@@ -239,9 +249,9 @@ class ProgramPackage extends React.Component {
 }
 
 const mapStateToProps = ({ authUser, exerciseProgram }) => {
-  const { user, status } = authUser;
-  const { program, allProgram } = exerciseProgram;
-  return { user, status, program, allProgram };
+  const { user, status, statusRegister } = authUser;
+  const { program, allProgram, user_program_id } = exerciseProgram;
+  return { user, status, statusRegister, program, allProgram, user_program_id };
 };
 
 const mapActionsToProps = { loginUser, selectProgram, getAllProgram };

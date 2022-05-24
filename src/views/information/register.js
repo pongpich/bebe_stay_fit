@@ -24,6 +24,23 @@ class Register extends React.Component {
     })
   };
 
+  componentDidMount() {
+    const { statusRegister } = this.props;
+
+    if (statusRegister === "success") { //success แสดงว่าสร้าง email นี้ใน table member แล้ว
+      this.props.history.push('/fitto_plant_protein');
+    }
+    
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    const { statusRegister } = this.props;
+
+    if (prevProps.statusRegister !== statusRegister) {
+      this.props.history.push('/fitto_plant_protein');
+    }
+  }
+
   createUser(email, password, confirm_password, phone) {
     this.setState({
       status_submit: "default"
@@ -166,8 +183,10 @@ class Register extends React.Component {
   }
 }
 
-const mapStateToProps = ({ }) => {
-  return {};
+const mapStateToProps = ({ authUser, exerciseProgram }) => {
+  const { statusRegister } = authUser
+  const { user_program_id } = exerciseProgram;
+  return { statusRegister, user_program_id };
 };
 
 const mapActionsToProps = { createUser, register };

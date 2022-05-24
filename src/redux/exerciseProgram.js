@@ -8,6 +8,8 @@ export const types = {
   SELECT_PROGRAM_SUCCESS: "SELECT_PROGRAM_SUCCESS",
   GET_ALL_PROGRAM: "GET_ALL_PROGRAM",
   GET_ALL_PROGRAM_SUCCESS: "GET_ALL_PROGRAM_SUCCESS",
+  GET_USER_PROGRAM: "GET_USER_PROGRAM",
+  GET_USER_PROGRAM_SUCCESS: "GET_USER_PROGRAM_SUCCESS",
   CLEAR_PROGRAM: "CLEAR_PROGRAM"
 }
 
@@ -18,11 +20,18 @@ export const selectProgram = (program_id) => ({
   }
 });
 
+export const getUserProgram = (email) => ({
+  type: types.GET_USER_PROGRAM,
+  payload: {
+    email
+  }
+});
+
 export const getAllProgram = () => ({
   type: types.GET_ALL_PROGRAM,
 });
 
-export const clearProgram= () => ({
+export const clearProgram = () => ({
   type: types.CLEAR_PROGRAM
 })
 
@@ -45,13 +54,28 @@ const selectProgramSagaAsync = async (
   }
 }
 
+const getUserProgramSagaAsync = async (
+  email
+) => {
+  try {
+    const apiResult = await API.get("bebe", "/getUserProgram", {
+      queryStringParameters: {
+        email
+      }
+    });
+    return apiResult;
+  } catch (error) {
+    return { error, messsage: error.message };
+  }
+}
+
 const getAllProgramSagaAsync = async (
-  
+
 ) => {
   try {
     const apiResult = await API.get("bebe", "/getAllProgram", {
       queryStringParameters: {
-      
+
       }
     });
     return apiResult;
@@ -78,6 +102,27 @@ function* selectProgramSaga({ payload }) {
   }
 }
 
+function* getUserProgramSaga({ payload }) {
+  const {
+    email
+  } = payload
+  try {
+    const apiResult = yield call(
+      getUserProgramSagaAsync,
+      email
+    );
+    console.log("apiResult :", apiResult);
+    if (apiResult.results.message === "success") {
+      yield put({
+        type: types.GET_USER_PROGRAM_SUCCESS,
+        payload: apiResult.results.userProgram[0].program_id
+      })
+    }
+  } catch (error) {
+    return { error, messsage: error.message };
+  }
+}
+
 function* getAllProgramSaga({ payload }) {
   try {
     const apiResult = yield call(
@@ -96,6 +141,10 @@ export function* watchSelectProgram() {
   yield takeEvery(types.SELECT_PROGRAM, selectProgramSaga)
 }
 
+export function* watchGetUserProgram() {
+  yield takeEvery(types.GET_USER_PROGRAM, getUserProgramSaga)
+}
+
 export function* watchGetAllProgram() {
   yield takeEvery(types.GET_ALL_PROGRAM, getAllProgramSaga)
 }
@@ -103,7 +152,8 @@ export function* watchGetAllProgram() {
 export function* saga() {
   yield all([
     fork(watchSelectProgram),
-    fork(watchGetAllProgram)
+    fork(watchGetAllProgram),
+    fork(watchGetUserProgram),
   ]);
 }
 
@@ -113,7 +163,8 @@ export function* saga() {
 
 const INIT_STATE = {
   program: null,
-  allProgram: []
+  allProgram: [],
+  user_program_id: null,
 };
 
 export function reducer(state = INIT_STATE, action) {
@@ -127,6 +178,11 @@ export function reducer(state = INIT_STATE, action) {
       return {
         ...state,
         allProgram: action.payload
+      };
+    case types.GET_USER_PROGRAM_SUCCESS:
+      return {
+        ...state,
+        user_program_id: action.payload
       };
     case types.CLEAR_PROGRAM:
       return INIT_STATE;

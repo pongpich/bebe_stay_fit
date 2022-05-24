@@ -7,6 +7,7 @@ import payment4 from "../../assets/img/payment4.png";
 import payment5 from "../../assets/img/payment5.png";
 import { Link } from 'react-router-dom';
 import { connect } from "react-redux";
+import { getUserProgram } from "../../redux/exerciseProgram"
 
 class Payment extends React.Component {
   constructor(props) {
@@ -37,6 +38,7 @@ class Payment extends React.Component {
 
 
   componentDidMount() {
+    const { user_program_id } = this.props;
     const { merchantID, refNo, backgroundUrl, price, productName, name, email, phone, program } = this.state;
     document.getElementById("qr_token").value = merchantID;
     document.getElementById("qr_refNo").value = refNo;
@@ -47,6 +49,19 @@ class Payment extends React.Component {
     document.getElementById("qr_email").value = email;
     document.getElementById("qr_phone").value = phone;
     document.getElementById("qr_programID").value = program.program_id;
+
+    this.props.getUserProgram(email);
+
+    if (user_program_id) { //ถ้ามี user_program_id แสดงว่าชำระเงินสำเร็จแล้ว
+      this.props.history.push('/welcome_new_nember');
+    }
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    const { user_program_id } = this.props;
+    if (prevProps.user_program_id !== user_program_id) {
+      this.props.history.push('/welcome_new_nember');
+    }
   }
 
   pinkModelFocus = (e) => {
@@ -200,18 +215,18 @@ class Payment extends React.Component {
 
 const mapStateToProps = ({ createUser, exerciseProgram, shippingAddress }) => {
   const { create_user_email, create_user_password, create_user_phone } = createUser;
-  const { program, allProgram } = exerciseProgram;
+  const { program, allProgram, user_program_id } = exerciseProgram;
   const { create_username, create_lastname, create_telephone, create_addressUser,
     create_subdistrictUser, create_districtUser, create_provinceUser, create_zipcodeUser } = shippingAddress;
   return {
     create_user_email, create_user_password, create_user_phone, program, allProgram,
     create_username, create_lastname, create_telephone, create_addressUser,
-    create_subdistrictUser, create_districtUser, create_provinceUser, create_zipcodeUser
+    create_subdistrictUser, create_districtUser, create_provinceUser, create_zipcodeUser, user_program_id
   };
 };
 
 
-const mapActionsToProps = {  };
+const mapActionsToProps = { getUserProgram };
 
 export default connect(
   mapStateToProps,
