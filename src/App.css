@@ -777,7 +777,7 @@ padding-left: 10%;
   text-align: right;
 }
 .color1 {
-  color: #E25E96;
+  color: #E25E96 !important;
 }
 
 
@@ -1261,8 +1261,12 @@ a:hover {
 }
 
 .video-liPadding-left2 {
-  padding-left: 20px;
+  padding-left: 20px !important;
 }
+.nav-left2 {
+  padding-left: 50px !important;
+}
+
 
 .video-ul2 {
   margin-top: 40px !important;
@@ -1507,6 +1511,22 @@ a:hover {
   color: #FFFFFF;
   border-radius: 25px;
 }
+.bottom-pink-video:hover{
+  background-color: #E25E96;
+  margin-top: 0px; 
+  height: 40px;
+  width: 100%;
+  color: #FFFFFF;
+  border-radius: 25px;
+}
+.bottom-pink-video:focus{
+  background-color: #E25E96;
+  margin-top: 0px; 
+  height: 40px;
+  width: 100%;
+  color: #FFFFFF;
+  border-radius: 25px;
+}
 
 .ellipse61-model {
   margin-top: 5px;
@@ -1535,3 +1555,26 @@ a:hover {
   width: 100%;
   height: 80vh;
 }
+.bought {
+  padding-left: 30px;
+  padding-right: 30px;
+  margin-top: 40px;
+}
+
+.bought-box {
+  padding-top: 20px;
+  display: none;
+  display: inline;
+  display: block;
+  padding-right: 10px;
+  display: inline-block;   
+}
+.box-videoCenterAll {
+  width: auto;
+  height: 100%;
+  background-color: #FFFFFF;
+  padding-top: 30px;
+  padding-bottom: 50px;
+  position: relative;
+  height: 100%;
+} 
