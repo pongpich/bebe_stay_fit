@@ -223,9 +223,9 @@ class videoList extends React.Component {
                     <img src={ellipse5} className="ellipse2-1" />
                     <img src={e5} className="e2" />
                   </div>
-                </div>
-                <div className="end-e">
-                  <p className="bold color1">สำเร็จแล้ว!</p>
+                  <div className="end-e">
+                    <p className="bold color1">สำเร็จแล้ว!</p>
+                  </div>
                 </div>
               </div>
               <div className="col-10 col-sm-10 col-md-10 col-lg-10">
@@ -243,7 +243,7 @@ class videoList extends React.Component {
                     <div className=" col-12  col-sm-12 col-md-6 col-lg-6">
                       <div className="box-paly2">
                         <div className="text-video">
-                          <p className="high-impact"><img src={group47} className="col-2" /><span className="bold color1">High Impact</span> </p>
+                          <p className="high-impact"><img src={group47} className="col-2" /><span className="bold color1 impact">High Impact</span> </p>
                           <p className="alarm"> <img src={alarm} className="col-2" /> 5.06 นาที</p>
                         </div>
                         <div className="rectangle15"></div>
@@ -272,7 +272,7 @@ class videoList extends React.Component {
                     <div className=" col-12  col-sm-12 col-md-6 col-lg-6">
                       <div className="box-paly2">
                         <div className="text-video">
-                          <p className="high-impact"><img src={group47} className="col-2" /><span className="bold color1">High Impact</span> </p>
+                          <p className="high-impact"><img src={group47} className="col-2" /><span className="bold color1 impact">High Impact</span> </p>
                           <p className="alarm"> <img src={alarm} className="col-2" /> 5.06 นาที</p>
                         </div>
                         <div className="rectangle15"></div>
@@ -330,7 +330,7 @@ class videoList extends React.Component {
                     <div className=" col-12  col-sm-12 col-md-6 col-lg-6">
                       <div className="box-paly2">
                         <div className="text-video">
-                          <p className="high-impact"><img src={group47} className="col-2" /><span className="bold color1">High Impact</span> </p>
+                          <p className="high-impact"><img src={group47} className="col-2" /><span className="bold color1 impact">High Impact</span> </p>
                           <p className="alarm"> <img src={alarm} className="col-2" /> 5.06 นาที</p>
                         </div>
                         <div className="rectangle15"></div>
@@ -359,7 +359,7 @@ class videoList extends React.Component {
                     <div className=" col-12  col-sm-12 col-md-6 col-lg-6">
                       <div className="box-paly2">
                         <div className="text-video">
-                          <p className="high-impact"><img src={group47} className="col-2" /><span className="bold color1">High Impact</span> </p>
+                          <p className="high-impact"><img src={group47} className="col-2" /><span className="bold color1 impact">High Impact</span> </p>
                           <p className="alarm"> <img src={alarm} className="col-2" /> 5.06 นาที</p>
                         </div>
                         <div className="rectangle15"></div>
@@ -381,7 +381,7 @@ class videoList extends React.Component {
           <div className="vidio-all">
             <div className="col-12 col-sm-12 col-md-12 col-lg-12">
               <div className="col-12 col-sm-12 col-md-12 col-lg-12">
-                <p className="clip-all between bold">คลิปแบบซื้อ <span className="family-normal "> ดูทั้งหมด {">"}</span> </p>
+                <p className="clip-all between bold">คลิปแบบซื้อ <span className="family-normal pointer" data-bs-toggle="modal" data-bs-target="#exampleModal2"> ดูทั้งหมด {">"}</span> </p>
               </div>
               <div className="">
                 <div className="scrolloverflow">
@@ -474,7 +474,100 @@ class videoList extends React.Component {
                 <button onClick={e => this.playVideo(e)}>PLAY</button>
               </div>
               <div className="modal-body">
-                <iframe className="video" id={"id"} src="https://vod-progressive.akamaized.net/exp=1653432536~acl=%2Fvimeo-prod-skyfire-std-us%2F01%2F2928%2F16%2F414644989%2F1784130174.mp4~hmac=6ce4602e19a6429824b03e6d208998e18a37fe88cf31f33024bbda622537baf4/vimeo-prod-skyfire-std-us/01/2928/16/414644989/1784130174.mp4?filename=Warm+up.mp4" ></iframe>
+                <iframe className="video" id={"id"} src="https://vod-progressive.akamaized.net/exp=1653516419~acl=%2Fvimeo-prod-skyfire-std-us%2F01%2F2928%2F16%2F414644989%2F1784130174.mp4~hmac=c635fa9e158a3c5660e750757484fb1a0b6124d583a9757aadab38ca8311c891/vimeo-prod-skyfire-std-us/01/2928/16/414644989/1784130174.mp4?filename=Warm+up.mp4" ></iframe>
+              </div>
+            </div>
+          </div>
+        </div>
+        {/* video ทั้งหมด */}
+        <div className="modal fade" id="exampleModal2" aria-labelledby="exampleModalLabel" >
+          <div className="modal-dialog modal-xl modal-dialog-scrollable">
+            <div className="modal-content">
+              <div className="modal-header">
+                <h5 className="modal-title" id="exampleModalLabel"> <img src={ellipse61} className="ellipse61-model" /> <span className="span-model bold color1"> Chest</span></h5>
+                <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close" ></button>
+              </div>
+              <div className="modal-body">
+                <div className="modal-boxvideo">
+                  <div className="boxvideo2" >
+                    <div className="box-video">
+                      { /*  zxczxc */}
+                    </div>
+                    <div className="box-video2">
+                      <div className="text-videobox">
+                        <p className="font-size6"> Chest 1 </p>
+                      </div>
+                      <button button className="btn bottom-pink-video" type="button" >
+                        เลือกวีดีโอนี้
+                      </button>
+                    </div>
+                  </div>
+                  <div className="boxvideo2" >
+                    <div className="box-video">
+                      { /*  zxczxc */}
+                    </div>
+                    <div className="box-video2">
+                      <div className="text-videobox">
+                        <p className="font-size6"> Chest 1 </p>
+                      </div>
+                      <button button className="btn bottom-pink-video" type="button" >
+                        เลือกวีดีโอนี้
+                      </button>
+                    </div>
+                  </div>
+                  <div className="boxvideo2" >
+                    <div className="box-video">
+                      { /*  zxczxc */}
+                    </div>
+                    <div className="box-video2">
+                      <div className="text-videobox">
+                        <p className="font-size6"> Chest 1 </p>
+                      </div>
+                      <button button className="btn bottom-pink-video" type="button" >
+                        เลือกวีดีโอนี้
+                      </button>
+                    </div>
+                  </div>
+                  <div className="boxvideo2" >
+                    <div className="box-video">
+                      { /*  zxczxc */}
+                    </div>
+                    <div className="box-video2">
+                      <div className="text-videobox">
+                        <p className="font-size6"> Chest 1 </p>
+                      </div>
+                      <button button className="btn bottom-pink-video" type="button" >
+                        เลือกวีดีโอนี้
+                      </button>
+                    </div>
+                  </div>
+                  <div className="boxvideo2" >
+                    <div className="box-video">
+                      { /*  zxczxc */}
+                    </div>
+                    <div className="box-video2">
+                      <div className="text-videobox">
+                        <p className="font-size6"> Chest 1 </p>
+                      </div>
+                      <button button className="btn bottom-pink-video" type="button" >
+                        เลือกวีดีโอนี้
+                      </button>
+                    </div>
+                  </div>
+                  <div className="boxvideo2" >
+                    <div className="box-video">
+                      { /*  zxczxc */}
+                    </div>
+                    <div className="box-video2">
+                      <div className="text-videobox">
+                        <p className="font-size6"> Chest 1 </p>
+                      </div>
+                      <button button className="btn bottom-pink-video" type="button" >
+                        เลือกวีดีโอนี้
+                      </button>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -555,7 +648,7 @@ class videoList extends React.Component {
                     <p className="text-box-video1"> ในคลิปประกอบไปด้วยการโดดเชือก 20 คลิปทำให้เห็นผลการลดน้ำหนักภายใน 5 วัน จะลดลงไปถึง...</p>
                   </div>
                   <button button className="btn bottom-pink-video" type="button" >
-                  เล่น
+                    เล่น
                   </button>
                 </div>
               </div>
@@ -569,7 +662,7 @@ class videoList extends React.Component {
                     <p className="text-box-video1"> ในคลิปประกอบไปด้วยการโดดเชือก 20 คลิปทำให้เห็นผลการลดน้ำหนักภายใน 5 วัน จะลดลงไปถึง...</p>
                   </div>
                   <button button className="btn bottom-pink-video" type="button" >
-                  เล่น
+                    เล่น
                   </button>
                 </div>
               </div>
@@ -583,7 +676,7 @@ class videoList extends React.Component {
                     <p className="text-box-video1"> ในคลิปประกอบไปด้วยการโดดเชือก 20 คลิปทำให้เห็นผลการลดน้ำหนักภายใน 5 วัน จะลดลงไปถึง...</p>
                   </div>
                   <button button className="btn bottom-pink-video" type="button" >
-                  เล่น
+                    เล่น
                   </button>
                 </div>
               </div>
@@ -597,7 +690,7 @@ class videoList extends React.Component {
                     <p className="text-box-video1"> ในคลิปประกอบไปด้วยการโดดเชือก 20 คลิปทำให้เห็นผลการลดน้ำหนักภายใน 5 วัน จะลดลงไปถึง...</p>
                   </div>
                   <button button className="btn bottom-pink-video" type="button" >
-                  เล่น
+                    เล่น
                   </button>
                 </div>
               </div>
@@ -611,7 +704,7 @@ class videoList extends React.Component {
                     <p className="text-box-video1"> ในคลิปประกอบไปด้วยการโดดเชือก 20 คลิปทำให้เห็นผลการลดน้ำหนักภายใน 5 วัน จะลดลงไปถึง...</p>
                   </div>
                   <button button className="btn bottom-pink-video" type="button" >
-                  เล่น
+                    เล่น
                   </button>
                 </div>
               </div>
@@ -619,34 +712,6 @@ class videoList extends React.Component {
             <div className="bought bought-head">
               <div>
                 <p className="bold color1 ">ยังไม่ได้ซื้อ</p>
-              </div>
-              <div className="bought-box" >
-                <div className="box-video">
-                  {/*   zxczxc */}
-                </div>
-                <div className="box-video1">
-                  <div className="text-videobox">
-                    <p className="bold"> โดยเชือก 1,000 ยกระชับสัดส่วน ต้นขาเห็นผลภายใน 5 วัน </p>
-                    <p className="text-box-video1"> ในคลิปประกอบไปด้วยการโดดเชือก 20 คลิปทำให้เห็นผลการลดน้ำหนักภายใน 5 วัน จะลดลงไปถึง...</p>
-                  </div>
-                  <button button className="btn bottom-pink-video" type="button" >
-                    ซื้อโปรแกรมนี้
-                  </button>
-                </div>
-              </div>
-              <div className="bought-box" >
-                <div className="box-video">
-                  {/*   zxczxc */}
-                </div>
-                <div className="box-video1">
-                  <div className="text-videobox">
-                    <p className="bold"> โดยเชือก 1,000 ยกระชับสัดส่วน ต้นขาเห็นผลภายใน 5 วัน </p>
-                    <p className="text-box-video1"> ในคลิปประกอบไปด้วยการโดดเชือก 20 คลิปทำให้เห็นผลการลดน้ำหนักภายใน 5 วัน จะลดลงไปถึง...</p>
-                  </div>
-                  <button button className="btn bottom-pink-video" type="button" >
-                    ซื้อโปรแกรมนี้
-                  </button>
-                </div>
               </div>
               <div className="bought-box" >
                 <div className="box-video">
