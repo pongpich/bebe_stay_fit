@@ -1,11 +1,31 @@
 import React, { Component } from "react";
 import { Link } from 'react-router-dom';
+import { connect } from "react-redux";
+import { getUserProgram } from "../../redux/exerciseProgram"
 
 class Home extends React.Component {
   onChickprice = (e) => {
-  
+
     this.props.history.push('/videoList');
-   }
+  }
+
+  componentDidMount() {
+    const { user_program_id, create_user_email } = this.props;
+
+    this.props.getUserProgram(create_user_email);
+
+    if (user_program_id) { //ถ้ามี user_program_id แสดงว่าชำระเงินสำเร็จแล้ว
+      this.props.history.push('/welcome_new_nember');
+    }
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    const { user_program_id } = this.props;
+    if (prevProps.user_program_id !== user_program_id) {
+      this.props.history.push('/welcome_new_nember');
+    }
+  }
+
   render() {
     return (
       <div>
@@ -30,7 +50,7 @@ class Home extends React.Component {
                   <Link to="/programPackage" className="btn btn-secondary" type="button">คลิก</Link>
                   <Link to="/profile" className="btn btn-secondary" type="button">profile</Link>
                 </div>
-               
+
               </div>
             </div>
           </div>
@@ -82,9 +102,9 @@ class Home extends React.Component {
                     <input type="text" className="form-control" id="exampleFormControlInput1" />
                   </div>
                   <div className="d-grid gap-2  mx-auto   col-12 col-sm-12  col-md-12 col-lg-12 distance">
-                   <button className="btn bottom-pinkLogin   font-size6" type="button" onClick={e => this.onChickprice(e)} data-bs-dismiss="modal">
+                    <button className="btn bottom-pinkLogin   font-size6" type="button" onClick={e => this.onChickprice(e)} data-bs-dismiss="modal">
                       เข้าสู่ระบบ
-                    </button> 
+                    </button>
                   </div>
                   <p className="between margin-top-2 font-size4"><a href="#">ลืมรหัสผ่าน</a> <span>ยังไม่เป็นสมาชิก? <a href="#">ลงทะเบียน</a></span></p>
                 </div>
@@ -97,4 +117,15 @@ class Home extends React.Component {
   }
 }
 
-export default Home;
+const mapStateToProps = ({ createUser, exerciseProgram }) => {
+  const { create_user_email } = createUser;
+  const { user_program_id } = exerciseProgram;
+  return { create_user_email, user_program_id };
+};
+
+const mapActionsToProps = { getUserProgram };
+
+export default connect(
+  mapStateToProps,
+  mapActionsToProps
+)(Home);

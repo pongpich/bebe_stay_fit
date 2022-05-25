@@ -377,7 +377,7 @@ const mapStateToProps = ({ createUser, exerciseProgram, shippingAddress }) => {
   return { create_user_email, user_program_id, create_username, create_lastname, create_telephone, create_addressUser, create_subdistrictUser, create_districtUser, create_provinceUser, create_zipcodeUser };
 };
 
-const mapActionsToProps = { getUserProgram };
+const mapActionsToProps = { getUserProgram, shippingAddress };
 
 export default connect(
   mapStateToProps,
