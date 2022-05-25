@@ -10,6 +10,7 @@ export const types = {
   GET_ALL_PROGRAM_SUCCESS: "GET_ALL_PROGRAM_SUCCESS",
   GET_USER_PROGRAM: "GET_USER_PROGRAM",
   GET_USER_PROGRAM_SUCCESS: "GET_USER_PROGRAM_SUCCESS",
+  GET_USER_PROGRAM_FAIL: "GET_USER_PROGRAM_FAIL",
   CLEAR_PROGRAM: "CLEAR_PROGRAM"
 }
 
@@ -117,6 +118,10 @@ function* getUserProgramSaga({ payload }) {
         type: types.GET_USER_PROGRAM_SUCCESS,
         payload: apiResult.results.userProgram[0].program_id
       })
+    } else {
+      yield put({
+        type: types.GET_USER_PROGRAM_FAIL
+      })
     }
   } catch (error) {
     return { error, messsage: error.message };
@@ -183,6 +188,11 @@ export function reducer(state = INIT_STATE, action) {
       return {
         ...state,
         user_program_id: action.payload
+      };
+    case types.GET_USER_PROGRAM_FAIL:
+      return {
+        ...state,
+        user_program_id: null
       };
     case types.CLEAR_PROGRAM:
       return INIT_STATE;

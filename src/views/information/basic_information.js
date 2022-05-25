@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Link } from 'react-router-dom';
 import { connect } from "react-redux";
 import { basicInFormation } from "../../redux/basicInFormation";
+import { updateProfile } from "../../redux/auth";
 
 class Basic_Information extends React.Component {
     constructor(props) {
@@ -119,21 +120,17 @@ class Basic_Information extends React.Component {
                                         <input type="email" className="form-control right" id="exampleFormControlInput1" name="basicWeight"  onChange={e => this.onCheckBasix(e)} placeholder={this.state.typeWeight} />
                                     </div>
                                     <div className="padding-top2">
-                                        <p className="bold font-size4 ">คุณสามารถฝึกท่าฝึกยากๆ เช่นท่า Squat, ท่ากระโดด ได้อย่างถูกต้อง </p>
+                                        <p className="bold font-size4 ">คุณแน่ใจว่าสามารถฝึกท่าฝึกยากๆ เช่นท่า Squat, ท่ากระโดด ได้อย่างถูกต้อง</p>
                                         <div className="form-check form-check-inline">
                                             <input className="form-check-input" type="radio" name="practiceDifficultExercises" id="inlineRadio1"  onChange={e => this.onCheckBasix(e)} value="ใช่" />
-                                            <label className="form-check-label">ใช่</label>
-                                        </div>
-                                        <div className="form-check form-check-inline">
-                                            <input className="form-check-input" type="radio" name="practiceDifficultExercises" id="inlineRadio2"  onChange={e => this.onCheckBasix(e)} value="ไม่ใช่" />
-                                            <label className="form-check-label">ไม่ใช่</label>
+                                            <label className="form-check-label">แน่ใจ</label>
                                         </div>
                                         <div className="form-check form-check-inline">
                                             <input className="form-check-input" type="radio" name="practiceDifficultExercises" id="inlineRadio2"  onChange={e => this.onCheckBasix(e)} value="ไม่แน่ใจ" />
                                             <label className="form-check-label">ไม่แน่ใจ</label>
                                         </div>
                                     </div>
-                                    <div className="padding-top2">
+                                    {/* <div className="padding-top2">
                                         <p className="bold font-size4 ">คุณมีอาการบาดเจ็บที่ข้อต่อหรือกระดูกสันหลัง หรือไม่ </p>
                                         <div className="form-check form-check-inline">
                                             <input className="form-check-input" type="radio" name="injury" id="inlineRadio1"  onChange={e => this.onCheckBasix(e)} value="ใช่" />
@@ -143,8 +140,8 @@ class Basic_Information extends React.Component {
                                             <input className="form-check-input" type="radio" name="injury" id="inlineRadio2"  onChange={e => this.onCheckBasix(e)} value="ไม่ใช่" />
                                             <label className="form-check-label">ไม่ใช่</label>
                                         </div>
-                                    </div>
-                                    <div className="padding-top2">
+                                    </div> */}
+                                    {/* <div className="padding-top2">
                                         <p className="bold font-size4 ">กำลังตั้งครรภ์ หรือให้นมบุตรอยู่</p>
                                         <div className="form-check form-check-inline">
                                             <input className="form-check-input" type="radio" name="arePregnant" id="inlineRadio1"  onChange={e => this.onCheckBasix(e)} value="ใช่" />
@@ -154,7 +151,7 @@ class Basic_Information extends React.Component {
                                             <input className="form-check-input" type="radio" name="arePregnant" id="inlineRadio2"  onChange={e => this.onCheckBasix(e)} value="ไม่ใช่" />
                                             <label className="form-check-label">ไม่ใช่</label>
                                         </div>
-                                    </div>
+                                    </div> */}
                                 </div>
                             </div>
                             <div className="d-grid gap-2  mx-auto   col-10 col-sm-10  col-md-10 col-lg-10 distance">
@@ -178,7 +175,7 @@ const mapStateToProps = ({ }) => {
     return {};
   };
   
-  const mapActionsToProps = { basicInFormation };
+  const mapActionsToProps = { basicInFormation, updateProfile };
   
   export default connect(
     mapStateToProps,
