@@ -3,23 +3,40 @@ import studioSession from "../../assets/img/studio_session_1.png";
 import { Link } from 'react-router-dom';
 import { connect } from "react-redux";
 import { getUserProgram } from "../../redux/exerciseProgram"
+import { loginUser } from "../../redux/auth"
 
 class Welcome_NewMember extends React.Component {
 
   componentDidMount() {
-    const { user_program_id, create_user_email } = this.props;
+    const { user_program_id, create_user_email, user } = this.props;
 
     this.props.getUserProgram(create_user_email);
 
     if (!user_program_id) { //ถ้าไม่มี user_program_id แสดงว่ายังชำระเงินไม่สำเร็จแล้ว
       this.props.history.push('/programPackage');
     }
+
+    if (user !== null) {
+      this.props.history.push('/basic_information');
+    }
   }
 
   componentDidUpdate(prevProps, prevState) {
-    const { user_program_id } = this.props;
+    const { user_program_id, status } = this.props;
     if ((prevProps.user_program_id !== user_program_id) && (!user_program_id)) {  //ถ้าไม่มี user_program_id แสดงว่ายังชำระเงินไม่สำเร็จแล้ว
       this.props.history.push('/programPackage');
+    }
+
+    if (prevProps.status !== status) {
+      if (status === "success") {
+          this.props.history.push('/basic_information');     
+      }
+    }
+  }
+
+  onUserLogin() {
+    if (this.props.create_user_email !== "") {
+      this.props.loginUser(this.props.create_user_email);
     }
   }
 
@@ -51,10 +68,14 @@ class Welcome_NewMember extends React.Component {
               </div>
               <div className="mb-3 ">
                 <div className="d-grid gap-2  mx-auto   col-12 col-sm-12  col-md-6 col-lg-6 from-left">
-                  {/*    <button className="btn bottom-pink" type="button" >
-                                                    ถัดไป
-                                                </button>  */}
-                  <Link to="/basic_information" className="btn bottom-pink" type="button" style={{ opacity: "1" }}>ถัดไป</Link>
+                  <button
+                    className="btn bottom-pink"
+                    type="button"
+                    style={{ opacity: "1" }}
+                    onClick={() => this.onUserLogin()}
+                  >
+                    ถัดไป
+                  </button>
                 </div>
               </div>
             </div>
@@ -66,13 +87,14 @@ class Welcome_NewMember extends React.Component {
   }
 }
 
-const mapStateToProps = ({ createUser, exerciseProgram }) => {
+const mapStateToProps = ({ authUser, createUser, exerciseProgram }) => {
+  const { user } = authUser;
   const { create_user_email } = createUser;
   const { user_program_id } = exerciseProgram;
-  return { create_user_email, user_program_id };
+  return { create_user_email, user_program_id, user };
 };
 
-const mapActionsToProps = { getUserProgram };
+const mapActionsToProps = { getUserProgram, loginUser };
 
 export default connect(
   mapStateToProps,

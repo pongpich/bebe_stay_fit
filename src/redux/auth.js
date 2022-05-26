@@ -12,8 +12,6 @@ export const types = {
   LOGIN_USER_FAIL: "LOGIN_USER_FAIL",
   CHECK_USER: "CHECK_USER",
   CHECK_USER_SUCCESS: "CHECK_USER_SUCCESS",
-  UPDATE_PROFILE: "UPDATE_PROFILE",
-  UPDATE_PROFILE_SUCCESS: "UPDATE_PROFILE_SUCCESS",
   LOGOUT_USER: "LOGOUT_USER",
   SET_PASSWORD: "SET_PASSWORD",
   SET_PASSWORD_SUCCESS: "SET_PASSWORD_SUCCESS",
@@ -118,16 +116,6 @@ export const loginUser = (email, password) => ({
     password
   }
 });
-
-export const updateProfile = (
-  email,
-  other_attributes) => ({
-    type: types.UPDATE_PROFILE,
-    payload: {
-      email,
-      other_attributes
-    }
-  });
 
 export const importMembers = (members, start_date, expire_date) => ({
   type: types.IMPORT_MEMBERS,
@@ -248,23 +236,6 @@ const registerSagaAsync = async (
     return { error, messsage: error.message };
   }
 };
-
-const updateProfileSagaAsync = async (
-  email,
-  other_attributes
-) => {
-  try {
-    const apiResult = await API.post("bebe", "/updateProfile", {
-      body: {
-        email: email,
-        other_attributes
-      }
-    });
-    return apiResult;
-  } catch (error) {
-    return { error, messsage: error.message };
-  }
-}
 
 const signupUserSagaAsync = async (
   email,
@@ -418,27 +389,6 @@ function* checkUserSaga({ payload }) {
     })
   } catch (error) {
     console.log("error from checkUserSaga :", error);
-  }
-}
-
-function* updateProfileSaga({ payload }) {
-  const {
-    email,
-    other_attributes
-  } = payload
-
-  try {
-    yield call(
-      updateProfileSagaAsync,
-      email,
-      other_attributes
-    );
-    yield put({
-      type: types.UPDATE_PROFILE_SUCCESS,
-      payload: other_attributes
-    })
-  } catch (error) {
-    console.log("error from updateProfile :", error);
   }
 }
 
@@ -708,10 +658,6 @@ export function* watchRegister() {
   yield takeEvery(types.REGISTER, registerSaga)
 }
 
-export function* watchUpdateProfile() {
-  yield takeEvery(types.UPDATE_PROFILE, updateProfileSaga)
-}
-
 export function* watchSetPassword() {
   yield takeEvery(types.SET_PASSWORD, setPasswordSaga)
 }
@@ -754,7 +700,6 @@ export function* saga() {
     fork(watchRegister),
     fork(watchCheckUser),
     fork(watchSignupUser),
-    fork(watchUpdateProfile),
     fork(watchSetPassword),
     fork(watchTrialPackage),
     fork(watchGetExpireDate),
@@ -833,14 +778,6 @@ export function reducer(state = INIT_STATE, action) {
       return {
         ...state,
         statusRegister: "success"
-      }
-    case types.UPDATE_PROFILE_SUCCESS:
-      return {
-        ...state,
-        user: {
-          ...state.user,
-          other_attributes: action.payload
-        }
       }
     case types.TRIAL_PACKAGE_SUCCESS:
       return {

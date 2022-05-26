@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Link } from 'react-router-dom';
 import { connect } from "react-redux";
 import { basicInFormation } from "../../redux/basicInFormation";
-import { updateProfile } from "../../redux/auth";
+import { updateProfile } from "../../redux/update";
 
 class Basic_Information extends React.Component {
   constructor(props) {
@@ -21,28 +21,32 @@ class Basic_Information extends React.Component {
       arePregnant: null
     }
   }
+  
+  componentDidMount() {
+    console.log("user :", this.props.user);
+  }
 
   basicInFormation(basicSex, basicAge, typeHei_Wig, basicHeight, basicWeight, practiceDifficultExercises, injury, arePregnant) {
     this.props.basicInFormation(
       basicSex, basicAge, typeHei_Wig, basicHeight, basicWeight, practiceDifficultExercises, injury, arePregnant
     );
-    console.log(basicSex, basicAge, typeHei_Wig, basicHeight, basicWeight, practiceDifficultExercises, injury, arePregnant);
 
-    console.log("weight :", `${this.state.basicWeight} ${this.state.typeWeight}`);
-    console.log("height :", `${this.state.basicHeight} ${this.state.typeHeight}`);
     const other_attributes = {
       sex: this.state.basicSex,
       age: Number(this.state.basicAge),
-      weight: `${this.state.basicWeight} ${this.state.typeWeight}`,
-      height: `${this.state.basicHeight} ${this.state.typeHeight}`,
+      weight: Number(this.state.basicWeight),
+      unitWeight: this.state.typeWeight,
+      height: Number(this.state.basicHeight),
+      unitHeight: this.state.typeHeight,
       doDifficultPosture: (practiceDifficultExercises === "sure") ? 'yes' : 'no'
     }
 
     this.props.updateProfile(
-      this.props.create_user_email,
-      other_attributes
+      this.props.user.user_id,
+      other_attributes,
+      this.props.user.start_date,
+      this.props.user.program_id,
     );
-
   }
 
   checkBoxes = (e) => {
@@ -185,9 +189,10 @@ class Basic_Information extends React.Component {
   }
 }
 
-const mapStateToProps = ({ createUser }) => {
+const mapStateToProps = ({ createUser, authUser }) => {
+  const { user } = authUser;
   const { create_user_email } = createUser;
-  return { create_user_email };
+  return { create_user_email, user };
 };
 
 const mapActionsToProps = { basicInFormation, updateProfile };

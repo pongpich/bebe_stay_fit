@@ -8,6 +8,7 @@ import { reducer as createUser} from './createUser';
 import { reducer as exerciseProgram} from './exerciseProgram';
 import { reducer as shippingAddress} from './shippingAddress';
 import { reducer as basicInFormation} from './basicInFormation';
+import { reducer as update} from './update';
 
 
 const persistConfig = {
@@ -21,7 +22,8 @@ const reducers = combineReducers({
   createUser,
   exerciseProgram,
   shippingAddress,
-  basicInFormation
+  basicInFormation,
+  update
 });
 
 const persistedReducer = persistReducer(persistConfig, reducers)
