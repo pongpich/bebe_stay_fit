@@ -479,7 +479,7 @@ class videoList extends React.Component {
                   <span className="span-model bold color1"> Chest</span>
                 </h5> */}
                 <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close" ></button>
-                <button onClick={e => this.playVideo(e)}>PLAY</button>
+                {/* <button onClick={e => this.playVideo(e)}>PLAY</button> */}
               </div>
               <div className="modal-body">
                 <iframe className="video" id={"id"} src="https://player.vimeo.com/external/414644989.hd.mp4?s=7eaf21b73e4bc3d3f0b6f83938964e0615e8d9d4&profile_id=174" ></iframe>
