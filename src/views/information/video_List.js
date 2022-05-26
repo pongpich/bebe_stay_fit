@@ -14,6 +14,8 @@ import e5 from "../images/5.png";
 import group47 from "../images/group47.png";
 import alarm from "../images/alarm.png";
 import ellipse61 from "../images/ellipse61.png";
+import union from "../images/union.png";
+import vector4 from "../images/vector4.png";
 import { loadingLogo } from "aws-amplify";
 
 
@@ -22,6 +24,7 @@ class videoList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      clicApp: "1",
       clickManu: "manu1",
       borderBottom1: "video-link rectangle13 color1",
       borderBottom2: "video-link",
@@ -228,32 +231,34 @@ class videoList extends React.Component {
                   </div>
                 </div>
               </div>
-              <div className="col-10 col-sm-10 col-md-10 col-lg-10">
-                <div className=" box-playVdieo">
-                  <div className="row">
-                    <div className="col-12  col-sm-12 col-md-6 col-lg-6 ">
-                      <div className="box-paly1">
-                        <div className=" background-icon-play">
-                          <div className="icon-play-video">
-                            <img src={play_circle_filled} className="pointer" data-bs-toggle="modal" data-bs-target="#exampleModal" />
+              <div className="col-10 col-sm-10 col-md-10 col-lg-10 ">
+                <div className="lock-video">
+                  <div className=" box-playVdieo ">
+                    <div className="row">
+                      <div className="col-12  col-sm-12 col-md-6 col-lg-6 ">
+                        <div className="box-paly1">
+                          <div className=" background-icon-play">
+                            <div className="icon-play-video">
+                              <img src={play_circle_filled} className="pointer" data-bs-toggle="modal" data-bs-target="#exampleModal" />
+                            </div>
                           </div>
                         </div>
                       </div>
-                    </div>
-                    <div className=" col-12  col-sm-12 col-md-6 col-lg-6">
-                      <div className="box-paly2">
-                        <div className="text-video">
-                          <p className="high-impact"><img src={group47} className="col-2" /><span className="bold color1 impact">High Impact</span> </p>
-                          <p className="alarm"> <img src={alarm} className="col-2" /> 5.06 นาที</p>
+                      <div className=" col-12  col-sm-12 col-md-6 col-lg-6">
+                        <div className="box-paly2">
+                          <div className="text-video">
+                            <p className="high-impact"><img src={group47} className="col-2" /><span className="bold color1 impact">High Impact</span> </p>
+                            <p className="alarm"> <img src={alarm} className="col-2" /> 5.06 นาที</p>
+                          </div>
+                          <div className="rectangle15"></div>
+                          <p className="warmup">Warm up {">"}</p>
+                          <p className="warmup2 bold">Warm up</p>
+                          <img src={ellipse61} className="ellipse61 ellipse61-size" />
+                          <img src={ellipse61} className="ellipse61-2 ellipse61-size" />
+                          <img src={ellipse61} className="ellipse61-2 ellipse61-size" />
+                          <img src={ellipse61} className="ellipse61-2 ellipse61-size" />
+                          <img src={ellipse61} className="ellipse61-2 ellipse61-size" />
                         </div>
-                        <div className="rectangle15"></div>
-                        <p className="warmup">Warm up {">"}</p>
-                        <p className="warmup2 bold">Warm up</p>
-                        <img src={ellipse61} className="ellipse61 ellipse61-size" />
-                        <img src={ellipse61} className="ellipse61-2 ellipse61-size" />
-                        <img src={ellipse61} className="ellipse61-2 ellipse61-size" />
-                        <img src={ellipse61} className="ellipse61-2 ellipse61-size" />
-                        <img src={ellipse61} className="ellipse61-2 ellipse61-size" />
                       </div>
                     </div>
                   </div>
@@ -469,7 +474,10 @@ class videoList extends React.Component {
           <div className="modal-dialog modal-xl">
             <div className="modal-content">
               <div className="modal-header">
-                <h5 className="modal-title" id="exampleModalLabel"> <img src={ellipse61} className="ellipse61-model" /> <span className="span-model bold color1"> Chest</span></h5>
+                <h5 className="modal-title" id="exampleModalLabel">
+                  <img src={ellipse2} className="ellipse61-model" />
+                  <img src={union} className="union" />
+                  <span className="span-model bold color1"> Chest</span></h5>
                 <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close" ></button>
                 <button onClick={e => this.playVideo(e)}>PLAY</button>
               </div>
@@ -484,90 +492,17 @@ class videoList extends React.Component {
           <div className="modal-dialog modal-xl modal-dialog-scrollable">
             <div className="modal-content">
               <div className="modal-header">
-                <h5 className="modal-title" id="exampleModalLabel"> <img src={ellipse61} className="ellipse61-model" /> <span className="span-model bold color1"> Chest</span></h5>
+                <h5 className="modal-title" id="exampleModalLabel">
+                  <img src={ellipse2} className="ellipse61-model" />
+                  <img src={union} className="union" />
+                  <span className="span-model bold color1"> Chest</span></h5>
                 <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close" ></button>
               </div>
               <div className="modal-body">
-                <div className="modal-boxvideo">
-                  <div className="boxvideo2" >
-                    <div className="box-video">
-                      { /*  zxczxc */}
-                    </div>
-                    <div className="box-video2">
-                      <div className="text-videobox">
-                        <p className="font-size6"> Chest 1 </p>
-                      </div>
-                      <button button className="btn bottom-pink-video" type="button" >
-                        เลือกวีดีโอนี้
-                      </button>
-                    </div>
-                  </div>
-                  <div className="boxvideo2" >
-                    <div className="box-video">
-                      { /*  zxczxc */}
-                    </div>
-                    <div className="box-video2">
-                      <div className="text-videobox">
-                        <p className="font-size6"> Chest 1 </p>
-                      </div>
-                      <button button className="btn bottom-pink-video" type="button" >
-                        เลือกวีดีโอนี้
-                      </button>
-                    </div>
-                  </div>
-                  <div className="boxvideo2" >
-                    <div className="box-video">
-                      { /*  zxczxc */}
-                    </div>
-                    <div className="box-video2">
-                      <div className="text-videobox">
-                        <p className="font-size6"> Chest 1 </p>
-                      </div>
-                      <button button className="btn bottom-pink-video" type="button" >
-                        เลือกวีดีโอนี้
-                      </button>
-                    </div>
-                  </div>
-                  <div className="boxvideo2" >
-                    <div className="box-video">
-                      { /*  zxczxc */}
-                    </div>
-                    <div className="box-video2">
-                      <div className="text-videobox">
-                        <p className="font-size6"> Chest 1 </p>
-                      </div>
-                      <button button className="btn bottom-pink-video" type="button" >
-                        เลือกวีดีโอนี้
-                      </button>
-                    </div>
-                  </div>
-                  <div className="boxvideo2" >
-                    <div className="box-video">
-                      { /*  zxczxc */}
-                    </div>
-                    <div className="box-video2">
-                      <div className="text-videobox">
-                        <p className="font-size6"> Chest 1 </p>
-                      </div>
-                      <button button className="btn bottom-pink-video" type="button" >
-                        เลือกวีดีโอนี้
-                      </button>
-                    </div>
-                  </div>
-                  <div className="boxvideo2" >
-                    <div className="box-video">
-                      { /*  zxczxc */}
-                    </div>
-                    <div className="box-video2">
-                      <div className="text-videobox">
-                        <p className="font-size6"> Chest 1 </p>
-                      </div>
-                      <button button className="btn bottom-pink-video" type="button" >
-                        เลือกวีดีโอนี้
-                      </button>
-                    </div>
-                  </div>
-                </div>
+
+                {(this.state.clicApp === "11") ? this.clicApp() : this.nullClipAll()}
+
+
               </div>
             </div>
           </div>
@@ -576,6 +511,112 @@ class videoList extends React.Component {
     )
   }
 
+
+  clicApp() {
+    return (
+      <>
+        <div className="modal-boxvideo">
+          <div className="boxvideo2" >
+            <div className="box-video">
+              { /*  zxczxc */}
+            </div>
+            <div className="box-video2">
+              <div className="text-videobox">
+                <p className="font-size6"> Chest 1 </p>
+              </div>
+              <button button className="btn bottom-pink-video" type="button" >
+                เลือกวีดีโอนี้
+              </button>
+            </div>
+          </div>
+          <div className="boxvideo2" >
+            <div className="box-video">
+              { /*  zxczxc */}
+            </div>
+            <div className="box-video2">
+              <div className="text-videobox">
+                <p className="font-size6"> Chest 1 </p>
+              </div>
+              <button button className="btn bottom-pink-video" type="button" >
+                เลือกวีดีโอนี้
+              </button>
+            </div>
+          </div>
+          <div className="boxvideo2" >
+            <div className="box-video">
+              { /*  zxczxc */}
+            </div>
+            <div className="box-video2">
+              <div className="text-videobox">
+                <p className="font-size6"> Chest 1 </p>
+              </div>
+              <button button className="btn bottom-pink-video" type="button" >
+                เลือกวีดีโอนี้
+              </button>
+            </div>
+          </div>
+          <div className="boxvideo2" >
+            <div className="box-video">
+              { /*  zxczxc */}
+            </div>
+            <div className="box-video2">
+              <div className="text-videobox">
+                <p className="font-size6"> Chest 1 </p>
+              </div>
+              <button button className="btn bottom-pink-video" type="button" >
+                เลือกวีดีโอนี้
+              </button>
+            </div>
+          </div>
+          <div className="boxvideo2" >
+            <div className="box-video">
+              { /*  zxczxc */}
+            </div>
+            <div className="box-video2">
+              <div className="text-videobox">
+                <p className="font-size6"> Chest 1 </p>
+              </div>
+              <button button className="btn bottom-pink-video" type="button" >
+                เลือกวีดีโอนี้
+              </button>
+            </div>
+          </div>
+          <div className="boxvideo2" >
+            <div className="box-video">
+              { /*  zxczxc */}
+            </div>
+            <div className="box-video2">
+              <div className="text-videobox">
+                <p className="font-size6"> Chest 1 </p>
+              </div>
+              <button button className="btn bottom-pink-video" type="button" >
+                เลือกวีดีโอนี้
+              </button>
+            </div>
+          </div>
+        </div>
+      </>
+    )
+  }
+
+  nullClipAll() {
+    return (
+      <>
+        <div className="modal-boxvideo">
+          <div className="vector4-box">
+            <img src={vector4} className="vector4" />
+          </div>
+          <div className="vector4-box2">
+            <p className="vector4-text bold">คุณยังไม่มีคลิปออกกำลังกายเพิ่มเติม</p>
+            <p className="vector4-text2">คลิปจะได้เพิ่มก็ต่อเมื่อมีการต่ออายุของ Bebe stay fit</p>
+            <button className="btn bottom-pink-video vector4-button" type="button" >
+                ปิด
+              </button>
+          </div>
+        </div>
+      </>
+    )
+  }
 
   videoClipAll() {
     return (
