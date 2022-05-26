@@ -9,6 +9,7 @@ import { reducer as exerciseProgram} from './exerciseProgram';
 import { reducer as shippingAddress} from './shippingAddress';
 import { reducer as basicInFormation} from './basicInFormation';
 import { reducer as update} from './update';
+import { reducer as exerciseVideos} from './exerciseVideos';
 
 
 const persistConfig = {
@@ -23,7 +24,8 @@ const reducers = combineReducers({
   exerciseProgram,
   shippingAddress,
   basicInFormation,
-  update
+  update,
+  exerciseVideos
 });
 
 const persistedReducer = persistReducer(persistConfig, reducers)

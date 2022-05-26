@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import user_circle from "../../assets/img/user_circle.svg";
+import cardioThumb from "../../assets/img/thumb/cardio.jpg";
 import play_circle_filled from "../images/play_circle_filled.png";
 import rectangle13 from "../images/rectangle13.png";
 import edit from "../images/edit.png";
@@ -17,6 +18,9 @@ import ellipse61 from "../images/ellipse61.png";
 import union from "../images/union.png";
 import vector4 from "../images/vector4.png";
 import { loadingLogo } from "aws-amplify";
+import { connect } from "react-redux";
+import { videoListForUser } from "../../redux/exerciseVideos"
+import { convertFormatTime, convertSecondsToMinutes } from "../../helpers/utils"
 
 
 class videoList extends React.Component {
@@ -31,8 +35,34 @@ class videoList extends React.Component {
       borderBottom3: "video-link",
       borderBottom4: "video-link",
       videoLi: "video-li ",
-
+      focusDay: 0,
     }
+  }
+
+  componentDidMount() {
+    const { user, exerciseVideo } = this.props;
+
+    if (user && user.other_attributes) {
+      this.props.videoListForUser(
+        this.props.user.user_id,
+        JSON.parse(this.props.user.other_attributes).weight,
+        this.props.user.start_date,
+        this.props.user.expire_date,
+        this.props.user.offset
+      );
+    }
+
+    if (user === null) {
+      this.props.history.push('/home');
+    }
+
+    console.log("exerciseVideo :", exerciseVideo)
+  }
+
+  onDayChange = (day) => {
+    this.setState({
+      focusDay: day
+    });
   }
 
 
@@ -83,7 +113,15 @@ class videoList extends React.Component {
 
   }
 
+  exerciseDaySelection(focusDay) {
+    if (this.props.exerciseVideo) {
+      return this.props.exerciseVideo[focusDay];
+    }
+  }
+
   routineWorkout() {
+    const { focusDay } = this.state;
+    const todayExercise = this.exerciseDaySelection(focusDay);
     return (
       <>
         <nav className="navbar navbar-expand-lg bg-light information-box">
@@ -148,23 +186,47 @@ class videoList extends React.Component {
                 <div className="container-fluid">
                   <ul>
                     <li className="video-li2 ">
-                      <a className="video-link2 color1">DAY 1</a>
-                    </li>
-                    <li className="video-li2  video-liPadding-left2">
-                      <a className="video-link2 day2-4">DAY 2</a>
+                      <a
+                        className="video-link2"
+                        style={{ color: `${this.state.focusDay === 0 ? "#E25E96" : "#C4C4C4"}` }}
+                        onClick={() => this.onDayChange(0)}
+                      >
+                        DAY 1
+                      </a>
                     </li>
                     <li className="video-li2 video-liPadding-left2">
-                      <a className="video-link2 day2-4">DAY 3</a>
+                      <a
+                        className="video-link2"
+                        style={{ color: `${this.state.focusDay === 1 ? "#E25E96" : "#C4C4C4"}` }}
+                        onClick={() => this.onDayChange(1)}
+                      >
+                        DAY 2
+                      </a>
                     </li>
                     <li className="video-li2  video-liPadding-left2">
-                      <a className="video-link2 day2-4">DAY 4</a>
+                      <a
+                        className="video-link2"
+                        style={{ color: `${this.state.focusDay === 2 ? "#E25E96" : "#C4C4C4"}` }}
+                        onClick={() => this.onDayChange(2)}
+                      >
+                        DAY 3
+                      </a>
+                    </li>
+                    <li className="video-li2  video-liPadding-left2">
+                      <a
+                        className="video-link2"
+                        style={{ color: `${this.state.focusDay === 3 ? "#E25E96" : "#C4C4C4"}` }}
+                        onClick={() => this.onDayChange(3)}
+                      >
+                        DAY 4
+                      </a>
                     </li>
                   </ul>
-                  <ul>
+                  {/* <ul>
                     <li className="video-li2  d-flex">
                       <a className="decoration color1">ดูวีดีโอออกกำลังกายอาทิย์ที่ผ่านมา</a>
                     </li>
-                  </ul>
+                  </ul> */}
                 </div>
               </nav>
               <div className="rectangle14"></div>
@@ -191,9 +253,57 @@ class videoList extends React.Component {
             <div className="row">
               <div className="col col-sm col-md-2 col-lg-2 ">
                 <div className="iconCenter ">
-                  <div className="start-e">
+                  {/* <div className="start-e">
                     <p className="bold">เริ่มกันเลย!</p>
                   </div>
+                  {
+                    (this.props.exerciseVideo) &&
+                    (todayExercise.map((item, index) => {
+                      return (
+                        <div>
+                          <span
+                            className="ellipse-2"
+                            style={{
+                              top: "50%",
+                              height: "40px",
+                              width: "40px",
+                              zIndex: 1,
+                              backgroundColor: "white",
+                              color: "#F45197",
+                              borderStyle: "solid",
+                              borderWidth: "0.1px",
+                              borderColor: "#F45197",
+                              borderRadius: "50%",
+                              display: "inline-block"
+                            }}
+                          >
+                            <h3 style={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%,-50%)" }}>{index + 1}</h3>
+                          </span>
+                          {
+                            (index === todayExercise.length - 1) ?
+                              <div
+                                className="line1"
+                                style={{
+                                  height: "0%",
+                                  top: "50%",
+                                  borderLeft: "0.1px solid #F45197",
+                                  height: "114%"
+                                }}
+                              ></div>
+                              :
+                              <div
+                                className="line1"
+                                style={{
+                                  top: "50%",
+                                  borderLeft: "0.1px solid #F45197",
+                                  height: "114%"
+                                }}
+                              ></div>
+                          }
+                        </div>
+                      )
+                    }))
+                  }
                   <div className="ellipse-1">
                     <img src={ellipse2} className="" />
                     <img src={eCheck} className="eCheck" />
@@ -228,157 +338,46 @@ class videoList extends React.Component {
                   </div>
                   <div className="end-e">
                     <p className="bold color1">สำเร็จแล้ว!</p>
-                  </div>
+                  </div> */}
                 </div>
               </div>
               <div className="col-10 col-sm-10 col-md-10 col-lg-10 ">
-                <div className="lock-video">
-                  <div className=" box-playVdieo ">
-                    <div className="row">
-                      <div className="col-12  col-sm-12 col-md-6 col-lg-6 ">
-                        <div className="box-paly1">
-                          <div className=" background-icon-play">
-                            <div className="icon-play-video">
-                              <img src={play_circle_filled} className="pointer" data-bs-toggle="modal" data-bs-target="#exampleModal" />
+                {
+                  (this.props.exerciseVideo) &&
+                  (todayExercise.map((item, index) => {
+                    const minuteLabel = (item.duration < 20) ? convertFormatTime(item.duration) : convertSecondsToMinutes(item.duration);
+                    return (
+                      <div className=" box-playVdieo">
+                        <div className="row">
+                          <div className="col-12  col-sm-12 col-md-6 col-lg-6">
+                            <div className="box-paly1" style={{ backgroundImage: `url('${cardioThumb}')` }}>
+                              <div className=" background-icon-play">
+                                <div className="icon-play-video">
+                                  <img src={play_circle_filled} className="pointer" data-bs-toggle="modal" data-bs-target="#exampleModal" />
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div className=" col-12  col-sm-12 col-md-6 col-lg-6">
+                            <div className="box-paly2">
+                              <div className="text-video">
+                                <p className="alarm"> <img src={alarm} className="col-2" /> {minuteLabel}  นาที</p>
+                              </div>
+                              <div className="rectangle15"></div>
+                              <p className="warmup">{item.category} {">"}</p>
+                              <p className="warmup2 bold">{item.name}</p>
+                              <img src={ellipse61} className="ellipse61 ellipse61-size" />
+                              <img src={ellipse61} className="ellipse61-2 ellipse61-size" />
+                              <img src={ellipse61} className="ellipse61-2 ellipse61-size" />
+                              <img src={ellipse61} className="ellipse61-2 ellipse61-size" />
+                              <img src={ellipse61} className="ellipse61-2 ellipse61-size" />
                             </div>
                           </div>
                         </div>
                       </div>
-                      <div className=" col-12  col-sm-12 col-md-6 col-lg-6">
-                        <div className="box-paly2">
-                          <div className="text-video">
-                            <p className="high-impact"><img src={group47} className="col-2" /><span className="bold color1 impact">High Impact</span> </p>
-                            <p className="alarm"> <img src={alarm} className="col-2" /> 5.06 นาที</p>
-                          </div>
-                          <div className="rectangle15"></div>
-                          <p className="warmup">Warm up {">"}</p>
-                          <p className="warmup2 bold">Warm up</p>
-                          <img src={ellipse61} className="ellipse61 ellipse61-size" />
-                          <img src={ellipse61} className="ellipse61-2 ellipse61-size" />
-                          <img src={ellipse61} className="ellipse61-2 ellipse61-size" />
-                          <img src={ellipse61} className="ellipse61-2 ellipse61-size" />
-                          <img src={ellipse61} className="ellipse61-2 ellipse61-size" />
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className=" box-playVdieo">
-                  <div className="row">
-                    <div className="col-12  col-sm-12 col-md-6 col-lg-6">
-                      <div className="box-paly1">
-                        <div className=" background-icon-play">
-                          <div className="icon-play-video">
-                            <img src={play_circle_filled} />
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div className=" col-12  col-sm-12 col-md-6 col-lg-6">
-                      <div className="box-paly2">
-                        <div className="text-video">
-                          <p className="high-impact"><img src={group47} className="col-2" /><span className="bold color1 impact">High Impact</span> </p>
-                          <p className="alarm"> <img src={alarm} className="col-2" /> 5.06 นาที</p>
-                        </div>
-                        <div className="rectangle15"></div>
-                        <p className="warmup">Warm up {">"}</p>
-                        <p className="warmup2 bold">Warm up</p>
-                        <img src={ellipse61} className="ellipse61 ellipse61-size" />
-                        <img src={ellipse61} className="ellipse61-2 ellipse61-size" />
-                        <img src={ellipse61} className="ellipse61-2 ellipse61-size" />
-                        <img src={ellipse61} className="ellipse61-2 ellipse61-size" />
-                        <img src={ellipse61} className="ellipse61-2 ellipse61-size" />
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className=" box-playVdieo">
-                  <div className="row">
-                    <div className="col-12  col-sm-12 col-md-6 col-lg-6">
-                      <div className="box-paly1">
-                        <div className=" background-icon-play">
-                          <div className="icon-play-video">
-                            <img src={play_circle_filled} />
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div className=" col-12  col-sm-12 col-md-6 col-lg-6">
-                      <div className="box-paly2">
-                        <div className="text-video">
-                          <p className="high-impact"> </p>
-                          <p className="alarm"> <img src={alarm} className="col-2" /> 5.06 นาที</p>
-                        </div>
-                        <div className="rectangle15"></div>
-                        <p className="warmup">Warm up {">"}</p>
-                        <p className="warmup2 bold">Warm up</p>
-                        <img src={ellipse61} className="ellipse61 ellipse61-size" />
-                        <img src={ellipse61} className="ellipse61-2 ellipse61-size" />
-                        <img src={ellipse61} className="ellipse61-2 ellipse61-size" />
-                        <img src={ellipse61} className="ellipse61-2 ellipse61-size" />
-                        <img src={ellipse61} className="ellipse61-2 ellipse61-size" />
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className=" box-playVdieo">
-                  <div className="row">
-                    <div className="col-12  col-sm-12 col-md-6 col-lg-6">
-                      <div className="box-paly1">
-                        <div className=" background-icon-play">
-                          <div className="icon-play-video">
-                            <img src={play_circle_filled} />
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div className=" col-12  col-sm-12 col-md-6 col-lg-6">
-                      <div className="box-paly2">
-                        <div className="text-video">
-                          <p className="high-impact"><img src={group47} className="col-2" /><span className="bold color1 impact">High Impact</span> </p>
-                          <p className="alarm"> <img src={alarm} className="col-2" /> 5.06 นาที</p>
-                        </div>
-                        <div className="rectangle15"></div>
-                        <p className="warmup">Warm up {">"}</p>
-                        <p className="warmup2 bold">Warm up</p>
-                        <img src={ellipse61} className="ellipse61 ellipse61-size" />
-                        <img src={ellipse61} className="ellipse61-2 ellipse61-size" />
-                        <img src={ellipse61} className="ellipse61-2 ellipse61-size" />
-                        <img src={ellipse61} className="ellipse61-2 ellipse61-size" />
-                        <img src={ellipse61} className="ellipse61-2 ellipse61-size" />
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className=" box-playVdieo">
-                  <div className="row">
-                    <div className="col-12  col-sm-12 col-md-6 col-lg-6">
-                      <div className="box-paly1">
-                        <div className=" background-icon-play">
-                          <div className="icon-play-video">
-                            <img src={play_circle_filled} />
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div className=" col-12  col-sm-12 col-md-6 col-lg-6">
-                      <div className="box-paly2">
-                        <div className="text-video">
-                          <p className="high-impact"><img src={group47} className="col-2" /><span className="bold color1 impact">High Impact</span> </p>
-                          <p className="alarm"> <img src={alarm} className="col-2" /> 5.06 นาที</p>
-                        </div>
-                        <div className="rectangle15"></div>
-                        <p className="warmup">Warm up {">"}</p>
-                        <p className="warmup2 bold">Warm up</p>
-                        <img src={ellipse61} className="ellipse61 ellipse61-size" />
-                        <img src={ellipse61} className="ellipse61-2 ellipse61-size" />
-                        <img src={ellipse61} className="ellipse61-2 ellipse61-size" />
-                        <img src={ellipse61} className="ellipse61-2 ellipse61-size" />
-                        <img src={ellipse61} className="ellipse61-2 ellipse61-size" />
-                      </div>
-                    </div>
-                  </div>
-                </div>
+                    )
+                  }))
+                }
               </div>
             </div>
           </div>
@@ -394,7 +393,7 @@ class videoList extends React.Component {
                     <li>
                       <div className="boxvideo-1" >
                         <div className="box-video">
-                          {/*   zxczxc */}
+
                         </div>
                         <div className="box-video1">
                           <div className="text-videobox">
@@ -408,7 +407,7 @@ class videoList extends React.Component {
                       </div>
                       <div className="boxvideo" >
                         <div className="box-video">
-                          {/*  zxczxc */}
+
                         </div>
                         <div className="box-video1">
                           <div className="text-videobox">
@@ -422,7 +421,7 @@ class videoList extends React.Component {
                       </div>
                       <div className="boxvideo" >
                         <div className="box-video">
-                          {/*  zxczxc */}
+
                         </div>
                         <div className="box-video1">
                           <div className="text-videobox">
@@ -436,7 +435,7 @@ class videoList extends React.Component {
                       </div>
                       <div className="boxvideo" >
                         <div className="box-video">
-                          {/*  zxczxc */}
+
                         </div>
                         <div className="box-video1">
                           <div className="text-videobox">
@@ -450,7 +449,7 @@ class videoList extends React.Component {
                       </div>
                       <div className="boxvideo" >
                         <div className="box-video">
-                          { /*  zxczxc */}
+
                         </div>
                         <div className="box-video1">
                           <div className="text-videobox">
@@ -474,10 +473,11 @@ class videoList extends React.Component {
           <div className="modal-dialog modal-xl">
             <div className="modal-content">
               <div className="modal-header">
-                <h5 className="modal-title" id="exampleModalLabel">
+                {/*   <h5 className="modal-title" id="exampleModalLabel">
                   <img src={ellipse2} className="ellipse61-model" />
                   <img src={union} className="union" />
-                  <span className="span-model bold color1"> Chest</span></h5>
+                  <span className="span-model bold color1"> Chest</span>
+                </h5> */}
                 <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close" ></button>
                 <button onClick={e => this.playVideo(e)}>PLAY</button>
               </div>
@@ -610,7 +610,7 @@ class videoList extends React.Component {
             <p className="vector4-text bold">คุณยังไม่มีคลิปออกกำลังกายเพิ่มเติม</p>
             <p className="vector4-text2">คลิปจะได้เพิ่มก็ต่อเมื่อมีการต่ออายุของ Bebe stay fit</p>
             <button className="btn bottom-pink-video vector4-button" type="button" >
-                ปิด
+              ปิด
               </button>
           </div>
         </div>
@@ -831,4 +831,15 @@ class videoList extends React.Component {
   }
 }
 
-export default videoList;
+const mapStateToProps = ({ authUser, exerciseVideos }) => {
+  const { user } = authUser;
+  const { exerciseVideo, statusVideoList } = exerciseVideos;
+  return { user, exerciseVideo, statusVideoList };
+};
+
+const mapActionsToProps = { videoListForUser };
+
+export default connect(
+  mapStateToProps,
+  mapActionsToProps
+)(videoList);

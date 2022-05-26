@@ -74,7 +74,7 @@ class Welcome_NewMember extends React.Component {
                     style={{ opacity: "1" }}
                     onClick={() => this.onUserLogin()}
                   >
-                    ถัดไป
+                    เริ่มต้นใช้งาน
                   </button>
                 </div>
               </div>
@@ -88,10 +88,10 @@ class Welcome_NewMember extends React.Component {
 }
 
 const mapStateToProps = ({ authUser, createUser, exerciseProgram }) => {
-  const { user } = authUser;
+  const { user, status } = authUser;
   const { create_user_email } = createUser;
   const { user_program_id } = exerciseProgram;
-  return { create_user_email, user_program_id, user };
+  return { create_user_email, user_program_id, user, status };
 };
 
 const mapActionsToProps = { getUserProgram, loginUser };

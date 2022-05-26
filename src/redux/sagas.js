@@ -5,6 +5,7 @@ import { saga as exerciseProgram } from './exerciseProgram';
 import { saga as shippingAddress } from './shippingAddress';
 import { saga as basicInFormation } from './basicInFormation';
 import { saga as update } from './update';
+import { saga as exerciseVideos } from './exerciseVideos';
 
 export default function* rootSaga(getState) {
   yield all([
@@ -13,6 +14,7 @@ export default function* rootSaga(getState) {
     exerciseProgram(),
     shippingAddress(),
     basicInFormation(),
-    update()
+    update(),
+    exerciseVideos()
   ]);
 }
