@@ -482,7 +482,7 @@ class videoList extends React.Component {
                 <button onClick={e => this.playVideo(e)}>PLAY</button>
               </div>
               <div className="modal-body">
-                <iframe className="video" id={"id"} src="https://vod-progressive.akamaized.net/exp=1653516419~acl=%2Fvimeo-prod-skyfire-std-us%2F01%2F2928%2F16%2F414644989%2F1784130174.mp4~hmac=c635fa9e158a3c5660e750757484fb1a0b6124d583a9757aadab38ca8311c891/vimeo-prod-skyfire-std-us/01/2928/16/414644989/1784130174.mp4?filename=Warm+up.mp4" ></iframe>
+                <iframe className="video" id={"id"} src="https://player.vimeo.com/external/414644989.hd.mp4?s=7eaf21b73e4bc3d3f0b6f83938964e0615e8d9d4&profile_id=174" ></iframe>
               </div>
             </div>
           </div>
