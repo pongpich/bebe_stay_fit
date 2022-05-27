@@ -19,7 +19,7 @@ import union from "../images/union.png";
 import vector4 from "../images/vector4.png";
 import { loadingLogo } from "aws-amplify";
 import { connect } from "react-redux";
-import { videoListForUser } from "../../redux/exerciseVideos"
+import { videoListForUser, createWeeklyStayfitProgram } from "../../redux/exerciseVideos"
 import { convertFormatTime, convertSecondsToMinutes } from "../../helpers/utils"
 
 
@@ -40,23 +40,52 @@ class videoList extends React.Component {
   }
 
   componentDidMount() {
-    const { user, exerciseVideo } = this.props;
+    const { user, exerciseVideo, statusVideoList } = this.props;
+
+    if (user === null) {
+      this.props.history.push('/welcome_new_nember');
+    }
 
     if (user && user.other_attributes) {
       this.props.videoListForUser(
         this.props.user.user_id,
-        JSON.parse(this.props.user.other_attributes).weight,
+        this.props.user.other_attributes.weight,
         this.props.user.start_date,
         this.props.user.expire_date,
         this.props.user.offset
       );
     }
 
-    if (user === null) {
-      this.props.history.push('/home');
+    if (user && statusVideoList === "no_video") {
+      this.props.createWeeklyStayfitProgram(
+        this.props.user.user_id,
+        this.props.user.start_date,
+        this.props.user.expire_date,
+      );
     }
 
     console.log("exerciseVideo :", exerciseVideo)
+  }
+
+  componentDidUpdate(prevProps) {
+    const { user, statusVideoList } = this.props;
+    if (user && prevProps.user && ((prevProps.statusVideoList !== statusVideoList) && statusVideoList === "no_video")) {
+      this.props.createWeeklyStayfitProgram(
+        this.props.user.user_id,
+        this.props.user.start_date,
+        this.props.user.expire_date,
+      );
+    }
+
+    if (user && prevProps.user && ((prevProps.statusVideoList !== statusVideoList) && statusVideoList !== "no_video")) {
+      this.props.videoListForUser(
+        this.props.user.user_id,
+        this.props.user.other_attributes.weight,
+        this.props.user.start_date,
+        this.props.user.expire_date,
+        this.props.user.offset
+      );
+    }
   }
 
   onDayChange = (day) => {
@@ -831,7 +860,7 @@ const mapStateToProps = ({ authUser, exerciseVideos }) => {
   return { user, exerciseVideo, statusVideoList };
 };
 
-const mapActionsToProps = { videoListForUser };
+const mapActionsToProps = { videoListForUser, createWeeklyStayfitProgram };
 
 export default connect(
   mapStateToProps,

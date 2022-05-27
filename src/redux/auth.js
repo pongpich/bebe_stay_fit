@@ -29,7 +29,24 @@ export const types = {
   CHANGE_EMAIL: "CHANGE_EMAIL",
   CHANGE_EMAIL_SUCCESS: "CHANGE_EMAIL_SUCCESS",
   TEST_POST_SERVICE: "TEST_POST_SERVICE",
+  UPDATE_PROFILE: "UPDATE_PROFILE",
+  UPDATE_PROFILE_SUCCESS: "UPDATE_PROFILE_SUCCESS",
 }
+
+export const updateProfile = (
+  user_id,
+  other_attributes,
+  start_date,
+  program_id
+) => ({
+  type: types.UPDATE_PROFILE,
+  payload: {
+    user_id,
+    other_attributes,
+    start_date,
+    program_id
+  }
+})
 
 export const testPostService = (
 
@@ -150,6 +167,27 @@ export const signupUser = (email, password, firstname, lastname, phone) => ({
 /* END OF ACTION Section */
 
 /* SAGA Section */
+
+const updateProfileSagaAsync = async (
+  user_id,
+  other_attributes,
+  start_date,
+  program_id
+) => {
+  try {
+    const apiResult = await API.post("bebe", "/updateStayFitProfile", {
+      body: {
+        user_id,
+        other_attributes,
+        start_date,
+        program_id
+      }
+    });
+    return apiResult;
+  } catch (error) {
+    return { error, messsage: error.message };
+  }
+}
 
 const checkUserSagaAsync = async (
   email
@@ -308,12 +346,12 @@ const getGroupIDSagaAsync = async (
 }
 
 const testPostServiceSagaAsync = async (
-  
+
 ) => {
   try {
     const apiResult = await API.post("bebe", "/testPostService", {
       body: {
-  
+
       }
     });
     return apiResult
@@ -413,6 +451,31 @@ function* signupUserSaga({ payload }) {
     console.log("signupUser : ", apiResult);
   } catch (error) {
     console.log("error from signupUser :", error);
+  }
+}
+
+function* updateProfileSaga({ payload }) {
+  const {
+    user_id,
+    other_attributes,
+    start_date,
+    program_id
+  } = payload
+
+  try {
+    const apiResult = yield call(
+      updateProfileSagaAsync,
+      user_id,
+      other_attributes,
+      start_date,
+      program_id
+    );
+    yield put({
+      type: types.UPDATE_PROFILE_SUCCESS,
+      payload: other_attributes
+    })
+  } catch (error) {
+    console.log("error from updateProfileSaga :", error);
   }
 }
 
@@ -694,6 +757,10 @@ export function* watchTestPostService() {
   yield takeEvery(types.TEST_POST_SERVICE, testPostServiceSaga);
 }
 
+export function* watchUpdateProfile() {
+  yield takeEvery(types.UPDATE_PROFILE, updateProfileSaga)
+}
+
 export function* saga() {
   yield all([
     fork(watchLoginUser),
@@ -709,6 +776,7 @@ export function* saga() {
     fork(watchGetGroupID),
     fork(watchChangeEmail),
     fork(watchTestPostService),
+    fork(watchUpdateProfile),
   ]);
 }
 
@@ -728,6 +796,14 @@ const INIT_STATE = {
 
 export function reducer(state = INIT_STATE, action) {
   switch (action.type) {
+    case types.UPDATE_PROFILE_SUCCESS:
+      return {
+        ...state,
+        user: {
+          ...state.user,
+          other_attributes: action.payload
+        }
+      }
     case types.GET_EXPIRE_DATE_SUCCESS:
       return {
         ...state,

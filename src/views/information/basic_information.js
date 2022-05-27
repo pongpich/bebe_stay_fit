@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Link } from 'react-router-dom';
 import { connect } from "react-redux";
 import { basicInFormation } from "../../redux/basicInFormation";
-import { updateProfile } from "../../redux/update";
+import { updateProfile } from "../../redux/auth";
 
 class Basic_Information extends React.Component {
   constructor(props) {
@@ -21,9 +21,26 @@ class Basic_Information extends React.Component {
       arePregnant: null
     }
   }
-  
+
   componentDidMount() {
-    console.log("user :", this.props.user);
+    const { user } = this.props;
+
+    if (user === null) {
+      this.props.history.push('/welcome_new_nember');
+    }
+
+    if (user && user.other_attributes) {
+      this.props.history.push('/videoList');
+    }
+  }
+
+  componentDidUpdate(prevProps) {
+    const { user } = this.props;
+    if (user && (prevProps.user.other_attributes !== user.other_attributes)) {
+      if (user && user.other_attributes) {
+        this.props.history.push('/videoList');
+      }
+    }
   }
 
   basicInFormation(basicSex, basicAge, typeHei_Wig, basicHeight, basicWeight, practiceDifficultExercises, injury, arePregnant) {

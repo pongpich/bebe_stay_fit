@@ -10,7 +10,22 @@ export const types = {
   VIDEO_LIST_FOR_USER_SUCCESS: "VIDEO_LIST_FOR_USER_SUCCESS",
   VIDEO_LIST_FOR_USER_FAIL: "VIDEO_LIST_FOR_USER_FAIL",
   GET_WEEK: "GET_WEEK",
+  CREATE_WEEKLY_STAYFIT_PROGRAM: "CREATE_WEEKLY_STAYFIT_PROGRAM",
+  CREATE_WEEKLY_STAYFIT_PROGRAM_SUCCESS: "CREATE_WEEKLY_STAYFIT_PROGRAM_SUCCESS",
 }
+
+export const createWeeklyStayfitProgram = (
+  user_id,
+  start_date,
+  expire_date
+) => ({
+  type: types.CREATE_WEEKLY_STAYFIT_PROGRAM,
+  payload: {
+    user_id,
+    start_date,
+    expire_date
+  }
+});
 
 export const videoListForUser = (
   user_id,
@@ -55,6 +70,26 @@ const videoListForUserSagaAsync = async (
   }
 }
 
+const createWeeklyStayfitProgramSagaAsync = async (
+  user_id,
+  start_date,
+  expire_date
+) => {
+  try {
+    const apiResult = await API.post("bebe", "/createWeeklyStayfitProgram", {
+      body: {
+        user_id,
+        start_date,
+        expire_date
+      }
+    });
+    
+    return apiResult;
+  } catch (error) {
+    return { error, messsage: error.message };
+  }
+}
+
 function* videoListForUserSaga({ payload }) {
   const {
     user_id,
@@ -93,6 +128,28 @@ function* videoListForUserSaga({ payload }) {
   }
 }
 
+function* createWeeklyStayfitProgramSaga({ payload }) {
+  const {
+    user_id,
+    start_date,
+    expire_date
+  } = payload
+
+  try {
+    yield call(
+      createWeeklyStayfitProgramSagaAsync,
+      user_id,
+      start_date,
+      expire_date
+    );
+    yield put({
+      type: types.CREATE_WEEKLY_STAYFIT_PROGRAM_SUCCESS
+    })
+  } catch (error) {
+    console.log("error from createWeeklyStayfitProgramSaga :", error);
+  }
+}
+
 /* SAGA Section */
 
 
@@ -100,9 +157,14 @@ export function* watchVideoListForUser() {
   yield takeEvery(types.VIDEO_LIST_FOR_USER, videoListForUserSaga)
 }
 
+export function* watchCreateWeeklyStayfitProgram() {
+  yield takeEvery(types.CREATE_WEEKLY_STAYFIT_PROGRAM, createWeeklyStayfitProgramSaga)
+}
+
 export function* saga() {
   yield all([
     fork(watchVideoListForUser),
+    fork(watchCreateWeeklyStayfitProgram),
   ]);
 }
 
@@ -118,6 +180,11 @@ const INIT_STATE = {
 
 export function reducer(state = INIT_STATE, action) {
   switch (action.type) {
+    case types.CREATE_WEEKLY_STAYFIT_PROGRAM_SUCCESS:
+      return {
+        ...state,
+        statusVideoList: "default"
+      }
     case types.VIDEO_LIST_FOR_USER_SUCCESS:
       return {
         ...state,
