@@ -84,7 +84,7 @@ class App extends Component {
             {
               (this.props.user !== null) &&
               <li className="nav-item">
-                <a className="nav-link color1 section-size" href="/#" onClick={() => this.onUserLogout()} style={{  cursor: "pointer" }}>
+                <a className="nav-link color1 bold" href="/#" onClick={() => this.onUserLogout()} style={{  cursor: "pointer" }}>
                   ออกจากระบบ
                 </a>
               </li>
