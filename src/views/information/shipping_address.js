@@ -146,14 +146,6 @@ class Shipping_Address extends React.Component {
       InvoiceAddressUser, InvoiceSubdistrict, InvoiceDistrict, InvoiceProvince, InvoiceZipcode } = this.state;
     return (
       <>
-        <div className="col-12 col-sm-12 col-md-12 col-lg-12  padding-top2 information-box ">
-          <div className="container">
-            <div className="row row-cols-2">
-              <h4 className="color1">BEBEStayFit</h4>
-              <h6 className="right">ลงทะเบียน</h6>
-            </div>
-          </div>
-        </div>
         <div className="col-12 col-sm-12 col-md-12 col-lg-12  App-headerBackground center2 padding-top2 ">
           <div className="col-12 col-sm-12 col-md-10 col-lg-10 center2">
             <img src={group20} alt="vector" className="group19" />

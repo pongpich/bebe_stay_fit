@@ -75,14 +75,6 @@ class ProgramPackage extends React.Component {
     const { exerciseActivated, weightLossGoals } = this.state;
     return (
       <>
-        <div className="col-12 col-sm-12 col-md-12 col-lg-12  padding-top2 information-box ">
-          <div className="container">
-            <div className="row row-cols-2">
-              <h4 className="color1">BEBEStayFit</h4>
-              <h6 className="right">ลงทะเบียน</h6>
-            </div>
-          </div>
-        </div>
         <br />
         <div className="col-12 col-sm-12 col-md-12 col-lg-12  ">
           <div className="container">
@@ -148,14 +140,6 @@ class ProgramPackage extends React.Component {
     const priceSubscription = allProgram && allProgram.filter(element => element.program_id === "subscription_stay_fit_01");
     return (
       <>
-        <div className="col-12 col-sm-12 col-md-12 col-lg-12  padding-top2 information-box ">
-          <div className="container">
-            <div className="row row-cols-2">
-              <h4 className="color1">BEBEStayFit</h4>
-              <h6 className="right">ลงทะเบียน</h6>
-            </div>
-          </div>
-        </div>
         <br />
         <div className="col-12 col-sm-12 col-md-12 col-lg-12 App-headerBackground">
           <div className="container center ">

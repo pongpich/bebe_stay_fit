@@ -124,7 +124,7 @@ class videoList extends React.Component {
     const todayExercise = this.exerciseDaySelection(focusDay);
     return (
       <>
-        <nav className="navbar navbar-expand-lg bg-light information-box">
+        {/* <nav className="navbar navbar-expand-lg bg-light information-box">
           <div className="container-fluid nav-left2">
             <h4 className="color1">BEBEStayFit</h4>
             <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -154,7 +154,7 @@ class videoList extends React.Component {
               </div>
             </div>
           </div>
-        </nav>
+        </nav> */}
         <div className="box-videoHead">
           <h3 className="center-videoText bold">
             Platform
@@ -283,12 +283,6 @@ class videoList extends React.Component {
                             (index === todayExercise.length - 1) ?
                               <div
                                 className="line1"
-                                style={{
-                                  height: "0%",
-                                  top: "50%",
-                                  borderLeft: "0.1px solid #F45197",
-                                  height: "114%"
-                                }}
                               ></div>
                               :
                               <div

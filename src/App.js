@@ -19,6 +19,10 @@ import ProgramPackage from "./views/programPackage";
 import videoList from "./views/information/video_List";
 //import Summary_details from '../views/summary_details';
 //import Home from '../views/home';Welcome_NewMember
+
+import { connect } from "react-redux";
+import { logoutUser } from "./redux/auth";
+
 import {
   BrowserRouter as Router,
   Switch,
@@ -33,9 +37,68 @@ Amplify.configure(awsConfig);
 
 class App extends Component {
 
+  onUserLogout(event) {
+    this.props.logoutUser();
+    this.props.clearVideoList();
+    this.props.clearChallenges();
+    this.props.history.push('/platform');
+  }
+
+  renderNavbar() {
+    return (
+      <nav className="navbar navbar-expand" style={{ backgroundColor: "white", fontFamily: "'Prompt', sans-serif" }}>
+        <a className="navbar-brand" href="/#" onClick={() => this.props.history.push('/')} style={{ color: "white", cursor: "pointer" }}>
+          <h4 className="color1">BEBEStayFit</h4>
+        </a>
+        <div className="collapse navbar-collapse justify-content-start" id="navbarNav">
+          <ul className="navbar-nav">
+            {
+              (this.props.user !== null && this.props.user.authorization === "admin") &&
+              <li className="nav-item">
+                <a className="nav-link" href="#/videolist" onClick={() => this.props.history.push('/videolist')} style={{ color: "white", cursor: "pointer" }}>
+                  Platform
+                </a>
+              </li>
+            }
+          </ul>
+        </div>
+
+        <div className="collapse navbar-collapse justify-content-end" id="navbarNav">
+          <ul className="navbar-nav">
+            {/* {
+              (this.props.user === null || this.props.user.password === null) && //password === null คือกรณีผู้ใช้ทำการ ResetPassword
+              <li className="nav-item">
+                <a className="nav-link" href="#/register" onClick={() => this.props.history.push('/register')} style={{ color: "white", cursor: "pointer" }}>
+                  สมัครสมาชิก
+                </a>
+              </li>
+            } */}
+            {
+              (this.props.user !== null && this.props.user.authorization === "admin") &&
+              <li className="nav-item">
+                <a className="nav-link" href="#/import-members" onClick={() => this.props.history.push('/import-members')} style={{ color: "white", cursor: "pointer" }}>
+                  จัดการสมาชิก
+                </a>
+              </li>
+            }
+            {
+              (this.props.user !== null) &&
+              <li className="nav-item">
+                <a className="nav-link color1 section-size" href="/#" onClick={() => this.onUserLogout()} style={{  cursor: "pointer" }}>
+                  ออกจากระบบ
+                </a>
+              </li>
+            }
+          </ul>
+        </div>
+      </nav>
+    )
+  }
+
   render() {
     return (
       <div className="App">
+        {this.renderNavbar()}
         <header className="App-header ">
 
           <Switch>
@@ -65,4 +128,16 @@ class App extends Component {
   }
 }
 
-export default App;
+const mapStateToProps = ({ authUser }) => {
+  const { user } = authUser;
+  return { user };
+};
+
+const mapActionsToProps = {
+  logoutUser
+};
+
+export default connect(
+  mapStateToProps,
+  mapActionsToProps
+)(App);

@@ -43,14 +43,6 @@ class Welcome_NewMember extends React.Component {
   render() {
     return (
       <>
-        <div className="col-12 col-sm-12 col-md-12 col-lg-12  padding-top2 information-box ">
-          <div className="container">
-            <div className="row row-cols-2">
-              <h4 className="color1">BEBEStayFit</h4>
-              <h6 className="right">ออกจากระบบ</h6>
-            </div>
-          </div>
-        </div>
         <div className="container2">
           <div className="row center App-headerBackground ">
             <div className="col-12 col-sm-12 col-md-5 col-lg-5 padding-top center height-box ">

@@ -83,14 +83,6 @@ class Basic_Information extends React.Component {
     const { basicSex, basicAge, typeHei_Wig, basicHeight, basicWeight, practiceDifficultExercises, injury, arePregnant } = this.state;
     return (
       <>
-        <div className="col-12 col-sm-12 col-md-12 col-lg-12  padding-top2 information-box ">
-          <div className="container">
-            <div className="row row-cols-2">
-              <h4 className="color1">BEBEStayFit</h4>
-              <h6 className="right">ลงทะเบียน</h6>
-            </div>
-          </div>
-        </div>
         <div className="col-12 col-sm-12 col-md-12 col-lg-12  App-headerBackground center2 padding-top2 ">
           <div className="col-12 col-sm-12 col-md-6 col-lg-6 center2 margin-head">
             <div className="box-protein margin-bottom1">

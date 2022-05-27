@@ -68,16 +68,6 @@ class Register extends React.Component {
     const { email, password, confirm_password, phone, status_submit } = this.state;
     return (
       <>
-        <div className="col-12 col-sm-12 col-md-12 col-lg-12  padding-top2 information-box ">
-          <div className="container">
-            <div className="row row-cols-2">
-              <h4 className="color1">BEBEStayFit</h4>
-              <h6 className="right">ลงทะเบียน</h6>
-            </div>
-          </div>
-        </div>
-
-
         <div className="container2 ">
           <div className="row ">
             <div className="col-12 col-sm-12  col-md-5 col-lg-5 padding-top center   App-headerBackground">
