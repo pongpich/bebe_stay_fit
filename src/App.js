@@ -39,9 +39,8 @@ class App extends Component {
 
   onUserLogout(event) {
     this.props.logoutUser();
-    this.props.clearVideoList();
-    this.props.clearChallenges();
-    this.props.history.push('/platform');
+    //this.props.clearVideoList();
+    this.props.history.push('/home');
   }
 
   renderNavbar() {
