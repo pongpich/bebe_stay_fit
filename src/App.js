@@ -46,7 +46,7 @@ class App extends Component {
 
   renderNavbar() {
     return (
-      <nav className="navbar navbar-expand" style={{ backgroundColor: "white", fontFamily: "'Prompt', sans-serif" }}>
+      <nav className="navbar navbar-expand nav-itemHead " style={{ backgroundColor: "white", fontFamily: "'Prompt', sans-serif" }}>
         <a className="navbar-brand" href="/#" onClick={() => this.props.history.push('/')} style={{ color: "white", cursor: "pointer" }}>
           <h4 className="color1">BEBEStayFit</h4>
         </a>
@@ -75,7 +75,7 @@ class App extends Component {
             } */}
             {
               (this.props.user !== null && this.props.user.authorization === "admin") &&
-              <li className="nav-item">
+              <li className="nav-item nav-linkHead">
                 <a className="nav-link" href="#/import-members" onClick={() => this.props.history.push('/import-members')} style={{ color: "white", cursor: "pointer" }}>
                   จัดการสมาชิก
                 </a>
@@ -83,8 +83,8 @@ class App extends Component {
             }
             {
               (this.props.user !== null) &&
-              <li className="nav-item">
-                <a className="nav-link color1 bold" href="/#" onClick={() => this.onUserLogout()} style={{  cursor: "pointer" }}>
+              <li className="nav-item ">
+                <a className="nav-link nav-linkHead " href="/#" onClick={() => this.onUserLogout()} style={{  cursor: "pointer" }}>
                   ออกจากระบบ
                 </a>
               </li>
