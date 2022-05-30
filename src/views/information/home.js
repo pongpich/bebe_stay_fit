@@ -1,30 +1,60 @@
 import React, { Component } from "react";
 import { Link } from 'react-router-dom';
 import { connect } from "react-redux";
-import { getUserProgram } from "../../redux/exerciseProgram"
+import { getUserProgram } from "../../redux/exerciseProgram";
+import { loginUser } from "../../redux/auth"
 
 class Home extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      email: null
+    }
+  }
+
   onChickprice = (e) => {
 
     this.props.history.push('/videoList');
   }
 
   componentDidMount() {
-    const { user_program_id, create_user_email } = this.props;
+    const { user_program_id, create_user_email, user } = this.props;
 
     this.props.getUserProgram(create_user_email);
 
     if (user_program_id) { //ถ้ามี user_program_id แสดงว่าชำระเงินสำเร็จแล้ว
       this.props.history.push('/welcome_new_nember');
     }
+
+    if (user !== null) {
+      this.props.history.push('/basic_information');
+    }
   }
 
   componentDidUpdate(prevProps, prevState) {
-    const { user_program_id } = this.props;
+    const { user_program_id, status } = this.props;
     if (prevProps.user_program_id !== user_program_id) {
       this.props.history.push('/welcome_new_nember');
     }
+
+    if (prevProps.status !== status) {
+      if (status === "success") {
+        this.props.history.push('/basic_information');
+      }
+    }
   }
+
+  onUserLogin() {
+    if (this.state.email !== "") {
+      this.props.loginUser(this.state.email);
+    }
+  }
+
+  handleChange(event) {
+    this.setState({
+      [event.target.id]: event.target.value
+    })
+  };
 
   render() {
     return (
@@ -87,14 +117,21 @@ class Home extends React.Component {
                 <div className=" col-12 col-sm-12  col-md-12 col-lg-12 padding-top1">
                   <div className="mb-3">
                     <label className="form-label">อีเมล</label>
-                    <input type="text" className="form-control" id="exampleFormControlInput1" />
+                    <input
+                      type="email"
+                      className="form-control"
+                      id="email"
+                      placeholder="กรุณากรอก Email (Example@mail.com)"
+                      value={this.state.email}
+                      onChange={(event) => this.handleChange(event)}
+                    />
                   </div>
                   <div className="mb-3">
                     <label className="form-label">รหัสผ่าน</label>
                     <input type="text" className="form-control" id="exampleFormControlInput1" />
                   </div>
                   <div className="d-grid gap-2  mx-auto   col-12 col-sm-12  col-md-12 col-lg-12 distance">
-                    <button className="btn bottom-pinkLogin   font-size6" type="button" onClick={e => this.onChickprice(e)} data-bs-dismiss="modal">
+                    <button className="btn bottom-pinkLogin   font-size6" type="button" onClick={() => this.onUserLogin()}>
                       เข้าสู่ระบบ
                     </button>
                   </div>
@@ -109,13 +146,14 @@ class Home extends React.Component {
   }
 }
 
-const mapStateToProps = ({ createUser, exerciseProgram }) => {
+const mapStateToProps = ({ authUser, createUser, exerciseProgram }) => {
+  const { user, status } = authUser;
   const { create_user_email } = createUser;
   const { user_program_id } = exerciseProgram;
-  return { create_user_email, user_program_id };
+  return { create_user_email, user_program_id, user, status };
 };
 
-const mapActionsToProps = { getUserProgram };
+const mapActionsToProps = { getUserProgram, loginUser };
 
 export default connect(
   mapStateToProps,
