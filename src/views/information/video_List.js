@@ -389,6 +389,7 @@ class videoList extends React.Component {
                               <div className="rectangle15"></div>
                               <p className="warmup">{item.category} {">"}</p>
                               <p className="warmup2 bold">{item.name}</p>
+                              <p className="warmup2 bold">{item.url}</p>
                               <img src={ellipse61} className="ellipse61 ellipse61-size" />
                               <img src={ellipse61} className="ellipse61-2 ellipse61-size" />
                               <img src={ellipse61} className="ellipse61-2 ellipse61-size" />
