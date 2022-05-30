@@ -36,15 +36,16 @@ class videoList extends React.Component {
       borderBottom4: "video-link",
       videoLi: "video-li ",
       focusDay: 0,
+      urlVideo: null,
     }
   }
 
   componentDidMount() {
     const { user, exerciseVideo, statusVideoList } = this.props;
 
-    if (user === null) {
+/*     if (user === null) {
       this.props.history.push('/welcome_new_nember');
-    }
+    } */
 
     if (user && user.other_attributes) {
       this.props.videoListForUser(
@@ -138,8 +139,15 @@ class videoList extends React.Component {
     });
 
   }
-  playVideo(e) {
-
+  pauseVideo(e) {
+    var myVideo = document.getElementById("idUrl");
+    myVideo.pause();
+  }
+  urlVideo(e) {
+    let url = e.target.name;
+    this.setState({
+      urlVideo: url,
+    });
   }
 
   exerciseDaySelection(focusDay) {
@@ -376,7 +384,7 @@ class videoList extends React.Component {
                             <div className="box-paly1" style={{ backgroundImage: `url('${cardioThumb}')` }}>
                               <div className=" background-icon-play">
                                 <div className="icon-play-video">
-                                  <img src={play_circle_filled} className="pointer" data-bs-toggle="modal" data-bs-target="#exampleModal" />
+                                  <img src={play_circle_filled} name={item.url} className="pointer"  onClick={e => this.urlVideo(e)}  data-bs-toggle="modal" data-bs-target="#exampleModal" />
                                 </div>
                               </div>
                             </div>
@@ -389,7 +397,6 @@ class videoList extends React.Component {
                               <div className="rectangle15"></div>
                               <p className="warmup">{item.category} {">"}</p>
                               <p className="warmup2 bold">{item.name}</p>
-                              <p className="warmup2 bold">{item.url}</p>
                               <img src={ellipse61} className="ellipse61 ellipse61-size" />
                               <img src={ellipse61} className="ellipse61-2 ellipse61-size" />
                               <img src={ellipse61} className="ellipse61-2 ellipse61-size" />
@@ -493,20 +500,25 @@ class videoList extends React.Component {
           </div>
         </div>
         {/* modal  */}
+
+
+
+
         <div className="modal fade" id="exampleModal" aria-labelledby="exampleModalLabel" >
-          <div className="modal-dialog modal-xl">
-            <div className="modal-content">
+          <div className="modal-dialog modal-xl mode-xxl">
+            <div className="modal-content2">
               <div className="modal-header">
                 {/*   <h5 className="modal-title" id="exampleModalLabel">
                   <img src={ellipse2} className="ellipse61-model" />
                   <img src={union} className="union" />
                   <span className="span-model bold color1"> Chest</span>
                 </h5> */}
-                <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close" ></button>
+                <button type="button" className="btn-close color-x"  data-bs-dismiss="modal" aria-label="Close"  onClick={e => this.pauseVideo(e)}>X</button>
+
                 {/* <button onClick={e => this.playVideo(e)}>PLAY</button> */}
               </div>
               <div className="modal-body">
-                <iframe className="video" id={"id"} src="https://player.vimeo.com/external/414644989.hd.mp4?s=7eaf21b73e4bc3d3f0b6f83938964e0615e8d9d4&profile_id=174" ></iframe>
+             <video  className="video" id={"idUrl"} controls src={this.state.urlVideo} ></video> 
               </div>
             </div>
           </div>
