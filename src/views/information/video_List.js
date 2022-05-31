@@ -39,6 +39,7 @@ class videoList extends React.Component {
       autoPlayCheck: false,
       selectedVDO: null
     }
+    this.addEventToVideo = this.addEventToVideo.bind(this);
   }
 
   componentDidMount() {
@@ -56,6 +57,9 @@ class videoList extends React.Component {
         this.props.user.expire_date,
         this.props.user.offset
       );
+      if (this.props.statusVideoList !== "no_video") {
+        this.addEventToVideo();
+      }
     }
 
     if (user && statusVideoList === "no_video") {
@@ -66,7 +70,6 @@ class videoList extends React.Component {
       );
     }
 
-    console.log("exerciseVideo :", exerciseVideo)
   }
 
   componentDidUpdate(prevProps) {
@@ -87,6 +90,9 @@ class videoList extends React.Component {
         this.props.user.expire_date,
         this.props.user.offset
       );
+      if (this.props.user.other_attributes && this.props.statusVideoList !== "no_video") {
+        this.addEventToVideo();
+      }
     }
   }
 
@@ -152,6 +158,47 @@ class videoList extends React.Component {
       this.setState({
         selectedVDO: selectedVDO
       })
+    }
+  }
+
+  toggleList(index) {
+    const { focusDay } = this.state;
+    const todayExercise = this.exerciseDaySelection(focusDay);
+    const selectedVDO = todayExercise.find(element => (element.order === index));
+    if (selectedVDO) {
+      this.setState({
+        selectedVDO
+      }, () => {
+        var video = document.getElementById(`videoPlayer`);
+        video.play();
+      })
+    }
+  }
+
+  addEventToVideo() {
+    var video = document.getElementById(`videoPlayer`);
+    video.onended = () => this.onVideoEnd();
+  }
+
+  onVideoEnd() {
+    console.log("onVideoEnd !!!")
+    const { focusDay, selectedVDO } = this.state;
+    var todayExercise;
+    todayExercise = this.exerciseDaySelection(focusDay);
+
+    const nextVDO = todayExercise.find(
+      element => (element.order > selectedVDO.order)
+    );
+
+    if (nextVDO) {
+      if (this.state.autoPlayCheck) {
+        this.setState({
+          selectedVDO: nextVDO
+        }, () => {
+          var video = document.getElementById(`videoPlayer`);
+          video.play();
+        })
+      }
     }
   }
 
@@ -396,11 +443,20 @@ class videoList extends React.Component {
                         <div className="row">
                           <div className="col-12  col-sm-12 col-md-6 col-lg-6">
                             <div className="box-paly1" style={{ background: `url('./assets/img/thumb/${item.category.toLowerCase().split(" ").join("")}_g3.jpg') no-repeat`, backgroundSize: "100%" }}>
-                              <div className=" background-icon-play">
-                                <div className="icon-play-video">
-                                  <img src={play_circle_filled} name={item.url} className="pointer" onClick={() => this.toggle(item)} data-bs-toggle="modal" data-bs-target="#exampleModal" />
-                                </div>
-                              </div>
+                              {
+                                this.state.autoPlayCheck ?
+                                  <div className=" background-icon-play">
+                                    <div className="icon-play-video">
+                                      <img src={play_circle_filled} name={item.url} className="pointer" onClick={() => this.toggleList(index)} data-bs-toggle="modal" data-bs-target="#exampleModal" />
+                                    </div>
+                                  </div>
+                                  :
+                                  <div className=" background-icon-play">
+                                    <div className="icon-play-video">
+                                      <img src={play_circle_filled} name={item.url} className="pointer" onClick={() => this.toggle(item)} data-bs-toggle="modal" data-bs-target="#exampleModal" />
+                                    </div>
+                                  </div>
+                              }
                             </div>
                           </div>
                           <div className=" col-12  col-sm-12 col-md-6 col-lg-6">
