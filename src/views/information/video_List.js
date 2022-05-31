@@ -36,6 +36,8 @@ class videoList extends React.Component {
       videoLi: "video-li ",
       focusDay: 0,
       urlVideo: null,
+      autoPlayCheck: false,
+      selectedVDO: null
     }
   }
 
@@ -138,15 +140,19 @@ class videoList extends React.Component {
     });
 
   }
-  pauseVideo(e) {
-    var myVideo = document.getElementById("idUrl");
-    myVideo.pause();
+
+  closeToggle() {
+    var video = document.getElementById(`videoPlayer`);
+    video.pause();
+    video.currentTime = 0;
   }
-  urlVideo(e) {
-    let url = e.target.name;
-    this.setState({
-      urlVideo: url,
-    });
+
+  toggle(selectedVDO) {
+    if (selectedVDO) {
+      this.setState({
+        selectedVDO: selectedVDO
+      })
+    }
   }
 
   exerciseDaySelection(focusDay) {
@@ -155,9 +161,18 @@ class videoList extends React.Component {
     }
   }
 
+  autoPlayCheck() {
+    if (document.getElementById("autoPlayCheck").checked === true) {
+      this.setState({ autoPlayCheck: true })
+    } else {
+      this.setState({ autoPlayCheck: false })
+    }
+  }
+
   routineWorkout() {
-    const { focusDay } = this.state;
+    const { focusDay, selectedVDO } = this.state;
     const todayExercise = this.exerciseDaySelection(focusDay);
+    const videoUrl = selectedVDO ? `${selectedVDO.url}` : "";
     return (
       <>
         {/* <nav className="navbar navbar-expand-lg bg-light information-box">
@@ -279,7 +294,7 @@ class videoList extends React.Component {
               </div>
               <div className="col col-lg-3">
                 <div className="form-check form-switch form-check-reverse">
-                  <input className="form-check-input" type="checkbox" id="flexSwitchCheckReverse" />
+                  <input className="form-check-input" type="checkbox" id="autoPlayCheck" onClick={() => this.autoPlayCheck()} />
                   <label className="form-check-label" >เล่นต่อเนื่องอัตโนมัติ</label>
                 </div>
               </div>
@@ -380,10 +395,10 @@ class videoList extends React.Component {
                       <div className=" box-playVdieo">
                         <div className="row">
                           <div className="col-12  col-sm-12 col-md-6 col-lg-6">
-                            <div className="box-paly1" style={{ background: `url('./assets/img/thumb/${item.category.toLowerCase().split(" ").join("")}_g3.jpg') no-repeat`,  backgroundSize: "100%" }}>
+                            <div className="box-paly1" style={{ background: `url('./assets/img/thumb/${item.category.toLowerCase().split(" ").join("")}_g3.jpg') no-repeat`, backgroundSize: "100%" }}>
                               <div className=" background-icon-play">
                                 <div className="icon-play-video">
-                                  <img src={play_circle_filled} name={item.url} className="pointer" onClick={e => this.urlVideo(e)} data-bs-toggle="modal" data-bs-target="#exampleModal" />
+                                  <img src={play_circle_filled} name={item.url} className="pointer" onClick={() => this.toggle(item)} data-bs-toggle="modal" data-bs-target="#exampleModal" />
                                 </div>
                               </div>
                             </div>
@@ -512,12 +527,12 @@ class videoList extends React.Component {
                   <img src={union} className="union" />
                   <span className="span-model bold color1"> Chest</span>
                 </h5> */}
-                <button type="button" className="btn-close color-x" data-bs-dismiss="modal" aria-label="Close" onClick={e => this.pauseVideo(e)}>X</button>
+                <button type="button" className="btn-close color-x" data-bs-dismiss="modal" aria-label="Close" onClick={() => this.closeToggle()}>X</button>
 
                 {/* <button onClick={e => this.playVideo(e)}>PLAY</button> */}
               </div>
               <div className="modal-body">
-                <video className="video" id={"idUrl"} controls src={this.state.urlVideo} ></video>
+                <video className="video" id="videoPlayer" controls src={videoUrl} ></video>
               </div>
             </div>
           </div>
