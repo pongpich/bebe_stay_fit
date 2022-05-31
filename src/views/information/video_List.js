@@ -380,7 +380,7 @@ class videoList extends React.Component {
                       <div className=" box-playVdieo">
                         <div className="row">
                           <div className="col-12  col-sm-12 col-md-6 col-lg-6">
-                            <div className="box-paly1" style={{ backgroundImage: `url('./assets/img/thumb/${item.category.toLowerCase().split(" ").join("")}_g3.jpg')`,  backgroundSize: "100%" }}>
+                            <div className="box-paly1" style={{ background: `url('./assets/img/thumb/${item.category.toLowerCase().split(" ").join("")}_g3.jpg') no-repeat`,  backgroundSize: "100%" }}>
                               <div className=" background-icon-play">
                                 <div className="icon-play-video">
                                   <img src={play_circle_filled} name={item.url} className="pointer" onClick={e => this.urlVideo(e)} data-bs-toggle="modal" data-bs-target="#exampleModal" />
