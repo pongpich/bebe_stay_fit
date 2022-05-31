@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import user_circle from "../../assets/img/user_circle.svg";
-import cardioThumb from "../../assets/img/thumb/cardio.jpg";
 import play_circle_filled from "../images/play_circle_filled.png";
 import rectangle13 from "../images/rectangle13.png";
 import edit from "../images/edit.png";
@@ -43,9 +42,9 @@ class videoList extends React.Component {
   componentDidMount() {
     const { user, exerciseVideo, statusVideoList } = this.props;
 
-/*     if (user === null) {
-      this.props.history.push('/welcome_new_nember');
-    } */
+    /*     if (user === null) {
+          this.props.history.push('/welcome_new_nember');
+        } */
 
     if (user && user.other_attributes) {
       this.props.videoListForUser(
@@ -381,10 +380,10 @@ class videoList extends React.Component {
                       <div className=" box-playVdieo">
                         <div className="row">
                           <div className="col-12  col-sm-12 col-md-6 col-lg-6">
-                            <div className="box-paly1" style={{ backgroundImage: `url('${cardioThumb}')` }}>
+                            <div className="box-paly1" style={{ backgroundImage: `url('./assets/img/thumb/${item.category.toLowerCase().split(" ").join("")}_g3.jpg')`,  backgroundSize: "100%" }}>
                               <div className=" background-icon-play">
                                 <div className="icon-play-video">
-                                  <img src={play_circle_filled} name={item.url} className="pointer"  onClick={e => this.urlVideo(e)}  data-bs-toggle="modal" data-bs-target="#exampleModal" />
+                                  <img src={play_circle_filled} name={item.url} className="pointer" onClick={e => this.urlVideo(e)} data-bs-toggle="modal" data-bs-target="#exampleModal" />
                                 </div>
                               </div>
                             </div>
@@ -513,12 +512,12 @@ class videoList extends React.Component {
                   <img src={union} className="union" />
                   <span className="span-model bold color1"> Chest</span>
                 </h5> */}
-                <button type="button" className="btn-close color-x"  data-bs-dismiss="modal" aria-label="Close"  onClick={e => this.pauseVideo(e)}>X</button>
+                <button type="button" className="btn-close color-x" data-bs-dismiss="modal" aria-label="Close" onClick={e => this.pauseVideo(e)}>X</button>
 
                 {/* <button onClick={e => this.playVideo(e)}>PLAY</button> */}
               </div>
               <div className="modal-body">
-             <video  className="video" id={"idUrl"} controls src={this.state.urlVideo} ></video> 
+                <video className="video" id={"idUrl"} controls src={this.state.urlVideo} ></video>
               </div>
             </div>
           </div>
