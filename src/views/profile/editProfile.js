@@ -150,16 +150,12 @@ class EditProfile extends React.Component {
                     </div>
                 </div>
                 <div className="col-12 col-sm-12 col-md-12 col-lg-12  center2  margin-top-3">
-                    <div className="col-12 col-sm-12 col-md-6 col-lg-6 center2">
-                        <div className="margin-bottom1">
-                            <div className="row">
-                                <div className="col-6 col-sm-6 col-md-6 col-lg-6 center2">
-                                    <button type="button" className="btn bottom-outlinePink margin-top-4 col-lg-12">ยกเลิก</button>
-                                </div>
-                                <div className="col-6 col-sm-6 col-md-6 col-lg-6 center2">
-                                    <button type="button" className="btn bottom-pink col-lg-12">บันทึก</button>
-                                </div>
-                            </div>
+                    <div className="row">
+                        <div className=" center2">
+                            <button type="button" className="btn bottom-outlinePink margin-top-4 col-lg-12">ยกเลิก</button>
+                        </div>
+                        <div className="">
+                            <button type="button" className="btn bottom-pink">บันทึก</button>
                         </div>
                     </div>
                 </div>

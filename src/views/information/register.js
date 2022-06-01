@@ -27,10 +27,10 @@ class Register extends React.Component {
   componentDidMount() {
     const { statusRegister } = this.props;
 
-    if (statusRegister === "success") { //success แสดงว่าสร้าง email นี้ใน table member แล้ว
+    /* if (statusRegister === "success") { //success แสดงว่าสร้าง email นี้ใน table member แล้ว
       this.props.history.push('/fitto_plant_protein');
     }
-    
+     */
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -68,12 +68,13 @@ class Register extends React.Component {
     const { email, password, confirm_password, phone, status_submit } = this.state;
     return (
       <>
+
         <div className="container2 ">
           <div className="row ">
             <div className="col-12 col-sm-12  col-md-5 col-lg-5 padding-top center   App-headerBackground">
-              <img src={p4fbebe97111} alt="vector" className="register-image col-12 col-sm-12 col-md-12 col-lg-12" />
+              <img src={p4fbebe97111} alt="vector" className="register-image" />
             </div>
-            <div className="col-12 col-sm-12 col-md-7 col-lg-7  padding-top information-box2  ">
+            <div className="col-12 col-sm-12 col-md-7 col-lg-7  information-box2  ">
               <div className="center2">
                 <img src={group18} alt="vector" className="group18" />
               </div>

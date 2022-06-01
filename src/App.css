@@ -14,15 +14,6 @@
   }
 
 
-  .box-smsStay {
-     width: 100%; 
-     padding-left: 10px;
-    padding-right: 10px; 
-    margin-left: -10px;
-    min-height:600px !important;
-    background-color: #ffffff;
-
-  }
   .box-welcome {
     margin-top: 14rem;
     width: 100%; 
@@ -155,7 +146,42 @@
   .ellipse61-size {
     width: 40px  !important;
   }
+  .account-fit {
+    text-align: center !important;
+    margin-left: -40px;
+}
   
+
+  .register-image {
+    margin-left: 20px;
+    margin-top: 60px;
+    position: absolute;
+    z-index: 0;
+    width: 500px;
+    height: 740px;
+    opacity: 0.6;   
+    z-index: 0 !important;
+  }
+  .group18 {
+    padding-left: 10px;
+    width: 100%;
+    padding-right: 10px;
+  }
+  .box-smsStay {
+    width: 100%; 
+    padding-left: 10px;
+    padding-right: 10px; 
+    background-color: #ffffff;
+    border-radius: 10px;
+    margin-left: -20px;
+    height: 400px;
+
+ }
+ .information-box2 {
+  padding: 0px 0px 0px 0px;
+  z-index: 1 !important;
+
+} 
 
 
  
@@ -198,6 +224,34 @@
   .ellipse61-size {
     width: 40px;
   }
+
+  .information-box2 {
+    padding: 30px 20px 0px 20px;
+    background-color: #ffffff;
+    z-index: 1 !important;
+    min-height: 100vh;
+
+  } 
+  .register-image {
+    margin-top: -20px;
+    position: absolute !important;
+    z-index: 0;
+    width: 500px;
+    height: 740px;
+    /* opacity: 0.6;  */
+  }
+  .group18 {
+    width: 80%;
+  }
+  .box-smsStay {
+    width: 100%; 
+    padding-left: 10px;
+   padding-right: 10px; 
+   margin-left: -10px;
+   height :550px ;
+   background-color: #ffffff;
+
+ }
 
 
 }
@@ -263,7 +317,7 @@
     padding-left: 10px;
    padding-right: 10px; 
    margin-left: -10px;
-   max-height :550px !important;
+   height :550px ;
    background-color: #ffffff;
 
  }
@@ -310,7 +364,6 @@
 .App {
   position: relative;
   background-color: #F6F6F6;  
-  width: 100vw;
   font-family: Light;
  
 }
@@ -326,7 +379,6 @@ body{
 
 .App-header  {
   background-color: #F6F6F6 !important;
-  width: 100vw;
 }
 
 .App-headerBackground {
