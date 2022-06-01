@@ -17,6 +17,7 @@ import Cancel_Package from "./views/profile/cancel_package";
 import Cancel_Package_Succeed from "./views/profile/cancel_packag_ succeed";
 import ProgramPackage from "./views/programPackage";
 import videoList from "./views/information/video_List";
+import group49 from "./views/images/group49.png";
 //import Summary_details from '../views/summary_details';
 //import Home from '../views/home';Welcome_NewMember
 
@@ -47,7 +48,8 @@ class App extends Component {
     return (
       <nav className="navbar navbar-expand nav-itemHead " style={{ backgroundColor: "white", fontFamily: "'Prompt', sans-serif" }}>
         <a className="navbar-brand" href="/#" onClick={() => this.props.history.push('/')} style={{ color: "white", cursor: "pointer" }}>
-          <h4 className="color1">BEBEStayFit</h4>
+       {/*    <h4 className="color1">BEBEStayFit</h4> */}
+        <img src={group49} alt="vector"/>  
         </a>
         <div className="collapse navbar-collapse justify-content-start" id="navbarNav">
           <ul className="navbar-nav">

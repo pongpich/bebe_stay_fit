@@ -144,9 +144,9 @@ class ProgramPackage extends React.Component {
         <div className="col-12 col-sm-12 col-md-12 col-lg-12 App-headerBackground">
           <div className="container center ">
             <div className="box2">
-              <div className="center  head-box">
-                <div className="head-width font-size6">
-                  <p>คุณจะสามารถลดน้ำหนัก {weightLossGoals} กิโลกรัม  <span className="bold">ภายใน{durationWeightLoss}เดือน</span></p>
+              <div className="center  head-box grad1">
+                <div className="head-width">
+                  <p className="text-headWidth">คุณจะสามารถลดน้ำหนัก {weightLossGoals} กิโลกรัม  <span className="bold text-headWidth1">ภายใน {durationWeightLoss} เดือน</span></p>
                 </div>
               </div>
               <div className="row center">
