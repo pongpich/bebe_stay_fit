@@ -194,7 +194,7 @@
  .information-box2 {
   padding: 0px 0px 0px 0px;
   z-index: 1 !important;
-
+  
 } 
 
  
@@ -252,7 +252,7 @@
     background-color: #ffffff;
     z-index: 1 !important;
     min-height: 100vh;
-
+    box-shadow: 2px 17px 16px 6px #bababa;
   } 
   .register-image {
     margin-top: -20px;
