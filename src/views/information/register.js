@@ -28,10 +28,10 @@ class Register extends React.Component {
   componentDidMount() {
     const { statusRegister } = this.props;
 
-    /* if (statusRegister === "success") { //success แสดงว่าสร้าง email นี้ใน table member แล้ว
+     if (statusRegister === "success") { //success แสดงว่าสร้าง email นี้ใน table member แล้ว
       this.props.history.push('/fitto_plant_protein');
     }
-     */
+     
   }
 
   componentDidUpdate(prevProps, prevState) {
