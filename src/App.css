@@ -47,6 +47,11 @@
     padding-top: 5px !important;
   }
 
+  .register-image {
+    width: 100%;
+
+  }
+
 
   
 
@@ -171,10 +176,9 @@
     width: 100%; 
     padding-left: 10px;
     padding-right: 10px; 
-    background-color: #ffffff;
-    border-radius: 10px;
-    margin-left: -20px;
-    height: 400px;
+   background-color: #ffffff;
+   margin-left: -20px;
+   height: 400px;
 
  }
  .information-box2 {
@@ -182,7 +186,6 @@
   z-index: 1 !important;
 
 } 
-
 
  
 }
@@ -225,6 +228,9 @@
     width: 40px;
   }
 
+
+}
+@media only screen and (min-width: 760px) {
   .information-box2 {
     padding: 30px 20px 0px 20px;
     background-color: #ffffff;
@@ -252,8 +258,6 @@
    background-color: #ffffff;
 
  }
-
-
 }
 
 
@@ -294,33 +298,7 @@
     padding-left: 10px;
   }
 
-  .information-box2 {
-    padding: 30px 20px 0px 20px;
-    background-color: #ffffff;
-    z-index: 1 !important;
-    min-height: 100vh;
 
-  } 
-  .register-image {
-    margin-top: -20px;
-    position: absolute !important;
-    z-index: 0;
-    width: 500px;
-    height: 740px;
-    /* opacity: 0.6;  */
-  }
-  .group18 {
-    width: 80%;
-  }
-  .box-smsStay {
-    width: 100%; 
-    padding-left: 10px;
-   padding-right: 10px; 
-   margin-left: -10px;
-   height :550px ;
-   background-color: #ffffff;
-
- }
   
 
  
