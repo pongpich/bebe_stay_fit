@@ -252,7 +252,7 @@
     background-color: #ffffff;
     z-index: 1 !important;
     min-height: 100vh;
-    box-shadow: 2px 17px 16px 6px #bababa;
+    box-shadow: 2px 17px 13px 6px #bababa;
   } 
   .register-image {
     margin-top: -20px;
