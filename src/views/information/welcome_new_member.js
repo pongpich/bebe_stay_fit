@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import studioSession from "../../assets/img/studio_session_1.png";
+import maskgroup from "../images/maskgroup.png";
+import mask from "../images/mask.png";
 import { Link } from 'react-router-dom';
 import { connect } from "react-redux";
 import { getUserProgram } from "../../redux/exerciseProgram"
@@ -45,11 +47,15 @@ class Welcome_NewMember extends React.Component {
       <>
         <div className="container2">
           <div className="row center App-headerBackground ">
-            <div className="col-12 col-sm-12 col-md-5 col-lg-5 padding-top center height-box ">
-              <img src={studioSession} alt="vector" className="studio-session" />
+            <div className="col-12 col-sm-12 col-md-5 col-lg-5 padding-top  height-box ">
+            <img src={maskgroup} alt="vector" className="studio-maskgroup" />
+            <div className="center">
+            <img src={mask} alt="vector" className="studio-mask" />
+            <img src={studioSession} alt="vector" className="studio-session" />
+            </div>
             </div>
             <div className="col-12 col-sm-12 col-md-7 col-lg-7 padding-top information-box2">
-              <div className="from-left padding-top3 text-center box-welcome">
+              <div className="padding-top3 text-center box-welcome">
                 <p className="border-bottom  margin-right"></p>
                 <p className="font-size6  bold">ยินดีต้อนรับสมาชิกใหม่ของเรา</p>
                 <p className="border-bottom margin-right"></p>
@@ -59,9 +65,9 @@ class Welcome_NewMember extends React.Component {
                 <p>มาสร้างวินัย และมีความสุขกับการออกกำลังกายนะคะ </p>
               </div>
               <div className="mb-3 ">
-                <div className="d-grid gap-2  mx-auto   col-12 col-sm-12  col-md-6 col-lg-6 from-left">
+                <div className="d-grid gap-2  mx-auto   col-12 col-sm-12  col-md-6 col-lg-6 ">
                   <button
-                    className="btn bottom-pink"
+                    className="btn bottom-pink margin-leftRight"
                     type="button"
                     style={{ opacity: "1" }}
                     onClick={() => this.onUserLogin()}
