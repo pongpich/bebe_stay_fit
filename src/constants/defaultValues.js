@@ -1,3 +1,7 @@
+export const completeVideoPlayPercentage = 0.9;
+export const minimumVideoPlayPercentage = 0.75;
+export const updateFrequency = 0.5;
+
 const dev = {
   Storage: {
     AWSS3: {
@@ -36,7 +40,7 @@ const prod = {
     userPoolId: "ap-southeast-1_yVVf1J0zR",
     identityPoolId: "ap-southeast-1:cc1900b3-00e0-4aef-8f1b-c1c6eaa1b7a8",
     userPoolWebClientId: "2i1b1e5sag1hvc2sr008v6hpf"
-},
+  },
   API: {
     endpoints: [
       {

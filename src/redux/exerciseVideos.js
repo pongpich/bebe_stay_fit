@@ -12,7 +12,23 @@ export const types = {
   GET_WEEK: "GET_WEEK",
   CREATE_WEEKLY_STAYFIT_PROGRAM: "CREATE_WEEKLY_STAYFIT_PROGRAM",
   CREATE_WEEKLY_STAYFIT_PROGRAM_SUCCESS: "CREATE_WEEKLY_STAYFIT_PROGRAM_SUCCESS",
+  UPDATE_PLAYTIME: "UPDATE_PLAYTIME",
+  UPDATE_PLAYTIME_SUCCESS: "UPDATE_PLAYTIME_SUCCESS",
 }
+
+export const updatePlaytime = (user_id, start_date, expire_date, day_number, video_number, play_time, duration, exerciseVideo) => ({
+  type: types.UPDATE_PLAYTIME,
+  payload: {
+    user_id,
+    start_date,
+    expire_date,
+    day_number,
+    video_number,
+    play_time,
+    duration,
+    exerciseVideo
+  }
+})
 
 export const createWeeklyStayfitProgram = (
   user_id,
@@ -70,6 +86,33 @@ const videoListForUserSagaAsync = async (
   }
 }
 
+const updatePlaytimeSagaAsync = async (
+  user_id,
+  start_date,
+  expire_date,
+  day_number,
+  video_number,
+  play_time,
+  duration
+) => {
+  try {
+    const apiResult = await API.put("bebe", "/play_time", {
+      body: {
+        user_id,
+        start_date,
+        expire_date,
+        day_number,
+        video_number,
+        play_time,
+        duration
+      }
+    });
+    return apiResult;
+  } catch (error) {
+    return { error, messsage: error.message };
+  }
+}
+
 const createWeeklyStayfitProgramSagaAsync = async (
   user_id,
   start_date,
@@ -83,7 +126,56 @@ const createWeeklyStayfitProgramSagaAsync = async (
         expire_date
       }
     });
-    
+
+    return apiResult;
+  } catch (error) {
+    return { error, messsage: error.message };
+  }
+}
+
+function* updatePlaytimeSaga({ payload }) {
+  const {
+    user_id,
+    start_date,
+    expire_date,
+    day_number,
+    video_number,
+    play_time,
+    duration,
+    exerciseVideo
+  } = payload
+  try {
+    const apiResult = yield call(
+      updatePlaytimeSagaAsync,
+      user_id,
+      start_date,
+      expire_date,
+      day_number,
+      video_number,
+      play_time,
+      duration
+    );
+    let keyDay = "";
+    switch (day_number) {
+      case 0:
+        keyDay = "day1";
+        break;
+      case 1:
+        keyDay = "day2";
+        break;
+      case 2:
+        keyDay = "day3";
+        break;
+      case 3:
+        keyDay = "day4";
+        break;
+      default:
+        break;
+    }
+    yield put({
+      type: types.UPDATE_PLAYTIME_SUCCESS,
+      payload: exerciseVideo
+    });
     return apiResult;
   } catch (error) {
     return { error, messsage: error.message };
@@ -161,10 +253,15 @@ export function* watchCreateWeeklyStayfitProgram() {
   yield takeEvery(types.CREATE_WEEKLY_STAYFIT_PROGRAM, createWeeklyStayfitProgramSaga)
 }
 
+export function* watchUpdatePlaytime() {
+  yield takeEvery(types.UPDATE_PLAYTIME, updatePlaytimeSaga)
+}
+
 export function* saga() {
   yield all([
     fork(watchVideoListForUser),
     fork(watchCreateWeeklyStayfitProgram),
+    fork(watchUpdatePlaytime),
   ]);
 }
 
@@ -199,6 +296,11 @@ export function reducer(state = INIT_STATE, action) {
       return {
         ...state,
         week: action.payload
+      };
+    case types.UPDATE_PLAYTIME_SUCCESS:
+      return {
+        ...state,
+        exerciseVideo: action.payload
       };
     default:
       return { ...state };

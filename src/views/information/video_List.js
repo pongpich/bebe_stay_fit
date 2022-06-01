@@ -18,9 +18,9 @@ import union from "../images/union.png";
 import vector4 from "../images/vector4.png";
 import { loadingLogo } from "aws-amplify";
 import { connect } from "react-redux";
-import { videoListForUser, createWeeklyStayfitProgram } from "../../redux/exerciseVideos"
+import { videoListForUser, createWeeklyStayfitProgram, updatePlaytime } from "../../redux/exerciseVideos"
 import { convertFormatTime, convertSecondsToMinutes } from "../../helpers/utils"
-
+import { completeVideoPlayPercentage, minimumVideoPlayPercentage, updateFrequency } from "../../constants/defaultValues";
 
 class videoList extends React.Component {
 
@@ -40,6 +40,7 @@ class videoList extends React.Component {
       selectedVDO: null
     }
     this.addEventToVideo = this.addEventToVideo.bind(this);
+    this.onVideoTimeUpdate = this.onVideoTimeUpdate.bind(this);
   }
 
   componentDidMount() {
@@ -178,6 +179,7 @@ class videoList extends React.Component {
   addEventToVideo() {
     var video = document.getElementById(`videoPlayer`);
     video.onended = () => this.onVideoEnd();
+    video.ontimeupdate = () => this.onVideoTimeUpdate("video");
   }
 
   onVideoEnd() {
@@ -200,6 +202,44 @@ class videoList extends React.Component {
         })
       }
     }
+  }
+
+  onVideoTimeUpdate(compName = "video") {
+    const { selectedVDO, focusDay } = this.state;
+    var video = document.getElementById(`videoPlayer`);
+    if (!video || !selectedVDO) { return }
+
+    const diffTime = Math.abs(video.currentTime - this.prevPlayTime);
+    if (diffTime < updateFrequency) { return }
+    this.prevPlayTime = video.currentTime
+
+    if (
+      !video.duration ||
+      video.currentTime / video.duration < minimumVideoPlayPercentage ||
+      selectedVDO.play_time / selectedVDO.duration >= completeVideoPlayPercentage) {
+      return
+    }
+
+    //if (video.currentTime >= (video.duration * 0.85) && (selectedVDO.duration !== selectedVDO.play_time)) {
+    const user_id = this.props.user.user_id;
+    const start_date = this.props.user.start_date;
+    const expire_date = this.props.user.expire_date;
+    const day_number = focusDay;
+    const video_number = selectedVDO.order;
+    const play_time = video.currentTime;
+    const duration = video.duration;
+    //const tempExerciseVideoLastWeek = [...this.props.exerciseVideoLastWeek];
+    const tempExerciseVideo = [...this.props.exerciseVideo];
+
+    tempExerciseVideo[day_number][video_number] = { ...tempExerciseVideo[day_number][video_number], play_time: play_time, duration: duration };
+
+    const newVideo = { ...selectedVDO, play_time, duration };
+    this.setState({
+      selectedVDO: newVideo
+    });
+
+    this.props.updatePlaytime(user_id, start_date, expire_date, day_number, video_number, play_time, duration, tempExerciseVideo);
+    //}
   }
 
   exerciseDaySelection(focusDay) {
@@ -351,7 +391,7 @@ class videoList extends React.Component {
             <div className="row">
               <div className="col col-sm col-md-2 col-lg-2 ">
                 <div className="iconCenter ">
-                  {/* <div className="start-e">
+                  <div className="start-e">
                     <p className="bold">เริ่มกันเลย!</p>
                   </div>
                   {
@@ -359,24 +399,48 @@ class videoList extends React.Component {
                     (todayExercise.map((item, index) => {
                       return (
                         <div>
-                          <span
-                            className="ellipse-2"
-                            style={{
-                              top: "50%",
-                              height: "40px",
-                              width: "40px",
-                              zIndex: 1,
-                              backgroundColor: "white",
-                              color: "#F45197",
-                              borderStyle: "solid",
-                              borderWidth: "0.1px",
-                              borderColor: "#F45197",
-                              borderRadius: "50%",
-                              display: "inline-block"
-                            }}
-                          >
-                            <h3 style={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%,-50%)" }}>{index + 1}</h3>
-                          </span>
+                          {
+                            (item.play_time && item.duration && item.play_time / item.duration >= completeVideoPlayPercentage) ?
+                              <span
+                                className="ellipse-2"
+                                style={{
+                                  top: "50%",
+                                  height: "40px",
+                                  width: "40px",
+                                  zIndex: 1,
+                                  backgroundColor: "#F45197",
+                                  color: "white",
+                                  borderStyle: "solid",
+                                  borderWidth: "0.1px",
+                                  borderColor: "#F45197",
+                                  borderRadius: "50%",
+                                  display: "inline-block"
+                                }}
+                              >
+                                {/* <h3 style={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%,-50%)" }}>{index + 1}</h3> */}
+                                <img src={eCheck} style={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%,-50%)" }} />
+                              </span>
+                              :
+                              <span
+                                className="ellipse-2"
+                                style={{
+                                  top: "50%",
+                                  height: "40px",
+                                  width: "40px",
+                                  zIndex: 1,
+                                  backgroundColor: "white",
+                                  color: "#F45197",
+                                  borderStyle: "solid",
+                                  borderWidth: "0.1px",
+                                  borderColor: "#F45197",
+                                  borderRadius: "50%",
+                                  display: "inline-block"
+                                }}
+                              >
+                                <h3 style={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%,-50%)" }}>{index + 1}</h3>
+                              </span>
+                          }
+
                           {
                             (index === todayExercise.length - 1) ?
                               <div
@@ -396,41 +460,9 @@ class videoList extends React.Component {
                       )
                     }))
                   }
-                  <div className="ellipse-1">
-                    <img src={ellipse2} className="" />
-                    <img src={eCheck} className="eCheck" />
-                  </div>
-                  <div className="line1">
-                    <img src={line1} className="ellipse2-1" />
-                  </div>
-                  <div className="ellipse-2">
-                    <img src={ellipse5} className="ellipse2-1" />
-                    <img src={e2} className="e2" />
-                  </div>
-                  <div className="line2">
-                    <img src={line1} className="" />
-                  </div>
-                  <div className="ellipse-2">
-                    <img src={ellipse5} className="ellipse2-1" />
-                    <img src={e3} className="e2" />
-                  </div>
-                  <div className="line2">
-                    <img src={line1} className="" />
-                  </div>
-                  <div className="ellipse-2">
-                    <img src={ellipse5} className="ellipse2-1" />
-                    <img src={e4} className="e2" />
-                  </div>
-                  <div className="line2">
-                    <img src={line1} className="" />
-                  </div>
-                  <div className="ellipse-2">
-                    <img src={ellipse5} className="ellipse2-1" />
-                    <img src={e5} className="e2" />
-                  </div>
                   <div className="end-e">
                     <p className="bold color1">สำเร็จแล้ว!</p>
-                  </div> */}
+                  </div>
                 </div>
               </div>
               <div className="col-10 col-sm-10 col-md-10 col-lg-10 ">
@@ -943,7 +975,7 @@ const mapStateToProps = ({ authUser, exerciseVideos }) => {
   return { user, exerciseVideo, statusVideoList };
 };
 
-const mapActionsToProps = { videoListForUser, createWeeklyStayfitProgram };
+const mapActionsToProps = { videoListForUser, createWeeklyStayfitProgram, updatePlaytime };
 
 export default connect(
   mapStateToProps,
