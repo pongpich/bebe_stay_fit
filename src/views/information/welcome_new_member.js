@@ -12,13 +12,13 @@ class Welcome_NewMember extends React.Component {
 
     this.props.getUserProgram(create_user_email);
 
-    if (!user_program_id) { //ถ้าไม่มี user_program_id แสดงว่ายังชำระเงินไม่สำเร็จแล้ว
+ /*    if (!user_program_id) { //ถ้าไม่มี user_program_id แสดงว่ายังชำระเงินไม่สำเร็จแล้ว
       this.props.history.push('/programPackage');
     }
 
     if (user !== null) {
       this.props.history.push('/basic_information');
-    }
+    } */
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -46,7 +46,7 @@ class Welcome_NewMember extends React.Component {
         <div className="container2">
           <div className="row center App-headerBackground ">
             <div className="col-12 col-sm-12 col-md-5 col-lg-5 padding-top center height-box ">
-              <img src={studioSession} alt="vector" className="studio-session col-12 col-sm-12 col-md-12 col-lg-12" />
+              <img src={studioSession} alt="vector" className="studio-session" />
             </div>
             <div className="col-12 col-sm-12 col-md-7 col-lg-7 padding-top information-box2">
               <div className="from-left padding-top3 text-center box-welcome">

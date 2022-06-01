@@ -58,6 +58,11 @@
     height: 600px;
     position: absolute;
   }
+  .studio-session {
+    width: 100% !important;
+  }
+
+
   
 
 }
@@ -80,7 +85,7 @@
   .studio-session {
     position: absolute !important;
     z-index: 0;
-    width: 100% ;
+    width: 600px;
     height: 115vh ;
   }
 
