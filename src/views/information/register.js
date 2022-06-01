@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import p4fbebe97111 from "../../assets/img/p4fbebe97111.png";
 import group18 from "../../assets/img/group18.png";
+import roup33 from "../images/roup33.png";
 import { Link } from 'react-router-dom';
 import { connect } from "react-redux";
 import { createUser } from "../../redux/createUser";
@@ -72,6 +73,7 @@ class Register extends React.Component {
         <div className="container2 ">
           <div className="row ">
             <div className="col-12 col-sm-12  col-md-5 col-lg-5 padding-top center   App-headerBackground">
+            <img src={roup33} alt="vector" className="register-imageRoup33" />
               <img src={p4fbebe97111} alt="vector" className="register-image" />
             </div>
             <div className="col-12 col-sm-12 col-md-7 col-lg-7  information-box2  ">

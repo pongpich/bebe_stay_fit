@@ -52,7 +52,12 @@
 
   }
 
-
+  .register-imageRoup33 {
+    margin-top: 90px;
+    width: 100%;
+    height: 600px;
+    position: absolute;
+  }
   
 
 }
@@ -227,6 +232,12 @@
   .ellipse61-size {
     width: 40px;
   }
+  .register-imageRoup33 {
+    padding-top: 10px;
+    width: 100%;
+    height: 600;
+    position: absolute;
+  }
 
 
 }
@@ -258,6 +269,10 @@
    background-color: #ffffff;
 
  }
+ .register-imageRoup33 {
+  width: 350px;
+  height: 600px;
+}
 }
 
 
@@ -298,6 +313,10 @@
     padding-left: 10px;
   }
 
+  .register-imageRoup33 {
+    width: 600px;
+    height: 600px;
+  }
 
   
 
