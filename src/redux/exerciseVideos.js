@@ -14,7 +14,44 @@ export const types = {
   CREATE_WEEKLY_STAYFIT_PROGRAM_SUCCESS: "CREATE_WEEKLY_STAYFIT_PROGRAM_SUCCESS",
   UPDATE_PLAYTIME: "UPDATE_PLAYTIME",
   UPDATE_PLAYTIME_SUCCESS: "UPDATE_PLAYTIME_SUCCESS",
+  RANDOM_VIDEO: "RANDOM_VIDEO",
+  RANDOM_VIDEO_SUCCESS: "RANDOM_VIDEO_SUCCESS",
+  RANDOM_VIDEO_FAIL: "RANDOM_VIDEO_FAIL",
+  SELECT_CHANGE_VIDEO: "SELECT_CHANGE_VIDEO",
+  SELECT_CHANGE_VIDEO_SUCCESS: "SELECT_CHANGE_VIDEO_SUCCESS",
+  SELECT_CHANGE_VIDEO_FAIL: "SELECT_CHANGE_VIDEO_FAIL",
+  UPDATE_PLAYLIST: "UPDATE_PLAYLIST",
+  UPDATE_PLAYLIST_SUCCESS: "UPDATE_PLAYLIST_SUCCESS",
 }
+
+export const updatePlaylist = (user_id, start_date, day_number, playlist, exerciseVideo) => ({
+  type: types.UPDATE_PLAYLIST,
+  payload: {
+    user_id,
+    start_date,
+    day_number,
+    playlist,
+    exerciseVideo
+  }
+})
+
+export const selectChangeVideo = (video_id, category, type) => ({
+  type: types.SELECT_CHANGE_VIDEO,
+  payload: {
+    video_id,
+    category,
+    type
+  }
+})
+
+export const randomVideo = (video_id, category, type) => ({
+  type: types.RANDOM_VIDEO,
+  payload: {
+    video_id,
+    category,
+    type
+  }
+})
 
 export const updatePlaytime = (user_id, start_date, expire_date, day_number, video_number, play_time, duration, exerciseVideo) => ({
   type: types.UPDATE_PLAYTIME,
@@ -61,6 +98,65 @@ export const videoListForUser = (
 
 
 /* END OF ACTION Section */
+
+const updatePlaylistSagaAsync = async (
+  user_id,
+  start_date,
+  day_number,
+  playlist
+) => {
+  try {
+    const apiResult = await API.put("bebe", "/playlist", {
+      body: {
+        user_id,
+        start_date,
+        day_number,
+        playlist
+      }
+    });
+    return apiResult;
+  } catch (error) {
+    return { error, messsage: error.message };
+  }
+}
+
+const selectChangeVideoSagaAsync = async (
+  video_id,
+  category,
+  type
+) => {
+  try {
+    const apiResult = await API.get("bebe", "/selectChangeVideo", {
+      queryStringParameters: {
+        video_id,
+        category,
+        type
+      }
+    });
+    return apiResult;
+  } catch (error) {
+
+  }
+}
+
+const randomVideoSagaAsync = async (
+  video_id,
+  category,
+  type
+) => {
+  try {
+    const apiResult = await API.get("bebe", "/randomVideo", {
+      queryStringParameters: {
+        video_id,
+        category,
+        type
+      }
+    });
+    return apiResult;
+  } catch (error) {
+    return { error, messsage: error.message };
+  }
+}
 
 const videoListForUserSagaAsync = async (
   user_id,
@@ -128,6 +224,106 @@ const createWeeklyStayfitProgramSagaAsync = async (
     });
 
     return apiResult;
+  } catch (error) {
+    return { error, messsage: error.message };
+  }
+}
+
+function* randomVideoSaga({ payload }) {
+  const {
+    video_id,
+    category,
+    type
+  } = payload
+  try {
+    const apiResult = yield call(
+      randomVideoSagaAsync,
+      video_id,
+      category,
+      type
+    );
+    if (apiResult.results.message === "no_video") {
+      console.log("user :", apiResult.results);
+      yield put({
+        type: types.RANDOM_VIDEO_FAIL,
+      })
+    } else {
+      yield put({
+        type: types.RANDOM_VIDEO_SUCCESS,
+        payload: apiResult.results.video
+      })
+    }
+  } catch (error) {
+    return { error, messsage: error.message };
+  }
+}
+
+function* updatePlaylistSaga({ payload }) {
+  const {
+    user_id,
+    start_date,
+    day_number,
+    playlist,
+    exerciseVideo
+  } = payload
+  try {
+    const apiResult = yield call(
+      updatePlaylistSagaAsync,
+      user_id,
+      start_date,
+      day_number,
+      playlist
+    );
+    let keyDay = "";
+    switch (day_number) {
+      case 0:
+        keyDay = "day1";
+        break;
+      case 1:
+        keyDay = "day2";
+        break;
+      case 2:
+        keyDay = "day3";
+        break;
+      case 3:
+        keyDay = "day4";
+        break;
+      default:
+        break;
+    }
+    yield put({
+      type: types.UPDATE_PLAYLIST_SUCCESS,
+      payload: exerciseVideo
+    });
+    return apiResult;
+  } catch (error) {
+    return { error, messsage: error.message };
+  }
+}
+
+function* selectChangeVideoSaga({ payload }) {
+  const {
+    video_id,
+    category,
+    type
+  } = payload
+  try {
+    const apiResult = yield call(
+      selectChangeVideoSagaAsync,
+      video_id,
+      category,
+      type
+    );
+    if (apiResult.results.message === "no_video") {
+      yield put({
+        type: types.SELECT_CHANGE_VIDEO_FAIL
+      })
+    } else {
+      yield put({
+        type: types.SELECT_CHANGE_VIDEO_SUCCESS,
+        payload: apiResult.results.videos
+      })
+    }
   } catch (error) {
     return { error, messsage: error.message };
   }
@@ -257,11 +453,26 @@ export function* watchUpdatePlaytime() {
   yield takeEvery(types.UPDATE_PLAYTIME, updatePlaytimeSaga)
 }
 
+export function* watchRandomVideo() {
+  yield takeEvery(types.RANDOM_VIDEO, randomVideoSaga)
+}
+
+export function* watchSelectChangeVideo() {
+  yield takeEvery(types.SELECT_CHANGE_VIDEO, selectChangeVideoSaga)
+}
+
+export function* watchUpdatePlaylist() {
+  yield takeEvery(types.UPDATE_PLAYLIST, updatePlaylistSaga)
+}
+
 export function* saga() {
   yield all([
     fork(watchVideoListForUser),
     fork(watchCreateWeeklyStayfitProgram),
     fork(watchUpdatePlaytime),
+    fork(watchRandomVideo),
+    fork(watchSelectChangeVideo),
+    fork(watchUpdatePlaylist),
   ]);
 }
 
@@ -272,11 +483,35 @@ export function* saga() {
 const INIT_STATE = {
   exerciseVideo: [[], [], [], []],
   week: 0,
-  statusVideoList: "default"
+  statusVideoList: "default",
+  video: {},
+  videos: [],
+  status: "default",
 };
 
 export function reducer(state = INIT_STATE, action) {
   switch (action.type) {
+    case types.UPDATE_PLAYLIST_SUCCESS:
+      return {
+        ...state,
+        exerciseVideo: action.payload,
+        status: "success"
+      };
+    case types.UPDATE_PLAYLIST:
+      return {
+        ...state,
+        status: "processing"
+      };
+    case types.SELECT_CHANGE_VIDEO_SUCCESS:
+      return {
+        ...state,
+        videos: action.payload
+      };
+    case types.RANDOM_VIDEO_SUCCESS:
+      return {
+        ...state,
+        video: action.payload
+      };
     case types.CREATE_WEEKLY_STAYFIT_PROGRAM_SUCCESS:
       return {
         ...state,
