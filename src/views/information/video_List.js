@@ -112,7 +112,7 @@ class videoList extends React.Component {
       this.addEventToVideo();
     }
 
-    if (prevProps.video.video_id !== this.props.video.video_id) {
+    if (this.props.video && prevProps.video.video_id !== this.props.video.video_id) {
       const { indexPlaylist } = this.state;
       // playlist เป็น Array ที่เก็บ Object ของ video หลายๆอันไว้ข้างใน
       let playlist = [...this.state.tempPlaylist];
