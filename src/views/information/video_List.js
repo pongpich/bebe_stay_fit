@@ -796,82 +796,84 @@ class videoList extends React.Component {
             </div>
             <div className="content">
               <div className="close-btn" onClick={() => this.closeTogglePopupSelectEditVideo()}>&times;</div>
-              <div className="row mt-4 body_part_header" >
-                { //เช็ค ถ้าหากเป็น category ที่มี type ย่อย จะไม่สามารถนำชื่อ category มาตั้งเป็นชื่อรูปได้ ต้องแยกเป็นเคสๆไป
-                  ((this.props.videos[0]) && this.props.videos[0].category !== "Main Circuit Combo" && this.props.videos[0].category !== "Main Circuit") &&
-                  <img className="body_part" src={`../assets/img/body_part/${this.props.videos[0].category.toLowerCase().split(" ").join("")}.png`}></img>
-                }
-                {
-                  ((this.props.videos[0]) && this.props.videos[0].type.toLowerCase().split(" ").join("") === "chestfocus" || (this.props.videos[0]) && this.props.videos[0].type.toLowerCase().split(" ").join("") === "chest_back")
-                  && <img className="body_part ml-2" src={`../assets/img/body_part/chest.png`}></img>
-                }
-                {
-                  ((this.props.videos[0]) && this.props.videos[0].type.toLowerCase().split(" ").join("") === "backfocus" || (this.props.videos[0]) && this.props.videos[0].type.toLowerCase().split(" ").join("") === "chest_back")
-                  && <img className="body_part ml-2" src={`../assets/img/body_part/back.png`}></img>
-                }
-                {
-                  ((this.props.videos[0]) && this.props.videos[0].type.toLowerCase().split(" ").join("") === "backfocus" || (this.props.videos[0]) && this.props.videos[0].type.toLowerCase().split(" ").join("") === "chest_back")
-                  && <img className="body_part ml-2" src={`../assets/img/body_part/core.png`}></img>
-                }
-                {
-                  ((this.props.videos[0]) && this.props.videos[0].type.toLowerCase().split(" ").join("") === "legfocus" || (this.props.videos[0]) && this.props.videos[0].type.toLowerCase().split(" ").join("") === "leg_arm")
-                  && <img className="body_part ml-2" src={`../assets/img/body_part/leg.png`}></img>
-                }
-                {
-                  ((this.props.videos[0]) && this.props.videos[0].type.toLowerCase().split(" ").join("") === "armfocus" || (this.props.videos[0]) && this.props.videos[0].type.toLowerCase().split(" ").join("") === "leg_arm")
-                  && <img className="body_part ml-2" src={`../assets/img/body_part/arm.png`}></img>
-                }
-                {
-                  ((this.props.videos[0]) && this.props.videos[0].type.toLowerCase().split(" ").join("") === "armfocus" || (this.props.videos[0]) && this.props.videos[0].type.toLowerCase().split(" ").join("") === "leg_arm")
-                  && <img className="body_part ml-2" src={`../assets/img/body_part/shoulder.png`}></img>
-                }
+              {this.props.videos &&
+                <div className="row mt-4 body_part_header" >
+                  { //เช็ค ถ้าหากเป็น category ที่มี type ย่อย จะไม่สามารถนำชื่อ category มาตั้งเป็นชื่อรูปได้ ต้องแยกเป็นเคสๆไป
+                    ((this.props.videos[0]) && this.props.videos[0].category !== "Main Circuit Combo" && this.props.videos[0].category !== "Main Circuit") &&
+                    <img className="body_part" src={`../assets/img/body_part/${this.props.videos[0].category.toLowerCase().split(" ").join("")}.png`}></img>
+                  }
+                  {
+                    ((this.props.videos[0]) && this.props.videos[0].type.toLowerCase().split(" ").join("") === "chestfocus" || (this.props.videos[0]) && this.props.videos[0].type.toLowerCase().split(" ").join("") === "chest_back")
+                    && <img className="body_part ml-2" src={`../assets/img/body_part/chest.png`}></img>
+                  }
+                  {
+                    ((this.props.videos[0]) && this.props.videos[0].type.toLowerCase().split(" ").join("") === "backfocus" || (this.props.videos[0]) && this.props.videos[0].type.toLowerCase().split(" ").join("") === "chest_back")
+                    && <img className="body_part ml-2" src={`../assets/img/body_part/back.png`}></img>
+                  }
+                  {
+                    ((this.props.videos[0]) && this.props.videos[0].type.toLowerCase().split(" ").join("") === "backfocus" || (this.props.videos[0]) && this.props.videos[0].type.toLowerCase().split(" ").join("") === "chest_back")
+                    && <img className="body_part ml-2" src={`../assets/img/body_part/core.png`}></img>
+                  }
+                  {
+                    ((this.props.videos[0]) && this.props.videos[0].type.toLowerCase().split(" ").join("") === "legfocus" || (this.props.videos[0]) && this.props.videos[0].type.toLowerCase().split(" ").join("") === "leg_arm")
+                    && <img className="body_part ml-2" src={`../assets/img/body_part/leg.png`}></img>
+                  }
+                  {
+                    ((this.props.videos[0]) && this.props.videos[0].type.toLowerCase().split(" ").join("") === "armfocus" || (this.props.videos[0]) && this.props.videos[0].type.toLowerCase().split(" ").join("") === "leg_arm")
+                    && <img className="body_part ml-2" src={`../assets/img/body_part/arm.png`}></img>
+                  }
+                  {
+                    ((this.props.videos[0]) && this.props.videos[0].type.toLowerCase().split(" ").join("") === "armfocus" || (this.props.videos[0]) && this.props.videos[0].type.toLowerCase().split(" ").join("") === "leg_arm")
+                    && <img className="body_part ml-2" src={`../assets/img/body_part/shoulder.png`}></img>
+                  }
 
-                {
-                  (this.props.videos[0]) &&
-                  (this.props.videos[0].type.toLowerCase().split(" ").join("") === "warmup") &&
-                  <h2 className="ml-2 mt-1" style={{ color: "#F45197" }}><b>Warm Up</b></h2>
-                }
-                {
-                  (this.props.videos[0]) &&
-                  (this.props.videos[0].type.toLowerCase().split(" ").join("") === "chestfocus") &&
-                  <h2 className="ml-2 mt-1" style={{ color: "#F45197" }}><b>Chest</b></h2>
-                }
-                {
-                  (this.props.videos[0]) &&
-                  (this.props.videos[0].type.toLowerCase().split(" ").join("") === "backfocus") &&
-                  <h2 className="ml-2 mt-1" style={{ color: "#F45197" }}><b>Back and Core</b></h2>
-                }
-                {
-                  (this.props.videos[0]) &&
-                  (this.props.videos[0].type.toLowerCase().split(" ").join("") === "chest_back") &&
-                  <h2 className="ml-2 mt-1" style={{ color: "#F45197" }}><b>Chest and Back</b></h2>
-                }
-                {
-                  (this.props.videos[0]) &&
-                  (this.props.videos[0].type.toLowerCase().split(" ").join("") === "legfocus") &&
-                  <h2 className="ml-2 mt-1" style={{ color: "#F45197" }}><b>Leg</b></h2>
-                }
-                {
-                  (this.props.videos[0]) &&
-                  (this.props.videos[0].type.toLowerCase().split(" ").join("") === "armfocus") &&
-                  <h2 className="ml-2 mt-1" style={{ color: "#F45197" }}><b>Arm and Shoulder</b></h2>
-                }
-                {
-                  (this.props.videos[0]) &&
-                  (this.props.videos[0].type.toLowerCase().split(" ").join("") === "leg_arm") &&
-                  <h2 className="ml-2 mt-1" style={{ color: "#F45197" }}><b>Leg and Arm</b></h2>
-                }
-                {
-                  (this.props.videos[0]) &&
-                  (this.props.videos[0].type.toLowerCase().split(" ").join("") === "subcircuit") &&
-                  <h2 className="ml-2 mt-1" style={{ color: "#F45197" }}><b>Full Body</b></h2>
-                }
-                {
-                  (this.props.videos[0]) &&
-                  (this.props.videos[0].type.toLowerCase().split(" ").join("") === "cardio") &&
-                  <h2 className="ml-2 mt-1" style={{ color: "#F45197" }}><b>Cardio</b></h2>
-                }
-              </div>
+                  {
+                    (this.props.videos[0]) &&
+                    (this.props.videos[0].type.toLowerCase().split(" ").join("") === "warmup") &&
+                    <h2 className="ml-2 mt-1" style={{ color: "#F45197" }}><b>Warm Up</b></h2>
+                  }
+                  {
+                    (this.props.videos[0]) &&
+                    (this.props.videos[0].type.toLowerCase().split(" ").join("") === "chestfocus") &&
+                    <h2 className="ml-2 mt-1" style={{ color: "#F45197" }}><b>Chest</b></h2>
+                  }
+                  {
+                    (this.props.videos[0]) &&
+                    (this.props.videos[0].type.toLowerCase().split(" ").join("") === "backfocus") &&
+                    <h2 className="ml-2 mt-1" style={{ color: "#F45197" }}><b>Back and Core</b></h2>
+                  }
+                  {
+                    (this.props.videos[0]) &&
+                    (this.props.videos[0].type.toLowerCase().split(" ").join("") === "chest_back") &&
+                    <h2 className="ml-2 mt-1" style={{ color: "#F45197" }}><b>Chest and Back</b></h2>
+                  }
+                  {
+                    (this.props.videos[0]) &&
+                    (this.props.videos[0].type.toLowerCase().split(" ").join("") === "legfocus") &&
+                    <h2 className="ml-2 mt-1" style={{ color: "#F45197" }}><b>Leg</b></h2>
+                  }
+                  {
+                    (this.props.videos[0]) &&
+                    (this.props.videos[0].type.toLowerCase().split(" ").join("") === "armfocus") &&
+                    <h2 className="ml-2 mt-1" style={{ color: "#F45197" }}><b>Arm and Shoulder</b></h2>
+                  }
+                  {
+                    (this.props.videos[0]) &&
+                    (this.props.videos[0].type.toLowerCase().split(" ").join("") === "leg_arm") &&
+                    <h2 className="ml-2 mt-1" style={{ color: "#F45197" }}><b>Leg and Arm</b></h2>
+                  }
+                  {
+                    (this.props.videos[0]) &&
+                    (this.props.videos[0].type.toLowerCase().split(" ").join("") === "subcircuit") &&
+                    <h2 className="ml-2 mt-1" style={{ color: "#F45197" }}><b>Full Body</b></h2>
+                  }
+                  {
+                    (this.props.videos[0]) &&
+                    (this.props.videos[0].type.toLowerCase().split(" ").join("") === "cardio") &&
+                    <h2 className="ml-2 mt-1" style={{ color: "#F45197" }}><b>Cardio</b></h2>
+                  }
+                </div>
+              }
               <div className="selectEditPlaylist">
                 {
                   selectChangeVideoList.map((item, index) => (
