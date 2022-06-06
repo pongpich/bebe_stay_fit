@@ -541,7 +541,7 @@ class videoList extends React.Component {
                                 style={{
                                   top: "50%",
                                   borderLeft: "0.1px solid #F45197",
-                                  height: "114%"
+                                  height: "220px"
                                 }}
                               ></div>
                           }
@@ -917,10 +917,10 @@ class videoList extends React.Component {
                   </ul>
                   <ul>
                     <li className="video-li2  d-flex" onClick={() => this.closeEditVDO()} style={{ cursor: "pointer" }}>
-                      <a className="decoration color1">ยกเลิก</a>
+                      <button className=" cancel">ยกเลิก</button>
                     </li>
-                    <li className="video-li2  d-flex" onClick={() => this.onVideoListUpdate()} style={{ marginLeft: 10, cursor: "pointer" }}>
-                      <a className="decoration color1">ยืนยันการแก้ไข</a>
+                    <li className="video-li2 " onClick={() => this.onVideoListUpdate()} style={{ marginLeft: 10, cursor: "pointer" }}>
+                      <button className="  confirm ">ยืนยันการแก้ไข</button>
                     </li>
                   </ul>
                 </div>
@@ -1007,7 +1007,7 @@ class videoList extends React.Component {
                             <div className="changeVideoBtn mb-2 btn col-lg-12 col-md-4 col-12" onClick={() => this.togglePopupSelectEditVideo(item.video_id, item.category, item.type, index)} >
                               เลือกวีดีโอใหม่
                           </div>
-                            <div className="randomVideoBtn mt-2 btn col-lg-12 col-md-4 col-12" onClick={() => this.randomVideo(item.video_id, item.category, item.type, index)} >
+                            <div className="randomVideoBtn  btn col-lg-12 col-md-4 col-12" onClick={() => this.randomVideo(item.video_id, item.category, item.type, index)} >
                               สุ่มวีดีโอ
                           </div>
                           </div>

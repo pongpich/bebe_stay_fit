@@ -2,207 +2,223 @@
 
 @media only screen and (max-width: 540px) {
 
-  .height-box {
-      height: 0vh !important;
-  }
+      .height-box {
+          height: 0vh !important;
+      }
 
-  .studio-session {
-    position: absolute !important;
-    z-index: 1;
-    width: 100% ;
-    height: 115vh ;
-  }
-
-
-  .box-welcome {
-    margin-top: 14rem;
-    width: 100%; 
-    padding-left: 10px;
-   padding-right: 10px; 
-   height:460px;
-   opacity: 0.8;
-   background-color: #ffffff;
-
- }
-  .maigeSm {
-    margin-top: 50px;
-  }
-
-  .box1 {
-
-    height: 380px !important;
-
-  }
+      .studio-session {
+        position: absolute !important;
+        z-index: 1;
+        width: 100% ;
+        height: 115vh ;
+      }
 
 
-  .iconCenter {
-      padding-left: 40% !important;
-      position: relative;
-      padding-top: 50px;
-  }
+      .box-welcome {
+        margin-top: 14rem;
+        width: 100%; 
+        padding-left: 10px;
+      padding-right: 10px; 
+      height:460px;
+      opacity: 0.8;
+      background-color: #ffffff;
 
-  .high-impact {
-    position: absolute;
-    margin-left: -10px !important;
-    padding-top: 5px !important;
-  }
-
-  .register-image {
-    width: 100%;
-
-  }
-
-  .register-imageRoup33 {
-    margin-top: 90px;
-    width: 100%;
-    height: 600px;
-    position: absolute;
-  }
-
-  .studio-mask {
-      margin-top: 160px;
-      position: absolute !important;
-      z-index: 1;
-      width: 370px !important;
-      height: 500px;
     }
-  
-    .studio-session {
-       height: 800px !important; 
-      width: 100% !important;
+      .maigeSm {
+        margin-top: 50px;
+      }
+
+      .box1 {
+
+        height: 380px !important;
+
+      }
+
+
+      .iconCenter {
+          padding-left: 40% !important;
+          position: relative;
+          padding-top: 50px;
+      }
+
+      .high-impact {
+        position: absolute;
+        margin-left: -10px !important;
+        padding-top: 5px !important;
+      }
+
+      .register-image {
+        width: 100%;
+
+      }
+
+      .register-imageRoup33 {
+        margin-top: 90px;
+        width: 100%;
+        height: 600px;
+        position: absolute;
+      }
+
+      .studio-mask {
+          margin-top: 160px;
+          position: absolute !important;
+          z-index: 1;
+          width: 370px !important;
+          height: 500px;
+        }
+      
+        .studio-session {
+          height: 800px !important; 
+          width: 100% !important;
+        } 
+    }
+
+
+
+
+
+    @media only screen and (max-width: 760px) {
+      .padding-left3 {
+        padding-left: 0px !important;
+      }
+      .height-box {
+          height: 0vh !important;
+      }
+
+      .account-fit {
+        text-align: center !important;
+      }
+      .studio-session {
+        position: absolute !important;
+        z-index: 1;
+        width: 600px;
+        height: 115vh ;
+      }
+
+
+      .box-welcome {
+        margin-top: 14rem;
+        width: 100%; 
+        padding-left: 10px;
+      padding-right: 10px; 
+      height:460px;
+      opacity: 0.8;
+      background-color: #ffffff;
+
+    }
+      .maigeSm {
+        margin-top: 50px;
+      }
+
+      .box1 {
+
+        height: 380px !important;
+
+      }
+      .form-check-reverse {
+        text-align: left;
+        float: left;
+      }
+
+
+      .iconCenter {
+        padding-left: 40% !important;
+        position: relative;
+        padding-top: 50px;
+      }
+
+      .box-paly1 {
+        width: 100%;
+        height: 200px;
+        border-radius: 10px 10px 0px 0px !important;
+        background-color: #C4C4C4;
+        
+      } 
+
+      .alarm {
+        position: relative !important;
+        padding-top: 10px !important;
+        float: right !important;
+      }
+
+      .rectangle15 {
+        margin-right: 20px;
+        margin-left: 30px;
+        margin-top: 30px !important;
+        border-bottom: 2px solid #4F4F4F;
+      } 
+      .warmup {
+        padding-top: 10px;
+        padding-left: 30px;
+      }
+      .warmup2 {
+        margin-top: -20px;
+        padding-left: 30px;
+        font-size: 26px;
+      }
+      .ellipse61 {
+        margin-top: -20px;
+      margin-left: 15px;
+      }
+      .ellipse61-2 {
+        margin-top: -20px;
+        padding-left: 10px;
+      }
+      .ellipse61-size {
+        width: 40px  !important;
+      }
+      .account-fit {
+        text-align: center !important;
+        margin-left: -40px;
+    }
+      
+
+      .register-image {
+        margin-left: 20px;
+        margin-top: 60px;
+        position: absolute;
+        z-index: 0;
+        width: 500px;
+        height: 740px;
+        opacity: 0.6;   
+        z-index: 0 !important;
+      }
+      .group18 {
+        padding-left: 10px;
+        width: 100%;
+        padding-right: 10px;
+      }
+      .box-smsStay {
+        width: 100%; 
+        padding-left: 10px;
+        padding-right: 10px; 
+      background-color: #ffffff;
+      margin-left: -20px;
+      height: 400px;
+
+    }
+    .information-box2 {
+      padding: 0px 0px 0px 0px;
+      z-index: 3 !important;
+      
     } 
-}
+    .changeVideoBtn {
+      background-color: #E25E96;
+      color: #FFFFFF;
+      position: relative;
+      width: 100%;
+      margin-left: 25%;
 
-
-
-
-
-@media only screen and (max-width: 760px) {
-  .padding-left3 {
-    padding-left: 0px !important;
-   }
-  .height-box {
-      height: 0vh !important;
-  }
-
-  .account-fit {
-    text-align: center !important;
-  }
-  .studio-session {
-    position: absolute !important;
-    z-index: 1;
-    width: 600px;
-    height: 115vh ;
-  }
-
-
-  .box-welcome {
-    margin-top: 14rem;
-    width: 100%; 
-    padding-left: 10px;
-   padding-right: 10px; 
-   height:460px;
-   opacity: 0.8;
-   background-color: #ffffff;
-
- }
-  .maigeSm {
-    margin-top: 50px;
-  }
-
-  .box1 {
-
-    height: 380px !important;
-
-  }
-  .form-check-reverse {
-    text-align: left;
-    float: left;
-  }
-
-
-  .iconCenter {
-    padding-left: 40% !important;
-    position: relative;
-    padding-top: 50px;
-  }
-
-  .box-paly1 {
-    width: 100%;
-    height: 200px;
-    border-radius: 10px 10px 0px 0px !important;
-    background-color: #C4C4C4;
     
-  } 
-
-  .alarm {
-    position: relative !important;
-    padding-top: 10px !important;
-    float: right !important;
-  }
-
-  .rectangle15 {
-    margin-right: 20px;
-    margin-left: 30px;
-    margin-top: 30px !important;
-    border-bottom: 2px solid #4F4F4F;
-  } 
-  .warmup {
-    padding-top: 10px;
-    padding-left: 30px;
-  }
-  .warmup2 {
-    margin-top: -20px;
-    padding-left: 30px;
-    font-size: 26px;
-  }
-  .ellipse61 {
-    margin-top: -20px;
-   margin-left: 15px;
-  }
-  .ellipse61-2 {
-    margin-top: -20px;
-    padding-left: 10px;
-  }
-  .ellipse61-size {
-    width: 40px  !important;
-  }
-  .account-fit {
-    text-align: center !important;
-    margin-left: -40px;
-}
-  
-
-  .register-image {
-    margin-left: 20px;
-    margin-top: 60px;
-    position: absolute;
-    z-index: 0;
-    width: 500px;
-    height: 740px;
-    opacity: 0.6;   
-    z-index: 0 !important;
-  }
-  .group18 {
-    padding-left: 10px;
-    width: 100%;
-    padding-right: 10px;
-  }
-  .box-smsStay {
-    width: 100%; 
-    padding-left: 10px;
-    padding-right: 10px; 
-   background-color: #ffffff;
-   margin-left: -20px;
-   height: 400px;
-
- }
- .information-box2 {
-  padding: 0px 0px 0px 0px;
-  z-index: 3 !important;
-  
-} 
-
+    }
+    .randomVideoBtn {
+      background-color: #E25E96;
+      color: #FFFFFF;
+      position: relative;
+      width: 100%;
+      margin-left: 25%;
+      margin-bottom: 10px;
+    }
  
 }
 
@@ -253,37 +269,55 @@
 
 }
 @media only screen and (min-width: 760px) {
-  .information-box2 {
-    padding: 30px 20px 0px 20px;
+    .information-box2 {
+      padding: 30px 20px 0px 20px;
+      background-color: #ffffff;
+      z-index: 3 !important;
+      min-height: 100vh;
+      box-shadow: 2px 17px 13px 6px #bababa;
+    } 
+    .register-image {
+      margin-top: -20px;
+      position: absolute !important;
+      z-index: 0;
+      width: 500px;
+      height: 740px;
+      /* opacity: 0.6;  */
+    }
+    .group18 {
+      width: 80%;
+    }
+    .box-smsStay {
+      width: 100%; 
+      padding-left: 10px;
+    padding-right: 10px; 
+    margin-left: -10px;
+    height :550px ;
     background-color: #ffffff;
-    z-index: 3 !important;
-    min-height: 100vh;
-    box-shadow: 2px 17px 13px 6px #bababa;
-  } 
-  .register-image {
-    margin-top: -20px;
-    position: absolute !important;
-    z-index: 0;
-    width: 500px;
-    height: 740px;
-    /* opacity: 0.6;  */
-  }
-  .group18 {
-    width: 80%;
-  }
-  .box-smsStay {
-    width: 100%; 
-    padding-left: 10px;
-   padding-right: 10px; 
-   margin-left: -10px;
-   height :550px ;
-   background-color: #ffffff;
 
- }
- .register-imageRoup33 {
-  width: 350px;
-  height: 600px;
-}
+  }
+  .register-imageRoup33 {
+    width: 350px;
+    height: 600px;
+  }
+  .changeVideoBtn {
+    background-color: #E25E96;
+    color: #FFFFFF;
+    position: absolute;
+    width: 200px;
+    margin-top: -150px;
+    margin-left: 100%;
+  
+  }
+  .randomVideoBtn {
+    background-color: #E25E96;
+    color: #FFFFFF;
+    position: absolute;
+    width: 200px;
+    margin-top: -100px;
+    margin-left: 100%;
+  
+  }
 }
 
 
@@ -1446,7 +1480,7 @@ a:hover {
 }
 .line1 {
   position: relative;
-  padding-top: 40px;
+  margin-top: -10px;
   margin-left: 10px;
 }
   .ellipse-1 {
@@ -1800,4 +1834,32 @@ margin-top: 160px;
   z-index: 2;
   width: 600px;
   height: 111vh ;
+}
+.confirm{
+  background-color: #E25E96;
+  height: 45px;
+  width: 150px;
+  color: #FFFFFF;
+  border-radius: 25px;
+  border: 1px solid #E25E96;
+}
+
+.cancel{
+  background-color: #FFFFFF;
+  height: 45px;
+  width: 100px;
+  color: #E25E96;
+  border-radius: 25px;
+  border: 1px solid #E25E96;
+
+}
+
+.changeVideoBtn:focus {
+  background-color: #E25E96;
+  color: #FFFFFF;
+}
+.randomVideoBtn:focus {
+  background-color: #E25E96;
+  color: #FFFFFF;
+
 }
