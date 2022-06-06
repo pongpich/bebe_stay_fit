@@ -9,6 +9,10 @@ import { Link } from 'react-router-dom';
 import { connect } from "react-redux";
 import { getUserProgram } from "../../redux/exerciseProgram"
 
+import axios from 'axios';
+import moment from 'moment';
+import {encode as btoa} from 'base-64';
+
 class Payment extends React.Component {
   constructor(props) {
     super(props);
@@ -55,6 +59,8 @@ class Payment extends React.Component {
     if (user_program_id) { //ถ้ามี user_program_id แสดงว่าชำระเงินสำเร็จแล้ว
       this.props.history.push('/welcome_new_nember');
     }
+
+    this.onPay();
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -100,6 +106,72 @@ class Payment extends React.Component {
 
   }
 
+  onPay() {
+    document.getElementById("button").addEventListener("click", function (event) {
+      event.preventDefault();
+      const baseURL = "https://api.gbprimepay.com";
+      const tokenURL = `${baseURL}/v2/tokens`; // Test URL: https://api.globalprimepay.com/v2/tokens , Production URL: https://api.gbprimepay.com/v2/tokens
+      const recurringURL = `${baseURL}/v1/recurring`;
+      const publicKey = "HZUfYchqY3T49pWGoookdeS9eelqfOo7";
+      const publicToken = "Basic " + btoa(publicKey + ":");
+      const secretKey = "e8Fl2oVu6i5sQ96XalBvQWbbBBFZsrzt";
+      const secretToken = "Basic " + btoa(secretKey + ":")
+      let config = {
+        headers: {
+          Authorization: publicToken,
+        }
+      }
+      const tokenData = {
+        rememberCard: true,
+        card: {
+          name: document.getElementById("name").value,
+          number: document.getElementById("cardNumber").value,
+          expirationMonth: document.getElementById("expirationMonth").value,
+          expirationYear: document.getElementById("expirationYear").value,
+          securityCode: document.getElementById("securityCode").value
+        }
+      };
+      axios
+        .post(tokenURL, tokenData, config)
+        .then(function (response) {
+          const { card, resultCode } = response.data;
+          var referenceNo = moment().format("YYYYMMDDHHmmss")
+          console.log("Response from token service: ", card.token, referenceNo);
+          if (resultCode == "00") {
+            const recurringData = {
+              processType: "I",
+              referenceNo,
+              recurringAmount: 1,
+              recurringInterval: "M",
+              recurringCount: 1,
+              recurringPeriod: "01",
+              allowAccumulate: "Y",
+              cardToken: card.token,
+              backgroundUrl: "https://api.planforfit.com/bebe/recurring", // for staging: https://api.planforfit.com/bebedev/recurring
+              customerName: "Tanakorn Numrubporn",
+              customerEmail: "tanakorn@planforfit.com",
+              merchantDefined1: "subscription_stay_fit"
+            }
+
+            const recurringConfig = {
+              headers: {
+                Authorization: secretToken,
+              }
+            }
+
+            axios
+              .post(recurringURL, recurringData, recurringConfig)
+              .then(function (recurring_resp) {
+                console.log("Response from recurring service: ", recurring_resp);
+              })
+          }
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+    });
+  }
+
 
   render() {
     console.log("aa", this.state.program.program_id);
@@ -118,7 +190,7 @@ class Payment extends React.Component {
                         <button type="button" className={this.state.qrCodeFocus} onClick={e => this.pinkModelFocus("2")}>ชำระด้วย QR Code</button>
           </div>
           <div className="col-12 col-sm-12 col-md-6 col-lg-6 center2 margin-head">
-            {/* <div className="box-protein">
+            <div className="box-protein">
               <div className="padding-top">
                 <div className="box-proteinAddress padding-top">
                   <div>
@@ -128,25 +200,35 @@ class Payment extends React.Component {
                                         <img src={payment4} alt="vector" className="img-payment" />&nbsp;
                                         <img src={payment5} alt="vector" className="img-payment" />
                   </div>
-                  <div className="padding-top2">
-                    <label className="form-label bold font-size4">หมายเลขบัตร 16 หลัก</label>
-                    <input type="text" className="form-control" id="exampleFormControlInput1" placeholder="หมายเลขบัตร" />
-                  </div>
-                  <div className="padding-top2">
-                    <label className="form-label bold font-size4">ชื่อบนบัตร</label>
-                    <input type="text" className="form-control" id="exampleFormControlInput1" placeholder="ชื่อ และนามสกุลที่อยู่บนบัตร" />
-                  </div>
-                  <div className="padding-top2">
-                    <label className="form-label bold font-size4">วันหมดอายุ</label>
-                    <input type="text" className="form-control" id="exampleFormControlInput1" placeholder="ดด/ปป" />
-                  </div>
-                  <div className="padding-top2">
-                    <label className="form-label bold font-size4">รหัส CVV</label>
-                    <input type="text" className="form-control" id="exampleFormControlInput1" placeholder="รหัสหลังบัตร" />
-                  </div>
+
+                  <form action="#" method="POST">
+                    <div className="padding-top2">
+                      <label className="form-label bold font-size4">หมายเลขบัตร 16 หลัก</label>
+                      <input type="text" className="form-control" id="cardNumber" maxLength="16" placeholder="หมายเลขบัตร" />
+                    </div>
+                    <div className="padding-top2">
+                      <label className="form-label bold font-size4">ชื่อบนบัตร</label>
+                      <input type="text" className="form-control" id="name" placeholder="ชื่อ และนามสกุลที่อยู่บนบัตร" />
+                    </div>
+                    <div className="padding-top2">
+                      <label className="form-label bold font-size4">วันหมดอายุ</label>
+                      <input type="text" className="form-control" id="expirationMonth" maxLength="2" placeholder="ดด" />
+                    </div>
+                    <div className="padding-top2">
+                      <label className="form-label bold font-size4">วันหมดอายุ</label>
+                      <input type="text" className="form-control" id="expirationYear" maxLength="2" placeholder="ปป" />
+                    </div>
+                    <div className="padding-top2">
+                      <label className="form-label bold font-size4">รหัส CVV</label>
+                      <input type="password" className="form-control" id="securityCode" maxLength="4" autoComplete="off" action="click" placeholder="รหัสหลังบัตร" />
+                    </div>
+                    <button id="button" type="button" className="ant-btn ant-btn-primary ant-btn-block"
+                      ant-click-animating-without-extra-node="false"><span>Pay Now</span></button>
+                  </form>
                 </div>
               </div>
-            </div> */}
+            </div>
+
             <div className="box-protein  margin-head">
               <div className="padding-top">
                 <div className="box-proteinAddress padding-top">
