@@ -65,10 +65,17 @@
   height: 45px;
 }
 
+.body_partHead {
+  width: 70px !important;
+  height: 45px;
+  position: absolute !important;
+}
+
+
 @media (max-width: 769px) {
   .body_part {
-    width: 40px;
-    height: 40px;
+    width: 45px;
+    height: 45px;
     margin-left: 25px;
   }
 }

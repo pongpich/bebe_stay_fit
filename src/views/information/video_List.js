@@ -750,7 +750,7 @@ class videoList extends React.Component {
               </div>
               <div className="modal-body">
 
-                {(this.state.clicApp === "11") ? this.clicApp() : this.nullClipAll()}
+                {(this.state.clicApp === "1") ? this.clicApp() : this.nullClipAll()}
 
 
               </div>
@@ -800,57 +800,57 @@ class videoList extends React.Component {
                 <div className="row mt-4 body_part_header" >
                   { //เช็ค ถ้าหากเป็น category ที่มี type ย่อย จะไม่สามารถนำชื่อ category มาตั้งเป็นชื่อรูปได้ ต้องแยกเป็นเคสๆไป
                     ((this.props.videos[0]) && this.props.videos[0].category !== "Main Circuit Combo" && this.props.videos[0].category !== "Main Circuit") &&
-                    <img className="body_part" src={`../assets/img/body_part/${this.props.videos[0].category.toLowerCase().split(" ").join("")}.png`}></img>
+                    <img className="body_partHead" src={`../assets/img/body_part/${this.props.videos[0].category.toLowerCase().split(" ").join("")}.png`}></img>
                   }
                   {
                     ((this.props.videos[0]) && this.props.videos[0].type.toLowerCase().split(" ").join("") === "chestfocus" || (this.props.videos[0]) && this.props.videos[0].type.toLowerCase().split(" ").join("") === "chest_back")
-                    && <img className="body_part ml-2" src={`../assets/img/body_part/chest.png`}></img>
+                    && <img className="body_partHead ml-2" src={`../assets/img/body_part/chest.png`}></img>
                   }
                   {
                     ((this.props.videos[0]) && this.props.videos[0].type.toLowerCase().split(" ").join("") === "backfocus" || (this.props.videos[0]) && this.props.videos[0].type.toLowerCase().split(" ").join("") === "chest_back")
-                    && <img className="body_part ml-2" src={`../assets/img/body_part/back.png`}></img>
+                    && <img className="body_partHead   ml-2" src={`../assets/img/body_part/back.png`}></img>
                   }
                   {
                     ((this.props.videos[0]) && this.props.videos[0].type.toLowerCase().split(" ").join("") === "backfocus" || (this.props.videos[0]) && this.props.videos[0].type.toLowerCase().split(" ").join("") === "chest_back")
-                    && <img className="body_part ml-2" src={`../assets/img/body_part/core.png`}></img>
+                    && <img className="body_partHead ml-2" src={`../assets/img/body_part/core.png`}></img>
                   }
                   {
                     ((this.props.videos[0]) && this.props.videos[0].type.toLowerCase().split(" ").join("") === "legfocus" || (this.props.videos[0]) && this.props.videos[0].type.toLowerCase().split(" ").join("") === "leg_arm")
-                    && <img className="body_part ml-2" src={`../assets/img/body_part/leg.png`}></img>
+                    && <img className="body_partHead ml-2" src={`../assets/img/body_part/leg.png`}></img>
                   }
                   {
                     ((this.props.videos[0]) && this.props.videos[0].type.toLowerCase().split(" ").join("") === "armfocus" || (this.props.videos[0]) && this.props.videos[0].type.toLowerCase().split(" ").join("") === "leg_arm")
-                    && <img className="body_part ml-2" src={`../assets/img/body_part/arm.png`}></img>
+                    && <img className="body_partHead ml-2" src={`../assets/img/body_part/arm.png`}></img>
                   }
                   {
                     ((this.props.videos[0]) && this.props.videos[0].type.toLowerCase().split(" ").join("") === "armfocus" || (this.props.videos[0]) && this.props.videos[0].type.toLowerCase().split(" ").join("") === "leg_arm")
-                    && <img className="body_part ml-2" src={`../assets/img/body_part/shoulder.png`}></img>
+                    && <img className="body_partHead ml-2" src={`../assets/img/body_part/shoulder.png`}></img>
                   }
 
                   {
                     (this.props.videos[0]) &&
                     (this.props.videos[0].type.toLowerCase().split(" ").join("") === "warmup") &&
-                    <h2 className="ml-2 mt-1" style={{ color: "#F45197" }}><b>Warm Up</b></h2>
+                    <h2 className="ml-2 mt-1" style={{ color: "#F45197" }}><b className="b-left">Warm Up</b></h2>
                   }
                   {
                     (this.props.videos[0]) &&
                     (this.props.videos[0].type.toLowerCase().split(" ").join("") === "chestfocus") &&
-                    <h2 className="ml-2 mt-1" style={{ color: "#F45197" }}><b>Chest</b></h2>
+                    <h2 className="ml-2 mt-1" style={{ color: "#F45197" }}><b className="b-left">Chest</b></h2>
                   }
                   {
                     (this.props.videos[0]) &&
                     (this.props.videos[0].type.toLowerCase().split(" ").join("") === "backfocus") &&
-                    <h2 className="ml-2 mt-1" style={{ color: "#F45197" }}><b>Back and Core</b></h2>
+                    <h2 className="ml-2 mt-1" style={{ color: "#F45197" }}><b className="b-left">Back and Core</b></h2>
                   }
                   {
                     (this.props.videos[0]) &&
                     (this.props.videos[0].type.toLowerCase().split(" ").join("") === "chest_back") &&
-                    <h2 className="ml-2 mt-1" style={{ color: "#F45197" }}><b>Chest and Back</b></h2>
+                    <h2 className="ml-2 mt-1" style={{ color: "#F45197" }}><b className="b-left">Chest and Back</b></h2>
                   }
                   {
                     (this.props.videos[0]) &&
                     (this.props.videos[0].type.toLowerCase().split(" ").join("") === "legfocus") &&
-                    <h2 className="ml-2 mt-1" style={{ color: "#F45197" }}><b>Leg</b></h2>
+                    <h2 className="ml-2 mt-1" style={{ color: "#F45197" }}><b className="b-left">Leg</b></h2>
                   }
                   {
                     (this.props.videos[0]) &&
@@ -860,17 +860,17 @@ class videoList extends React.Component {
                   {
                     (this.props.videos[0]) &&
                     (this.props.videos[0].type.toLowerCase().split(" ").join("") === "leg_arm") &&
-                    <h2 className="ml-2 mt-1" style={{ color: "#F45197" }}><b>Leg and Arm</b></h2>
+                    <h2 className="ml-2 mt-1" style={{ color: "#F45197" }}><b className="b-left">Leg and Arm</b></h2>
                   }
                   {
                     (this.props.videos[0]) &&
                     (this.props.videos[0].type.toLowerCase().split(" ").join("") === "subcircuit") &&
-                    <h2 className="ml-2 mt-1" style={{ color: "#F45197" }}><b>Full Body</b></h2>
+                    <h2 className="ml-2 mt-1" style={{ color: "#F45197" }}><b className="b-left">Full Body</b></h2>
                   }
                   {
                     (this.props.videos[0]) &&
                     (this.props.videos[0].type.toLowerCase().split(" ").join("") === "cardio") &&
-                    <h2 className="ml-2 mt-1" style={{ color: "#F45197" }}><b>Cardio</b></h2>
+                    <h2 className="ml-2 mt-1" style={{ color: "#F45197" }}><b className="b-left">Cardio</b></h2>
                   }
                 </div>
               }
@@ -878,7 +878,27 @@ class videoList extends React.Component {
                 {
                   selectChangeVideoList.map((item, index) => (
 
-                    <div className="playlistWrapper border shadow" >
+
+
+                    /*  */
+                    <div className="playlistWrapperBack" >
+                      <div className="boxvideo2" >
+                        <div className="box-video">
+                          <video poster={`../assets/img/thumb/${item.category.toLowerCase().split(" ").join("")}_g3.jpg`} className="" width="100%" height="100%" controls controlslist="nodownload" muted style={{ borderRadius: "10px 10px 0px 0px", overflow: "hidden" }}>
+                            <source src={item.url ? `${item.url}` : `https://media.planforfit.com/bebe/video/${item.video_id}_720.mp4`} type="video/mp4"></source>
+                          </video>
+                        </div>
+                        <div className="box-video2">
+                          <div className="text-videobox">
+                            <h6 style={{ color: "#F45197" }}><b> {item.name} </b></h6>
+                          </div>
+                          <button button className="btn bottom-pink-video" type="button" style={{ fontSize: "15px", cursor: "pointer", padding: "10px 24px", marginLeft: "auto", marginRight: "auto", display: "block", width: "85%", backgroundColor: "#F45197", borderRadius: "20px" }}
+                            onClick={() => this.selectEditVideo(item)} >
+                            เลือกวีดีโอนี้
+                          </button>
+                        </div>
+                      </div>
+                      {/* 
                       <div className="">
                         <video poster={`../assets/img/thumb/${item.category.toLowerCase().split(" ").join("")}_g3.jpg`} className="" width="100%" height="50%" controls controlslist="nodownload" muted style={{ borderRadius: "20px 20px 0px 0px", overflow: "hidden" }}>
                           <source src={item.url ? `${item.url}` : `https://media.planforfit.com/bebe/video/${item.video_id}_720.mp4`} type="video/mp4"></source>
@@ -894,7 +914,7 @@ class videoList extends React.Component {
                         onClick={() => this.selectEditVideo(item)}
                       >
                         <b>เลือกวีดีโอนี้</b>
-                      </button>
+                      </button> */}
                     </div>
                   ))
                 }
@@ -1006,10 +1026,10 @@ class videoList extends React.Component {
                           <div className="col-lg-2 col-md-12 col-8" style={{ top: "50%" }}>
                             <div className="changeVideoBtn mb-2 btn col-lg-12 col-md-4 col-12" onClick={() => this.togglePopupSelectEditVideo(item.video_id, item.category, item.type, index)} >
                               เลือกวีดีโอใหม่
-                          </div>
+                            </div>
                             <div className="randomVideoBtn  btn col-lg-12 col-md-4 col-12" onClick={() => this.randomVideo(item.video_id, item.category, item.type, index)} >
                               สุ่มวีดีโอ
-                          </div>
+                            </div>
                           </div>
                         }
                       </div>
@@ -1167,7 +1187,7 @@ class videoList extends React.Component {
             <p className="vector4-text2">คลิปจะได้เพิ่มก็ต่อเมื่อมีการต่ออายุของ Bebe stay fit</p>
             <button className="btn bottom-pink-video vector4-button" type="button" >
               ปิด
-              </button>
+            </button>
           </div>
         </div>
       </>
