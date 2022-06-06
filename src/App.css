@@ -219,7 +219,14 @@
       margin-left: 25%;
       margin-bottom: 10px;
     }
- 
+    .line2 {
+      margin-top: -10px;
+      margin-left: 10px;
+      top: "50%";
+      border-left: 0.1px solid #F45197;
+      height: 490px;
+    }
+
 }
 
 @media only screen and (max-width: 960px) {
@@ -317,6 +324,13 @@
     margin-top: -100px;
     margin-left: 100%;
   
+  }
+  .line2 {
+    margin-top: -10px;
+    margin-left: 10px;
+    top: "50%";
+    border-left: 0.1px solid #F45197;
+    height: 220px;
   }
 }
 
@@ -1485,6 +1499,7 @@ a:hover {
   margin-top: -10px;
   margin-left: 10px;
 }
+
   .ellipse-1 {
     position: absolute;
     margin-left: -10px;
@@ -1497,10 +1512,7 @@ a:hover {
 .e2 {
   margin-left: -32px;
 }
-.line2 {
-  position: relative;
-  margin-left: 10px;
-}
+
 
 
 

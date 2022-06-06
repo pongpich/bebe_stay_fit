@@ -537,12 +537,7 @@ class videoList extends React.Component {
                               ></div>
                               :
                               <div
-                                className="line1"
-                                style={{
-                                  top: "50%",
-                                  borderLeft: "0.1px solid #F45197",
-                                  height: "220px"
-                                }}
+                                className="line2"
                               ></div>
                           }
                         </div>
