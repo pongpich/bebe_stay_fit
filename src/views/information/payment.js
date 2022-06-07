@@ -11,7 +11,7 @@ import { getUserProgram } from "../../redux/exerciseProgram"
 
 import axios from 'axios';
 import moment from 'moment';
-import {encode as btoa} from 'base-64';
+import { encode as btoa } from 'base-64';
 
 class Payment extends React.Component {
   constructor(props) {
@@ -23,7 +23,8 @@ class Payment extends React.Component {
       merchantID: "23xlw1vxcVi8OKGjTqE2sbQbOXHyzNaGN9XK5ALvRrYtdt7J/kL0ROmE59mzRhDhzICLvm6LF9i45eI8EiyFisGPGloHPKnrp7Ma+JH6O+CBVLZfS/NemVtmxm1J4yQ0cLFNTQUnGvhUO+w8/wvlJI3kw8LPuYpF2960XDgMvZA0R9i5",
       refNo: Date.now(),
       backgroundUrl: `https://api.planforfit.com/bebe/gbqr`,
-      price: 1.00,
+      price: 1.00, //สำหรับเทส
+      //price: this.props.program.price, //สำหรับใช้จริง
       productName: "bebe stay fit",
       name: "Akkkk Yodsss",
       email: this.props.create_user_email,
@@ -107,6 +108,8 @@ class Payment extends React.Component {
   }
 
   onPay() {
+    const { price } = this.state;
+    const { create_user_email, program } = this.props;
     document.getElementById("button").addEventListener("click", function (event) {
       event.preventDefault();
       const baseURL = "https://api.gbprimepay.com";
@@ -141,16 +144,16 @@ class Payment extends React.Component {
             const recurringData = {
               processType: "I",
               referenceNo,
-              recurringAmount: 1,
+              recurringAmount: price,
               recurringInterval: "M",
               recurringCount: 1,
               recurringPeriod: "01",
               allowAccumulate: "Y",
               cardToken: card.token,
               backgroundUrl: "https://api.planforfit.com/bebe/recurring", // for staging: https://api.planforfit.com/bebedev/recurring
-              customerName: "Tanakorn Numrubporn",
-              customerEmail: "tanakorn@planforfit.com",
-              merchantDefined1: "subscription_stay_fit"
+              customerName: document.getElementById("name").value,
+              customerEmail: create_user_email,
+              merchantDefined1: program.program_id
             }
 
             const recurringConfig = {
