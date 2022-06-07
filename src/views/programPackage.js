@@ -15,7 +15,7 @@ class ProgramPackage extends React.Component {
       weightLossGoals: null,
       durationWeightLoss: 0,
       checked: true,
-      typeHei_Wig: "กิโลกรัม",
+      pound_kg: "กิโลกรัม",
     };
   }
 
@@ -47,14 +47,9 @@ class ProgramPackage extends React.Component {
   }
 
   handleChange(event) {
-      if (this.state.typeHei_Wig === 'ปอนด์') {
-         var hei_wig = Math.ceil(event.target.value*0.4535923);
-      }else {
-        var hei_wig = event.target.value;
-      }
 
    this.setState({
-      [event.target.id]: hei_wig
+      [event.target.id]:  event.target.value
     })  
   };
 
@@ -67,7 +62,14 @@ class ProgramPackage extends React.Component {
     } else {
       mu = 2.8;
     }
-    const duration = Math.ceil((mu * weightLossGoals) / 4); //สมมุติว่าทุกเดือนมี 4 week (อาจมีการเปลี่ยนแปลง)
+
+
+    if (this.state.typeHei_Wig === 'ปอนด์') {
+        var duration = Math.ceil((mu * (weightLossGoals*0.45359237)) / 4); //สมมุติว่าทุกเดือนมี 4 week (อาจมีการเปลี่ยนแปลง) *0.45359237
+   }else {
+        var duration = Math.ceil((mu * weightLossGoals) / 4); //สมมุติว่าทุกเดือนมี 4 week (อาจมีการเปลี่ยนแปลง) *0.45359237
+   }
+      
     this.setState({
       durationWeightLoss: duration
     })
@@ -76,13 +78,13 @@ class ProgramPackage extends React.Component {
   checkBoxes = (e) => {
     const { checked } = e.target
     if (checked === true) {
-      var typeHei_Wig = "กิโลกรัม"
+      var pound_kg = "กิโลกรัม"
     } else {
-      var typeHei_Wig = "ปอนด์"
+      var pound_kg = "ปอนด์"
     }
     this.setState({
       checked: checked,
-      typeHei_Wig: typeHei_Wig,
+      pound_kg: pound_kg,
     })
   }
   
@@ -93,7 +95,7 @@ class ProgramPackage extends React.Component {
   }
 
   renderInformationCalculate() {
-    const { exerciseActivated, weightLossGoals,typeHei_Wig } = this.state;
+    const { exerciseActivated, weightLossGoals,pound_kg} = this.state;
     return (
       <>
         <br />
@@ -155,7 +157,7 @@ class ProgramPackage extends React.Component {
                     type="number"
                     className="form-control right"
                     id="weightLossGoals"
-                    placeholder={typeHei_Wig}
+                    placeholder={pound_kg}
                /*      value={weightLossGoals} */
                     onChange={(event) => this.handleChange(event)}
                   />
@@ -172,7 +174,7 @@ class ProgramPackage extends React.Component {
   }
 
   renderSelectPackage() {
-    const { weightLossGoals, durationWeightLoss } = this.state;
+    const { weightLossGoals, durationWeightLoss,pound_kg } = this.state;
     const { allProgram } = this.props;
     const priceStarter = allProgram && allProgram.filter(element => element.program_id === "starter_stay_fit_01");
     const priceSubscription = allProgram && allProgram.filter(element => element.program_id === "subscription_stay_fit_01");
@@ -184,7 +186,7 @@ class ProgramPackage extends React.Component {
             <div className="box2">
               <div className="center  head-box grad1">
                 <div className="head-width">
-                  <p className="text-headWidth">คุณจะสามารถลดน้ำหนัก {weightLossGoals} กิโลกรัม  <span className="bold text-headWidth1">ภายใน {durationWeightLoss} เดือน</span></p>
+                  <p className="text-headWidth">คุณจะสามารถลดน้ำหนัก {weightLossGoals} {pound_kg}  <span className="bold text-headWidth1">ภายใน {durationWeightLoss} เดือน</span></p>
                 </div>
               </div>
               <div className="row center">
