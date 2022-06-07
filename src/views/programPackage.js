@@ -13,7 +13,9 @@ class ProgramPackage extends React.Component {
     this.state = {
       exerciseActivated: true,
       weightLossGoals: null,
-      durationWeightLoss: 0
+      durationWeightLoss: 0,
+      checked: true,
+      typeHei_Wig: "กิโลกรัม",
     };
   }
 
@@ -45,9 +47,15 @@ class ProgramPackage extends React.Component {
   }
 
   handleChange(event) {
-    this.setState({
-      [event.target.id]: event.target.value
-    })
+      if (this.state.typeHei_Wig === 'ปอนด์') {
+         var hei_wig = Math.ceil(event.target.value*0.4535923);
+      }else {
+        var hei_wig = event.target.value;
+      }
+
+   this.setState({
+      [event.target.id]: hei_wig
+    })  
   };
 
   calculateDuration(exerciseActivated, weightLossGoals) {
@@ -65,14 +73,27 @@ class ProgramPackage extends React.Component {
     })
   }
 
+  checkBoxes = (e) => {
+    const { checked } = e.target
+    if (checked === true) {
+      var typeHei_Wig = "กิโลกรัม"
+    } else {
+      var typeHei_Wig = "ปอนด์"
+    }
+    this.setState({
+      checked: checked,
+      typeHei_Wig: typeHei_Wig,
+    })
+  }
+  
   selectProgram(program_id) {
 
     this.props.selectProgram(program_id);
-    this.props.history.push('/register');
+    this.props.history.push('/register');  
   }
 
   renderInformationCalculate() {
-    const { exerciseActivated, weightLossGoals } = this.state;
+    const { exerciseActivated, weightLossGoals,typeHei_Wig } = this.state;
     return (
       <>
         <br />
@@ -111,14 +132,31 @@ class ProgramPackage extends React.Component {
                                     </label>
                 </div>
                 <br />
+                <div className="padding-top2">
+                    <label className="form-label bold font-size4 between color1">เลือกหน่วย
+                                            <span className="font-size7 light section">
+                        <div className="onoffswitch">
+                          <input type="checkbox" name="onoffswitch" className="onoffswitch-checkbox " id="myonoffswitch" onChange={e => this.checkBoxes(e)} defaultChecked={this.state.checked} />
+                          <label className="onoffswitch-label" htmlFor="myonoffswitch">
+                            <span className="onoffswitch-inner">
+                              <div className="between">
+                                <p className="text-float">ปอนด์ <span className="text-float2"> กิโลกรัม</span></p>
+                              </div>
+                            </span>
+                            <span className="onoffswitch-switch"></span>
+                          </label>
+                        </div>
+                      </span>
+                    </label>
+                  </div>
                 <div className="mb-3 ">
                   <label className="form-label font-size2 ">คุณต้องการลดน้ำหนักกี่กิโลกรัม</label>
                   <input
                     type="number"
                     className="form-control right"
                     id="weightLossGoals"
-                    placeholder="กิโลกรัม"
-                    value={weightLossGoals}
+                    placeholder={typeHei_Wig}
+               /*      value={weightLossGoals} */
                     onChange={(event) => this.handleChange(event)}
                   />
                 </div>

@@ -1297,7 +1297,10 @@ z-index: 0;
 .text-float1 {
 margin-left: 20px;
 }
-
+.text-float2 {
+  margin-left: 40px;
+  }
+  
 .onoffswitch-switch {
   display: block; 
   width: 18px;
@@ -1338,6 +1341,7 @@ margin-left: 20px;
 
 /* vodeo */
 .box-videoHead {
+  background-color: #e8eff4;
   position: relative !important;
   width: auto;
   height: 200px;
