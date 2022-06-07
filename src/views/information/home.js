@@ -47,6 +47,9 @@ class Home extends React.Component {
   onUserLogin() {
     if (this.state.email !== "") {
       this.props.loginUser(this.state.email);
+      setTimeout(() => {
+        document.getElementById("remove-model").click(); 
+      }, 470);
     }
   }
 
@@ -108,7 +111,7 @@ class Home extends React.Component {
             <div className="modal-content padding-leftRight">
               <div className="modal-headerIn margin-headText">
                 <p className="bold font-size5  color-protein" id="exampleModalLabel"></p>
-                <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <button type="button" className="btn-close" id="remove-model" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
               <div className="modal-bodyIn">
                 <div className="center margin-bottom margin-top-1">

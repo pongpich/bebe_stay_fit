@@ -28,11 +28,6 @@
         margin-top: 50px;
       }
 
-      .box1 {
-
-        height: 380px !important;
-
-      }
 
 
       .iconCenter {
@@ -112,7 +107,7 @@
 
       .box1 {
 
-        height: 380px !important;
+        height: 520px !important;
 
       }
       .form-check-reverse {
@@ -796,18 +791,18 @@ padding-left: 10%;
 }
 
 .bottom-pinkLogin  {
-  background-color: #E25E96;
+  background-color: #E25E96 !important;
   margin-top: 40px;
   height: 50px;
-  color: #FFFFFF;
+  color: #FFFFFF  !important;
   margin-bottom: 50px;
   border-radius: 25px;
 }
 .bottom-pinkLogin:hover  {
-  background-color: #E25E96;
+  background-color: #E25E96  !important;
   margin-top: 40px;
   height: 50px;
-  color: #FFFFFF;
+  color: #FFFFFF  !important;
   margin-bottom: 50px;
   border-radius: 25px;
 }
@@ -900,14 +895,14 @@ padding-left: 10%;
 .icon-vector {
   margin-left: 20px;
 }
-.box1 {
+ .box1 {
   max-width: 600px;
-  height: 450px;
+  height: 520px;
   background-color: #FFFFFF;
-  padding-left: 20px;
-  padding-right: 20px;
+  padding-left: 40px;
+  padding-right: 40px;
   padding-top: 30px;
-}
+} 
 .right {
   text-align: right;
 }
