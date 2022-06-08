@@ -37,7 +37,8 @@ class Payment extends React.Component {
       subdistrictUser: this.props.create_subdistrictUser,
       districtUser: this.props.create_districtUser,
       provinceUser: this.props.create_provinceUser,
-      zipcodeUser: this.props.create_zipcodeUser
+      zipcodeUser: this.props.create_zipcodeUser,
+      pageUrl: window.location.href
     };
   }
 
@@ -193,44 +194,47 @@ class Payment extends React.Component {
                         <button type="button" className={this.state.qrCodeFocus} onClick={e => this.pinkModelFocus("2")}>ชำระด้วย QR Code</button>
           </div>
           <div className="col-12 col-sm-12 col-md-6 col-lg-6 center2 margin-head">
-            <div className="box-protein">
-              <div className="padding-top">
-                <div className="box-proteinAddress padding-top">
-                  <div>
-                    <img src={payment1} alt="vector" className="img-payment" />&nbsp;
+            {
+              (this.state.paymentMethod === "creditCard") &&
+              <div className="box-protein">
+                <div className="padding-top">
+                  <div className="box-proteinAddress padding-top">
+                    <div>
+                      <img src={payment1} alt="vector" className="img-payment" />&nbsp;
                                         <img src={payment2} alt="vector" className="img-payment" />&nbsp;
                                         <img src={payment3} alt="vector" className="img-payment" />&nbsp;
                                         <img src={payment4} alt="vector" className="img-payment" />&nbsp;
                                         <img src={payment5} alt="vector" className="img-payment" />
-                  </div>
+                    </div>
 
-                  <form action="#" method="POST">
-                    <div className="padding-top2">
-                      <label className="form-label bold font-size4">หมายเลขบัตร 16 หลัก</label>
-                      <input type="text" className="form-control" id="cardNumber" maxLength="16" placeholder="หมายเลขบัตร" />
-                    </div>
-                    <div className="padding-top2">
-                      <label className="form-label bold font-size4">ชื่อบนบัตร</label>
-                      <input type="text" className="form-control" id="name" placeholder="ชื่อ และนามสกุลที่อยู่บนบัตร" />
-                    </div>
-                    <div className="padding-top2">
-                      <label className="form-label bold font-size4">วันหมดอายุ</label>
-                      <input type="text" className="form-control" id="expirationMonth" maxLength="2" placeholder="ดด" />
-                    </div>
-                    <div className="padding-top2">
-                      <label className="form-label bold font-size4">วันหมดอายุ</label>
-                      <input type="text" className="form-control" id="expirationYear" maxLength="2" placeholder="ปป" />
-                    </div>
-                    <div className="padding-top2">
-                      <label className="form-label bold font-size4">รหัส CVV</label>
-                      <input type="password" className="form-control" id="securityCode" maxLength="4" autoComplete="off" action="click" placeholder="รหัสหลังบัตร" />
-                    </div>
-                    <button id="button" type="button" className="ant-btn ant-btn-primary ant-btn-block"
-                      ant-click-animating-without-extra-node="false"><span>Pay Now</span></button>
-                  </form>
+                    <form action="#" method="POST">
+                      <div className="padding-top2">
+                        <label className="form-label bold font-size4">หมายเลขบัตร 16 หลัก</label>
+                        <input type="text" className="form-control" id="cardNumber" maxLength="16" placeholder="หมายเลขบัตร" />
+                      </div>
+                      <div className="padding-top2">
+                        <label className="form-label bold font-size4">ชื่อบนบัตร</label>
+                        <input type="text" className="form-control" id="name" placeholder="ชื่อ และนามสกุลที่อยู่บนบัตร" />
+                      </div>
+                      <div className="padding-top2">
+                        <label className="form-label bold font-size4">วันหมดอายุ</label>
+                        <input type="text" className="form-control" id="expirationMonth" maxLength="2" placeholder="ดด" />
+                      </div>
+                      <div className="padding-top2">
+                        <label className="form-label bold font-size4">วันหมดอายุ</label>
+                        <input type="text" className="form-control" id="expirationYear" maxLength="2" placeholder="ปป" />
+                      </div>
+                      <div className="padding-top2">
+                        <label className="form-label bold font-size4">รหัส CVV</label>
+                        <input type="password" className="form-control" id="securityCode" maxLength="4" autoComplete="off" action="click" placeholder="รหัสหลังบัตร" />
+                      </div>
+                      <button id="button" type="button" className="ant-btn ant-btn-primary ant-btn-block"
+                        ant-click-animating-without-extra-node="false"><span>Pay Now</span></button>
+                    </form>
+                  </div>
                 </div>
               </div>
-            </div>
+            }
 
             <div className="box-protein  margin-head">
               <div className="padding-top">
@@ -263,7 +267,17 @@ class Payment extends React.Component {
               }
             </form>
 
-            <form id="qr_form" action={"https://api.gbprimepay.com/gbp/gateway/qrcode"} method="POST" className="d-grid gap-2 col-10 ol-sm-10  mx-auto   col-md-10 col-lg-10 distance">
+            <form
+              id="qr_form"
+              action={
+                (this.state.pageUrl.includes("localhost") || this.state.pageUrl.includes("127.0.0.1")) ?
+                  "http://localhost:3000/#/qr_checkout"
+                  :
+                  "https://fit.bebefitroutine.com/#/qr_checkout"
+              }
+              //action={"https://api.gbprimepay.com/gbp/gateway/qrcode"}
+              //method="POST"
+              className="d-grid gap-2 col-10 ol-sm-10  mx-auto   col-md-10 col-lg-10 distance">
               <input id="qr_token" type="hidden" name="token" />
               <input id="qr_refNo" type="hidden" name="referenceNo" />
               <input id="qr_bgUrl" type="hidden" name="backgroundUrl" />

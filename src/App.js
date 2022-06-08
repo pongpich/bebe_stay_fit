@@ -122,6 +122,7 @@ class App extends Component {
             <Route path='/cancel_package_succeed' component={Cancel_Package_Succeed} />
             <Route path='/programPackage' component={ProgramPackage} />
             <Route path='/videoList' component={videoList} />
+            <Route path='/qr_checkout' render={() => {window.location.href="qr_checkout.html"}}  />
           </Switch>
         </header>
       </div>
