@@ -40,6 +40,7 @@ class Home extends React.Component {
     if (prevProps.status !== status) {
       if (status === "success") {
         this.props.history.push('/basic_information');
+        document.getElementById("remove-model").click(); 
       }
     }
   }
@@ -47,9 +48,6 @@ class Home extends React.Component {
   onUserLogin() {
     if (this.state.email !== "") {
       this.props.loginUser(this.state.email);
-      setTimeout(() => {
-        document.getElementById("remove-model").click(); 
-      }, 470);
     }
   }
 
