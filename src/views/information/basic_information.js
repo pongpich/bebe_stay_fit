@@ -63,6 +63,7 @@ class Basic_Information extends React.Component {
       other_attributes,
       this.props.user.start_date,
       this.props.user.program_id,
+      (practiceDifficultExercises === "sure") ? false : true // false = ไม่ใช่ is_beginner, true = เป็น is_beginner
     );
   }
 

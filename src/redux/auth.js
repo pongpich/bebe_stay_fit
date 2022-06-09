@@ -37,14 +37,16 @@ export const updateProfile = (
   user_id,
   other_attributes,
   start_date,
-  program_id
+  program_id,
+  is_beginner
 ) => ({
   type: types.UPDATE_PROFILE,
   payload: {
     user_id,
     other_attributes,
     start_date,
-    program_id
+    program_id,
+    is_beginner
   }
 })
 
@@ -172,7 +174,8 @@ const updateProfileSagaAsync = async (
   user_id,
   other_attributes,
   start_date,
-  program_id
+  program_id,
+  is_beginner
 ) => {
   try {
     const apiResult = await API.post("bebe", "/updateStayFitProfile", {
@@ -180,7 +183,8 @@ const updateProfileSagaAsync = async (
         user_id,
         other_attributes,
         start_date,
-        program_id
+        program_id,
+        is_beginner
       }
     });
     return apiResult;
@@ -459,7 +463,8 @@ function* updateProfileSaga({ payload }) {
     user_id,
     other_attributes,
     start_date,
-    program_id
+    program_id,
+    is_beginner
   } = payload
 
   try {
@@ -468,7 +473,8 @@ function* updateProfileSaga({ payload }) {
       user_id,
       other_attributes,
       start_date,
-      program_id
+      program_id,
+      is_beginner
     );
     yield put({
       type: types.UPDATE_PROFILE_SUCCESS,
