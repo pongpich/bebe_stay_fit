@@ -42,13 +42,15 @@
   <script src="../js/axios.min.js"></script>
   <script>
     const merchantID = "23xlw1vxcVi8OKGjTqE2sbQbOXHyzNaGN9XK5ALvRrYtdt7J/kL0ROmE59mzRhDhzICLvm6LF9i45eI8EiyFisGPGloHPKnrp7Ma+JH6O+CBVLZfS/NemVtmxm1J4yQ0cLFNTQUnGvhUO+w8/wvlJI3kw8LPuYpF2960XDgMvZA0R9i5";
-    let price = 1.00;
-    const productName = "bebe stay fit";
+    let price = localStorage.getItem('price');
+    const productName = localStorage.getItem('productName');
     const refNo = Date.now();
     const publickey = "HZUfYchqY3T49pWGoookdeS9eelqfOo7";
-    const email = 'tanakorn@planforfit.com';
-    const baseURL = 'https://api.planforfit.com/bebedev';
-    const backgroundUrl = `${baseURL}/set_qr`;
+    const email = localStorage.getItem('email');
+    const baseURL = 'https://api.planforfit.com/bebe';
+    const backgroundUrl = `${baseURL}/gbqr`;
+    const phone = localStorage.getItem('phone');
+    const program_id = localStorage.getItem('program_id');
     const rhythm = 2000; //หน่วยเป็น ms
     const qrTimeOut = 180; //หน่วยเป็นวินาที
     var pageUrl = window.location.href;
@@ -66,12 +68,12 @@
     document.getElementById("qr_token").value = merchantID;
     document.getElementById("qr_refNo").value = refNo;
     document.getElementById("qr_bgUrl").value = backgroundUrl;
-    document.getElementById("qr_amount").value = 1;
+    document.getElementById("qr_amount").value = price;
     document.getElementById("qr_detail").value = productName;
-    document.getElementById("qr_name").value = "Tanakorn Numrubporn";
+    document.getElementById("qr_name").value = "";
     document.getElementById("qr_email").value = email;
-    document.getElementById("qr_phone").value = "0830664647";
-    document.getElementById("qr_programID").value = "subscription_bebe_fit";
+    document.getElementById("qr_phone").value = phone;
+    document.getElementById("qr_programID").value = program_id;
     document.getElementById("qr_status").value = "success";
 
     const data = {

@@ -45,16 +45,13 @@ class Payment extends React.Component {
 
   componentDidMount() {
     const { user_program_id } = this.props;
-    const { merchantID, refNo, backgroundUrl, price, productName, name, email, phone, program } = this.state;
-    document.getElementById("qr_token").value = merchantID;
-    document.getElementById("qr_refNo").value = refNo;
-    document.getElementById("qr_bgUrl").value = backgroundUrl;
-    document.getElementById("qr_amount").value = price;
-    document.getElementById("qr_detail").value = productName;
-    document.getElementById("qr_name").value = name;
-    document.getElementById("qr_email").value = email;
-    document.getElementById("qr_phone").value = phone;
-    document.getElementById("qr_programID").value = program.program_id;
+    const { price, productName, email, phone, program } = this.state;
+
+    window.localStorage.setItem('price', price);
+    window.localStorage.setItem('productName', productName);
+    window.localStorage.setItem('email', email);
+    window.localStorage.setItem('phone', phone);
+    window.localStorage.setItem('program_id', program.program_id);
 
     this.props.getUserProgram(email);
 
@@ -74,11 +71,13 @@ class Payment extends React.Component {
 
   pinkModelFocus = (e) => {
     if (e === "1") {
+      //เลือกชำระด้วย creditCard
       var qrCodeFocus = "btn btn-outline-pink";
       var creditCardFocus = "btn btn-outline-pinkFocus";
       this.setState({ paymentMethod: "creditCard" })
       console.log("บัตรเครดิต");
     } else {
+      //เลือกชำระด้วย qrCode
       var qrCodeFocus = "btn btn-outline-pinkFocus";
       var creditCardFocus = "btn btn-outline-pink";
       this.setState({ paymentMethod: "qrCode" })
@@ -278,7 +277,7 @@ class Payment extends React.Component {
               //action={"https://api.gbprimepay.com/gbp/gateway/qrcode"}
               //method="POST"
               className="d-grid gap-2 col-10 ol-sm-10  mx-auto   col-md-10 col-lg-10 distance">
-              <input id="qr_token" type="hidden" name="token" />
+              {/* <input id="qr_token" type="hidden" name="token" />
               <input id="qr_refNo" type="hidden" name="referenceNo" />
               <input id="qr_bgUrl" type="hidden" name="backgroundUrl" />
               <input id="qr_amount" type="hidden" name="amount" />
@@ -286,7 +285,7 @@ class Payment extends React.Component {
               <input id="qr_name" type="hidden" name="customerName" />
               <input id="qr_email" type="hidden" name="customerEmail" />
               <input id="qr_phone" type="hidden" name="customerTelephone" />
-              <input id="qr_programID" type="hidden" name="merchantDefined1" />
+              <input id="qr_programID" type="hidden" name="merchantDefined1" /> */}
               {
                 (this.state.paymentMethod === "qrCode") &&
                 <input id="qr_button" type="submit" className="btn bottom-pink" value="ชำระเงิน" />
