@@ -59,8 +59,6 @@ class Payment extends React.Component {
     if (user_program_id) { //ถ้ามี user_program_id แสดงว่าชำระเงินสำเร็จแล้ว
       this.props.history.push('/welcome_new_nember');
     }
-
-    this.onPay();
   }
 
   componentDidUpdate(prevProps, prevState) {
