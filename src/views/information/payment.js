@@ -164,6 +164,7 @@ class Payment extends React.Component {
             .post(recurringURL, recurringData, recurringConfig)
             .then(function (recurring_resp) {
               console.log("Response from recurring service: ", recurring_resp);
+              this.props.history.push('/welcome_new_nember');
             })
         }
       })
