@@ -20,13 +20,14 @@ class Payment extends React.Component {
       creditCardFocus: "btn btn-outline-pinkFocus",
       qrCodeFocus: "btn btn-outline-pink",
       paymentMethod: "creditCard",
-      merchantID: "23xlw1vxcVi8OKGjTqE2sbQbOXHyzNaGN9XK5ALvRrYtdt7J/kL0ROmE59mzRhDhzICLvm6LF9i45eI8EiyFisGPGloHPKnrp7Ma+JH6O+CBVLZfS/NemVtmxm1J4yQ0cLFNTQUnGvhUO+w8/wvlJI3kw8LPuYpF2960XDgMvZA0R9i5",
-      refNo: Date.now(),
-      backgroundUrl: `https://api.planforfit.com/bebe/gbqr`,
       price: 1.00, //สำหรับเทส
       //price: this.props.program.price, //สำหรับใช้จริง
       productName: "bebe stay fit",
-      name: "Akkkk Yodsss",
+      name: "",
+      cardNumber: "",
+      expirationMonth: "",
+      expirationYear: "",
+      securityCode: "",
       email: this.props.create_user_email,
       phone: this.props.create_user_phone,
       program: this.props.program,
@@ -108,71 +109,70 @@ class Payment extends React.Component {
   }
 
   onPay() {
-    const { price } = this.state;
+    const { price, name, cardNumber, expirationMonth, expirationYear, securityCode } = this.state;
     const { create_user_email, program } = this.props;
-    document.getElementById("cc_button").addEventListener("click", function (event) {
-      event.preventDefault();
-      const baseURL = "https://api.gbprimepay.com";
-      const tokenURL = `${baseURL}/v2/tokens`; // Test URL: https://api.globalprimepay.com/v2/tokens , Production URL: https://api.gbprimepay.com/v2/tokens
-      const recurringURL = `${baseURL}/v1/recurring`;
-      const publicKey = "HZUfYchqY3T49pWGoookdeS9eelqfOo7";
-      const publicToken = "Basic " + btoa(publicKey + ":");
-      const secretKey = "e8Fl2oVu6i5sQ96XalBvQWbbBBFZsrzt";
-      const secretToken = "Basic " + btoa(secretKey + ":")
-      let config = {
-        headers: {
-          Authorization: publicToken,
-        }
+
+    const baseURL = "https://api.gbprimepay.com";
+    const tokenURL = `${baseURL}/v2/tokens`; // Test URL: https://api.globalprimepay.com/v2/tokens , Production URL: https://api.gbprimepay.com/v2/tokens
+    const recurringURL = `${baseURL}/v1/recurring`;
+    const publicKey = "HZUfYchqY3T49pWGoookdeS9eelqfOo7";
+    const publicToken = "Basic " + btoa(publicKey + ":");
+    const secretKey = "e8Fl2oVu6i5sQ96XalBvQWbbBBFZsrzt";
+    const secretToken = "Basic " + btoa(secretKey + ":")
+    let config = {
+      headers: {
+        Authorization: publicToken,
       }
-      const tokenData = {
-        rememberCard: true,
-        card: {
-          name: document.getElementById("name").value,
-          number: document.getElementById("cardNumber").value,
-          expirationMonth: document.getElementById("expirationMonth").value,
-          expirationYear: document.getElementById("expirationYear").value,
-          securityCode: document.getElementById("securityCode").value
-        }
-      };
-      axios
-        .post(tokenURL, tokenData, config)
-        .then(function (response) {
-          const { card, resultCode } = response.data;
-          var referenceNo = moment().format("YYYYMMDDHHmmss")
-          console.log("Response from token service: ", card.token, referenceNo);
-          if (resultCode == "00") {
-            const recurringData = {
-              processType: "I",
-              referenceNo,
-              recurringAmount: price,
-              recurringInterval: "M",
-              recurringCount: 1,
-              recurringPeriod: "01",
-              allowAccumulate: "Y",
-              cardToken: card.token,
-              backgroundUrl: "https://api.planforfit.com/bebe/recurring", // for staging: https://api.planforfit.com/bebedev/recurring
-              customerName: document.getElementById("name").value,
-              customerEmail: create_user_email,
-              merchantDefined1: program.program_id
-            }
-
-            const recurringConfig = {
-              headers: {
-                Authorization: secretToken,
-              }
-            }
-
-            axios
-              .post(recurringURL, recurringData, recurringConfig)
-              .then(function (recurring_resp) {
-                console.log("Response from recurring service: ", recurring_resp);
-              })
+    }
+    const tokenData = {
+      rememberCard: true,
+      card: {
+        name: name,
+        number: cardNumber,
+        expirationMonth: expirationMonth,
+        expirationYear: expirationYear,
+        securityCode: securityCode
+      }
+    };
+    axios
+      .post(tokenURL, tokenData, config)
+      .then(function (response) {
+        const { card, resultCode } = response.data;
+        var referenceNo = moment().format("YYYYMMDDHHmmss")
+        console.log("Response from token service: ", card.token, referenceNo);
+        if (resultCode === "00") {
+          const recurringData = {
+            processType: "I",
+            referenceNo,
+            recurringAmount: price,
+            recurringInterval: "M",
+            recurringCount: 1,
+            recurringPeriod: "01",
+            allowAccumulate: "Y",
+            cardToken: card.token,
+            backgroundUrl: "https://api.planforfit.com/bebe/recurring", // for staging: https://api.planforfit.com/bebedev/recurring
+            customerName: name,
+            customerEmail: create_user_email,
+            merchantDefined1: program.program_id
           }
-        })
-        .catch(function (error) {
-          console.log(error);
-        });
-    });
+
+          const recurringConfig = {
+            headers: {
+              Authorization: secretToken,
+            }
+          }
+
+          axios
+            .post(recurringURL, recurringData, recurringConfig)
+            .then(function (recurring_resp) {
+              console.log("Response from recurring service: ", recurring_resp);
+            })
+        }
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+
   }
 
   handleChange(event) {
@@ -184,7 +184,6 @@ class Payment extends React.Component {
 
 
   render() {
-    console.log("aa", this.state.program.program_id);
     const programId = this.state.program.program_id;
     return (
       <>
@@ -216,23 +215,23 @@ class Payment extends React.Component {
                     <form action="#" method="POST">
                       <div className="padding-top2">
                         <label className="form-label bold font-size4">หมายเลขบัตร 16 หลัก</label>
-                        <input type="text" className="form-control" id="cardNumber" maxLength="16" placeholder="หมายเลขบัตร" />
+                        <input type="text" className="form-control" id="cardNumber" maxLength="16" placeholder="หมายเลขบัตร" onChange={(event) => this.handleChange(event)} />
                       </div>
                       <div className="padding-top2">
                         <label className="form-label bold font-size4">ชื่อบนบัตร</label>
-                        <input type="text" className="form-control" id="name" placeholder="ชื่อ และนามสกุลที่อยู่บนบัตร" />
+                        <input type="text" className="form-control" id="name" placeholder="ชื่อ และนามสกุลที่อยู่บนบัตร" onChange={(event) => this.handleChange(event)} />
                       </div>
                       <div className="padding-top2">
                         <label className="form-label bold font-size4">วันหมดอายุ</label>
-                        <input type="text" className="form-control" id="expirationMonth" maxLength="2" placeholder="ดด" />
+                        <input type="text" className="form-control" id="expirationMonth" maxLength="2" placeholder="ดด" onChange={(event) => this.handleChange(event)} />
                       </div>
                       <div className="padding-top2">
                         <label className="form-label bold font-size4">วันหมดอายุ</label>
-                        <input type="text" className="form-control" id="expirationYear" maxLength="2" placeholder="ปป" />
+                        <input type="text" className="form-control" id="expirationYear" maxLength="2" placeholder="ปป" onChange={(event) => this.handleChange(event)} />
                       </div>
                       <div className="padding-top2">
                         <label className="form-label bold font-size4">รหัส CVV</label>
-                        <input type="password" className="form-control" id="securityCode" maxLength="4" autoComplete="off" action="click" placeholder="รหัสหลังบัตร" />
+                        <input type="password" className="form-control" id="securityCode" maxLength="4" autoComplete="off" action="click" placeholder="รหัสหลังบัตร" onChange={(event) => this.handleChange(event)} />
                       </div>
                       {/* <button id="button" type="button" className="ant-btn ant-btn-primary ant-btn-block"
                         ant-click-animating-without-extra-node="false"><span>Pay Now</span></button> */}
@@ -269,7 +268,7 @@ class Payment extends React.Component {
             <div className="d-grid gap-2 col-10 ol-sm-10  mx-auto   col-md-10 col-lg-10 distance">
               {
                 (this.state.paymentMethod === "creditCard") &&
-                <input id="cc_button" className="btn bottom-pink" value="ชำระเงิน" />
+                <input id="cc_button" className="btn bottom-pink" value="ชำระเงิน" onClick={() => this.onPay()} />
               }
             </div>
 
