@@ -5,11 +5,11 @@ import { connect } from "react-redux";
 import { getUserProgram } from "../../redux/exerciseProgram"
 
 const fitto = [
-  "ฟิตโตะ เเพลนท์ โปรตีน - คลาสสิค มอลต์",
-  "ฟิตโตะ เเพลนท์ โปรตีน - มิลค์ ที",
-  "ฟิตโตะ เเพลนท์ โปรตีน - ดับเบิ้ล ช็อคโก้ ฟัดจ์",
-  "ฟิตโตะ เเพลนท์ โปรตีน - สตรอว์เบอร์รี่ ครัช",
-  "ฟิตโตะ เเพลนท์ โปรตีน - ฮอกไกโด มิลค์"
+  "คลาสสิค มอลต์",
+  "มิลค์ ที",
+  "ดับเบิ้ล ช็อคโก้ ฟัดจ์",
+  "สตรอว์เบอร์รี่ ครัช",
+  "ฮอกไกโด มิลค์"
 ];
 
 class Fitto_Plant_Protein extends React.Component {
@@ -18,17 +18,17 @@ class Fitto_Plant_Protein extends React.Component {
     super(props);
     this.state = {
       box1: "box1",
-      valuebox1: "ฟิตโตะ เเพลนท์ โปรตีน - คลาสสิค มอลต์",
+      valuebox1: "คลาสสิค มอลต์",
       box2: "box2",
-      valuebox2: "ฟิตโตะ เเพลนท์ โปรตีน - คลาสสิค มอลต์",
+      valuebox2: "คลาสสิค มอลต์",
       box3: "box3",
-      valuebox3: "ฟิตโตะ เเพลนท์ โปรตีน - คลาสสิค มอลต์",
+      valuebox3: "คลาสสิค มอลต์",
       box4: "box4",
-      valuebox4: "ฟิตโตะ เเพลนท์ โปรตีน - คลาสสิค มอลต์",
+      valuebox4: "คลาสสิค มอลต์",
       box5: "box5",
-      valuebox5: "ฟิตโตะ เเพลนท์ โปรตีน - คลาสสิค มอลต์",
+      valuebox5: "คลาสสิค มอลต์",
       box6: "box6",
-      valuebox6: "ฟิตโตะ เเพลนท์ โปรตีน - คลาสสิค มอลต์"
+      valuebox6: "คลาสสิค มอลต์"
 
     };
   }

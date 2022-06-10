@@ -110,7 +110,7 @@ class Payment extends React.Component {
   onPay() {
     const { price } = this.state;
     const { create_user_email, program } = this.props;
-    document.getElementById("button").addEventListener("click", function (event) {
+    document.getElementById("cc_button").addEventListener("click", function (event) {
       event.preventDefault();
       const baseURL = "https://api.gbprimepay.com";
       const tokenURL = `${baseURL}/v2/tokens`; // Test URL: https://api.globalprimepay.com/v2/tokens , Production URL: https://api.gbprimepay.com/v2/tokens
@@ -175,6 +175,13 @@ class Payment extends React.Component {
     });
   }
 
+  handleChange(event) {
+
+    this.setState({
+      [event.target.id]: event.target.value
+    })
+  };
+
 
   render() {
     console.log("aa", this.state.program.program_id);
@@ -227,8 +234,8 @@ class Payment extends React.Component {
                         <label className="form-label bold font-size4">รหัส CVV</label>
                         <input type="password" className="form-control" id="securityCode" maxLength="4" autoComplete="off" action="click" placeholder="รหัสหลังบัตร" />
                       </div>
-                      <button id="button" type="button" className="ant-btn ant-btn-primary ant-btn-block"
-                        ant-click-animating-without-extra-node="false"><span>Pay Now</span></button>
+                      {/* <button id="button" type="button" className="ant-btn ant-btn-primary ant-btn-block"
+                        ant-click-animating-without-extra-node="false"><span>Pay Now</span></button> */}
                     </form>
                   </div>
                 </div>
@@ -259,12 +266,12 @@ class Payment extends React.Component {
               </div>
             </div>
 
-            <form id="cc_form" action="#/cc_token" method="GET" className="hidden-form d-grid gap-2 col-10 ol-sm-10  mx-auto   col-md-10 col-lg-10 distance">
+            <div className="d-grid gap-2 col-10 ol-sm-10  mx-auto   col-md-10 col-lg-10 distance">
               {
                 (this.state.paymentMethod === "creditCard") &&
-                <input id="cc_button" type="submit" className="btn bottom-pink" value="ชำระเงิน" />
+                <input id="cc_button" className="btn bottom-pink" value="ชำระเงิน" />
               }
-            </form>
+            </div>
 
             <form
               id="qr_form"
