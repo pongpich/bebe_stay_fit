@@ -41,6 +41,7 @@ class Payment extends React.Component {
       zipcodeUser: this.props.create_zipcodeUser,
       pageUrl: window.location.href
     };
+    this.onPay = this.onPay.bind(this);
   }
 
 
@@ -108,7 +109,7 @@ class Payment extends React.Component {
 
   onPay() {
     const { price, name, cardNumber, expirationMonth, expirationYear, securityCode } = this.state;
-    const { create_user_email, program } = this.props;
+    const { create_user_email, program, history } = this.props;
 
     const baseURL = "https://api.gbprimepay.com";
     const tokenURL = `${baseURL}/v2/tokens`; // Test URL: https://api.globalprimepay.com/v2/tokens , Production URL: https://api.gbprimepay.com/v2/tokens
@@ -164,7 +165,7 @@ class Payment extends React.Component {
             .post(recurringURL, recurringData, recurringConfig)
             .then(function (recurring_resp) {
               console.log("Response from recurring service: ", recurring_resp);
-              this.props.history.push('/welcome_new_nember');
+              history.push('/welcome_new_nember');
             })
         }
       })
