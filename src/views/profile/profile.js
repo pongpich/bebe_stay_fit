@@ -58,7 +58,7 @@ class Profile extends React.Component {
                             <div className="padding-top2 text-left margin-leftRight">
                                 <p className="font-size6 bold">แพ็คเกจของคุณ </p>
                                 <p className="font-size4 margin-top-1 bold between">ตามระยะเวลาของโปรแกรม <span className="color1 bold font-size4">3,750 บาท / 2 เดือน</span></p>
-                                <p className=" font-size4 margin-top-1 right">วันตัดรอบบิล 30 มิ.ย. 2565</p>
+                                <p className=" font-size4 margin-top-1 right color3">วันตัดรอบบิล 30 มิ.ย. 2565</p>
 
                             </div>
                             <p className="border-bottom margin-leftRight padding-top2"></p>
