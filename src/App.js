@@ -18,7 +18,7 @@ import Cancel_Package_Succeed from "./views/profile/cancel_packag_ succeed";
 import ProgramPackage from "./views/programPackage";
 import videoList from "./views/information/video_List";
 import group49 from "./views/images/group49.png";
-//import Summary_details from '../views/summary_details';
+import Shipping_check from './views/profile/shipping_check';
 //import Home from '../views/home';Welcome_NewMember
 
 import { connect } from "react-redux";
@@ -123,6 +123,7 @@ class App extends Component {
             <Route path='/programPackage' component={ProgramPackage} />
             <Route path='/videoList' component={videoList} />
             <Route path='/qr_checkout' render={() => {window.location.href="qr_checkout.html"}}  />
+            <Route path='/shipping_check' component={Shipping_check} />
           </Switch>
         </header>
       </div>
