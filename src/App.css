@@ -1625,9 +1625,6 @@ a:hover {
   width: 300px;
   border-radius: 10px 10px 0px 0px;
 /*   border: 0.1em solid #E25E96; */
-  border-top: 0.1px solid #E25E96;
-  border-left: 0.1px solid #E25E96;
-  border-right: 0.1px solid #E25E96;
 }
 .box-video1 {
   position: relative;
@@ -1635,10 +1632,11 @@ a:hover {
   background-color: #FFFFFF;
   width: 300px !important;
   height: 220px;
-  border-radius: 0px 0px 10px 10px;
+  border-radius: 10px 10px 10px 10px;
   border-left: 0.1px solid #E25E96;
   border-right: 0.1px solid #E25E96;
   border-bottom: 0.1px solid #E25E96;
+  border-top: 0.1px solid #E25E96;
 }
 .box-video2 {
   position: relative;

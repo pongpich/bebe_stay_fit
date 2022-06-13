@@ -22,6 +22,7 @@ import { connect } from "react-redux";
 import { videoListForUser, createWeeklyStayfitProgram, updatePlaytime, randomVideo, selectChangeVideo, updatePlaylist } from "../../redux/exerciseVideos"
 import { convertFormatTime, convertSecondsToMinutes } from "../../helpers/utils"
 import { completeVideoPlayPercentage, minimumVideoPlayPercentage, updateFrequency } from "../../constants/defaultValues";
+import Food_supplement from '../information/food_supplement';
 
 class videoList extends React.Component {
 
@@ -243,7 +244,7 @@ class videoList extends React.Component {
       var bottom3 = "video-link "
       var bottom4 = "video-link"
     } else if (name === 'borderBottom3') {
-      var bottom = "manu3"
+      var clickManu = "manu3"
       var bottom1 = "video-link "
       var bottom2 = "video-link "
       var bottom3 = "video-link rectangle13 color1"
@@ -376,20 +377,58 @@ class videoList extends React.Component {
     }
   }
 
-  routineWorkout() {
-    const { focusDay, selectedVDO } = this.state;
-    const todayExercise = this.exerciseDaySelection(focusDay);
-    const videoUrl = selectedVDO ? `${selectedVDO.url}` : "";
+  boxFrom() {
     return (
       <>
-        <div className="box-videoHead">
-          <h3 className="center-videoText bold">
-            Platform
-          </h3>
-          <div className="play_circle">
-            <img src={play_circle_filled} /> <span className="play_circle_span">WATCH INTRODUCTION</span>
+        {/*  <nav className="navbar navbar-expand-lg bg-light information-box">
+          <div className="container-fluid nav-left2">
+            <h4 className="color1">BEBEStayFit</h4>
+            <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+              <span className="navbar-toggler-icon"></span>
+            </button>
+            <div className="collapse navbar-collapse padding-left3" id="navbarSupportedContent">
+              <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+                <li className="nav-item">
+                  <a className="nav-link pointer" >บทความ</a>
+                </li>
+                <li className="nav-item">
+                  <a className="nav-link pointer" >อาหารเสริมและอุปกรณ์</a>
+                </li>
+                <li className="nav-item">
+                  <a className="nav-link pointer">Platform</a>
+                </li>
+              </ul>
+              <div>
+                <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+                  <li className="nav-item">
+                    <a className="nav-link ">ตะกร้าสินค้า</a>
+                  </li>
+                  <li className="nav-item">
+                    <h6 className="nav-link"><img src={user_circle} alt="vector" className="padding-right" />บพิตร์ เตชะวัฒนานันท์</h6>
+                  </li>
+                </ul>
+              </div>
+            </div>
           </div>
-        </div>
+        </nav> */}
+
+        {
+          (this.state.clickManu === "manu1") ?
+            <div className="box-videoHead">
+              <h3 className="center-videoText bold">
+                Platform
+              </h3>
+              <div className="play_circle">
+                <img src={play_circle_filled} /> <span className="play_circle_span">WATCH INTRODUCTION</span>
+              </div>
+            </div>
+            :
+            <div className="box-videoHead">
+              <h3 className="center-videoText bold">
+                โปรแกรมออกกำลังกาย
+              </h3>
+            </div>
+        }
         <div className="box-videoCenter">
           <div className="col-12 col-sm-12 col-md-12 col-lg-12 ">
             <ul className="">
@@ -407,6 +446,33 @@ class videoList extends React.Component {
               </li>
             </ul>
           </div>
+
+          {
+            (this.state.clickManu === "manu1") ?
+              (this.state.editVDO_click === "show") ?
+                this.renderEditVDO()
+                :
+                this.routineWorkout()
+              :
+              (this.state.clickManu === "manu2") ? this.videoClipAll()
+                :
+
+                (this.state.clickManu === "manu3") ? <Food_supplement /> : null
+          }
+        </div>
+
+
+      </>
+    );
+  }
+
+  routineWorkout() {
+    const { focusDay, selectedVDO } = this.state;
+    const todayExercise = this.exerciseDaySelection(focusDay);
+    const videoUrl = selectedVDO ? `${selectedVDO.url}` : "";
+    return (
+      <>
+        <div>
           <div className="video-ul2">
             <div className="col-12 col-sm-12 col-md-12 col-lg-12 ">
               <nav className="navbar">
@@ -1192,59 +1258,7 @@ class videoList extends React.Component {
   videoClipAll() {
     return (
       <>
-        <nav className="navbar navbar-expand-lg bg-light information-box">
-          <div className="container-fluid nav-left2">
-            <h4 className="color1">BEBEStayFit</h4>
-            <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-              <span className="navbar-toggler-icon"></span>
-            </button>
-            <div className="collapse navbar-collapse padding-left3" id="navbarSupportedContent">
-              <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-                <li className="nav-item">
-                  <a className="nav-link pointer" >บทความ</a>
-                </li>
-                <li className="nav-item">
-                  <a className="nav-link pointer" >อาหารเสริมและอุปกรณ์</a>
-                </li>
-                <li className="nav-item">
-                  <a className="nav-link pointer">Platform</a>
-                </li>
-              </ul>
-              <div>
-                <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-                  <li className="nav-item">
-                    <a className="nav-link ">ตะกร้าสินค้า</a>
-                  </li>
-                  <li className="nav-item">
-                    <h6 className="nav-link"><img src={user_circle} alt="vector" className="padding-right" />บพิตร์ เตชะวัฒนานันท์</h6>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </nav>
-        <div className="box-videoHead">
-          <h3 className="center-videoText bold">
-            โปรแกรมออกกำลังกาย
-          </h3>
-        </div>
-        <div className="box-videoCenterAll">
-          <div className="col-12 col-sm-12 col-md-12 col-lg-12 ">
-            <ul className="">
-              <li className="video-li  video-liPadding-left">
-                <a className={this.state.borderBottom1} name="borderBottom1" onClick={e => this.clickBottom(e)}>Routine workout</a>
-              </li>
-              <li className="video-li  video-liPadding-left   video-liPadding-left2">
-                <a className={this.state.borderBottom2} name="borderBottom2" onClick={e => this.clickBottom(e)}>คลิปออกกำลังกายทั้งหมด</a>
-              </li>
-              <li className="video-li video-liPadding-left   video-liPadding-left2">
-                <a className={this.state.borderBottom3} name="borderBottom3" onClick={e => this.clickBottom(e)}>อาหารเสริม</a>
-              </li>
-              <li className="video-li video-liPadding-left   video-liPadding-left2">
-                <a className={this.state.borderBottom4} name="borderBottom4" onClick={e => this.clickBottom(e)}>วิธีการเล่น</a>
-              </li>
-            </ul>
-          </div>
+        <div>
           <div className="col-12 col-sm-12 col-md-12 col-lg-12">
             <div className="bought">
               <div>
@@ -1392,13 +1406,7 @@ class videoList extends React.Component {
   render() {
     const { clickManu, editVDO_click } = this.state;
     return (
-      (clickManu === "manu1") ?
-        (editVDO_click === "show") ?
-          this.renderEditVDO()
-          :
-          this.routineWorkout()
-        :
-        this.videoClipAll()
+      this.boxFrom()
     );
   }
 }
