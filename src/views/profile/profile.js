@@ -55,15 +55,15 @@ class Profile extends React.Component {
                             <div className="padding-top">
                                 <h4 className="color1 bold">BEBEStayFit</h4>
                             </div>
-                            <div className="padding-top2 text-left margin-leftRight">
-                                <p className="font-size6 bold">แพ็คเกจของคุณ </p>
-                                <p className="font-size4 margin-top-1 bold between">ตามระยะเวลาของโปรแกรม <span className="color1 bold font-size4">3,750 บาท / 2 เดือน</span></p>
+                            <div className="padding-top2  margin-leftRight">
+                                <p className="font-size6 text-left2 bold">แพ็คเกจของคุณ </p>
+                                <p className="font-size0 margin-top-1 bold between">ตามระยะเวลาของโปรแกรม <span className="color1 bold font-size0">3,750 บาท / 2 เดือน</span></p>
                                 <p className=" font-size4 margin-top-1 right color3">วันตัดรอบบิล 30 มิ.ย. 2565</p>
 
                             </div>
                             <p className="border-bottom margin-leftRight padding-top2"></p>
                             <div className="d-grid gap-2  mx-auto   col-10 col-sm-10  col-md-8 col-lg-8 margin-top-2 ">
-                                <button className="btn bottom-pink " type="button" >
+                                <button className="btn bottom-pink " type="button"  onClick={() =>  this.props.history.push('/billing_history')}>
                                     ประวัติการเรียกเก็บ
                                 </button>
                                 <button className="btn bottom-outlineGrey margin-top-3" type="button" >
@@ -82,4 +82,4 @@ class Profile extends React.Component {
 }
 
 export default Profile;
-;
+

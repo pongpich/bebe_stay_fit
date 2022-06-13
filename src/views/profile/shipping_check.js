@@ -5,7 +5,7 @@ import vector_check from "../../assets/img/vector_check.png";
 import group_check from "../../assets/img/group_check.png";
 import { Link } from 'react-router-dom';
 
-class Profile extends React.Component {
+class Shipping_check extends React.Component {
     render() {
         return (
             <>
@@ -109,5 +109,5 @@ class Profile extends React.Component {
     }
 }
 
-export default Profile;
+export default Shipping_check;
 ;

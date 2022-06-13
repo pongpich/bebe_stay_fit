@@ -109,6 +109,7 @@
         height: 520px !important;
 
       }
+ 
       .form-check-reverse {
         text-align: left;
         float: left;
@@ -634,6 +635,7 @@ a {
  .margin-bottom1 {
   margin-bottom: 40px;
 }
+
 .margin-2 {
   margin: 2px;
 }
@@ -656,6 +658,9 @@ a {
 .text-left {
   text-align: left !important;
   padding-left: 30px;
+}
+.text-left2 {
+  text-align: left;
 }
 .from-left {
 padding-left: 10%;
@@ -946,6 +951,10 @@ padding-left: 10%;
 .font-size8 {
   font-size: 32px; 
 }
+.font-size9 {
+  font-size: 20px; 
+}
+
 .box-price {
   padding-top: 5px;
   padding-bottom: 50px;
