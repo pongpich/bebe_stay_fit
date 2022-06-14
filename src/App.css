@@ -1,18 +1,9 @@
 
  @media only screen and (max-width: 540px) {
-      .mask1 {
-        width: 350px !important;
-      }
-    .mask2 {
-      width: 350px !important;
-    }
-    .register-image {
-      width: 350px !important;
-      margin-top: -60px !important;
-    }
 
+ 
     .maigeSm {
-      margin-top: 50px;
+      margin-top: 50px !important;
     }
 
 
@@ -31,7 +22,8 @@
 
     .register-image {
        width: 100% !important;
-
+       z-index: 2 !important;
+       margin-top: -60px !important;
     }
 
 
@@ -47,20 +39,18 @@
         height: 800px !important; 
         width: 100% !important;
       }
+    
+      .mask1 {
+        opacity: 0.4 !important;  
+        width: 350px !important;
+        height: 350px !important;
+        margin-top: -50px !important;
 
-    .mask1 {
-      position: absolute;
-      width: 330px !important;
-      height: 400px;
-      z-index: 0;
-      margin-left:-180px;
-      margin-top: 50px !important;
-    }
-    .mask2 {
-      width: 400px !important;
-      margin-top: 150px !important;
-      margin-left: -60px;
-    }
+      }
+      .mask2 {
+        width: 280px !important;
+        height: 200px !important;
+      }
  }
 
  @media only screen and (max-width: 760px) { 
@@ -75,28 +65,24 @@
     position: absolute !important;
   } 
 
+
   .register-image {
-    margin-left: 20px;
-    padding-top: 110px !important;
-    position: absolute;
-    z-index: 0;
-    width: 500px;
-    height: 740px;
-    opacity: 0.6;   
-    z-index: 0 !important;
+    padding-top: 100px;
+     opacity: 0.7;  
   }
+  .mask {
+    padding-top: 100px;
+    opacity: 0.4;  
+  }
+
   .group18 {
     width: 100% !important;
   }
   .maigeSm {
     margin-top: 140px;
-    background-color:  #ffffff;
     height: 500px;
   }
-  .mask {
-    margin-top: 140px;
-    opacity: 0.6;   
-  }
+
   .information-box3 {
     background-color:  inherit !important;
   } 
@@ -136,10 +122,10 @@
     margin-top: 14rem;
     width: 100%; 
     padding-left: 10px;
-  padding-right: 10px; 
-  height:460px;
-  opacity: 0.8;
-  background-color: #ffffff;
+    padding-right: 10px; 
+    height:460px;
+    opacity: 0.8;
+    background-color: #ffffff;
 
 }
   .maigeSm {
@@ -210,16 +196,9 @@
 }
   
 
-  .register-image {
-    margin-left: 20px;
-    margin-top: 60px;
-    position: absolute;
-    z-index: 0;
-    width: 500px;
-    height: 740px;
-    opacity: 0.6;   
-    z-index: 0 !important;
-  }
+ 
+
+
   .group18 {
     padding-left: 10px;
     width: 100%;
@@ -263,6 +242,7 @@
     border-left: 0.1px solid #F45197;
     height: 490px;
   }
+
 }
 
  @media only screen and (max-width: 960px) { 
@@ -288,8 +268,13 @@
   }
   .register-image {
     margin-top: -20px;
+    z-index: 2;
     position: absolute !important;
     height: 94vh ;
+  }
+  .mask {
+    position: relative;
+
   }
 
   .alarm {
@@ -347,7 +332,14 @@
     margin-top: -20px;
     position: absolute !important;
     height: 94vh ;
+    z-index: 2 !important;
   }
+  .mask {
+    position: relative;
+
+  }
+
+  
   .studio-session {
     position: absolute !important;
     z-index: 1;
@@ -426,9 +418,7 @@
     border-left: 0.1px solid #F45197;
     height: 220px;
   }
-  .mask {
-    position: relative;
-}
+ 
 }
 
 
