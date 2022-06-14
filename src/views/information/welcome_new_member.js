@@ -46,15 +46,15 @@ class Welcome_NewMember extends React.Component {
     return (
       <>
         <div className="container2">
-          <div className="row center App-headerBackground ">
-            <div className="col-12 col-sm-12 col-md-5 col-lg-5 padding-top  height-box ">
+          <div className="row center">
+            <div className="col-12 col-sm-12 col-md-5 col-lg-5 padding-top">
             <img src={maskgroup} alt="vector" className="studio-maskgroup" />
             <div className="center">
             <img src={mask} alt="vector" className="studio-mask" />
             <img src={studioSession} alt="vector" className="studio-session" />
             </div>
             </div>
-            <div className="col-12 col-sm-12 col-md-7 col-lg-7 padding-top information-box2">
+            <div className="col-12 col-sm-12 col-md-7 col-lg-7 padding-top information-box3">
               <div className="padding-top3 text-center box-welcome">
                 <p className="border-bottom  margin-right"></p>
                 <p className="font-size6  bold">ยินดีต้อนรับสมาชิกใหม่ของเรา</p>

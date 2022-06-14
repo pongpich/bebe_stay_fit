@@ -1,248 +1,297 @@
 
-
-@media only screen and (max-width: 540px) {
-
-      .height-box {
-          height: 0vh !important;
-      }
-
-      .studio-session {
-        position: absolute !important;
-        z-index: 1;
-        width: 100% ;
-        height: 115vh ;
-      }
-
-
-      .box-welcome {
-        margin-top: 14rem;
-        width: 100%; 
-        padding-left: 10px;
-      padding-right: 10px; 
-      height:460px;
-      opacity: 0.8;
-      background-color: #ffffff;
-
-    }
-      .maigeSm {
-        margin-top: 50px;
-      }
-
-
-
-      .iconCenter {
-          padding-left: 40% !important;
-          position: relative;
-          padding-top: 50px;
-      }
-
-      .high-impact {
-        position: absolute;
-        margin-left: -10px !important;
-        padding-top: 5px !important;
-      }
-
-      .register-image {
-         width: 100% !important;
-
-      }
-
-      .register-imageRoup33 {
-        margin-top: 90px;
-        width: 100%;
-        height: 600px;
-        position: absolute;
-      }
-
-      .studio-mask {
-          margin-top: 160px;
-          position: absolute !important;
-          z-index: 1;
-          width: 370px !important;
-          height: 500px;
-        }
-      
-        .studio-session {
-          height: 800px !important; 
-          width: 100% !important;
-        }
-
+ @media only screen and (max-width: 540px) {
       .mask1 {
-        position: absolute;
-        width: 330px !important;
-        height: 400px;
-        z-index: 0;
-        margin-left:-180px;
-        margin-top: 50px !important;
+        width: 350px !important;
       }
-      .mask2 {
-        width: 400px !important;
-        margin-top: 150px !important;
-        margin-left: -60px;
-      }
+    .mask2 {
+      width: 350px !important;
+    }
+    .register-image {
+      width: 350px !important;
+      margin-top: -60px !important;
+    }
+
+    .maigeSm {
+      margin-top: 50px;
     }
 
 
 
-
-
-    @media only screen and (max-width: 760px) {
-      .padding-left3 {
-        padding-left: 0px !important;
-      }
-      .height-box {
-          height: 0vh !important;
-      }
-
-      .account-fit {
-        text-align: center !important;
-      }
-      .studio-session {
-        position: absolute !important;
-        z-index: 1;
-        height: 115vh ;
-      }
-
-
-      .box-welcome {
-        margin-top: 14rem;
-        width: 100%; 
-        padding-left: 10px;
-      padding-right: 10px; 
-      height:460px;
-      opacity: 0.8;
-      background-color: #ffffff;
-
-    }
-      .maigeSm {
-        margin-top: 50px;
-      }
-
-      .box1 {
-
-        height: 520px !important;
-
-      }
- 
-      .form-check-reverse {
-        text-align: left;
-        float: left;
-      }
-
-
-      .iconCenter {
+    .iconCenter {
         padding-left: 40% !important;
         position: relative;
         padding-top: 50px;
-      }
-
-      .box-paly1 {
-        width: 100%;
-        height: 200px;
-        border-radius: 10px 10px 0px 0px !important;
-        background-color: #C4C4C4;
-        
-      } 
-
-      .alarm {
-        position: relative !important;
-        padding-top: 10px !important;
-        float: right !important;
-      }
-
-      .rectangle15 {
-        margin-right: 20px;
-        margin-left: 30px;
-        margin-top: 30px !important;
-        border-bottom: 2px solid #4F4F4F;
-      } 
-      .warmup {
-        padding-top: 10px;
-        padding-left: 30px;
-      }
-      .warmup2 {
-        margin-top: -20px;
-        padding-left: 30px;
-        font-size: 26px;
-      }
-      .ellipse61 {
-        margin-top: -20px;
-      margin-left: 15px;
-      }
-      .ellipse61-2 {
-        margin-top: -20px;
-        padding-left: 10px;
-      }
-      .ellipse61-size {
-        width: 40px  !important;
-      }
-      .account-fit {
-        text-align: center !important;
-        margin-left: -40px;
     }
-      
 
-      .register-image {
-        margin-left: 20px;
-        margin-top: 60px;
-        position: absolute;
-        z-index: 0;
-        width: 500px;
-        height: 740px;
-        opacity: 0.6;   
-        z-index: 0 !important;
-      }
-      .group18 {
-        padding-left: 10px;
-        width: 100%;
-        padding-right: 10px;
-      }
-      .box-smsStay {
-        width: 100%; 
-        padding-left: 10px;
-        padding-right: 10px; 
-      background-color: #ffffff;
-      margin-left: -20px;
-      height: 400px;
+    .high-impact {
+      position: absolute;
+      margin-left: -10px !important;
+      padding-top: 5px !important;
+    }
+
+    .register-image {
+       width: 100% !important;
 
     }
-    .information-box2 {
-      padding: 0px 0px 0px 0px;
-      z-index: 3 !important;
-      
-    } 
-    .changeVideoBtn {
-      background-color: #E25E96;
-      color: #FFFFFF;
-      position: relative;
-      width: 100%;
-      margin-left: 25%;
 
+
+    .studio-mask {
+        margin-top: 160px;
+        position: absolute !important;
+        z-index: 1;
+        width: 370px !important;
+        height: 500px;
+      }
     
+      .studio-session {
+        height: 800px !important; 
+        width: 100% !important;
+      }
+
+    .mask1 {
+      position: absolute;
+      width: 330px !important;
+      height: 400px;
+      z-index: 0;
+      margin-left:-180px;
+      margin-top: 50px !important;
     }
-    .randomVideoBtn {
-      background-color: #E25E96;
-      color: #FFFFFF;
-      position: relative;
-      width: 100%;
-      margin-left: 25%;
-      margin-bottom: 10px;
+    .mask2 {
+      width: 400px !important;
+      margin-top: 150px !important;
+      margin-left: -60px;
     }
-    .line2 {
-      margin-top: -10px;
-      margin-left: 10px;
-      top: "50%";
-      border-left: 0.1px solid #F45197;
-      height: 490px;
-    }
-    .mask {
-      position:  absolute;
+ }
+
+ @media only screen and (max-width: 760px) { 
+
+
+  .information-box2 {
+    padding: 30px 20px 0px 20px;
+    background-color: inherit !important;
+    z-index: 3 !important;
+    height: 95vh;
+    box-shadow: inherit !important;
+    position: absolute !important;
+  } 
+
+  .register-image {
+    margin-left: 20px;
+    padding-top: 110px !important;
+    position: absolute;
+    z-index: 0;
+    width: 500px;
+    height: 740px;
+    opacity: 0.6;   
+    z-index: 0 !important;
+  }
+  .group18 {
+    width: 100% !important;
+  }
+  .maigeSm {
+    margin-top: 140px;
+    background-color:  #ffffff;
+    height: 500px;
+  }
+  .mask {
+    margin-top: 140px;
+    opacity: 0.6;   
+  }
+  .information-box3 {
+    background-color:  inherit !important;
+  } 
+
+
+ .box-welcome {
+   margin-top: 150px;
+   background-color: #ffffff;
+   padding-bottom: 20px;
+ }
+  .studio-session {
+    height: 70vh !important;
+    opacity: 0.6;  
+  }
+  .studio-mask {
+    width: 350px !important;
+    z-index: -1 !important; 
+  }
+  .padding-left3 {
+    padding-left: 0px !important;
+  }
+  .height-box {
+      height: 0vh !important;
   }
 
+  .account-fit {
+    text-align: center !important;
+  }
+  .studio-session {
+    position: absolute !important;
+    z-index: 1;
+    height: 115vh ;
+  }
+
+
+  .box-welcome {
+    margin-top: 14rem;
+    width: 100%; 
+    padding-left: 10px;
+  padding-right: 10px; 
+  height:460px;
+  opacity: 0.8;
+  background-color: #ffffff;
+
+}
+  .maigeSm {
+    margin-top: 50px;
+  }
+
+  .box1 {
+
+    height: 520px !important;
+
+  }
+
+  .form-check-reverse {
+    text-align: left;
+    float: left;
+  }
+
+
+  .iconCenter {
+    padding-left: 40% !important;
+    position: relative;
+    padding-top: 50px;
+  }
+
+  .box-paly1 {
+    width: 100%;
+    height: 200px;
+    border-radius: 10px 10px 0px 0px !important;
+    background-color: #C4C4C4;
+    
+  } 
+
+  .alarm {
+    position: relative !important;
+    padding-top: 10px !important;
+    float: right !important;
+  }
+
+  .rectangle15 {
+    margin-right: 20px;
+    margin-left: 30px;
+    margin-top: 30px !important;
+    border-bottom: 2px solid #4F4F4F;
+  } 
+  .warmup {
+    padding-top: 10px;
+    padding-left: 30px;
+  }
+  .warmup2 {
+    margin-top: -20px;
+    padding-left: 30px;
+    font-size: 26px;
+  }
+  .ellipse61 {
+    margin-top: -20px;
+  margin-left: 15px;
+  }
+  .ellipse61-2 {
+    margin-top: -20px;
+    padding-left: 10px;
+  }
+  .ellipse61-size {
+    width: 40px  !important;
+  }
+  .account-fit {
+    text-align: center !important;
+    margin-left: -40px;
+}
+  
+
+  .register-image {
+    margin-left: 20px;
+    margin-top: 60px;
+    position: absolute;
+    z-index: 0;
+    width: 500px;
+    height: 740px;
+    opacity: 0.6;   
+    z-index: 0 !important;
+  }
+  .group18 {
+    padding-left: 10px;
+    width: 100%;
+    padding-right: 10px;
+  }
+  .box-smsStay {
+      width: 100%; 
+      padding-left: 10px;
+      padding-right: 10px; 
+    background-color: #ffffff;
+    margin-left: -20px;
+    height: 400px;
+
+  }
+  .information-box2 {
+    padding: 0px 0px 0px 0px;
+    z-index: 3 !important;
+    
+  } 
+  .changeVideoBtn {
+    background-color: #E25E96;
+    color: #FFFFFF;
+    position: relative;
+    width: 100%;
+    margin-left: 25%;
+
+
+  }
+  .randomVideoBtn {
+    background-color: #E25E96;
+    color: #FFFFFF;
+    position: relative;
+    width: 100%;
+    margin-left: 25%;
+    margin-bottom: 10px;
+  }
+  .line2 {
+    margin-top: -10px;
+    margin-left: 10px;
+    top: "50%";
+    border-left: 0.1px solid #F45197;
+    height: 490px;
+  }
 }
 
-@media only screen and (max-width: 960px) {
- 
+ @media only screen and (max-width: 960px) { 
+  .information-box2 {
+    padding: 30px 20px 0px 20px;
+    background-color: #ffffff;
+    z-index: 3 !important;
+    height: 95vh;
+    box-shadow: 2px 17px 13px 6px #bababa;
+  } 
+  .information-box3 {
+    padding: 30px 20px 0px 20px;
+    background-color: #ffffff;
+    z-index: 3 !important;
+    height: 95vh;
+    box-shadow: 2px 17px 13px 6px #bababa;
+  } 
+
+  .group18 {
+    padding-left: 10px;
+    width: 80%;
+    padding-right: 10px;
+  }
+  .register-image {
+    margin-top: -20px;
+    position: absolute !important;
+    height: 94vh ;
+  }
+
   .alarm {
     position: relative;
     padding-top: 50px ;
@@ -278,72 +327,40 @@
   .ellipse61-size {
     width: 40px;
   }
-  .register-imageRoup33 {
-    padding-top: 10px;
-    width: 100%;
-    height: 600;
-    position: absolute;
+ }
+
+ @media only screen and (min-width: 960px) { 
+  .information-box2 {
+    padding: 30px 20px 0px 20px;
+    background-color: #ffffff;
+    z-index: 3 !important;
+    height: 95vh;
+    box-shadow: 2px 17px 13px 6px #bababa;
+  } 
+
+  .group18 {
+    padding-left: 10px;
+    width: 80%;
+    padding-right: 10px;
+  }
+  .register-image {
+    margin-top: -20px;
+    position: absolute !important;
+    height: 94vh ;
+  }
+  .studio-session {
+    position: absolute !important;
+    z-index: 1;
+    height: 95vh ;
   }
 
-
-}
-@media only screen and (min-width: 760px) {
-    .information-box2 {
-      padding: 30px 20px 0px 20px;
-      background-color: #ffffff;
-      z-index: 3 !important;
-      height: 95vh;
-      box-shadow: 2px 17px 13px 6px #bababa;
-    } 
-    .register-image {
-      margin-top: -20px;
-      position: absolute !important;
-      z-index: 0;
-      width: 500px;
-      height: 740px;
-      /* opacity: 0.6;  */
-    }
-    .group18 {
-      width: 80%;
-    }
-
-  .register-imageRoup33 {
-    width: 350px;
-    height: 600px;
-  }
-  .changeVideoBtn {
-    background-color: #E25E96;
-    color: #FFFFFF;
-    position: absolute;
-    width: 200px;
-    margin-top: -150px;
-    margin-left: 100%;
-  
-  }
-  .randomVideoBtn {
-    background-color: #E25E96;
-    color: #FFFFFF;
-    position: absolute;
-    width: 200px;
-    margin-top: -100px;
-    margin-left: 100%;
-  
-  }
-  .line2 {
-    margin-top: -10px;
-    margin-left: 10px;
-    top: "50%";
-    border-left: 0.1px solid #F45197;
-    height: 220px;
-  }
-  .mask {
-    position: relative;
-}
-}
-
-
-@media only screen and (min-width: 960px) {
- 
+  .information-box3 {
+    padding: 30px 20px 0px 20px;
+    background-color: #ffffff !important;
+    z-index: 3 !important;
+    height: 95vh;
+    box-shadow: 2px 17px 13px 6px #bababa;
+  } 
 
   .padding-left3 {
     padding-left: 60px;
@@ -384,12 +401,35 @@
     height: 600px;
   }
 
+  .changeVideoBtn {
+    background-color: #E25E96;
+    color: #FFFFFF;
+    position: absolute;
+    width: 200px;
+    margin-top: -150px;
+    margin-left: 100%;
   
-
- 
+  }
+  .randomVideoBtn {
+    background-color: #E25E96;
+    color: #FFFFFF;
+    position: absolute;
+    width: 200px;
+    margin-top: -100px;
+    margin-left: 100%;
+  
+  }
+  .line2 {
+    margin-top: -10px;
+    margin-left: 10px;
+    top: "50%";
+    border-left: 0.1px solid #F45197;
+    height: 220px;
+  }
+  .mask {
+    position: relative;
 }
-
-
+}
 
 
 @font-face {
@@ -1883,7 +1923,7 @@ margin-bottom: 50px;
   margin-left: -10px;
   position: absolute !important;
   z-index: 0;
-  height: 115vh;
+  height: 94vh;
 }
 .studio-mask {
 margin-top: 160px;
@@ -1895,7 +1935,7 @@ margin-top: 160px;
 .studio-session {
   position: absolute !important;
   z-index: 2;
-  height: 111vh ;
+  height: 92vh ;
 }
 .confirm{
   background-color: #E25E96;
