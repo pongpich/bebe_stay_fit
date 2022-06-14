@@ -27,14 +27,7 @@
     }
 
 
-    .studio-mask {
-        margin-top: 160px;
-        position: absolute !important;
-        z-index: 1;
-        width: 370px !important;
-        height: 500px;
-      }
-    
+
       .studio-session {
         height: 800px !important; 
         width: 100% !important;
@@ -88,11 +81,6 @@
   } 
 
 
- .box-welcome {
-   margin-top: 150px;
-   background-color: #ffffff;
-   padding-bottom: 20px;
- }
   .studio-session {
     height: 70vh !important;
     opacity: 0.6;  
@@ -119,11 +107,11 @@
 
 
   .box-welcome {
-    margin-top: 14rem;
+    margin-top: 100px;
     width: 100%; 
     padding-left: 10px;
     padding-right: 10px; 
-    height:460px;
+
     opacity: 0.8;
     background-color: #ffffff;
 
@@ -1916,12 +1904,12 @@ margin-bottom: 50px;
   height: 94vh;
 }
 .studio-mask {
-margin-top: 160px;
-  position: absolute !important;
-  z-index: 1;
-  width: 500px;
-  height: 500px;
-}
+    margin-top: 160px;
+    position: absolute !important;
+    z-index: 1;
+    width: 500px;
+    height: 500px;
+  }
 
 .studio-session {
   position: absolute !important;
@@ -1987,8 +1975,3 @@ margin-top: 160px;
   height: 100vh;
 }
 
-.studio-mask {
-  padding-top: 170px;
-width:81% !important;
-z-index: 1;
-}
