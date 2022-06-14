@@ -47,7 +47,7 @@ class Welcome_NewMember extends React.Component {
       <>
         <div className="container2">
           <div className="row center App-headerBackground ">
-            <div className="col-12 col-sm-12 col-md-5 col-lg-5 padding-top  height-box ">
+            <div className="col-12 col-sm-12 col-md-5 col-lg-5 padding-top">
             <img src={maskgroup} alt="vector" className="studio-maskgroup" />
             <div className="center">
             <img src={mask} alt="vector" className="studio-mask" />
