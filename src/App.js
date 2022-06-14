@@ -47,53 +47,93 @@ class App extends Component {
 
   renderNavbar() {
     return (
-      <nav className="navbar navbar-expand nav-itemHead " style={{ backgroundColor: "white", fontFamily: "'Prompt', sans-serif" }}>
-        <a className="navbar-brand" href="/#" onClick={() => this.props.history.push('/')} style={{ color: "white", cursor: "pointer" }}>
-       {/*    <h4 className="color1">BEBEStayFit</h4> */}
-        <img src={group49} alt="vector"/>  
-        </a>
-        <div className="collapse navbar-collapse justify-content-start" id="navbarNav">
-          <ul className="navbar-nav">
-            {
-              (this.props.user !== null && this.props.user.authorization === "admin") &&
+      <nav className="navbar navbar-expand-lg " style={{ backgroundColor: "#FFFFFF", fontFamily: "'Prompt', sans-serif" }}>
+        <div className="container-fluid nav-left2">
+          <a className="navbar-brand" href="/#" onClick={() => this.props.history.push('/')} style={{ color: "white", cursor: "pointer" }}>
+            <img src={group49} alt="vector" />
+          </a>
+          <div className="collapse navbar-collapse padding-left3" id="navbarSupportedContent">
+            <ul className="navbar-nav me-auto mb-2 mb-lg-0 font-size5 bold">
               <li className="nav-item">
-                <a className="nav-link" href="#/videolist" onClick={() => this.props.history.push('/videolist')} style={{ color: "white", cursor: "pointer" }}>
-                  Platform
-                </a>
+                <a className="nav-link pointer" >โปรแกรมออกกำลังกาย</a>
               </li>
-            }
-          </ul>
-        </div>
-
-        <div className="collapse navbar-collapse justify-content-end" id="navbarNav">
-          <ul className="navbar-nav">
-            {/* {
-              (this.props.user === null || this.props.user.password === null) && //password === null คือกรณีผู้ใช้ทำการ ResetPassword
               <li className="nav-item">
-                <a className="nav-link" href="#/register" onClick={() => this.props.history.push('/register')} style={{ color: "white", cursor: "pointer" }}>
-                  สมัครสมาชิก
-                </a>
+                <a className="nav-link pointer" >วิธีการกินอาหารและอาหารเสริม</a>
               </li>
-            } */}
-            {
-              (this.props.user !== null && this.props.user.authorization === "admin") &&
-              <li className="nav-item nav-linkHead">
-                <a className="nav-link" href="#/import-members" onClick={() => this.props.history.push('/import-members')} style={{ color: "white", cursor: "pointer" }}>
-                  จัดการสมาชิก
-                </a>
+              <li className="nav-item">
               </li>
-            }
-            {
-              (this.props.user !== null) &&
-              <li className="nav-item ">
-                <a className="nav-link nav-linkHead " href="/#" onClick={() => this.onUserLogout()} style={{  cursor: "pointer" }}>
-                  ออกจากระบบ
-                </a>
-              </li>
-            }
-          </ul>
+            </ul>
+            <div>
+              <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+                <li className="nav-item">
+                  <a className="nav-link nav-linkHead " href="/#" onClick={() => this.onUserLogout()} style={{ cursor: "pointer" }}>
+                    ออกจากระบบ
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
         </div>
       </nav>
+      /*   <nav className="navbar navbar-expand nav-itemHead " style={{ backgroundColor: "white", fontFamily: "'Prompt', sans-serif" }}>
+          <a className="navbar-brand" href="/#" onClick={() => this.props.history.push('/')} style={{ color: "white", cursor: "pointer" }}>
+            <img src={group49} alt="vector" />
+          </a>
+  
+          <div className="collapse navbar-collapse justify-content-start" id="navbarNav">
+            <ul className="navbar-nav">
+              {
+                (this.props.user !== null && this.props.user.authorization === "admin") &&
+                <li className="nav-item">
+                  <a className="nav-link" href="#/videolist" onClick={() => this.props.history.push('/videolist')} style={{ color: "white", cursor: "pointer" }}>
+                    Platform
+                  </a>
+                </li>
+              }
+            </ul>
+          </div>
+  
+          <div className="collapse navbar-collapse padding-left3" id="navbarNav">
+            <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+               {
+                (this.props.user === null || this.props.user.password === null) && //password === null คือกรณีผู้ใช้ทำการ ResetPassword
+                <li className="nav-item">
+                  <a className="nav-link" href="#/register" onClick={() => this.props.history.push('/register')} style={{ color: "white", cursor: "pointer" }}>
+                    สมัครสมาชิก
+                  </a>
+                </li>
+              } 
+               {
+                (this.props.user !== null && this.props.user.authorization === "admin") &&
+                <li className="nav-item nav-linkHead">
+                  <a className="nav-link" href="#/import-members" onClick={() => this.props.history.push('/import-members')} style={{ color: "white", cursor: "pointer" }}>
+                    จัดการสมาชิก
+                  </a>
+                </li>
+              } 
+               {
+                (this.props.user !== null) &&
+                <>
+                    <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+                      <li className="nav-item">
+                        <a className="nav-link pointer" >โปรแกรมออกกำลังกาย</a>
+                      </li>
+                      <li className="nav-item">
+                        <a className="nav-link pointer" >วิธีการกินอาหารและอาหารเสริม</a>
+                      </li>
+                    </ul>
+                  <li className="nav-item ">
+                    <a className="nav-link nav-linkHead " href="/#" onClick={() => this.onUserLogout()} style={{ cursor: "pointer" }}>
+                      ออกจากระบบ
+                    </a>
+                  </li>
+                </>
+  
+              }
+            </ul>
+          </div>
+        </nav> }*/
+
     )
   }
 
@@ -123,7 +163,7 @@ class App extends Component {
             <Route path='/cancel_package_succeed' component={Cancel_Package_Succeed} />
             <Route path='/programPackage' component={ProgramPackage} />
             <Route path='/videoList' component={videoList} />
-            <Route path='/qr_checkout' render={() => {window.location.href="qr_checkout.html"}}  />
+            <Route path='/qr_checkout' render={() => { window.location.href = "qr_checkout.html" }} />
             <Route path='/shipping_check' component={Shipping_check} />
             <Route path='/billing_history' component={Billing_history} />
           </Switch>

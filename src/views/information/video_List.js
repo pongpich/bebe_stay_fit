@@ -33,8 +33,6 @@ class videoList extends React.Component {
       clickManu: "manu1",
       borderBottom1: "video-link rectangle13 color1",
       borderBottom2: "video-link",
-      borderBottom3: "video-link",
-      borderBottom4: "video-link",
       videoLi: "video-li ",
       focusDay: 0,
       urlVideo: null,
@@ -45,6 +43,7 @@ class videoList extends React.Component {
       spinnerRandomVideo: "default",
       indexPlaylist: 0,
       selectChangeVideoList: [],
+      pleaseVerifyNumberPhone: false,
     }
     this.addEventToVideo = this.addEventToVideo.bind(this);
     this.onVideoTimeUpdate = this.onVideoTimeUpdate.bind(this);
@@ -234,37 +233,18 @@ class videoList extends React.Component {
       var clickManu = "manu1"
       var bottom1 = "video-link rectangle13 color1"
       var bottom2 = "video-link"
-      var bottom3 = "video-link"
-      var bottom4 = "video-link"
-    } else if (name === 'borderBottom2') {
+
+    } else {
       console.log("2");
       var clickManu = "manu2"
       var bottom1 = "video-link "
       var bottom2 = "video-link rectangle13 color1"
-      var bottom3 = "video-link "
-      var bottom4 = "video-link"
-    } else if (name === 'borderBottom3') {
-      var clickManu = "manu3"
-      var bottom1 = "video-link "
-      var bottom2 = "video-link "
-      var bottom3 = "video-link rectangle13 color1"
-      var bottom4 = "video-link"
 
-    } else {
-      console.log("3");
-      var clickManu = "manu4"
-      var bottom1 = "video-link"
-      var bottom2 = "video-link"
-      var bottom3 = "video-link"
-      var bottom4 = "video-link rectangle13 color1"
     }
-
     this.setState({
       clickManu: clickManu,
       borderBottom1: bottom1,
       borderBottom2: bottom2,
-      borderBottom3: bottom3,
-      borderBottom4: bottom4,
     });
 
   }
@@ -380,7 +360,7 @@ class videoList extends React.Component {
   boxFrom() {
     return (
       <>
-        {/*  <nav className="navbar navbar-expand-lg bg-light information-box">
+ {/*          <nav className="navbar navbar-expand-lg bg-light information-box">
           <div className="container-fluid nav-left2">
             <h4 className="color1">BEBEStayFit</h4>
             <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -410,21 +390,36 @@ class videoList extends React.Component {
               </div>
             </div>
           </div>
-        </nav> */}
+        </nav>  */}
 
         {
           (this.state.clickManu === "manu1") ?
             <div className="box-videoHead">
-              <h3 className="center-videoText bold">
-                Platform
-              </h3>
-              <div className="play_circle">
-                <img src={play_circle_filled} /> <span className="play_circle_span">WATCH INTRODUCTION</span>
-              </div>
+
+              {(this.state.pleaseVerifyNumberPhone === true) ?
+                <>
+                  <h3 className="center-videoText bold">
+                    Platform
+                  </h3>
+                  <div className="play_circle">
+                    <img src={play_circle_filled} /> <span className="play_circle_span">WATCH INTRODUCTION</span>
+                  </div>
+                </>
+                :
+                <div className="pleaseVerifyNumberPhone">
+                  <h3 className="bold">
+                    กรุณายืนยันหมายเลขโทรศัพท์ของคุณ
+                  </h3>
+                  <br />
+                  <p>การยืนยันจะทำให้ช่วยบัญชีของคุณปลอดภัยยิ่งขึ้น</p>
+                </div>
+
+              }
+
             </div>
             :
-            <div className="box-videoHead">
-              <h3 className="center-videoText bold">
+            <div className="box-videoHead pleaseVerifyNumberPhone">
+              <h3 className="bold">
                 โปรแกรมออกกำลังกาย
               </h3>
             </div>
@@ -438,12 +433,6 @@ class videoList extends React.Component {
               <li className="video-li  video-liPadding-left   video-liPadding-left2">
                 <a className={this.state.borderBottom2} name="borderBottom2" onClick={e => this.clickBottom(e)}>คลิปออกกำลังกายทั้งหมด</a>
               </li>
-              <li className="video-li video-liPadding-left   video-liPadding-left2">
-                <a className={this.state.borderBottom3} name="borderBottom3" onClick={e => this.clickBottom(e)}>อาหารเสริม</a>
-              </li>
-              <li className="video-li video-liPadding-left   video-liPadding-left2">
-                <a className={this.state.borderBottom4} name="borderBottom4" onClick={e => this.clickBottom(e)}>วิธีการเล่น</a>
-              </li>
             </ul>
           </div>
 
@@ -454,10 +443,7 @@ class videoList extends React.Component {
                 :
                 this.routineWorkout()
               :
-              (this.state.clickManu === "manu2") ? this.videoClipAll()
-                :
-
-                (this.state.clickManu === "manu3") ? <Food_supplement /> : null
+              this.videoClipAll()
           }
         </div>
 
@@ -810,10 +796,7 @@ class videoList extends React.Component {
                 <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close" ></button>
               </div>
               <div className="modal-body">
-
                 {(this.state.clicApp === "1") ? this.clicApp() : this.nullClipAll()}
-
-
               </div>
             </div>
           </div>
@@ -827,31 +810,7 @@ class videoList extends React.Component {
     const videoUrl = selectedVDO ? `${selectedVDO.url}` : "";
     return (
       <>
-        <div className="box-videoHead">
-          <h3 className="center-videoText bold">
-            Platform
-          </h3>
-          <div className="play_circle">
-            <img src={play_circle_filled} /> <span className="play_circle_span">WATCH INTRODUCTION</span>
-          </div>
-        </div>
         <div className="box-videoCenter">
-          <div className="col-12 col-sm-12 col-md-12 col-lg-12 ">
-            <ul className="">
-              <li className="video-li  video-liPadding-left">
-                <a className={this.state.borderBottom1} name="borderBottom1" onClick={e => this.clickBottom(e)}>Routine workout</a>
-              </li>
-              <li className="video-li  video-liPadding-left   video-liPadding-left2">
-                <a className={this.state.borderBottom2} name="borderBottom2" onClick={e => this.clickBottom(e)}>คลิปออกกำลังกายทั้งหมด</a>
-              </li>
-              <li className="video-li video-liPadding-left   video-liPadding-left2">
-                <a className={this.state.borderBottom3} name="borderBottom3" onClick={e => this.clickBottom(e)}>อาหารเสริม</a>
-              </li>
-              <li className="video-li video-liPadding-left   video-liPadding-left2">
-                <a className={this.state.borderBottom4} name="borderBottom4" onClick={e => this.clickBottom(e)}>วิธีการเล่น</a>
-              </li>
-            </ul>
-          </div>
           <div className="popup" id="popupSelectEditVideo">
             <div className="overlay" onClick={() => this.closeTogglePopupSelectEditVideo()}>
             </div>

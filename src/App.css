@@ -660,7 +660,7 @@ a {
   padding-left: 30px;
 }
 .text-left2 {
-  text-align: left;
+  text-align: left !important;
 }
 .from-left {
 padding-left: 10%;
@@ -1355,7 +1355,7 @@ margin-left: 20px;
 
 /* vodeo */
 .box-videoHead {
-  background-color: #e8eff4;
+  background-color: #F2F2F2;
   position: relative !important;
   width: auto;
   height: 200px;
@@ -1366,6 +1366,14 @@ margin-left: 20px;
   align-items: center;
   padding-top: 60px;
 }
+
+.pleaseVerifyNumberPhone {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 30px;
+}
+
 .play_circle {
   padding-left: 15%;
 }
