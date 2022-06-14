@@ -1932,6 +1932,7 @@ margin-top: 160px;
   width: 500px;
   height: 500px;
 }
+
 .studio-session {
   position: absolute !important;
   z-index: 2;
@@ -1994,4 +1995,10 @@ margin-top: 160px;
 .heightbox-register {
   position: relative;
   height: 100vh;
+}
+
+.studio-mask {
+  padding-top: 170px;
+width:81% !important;
+z-index: 1;
 }
