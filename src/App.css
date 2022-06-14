@@ -1907,8 +1907,9 @@ margin-bottom: 50px;
     margin-top: 160px;
     position: absolute !important;
     z-index: 1;
-    width: 500px;
-    height: 500px;
+ /*    width: 500px;
+    height: 500px; */
+    height: 60vh;
   }
 
 .studio-session {
