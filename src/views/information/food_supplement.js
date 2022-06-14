@@ -1,5 +1,10 @@
-const Welcome = () => {
-  return <h1>Hello,</h1>;
-}
+import React, { Component } from 'react'
 
-export default  Welcome;
+class Food_supplement extends Component {
+  render() {
+    return (
+      <div>food_supplement</div>
+    )
+  }
+}
+export default Food_supplement;

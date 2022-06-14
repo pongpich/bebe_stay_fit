@@ -20,6 +20,8 @@ import videoList from "./views/information/video_List";
 import group49 from "./views/images/group49.png";
 import Shipping_check from './views/profile/shipping_check';
 import Billing_history from './views/profile/billing_history';
+import Food_supplement from './views/information/food_supplement';
+
 //import Home from '../views/home';Welcome_NewMember
 
 import { connect } from "react-redux";
@@ -52,27 +54,31 @@ class App extends Component {
           <a className="navbar-brand" href="/#" onClick={() => this.props.history.push('/')} style={{ color: "white", cursor: "pointer" }}>
             <img src={group49} alt="vector" />
           </a>
-          <div className="collapse navbar-collapse padding-left3" id="navbarSupportedContent">
-            <ul className="navbar-nav me-auto mb-2 mb-lg-0 font-size5 bold">
-              <li className="nav-item">
-                <a className="nav-link pointer" >โปรแกรมออกกำลังกาย</a>
-              </li>
-              <li className="nav-item">
-                <a className="nav-link pointer" >วิธีการกินอาหารและอาหารเสริม</a>
-              </li>
-              <li className="nav-item">
-              </li>
-            </ul>
-            <div>
-              <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+
+          {(this.props.user !== null) && 
+              <div className="collapse navbar-collapse padding-left3" id="navbarSupportedContent">
+              <ul className="navbar-nav me-auto mb-2 mb-lg-0 font-size5 bold">
                 <li className="nav-item">
-                  <a className="nav-link nav-linkHead " href="/#" onClick={() => this.onUserLogout()} style={{ cursor: "pointer" }}>
-                    ออกจากระบบ
-                  </a>
+                  <a className="nav-link pointer"  onClick={() => this.props.history.push('/videoList')} >โปรแกรมออกกำลังกาย</a>
+                </li>
+                <li className="nav-item">
+                  <a className="nav-link pointer"   onClick={() => this.props.history.push('/food_supplement')}>วิธีการกินอาหารและอาหารเสริม</a>
+                </li>
+                <li className="nav-item">
                 </li>
               </ul>
+              <div>
+                <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+                  <li className="nav-item">
+                    <a className="nav-link nav-linkHead " href="/#" onClick={() => this.onUserLogout()} style={{ cursor: "pointer" }}>
+                      ออกจากระบบ
+                    </a>
+                  </li>
+                </ul>
+              </div>
             </div>
-          </div>
+          }
+      
         </div>
       </nav>
       /*   <nav className="navbar navbar-expand nav-itemHead " style={{ backgroundColor: "white", fontFamily: "'Prompt', sans-serif" }}>
@@ -166,6 +172,7 @@ class App extends Component {
             <Route path='/qr_checkout' render={() => { window.location.href = "qr_checkout.html" }} />
             <Route path='/shipping_check' component={Shipping_check} />
             <Route path='/billing_history' component={Billing_history} />
+            <Route path='/food_supplement' component={Food_supplement} />
           </Switch>
         </header>
       </div>

@@ -43,7 +43,7 @@
       }
 
       .register-image {
-        width: 100%;
+         width: 100% !important;
 
       }
 
@@ -65,7 +65,21 @@
         .studio-session {
           height: 800px !important; 
           width: 100% !important;
-        } 
+        }
+
+      .mask1 {
+        position: absolute;
+        width: 330px !important;
+        height: 400px;
+        z-index: 0;
+        margin-left:-180px;
+        margin-top: 50px !important;
+      }
+      .mask2 {
+        width: 400px !important;
+        margin-top: 150px !important;
+        margin-left: -60px;
+      }
     }
 
 
@@ -221,6 +235,9 @@
       border-left: 0.1px solid #F45197;
       height: 490px;
     }
+    .mask {
+      position:  absolute;
+  }
 
 }
 
@@ -275,7 +292,7 @@
       padding: 30px 20px 0px 20px;
       background-color: #ffffff;
       z-index: 3 !important;
-      min-height: 100vh;
+      height: 95vh;
       box-shadow: 2px 17px 13px 6px #bababa;
     } 
     .register-image {
@@ -289,15 +306,7 @@
     .group18 {
       width: 80%;
     }
-    .box-smsStay {
-      width: 100%; 
-      padding-left: 10px;
-    padding-right: 10px; 
-    margin-left: -10px;
-    height :550px ;
-    background-color: #ffffff;
 
-  }
   .register-imageRoup33 {
     width: 350px;
     height: 600px;
@@ -327,6 +336,9 @@
     border-left: 0.1px solid #F45197;
     height: 220px;
   }
+  .mask {
+    position: relative;
+}
 }
 
 
@@ -437,6 +449,21 @@ body{
   background-color: #F6F6F6;
 }
 
+.mask1 {
+  position: absolute;
+  width: 400px;
+  height: 400px;
+  z-index: 0;
+  margin-left:-180px;
+  margin-top: -20px;
+}
+.mask2 {
+
+  width: 540px;
+  height: 540px;
+  margin-top: 100px;
+  margin-left: -60px;
+}
 .App-headerBackground2 {
   background-color: #f70000 !important;
 }
@@ -1923,4 +1950,8 @@ margin-top: 160px;
 }
 .color3 {
   color: #FF0000;
+}
+.heightbox-register {
+  position: relative;
+  height: 100vh;
 }

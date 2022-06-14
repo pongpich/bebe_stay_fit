@@ -43,7 +43,7 @@ class videoList extends React.Component {
       spinnerRandomVideo: "default",
       indexPlaylist: 0,
       selectChangeVideoList: [],
-      pleaseVerifyNumberPhone: false,
+      pleaseVerifyNumberPhone: true,
     }
     this.addEventToVideo = this.addEventToVideo.bind(this);
     this.onVideoTimeUpdate = this.onVideoTimeUpdate.bind(this);
@@ -360,7 +360,7 @@ class videoList extends React.Component {
   boxFrom() {
     return (
       <>
- {/*          <nav className="navbar navbar-expand-lg bg-light information-box">
+        {/*          <nav className="navbar navbar-expand-lg bg-light information-box">
           <div className="container-fluid nav-left2">
             <h4 className="color1">BEBEStayFit</h4>
             <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -396,7 +396,7 @@ class videoList extends React.Component {
           (this.state.clickManu === "manu1") ?
             <div className="box-videoHead">
 
-              {(this.state.pleaseVerifyNumberPhone === true) ?
+              {(this.state.pleaseVerifyNumberPhone === false/* true */) ?
                 <>
                   <h3 className="center-videoText bold">
                     Platform
@@ -406,11 +406,10 @@ class videoList extends React.Component {
                   </div>
                 </>
                 :
-                <div className="pleaseVerifyNumberPhone">
+                <div className="pleaseVerify">
                   <h3 className="bold">
                     กรุณายืนยันหมายเลขโทรศัพท์ของคุณ
                   </h3>
-                  <br />
                   <p>การยืนยันจะทำให้ช่วยบัญชีของคุณปลอดภัยยิ่งขึ้น</p>
                 </div>
 
@@ -418,7 +417,7 @@ class videoList extends React.Component {
 
             </div>
             :
-            <div className="box-videoHead pleaseVerifyNumberPhone">
+            <div className="box-videoHead2">
               <h3 className="bold">
                 โปรแกรมออกกำลังกาย
               </h3>
