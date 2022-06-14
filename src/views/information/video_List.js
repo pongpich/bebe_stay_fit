@@ -411,6 +411,10 @@ class videoList extends React.Component {
                     กรุณายืนยันหมายเลขโทรศัพท์ของคุณ
                   </h3>
                   <p>การยืนยันจะทำให้ช่วยบัญชีของคุณปลอดภัยยิ่งขึ้น</p>
+                  <div className="col-12 col-sm-12  col-md-12 col-lg-12 center">
+                  <button type="button" className="btn bottom-pink-Whit" >ไว้ทีหลัง</button>&nbsp;&nbsp;&nbsp;
+                  <button type="button" className="btn bottom-pink-video">ยืนยันหมายเลขโทรศัพท์</button>
+                </div>
                 </div>
 
               }
@@ -1115,9 +1119,9 @@ class videoList extends React.Component {
             <div className="box-video">
               { /*  zxczxc */}
             </div>
-            <div className="box-video2">
+            <div className="box-video">
               <div className="text-videobox">
-                <p className="font-size6"> Chest 1 </p>
+                <p className="font-size6"> Chest 1  </p>
               </div>
               <button button className="btn bottom-pink-video" type="button" >
                 เลือกวีดีโอนี้
@@ -1226,9 +1230,9 @@ class videoList extends React.Component {
                 <div className="box-video">
                   {/*   zxczxc */}
                 </div>
-                <div className="box-video1">
+                <div className="box-video2">
                   <div className="text-videobox">
-                    <p className="bold"> โดยเชือก 1,000 ยกระชับสัดส่วน ต้นขาเห็นผลภายใน 5 วัน </p>
+                    <p className="bold"> โดยเชือก 1,000 ยกระชับสัดส่วน ต้นขาเห็นผลภายใน 5 วัน  </p>
                     <p className="text-box-video1"> ในคลิปประกอบไปด้วยการโดดเชือก 20 คลิปทำให้เห็นผลการลดน้ำหนักภายใน 5 วัน จะลดลงไปถึง...</p>
                   </div>
                   <button button className="btn bottom-pink-video" type="button" >

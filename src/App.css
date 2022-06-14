@@ -1412,11 +1412,13 @@ margin-left: 20px;
   padding-top: 60px;
 }
 
-.pleaseVerifyNumberPhone {
-  display: flex;
+.pleaseVerify {
+  width: auto;
+  display: grid;
   justify-content: center;
   align-items: center;
   padding-top: 30px;
+  text-align: center;
 }
 
 .play_circle {
@@ -1737,6 +1739,36 @@ a:hover {
 .text-box-video1 {
   font-size: 14px;
 }
+
+.bottom-pink-Whit{
+  background-color: #ffffff;
+  margin-top: 0px; 
+  height: 40px;
+  width: 100%;
+  color: #000000;
+  border-radius: 25px;
+  border: 1px solid #E25E96;
+}
+.bottom-pink-Whit:hover{
+  background-color: #ffffff;
+  margin-top: 0px; 
+  height: 40px;
+  width: 100%;
+  color: #000000;
+  border-radius: 25px;
+  border: 1px solid #E25E96;
+}
+
+.bottom-pink-Whit:focus{
+  background-color: #ffffff;
+  margin-top: 0px; 
+  height: 40px;
+  width: 100%;
+  color: #000000;
+  border-radius: 25px;
+  border: 1px solid #E25E96;
+}
+
 
 .bottom-pink-video{
   background-color: #E25E96;
