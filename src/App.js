@@ -49,20 +49,23 @@ class App extends Component {
 
   renderNavbar() {
     return (
-      <nav className="navbar navbar-expand-lg " style={{ backgroundColor: "#FFFFFF", fontFamily: "'Prompt', sans-serif" }}>
+      <nav className="navbar navbar-expand-lg bg-light information-box">
         <div className="container-fluid nav-left2">
           <a className="navbar-brand" href="/#" onClick={() => this.props.history.push('/')} style={{ color: "white", cursor: "pointer" }}>
             <img src={group49} alt="vector" />
           </a>
-
-          {(this.props.user !== null) && 
-              <div className="collapse navbar-collapse padding-left3" id="navbarSupportedContent">
+          <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span className="navbar-toggler-icon"></span>
+          </button>
+          {
+            (this.props.user !== null) &&
+            <div className="collapse navbar-collapse padding-left3" id="navbarSupportedContent">
               <ul className="navbar-nav me-auto mb-2 mb-lg-0 font-size5 bold">
                 <li className="nav-item">
-                  <a className="nav-link pointer"  onClick={() => this.props.history.push('/videoList')} >โปรแกรมออกกำลังกาย</a>
+                  <a className="nav-link pointer " onClick={() => this.props.history.push('/videoList')} >โปรแกรมออกกำลังกาย</a>
                 </li>
                 <li className="nav-item">
-                  <a className="nav-link pointer"   onClick={() => this.props.history.push('/food_supplement')}>วิธีการกินอาหารและอาหารเสริม</a>
+                  <a className="nav-link pointer" onClick={() => this.props.history.push('/food_supplement')}>วิธีการกินอาหารและอาหารเสริม</a>
                 </li>
                 <li className="nav-item">
                 </li>
@@ -78,9 +81,10 @@ class App extends Component {
               </div>
             </div>
           }
-      
+
         </div>
       </nav>
+
       /*   <nav className="navbar navbar-expand nav-itemHead " style={{ backgroundColor: "white", fontFamily: "'Prompt', sans-serif" }}>
           <a className="navbar-brand" href="/#" onClick={() => this.props.history.push('/')} style={{ color: "white", cursor: "pointer" }}>
             <img src={group49} alt="vector" />
