@@ -21,6 +21,9 @@ import group49 from "./views/images/group49.png";
 import Shipping_check from './views/profile/shipping_check';
 import Billing_history from './views/profile/billing_history';
 import Food_supplement from './views/information/food_supplement';
+import Reset_password from './views/profile/reset_password';
+import Reset_password_succeed from './views/profile/reset_password_succeed';
+import New_password from './views/profile/new_password';
 
 //import Home from '../views/home';Welcome_NewMember
 
@@ -177,7 +180,10 @@ class App extends Component {
             <Route path='/shipping_check' component={Shipping_check} />
             <Route path='/billing_history' component={Billing_history} />
             <Route path='/food_supplement' component={Food_supplement} />
-          </Switch>
+            <Route path='/reset_password' component={Reset_password} />
+            <Route path='/reset_password_succeed' component={Reset_password_succeed} />
+            <Route path='/new_password' component={New_password} />
+            </Switch>
         </header>
       </div>
     )

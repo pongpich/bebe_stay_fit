@@ -396,7 +396,7 @@ class videoList extends React.Component {
           (this.state.clickManu === "manu1") ?
             <div className="box-videoHead">
 
-              {(this.state.pleaseVerifyNumberPhone === false/* true */) ?
+              {(this.state.pleaseVerifyNumberPhone === /* false */true) ?
                 <>
                   <h3 className="center-videoText bold">
                     Platform

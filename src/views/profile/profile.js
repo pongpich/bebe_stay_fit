@@ -7,18 +7,6 @@ class Profile extends React.Component {
     render() {
         return (
             <>
-                <div className="col-12 col-sm-12 col-md-12 col-lg-12  padding-top2 information-box ">
-                    <div className="container">
-                        <div className="row row-cols-2">
-                            <div className="col-2 col-sm-2 col-md-12 col-lg-12">
-                                <h4 className="color1">BEBEStayFit</h4>
-                            </div>
-                            <div className="col-10 col-sm-10 col-md-12 col-lg-12">
-                                <h6 className="right"><img src={user_circle} alt="vector" className="padding-right" />บพิตร์ เตชะวัฒนานันท์</h6>
-                            </div>
-                        </div>
-                    </div>
-                </div>
                 <div className="padding-top4 center">
                     <p className="font-size6 bold color-protein"> โปรไฟล์</p>
                 </div>
@@ -63,13 +51,12 @@ class Profile extends React.Component {
                             </div>
                             <p className="border-bottom margin-leftRight padding-top2"></p>
                             <div className="d-grid gap-2  mx-auto   col-10 col-sm-10  col-md-8 col-lg-8 margin-top-2 ">
-                                <button className="btn bottom-pink " type="button"  onClick={() =>  this.props.history.push('/billing_history')}>
+                                <button className="btn bottom-pink " type="button" onClick={() => this.props.history.push('/billing_history')}>
                                     ประวัติการเรียกเก็บ
                                 </button>
                                 <button className="btn bottom-outlineGrey margin-top-3" type="button" >
                                     ยกเลิกแพ็คเกจ
                                 </button>
-                                {/*  <Link to="/payment" className="btn bottom-pink" type="button">เริ่มต้นใช้งาน</Link> */}
                             </div>
                         </div>
                     </div>

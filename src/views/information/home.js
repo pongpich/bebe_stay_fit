@@ -45,6 +45,12 @@ class Home extends React.Component {
     }
   }
 
+
+  resetPassword () {
+    this.props.history.push('/reset_password');
+    document.getElementById("remove-model").click();
+  }
+
   onUserLogin() {
     if (this.state.email !== "") {
       this.props.loginUser(this.state.email);
@@ -136,7 +142,7 @@ class Home extends React.Component {
                       เข้าสู่ระบบ
                     </button>
                   </div>
-                  <p className="between margin-top-2 font-size4"><a href="#">ลืมรหัสผ่าน</a> <span>ยังไม่เป็นสมาชิก? <a href="#">ลงทะเบียน</a></span></p>
+                  <p className="between margin-top-2 font-size4"><span className="pointer reset" onClick={() => this.resetPassword()}>ลืมรหัสผ่าน</span> <span>ยังไม่เป็นสมาชิก? <a href="#">ลงทะเบียน</a></span></p>
                 </div>
               </div>
             </div>
