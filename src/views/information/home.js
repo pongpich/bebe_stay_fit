@@ -135,7 +135,7 @@ class Home extends React.Component {
                   </div>
                   <div className="mb-3">
                     <label className="form-label">รหัสผ่าน</label>
-                    <input type="text" className="form-control" id="exampleFormControlInput1" />
+                    <input type="password" className="form-control" id="exampleFormControlInput1" />
                   </div>
                   <div className="d-grid gap-2  mx-auto   col-12 col-sm-12  col-md-12 col-lg-12 distance">
                     <button className="btn bottom-pinkLogin   font-size6" type="button" onClick={() => this.onUserLogin()}>
