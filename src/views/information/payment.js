@@ -8,6 +8,7 @@ import payment5 from "../../assets/img/payment5.png";
 import { Link } from 'react-router-dom';
 import { connect } from "react-redux";
 import { getUserProgram } from "../../redux/exerciseProgram"
+import { insertSubscriptionProducts } from "../../redux/createUser"
 
 import axios from 'axios';
 import moment from 'moment';
@@ -57,6 +58,12 @@ class Payment extends React.Component {
     window.localStorage.setItem('products_list', products_list);
     window.localStorage.setItem('delivery_address', delivery_address);
     window.localStorage.setItem('receipt_address', receipt_address);
+    this.props.insertSubscriptionProducts(
+      email,
+      products_list,
+      delivery_address,
+      receipt_address
+    );
 
     this.props.getUserProgram(email);
 
@@ -332,7 +339,7 @@ const mapStateToProps = ({ createUser, exerciseProgram, shippingAddress }) => {
 };
 
 
-const mapActionsToProps = { getUserProgram };
+const mapActionsToProps = { getUserProgram, insertSubscriptionProducts };
 
 export default connect(
   mapStateToProps,

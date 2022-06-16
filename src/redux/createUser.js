@@ -6,7 +6,24 @@ import { API } from "aws-amplify";
 export const types = {
   CLEAR_PROGRAM: "CLEAR_PROGRAM",
   CREATE_USER: "CREATE_USER",
+  INSERT_SUBSCRIPTION_PRODUCTS: "INSERT_SUBSCRIPTION_PRODUCTS"
+
 }
+
+export const insertSubscriptionProducts = (
+  email,
+  products_list,
+  delivery_address,
+  receipt_address
+) => ({
+  type: types.INSERT_SUBSCRIPTION_PRODUCTS,
+  payload: {
+    email,
+    products_list,
+    delivery_address,
+    receipt_address
+  }
+})
 
 export const clearProgram = () => ({
   type: types.CLEAR_PROGRAM
@@ -25,11 +42,55 @@ export const createUser = (email, password, phone) => ({
 
 /* SAGA Section */
 
+const insertSubscriptionProductsSagaAsync = async (
+  email,
+  products_list,
+  delivery_address,
+  receipt_address
+) => {
+  try {
+    const apiResult = await API.post("bebe", "/insertSubscriptionProducts", {
+      body: {
+        email,
+        products_list,
+        delivery_address,
+        receipt_address
+      }
+    });
+    return apiResult;
+  } catch (error) {
+    return { error, messsage: error.message };
+  }
+}
 
+function* insertSubscriptionProductsSaga({ payload }) {
+  const {
+    email,
+    products_list,
+    delivery_address,
+    receipt_address
+  } = payload
+
+  try {
+    const apiResult = yield call(
+      insertSubscriptionProductsSagaAsync,
+      email,
+      products_list,
+      delivery_address,
+      receipt_address
+    );
+  } catch (error) {
+    console.log("error from insertSubscriptionProductsSaga :", error);
+  }
+}
+
+export function* watchInsertSubscription() {
+  yield takeEvery(types.INSERT_SUBSCRIPTION_PRODUCTS, insertSubscriptionProductsSaga)
+}
 
 export function* saga() {
   yield all([
-
+    fork(watchInsertSubscription),
   ]);
 }
 
