@@ -46,7 +46,7 @@ class Payment extends React.Component {
 
 
   componentDidMount() {
-    const { user_program_id } = this.props;
+    const { user_program_id, delivery_address } = this.props;
     const { price, productName, email, phone, program } = this.state;
 
     window.localStorage.setItem('price', price);
@@ -59,6 +59,10 @@ class Payment extends React.Component {
 
     if (user_program_id) { //ถ้ามี user_program_id แสดงว่าชำระเงินสำเร็จแล้ว
       this.props.history.push('/welcome_new_nember');
+    }
+
+    if (!delivery_address) {
+      this.props.history.push('/shipping_address');
     }
   }
 
@@ -312,10 +316,10 @@ class Payment extends React.Component {
 const mapStateToProps = ({ createUser, exerciseProgram, shippingAddress }) => {
   const { create_user_email, create_user_password, create_user_phone } = createUser;
   const { program, allProgram, user_program_id } = exerciseProgram;
-  const { create_username, create_lastname, create_telephone, create_addressUser,
+  const { delivery_address, create_username, create_lastname, create_telephone, create_addressUser,
     create_subdistrictUser, create_districtUser, create_provinceUser, create_zipcodeUser } = shippingAddress;
   return {
-    create_user_email, create_user_password, create_user_phone, program, allProgram,
+    delivery_address, create_user_email, create_user_password, create_user_phone, program, allProgram,
     create_username, create_lastname, create_telephone, create_addressUser,
     create_subdistrictUser, create_districtUser, create_provinceUser, create_zipcodeUser, user_program_id
   };

@@ -3,6 +3,7 @@ import group19 from "../../assets/img/group19.png";
 import { Link } from 'react-router-dom';
 import { connect } from "react-redux";
 import { getUserProgram } from "../../redux/exerciseProgram"
+import { selectProducts, clearSelectProducts } from "../../redux/shippingAddress"
 
 const fitto = [
   "คลาสสิค มอลต์",
@@ -38,18 +39,29 @@ class Fitto_Plant_Protein extends React.Component {
 
     this.props.getUserProgram(create_user_email);
 
+    this.props.clearSelectProducts()
+
     if (user_program_id) { //ถ้ามี user_program_id แสดงว่าชำระเงินสำเร็จแล้ว
       this.props.history.push('/welcome_new_nember');
     }
   }
 
   componentDidUpdate(prevProps, prevState) {
-    const { user_program_id } = this.props;
+    const { user_program_id, products_list } = this.props;
     if (prevProps.user_program_id !== user_program_id) {
       this.props.history.push('/welcome_new_nember');
     }
+    if (!prevProps.products_list && products_list) {
+      this.props.history.push('/shipping_address');
+    }
   }
 
+  onNextPage() {
+    const { valuebox1, valuebox2, valuebox3, valuebox4, valuebox5, valuebox6 } = this.state;
+    const products_list = { "product1": valuebox1, "product2": valuebox2, "product3": valuebox3, "product4": valuebox4, "product5": valuebox5, "product6": valuebox6 }
+    console.log("products_list :", products_list)
+    this.props.selectProducts(products_list);
+  }
 
 
 
@@ -108,41 +120,44 @@ class Fitto_Plant_Protein extends React.Component {
                       )}
                     </select>
                   </div>
-                  <div className="padding-top2">
-                    <label className="form-label bold font-size4">กล่องที่ 4</label>
-                    <select className="form-select" onChange={this.boxFitto} name="box4" aria-label="Default select example">
-                      {fitto.map((fitto, i) => (
-                        <option key={i} value={fitto}>{fitto}</option>
-                      )
-                      )}
-                    </select>
-                  </div>
-                  <div className="padding-top2">
-                    <label className="form-label bold font-size4">กล่องที่ 5</label>
-                    <select className="form-select" onChange={this.boxFitto} name="box5" aria-label="Default select example">
-                      {fitto.map((fitto, i) => (
-                        <option key={i} value={fitto}>{fitto}</option>
-                      )
-                      )}
-                    </select>
-                  </div>
-                  <div className="padding-top2">
-                    <label className="form-label bold font-size4">กล่องที่ 6</label>
-                    <select className="form-select" onChange={this.boxFitto} name="box6" aria-label="Default select example">
-                      {fitto.map((fitto, i) => (
-                        <option key={i} value={fitto}>{fitto}</option>
-                      )
-                      )}
-                    </select>
+
+                  <div>
+                    <div className="padding-top2">
+                      <label className="form-label bold font-size4">กล่องที่ 4</label>
+                      <select className="form-select" onChange={this.boxFitto} name="box4" aria-label="Default select example">
+                        {fitto.map((fitto, i) => (
+                          <option key={i} value={fitto}>{fitto}</option>
+                        )
+                        )}
+                      </select>
+                    </div>
+                    <div className="padding-top2">
+                      <label className="form-label bold font-size4">กล่องที่ 5</label>
+                      <select className="form-select" onChange={this.boxFitto} name="box5" aria-label="Default select example">
+                        {fitto.map((fitto, i) => (
+                          <option key={i} value={fitto}>{fitto}</option>
+                        )
+                        )}
+                      </select>
+                    </div>
+                    <div className="padding-top2">
+                      <label className="form-label bold font-size4">กล่องที่ 6</label>
+                      <select className="form-select" onChange={this.boxFitto} name="box6" aria-label="Default select example">
+                        {fitto.map((fitto, i) => (
+                          <option key={i} value={fitto}>{fitto}</option>
+                        )
+                        )}
+                      </select>
+                    </div>
                   </div>
                 </div>
               </div>
               <div className="padding-top2">
                 <div className="d-grid gap-2  mx-auto   col-10 col-sm-10  col-md-10 col-lg-10 distance">
-                  {/* <button className="btn bottom-pink" type="button" >
-                                                    ถัดไป
-                                                </button>   */}
-                  <Link to="/shipping_address" className="btn bottom-pink" type="button">ถัดไป</Link>
+                  <button className="btn bottom-pink" type="button" onClick={() => this.onNextPage()}>
+                    ถัดไป
+                  </button>
+                  {/* <Link to="/shipping_address" className="btn bottom-pink" type="button">ถัดไป</Link> */}
                 </div>
               </div>
             </div>
@@ -155,13 +170,14 @@ class Fitto_Plant_Protein extends React.Component {
   }
 }
 
-const mapStateToProps = ({ createUser, exerciseProgram }) => {
+const mapStateToProps = ({ createUser, exerciseProgram, shippingAddress }) => {
   const { create_user_email } = createUser;
   const { user_program_id } = exerciseProgram;
-  return { create_user_email, user_program_id };
+  const { products_list } = shippingAddress;
+  return { create_user_email, user_program_id, products_list };
 };
 
-const mapActionsToProps = { getUserProgram };
+const mapActionsToProps = { getUserProgram, selectProducts, clearSelectProducts };
 
 export default connect(
   mapStateToProps,

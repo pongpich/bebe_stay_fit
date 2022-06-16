@@ -3,7 +3,7 @@ import group20 from "../../assets/img/group20.png";
 import { Link } from 'react-router-dom';
 import InputAddress from 'react-thailand-address-autocomplete';
 import { connect } from "react-redux";
-import { shippingAddress } from "../../redux/shippingAddress";
+import { shippingAddress, clearSelectDeliveryAddress, selectDeliveryAddress, clearSelectReceiptAddress, selectReceiptAddress } from "../../redux/shippingAddress";
 import { getUserProgram } from "../../redux/exerciseProgram"
 
 
@@ -35,13 +35,21 @@ class Shipping_Address extends React.Component {
       InvoiceSubdistrict: null,
       InvoiceDistrict: null,
       InvoiceProvince: null,
-      InvoiceZipcode: null
+      InvoiceZipcode: null,
+      needTaxInvoice: false
     };
   }
   componentDidMount() {
-    const { user_program_id, create_user_email } = this.props;
-    
+    const { user_program_id, create_user_email, products_list } = this.props;
+
     this.props.getUserProgram(create_user_email);
+
+    this.props.clearSelectDeliveryAddress();
+    this.props.clearSelectReceiptAddress();
+
+    if (!products_list) {
+      this.props.history.push('/fitto_plant_protein');
+    }
 
     if (user_program_id) { //ถ้ามี user_program_id แสดงว่าชำระเงินสำเร็จแล้ว
       this.props.history.push('/welcome_new_nember');
@@ -64,9 +72,12 @@ class Shipping_Address extends React.Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    const { user_program_id } = this.props;
+    const { user_program_id, delivery_address } = this.props;
     if (prevProps.user_program_id !== user_program_id) {
       this.props.history.push('/welcome_new_nember');
+    }
+    if (!prevProps.delivery_address && delivery_address) {
+      this.props.history.push('/payment');
     }
   }
 
@@ -78,7 +89,34 @@ class Shipping_Address extends React.Component {
       InvoicePerson, InvoiceTaxpayerName, InvoiceTaxIdentificationNumber, InvoiceTelephone, useShippingAddress,
       InvoiceAddressUser, InvoiceSubdistrict, InvoiceDistrict, InvoiceProvince, InvoiceZipcode
     );
-    this.props.history.push('/payment');
+    const delivery_address = {
+      "firstname": username,
+      "lastname": lastname,
+      "phone": telephone,
+      "address": addressUser,
+      "subdistrict": subdistrictUser,
+      "district": districtUser,
+      "province": provinceUser,
+      "zipcode": zipcodeUser
+    }
+    console.log("delivery_address :", delivery_address);
+    this.props.selectDeliveryAddress(delivery_address);
+    if (this.state.needTaxInvoice) {
+      const receipt_address = {
+        "invoicePerson": InvoicePerson,
+        "InvoiceTaxpayerName": InvoiceTaxpayerName,
+        "InvoiceTaxIdentificationNumber": InvoiceTaxIdentificationNumber,
+        "InvoiceTelephone": InvoiceTelephone,
+        "useShippingAddress": useShippingAddress,
+        "InvoiceAddressUser": useShippingAddress ? addressUser : InvoiceAddressUser,
+        "InvoiceSubdistrict": useShippingAddress ? subdistrictUser : InvoiceSubdistrict,
+        "InvoiceDistrict": useShippingAddress ? districtUser : InvoiceDistrict,
+        "InvoiceProvince": useShippingAddress ? provinceUser : InvoiceProvince,
+        "InvoiceZipcode": useShippingAddress ? zipcodeUser : InvoiceZipcode
+      }
+      console.log("receipt_address :", receipt_address);
+      this.props.selectReceiptAddress(receipt_address);
+    }
   }
 
   taxInvoice = (e) => {
@@ -212,7 +250,7 @@ class Shipping_Address extends React.Component {
                   </div>
                   <div className="padding-top2">
                     <div className="form-check">
-                      <input className="form-check-input" type="checkbox" onClick={e => this.taxInvoice(e)}   /*  data-bs-toggle="modal" data-bs-target="#exampleModal"  */ />
+                      <input id="checkedTaxInvoice" className="form-check-input" type="checkbox" onClick={e => this.taxInvoice(e)} />
                       <label className="form-check-label">
                         ขอใบเสร็จรับเงิน/ใบกำกับภาษี
                                             </label>
@@ -286,63 +324,69 @@ class Shipping_Address extends React.Component {
                                         </label>
                   </div>
                 </div>
-                <div className=" col-12 col-sm-12  col-md-12 col-lg-12 padding-top2">
-                  <div className="mb-3">
-                    <label className="form-label bold">ที่อยู่</label>
-                    <textarea className="form-control" id="exampleFormControlTextarea1" rows="3" name="InvoiceAddressUser" onChange={e => this.onChange(e)} placeholder="กรอกบ้านเลขที่, หมู่, ซอย, อาคาร, ถนน และจัดสุงเกต(ถ้ามี)"></textarea>
-                  </div>
-                </div>
-                <div className="row">
-                  <div className=" col-12 col-sm-12 col-md-6 col-lg-6">
-                    <div className="mb-3 elementStyle">
-                      <label className="form-label bold">แขวง/ตำบล</label>
-                      <InputAddress style={{ width: "100%" }}
-                        address="subdistrict"
-                        value={this.state.subdistrict}
-                        onChange={e => this.onChange(e)}
-                        onSelect={e => this.onSelectInvoice(e)}
-                      />
+
+                {
+                  !this.state.useShippingAddress &&
+                  <div>
+                    <div className=" col-12 col-sm-12  col-md-12 col-lg-12 padding-top2">
+                      <div className="mb-3">
+                        <label className="form-label bold">ที่อยู่</label>
+                        <textarea className="form-control" id="exampleFormControlTextarea1" rows="3" name="InvoiceAddressUser" onChange={e => this.onChange(e)} placeholder="กรอกบ้านเลขที่, หมู่, ซอย, อาคาร, ถนน และจัดสุงเกต(ถ้ามี)"></textarea>
+                      </div>
+                    </div>
+                    <div className="row">
+                      <div className=" col-12 col-sm-12 col-md-6 col-lg-6">
+                        <div className="mb-3 elementStyle">
+                          <label className="form-label bold">แขวง/ตำบล</label>
+                          <InputAddress style={{ width: "100%" }}
+                            address="subdistrict"
+                            value={this.state.InvoiceSubdistrict}
+                            onChange={e => this.onChange(e)}
+                            onSelect={e => this.onSelectInvoice(e)}
+                          />
+                        </div>
+                      </div>
+                      <div className=" col-12 col-sm-12  col-md-6 col-lg-6">
+                        <div className="mb-3 elementStyle">
+                          <label className="form-label bold">เขต/อำเภอ</label>
+                          <InputAddress style={{ width: "100%" }}
+                            address="district"
+                            value={this.state.InvoiceDistrict}
+                            onChange={e => this.onChange(e)}
+                            onSelect={e => this.onSelectInvoice(e)}
+                          />
+                        </div>
+                      </div>
+                    </div>
+                    <div className="row">
+                      <div className=" col-12 col-sm-12 col-md-6 col-lg-6">
+                        <div className="mb-3 elementStyle">
+                          <label className="form-label bold">จังหวัด</label>
+                          <InputAddress style={{ width: "100%" }}
+                            address="province"
+                            value={this.state.InvoiceProvince}
+                            onChange={e => this.onChangeInvoice(e)}
+                            onSelect={e => this.onSelectInvoice(e)}
+                          />
+                        </div>
+                      </div>
+                      <div className=" col-12 col-sm-12  col-md-6 col-lg-6">
+                        <div className="mb-3 elementStyle">
+                          <label className="form-label bold">รหัสไปรษณีย์</label>
+                          <InputAddress style={{ width: "100%" }}
+                            address="zipcode"
+                            value={this.state.InvoiceZipcode}
+                            onChange={e => this.onChange(e)}
+                            onSelect={e => this.onSelectInvoice(e)}
+                          />
+                        </div>
+                      </div>
                     </div>
                   </div>
-                  <div className=" col-12 col-sm-12  col-md-6 col-lg-6">
-                    <div className="mb-3 elementStyle">
-                      <label className="form-label bold">เขต/อำเภอ</label>
-                      <InputAddress style={{ width: "100%" }}
-                        address="district"
-                        value={this.state.district}
-                        onChange={e => this.onChange(e)}
-                        onSelect={e => this.onSelectInvoice(e)}
-                      />
-                    </div>
-                  </div>
-                </div>
-                <div className="row">
-                  <div className=" col-12 col-sm-12 col-md-6 col-lg-6">
-                    <div className="mb-3 elementStyle">
-                      <label className="form-label bold">จังหวัด</label>
-                      <InputAddress style={{ width: "100%" }}
-                        address="province"
-                        value={this.state.province}
-                        onChange={e => this.onChangeInvoice(e)}
-                        onSelect={e => this.onSelectInvoice(e)}
-                      />
-                    </div>
-                  </div>
-                  <div className=" col-12 col-sm-12  col-md-6 col-lg-6">
-                    <div className="mb-3 elementStyle">
-                      <label className="form-label bold">รหัสไปรษณีย์</label>
-                      <InputAddress style={{ width: "100%" }}
-                        address="zipcode"
-                        value={this.state.zipcode}
-                        onChange={e => this.onChange(e)}
-                        onSelect={e => this.onSelectInvoice(e)}
-                      />
-                    </div>
-                  </div>
-                </div>
+                }
                 <div className="col-12 col-sm-12  col-md-12 col-lg-12 center">
-                  <button type="button" className={this.state.pinkModel}   /*  onClick={e => this.pinkModelFocus(e)}  */ data-bs-dismiss="modal" >ยกเลิก</button>&nbsp;&nbsp;&nbsp;
-                                    <button type="button" className={this.state.pinkModelFocus}>ชำระด้วย QR Code</button>
+                  <button type="button" className={this.state.pinkModel} onClick={() => document.getElementById("checkedTaxInvoice").checked = false} data-bs-dismiss="modal" >ยกเลิก</button>&nbsp;&nbsp;&nbsp;
+                                    <button type="button" className={this.state.pinkModelFocus} onClick={() => this.setState({ needTaxInvoice: true })} data-bs-dismiss="modal">ยืนยัน</button>
                 </div>
               </div>
             </div>
@@ -365,11 +409,11 @@ class Shipping_Address extends React.Component {
 const mapStateToProps = ({ createUser, exerciseProgram, shippingAddress }) => {
   const { create_user_email } = createUser;
   const { user_program_id } = exerciseProgram;
-  const { create_username, create_lastname, create_telephone, create_addressUser, create_subdistrictUser, create_districtUser, create_provinceUser, create_zipcodeUser } = shippingAddress;
-  return { create_user_email, user_program_id, create_username, create_lastname, create_telephone, create_addressUser, create_subdistrictUser, create_districtUser, create_provinceUser, create_zipcodeUser };
+  const { products_list, delivery_address, create_username, create_lastname, create_telephone, create_addressUser, create_subdistrictUser, create_districtUser, create_provinceUser, create_zipcodeUser } = shippingAddress;
+  return { create_user_email, user_program_id, products_list, delivery_address, create_username, create_lastname, create_telephone, create_addressUser, create_subdistrictUser, create_districtUser, create_provinceUser, create_zipcodeUser };
 };
 
-const mapActionsToProps = { getUserProgram, shippingAddress };
+const mapActionsToProps = { getUserProgram, shippingAddress, clearSelectDeliveryAddress, selectDeliveryAddress, clearSelectReceiptAddress, selectReceiptAddress };
 
 export default connect(
   mapStateToProps,
