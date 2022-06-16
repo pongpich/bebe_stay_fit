@@ -33,7 +33,9 @@
           <input id="qr_email" type="hidden" name="customerEmail">
           <input id="qr_phone" type="hidden" name="customerTelephone">
           <input id="qr_programID" type="hidden" name="merchantDefined1">
-          <input id="qr_status" type="hidden" name="merchantDefined2">
+          <input id="products_list" type="hidden" name="merchantDefined2">
+          <input id="delivery_address" type="hidden" name="merchantDefined3">
+          <input id="receipt_address" type="hidden" name="merchantDefined4">
         </form>
 
       </div>
@@ -51,6 +53,9 @@
     const backgroundUrl = `${baseURL}/gbqr`;
     const phone = localStorage.getItem('phone');
     const program_id = localStorage.getItem('program_id');
+    const products_list = localStorage.getItem('products_list');
+    const delivery_address = localStorage.getItem('delivery_address');
+    const receipt_address = localStorage.getItem('receipt_address');
     const rhythm = 2000; //หน่วยเป็น ms
     const qrTimeOut = 180; //หน่วยเป็นวินาที
     var pageUrl = window.location.href;
@@ -74,11 +79,13 @@
     document.getElementById("qr_email").value = email;
     document.getElementById("qr_phone").value = phone;
     document.getElementById("qr_programID").value = program_id;
-    document.getElementById("qr_status").value = "success";
+    document.getElementById("products_list").value = products_list;
+    document.getElementById("delivery_address").value = delivery_address;
+    document.getElementById("receipt_address").value = receipt_address;
 
     const data = {
       customerEmail: email,
-      merchantDefined2: 'default'
+      status: 'default'
     };
 
     let intervalId;

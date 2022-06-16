@@ -115,7 +115,7 @@ const INIT_STATE = {
   create_InvoiceZipcode: null,
   products_list: null,
   delivery_address: null,
-  receipt_address: null
+  receipt_address: ""
 };
 
 export function reducer(state = INIT_STATE, action) {
@@ -123,7 +123,7 @@ export function reducer(state = INIT_STATE, action) {
     case types.CLEAR_SELECT_RECEIPT_ADDRESS:
       return {
         ...state,
-        receipt_address: null
+        receipt_address: ""
       }
     case types.SELECT_RECEIPT_ADDRESS:
       return {

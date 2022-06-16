@@ -46,7 +46,7 @@ class Payment extends React.Component {
 
 
   componentDidMount() {
-    const { user_program_id, delivery_address } = this.props;
+    const { user_program_id, products_list, delivery_address, receipt_address } = this.props;
     const { price, productName, email, phone, program } = this.state;
 
     window.localStorage.setItem('price', price);
@@ -54,6 +54,9 @@ class Payment extends React.Component {
     window.localStorage.setItem('email', email);
     window.localStorage.setItem('phone', phone);
     window.localStorage.setItem('program_id', program.program_id);
+    window.localStorage.setItem('products_list', products_list);
+    window.localStorage.setItem('delivery_address', delivery_address);
+    window.localStorage.setItem('receipt_address', receipt_address);
 
     this.props.getUserProgram(email);
 
@@ -113,7 +116,7 @@ class Payment extends React.Component {
 
   onPay() {
     const { price, name, cardNumber, expirationMonth, expirationYear, securityCode } = this.state;
-    const { create_user_email, program, history } = this.props;
+    const { create_user_email, program, history, products_list, delivery_address, receipt_address } = this.props;
 
     const baseURL = "https://api.gbprimepay.com";
     const tokenURL = `${baseURL}/v2/tokens`; // Test URL: https://api.globalprimepay.com/v2/tokens , Production URL: https://api.gbprimepay.com/v2/tokens
@@ -156,7 +159,10 @@ class Payment extends React.Component {
             backgroundUrl: "https://api.planforfit.com/bebe/recurring", // for staging: https://api.planforfit.com/bebedev/recurring
             customerName: name,
             customerEmail: create_user_email,
-            merchantDefined1: program.program_id
+            merchantDefined1: program.program_id,
+            merchantDefined2: products_list,
+            merchantDefined3: delivery_address,
+            merchantDefined4: receipt_address
           }
 
           const recurringConfig = {
@@ -316,10 +322,10 @@ class Payment extends React.Component {
 const mapStateToProps = ({ createUser, exerciseProgram, shippingAddress }) => {
   const { create_user_email, create_user_password, create_user_phone } = createUser;
   const { program, allProgram, user_program_id } = exerciseProgram;
-  const { delivery_address, create_username, create_lastname, create_telephone, create_addressUser,
+  const { products_list, delivery_address, receipt_address, create_username, create_lastname, create_telephone, create_addressUser,
     create_subdistrictUser, create_districtUser, create_provinceUser, create_zipcodeUser } = shippingAddress;
   return {
-    delivery_address, create_user_email, create_user_password, create_user_phone, program, allProgram,
+    products_list, delivery_address, receipt_address, create_user_email, create_user_password, create_user_phone, program, allProgram,
     create_username, create_lastname, create_telephone, create_addressUser,
     create_subdistrictUser, create_districtUser, create_provinceUser, create_zipcodeUser, user_program_id
   };
