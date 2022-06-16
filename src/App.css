@@ -319,8 +319,6 @@
     padding-left: 50px;
   }
 
-
-
 }
 
 @media only screen and (min-width: 960px) {
@@ -446,9 +444,10 @@
 @media only screen and (max-width: 992px) {
   .navbarLeft {
     visibility: hidden !important;
+    height: 0px;
   }
   .navbarHead {
-    margin-top: -50px;
+    margin-top: 50px;
   }
   .headTop {
     padding-top: 20px;
@@ -458,13 +457,10 @@
 }
 @media only screen and (min-width: 992px) {
   .navbarLeft {
-    
     padding-top: 20px;
-    padding-left: 20px;
-    padding-right: 20px;
     height: 100vh;
     background-color: #ffffff;
-    box-shadow: -4px 0px 10px 5px #bababa;
+    box-shadow: -2px 8px 7px 7px #bababa;
   }
   
   .navbarHead {
@@ -472,8 +468,11 @@
   }
   
   .headTop {
+
     position: absolute;
     margin-top: -50px;
+    padding-left: 20px;
+    padding-right: 20px;
   }
 }
 
@@ -2239,4 +2238,25 @@ a:hover {
   width: auto;
   height: 100vh;
   background-color: #ffffff;
+}
+
+.mavbarfood {
+  position: relative;
+  margin-left: 20px;
+}
+.manuFood {
+  font-size: 24px;
+  font-weight: bold;
+  padding-left: 10px;
+}
+.manuFood-border {
+  font-size: 24px;
+  font-weight: bold;
+  border-left: 5px solid #E25E96;
+  padding-left: 10px;
+}
+.boxheadTopA {
+  height: 700px;
+  width: auto;
+  background-color: #d30768;
 }
