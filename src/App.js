@@ -60,11 +60,12 @@ class App extends Component {
           <a className="navbar-brand" href="/#" onClick={() => this.props.history.push('/')} style={{ color: "white", cursor: "pointer" }}>
             <img src={group49} alt="vector" />
           </a>
-          <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span className="navbar-toggler-icon"></span>
-          </button>
           {
             (this.props.user !== null) &&
+          <>
+            <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span className="navbar-toggler-icon"></span>
+          </button>
             <div className="collapse navbar-collapse padding-left3" id="navbarSupportedContent">
               <ul className="navbar-nav me-auto mb-2 mb-lg-0 font-size5 bold">
                 <li className="nav-item">
@@ -86,6 +87,7 @@ class App extends Component {
                 </ul>
               </div>
             </div>
+          </>
           }
 
         </div>

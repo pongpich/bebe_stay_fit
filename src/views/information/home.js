@@ -9,7 +9,9 @@ class Home extends React.Component {
     super(props);
     this.state = {
       email: null,
-      password: null
+      password: null,
+      validation: "true",
+      setPassword: false
     }
   }
 
@@ -31,7 +33,18 @@ class Home extends React.Component {
       this.props.history.push('/basic_information');
     }
 
-    console.log("statusSetPassword :", statusSetPassword);
+    if (this.state.setPassword === false) {
+       if (statusSetPassword === "success") {
+        alert("เปลี่ยนรหัสผ่านสำเร็จ");
+        this.setState({
+          setPassword: true
+        })
+      } 
+      console.log("setPassword");
+    } 
+
+
+
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -55,18 +68,27 @@ class Home extends React.Component {
   }
 
   onUserLogin() {
-    if (this.state.email !== "" && this.state.password !== "") {
+
+    if ((this.state.email !== "" && this.state.email !== null) && (this.state.password !== "" && this.state.password !== null)) {
       this.props.loginUser(this.state.email, this.state.password);
+    } else {
+      this.setState({
+        validation: "false"
+      })
     }
+
+
   }
 
   handleChange(event) {
+
     this.setState({
       [event.target.id]: event.target.value
     })
   };
 
   render() {
+    const { validation } = this.state;
     return (
       <div>
         <div className="col-12 col-sm-12 col-md-12 col-lg-12 box-Null">
@@ -111,8 +133,6 @@ class Home extends React.Component {
             </div>
           </div>
         </div>
-
-
         <div className="modal fade" id="exampleModal" aria-labelledby="exampleModalLabel" aria-hidden="true">
           <div className="modal-dialog">
             <div className="modal-content padding-leftRight">
@@ -146,6 +166,9 @@ class Home extends React.Component {
                       onChange={(event) => this.handleChange(event)}
                     />
                   </div>
+                  {validation !== "true" ?
+                    <h6 style={{ color: "red" }}>กรุณากรอกข้อมูลให้ครบถ้วน</h6>
+                    : null}
                   <div className="d-grid gap-2  mx-auto   col-12 col-sm-12  col-md-12 col-lg-12 distance">
                     <button className="btn bottom-pinkLogin   font-size6" type="button" onClick={() => this.onUserLogin()}>
                       เข้าสู่ระบบ
@@ -163,7 +186,7 @@ class Home extends React.Component {
 }
 
 const mapStateToProps = ({ authUser, createUser, exerciseProgram }) => {
-  const { user, status,statusSetPassword } = authUser;
+  const { user, status, statusSetPassword } = authUser;
   const { create_user_email } = createUser;
   const { user_program_id } = exerciseProgram;
   return { create_user_email, user_program_id, user, status, statusSetPassword };

@@ -678,16 +678,20 @@ function* forgotPasswordSaga({ payload }) {
       forgotPasswordSagaAsync,
       email
     );
-    console.log(result);
-    if (result.results.message === "success") {
-      yield put({
-        type: types.FORGOT_PASSWORD_SUCCESS
-      })
-    } else {
-      yield put({
-        type: types.FORGOT_PASSWORD_FAIL
-      })
+    console.log('TESTS',result);
+    if (result && result.results && result.results.message) {
+      if (result.results.message === "success") {
+        yield put({
+          type: types.FORGOT_PASSWORD_SUCCESS
+        })
+      } else {
+        yield put({
+          type: types.FORGOT_PASSWORD_FAIL
+        })
+      }
+
     }
+
   } catch (error) {
     console.log("error from forgotPasswordSaga :", error);
   }
