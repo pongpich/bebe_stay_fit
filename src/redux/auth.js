@@ -20,6 +20,8 @@ export const types = {
   GET_EXPIRE_DATE: "GET_EXPIRE_DATE",
   GET_EXPIRE_DATE_SUCCESS: "GET_EXPIRE_DATE_SUCCESS",
   FORGOT_PASSWORD: "FORGOT_PASSWORD",
+  FORGOT_PASSWORD_SUCCESS: "FORGOT_PASSWORD_SUCCESS",
+  FORGOT_PASSWORD_FAIL: "FORGOT_PASSWORD_FAIL",
   RESET_PASSWORD: "RESET_PASSWORD",
   RESET_PASSWORD_SUCCESS: "RESET_PASSWORD_SUCCESS",
   RESET_PASSWORD_FAIL: "RESET_PASSWORD_FAIL",
@@ -387,7 +389,7 @@ const forgotPasswordSagaAsync = async (
   email
 ) => {
   try {
-    const apiResult = await API.get("bebe", "/forgotPassword", {
+    const apiResult = await API.get("bebe", "/forgotPasswordStayfit", {
       queryStringParameters: {
         email
       }
@@ -403,7 +405,7 @@ const loginUserSagaAsync = async (
   password
 ) => {
   try {
-    const apiResult = await API.get("bebe", "/login", {
+    const apiResult = await API.get("bebe", "/loginStayfit", {
       queryStringParameters: {
         email: email,
         password: password
@@ -672,10 +674,20 @@ function* resetPasswordSaga({ payload }) {
 function* forgotPasswordSaga({ payload }) {
   const { email } = payload;
   try {
-    yield call(
+    const result = yield call(
       forgotPasswordSagaAsync,
       email
     );
+    console.log(result);
+    if (result.results.message === "success") {
+      yield put({
+        type: types.FORGOT_PASSWORD_SUCCESS
+      })
+    } else {
+      yield put({
+        type: types.FORGOT_PASSWORD_FAIL
+      })
+    }
   } catch (error) {
     console.log("error from forgotPasswordSaga :", error);
   }
@@ -795,13 +807,24 @@ const INIT_STATE = {
   status: "default",
   loading: false,
   statusRegister: "default",
-  statusResetPassword: "default",
+  statusSetPassword: "default",
   statusChangeEmail: "default",
-  createAccount: null
+  createAccount: null,
+  statusForgotPassword: "default"
 };
 
 export function reducer(state = INIT_STATE, action) {
   switch (action.type) {
+    case types.FORGOT_PASSWORD_SUCCESS:
+      return {
+        ...state,
+        statusForgotPassword: "success"
+      }
+    case types.FORGOT_PASSWORD_FAIL:
+      return {
+        ...state,
+        statusForgotPassword: "fail"
+      }
     case types.UPDATE_PROFILE_SUCCESS:
       return {
         ...state,
@@ -833,28 +856,25 @@ export function reducer(state = INIT_STATE, action) {
       }
     case types.RESET_PASSWORD_SUCCESS:
       return {
-        ...state,
-        statusResetPassword: "success"
+        ...state
       };
     case types.SET_PASSWORD_SUCCESS:
       return {
         ...state,
-        statusResetPassword: "default"
+        statusSetPassword: "success"
       }
     case types.LOGIN_USER_SUCCESS:
       return {
         ...state,
         user: action.payload,
         status: "success",
-        statusRegister: "default",
-        statusResetPassword: "default"
+        statusRegister: "default"
       };
     case types.LOGIN_USER_FAIL:
       return {
         ...state,
         status: "fail",
-        statusRegister: "default",
-        statusResetPassword: "default"
+        statusRegister: "default"
       };
     case types.REGISTER_SUCCESS:
       return {

@@ -8,7 +8,8 @@ class Home extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      email: null
+      email: null,
+      password: null
     }
   }
 
@@ -18,7 +19,7 @@ class Home extends React.Component {
   }
 
   componentDidMount() {
-    const { user_program_id, create_user_email, user } = this.props;
+    const { user_program_id, create_user_email, user, statusSetPassword } = this.props;
 
     this.props.getUserProgram(create_user_email);
 
@@ -29,6 +30,8 @@ class Home extends React.Component {
     if (user !== null) {
       this.props.history.push('/basic_information');
     }
+
+    console.log("statusSetPassword :", statusSetPassword);
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -40,20 +43,20 @@ class Home extends React.Component {
     if (prevProps.status !== status) {
       if (status === "success") {
         this.props.history.push('/basic_information');
-        document.getElementById("remove-model").click(); 
+        document.getElementById("remove-model").click();
       }
     }
   }
 
 
-  resetPassword () {
+  resetPassword() {
     this.props.history.push('/reset_password');
     document.getElementById("remove-model").click();
   }
 
   onUserLogin() {
-    if (this.state.email !== "") {
-      this.props.loginUser(this.state.email);
+    if (this.state.email !== "" && this.state.password !== "") {
+      this.props.loginUser(this.state.email, this.state.password);
     }
   }
 
@@ -135,7 +138,13 @@ class Home extends React.Component {
                   </div>
                   <div className="mb-3">
                     <label className="form-label">รหัสผ่าน</label>
-                    <input type="password" className="form-control" id="exampleFormControlInput1" />
+                    <input
+                      type="password"
+                      className="form-control"
+                      id="password"
+                      value={this.state.password}
+                      onChange={(event) => this.handleChange(event)}
+                    />
                   </div>
                   <div className="d-grid gap-2  mx-auto   col-12 col-sm-12  col-md-12 col-lg-12 distance">
                     <button className="btn bottom-pinkLogin   font-size6" type="button" onClick={() => this.onUserLogin()}>
@@ -154,10 +163,10 @@ class Home extends React.Component {
 }
 
 const mapStateToProps = ({ authUser, createUser, exerciseProgram }) => {
-  const { user, status } = authUser;
+  const { user, status,statusSetPassword } = authUser;
   const { create_user_email } = createUser;
   const { user_program_id } = exerciseProgram;
-  return { create_user_email, user_program_id, user, status };
+  return { create_user_email, user_program_id, user, status, statusSetPassword };
 };
 
 const mapActionsToProps = { getUserProgram, loginUser };
