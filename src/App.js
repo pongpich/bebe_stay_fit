@@ -29,6 +29,7 @@ import New_password from './views/profile/new_password';
 
 import { connect } from "react-redux";
 import { logoutUser } from "./redux/auth";
+import { clearCreateUser } from "./redux/createUser";
 
 import {
   BrowserRouter as Router,
@@ -46,6 +47,7 @@ class App extends Component {
 
   onUserLogout(event) {
     this.props.logoutUser();
+    this.props.clearCreateUser();
     //this.props.clearVideoList();
     this.props.history.push('/home');
   }
@@ -196,7 +198,8 @@ const mapStateToProps = ({ authUser }) => {
 };
 
 const mapActionsToProps = {
-  logoutUser
+  logoutUser,
+  clearCreateUser
 };
 
 export default connect(

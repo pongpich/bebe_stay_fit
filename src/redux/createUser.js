@@ -4,7 +4,7 @@ import { API } from "aws-amplify";
 /* ACTION Section */
 
 export const types = {
-  CLEAR_PROGRAM: "CLEAR_PROGRAM",
+  CLEAR_CREATE_USER: "CLEAR_CREATE_USER",
   CREATE_USER: "CREATE_USER",
   INSERT_SUBSCRIPTION_PRODUCTS: "INSERT_SUBSCRIPTION_PRODUCTS"
 
@@ -25,8 +25,8 @@ export const insertSubscriptionProducts = (
   }
 })
 
-export const clearProgram = () => ({
-  type: types.CLEAR_PROGRAM
+export const clearCreateUser = () => ({
+  type: types.CLEAR_CREATE_USER
 })
 
 export const createUser = (email, password, phone) => ({
@@ -106,7 +106,7 @@ const INIT_STATE = {
 
 export function reducer(state = INIT_STATE, action) {
   switch (action.type) {
-    case types.CLEAR_PROGRAM:
+    case types.CLEAR_CREATE_USER:
       return INIT_STATE;
     case types.CREATE_USER:
       return {
