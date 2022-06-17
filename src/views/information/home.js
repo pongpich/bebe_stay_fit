@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Link } from 'react-router-dom';
 import { connect } from "react-redux";
 import { getUserProgram } from "../../redux/exerciseProgram";
-import { loginUser } from "../../redux/auth"
+import { loginUser, resetStatusSetPassword } from "../../redux/auth"
 
 class Home extends React.Component {
   constructor(props) {
@@ -34,14 +34,15 @@ class Home extends React.Component {
     }
 
     if (this.state.setPassword === false) {
-       if (statusSetPassword === "success") {
+      if (statusSetPassword === "success") {
         alert("เปลี่ยนรหัสผ่านสำเร็จ");
         this.setState({
           setPassword: true
         })
-      } 
+        this.props.resetStatusSetPassword();
+      }
       console.log("setPassword");
-    } 
+    }
 
 
 
@@ -192,7 +193,7 @@ const mapStateToProps = ({ authUser, createUser, exerciseProgram }) => {
   return { create_user_email, user_program_id, user, status, statusSetPassword };
 };
 
-const mapActionsToProps = { getUserProgram, loginUser };
+const mapActionsToProps = { getUserProgram, loginUser, resetStatusSetPassword };
 
 export default connect(
   mapStateToProps,

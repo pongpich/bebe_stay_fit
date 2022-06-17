@@ -15,6 +15,7 @@ export const types = {
   LOGOUT_USER: "LOGOUT_USER",
   SET_PASSWORD: "SET_PASSWORD",
   SET_PASSWORD_SUCCESS: "SET_PASSWORD_SUCCESS",
+  RESET_STATUS_SET_PASSWORD: "RESET_STATUS_SET_PASSWORD",
   TRIAL_PACKAGE: "TRIAL_PACKAGE",
   TRIAL_PACKAGE_SUCCESS: "TRIAL_PACKAGE_SUCCESS",
   GET_EXPIRE_DATE: "GET_EXPIRE_DATE",
@@ -34,6 +35,10 @@ export const types = {
   UPDATE_PROFILE: "UPDATE_PROFILE",
   UPDATE_PROFILE_SUCCESS: "UPDATE_PROFILE_SUCCESS",
 }
+
+export const resetStatusSetPassword= () => ({
+  type: types.RESET_STATUS_SET_PASSWORD
+})
 
 export const updateProfile = (
   user_id,
@@ -866,6 +871,11 @@ export function reducer(state = INIT_STATE, action) {
       return {
         ...state,
         statusSetPassword: "success"
+      }
+    case types.RESET_STATUS_SET_PASSWORD:
+      return {
+        ...state,
+        statusSetPassword: "default"
       }
     case types.LOGIN_USER_SUCCESS:
       return {
