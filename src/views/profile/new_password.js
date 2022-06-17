@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from "react-redux";
-import { setPassword } from "../../redux/auth"
+import { setPassword, resetStatusSetPassword } from "../../redux/auth"
 
 class new_password extends Component {
   constructor(props) {
@@ -20,6 +20,8 @@ class new_password extends Component {
 
     const email = params.get("email");
     this.setState({ email: email })
+
+    this.props.resetStatusSetPassword();
   }
 
   handleChange(event) {
@@ -29,10 +31,10 @@ class new_password extends Component {
   };
 
   onSubmit(email, password, confirm_password) {
-/*     this.setState({
-      status_reset_password: "default"
-    })
-    */
+    /*     this.setState({
+          status_reset_password: "default"
+        })
+        */
     if (password === confirm_password) {
       this.props.setPassword(email, password)
       this.setState({
@@ -46,22 +48,18 @@ class new_password extends Component {
 
   }
 
-  componentDidUpdate(prevProps) {
-    if ((prevProps.status_reset_password !==  this.props.status_reset_password) &&  this.props.status_reset_password === "fail") {
-      this.setState({
-        status_reset_password: "fail"
-      })
+  componentDidUpdate(prevProps, prevState) {
+    const { statusSetPassword } = this.props;
+    if (prevProps.statusSetPassword === "default" && statusSetPassword === "success") {
+      this.props.history.push('/home');
     }
-   if (this.state.status_reset_password === "success") {
-    this.props.history.push('/home');
-    } 
-  }   
+  }
 
 
   render() {
 
-    const { email, password, confirm_password,status_reset_password } = this.state;
-    console.log("sta AA" ,status_reset_password);
+    const { email, password, confirm_password, status_reset_password } = this.state;
+    console.log("sta AA", status_reset_password);
     return (
       <>
         <div className="padding-top4 center">
@@ -90,7 +88,7 @@ class new_password extends Component {
                   onChange={(event) => this.handleChange(event)}
                 />
               </div>
-              {status_reset_password === "fail" ?   <h6 style={{ color: "red",  paddingLeft: "45px",textAlign: "left" }} >กรุณากรอก   Password ให้ตรงกัน</h6>: null}
+              {status_reset_password === "fail" ? <h6 style={{ color: "red", paddingLeft: "45px", textAlign: "left" }} >กรุณากรอก   Password ให้ตรงกัน</h6> : null}
               <div className="col-10 col-sm-10 col-md-10 col-lg-10 center2 padding-bottom padding-top2 ">
                 <button type="button" className="btn bottom-pink-video" onClick={() => this.onSubmit(email, password, confirm_password)}>ยืนยัน</button>
               </div>
@@ -102,13 +100,13 @@ class new_password extends Component {
   }
 }
 
-const mapStateToProps = ({ }) => {
-
-  return {};
+const mapStateToProps = ({ authUser }) => {
+  const { statusSetPassword } = authUser
+  return { statusSetPassword };
 };
 
 
-const mapActionsToProps = { setPassword };
+const mapActionsToProps = { setPassword, resetStatusSetPassword };
 
 export default connect(
   mapStateToProps,

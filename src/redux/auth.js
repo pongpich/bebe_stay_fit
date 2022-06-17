@@ -875,7 +875,8 @@ export function reducer(state = INIT_STATE, action) {
     case types.RESET_STATUS_SET_PASSWORD:
       return {
         ...state,
-        statusSetPassword: "default"
+        statusSetPassword: "default",
+        statusForgotPassword: "default"
       }
     case types.LOGIN_USER_SUCCESS:
       return {

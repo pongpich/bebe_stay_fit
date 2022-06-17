@@ -14,9 +14,9 @@ class Welcome_NewMember extends React.Component {
 
     this.props.getUserProgram(create_user_email);
 
-   /*  if (!user_program_id) { //ถ้าไม่มี user_program_id แสดงว่ายังชำระเงินไม่สำเร็จแล้ว
-      this.props.history.push('/programPackage');
-    } */
+     if (!user_program_id) { //ถ้าไม่มี user_program_id แสดงว่ายังชำระเงินไม่สำเร็จแล้ว
+       this.props.history.push('/programPackage');
+     }
 
     if (user !== null) {
       this.props.history.push('/basic_information');
@@ -31,14 +31,14 @@ class Welcome_NewMember extends React.Component {
 
     if (prevProps.status !== status) {
       if (status === "success") {
-          this.props.history.push('/basic_information');     
+        this.props.history.push('/basic_information');
       }
     }
   }
 
   onUserLogin() {
     if (this.props.create_user_email !== "") {
-      this.props.loginUser(this.props.create_user_email);
+      this.props.loginUser(this.props.create_user_email, this.props.create_user_password);
     }
   }
 
@@ -48,11 +48,11 @@ class Welcome_NewMember extends React.Component {
         <div className="container2">
           <div className="row center">
             <div className="col-12 col-sm-12 col-md-5 col-lg-5 padding-top">
-            <img src={maskgroup} alt="vector" className="studio-maskgroup" />
-            <div className="center">
-            <img src={mask} alt="vector" className="studio-mask" />
-            <img src={studioSession} alt="vector" className="studio-session" />
-            </div>
+              <img src={maskgroup} alt="vector" className="studio-maskgroup" />
+              <div className="center">
+                <img src={mask} alt="vector" className="studio-mask" />
+                <img src={studioSession} alt="vector" className="studio-session" />
+              </div>
             </div>
             <div className="col-12 col-sm-12 col-md-7 col-lg-7 padding-top information-box3">
               <div className="padding-top3 text-center box-welcome">
@@ -87,9 +87,9 @@ class Welcome_NewMember extends React.Component {
 
 const mapStateToProps = ({ authUser, createUser, exerciseProgram }) => {
   const { user, status } = authUser;
-  const { create_user_email } = createUser;
+  const { create_user_email, create_user_password } = createUser;
   const { user_program_id } = exerciseProgram;
-  return { create_user_email, user_program_id, user, status };
+  return { create_user_email, user_program_id, user, create_user_password, status };
 };
 
 const mapActionsToProps = { getUserProgram, loginUser };

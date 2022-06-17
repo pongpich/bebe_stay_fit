@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from "react-redux";
-import { forgotPassword } from "../../redux/auth"
+import { forgotPassword, resetStatusSetPassword } from "../../redux/auth"
 
 class Reset_password extends Component {
   constructor(props) {
@@ -22,14 +22,18 @@ class Reset_password extends Component {
 
     this.props.forgotPassword(email);
 
-      
+
+  }
+
+  componentDidMount() {
+    this.props.resetStatusSetPassword();
   }
 
   componentDidUpdate(prevProps) {
-    if ((prevProps.statusForgotPassword !==  this.props.statusForgotPassword) &&  this.props.statusForgotPassword === "success") {
+    if ((prevProps.statusForgotPassword !== this.props.statusForgotPassword) && this.props.statusForgotPassword === "success") {
       this.props.history.push('/reset_password_succeed');
     }
-    if ((prevProps.statusForgotPassword !==  this.props.statusForgotPassword) &&  this.props.statusForgotPassword === "fail") {
+    if ((prevProps.statusForgotPassword !== this.props.statusForgotPassword) && this.props.statusForgotPassword === "fail") {
       this.setState({
         validationEmail: this.props.statusForgotPassword
       })
@@ -43,7 +47,7 @@ class Reset_password extends Component {
   };
 
   render() {
-    const { email,validationEmail } = this.state;
+    const { email, validationEmail } = this.state;
     return (
       <>
         <div className="padding-top4 center">
@@ -65,7 +69,7 @@ class Reset_password extends Component {
                   value={email}
                   onChange={(event) => this.handleChange(event)}
                 />
-                {validationEmail === "fail" ?   <h6 style={{ color: "red" }}>กรุณาตรวจสอบสอบ Email: {email} อีกครั้ง</h6>: null}
+                {validationEmail === "fail" ? <h6 style={{ color: "red" }}>กรุณาตรวจสอบสอบ Email: {email} อีกครั้ง</h6> : null}
               </div>
               <div className="col-10 col-sm-10 col-md-10 col-lg-10 center2 padding-bottom padding-top2 ">
                 <button type="button" className="btn bottom-pink-video" onClick={() => this.resetPasswordSucceed(email)}>ยืนยันหมายเลขโทรศัพท์</button>
@@ -83,7 +87,7 @@ const mapStateToProps = ({ authUser }) => {
   return { statusForgotPassword };
 };
 
-const mapActionsToProps = { forgotPassword };
+const mapActionsToProps = { forgotPassword, resetStatusSetPassword };
 
 export default connect(
   mapStateToProps,

@@ -33,14 +33,9 @@ class Home extends React.Component {
       this.props.history.push('/basic_information');
     }
 
-    if (this.state.setPassword === false) {
-      if (statusSetPassword === "success") {
+    if (statusSetPassword === "success") {
         alert("เปลี่ยนรหัสผ่านสำเร็จ");
-        this.setState({
-          setPassword: true
-        })
-        this.props.resetStatusSetPassword();
-      }
+        this.props.resetStatusSetPassword(); 
       console.log("setPassword");
     }
 
