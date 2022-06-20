@@ -41,6 +41,7 @@ import {
 
 import Amplify from 'aws-amplify';
 import { awsConfig } from "./constants/defaultValues";
+import { BrowserRouter } from 'react-router-dom';
 
 Amplify.configure(awsConfig);
 
@@ -160,7 +161,6 @@ class App extends Component {
       <div className="App">
         {this.renderNavbar()}
         <header className="App-header ">
-
           <Switch>
             <Route exact path="/">
               <Redirect to="/home" />
@@ -188,7 +188,11 @@ class App extends Component {
             <Route path='/reset_password' component={Reset_password} />
             <Route path='/reset_password_succeed' component={Reset_password_succeed} />
             <Route path='/new_password' component={New_password} />
-            </Switch>
+
+              {/* เเก้การที่เว็บ กด F5 เเล้ว มันเปลี่ยน Url */}
+            <Route path='/generalFood' component={Food_supplement} />
+            <Route path='/vegetarianFood' component={Food_supplement} />
+          </Switch>
         </header>
       </div>
     )

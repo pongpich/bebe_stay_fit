@@ -451,11 +451,18 @@
     padding-left: 20px;
     padding-right: 20px;
   }
+  .select-BoxHead {
+    background-color: #ffffff;
+    overflow: hidden;
+    position: sticky;
+    top: 0;
+    padding-top: 40px;
+  }
 }
 @media only screen and (min-width: 992px) {
   .navbarLeft {
     padding-top: 20px;
-    height: 100vh;
+    height: 100%;
     background-color: #ffffff;
     box-shadow: -2px 8px 7px 7px #bababa;
   }
@@ -2233,27 +2240,52 @@ a:hover {
 
 .food_supplement {
   width: auto;
-  height: 100vh;
+  height: 100%;
   background-color: #ffffff;
 }
 
 .mavbarfood {
-  position: relative;
   margin-left: 20px;
+  overflow: hidden;
+  position: sticky;
+  top: 0;
+  padding-top: 40px;
 }
 .manuFood {
   font-size: 24px;
   font-weight: bold;
   padding-left: 10px;
+  color: #707174;
 }
-.manuFood-border {
+
+.manuFood-Active {
   font-size: 24px;
   font-weight: bold;
   border-left: 5px solid #E25E96;
   padding-left: 10px;
+  color: #333333;
 }
 .boxheadTopA {
   height: 700px;
   width: auto;
   background-color: #d30768;
 }
+
+.boxscrollSpyText {
+  width: auto;
+  height: 100%;
+  background-color: #ffffff;
+}
+ .maun-small {
+  color: #707174;
+  } 
+  .maun-small-Active {
+    color: #333333;
+    } 
+
+.small-box {
+  margin-top: 10px;
+  padding-left: 30px;
+  
+}
+
