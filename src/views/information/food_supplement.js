@@ -74,20 +74,19 @@ const Food_supplement = () => {
       setArticleMain(0);
       if (activeSection <= 1) {
         setArticle(1);
-        setArticleHead(activeSection)
       } else {
         setArticle(activeSection);
-        setArticleHead(activeSection)
+
       }
     }
     if (activeSection >= 7) {
       setArticleMain(7);
-      if (activeSection >= 7 || activeSection <= 9) {
-        setArticle(9);
-        setArticleHead(8)
+      if (activeSection >= 7 || activeSection <= 8) {
+        setArticle(8);
+
       } else {
         setArticle(activeSection);
-        setArticleHead(activeSection)
+
       }
     }
 
@@ -145,10 +144,10 @@ const Food_supplement = () => {
                   </div>
                   <HashLink smooth to='/#vegetarianFood' id="#vegetarianFood" className={articleMain === 7 ? "manuFood-Active" : "manuFood"}>
                     สำหรับทานอาหารมังสวิรัติ
-                  </HashLink>;
+                  </HashLink>
                   <div className="small-box">
                     <div>
-                      <HashLink id="#vegetarianFood" className={articleHead === 8 ? "maun-small-Active" : "maun-small"}>
+                      <HashLink id="#vegetarianFood" className={article === 8 ? "maun-small-Active" : "maun-small"}>
                         โปรแกรมอาหารสำหรับผู้ที่เลือกกินอาหาร
                         แบบเน้นพืช และแบบมังสวิรัติเคร่งครัด
                         (Plant-Based Diet and Strict Vegan
@@ -157,12 +156,7 @@ const Food_supplement = () => {
                     </div>
                     <div>
                       <HashLink smooth to='/#' id="#" className={article === 9 ? "maun-small-Active" : "maun-small"}>
-                        โปรแกรมอาหาร{"(Nutrition Program)"}
-                      </HashLink>
-                    </div>
-                    <div>
-                      <HashLink smooth to='/#' id="#" className={article === 10 ? "maun-small-Active" : "maun-small"}>
-                        แนวทางการกินเพื่อสุขภาพแบบง่าย
+                      แนวทางการเลือกกินอาหารแบบเน้นพืช (Plant-Based Diet) และแบบมังสวิรัติเคร่งครัด (Strict Diet) เพื่อสุขภาพ
                       </HashLink>
                     </div>
                     <div>
