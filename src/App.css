@@ -437,20 +437,24 @@
   }
 
 }
+
 /* หน้าหน้าจอของ หน้า food_supplement  ให้เปิด เปิดตามขนาดหน้าจอ */
 @media only screen and (max-width: 992px) {
   .navbarLeft {
     visibility: hidden !important;
     height: 0px;
   }
+
   .navbarHead {
     margin-top: 50px;
   }
+
   .headTop {
     padding-top: 20px;
     padding-left: 20px;
     padding-right: 20px;
   }
+
   .select-BoxHead {
     background-color: #ffffff;
     overflow: hidden;
@@ -458,7 +462,14 @@
     top: 0;
     padding-top: 40px;
   }
+  .ImageTop2{
+    position:  inherit;
+    padding-top: 30px;
+    grid-template-columns: none !important;
+  
+  }
 }
+
 @media only screen and (min-width: 992px) {
   .navbarLeft {
     padding-top: 20px;
@@ -466,17 +477,24 @@
     background-color: #ffffff;
     box-shadow: -2px 8px 7px 7px #bababa;
   }
-  
+
   .navbarHead {
     visibility: hidden !important;
   }
-  
+
   .headTop {
 
     position: absolute;
     margin-top: -50px;
     padding-left: 20px;
     padding-right: 20px;
+  }
+  .ImageTop2{
+    position:  inherit;
+    padding-top: 30px;
+    display: grid;
+    grid-template-columns: auto auto auto auto auto auto;
+  
   }
 }
 
@@ -2251,6 +2269,7 @@ a:hover {
   top: 0;
   padding-top: 40px;
 }
+
 .manuFood {
   font-size: 24px;
   font-weight: bold;
@@ -2265,6 +2284,7 @@ a:hover {
   padding-left: 10px;
   color: #333333;
 }
+
 .boxheadTopA {
   height: 700px;
   width: auto;
@@ -2276,16 +2296,102 @@ a:hover {
   height: 100%;
   background-color: #ffffff;
 }
- .maun-small {
+
+.maun-small {
   color: #707174;
-  } 
-  .maun-small-Active {
-    color: #333333;
-    } 
+}
+
+.maun-small-Active {
+  color: #333333;
+}
 
 .small-box {
   margin-top: 10px;
   padding-left: 30px;
-  
+
 }
 
+.nutritionHead {
+  font-size: 24px;
+  font-weight: bold;
+  color: #E25E96;
+  text-align: center;
+}
+
+.nutritionHead2 {
+  font-size: 24px;
+  font-weight: bold;
+  color: #E25E96;
+  text-align: left;
+  padding-top: 50px;
+}
+
+.nutritionHead3 {
+  font-weight: bold;
+  font-size: 20px;
+  text-align: left;
+  color: #000000;
+  padding-top: 30px;
+}
+.nutritionText3 {
+  font-size: 20px;
+  text-align: left;
+  color: #000000;
+  padding-top: 30px;
+}
+
+
+.nutritionHeadDate {
+  font-size: 20px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.nutritionText {
+  font-size: 20px;
+  text-align: left;
+  color: #000000;
+  padding-top: 50px;
+}
+
+.nutritionText0 {
+  font-size: 20px;
+  text-align: left;
+  color: #000000;
+  padding-top: 30px;
+
+}
+
+.nutritionText2 {
+  font-size: 20px;
+  text-align: left;
+  color: #000000;
+  padding-left: 20px;
+}
+
+.nutritionText3 {
+  font-size: 20px;
+  text-align: left;
+  color: #000000;
+  padding-top: 30px;
+}
+.centerImage {
+ padding-left: 5%;
+ padding-right: 5%;
+}
+.ImageTop{
+  padding-top: 30px;
+ }
+
+ .shutterstock {
+  padding-top: 100px;
+  background-color: #333333;
+ 
+ }
+.shutterstock_3 {
+  border-left: 4px solid #E25E96;
+  position: relative;
+  margin-left: 20px;
+  margin-right: 20px;
+
+}

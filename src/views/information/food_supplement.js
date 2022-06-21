@@ -4,7 +4,14 @@ import useScrollSpy from 'react-use-scrollspy';
 import { HashLink } from 'react-router-hash-link';
 import { BrowserRouter } from 'react-router-dom';
 
+/* สำหรับทานอาหารทั่วไป */
 import generalFood from '../eatFood_and_supplements/general_food';
+import general_food_simpleHealth from '../eatFood_and_supplements/general_food_simpleHealth';
+import general_food_recommendedHealth from '../eatFood_and_supplements/general_food_recommendedHealth';
+import general_food_eat_foodPprogram from '../eatFood_and_supplements/general_food_eat_foodPprogram';
+import general_food_recommendedApproach from '../eatFood_and_supplements/general_food_recommendedApproach';
+import general_food_AdditionalAdvice from '../eatFood_and_supplements//general_food_AdditionalAdvice';
+/* สำหรับทานอาหารมังสวิรัติ */
 import vegetarianFood from '../eatFood_and_supplements/vegetarian_food';
 
 
@@ -34,32 +41,7 @@ const Food_supplement = () => {
     useRef(null),
     useRef(null),
     useRef(null),
-    useRef(null),
-    useRef(null),
-    useRef(null),
-    useRef(null),
-    useRef(null),
-    useRef(null),
-    useRef(null),
-    useRef(null),
-    useRef(null),
-    useRef(null),
-    useRef(null),
-    useRef(null),
-    useRef(null),
-    useRef(null),
-    useRef(null),
-    useRef(null),
-    useRef(null),
-    useRef(null),
-    useRef(null),
-    useRef(null),
-    useRef(null),
-    useRef(null),
-    useRef(null),
-    useRef(null),
-    useRef(null),
-    useRef(null),
+
   ];
 
   const [articleMain, setArticleMain] = useState();
@@ -106,38 +88,38 @@ const Food_supplement = () => {
             <div className="col-lg-3">
               <div className="navbarLeft">
                 <div className="mavbarfood">
-                  <HashLink smooth to='/#generalFood' id="#generalFood" className={articleMain === 0 ? "manuFood-Active" : "manuFood"}>
+                  <HashLink smooth to='#generalFood' id="#generalFood" className={articleMain === 0 ? "manuFood-Active" : "manuFood"}>
                     สำหรับทานอาหารทั่วไป
                   </HashLink>
                   <div className="small-box">
                     <div>
-                      <HashLink smooth to='/#' id="#generalFood" className={article === 1 ? "maun-small-Active" : "maun-small"}>
+                      <HashLink smooth to='#generalFood' id="#generalFood" className={article === 1 ? "maun-small-Active" : "maun-small"}>
                         โปรแกรมอาหาร{"(Nutrition Program)"}
                       </HashLink>
                     </div>
                     <div>
-                      <HashLink smooth to='/#' id="#generalFood" className={article === 2 ? "maun-small-Active" : "maun-small"}>
+                      <HashLink smooth to='#general_food_simpleHealth'  className={article === 2 ? "maun-small-Active" : "maun-small"}>
                         แนวทางการกินเพื่อสุขภาพแบบง่าย
                       </HashLink>
                     </div>
                     <div>
-                      <HashLink smooth to='/#' id="#" className={article === 3 ? "maun-small-Active" : "maun-small"}>
+                      <HashLink smooth to='#general_food_recommendedHealth' className={article === 3 ? "maun-small-Active" : "maun-small"}>
                         รูปแบบการกินเพื่อสุขภาพที่แนะนำ
                       </HashLink>
                     </div>
                     <div>
-                      <HashLink smooth to='/#' id="#" className={article === 4 ? "maun-small-Active" : "maun-small"}>
+                      <HashLink smooth to='#general_food_eat_foodPprogram'  className={article === 4 ? "maun-small-Active" : "maun-small"}>
                         แนวทางการเลือกกินอาหาร
                         ระหว่างอยู่ในโปรแกรม
                       </HashLink>
                     </div>
                     <div>
-                      <HashLink smooth to='/#' id="#" className={article === 5 ? "maun-small-Active" : "maun-small"}>
+                      <HashLink smooth to='#general_food_recommendedApproach'  className={article === 5 ? "maun-small-Active" : "maun-small"}>
                         แนวทางที่แนะนำ
                       </HashLink>
                     </div>
                     <div>
-                      <HashLink smooth to='/#' id="#" className={article === 6 ? "maun-small-Active" : "maun-small"}>
+                      <HashLink smooth to='#general_food_AdditionalAdvice'  className={article === 6 ? "maun-small-Active" : "maun-small"}>
                         คำแนะนำเพิ่มเติม
                       </HashLink>
                     </div>
@@ -197,8 +179,33 @@ const Food_supplement = () => {
               </div>
               <div className="padding-leftRight">
                 <div id='generalFood'>
-                  <section className="App-section" ref={sectionRefs[0]}>
+                  <section className="App-section" ref={sectionRefs[1]}>
                     {generalFood()}
+                  </section>
+                </div>
+                <div id='general_food_simpleHealth'>
+                  <section className="App-section" ref={sectionRefs[2]}>
+                    {general_food_simpleHealth()}
+                  </section>
+                </div>
+                <div id='general_food_recommendedHealth'>
+                  <section className="App-section" ref={sectionRefs[3]}>
+                    {general_food_recommendedHealth()}
+                  </section>
+                </div>
+                <div id='general_food_eat_foodPprogram'>
+                  <section className="App-section" ref={sectionRefs[4]}>
+                    {general_food_eat_foodPprogram()}
+                  </section>
+                </div>
+                <div id='general_food_recommendedApproach'>
+                  <section className="App-section" ref={sectionRefs[5]}>
+                    {general_food_recommendedApproach()}
+                  </section>
+                </div>
+                <div id='general_food_AdditionalAdvice'>
+                  <section className="App-section" ref={sectionRefs[6]}>
+                    {general_food_AdditionalAdvice()}
                   </section>
                 </div>
                 <div id='vegetarianFood'>

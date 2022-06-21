@@ -192,6 +192,11 @@ class App extends Component {
               {/* เเก้การที่เว็บ กด F5 เเล้ว มันเปลี่ยน Url */}
             <Route path='/generalFood' component={Food_supplement} />
             <Route path='/vegetarianFood' component={Food_supplement} />
+            <Route path='/general_food_simpleHealth' component={Food_supplement} />
+            <Route path='/general_food_recommendedHealth' component={Food_supplement} />
+            <Route path='/general_food_eat_foodPprogram' component={Food_supplement} />
+            <Route path='/general_food_recommendedApproach' component={Food_supplement} />
+            <Route path='/general_food_AdditionalAdvice' component={Food_supplement} />
           </Switch>
         </header>
       </div>
