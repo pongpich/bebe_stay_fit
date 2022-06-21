@@ -95,12 +95,9 @@ class Home extends React.Component {
             </div>
             <div className="col-12 col-sm-12 col-md-6 col-lg-6 center">
               <div className="box-NullIn">
-                <div className="center footerNull">
-                  <button type="button" className="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#exampleModal" >Login</button> &nbsp; &nbsp;
+                 <button type="button" className="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#exampleModal" >Login</button> &nbsp; &nbsp;
                   <Link to="/programPackage" className="btn btn-secondary" type="button">คลิก</Link>
                   <Link to="/profile" className="btn btn-secondary" type="button">profile</Link>
-                </div>
-
               </div>
             </div>
           </div>
