@@ -48,10 +48,11 @@ class Payment extends React.Component {
 
   componentDidMount() {
     const { user_program_id, products_list, delivery_address, receipt_address } = this.props;
-    const { price, productName, email, phone, program } = this.state;
+    const { price, productName, email, phone, program, username, lastname } = this.state;
 
     window.localStorage.setItem('price', price);
     window.localStorage.setItem('productName', productName);
+    window.localStorage.setItem('name', `${username} ${lastname}`);
     window.localStorage.setItem('email', email);
     window.localStorage.setItem('phone', phone);
     window.localStorage.setItem('program_id', program.program_id);
@@ -123,7 +124,7 @@ class Payment extends React.Component {
 
   onPay() {
     const { price, name, cardNumber, expirationMonth, expirationYear, securityCode } = this.state;
-    const { create_user_email, program, history, products_list, delivery_address, receipt_address } = this.props;
+    const { create_user_email, create_user_phone, program, history, products_list, delivery_address, receipt_address } = this.props;
 
     const baseURL = "https://api.gbprimepay.com";
     const tokenURL = `${baseURL}/v2/tokens`; // Test URL: https://api.globalprimepay.com/v2/tokens , Production URL: https://api.gbprimepay.com/v2/tokens
@@ -166,6 +167,7 @@ class Payment extends React.Component {
             backgroundUrl: "https://api.planforfit.com/bebe/recurring", // for staging: https://api.planforfit.com/bebedev/recurring
             customerName: name,
             customerEmail: create_user_email,
+            customerTelephone: create_user_phone,
             merchantDefined1: program.program_id,
             merchantDefined2: products_list,
             merchantDefined3: delivery_address,
