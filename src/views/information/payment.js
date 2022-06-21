@@ -24,7 +24,7 @@ class Payment extends React.Component {
       price: 1.00, //สำหรับเทส
       //price: this.props.program.price, //สำหรับใช้จริง
       productName: "bebe stay fit",
-      name: "",
+      name: `${this.props.create_username} ${this.props.create_lastname}`,
       cardNumber: "",
       expirationMonth: "",
       expirationYear: "",
@@ -48,11 +48,11 @@ class Payment extends React.Component {
 
   componentDidMount() {
     const { user_program_id, products_list, delivery_address, receipt_address } = this.props;
-    const { price, productName, email, phone, program, username, lastname } = this.state;
+    const { price, productName, email, phone, program, name } = this.state;
 
     window.localStorage.setItem('price', price);
     window.localStorage.setItem('productName', productName);
-    window.localStorage.setItem('name', `${username} ${lastname}`);
+    window.localStorage.setItem('name', name);
     window.localStorage.setItem('email', email);
     window.localStorage.setItem('phone', phone);
     window.localStorage.setItem('program_id', program.program_id);
