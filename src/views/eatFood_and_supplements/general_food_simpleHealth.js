@@ -17,8 +17,8 @@ const general_food_simpleHealth = function () {
         <li>หากอยากดื่มน้ำหวาน ให้เลือกเครื่องดื่มที่ใช้น้ำตาลเทียม หรือสารให้ความหวานทดแทนน้ำตาล</li>
       </p>
       <div className="centerImage">
-        <img src={simple_health_1} alt="vector" className="col-12 col-sm-12  col-md-6 col-lg-6" />
-        <img src={simple_health_2} alt="vector" className="col-12 col-sm-12  col-md-6 col-lg-6" />
+        <img src={simple_health_1}  className="col-12 col-sm-12 col-md-6 col-lg-6" />
+        <img src={simple_health_2}  className="col-12 col-sm-12  col-md-6 col-lg-6" />
       </div>
       <p className="nutritionText2 ImageTop">
         <li>ลดเครื่องดื่มที่มีรสหวาน เช่น น้ำอัดลม ชา กาแฟที่ชงรสหวาน</li>

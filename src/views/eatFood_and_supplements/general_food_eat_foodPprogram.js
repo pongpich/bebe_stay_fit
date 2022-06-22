@@ -1,5 +1,5 @@
 import React from 'react';
-import frame from "../../assets/img/foot_supplement/frame.png";
+
 
 
 const general_food_eat_foodPprogram = function () {

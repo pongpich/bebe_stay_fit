@@ -460,7 +460,6 @@
     overflow: hidden;
     position: sticky;
     top: 0;
-    padding-top: 40px;
   }
   .ImageTop2{
     position:  inherit;
@@ -2267,7 +2266,7 @@ a:hover {
   overflow: hidden;
   position: sticky;
   top: 0;
-  padding-top: 40px;
+  padding-top: 100px;
 }
 
 .manuFood {
@@ -2376,8 +2375,9 @@ a:hover {
   padding-top: 30px;
 }
 .centerImage {
- padding-left: 5%;
- padding-right: 5%;
+  text-align: center;
+  padding-left: 10%;
+  padding-right: 10%;
 }
 .ImageTop{
   padding-top: 30px;
@@ -2395,3 +2395,23 @@ a:hover {
   margin-right: 20px;
 
 }
+.vegeraianTop {
+  margin-top: 80px;
+}
+.img-height {
+  height: 100%;
+}
+.centerImage2 {
+  padding-left: 5%;
+  padding-right: 5%;
+  max-height: 480px;
+}
+.centerImageHead {
+    text-align: center;
+}
+/* .fixed-navbar {
+  overflow: hidden;
+  position: sticky;
+  top: 0;
+  width: 100%;
+} */

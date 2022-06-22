@@ -8,7 +8,7 @@ const general_food_recommendedHealth = function () {
       <p className="nutritionHead2">รูปแบบการกินเพื่อสุขภาพที่แนะนำ</p>
 
       <div className="centerImage ImageTop">
-        <img src={frame} alt="vector" className="col-12 col-sm-12  col-md-12 col-lg-12" />
+        <img src={frame} alt="vector" className="col-12 col-sm-12  col-md-8 col-lg-8" />
        
       </div>
     
