@@ -56,7 +56,7 @@ class App extends Component {
 
   renderNavbar() {
     return (
-      <nav className="navbar navbar-expand-lg bg-light information-box">
+      <nav className="navbar navbar-expand-lg bg-light information-box  fixed-top">
         <div className="container-fluid nav-left2">
           <a className="navbar-brand" href="/#" onClick={() => this.props.history.push('/')} style={{ color: "white", cursor: "pointer" }}>
             <img src={group49} alt="vector" />

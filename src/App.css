@@ -460,6 +460,7 @@
     overflow: hidden;
     position: sticky;
     top: 0;
+    padding-top: 40px;
   }
   .ImageTop2{
     position:  inherit;
@@ -2409,9 +2410,24 @@ a:hover {
 .centerImageHead {
     text-align: center;
 }
-/* .fixed-navbar {
+.border-table {
+  border: 1px solid #F45197 !important;
+}
+.head-table {
+  background-color: #FFA1C7;
+}
+table {
+  border-collapse: collapse;
+  border-radius: 1em;
   overflow: hidden;
-  position: sticky;
-  top: 0;
-  width: 100%;
+
+
+}
+
+.th-border {
+  border: 1px solid #F45197;
+}
+/* table, th, td {
+  border: 1px solid black;
+  border-radius: 10px;
 } */
