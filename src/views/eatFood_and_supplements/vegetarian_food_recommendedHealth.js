@@ -24,15 +24,13 @@ const vegetarian_food_recommendedHealth = function () {
         **เป็นเมนูที่อิงวัตถุดิบจากพืชเป็นหลัก ยังมีการบริโภคผลิตภัณฑ์จากสัตว์บ้างได้**
       </p>
       <div className="centerImageHead ">
-        <div className="table-responsive">
-          <table className="table table-bordered">
-            <thead className="head-table">
-              <tr className="th-table">
-                <th className="col-2">มื้อ</th>
-                <th className="col-6">เมนูตัวอย่าง</th>
-              </tr>
-            </thead>
+        <div className="col-12 col-sm-12 colomd-12 col-lg-12">
+          <table>
             <tbody>
+            <tr className="head-table head-tableText">
+                <td className="col-2">มื้อ</td>
+                <td className="col-6">เมนูตัวอย่าง</td>
+              </tr>
               <tr>
                 <td className="center-tebleRow">
                   เช้า
@@ -94,15 +92,13 @@ const vegetarian_food_recommendedHealth = function () {
         **เป็นเมนูที่อิงวัตถุดิบจากพืชเท่านั้น**
       </p>
       <div className="centerImageHead ">
-        <div className="table-responsive">
-          <table className="table table-bordered">
-            <thead className="head-table">
-              <tr className="th-table">
-                <th className="col-2">มื้อ</th>
-                <th className="col-6">เมนูตัวอย่าง</th>
-              </tr>
-            </thead>
+        <div className="col-12 col-sm-12 colomd-12 col-lg-12">
+          <table>
             <tbody>
+              <tr className="head-table head-tableText">
+                <td className="col-2">มื้อ</td>
+                <td className="col-6">เมนูตัวอย่าง</td>
+              </tr>
               <tr>
                 <td className="center-tebleRow">
                   เช้า
