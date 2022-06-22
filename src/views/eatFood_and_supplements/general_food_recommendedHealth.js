@@ -11,7 +11,7 @@ const general_food_recommendedHealth = function () {
         <img src={frame} alt="vector" className="col-12 col-sm-12  col-md-8 col-lg-8" />
        
       </div>
-    
+      <p className="border-bottom3 margin-leftRight"></p>
     </>
   );
 };

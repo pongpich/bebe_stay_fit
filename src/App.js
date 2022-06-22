@@ -189,7 +189,7 @@ class App extends Component {
             <Route path='/reset_password_succeed' component={Reset_password_succeed} />
             <Route path='/new_password' component={New_password} />
 
-              {/* เเก้การที่เว็บ กด F5 เเล้ว มันเปลี่ยน Url */}
+              {/* เเก้การที่เว็บ กด F5 เเล้ว มันเปลี่ยน Url  scrollspy*/}
             <Route path='/generalFood' component={Food_supplement} />
             <Route path='/vegetarianFood' component={Food_supplement} />
             <Route path='/general_food_simpleHealth' component={Food_supplement} />
@@ -198,6 +198,10 @@ class App extends Component {
             <Route path='/general_food_recommendedApproach' component={Food_supplement} />
             <Route path='/general_food_AdditionalAdvice' component={Food_supplement} />
             <Route path='/vegetarian_food_plantBased' component={Food_supplement} />
+            <Route path='/vegetarian_food_recommendedHealth' component={Food_supplement} />
+            <Route path='/vegetarian_food_eat_foodPprogram' component={Food_supplement} />
+            <Route path='/vegetarian_food_recommendedApproach' component={Food_supplement} />
+            <Route path='/vegetarian_food_AdditionalAdvice' component={Food_supplement} />
           </Switch>
         </header>
       </div>

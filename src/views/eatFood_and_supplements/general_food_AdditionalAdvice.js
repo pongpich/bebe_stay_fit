@@ -11,11 +11,11 @@ const AdditionalAdvice = function () {
       </p>
       <p className="nutritionText3 bold"> คำอธิบายการเลือกกินตามแนวทางที่แนะนำ</p>
       <p className="nutritionText3">1. มื้อที่เลือกกิน Fitto Plant Protein</p>
-      <p className="nutritionText2">
+      <p className="nutritionText4">
         <li>ลดเครื่องดื่มที่มีรสหวาน เช่น น้ำอัดลม ชา กาแฟที่ชงรสหวาน</li>
       </p>
       <p className="nutritionText3">2. มื้ออาหารหลัก</p>
-      <p className="nutritionText2">
+      <p className="nutritionText4">
         1. ควรเลือกเมนูที่ได้สัดส่วนตามหลัก 2-1-1 ยกตัวอย่างเช่น
       </p>
       <p className="nutritionText2">

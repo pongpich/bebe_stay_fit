@@ -14,8 +14,10 @@ import general_food_AdditionalAdvice from '../eatFood_and_supplements//general_f
 /* สำหรับทานอาหารมังสวิรัติ */
 import vegetarianFood from '../eatFood_and_supplements/vegetarian_food';
 import vegetarian_food_plantBased from '../eatFood_and_supplements/vegetarian_food_plantBased';
-
-
+import vegetarian_food_recommendedHealth from '../eatFood_and_supplements/vegetarian_food_recommendedHealth';
+import vegetarian_food_eat_foodPprogram from '../eatFood_and_supplements/vegetarian_food_eat_foodPprogram';
+import vegetarian_food_recommendedApproach from '../eatFood_and_supplements/vegetarian_food_recommendedApproach';
+import vegetarian_food_AdditionalAdvice from '../eatFood_and_supplements/vegetarian_food_AdditionalAdvice';
 
 const onChangeManu = (event) => {
   console.log(`${event.target.value}`);
@@ -142,23 +144,23 @@ const Food_supplement = () => {
                       </HashLink>
                     </div>
                     <div>
-                      <HashLink smooth to='/#' id="#" className={article === 11 ? "maun-small-Active" : "maun-small"}>
+                      <HashLink smooth to='#vegetarian_food_recommendedHealth'  className={article === 11 ? "maun-small-Active" : "maun-small"}>
                         รูปแบบการกินเพื่อสุขภาพที่แนะนำ
                       </HashLink>
                     </div>
                     <div>
-                      <HashLink smooth to='/#' id="#" className={article === 12 ? "maun-small-Active" : "maun-small"}>
+                      <HashLink smooth to='#vegetarian_food_eat_foodPprogram'  className={article === 12 ? "maun-small-Active" : "maun-small"}>
                         แนวทางการเลือกกินอาหาร
                         ระหว่างอยู่ในโปรแกรม
                       </HashLink>
                     </div>
                     <div>
-                      <HashLink smooth to='/#' id="#" className={article === 13 ? "maun-small-Active" : "maun-small"}>
+                      <HashLink smooth to='#vegetarian_food_recommendedApproach' id="#" className={article === 13 ? "maun-small-Active" : "maun-small"}>
                         แนวทางที่แนะนำ
                       </HashLink>
                     </div>
                     <div>
-                      <HashLink smooth to='/#' id="#" className={article === 14 ? "maun-small-Active" : "maun-small"}>
+                      <HashLink smooth to='#vegetarian_food_AdditionalAdvice' id="#" className={article === 14 ? "maun-small-Active" : "maun-small"}>
                         คำแนะนำเพิ่มเติม
                       </HashLink>
                     </div>
@@ -218,6 +220,27 @@ const Food_supplement = () => {
                     {vegetarian_food_plantBased()}
                   </section>
                 </div>
+                <div id='vegetarian_food_recommendedHealth'>
+                  <section className="App-section" ref={sectionRefs[7]}>
+                    {vegetarian_food_recommendedHealth()}
+                  </section>
+                </div>
+                <div id='vegetarian_food_eat_foodPprogram'>
+                  <section className="App-section" ref={sectionRefs[7]}>
+                    {vegetarian_food_eat_foodPprogram()}
+                  </section>
+                </div>
+                <div id='vegetarian_food_recommendedApproach'>
+                  <section className="App-section" ref={sectionRefs[7]}>
+                    {vegetarian_food_recommendedApproach()}
+                  </section>
+                </div>
+                <div id='vegetarian_food_AdditionalAdvice'>
+                  <section className="App-section" ref={sectionRefs[7]}>
+                    {vegetarian_food_AdditionalAdvice()}
+                  </section>
+                </div>
+                
               </div>
             </div>
           </div>
