@@ -887,7 +887,11 @@ a {
 }
 
 .distance-span {
-  margin-left: 60px;
+
+  white-space: pre; 
+}
+.box-heightPackage {
+  padding-top: 10px;
 }
 
 /* ลองอัพ code */
@@ -1022,7 +1026,8 @@ a {
 }
 
 .span-image {
-  padding-left: 20px;
+  padding-left: 60px;
+  margin-top: -50px;
 }
 
 .padding-box {
@@ -1336,7 +1341,16 @@ a {
 }
 
 .ellipse-71 {
-  width: 40px;
+  width: 8%;
+  margin-left: 10px;
+}
+.shaker-71 {
+  width: 18%;
+}
+.ellipse-72 {
+  width: 50px;
+  height: 50px;
+  border-radius:100%;
 }
 
 .group19 {
