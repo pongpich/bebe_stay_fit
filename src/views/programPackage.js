@@ -142,7 +142,7 @@ class ProgramPackage extends React.Component {
                           <label className="onoffswitch-label" htmlFor="myonoffswitch">
                             <span className="onoffswitch-inner">
                               <div className="between">
-                                <p className="text-float">ปอนด์ <span className="text-float2"> กิโลกรัม</span></p>
+                                <p className="text-float3">ปอนด์ <span className="text-float4"> กิโลกรัม</span></p>
                               </div>
                             </span>
                             <span className="onoffswitch-switch"></span>
@@ -155,7 +155,7 @@ class ProgramPackage extends React.Component {
                   <label className="form-label font-size2 ">คุณต้องการลดน้ำหนักกี่กิโลกรัม</label>
                   <input
                     type="number"
-                    className="form-control right"
+                    className="form-control  right2"
                     id="weightLossGoals"
                     placeholder={pound_kg}
                /*      value={weightLossGoals} */

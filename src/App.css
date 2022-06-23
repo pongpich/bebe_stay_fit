@@ -1551,6 +1551,17 @@ a {
   margin-left: 40px;
 }
 
+.text-float3 {
+  position: absolute;
+  z-index: 1;
+  color: #000000 !important;
+  padding-left: 10px;
+}
+.text-float4 {
+  margin-left: 30px;
+}
+
+
 .onoffswitch-switch {
   display: block;
   width: 18px;
@@ -2482,4 +2493,9 @@ tr:last-child td:last-child{
 }
 .tableText2 {
   font-size: 15px;
+}
+
+.right2::placeholder {
+                 
+  text-align: right !important; 
 }

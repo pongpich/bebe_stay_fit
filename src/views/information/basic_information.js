@@ -25,7 +25,7 @@ class Basic_Information extends React.Component {
   componentDidMount() {
     const { user } = this.props;
 
-    if (user === null) {
+    if (user !== null) {
       this.props.history.push('/welcome_new_nember');
     }
 
