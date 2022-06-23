@@ -52,9 +52,12 @@ class videoList extends React.Component {
   componentDidMount() {
     const { user, exerciseVideo, statusVideoList } = this.props;
 
-    /*     if (user === null) {
-          this.props.history.push('/welcome_new_nember');
-        } */
+    if (user === null) {
+      this.props.history.push('/welcome_new_nember');
+    }
+    if (user && !user.other_attributes) {
+      this.props.history.push('/basic_information');
+    }
 
     if (user && user.other_attributes) {
       this.props.videoListForUser(
@@ -412,9 +415,9 @@ class videoList extends React.Component {
                   </h3>
                   <p>การยืนยันจะทำให้ช่วยบัญชีของคุณปลอดภัยยิ่งขึ้น</p>
                   <div className="col-12 col-sm-12  col-md-12 col-lg-12 center">
-                  <button type="button" className="btn bottom-pink-Whit" >ไว้ทีหลัง</button>&nbsp;&nbsp;&nbsp;
+                    <button type="button" className="btn bottom-pink-Whit" >ไว้ทีหลัง</button>&nbsp;&nbsp;&nbsp;
                   <button type="button" className="btn bottom-pink-video">ยืนยันหมายเลขโทรศัพท์</button>
-                </div>
+                  </div>
                 </div>
 
               }
@@ -433,9 +436,9 @@ class videoList extends React.Component {
               <li className="video-li  video-liPadding-left">
                 <a className={this.state.borderBottom1} name="borderBottom1" onClick={e => this.clickBottom(e)}>Routine workout</a>
               </li>
-              <li className="video-li  video-liPadding-left   video-liPadding-left2">
+              {/* <li className="video-li  video-liPadding-left   video-liPadding-left2">
                 <a className={this.state.borderBottom2} name="borderBottom2" onClick={e => this.clickBottom(e)}>คลิปออกกำลังกายทั้งหมด</a>
-              </li>
+              </li> */}
             </ul>
           </div>
 
@@ -519,10 +522,10 @@ class videoList extends React.Component {
               <div className="col">
                 รวมเวลาฝึกทั้งหมด 55 นาที
               </div>
-              <div className="col-md-auto" onClick={() => this.editVDO()} aria-hidden="true" style={{ cursor: "pointer" }}>
+              {/*  <div className="col-md-auto" onClick={() => this.editVDO()} aria-hidden="true" style={{ cursor: "pointer" }}>
                 <img src={edit} className="icon-edit" />
                 แก้ไขคลิปออกกำลังกาย
-              </div>
+              </div> */}
               <div className="col col-lg-3">
                 <div className="form-check form-switch form-check-reverse">
                   <input className="form-check-input" type="checkbox" id="autoPlayCheck" onClick={() => this.autoPlayCheck()} />
@@ -677,7 +680,7 @@ class videoList extends React.Component {
             </div>
           </div>
 
-          <div className="vidio-all">
+          {/* <div className="vidio-all">
             <div className="col-12 col-sm-12 col-md-12 col-lg-12">
               <div className="col-12 col-sm-12 col-md-12 col-lg-12">
                 <p className="clip-all between bold">คลิปแบบซื้อ <span className="family-normal pointer" data-bs-toggle="modal" data-bs-target="#exampleModal2"> ดูทั้งหมด {">"}</span> </p>
@@ -761,7 +764,7 @@ class videoList extends React.Component {
                 </div>
               </div>
             </div>
-          </div>
+          </div> */}
         </div>
         {/* modal  */}
 

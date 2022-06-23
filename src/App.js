@@ -55,6 +55,7 @@ class App extends Component {
   }
 
   renderNavbar() {
+    const { user } = this.props;
     return (
       <nav className="navbar navbar-expand-lg bg-light information-box  sticky-top">
         <div className="container-fluid nav-left2">
@@ -63,36 +64,41 @@ class App extends Component {
           </a>
           {
             (this.props.user !== null) &&
-          <>
-            <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span className="navbar-toggler-icon"></span>
-          </button>
-            <div className="collapse navbar-collapse padding-left3" id="navbarSupportedContent">
-              <ul className="navbar-nav me-auto mb-2 mb-lg-0 font-size5 bold">
-                <li className="nav-item">
-                  <a className="nav-link pointer " onClick={() => this.props.history.push('/videoList')} >โปรแกรมออกกำลังกาย</a>
-                </li>
-                <li className="nav-item">
-                  <a className="nav-link pointer" onClick={() => this.props.history.push('/food_supplement')}>วิธีการกินอาหารและอาหารเสริม</a>
-                </li>
-                <li className="nav-item">
-                </li>
-              </ul>
-              <div>
-                <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+            <>
+              <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span className="navbar-toggler-icon"></span>
+              </button>
+              <div className="collapse navbar-collapse padding-left3" id="navbarSupportedContent">
+                <ul className="navbar-nav me-auto mb-2 mb-lg-0 font-size5 bold">
+                  {
+                    (user && user.other_attributes) &&
+                    <>
+                      <li className="nav-item">
+                        <a className="nav-link pointer " onClick={() => this.props.history.push('/videoList')} >โปรแกรมออกกำลังกาย</a>
+                      </li>
+                      <li className="nav-item">
+                        <a className="nav-link pointer" onClick={() => this.props.history.push('/food_supplement')}>วิธีการกินอาหารและอาหารเสริม</a>
+                      </li>
+                    </>
+                  }
                   <li className="nav-item">
-                    <a className="nav-link nav-linkHead " href="/#" onClick={() => this.onUserLogout()} style={{ cursor: "pointer" }}>
-                      ออกจากระบบ
-                    </a>
                   </li>
                 </ul>
+                <div>
+                  <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li className="nav-item">
+                      <a className="nav-link nav-linkHead " href="/#" onClick={() => this.onUserLogout()} style={{ cursor: "pointer" }}>
+                        ออกจากระบบ
+                    </a>
+                    </li>
+                  </ul>
+                </div>
               </div>
-            </div>
-          </>
+            </>
           }
 
         </div>
-      </nav>
+      </nav >
 
       /*   <nav className="navbar navbar-expand nav-itemHead " style={{ backgroundColor: "white", fontFamily: "'Prompt', sans-serif" }}>
           <a className="navbar-brand" href="/#" onClick={() => this.props.history.push('/')} style={{ color: "white", cursor: "pointer" }}>
@@ -189,7 +195,7 @@ class App extends Component {
             <Route path='/reset_password_succeed' component={Reset_password_succeed} />
             <Route path='/new_password' component={New_password} />
 
-              {/* เเก้การที่เว็บ กด F5 เเล้ว มันเปลี่ยน Url  scrollspy*/}
+            {/* เเก้การที่เว็บ กด F5 เเล้ว มันเปลี่ยน Url  scrollspy*/}
             <Route path='/generalFood' component={Food_supplement} />
             <Route path='/vegetarianFood' component={Food_supplement} />
             <Route path='/general_food_simpleHealth' component={Food_supplement} />

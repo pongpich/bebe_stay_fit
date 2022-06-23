@@ -241,12 +241,12 @@ class Payment extends React.Component {
                         <input type="text" className="form-control" id="name" placeholder="ชื่อ และนามสกุลที่อยู่บนบัตร" onChange={(event) => this.handleChange(event)} />
                       </div>
                       <div className="padding-top2">
-                        <label className="form-label bold font-size4">วันหมดอายุ</label>
-                        <input type="text" className="form-control" id="expirationMonth" maxLength="2" placeholder="ดด" onChange={(event) => this.handleChange(event)} />
+                        <label className="form-label bold font-size4">วันหมดอายุ (เดือน)</label>
+                        <input type="text" className="form-control" id="expirationMonth" maxLength="2" placeholder="ตัวอย่าง เช่น 05" onChange={(event) => this.handleChange(event)} />
                       </div>
                       <div className="padding-top2">
-                        <label className="form-label bold font-size4">วันหมดอายุ</label>
-                        <input type="text" className="form-control" id="expirationYear" maxLength="2" placeholder="ปป" onChange={(event) => this.handleChange(event)} />
+                        <label className="form-label bold font-size4">วันหมดอายุ (ปี)</label>
+                        <input type="text" className="form-control" id="expirationYear" maxLength="2" placeholder="ตัวอย่าง เช่น 22" onChange={(event) => this.handleChange(event)} />
                       </div>
                       <div className="padding-top2">
                         <label className="form-label bold font-size4">รหัส CVV</label>
@@ -264,7 +264,7 @@ class Payment extends React.Component {
               <div className="padding-top">
                 <div className="box-proteinAddress padding-top">
                   <div className="padding-top2">
-                    <p className=" bold font-size5 between">แพ็คเกจของคุณ <span className="font-size4 light decoration pointer" onClick={e => this.onChickprice(e)}>เปลี่ยน</span></p>
+                    {/* <p className=" bold font-size5 between">แพ็คเกจของคุณ <span className="font-size4 light decoration pointer" onClick={e => this.onChickprice(e)}>เปลี่ยน</span></p> */}
                     <p>สมัครตามระยะเวลาของโปรแกรม</p>
 
                     <p className=" bold font-size5">
