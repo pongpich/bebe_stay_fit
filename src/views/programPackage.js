@@ -3,7 +3,9 @@ import React, { Component } from "react";
 //import SelectPackage from './information/buy_program';
 import { Link } from 'react-router-dom';
 import ellipse_71 from "../assets/img/ellipse_71.png";
-import fitto_prework_lemon from "../assets/img/fitto_prework_lemon.png";
+import lemonade from "../assets/img/lemonade.png";
+import latte2 from "../assets/img/latte2.png";
+import lfittocsachet5g from "../assets/img/lfittocsachet5g.png";
 import shaker from "../assets/img/shaker.png";
 import { connect } from "react-redux";
 import { loginUser } from "../redux/auth";
@@ -243,9 +245,9 @@ class ProgramPackage extends React.Component {
                         </div>
                         <div className="font-size4 text-left">
                           <div className="box-heightPackage"> <img src={shaker} alt="vector" className="shaker-71" /> <p className="span-image">Shaker 1 ชิ้น <br /> <p className="distance-span1">(เฉพาะสั่งซื้อครั้งแรก)</p></p></div>
-                          <div className="box-heightPackage"> <img src={fitto_prework_lemon} alt="vector" className="ellipse-71" /> <p className="span-image">Fitto Pre Workout <p className="distance-span">รส Green Lemonade จำนวน 1 ซอง</p></p></div>
-                          <div className="box-heightPackage"> <img src={ellipse_71} alt="vector" className="ellipse-71" /> <p className="span-image">Fitto Drink <p className="distance-span1">รส Arabica Latte จำนวน 1 ซอง</p></p></div>
-                          <div className="box-heightPackage"> <img src={ellipse_71} alt="vector" className="ellipse-71" /> <p className="span-image">Fitto Colla C Unflavored <br /> <p className="distance-span1">จำนวน 1 ซอง</p></p></div>
+                          <div className="box-heightPackage"> <img src={lemonade} alt="vector" className="ellipse-71" /> <p className="span-image">Fitto Pre Workout <p className="distance-span">รส Green Lemonade จำนวน 1 ซอง</p></p></div>
+                          <div className="box-heightPackage"> <img src={latte2} alt="vector" className="ellipse-71" /> <p className="span-image">Fitto Drink <p className="distance-span1">รส Arabica Latte จำนวน 1 ซอง</p></p></div>
+                          <div className="box-heightPackage2"> <img src={lfittocsachet5g} alt="vector" className="ellipse-72" /> <p className="span-image">Fitto Colla C Unflavored <br /> <p className="distance-span1">จำนวน 1 ซอง</p></p></div>
                         </div>
                         {/*  <div className="example3"></div> */}
                       </div>

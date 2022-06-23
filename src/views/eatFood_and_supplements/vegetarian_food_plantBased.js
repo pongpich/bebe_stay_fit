@@ -108,8 +108,8 @@ const vegetarian_food_plantBased = function () {
         <li>เลือกบริโภคอาหารที่มีไขมันไม่อิ่มตัวเป็นประจำ เช่น เต้าหู้ เมล็ดพืช ถั่วต่าง ๆ อะโวคาโด รวมถึงใช้น้ำมันที่เหมาะสมในการปรุงอาหาร เช่น น้ำมันรำข้าว น้ำมันมะกอก</li>
       </p>
       <div className="centerImage ImageTop">
-        <img src={shutterstock_7} alt="vector" className="col-12 col-sm-12  col-md-6 col-lg-6" />
         <img src={shutterstock_8} alt="vector" className="col-12 col-sm-12  col-md-6 col-lg-6" />
+        <img src={shutterstock_7} alt="vector" className="col-12 col-sm-12  col-md-6 col-lg-6" />
       </div>
       <p className="nutritionText3 " >
         <li>เน้นการใช้เครื่องเทศหรือสมุนไพรในการปรุงอาหาร ลดการใช้เครื่องปรุงที่ให้รสเค็ม หรือทำให้อาหารรสจัดมากจนเกินไป</li>

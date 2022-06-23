@@ -888,10 +888,17 @@ a {
 
 .distance-span {
 
-  white-space: pre; 
+  white-space: pre;
 }
+
 .box-heightPackage {
-  padding-top: 10px;
+  padding-top: 30px;
+}
+
+.box-heightPackage2 {
+  padding-top: 30px;
+  margin-top: -50px;
+
 }
 
 /* ลองอัพ code */
@@ -1341,16 +1348,20 @@ a {
 }
 
 .ellipse-71 {
-  width: 8%;
-  margin-left: 15px;
+  width: 20%;
+  margin-left: -20px;
+  margin-top: -30px;
 }
+
 .shaker-71 {
   width: 18%;
 }
+
 .ellipse-72 {
-  width: 50px;
-  height: 50px;
-  border-radius:100%;
+  width: 11%;
+  -ms-transform: rotate(100deg);
+  /* IE 9 */
+  transform: rotate(90deg);
 }
 
 .group19 {
