@@ -3,6 +3,8 @@ import React, { Component } from "react";
 //import SelectPackage from './information/buy_program';
 import { Link } from 'react-router-dom';
 import ellipse_71 from "../assets/img/ellipse_71.png";
+import fitto_prework_lemon from "../assets/img/fitto_prework_lemon.png";
+import shaker from "../assets/img/shaker.png";
 import { connect } from "react-redux";
 import { loginUser } from "../redux/auth";
 import { selectProgram, getAllProgram } from "../redux/exerciseProgram";
@@ -118,7 +120,7 @@ class ProgramPackage extends React.Component {
                   />
                   <label className="form-check-label">
                     คุมอาหาร และ ออกกำลังกาย
-                                    </label>
+                  </label>
                 </div>
                 <div className="form-check font-size4" onChange={(event) => this.exerciseActivatedCheck(event)}>
                   <input
@@ -131,12 +133,12 @@ class ProgramPackage extends React.Component {
                   />
                   <label className="form-check-label">
                     คุมอาหารอย่างเดียว
-                                    </label>
+                  </label>
                 </div>
                 <br />
                 <div className="padding-top2">
                   <label className="form-label bold font-size4 between color1">เลือกหน่วย
-                                            <span className="font-size7 light section">
+                    <span className="font-size7 light section">
                       <div className="onoffswitch">
                         <input type="checkbox" name="onoffswitch" className="onoffswitch-checkbox " id="myonoffswitch" onChange={e => this.checkBoxes(e)} defaultChecked={this.state.checked} />
                         <label className="onoffswitch-label" htmlFor="myonoffswitch">
@@ -237,13 +239,13 @@ class ProgramPackage extends React.Component {
                         <div>
                           <p className="font-size5 bold">
                             ฟรีของแถม
-                                                    </p>
+                          </p>
                         </div>
                         <div className="font-size4 text-left">
-                          <p> <img src={ellipse_71} alt="vector" className="ellipse-71" /> <span className="span-image">Shaker 1 ชิ้น <br /> <span className="distance-span">(เฉพาะสั่งซื้อครั้งแรก)</span></span></p>
-                          <p> <img src={ellipse_71} alt="vector" className="ellipse-71" /> <span className="span-image">Fitto Pre Workout <br /> <span className="distance-span">รส Green Lemonade จำนวน 1 ซอง</span></span></p>
-                          <p> <img src={ellipse_71} alt="vector" className="ellipse-71" /> <span className="span-image">Fitto Drink <br /> <span className="distance-span">รส Arabica Latte จำนวน 1 ซอง</span></span></p>
-                          <p> <img src={ellipse_71} alt="vector" className="ellipse-71" /> <span className="span-image">Fitto Colla C Unflavored <br /> <span className="distance-span">จำนวน 1 ซอง</span></span></p>
+                          <div className="box-heightPackage"> <img src={shaker} alt="vector" className="shaker-71" /> <p className="span-image">Shaker 1 ชิ้น <br /> <p className="distance-span1">(เฉพาะสั่งซื้อครั้งแรก)</p></p></div>
+                          <div className="box-heightPackage"> <img src={fitto_prework_lemon} alt="vector" className="ellipse-71" /> <p className="span-image">Fitto Pre Workout <p className="distance-span">รส Green Lemonade จำนวน 1 ซอง</p></p></div>
+                          <div className="box-heightPackage"> <img src={ellipse_71} alt="vector" className="ellipse-71" /> <p className="span-image">Fitto Drink <p className="distance-span1">รส Arabica Latte จำนวน 1 ซอง</p></p></div>
+                          <div className="box-heightPackage"> <img src={ellipse_71} alt="vector" className="ellipse-71" /> <p className="span-image">Fitto Colla C Unflavored <br /> <p className="distance-span1">จำนวน 1 ซอง</p></p></div>
                         </div>
                         {/*  <div className="example3"></div> */}
                       </div>

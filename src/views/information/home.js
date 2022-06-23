@@ -248,7 +248,7 @@ class Home extends React.Component {
     const { validation } = this.state;
     return (
       <>
-        {/*    {this.homeLogin()} */}
+      {/*      {this.homeLogin()} */}
         {this.login()}
       </>
     );
