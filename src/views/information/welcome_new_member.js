@@ -13,10 +13,10 @@ class Welcome_NewMember extends React.Component {
     const { user_program_id, create_user_email, user } = this.props;
 
     this.props.getUserProgram(create_user_email);
-/* 
+
      if (!user_program_id) { //ถ้าไม่มี user_program_id แสดงว่ายังชำระเงินไม่สำเร็จแล้ว
        this.props.history.push('/programPackage');
-     } */
+     }
 
     if (user !== null) {
       this.props.history.push('/basic_information');
