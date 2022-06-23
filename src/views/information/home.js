@@ -54,7 +54,7 @@ class Home extends React.Component {
     if (prevProps.status !== status) {
       if (status === "success") {
         this.props.history.push('/basic_information');
-        document.getElementById("remove-model").click();
+        //document.getElementById("remove-model").click(); //ใช้สำหรับซ่อน modal แต่ตอนนี้เอาออกเพราะปรับดีไซด์ชั่วคราวไม่งั้นมีบัค
       }
     }
   }
@@ -62,7 +62,7 @@ class Home extends React.Component {
 
   resetPassword() {
     this.props.history.push('/reset_password');
-    document.getElementById("remove-model").click();
+    // document.getElementById("remove-model").click(); //ใช้สำหรับซ่อน modal แต่ตอนนี้เอาออกเพราะปรับดีไซด์ชั่วคราวไม่งั้นมีบัค
   }
 
   onUserLogin() {
@@ -232,7 +232,7 @@ class Home extends React.Component {
                         </button>
                       </div>
                       <p className="between margin-top-2 font-size4"><span className="pointer reset" onClick={() => this.resetPassword()}>ลืมรหัสผ่าน</span>
-                       <span>ยังไม่เป็นสมาชิก? <a className="a-Href"  onClick={(e) => this.props.history.push('/programPackage')}>ลงทะเบียน</a></span></p>
+                        <span>ยังไม่เป็นสมาชิก? <a className="a-Href" onClick={(e) => this.props.history.push('/programPackage')}>ลงทะเบียน</a></span></p>
                     </div>
                   </div>
                 </div>
