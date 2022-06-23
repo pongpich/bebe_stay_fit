@@ -248,14 +248,14 @@ class Shipping_Address extends React.Component {
                       onSelect={e => this.onSelect(e)}
                     />
                   </div>
-                  <div className="padding-top2">
+                  {/* <div className="padding-top2">
                     <div className="form-check">
                       <input id="checkedTaxInvoice" className="form-check-input" type="checkbox" onClick={e => this.taxInvoice(e)} />
                       <label className="form-check-label">
                         ขอใบเสร็จรับเงิน/ใบกำกับภาษี
                                             </label>
                     </div>
-                  </div>
+                  </div> */}
                 </div>
               </div>
               <div className="d-grid gap-2  mx-auto   col-10 col-sm-10  col-md-10 col-lg-10 distance">
