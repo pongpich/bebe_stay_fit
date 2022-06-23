@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import p4fbebe97111 from "../../assets/img/p4fbebe97111.png";
+import p4fbebe97111 from "../../assets/img/group224.png";
 import group18 from "../../assets/img/group18.png";
 import mask1 from ".././images/mask1.png";
 import mask2 from ".././images/mask2.png";
