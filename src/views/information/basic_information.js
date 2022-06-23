@@ -121,7 +121,7 @@ class Basic_Information extends React.Component {
                   </div>
                   <div className="padding-top2">
                     <label className="form-label bold font-size4">อายุ</label>
-                    <input type="number" className="form-control right" id="exampleFormControlInput1" name="basicAge" onChange={e => this.onCheckBasix(e)} placeholder="ปี" />
+                    <input type="number" className="form-control right2" id="exampleFormControlInput1" name="basicAge" onChange={e => this.onCheckBasix(e)} placeholder="ปี" />
                   </div>
                   <div className="padding-top2">
                     <label className="form-label bold font-size4 between color1">เลือกหน่วย
@@ -142,11 +142,11 @@ class Basic_Information extends React.Component {
                   </div>
                   <div className="padding-top2">
                     <label className="form-label bold font-size4 between">น้ำหนัก</label>
-                    <input type="email" className="form-control right" id="exampleFormControlInput1" name="basicWeight" onChange={e => this.onCheckBasix(e)} placeholder={this.state.typeWeight} />
+                    <input type="email" className="form-control right2" id="exampleFormControlInput1" name="basicWeight" onChange={e => this.onCheckBasix(e)} placeholder={this.state.typeWeight} />
                   </div>
                   <div className="padding-top2">
                     <label className="form-label bold font-size4">ส่วนสูง </label>
-                    <input type="email" className="form-control right" id="exampleFormControlInput1" name="basicHeight" onChange={e => this.onCheckBasix(e)} placeholder={this.state.typeHeight} />
+                    <input type="email" className="form-control right2" id="exampleFormControlInput1" name="basicHeight" onChange={e => this.onCheckBasix(e)} placeholder={this.state.typeHeight} />
                   </div>
                   <div className="padding-top2">
                     <p className="bold font-size4 ">คุณแน่ใจว่าสามารถฝึกท่าฝึกยากๆ เช่นท่า Squat, ท่ากระโดด ได้อย่างถูกต้อง</p>
