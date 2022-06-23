@@ -21,8 +21,8 @@ class Payment extends React.Component {
       creditCardFocus: "btn btn-outline-pinkFocus",
       qrCodeFocus: "btn btn-outline-pink",
       paymentMethod: "creditCard",
-      price: 1.00, //สำหรับเทส
-      //price: this.props.program.price, //สำหรับใช้จริง
+      //price: 1.00, //สำหรับเทส
+      price: this.props.program.price, //สำหรับใช้จริง
       productName: "bebe stay fit",
       name: `${this.props.create_username} ${this.props.create_lastname}`,
       cardNumber: "",
