@@ -462,6 +462,28 @@ class videoList extends React.Component {
     const { focusDay, selectedVDO } = this.state;
     const todayExercise = this.exerciseDaySelection(focusDay);
     const videoUrl = selectedVDO ? `${selectedVDO.url}` : "";
+    
+    let allMinute = [];
+    let allSecond = [];
+    if (this.props.exerciseVideo) {
+      todayExercise.map((item) => (allMinute.push(Number((item.duration.toFixed(2)).split(".")[0]))));
+      todayExercise.map((item) => (allSecond.push(Number((item.duration.toFixed(2)).split(".")[1]))));
+    }
+    let sumMinute = allMinute.reduce((acc, curr) => acc += curr, 0).toFixed(0);
+    let sumSecond = allSecond.reduce((acc, curr) => acc += curr, 0).toFixed(0);
+    let minute2 = Math.floor(sumSecond / 60);
+    let totalMinute = Number(sumMinute) + Number(minute2);
+    let totalSecond = sumSecond % 60;
+    let timesExercise;
+    if (totalMinute > 100) { // เช็คเพราะมีการปรับ database ให้เก็บVDOเป็นหน่วยวินาที
+      totalMinute = Math.floor(sumMinute / 60);
+      totalSecond = (sumMinute % 60);
+    }
+    if (totalSecond < 10) {
+      timesExercise = `${totalMinute}:0${totalSecond}`;
+    } else {
+      timesExercise = `${totalMinute}:${totalSecond}`;
+    }
     return (
       <>
         <div>
@@ -520,7 +542,7 @@ class videoList extends React.Component {
           <div className="containerli">
             <div className="row">
               <div className="col">
-                รวมเวลาฝึกทั้งหมด 55 นาที
+                รวมเวลาฝึกทั้งหมด {timesExercise} นาที
               </div>
               {/*  <div className="col-md-auto" onClick={() => this.editVDO()} aria-hidden="true" style={{ cursor: "pointer" }}>
                 <img src={edit} className="icon-edit" />
