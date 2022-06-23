@@ -54,7 +54,7 @@ class Home extends React.Component {
     if (prevProps.status !== status) {
       if (status === "success") {
         this.props.history.push('/basic_information');
-        document.getElementById("remove-model").click();
+        /* document.getElementById("remove-model").click(); */
       }
     }
   }
@@ -248,7 +248,7 @@ class Home extends React.Component {
     const { validation } = this.state;
     return (
       <>
-        {/*    {this.homeLogin()} */}
+      {/*      {this.homeLogin()} */}
         {this.login()}
       </>
     );
