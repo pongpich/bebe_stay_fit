@@ -48,9 +48,9 @@ class ProgramPackage extends React.Component {
 
   handleChange(event) {
 
-   this.setState({
-      [event.target.id]:  event.target.value
-    })  
+    this.setState({
+      [event.target.id]: event.target.value
+    })
   };
 
   calculateDuration(exerciseActivated, weightLossGoals) {
@@ -65,11 +65,11 @@ class ProgramPackage extends React.Component {
 
 
     if (this.state.typeHei_Wig === 'ปอนด์') {
-        var duration = Math.ceil((mu * (weightLossGoals*0.45359237)) / 4); //สมมุติว่าทุกเดือนมี 4 week (อาจมีการเปลี่ยนแปลง) *0.45359237
-   }else {
-        var duration = Math.ceil((mu * weightLossGoals) / 4); //สมมุติว่าทุกเดือนมี 4 week (อาจมีการเปลี่ยนแปลง) *0.45359237
-   }
-      
+      var duration = Math.ceil((mu * (weightLossGoals * 0.45359237)) / 4); //สมมุติว่าทุกเดือนมี 4 week (อาจมีการเปลี่ยนแปลง) *0.45359237
+    } else {
+      var duration = Math.ceil((mu * weightLossGoals) / 4); //สมมุติว่าทุกเดือนมี 4 week (อาจมีการเปลี่ยนแปลง) *0.45359237
+    }
+
     this.setState({
       durationWeightLoss: duration
     })
@@ -87,15 +87,15 @@ class ProgramPackage extends React.Component {
       pound_kg: pound_kg,
     })
   }
-  
+
   selectProgram(program_id) {
 
     this.props.selectProgram(program_id);
-    this.props.history.push('/register');  
+    this.props.history.push('/register');
   }
 
   renderInformationCalculate() {
-    const { exerciseActivated, weightLossGoals,pound_kg} = this.state;
+    const { exerciseActivated, weightLossGoals, pound_kg } = this.state;
     return (
       <>
         <br />
@@ -135,22 +135,22 @@ class ProgramPackage extends React.Component {
                 </div>
                 <br />
                 <div className="padding-top2">
-                    <label className="form-label bold font-size4 between color1">เลือกหน่วย
+                  <label className="form-label bold font-size4 between color1">เลือกหน่วย
                                             <span className="font-size7 light section">
-                        <div className="onoffswitch">
-                          <input type="checkbox" name="onoffswitch" className="onoffswitch-checkbox " id="myonoffswitch" onChange={e => this.checkBoxes(e)} defaultChecked={this.state.checked} />
-                          <label className="onoffswitch-label" htmlFor="myonoffswitch">
-                            <span className="onoffswitch-inner">
-                              <div className="between">
-                                <p className="text-float3">ปอนด์ <span className="text-float4"> กิโลกรัม</span></p>
-                              </div>
-                            </span>
-                            <span className="onoffswitch-switch"></span>
-                          </label>
-                        </div>
-                      </span>
-                    </label>
-                  </div>
+                      <div className="onoffswitch">
+                        <input type="checkbox" name="onoffswitch" className="onoffswitch-checkbox " id="myonoffswitch" onChange={e => this.checkBoxes(e)} defaultChecked={this.state.checked} />
+                        <label className="onoffswitch-label" htmlFor="myonoffswitch">
+                          <span className="onoffswitch-inner">
+                            <div className="between">
+                              <p className="text-float3">ปอนด์ <span className="text-float4"> กิโลกรัม</span></p>
+                            </div>
+                          </span>
+                          <span className="onoffswitch-switch"></span>
+                        </label>
+                      </div>
+                    </span>
+                  </label>
+                </div>
                 <div className="mb-3 ">
                   <label className="form-label font-size2 ">คุณต้องการลดน้ำหนักกี่กิโลกรัม</label>
                   <input
@@ -158,7 +158,7 @@ class ProgramPackage extends React.Component {
                     className="form-control  right2"
                     id="weightLossGoals"
                     placeholder={pound_kg}
-               /*      value={weightLossGoals} */
+                    /*      value={weightLossGoals} */
                     onChange={(event) => this.handleChange(event)}
                   />
                 </div>
@@ -174,7 +174,7 @@ class ProgramPackage extends React.Component {
   }
 
   renderSelectPackage() {
-    const { weightLossGoals, durationWeightLoss,pound_kg } = this.state;
+    const { weightLossGoals, durationWeightLoss, pound_kg } = this.state;
     const { allProgram } = this.props;
     const priceStarter = allProgram && allProgram.filter(element => element.program_id === "starter_stay_fit_01");
     const priceSubscription = allProgram && allProgram.filter(element => element.program_id === "subscription_stay_fit_01");
@@ -241,7 +241,9 @@ class ProgramPackage extends React.Component {
                         </div>
                         <div className="font-size4 text-left">
                           <p> <img src={ellipse_71} alt="vector" className="ellipse-71" /> <span className="span-image">Shaker 1 ชิ้น <br /> <span className="distance-span">(เฉพาะสั่งซื้อครั้งแรก)</span></span></p>
-                          <p> <img src={ellipse_71} alt="vector" className="ellipse-71" /> <span className="span-image">Cocoa </span></p>
+                          <p> <img src={ellipse_71} alt="vector" className="ellipse-71" /> <span className="span-image">Fitto Pre Workout <br /> <span className="distance-span">รส Green Lemonade จำนวน 1 ซอง</span></span></p>
+                          <p> <img src={ellipse_71} alt="vector" className="ellipse-71" /> <span className="span-image">Fitto Drink <br /> <span className="distance-span">รส Arabica Latte จำนวน 1 ซอง</span></span></p>
+                          <p> <img src={ellipse_71} alt="vector" className="ellipse-71" /> <span className="span-image">Fitto Colla C Unflavored <br /> <span className="distance-span">จำนวน 1 ซอง</span></span></p>
                         </div>
                         {/*  <div className="example3"></div> */}
                       </div>
