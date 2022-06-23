@@ -1,6 +1,6 @@
 import React from 'react';
-import shutterstock_7 from "../../assets/img/foot_supplement/shutterstock_7.png";
-import shutterstock_8 from "../../assets/img/foot_supplement/shutterstock_8.png";
+import shutterstock_7 from "../../assets/img/foot_supplement/frame_7.png";
+import shutterstock_8 from "../../assets/img/foot_supplement/frame_8.png";
 import simple_health_6 from "../../assets/img/foot_supplement/simple_health_6.png";
 import simple_health_5 from "../../assets/img/foot_supplement/simple_health_5.png";
 const vegetarian_food_plantBased = function () {
