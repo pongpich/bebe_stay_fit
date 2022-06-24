@@ -28,10 +28,10 @@
     <input id="qr_email" type="hidden" name="customerEmail">
     <input id="qr_programID" type="hidden" name="merchantDefined1">
   </form>
-  <script type="text/javascript" src="./js/util.js"></script>
+
   <script src="./js/axios.min.js"></script>
   <script>
-    var summaryInfo = checkData();
+
     var serviceUrl = 'https://api.planforfit.com/bebe';
     var base_url = window.location.origin;
     var url_string = window.location.href;
@@ -46,12 +46,6 @@
     const email = localStorage.getItem('email');
     const phone = localStorage.getItem('phone');
     var pageUrl = window.location.href;
-    var thankyouPageUrl;
-    if (pageUrl.includes("localhost") || pageUrl.includes("127.0.0.1")) {
-      thankyouPageUrl = 'http://localhost:3000/#/welcome_new_nember' //สำหรับเทส
-    } else {
-      thankyouPageUrl = 'https://fit.bebefitroutine.com/#/welcome_new_nember' //สำหรับใช้จริง
-    }
     const bodyFormData = {
       amount: price,
       referenceNo: Date.now(),
@@ -63,7 +57,7 @@
         token: gbToken
       },
       otp: "Y",
-      responseUrl: thankyouPageUrl,
+      responseUrl: `${serviceUrl}/thankyou`,
       backgroundUrl: `${serviceUrl}/gbqr`,
       merchantDefined1: program_id
     };
@@ -76,9 +70,9 @@
       .then(function (response) {
         //handle success
         console.log(response.data);
-        /* summaryInfo.gbpReferenceNo = response.data && response.data.gbpReferenceNo ? response.data.gbpReferenceNo : "";
-        window.localStorage.setItem('summaryInfo', JSON.stringify(summaryInfo));
-        window.location = "./cc_preotp.html"; */
+        const gbpReferenceNo = response.data && response.data.gbpReferenceNo ? response.data.gbpReferenceNo : "";
+        window.localStorage.setItem('gbpReferenceNo', gbpReferenceNo);
+        window.location = "./cc_preotp.html";
       })
       .catch(function (response) {
         //handle error

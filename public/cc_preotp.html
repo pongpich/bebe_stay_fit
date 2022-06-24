@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>pre OTP</title>
+</head>
+<body>
+  <form name="form" action="https://api.gbprimepay.com/v2/tokens/3d_secured" method="POST">
+    <input type="hidden" name="publicKey" id="publicKey" >
+    <input type="hidden" name="gbpReferenceNo" id="gbpReferenceNo" >
+  </form>
+  
+  <script>
+    const gbpReferenceNo = localStorage.getItem('gbpReferenceNo');
+    document.getElementById("publicKey").value = "HZUfYchqY3T49pWGoookdeS9eelqfOo7";
+    document.getElementById("gbpReferenceNo").value = gbpReferenceNo;
+    window.onload=function(){
+      document.forms["form"].submit();
+    }
+  </script>
+</body>
+</html>

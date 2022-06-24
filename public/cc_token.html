@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>GB</title>
+</head>
+
+<body>
+  <form 
+  id="checkout-form" 
+  action="./cc_checkout.html"
+  >
+    <div id="gb-form" style="height: 600px;"></div>
+  </form>
+  <script src="./js/GBPrimePay.js"></script>
+  <script>
+    const price = localStorage.getItem('price');
+    new GBPrimePay({
+      publicKey: 'HZUfYchqY3T49pWGoookdeS9eelqfOo7',
+      gbForm: '#gb-form',
+      merchantForm: '#checkout-form',
+      amount: price,
+      customStyle: {
+        backgroundColor: '#eaeaea'
+      },
+      env: 'prd' // default prd | optional: test, prd
+    });
+  </script>
+</body>
+
+</html>

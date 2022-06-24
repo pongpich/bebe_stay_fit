@@ -175,7 +175,7 @@ class App extends Component {
             <Route path='/information_calculate' component={InformationCalculate} />
             <Route path='/buy_program' component={Buy_program} />
             <Route path='/register' component={Register} />
-            <Route path='/cc_token' component={Cc_token} />
+            {/* <Route path='/cc_token' component={Cc_token} /> */}
             <Route path='/fitto_plant_protein' component={Fitto_Plant_Protein} />
             <Route path='/shipping_address' component={Shipping_Address} />
             <Route path='/payment' component={Payment} />
@@ -189,6 +189,8 @@ class App extends Component {
             <Route path='/videoList' component={videoList} />
             <Route path='/qr_checkout' render={() => { window.location.href = "qr_checkout.html" }} />
             <Route path='/cc_checkout' render={() => { window.location.href = "cc_checkout.html" }} />
+            <Route path='/cc_token' render={() => { window.location.href = "cc_token.html" }} />
+            <Route path='/cc_preotp' render={() => { window.location.href = "cc_preotp.html" }} />
             <Route path='/shipping_check' component={Shipping_check} />
             <Route path='/billing_history' component={Billing_history} />
             <Route path='/food_supplement' component={Food_supplement} />
