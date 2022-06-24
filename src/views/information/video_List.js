@@ -22,6 +22,7 @@ import { connect } from "react-redux";
 import { videoListForUser, createWeeklyStayfitProgram, updatePlaytime, randomVideo, selectChangeVideo, updatePlaylist } from "../../redux/exerciseVideos"
 import { convertFormatTime, convertSecondsToMinutes } from "../../helpers/utils"
 import { completeVideoPlayPercentage, minimumVideoPlayPercentage, updateFrequency } from "../../constants/defaultValues";
+import backgroundImag from '../../assets/img/bgintro_lg.d22ae02a.png';
 import Food_supplement from '../information/food_supplement';
 
 class videoList extends React.Component {
@@ -257,6 +258,11 @@ class videoList extends React.Component {
     video.pause();
     video.currentTime = 0;
   }
+  closeToggleIntro() {
+    var video = document.getElementById(`videoPlayerIntro`);
+    video.pause();
+    video.currentTime = 0;
+  }
 
   toggle(selectedVDO) {
     if (selectedVDO) {
@@ -279,6 +285,16 @@ class videoList extends React.Component {
       })
     }
   }
+
+  
+  videoHead() {
+  
+ console.log("adasd");
+
+    
+    
+  }
+
 
   addEventToVideo() {
     var video = document.getElementById(`videoPlayer`);
@@ -397,15 +413,19 @@ class videoList extends React.Component {
 
         {
           (this.state.clickManu === "manu1") ?
-            <div className="box-videoHead">
+            <div className="box-videoHeadPlatform" style={{
+              backgroundImage: `url(${backgroundImag})`,
+              width: '100%'
+            }}>
 
               {(this.state.pleaseVerifyNumberPhone === /* false */true) ?
                 <>
-                  <h3 className="center-videoText bold">
+                  <h3 className="center-videoText bold color1">
                     Platform
                   </h3>
                   <div className="play_circle">
-                    <img src={play_circle_filled} /> <span className="play_circle_span">WATCH INTRODUCTION</span>
+                    <img src={play_circle_filled} className="pointer"  data-bs-toggle="modal"  data-bs-target="#exampleModalViderHead"/> <span className="play_circle_span">WATCH INTRODUCTION</span>
+                    
                   </div>
                 </>
                 :
@@ -790,10 +810,31 @@ class videoList extends React.Component {
         </div>
         {/* modal  */}
 
+        {/** *!   ส่วนของหัว   */}
+        <div className="modal fade" id="exampleModalViderHead" data-bs-backdrop="static" aria-labelledby="exampleModalLabel" >
+          <div className="modal-dialog modal-xl mode-xxl">
+            <div className="modal-content2">
+              <div className="modal-header">
+                {/*   <h5 className="modal-title" id="exampleModalLabel">
+                  <img src={ellipse2} className="ellipse61-model" />
+                  <img src={union} className="union" />
+                  <span className="span-model bold color1"> Chest</span>
+                </h5> */}
+                <button type="button" className="btn-close color-x" data-bs-dismiss="modal" aria-label="Close" onClick={() => this.closeToggleIntro()}>X</button>
 
+                {/* <button onClick={e => this.playVideo(e)}>PLAY</button> */}
+              </div>
+              <div className="modal-body">
+                
+                <video className="video"   id="videoPlayerIntro"  controls 
+                src="https://player.vimeo.com/external/414645540.hd.mp4?s=d2c95abe8443336f858f4bf9243b79fee350a8d4&profile_id=174">
+                </video>
+              </div>
+            </div>
+          </div>
+        </div>
 
-
-        <div className="modal fade" id="exampleModal" aria-labelledby="exampleModalLabel" >
+        <div className="modal fade" id="exampleModal" data-bs-backdrop="static" aria-labelledby="exampleModalLabel" >
           <div className="modal-dialog modal-xl mode-xxl">
             <div className="modal-content2">
               <div className="modal-header">
@@ -813,7 +854,7 @@ class videoList extends React.Component {
           </div>
         </div>
         {/* video ทั้งหมด */}
-        <div className="modal fade" id="exampleModal2" aria-labelledby="exampleModalLabel" >
+        <div className="modal fade" id="exampleModal2"  data-bs-backdrop="static" aria-labelledby="exampleModalLabel" >
           <div className="modal-dialog modal-xl modal-dialog-scrollable">
             <div className="modal-content">
               <div className="modal-header">
@@ -1089,8 +1130,47 @@ class videoList extends React.Component {
           </div>
         </div>
         {/* modal  */}
+{/** *!   ส่วนของหัว   */}
+        <div className="modal fade" id="exampleModalViderHead" aria-labelledby="exampleModalLabel" >
+          <div className="modal-dialog modal-xl mode-xxl">
+            <div className="modal-content">
+              <div className="modal-header">
+                {/*   <h5 className="modal-title" id="exampleModalLabel">
+                  <img src={ellipse2} className="ellipse61-model" />
+                  <img src={union} className="union" />
+                  <span className="span-model bold color1"> Chest</span>
+                </h5> */}
+                <button type="button" className="btn-close color-x" data-bs-dismiss="modal" aria-label="Close" onClick={() => this.closeToggle()}>X</button>
+
+                {/* <button onClick={e => this.playVideo(e)}>PLAY</button> */}
+              </div>
+              <div className="modal-body">
+                <video className="video" id="videoPlayer" controls src="https://vod-progressive.akamaized.net/exp=1656029123~acl=%2Fvimeo-prod-skyfire-std-us%2F01%2F2928%2F16%2F414644989%2F1784130174.mp4~hmac=7e90273ab0620ac5aca7fcac64cc12598440cd457c7b06791844a4a61b709f9d/vimeo-prod-skyfire-std-us/01/2928/16/414644989/1784130174.mp4?filename=Warm+up.mp4" ></video>
+              </div>
+            </div>
+          </div>
+        </div>
 
 
+        <div className="modal fade" id="exampleModal" aria-labelledby="exampleModalLabel" >
+          <div className="modal-dialog modal-xl mode-xxl">
+            <div className="modal-content2">
+              <div className="modal-header">
+                {/*   <h5 className="modal-title" id="exampleModalLabel">
+                  <img src={ellipse2} className="ellipse61-model" />
+                  <img src={union} className="union" />
+                  <span className="span-model bold color1"> Chest</span>
+                </h5> */}
+                <button type="button" className="btn-close color-x" data-bs-dismiss="modal" aria-label="Close" onClick={() => this.closeToggle()}>X</button>
+
+                {/* <button onClick={e => this.playVideo(e)}>PLAY</button> */}
+              </div>
+              <div className="modal-body">
+                <video className="video" id="videoPlayer" controls src={videoUrl} ></video>
+              </div>
+            </div>
+          </div>
+        </div>
 
 
         <div className="modal fade" id="exampleModal" aria-labelledby="exampleModalLabel" >

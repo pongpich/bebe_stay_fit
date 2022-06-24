@@ -1362,6 +1362,7 @@ a {
   -ms-transform: rotate(100deg);
   /* IE 9 */
   transform: rotate(90deg);
+  margin-left: -5px;
 }
 
 .group19 {
@@ -1666,6 +1667,13 @@ a {
 /* vodeo */
 .box-videoHead {
   background-color: #f2f2f2;
+  position: relative !important;
+  width: auto;
+  height: 200px;
+}
+
+.box-videoHeadPlatform {
+  background-color: #eeb2ca;
   position: relative !important;
   width: auto;
   height: 200px;

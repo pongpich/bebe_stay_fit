@@ -243,7 +243,7 @@ class ProgramPackage extends React.Component {
                             ฟรีของแถม
                           </p>
                         </div>
-                        <div className="font-size4 text-left">
+                        <div className="font-size4 text-left margin-top-2 ">
                           <div className="box-heightPackage"> <img src={shaker} alt="vector" className="shaker-71" /> <p className="span-image">Shaker 1 ชิ้น <br /> <p className="distance-span1">(เฉพาะสั่งซื้อครั้งแรก)</p></p></div>
                           <div className="box-heightPackage"> <img src={lemonade} alt="vector" className="ellipse-71" /> <p className="span-image">Fitto Pre Workout <p className="distance-span">รส Green Lemonade จำนวน 1 ซอง</p></p></div>
                           <div className="box-heightPackage"> <img src={latte2} alt="vector" className="ellipse-71" /> <p className="span-image">Fitto Drink <p className="distance-span1">รส Arabica Latte จำนวน 1 ซอง</p></p></div>
