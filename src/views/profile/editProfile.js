@@ -71,7 +71,7 @@ class EditProfile extends React.Component {
         </div> */}
 
         <div className="col-12 col-sm-12 col-md-12 col-lg-12  center2 ">
-          <div className="col-12 col-sm-12 col-md-6 col-lg-6 center2">
+          <div className="col-12 col-sm-12 col-md-6 col-lg-5 center2">
             <div className="box-protein margin-bottom1 padding-top2">
               <div className="box-proteinAddress padding-top">
                 <p className="font-size6 bold color-protein "> ที่อยู่ในการจัดส่งสินค้า</p>
@@ -138,14 +138,20 @@ class EditProfile extends React.Component {
           </div>
         </div> */}
         <div className="col-12 col-sm-12 col-md-12 col-lg-12  center2  margin-top-3">
-          <div className="row">
-            <div className=" center2">
-              <button type="button" className="btn bottom-outlinePink margin-top-4 col-lg-12">ยกเลิก</button>
+          <div className="bottomEditProfile">
+
+
+          <button type="button" className="btn bottom-outlinePinkLeft ">ยกเลิก</button>
+          <button type="button" className="btn bottom-outlinePinkRight bottomEditProfileLeft ">บันทึก</button>
+          </div>
+          {/*   <div className="">
+            <div className="row">
+              <button type="button" className="btn bottom-outlinePink ">ยกเลิก</button>
             </div>
             <div className="">
               <button type="button" className="btn bottom-pink">บันทึก</button>
             </div>
-          </div>
+          </div> */}
         </div>
       </>
 
