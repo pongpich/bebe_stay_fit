@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" type="image/png" href="img/favicon.png" />
+
+  <title>Checkout</title>
+</head>
+
+<body>
+  <div>
+    <img src="./img/empty_header.jpg" alt="">
+  </div>
+  <div class="spinner center">
+    <img src="./img/dumbbell_loading.gif" alt="">
+  </div>
+  <form action=https://api.gbprimepay.com/gbp/gateway/qrcode method="POST">
+    <input id="qr_token" type="hidden" name="token">
+    <input id="qr_refNo" type="hidden" name="referenceNo">
+    <input id="qr_bgUrl" type="hidden" name="backgroundUrl">
+    <input id="qr_amount" type="hidden" name="amount">
+    <input id="qr_detail" type="hidden" name="detail">
+    <input id="qr_name" type="hidden" name="customerName">
+    <input id="qr_email" type="hidden" name="customerEmail">
+    <input id="qr_programID" type="hidden" name="merchantDefined1">
+  </form>
+  <script type="text/javascript" src="./js/util.js"></script>
+  <script src="./js/axios.min.js"></script>
+  <script>
+    var summaryInfo = checkData();
+    var serviceUrl = 'https://api.planforfit.com/bebe';
+    var base_url = window.location.origin;
+    var url_string = window.location.href;
+    var url = new URL(url_string);
+    var gbToken = url.searchParams.get("gbToken");
+    var authText = "Basic ZThGbDJvVnU2aTVzUTk2WGFsQnZRV2JiQkJGWnNyenQ6";
+    const merchantID = "23xlw1vxcVi8OKGjTqE2sbQbOXHyzNaGN9XK5ALvRrYtdt7J/kL0ROmE59mzRhDhzICLvm6LF9i45eI8EiyFisGPGloHPKnrp7Ma+JH6O+CBVLZfS/NemVtmxm1J4yQ0cLFNTQUnGvhUO+w8/wvlJI3kw8LPuYpF2960XDgMvZA0R9i5";
+    const price = localStorage.getItem('price');
+    const productName = localStorage.getItem('productName');
+    const program_id = localStorage.getItem('program_id');
+    const name = localStorage.getItem('name');
+    const email = localStorage.getItem('email');
+    const phone = localStorage.getItem('phone');
+    var pageUrl = window.location.href;
+    var thankyouPageUrl;
+    if (pageUrl.includes("localhost") || pageUrl.includes("127.0.0.1")) {
+      thankyouPageUrl = 'http://localhost:3000/#/welcome_new_nember' //สำหรับเทส
+    } else {
+      thankyouPageUrl = 'https://fit.bebefitroutine.com/#/welcome_new_nember' //สำหรับใช้จริง
+    }
+    const bodyFormData = {
+      amount: price,
+      referenceNo: Date.now(),
+      detail: productName,
+      customerName: name,
+      customerEmail: email,
+      customerTelephone: phone,
+      card: {
+        token: gbToken
+      },
+      otp: "Y",
+      responseUrl: thankyouPageUrl,
+      backgroundUrl: `${serviceUrl}/gbqr`,
+      merchantDefined1: program_id
+    };
+    axios({
+      method: 'post',
+      url: 'https://api.gbprimepay.com/v2/tokens/charge',
+      data: bodyFormData,
+      headers: { 'Authorization': authText }
+    })
+      .then(function (response) {
+        //handle success
+        console.log(response.data);
+        /* summaryInfo.gbpReferenceNo = response.data && response.data.gbpReferenceNo ? response.data.gbpReferenceNo : "";
+        window.localStorage.setItem('summaryInfo', JSON.stringify(summaryInfo));
+        window.location = "./cc_preotp.html"; */
+      })
+      .catch(function (response) {
+        //handle error
+        console.log(response);
+      });
+  </script>
+</body>
+
+</html>

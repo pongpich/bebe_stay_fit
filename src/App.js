@@ -188,6 +188,7 @@ class App extends Component {
             <Route path='/programPackage' component={ProgramPackage} />
             <Route path='/videoList' component={videoList} />
             <Route path='/qr_checkout' render={() => { window.location.href = "qr_checkout.html" }} />
+            <Route path='/cc_checkout' render={() => { window.location.href = "cc_checkout.html" }} />
             <Route path='/shipping_check' component={Shipping_check} />
             <Route path='/billing_history' component={Billing_history} />
             <Route path='/food_supplement' component={Food_supplement} />

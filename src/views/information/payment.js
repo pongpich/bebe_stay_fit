@@ -219,7 +219,7 @@ class Payment extends React.Component {
           </div>
           <div className="col-12 col-sm-12 col-md-6 col-lg-6 center2 margin-head">
             {
-              (this.state.paymentMethod === "creditCard") &&
+              /* (this.state.paymentMethod === "creditCard") &&
               <div className="box-protein">
                 <div className="padding-top">
                   <div className="box-proteinAddress padding-top">
@@ -252,12 +252,10 @@ class Payment extends React.Component {
                         <label className="form-label bold font-size4">รหัส CVV</label>
                         <input type="password" className="form-control" id="securityCode" maxLength="4" autoComplete="off" action="click" placeholder="รหัสหลังบัตร" onChange={(event) => this.handleChange(event)} />
                       </div>
-                      {/* <button id="button" type="button" className="ant-btn ant-btn-primary ant-btn-block"
-                        ant-click-animating-without-extra-node="false"><span>Pay Now</span></button> */}
                     </form>
                   </div>
                 </div>
-              </div>
+              </div> */
             }
 
             <div className="box-protein  margin-head">
@@ -286,8 +284,12 @@ class Payment extends React.Component {
 
             <div className="d-grid gap-2 col-10 ol-sm-10  mx-auto   col-md-10 col-lg-10 distance">
               {
+                /* (this.state.paymentMethod === "creditCard") &&
+                <input id="cc_button" className="btn bottom-pink" value="ชำระเงิน" onClick={() => this.onPay()} /> */
+              }
+              {
                 (this.state.paymentMethod === "creditCard") &&
-                <input id="cc_button" className="btn bottom-pink" value="ชำระเงิน" onClick={() => this.onPay()} />
+                <input id="cc_button" className="btn bottom-pink" value="ชำระเงิน" onClick={() => this.props.history.push("cc_token")} />
               }
             </div>
 

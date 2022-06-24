@@ -2,16 +2,30 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 
 class Cc_token extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      pageUrl: window.location.href
+    };
+  }
 
   componentDidMount() {
-    //window.gbFunc(this.props.program.price) //ใช้จริง
-    window.gbFunc(1) // สำหรับเทส
+    window.gbFunc(this.props.program.price) //ใช้จริง
+    //window.gbFunc(1) // สำหรับเทส
   }
 
   render() {
     return (
       <div id="mydiv">
-        <form id="checkout-form" action="./subscription_cc_checkout.html">
+        <form
+          id="checkout-form"
+          action={
+            (this.state.pageUrl.includes("localhost") || this.state.pageUrl.includes("127.0.0.1")) ?
+              "http://localhost:3000/#/cc_checkout"
+              :
+              "https://fit.bebefitroutine.com/#/cc_checkout"
+          }
+        >
           <div id="gb-form" style={{ height: "600px" }}></div>
         </form>
       </div>
@@ -19,12 +33,12 @@ class Cc_token extends React.Component {
   }
 }
 
-const mapStateToProps = ({  exerciseProgram }) => {
+const mapStateToProps = ({ exerciseProgram }) => {
   const { program } = exerciseProgram;
   return { program };
 };
 
-const mapActionsToProps = { };
+const mapActionsToProps = {};
 
 export default connect(
   mapStateToProps,
