@@ -17,6 +17,3 @@ function getData() {
   var summaryInfo = JSON.parse(window.localStorage.getItem('summaryInfo'));
   return summaryInfo;
 }
-
-//รหัสโปรแกรมสำหรับเลือกว่าจะสมัครรุ่นไหน โปรแกรมอะไร
-const program_id = 'pot1000cal03';
