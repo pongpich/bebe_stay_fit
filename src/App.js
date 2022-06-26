@@ -42,6 +42,7 @@ import {
 import Amplify from 'aws-amplify';
 import { awsConfig } from "./constants/defaultValues";
 import { BrowserRouter } from 'react-router-dom';
+import user_circle from "./assets/img/user_circle.svg";
 
 Amplify.configure(awsConfig);
 
@@ -63,7 +64,7 @@ class App extends Component {
             <img src={group49} alt="vector" />
           </a>
           {
-            (this.props.user !== null) &&
+            (this.props.user !== null) ? 
             <>
               <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span className="navbar-toggler-icon"></span>
@@ -86,14 +87,33 @@ class App extends Component {
                 </ul>
                 <div>
                   <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li className="nav-item">
+            {/*         <li className="nav-item">
                       <a className="nav-link nav-linkHead " href="/#" onClick={() => this.onUserLogout()} style={{ cursor: "pointer" }}>
                         ออกจากระบบ
                     </a>
-                    </li>
+                    </li> */}
+                    <li className="nav-item ">
+                    <a className="nav-link dropdown-toggle nav-linkHead" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">
+                    <img src={user_circle} alt="vector" className="padding-rightIcon" />
+                        {this.props.user.email}
+                      </a>
+                    <ul className="dropdown-menu dropdown-menu-end">
+                      <li>
+                        <a className="dropdown-item nav-linkHead pointer" onClick={() => this.props.history.push('/profile')}>Profile</a></li>
+                      <li>
+                      <a className="dropdown-item nav-linkHead pointer"  onClick={() => this.onUserLogout()} style={{ cursor: "pointer" }}>
+                        ออกจากระบบ
+                    </a>
+                      </li>
+                    </ul>
+                  </li>
                   </ul>
                 </div>
               </div>
+            </>
+            : 
+            <>
+              <h6 className="nav-link nav-linkHead2">ลงทะเบียน</h6>
             </>
           }
 
@@ -228,6 +248,9 @@ const mapActionsToProps = {
   clearCreateUser,
   clearProgram
 };
+
+
+
 
 export default connect(
   mapStateToProps,

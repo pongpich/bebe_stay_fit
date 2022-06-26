@@ -556,6 +556,11 @@
   font-family: Regular;
   font-size: 18px !important;
 }
+.nav-linkHead2 {
+  color: #4F4F4F;
+  font-family: Regular;
+  font-size: 18px !important;
+}
 
 .height-box {
   height: 115vh;
@@ -2681,4 +2686,8 @@ tr:last-child td:last-child {
   margin-bottom: 50px;
   border-radius: 25px;
   width: 150px;
+}
+.padding-rightIcon {
+  padding-right: 10px;
+  margin-top: -5px;
 }
