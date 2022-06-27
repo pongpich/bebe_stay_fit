@@ -2691,3 +2691,9 @@ tr:last-child td:last-child {
   padding-right: 10px;
   margin-top: -5px;
 }
+
+.dropdown-item:active {
+  background-color: #e25e96;
+  color: #ffffff !important;
+}
+
