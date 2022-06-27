@@ -19,7 +19,7 @@ import union from "../images/union.png";
 import vector4 from "../images/vector4.png";
 import { loadingLogo } from "aws-amplify";
 import { connect } from "react-redux";
-import { videoListForUser, createWeeklyStayfitProgram, updatePlaytime, randomVideo, selectChangeVideo, updatePlaylist } from "../../redux/exerciseVideos"
+import { videoListForUser, createWeeklyStayfitProgram, updatePlaytime, randomVideo, selectChangeVideo, updatePlaylist, updateBodyInfo } from "../../redux/exerciseVideos"
 import { convertFormatTime, convertSecondsToMinutes } from "../../helpers/utils"
 import { completeVideoPlayPercentage, minimumVideoPlayPercentage, updateFrequency } from "../../constants/defaultValues";
 import backgroundImag from '../../assets/img/bgintro_lg.d22ae02a.png';
@@ -45,6 +45,23 @@ class videoList extends React.Component {
       indexPlaylist: 0,
       selectChangeVideoList: [],
       pleaseVerifyNumberPhone: true,
+      statusOtherAttributes: "default",
+      otherAttributesPage: "basicInfo",
+      sex: "female",
+      age: "",
+      weight: "",
+      height: "",
+      chest: "",
+      waist: "",
+      hip: "",
+      staticSex: "hr",
+      staticAge: "hr",
+      staticWeight: "hr",
+      staticHeight: "hr",
+      staticChest: "hr",
+      staticWaist: "hr",
+      staticHip: "hr",
+      other_attributes: "",
     }
     this.addEventToVideo = this.addEventToVideo.bind(this);
     this.onVideoTimeUpdate = this.onVideoTimeUpdate.bind(this);
@@ -73,24 +90,24 @@ class videoList extends React.Component {
       }
     }
 
-    if (user && statusVideoList === "no_video") {
-      this.props.createWeeklyStayfitProgram(
-        this.props.user.user_id,
-        this.props.user.start_date,
-        this.props.user.expire_date,
-      );
-    }
+    /*    if (user && statusVideoList === "no_video") {
+         this.props.createWeeklyStayfitProgram(
+           this.props.user.user_id,
+           this.props.user.start_date,
+           this.props.user.expire_date,
+         );
+       } */
 
   }
 
   componentDidUpdate(prevProps, prevState) {
     const { user, statusVideoList, exerciseVideo } = this.props;
     if (user && prevProps.user && ((prevProps.statusVideoList !== statusVideoList) && statusVideoList === "no_video")) {
-      this.props.createWeeklyStayfitProgram(
+      /* this.props.createWeeklyStayfitProgram(
         this.props.user.user_id,
         this.props.user.start_date,
         this.props.user.expire_date,
-      );
+      ); */
     }
 
     if (user && prevProps.user && ((prevProps.statusVideoList !== statusVideoList) && statusVideoList !== "no_video")) {
@@ -104,6 +121,12 @@ class videoList extends React.Component {
       if (this.props.user.other_attributes && this.props.statusVideoList !== "no_video") {
         this.addEventToVideo();
       }
+      this.props.updateBodyInfo(
+        this.props.user.user_id,
+        this.props.user.start_date,
+        this.props.user.expire_date,
+        this.state.other_attributes
+      );
     }
 
     if (prevProps.status === "processing" && this.props.status === "success") {
@@ -286,13 +309,13 @@ class videoList extends React.Component {
     }
   }
 
-  
-  videoHead() {
-  
- console.log("adasd");
 
-    
-    
+  videoHead() {
+
+    console.log("adasd");
+
+
+
   }
 
 
@@ -376,6 +399,171 @@ class videoList extends React.Component {
     }
   }
 
+  onChange = e => {
+    this.setState({ [e.target.name]: e.target.value });
+  }
+
+  onUpdateBasicInfo() {
+    const {
+      sex,
+      age,
+      weight,
+      height
+    } = this.state;
+
+    if (sex !== "" && age !== "" && weight !== "" && height !== "") {
+      if (age % 1 === 0) {
+        this.setState({
+          otherAttributesPage: "bodyInfo",
+          statusOtherAttributes: "default"
+        })
+      } else {
+        this.setState({
+          statusOtherAttributes: "ageNotUseDecimals"
+        })
+      }
+    } else {
+      this.setState({
+        statusOtherAttributes: "fail"
+      })
+    }
+  }
+
+  onUpdateBodyInfo() {
+    const {
+      chest,
+      waist,
+      hip
+    } = this.state;
+
+    this.setState({ statusOtherAttributes: "default" });
+
+    if (chest !== "" && waist !== "" && hip !== "") {
+      this.setState({ otherAttributesPage: "renderBasicBodyInfo" });
+    } else {
+      this.setState({ statusOtherAttributes: "fail" });
+    }
+  }
+
+  handleChange(event) {
+    this.setState({
+      [event.target.id]: event.target.value
+    })
+  };
+
+  onUpdateProfile(event) {
+    const {
+      sex,
+      age,
+      weight,
+      height,
+      chest,
+      waist,
+      hip
+    } = this.state;
+
+    this.setState({
+      statusOtherAttributes: "default"
+    })
+
+    if (sex !== "" && age !== "" && weight !== "" && height !== "" && chest !== "" && waist !== "" && hip !== "") {
+      const other_attributes = {
+        sex,
+        age: Number(age),
+        weight: Number(weight),
+        height: Number(height),
+        chest: Number(chest),
+        waist: Number(waist),
+        hip: Number(hip)
+      }
+
+      this.setState({
+        other_attributes: other_attributes
+      })
+
+      // ให้จัดตารางVDO และ updateBodyInfo (ที่ componentDidUpdate)
+      this.props.createWeeklyStayfitProgram(
+        this.props.user.user_id,
+        this.props.user.start_date,
+        this.props.user.expire_date,
+      );
+
+    } else {
+      this.setState({
+        statusOtherAttributes: "fail"
+      })
+    }
+  };
+
+  renderHr(event) {
+    const idHr = event.target.id;
+
+    if (idHr === "sex") {
+      this.setState({
+        staticSex: "hrPink"
+      });
+
+    } else {
+      this.setState({
+        staticSex: "hr"
+      });
+    }
+    if (idHr === "age") {
+      this.setState({
+        staticAge: "hrPink"
+      });
+    } else {
+      this.setState({
+        staticAge: "hr"
+      });
+    }
+    if (idHr === "weight") {
+      this.setState({
+        staticWeight: "hrPink"
+      });
+    } else {
+      this.setState({
+        staticWeight: "hr"
+      });
+    }
+    if (idHr === "height") {
+      this.setState({
+        staticHeight: "hrPink"
+      });
+    } else {
+      this.setState({
+        staticHeight: "hr"
+      });
+    }
+    if (idHr === "chest") {
+      this.setState({
+        staticChest: "hrPink"
+      });
+    } else {
+      this.setState({
+        staticChest: "hr"
+      });
+    }
+    if (idHr === "waist") {
+      this.setState({
+        staticWaist: "hrPink"
+      });
+    } else {
+      this.setState({
+        staticWaist: "hr"
+      });
+    }
+    if (idHr === "hip") {
+      this.setState({
+        staticHip: "hrPink"
+      });
+    } else {
+      this.setState({
+        staticHip: "hr"
+      });
+    }
+  }
+
   boxFrom() {
     return (
       <>
@@ -424,8 +612,8 @@ class videoList extends React.Component {
                     Platform
                   </h3>
                   <div className="play_circle">
-                    <img src={play_circle_filled} className="pointer"  data-bs-toggle="modal"  data-bs-target="#exampleModalViderHead"/> <span className="play_circle_span">WATCH INTRODUCTION</span>
-                    
+                    <img src={play_circle_filled} className="pointer" data-bs-toggle="modal" data-bs-target="#exampleModalViderHead" /> <span className="play_circle_span">WATCH INTRODUCTION</span>
+
                   </div>
                 </>
                 :
@@ -467,7 +655,10 @@ class videoList extends React.Component {
               (this.state.editVDO_click === "show") ?
                 this.renderEditVDO()
                 :
-                this.routineWorkout()
+                (this.props.statusVideoList === "no_video") ?
+                  this.renderOtherAttribute()
+                  :
+                  this.routineWorkout()
               :
               this.videoClipAll()
           }
@@ -482,7 +673,7 @@ class videoList extends React.Component {
     const { focusDay, selectedVDO } = this.state;
     const todayExercise = this.exerciseDaySelection(focusDay);
     const videoUrl = selectedVDO ? `${selectedVDO.url}` : "";
-    
+
     let allMinute = [];
     let allSecond = [];
     if (this.props.exerciseVideo) {
@@ -825,9 +1016,9 @@ class videoList extends React.Component {
                 {/* <button onClick={e => this.playVideo(e)}>PLAY</button> */}
               </div>
               <div className="modal-body">
-                
-                <video className="video"   id="videoPlayerIntro"  controls 
-                src="https://player.vimeo.com/external/414645540.hd.mp4?s=d2c95abe8443336f858f4bf9243b79fee350a8d4&profile_id=174">
+
+                <video className="video" id="videoPlayerIntro" controls
+                  src="https://player.vimeo.com/external/414645540.hd.mp4?s=d2c95abe8443336f858f4bf9243b79fee350a8d4&profile_id=174">
                 </video>
               </div>
             </div>
@@ -854,7 +1045,7 @@ class videoList extends React.Component {
           </div>
         </div>
         {/* video ทั้งหมด */}
-        <div className="modal fade" id="exampleModal2"  data-bs-backdrop="static" aria-labelledby="exampleModalLabel" >
+        <div className="modal fade" id="exampleModal2" data-bs-backdrop="static" aria-labelledby="exampleModalLabel" >
           <div className="modal-dialog modal-xl modal-dialog-scrollable">
             <div className="modal-content">
               <div className="modal-header">
@@ -1130,7 +1321,7 @@ class videoList extends React.Component {
           </div>
         </div>
         {/* modal  */}
-{/** *!   ส่วนของหัว   */}
+        {/** *!   ส่วนของหัว   */}
         <div className="modal fade" id="exampleModalViderHead" aria-labelledby="exampleModalLabel" >
           <div className="modal-dialog modal-xl mode-xxl">
             <div className="modal-content">
@@ -1469,6 +1660,340 @@ class videoList extends React.Component {
     )
   }
 
+  renderBasicInfo() {
+    const { statusOtherAttributes } = this.state;
+    return (
+      <div>
+        <div className="card shadow mb-4 col-lg-6 offset-lg-3 col-md-12 col-12" style={{ borderRadius: "20px" }}>
+          <div className="mb-3 col-lg-12  col-md-12 col-12">
+            <center>
+              <h5 className="mt-5">กรุณากรอกข้อมูลด้านล่างเพื่อที่คุณจะได้รับประสบการณ์</h5>
+              <h5>โปรแกรมออกกำลังกายสำหรับคุณโดยเฉพาะ</h5>
+            </center>
+          </div>
+          <div className="col-lg-8 offset-lg-2 col-md-8 offset-md-2 col-12">
+            <p style={{ color: "#F45197" }}>เพศ</p>
+            <div className="form-check" >
+              <label className="form-check-label mb-3 mr-4">
+                <input
+                  className="form-check-input"
+                  type="radio"
+                  value="male"
+                  name="sex"
+                  checked={this.state.sex === "male"}
+                  onChange={this.onChange}
+                /> ชาย
+                          <span className="circle">
+                  <span className="check"></span>
+                </span>
+              </label>
+              <label className="form-check-label" style={{ marginLeft: "20px" }}>
+                <input
+                  className="form-check-input"
+                  type="radio"
+                  value="female"
+                  name="sex"
+                  checked={this.state.sex === "female"}
+                  onChange={this.onChange}
+                /> หญิง
+                          <span className="circle">
+                  <span className="check"></span>
+                </span>
+              </label>
+            </div>
+          </div>
+
+          <div className="col-lg-8 offset-lg-2 col-md-8 offset-md-2 col-12">
+            <div className="form-group">
+              <label className="bmd-label-floating" style={{ color: "#F45197" }}>อายุ</label>
+              <input
+                type="number"
+                className="form-control"
+                id="age"
+                name="age"
+                step="1"
+                value={this.state.age}
+                onChange={(event) => this.handleChange(event)}
+              />
+            </div>
+            {
+              (statusOtherAttributes === "ageNotUseDecimals") &&
+              <small id="emailHelp" className="form-text text-muted mb-3"><h6 style={{ color: "red" }}>อายุ ห้ามเป็นเลขทศนิยม</h6></small>
+            }
+            {
+              (statusOtherAttributes === "fail" && this.state.age === "") &&
+              <small id="emailHelp" className="form-text text-muted mb-3"><h6 style={{ color: "red" }}>กรุณากรอกข้อมูล</h6></small>
+            }
+          </div>
+          <div className="col-lg-8 offset-lg-2 col-md-8 offset-md-2 col-12">
+            <div className="form-group">
+              <label className="bmd-label-floating" style={{ color: "#F45197" }}>น้ำหนัก (กก.)</label>
+              <input
+                type="number"
+                className="form-control"
+                id="weight"
+                name="weight"
+                step=".01"
+                value={this.state.weight}
+                onChange={(event) => this.handleChange(event)}
+              />
+            </div>
+            {
+              (statusOtherAttributes === "fail" && this.state.weight === "") &&
+              <small id="emailHelp" className="form-text text-muted mb-3"><h6 style={{ color: "red" }}>กรุณากรอกข้อมูล</h6></small>
+            }
+          </div>
+          <div className="col-lg-8 offset-lg-2 col-md-8 offset-md-2 col-12">
+            <div className="form-group">
+              <label className="bmd-label-floating" style={{ color: "#F45197" }}>ส่วนสูง (ซม.)</label>
+              <input
+                type="number"
+                className="form-control"
+                id="height"
+                name="height"
+                step=".01"
+                value={this.state.height}
+                onChange={(event) => this.handleChange(event)}
+              />
+            </div>
+            {
+              (statusOtherAttributes === "fail" && this.state.height === "") &&
+              <small id="emailHelp" className="form-text text-muted mb-3"><h6 style={{ color: "red" }}>กรุณากรอกข้อมูล</h6></small>
+            }
+          </div>
+          <div className="mb-5 mt-4 col-lg-8 offset-lg-2 col-md-8 offset-md-2 col-12">
+            <div className="text-center">
+              <button
+                className="btn bottom-pink-video"
+                type="button"
+                onClick={() => this.onUpdateBasicInfo()}
+                style={{ backgroundColor: "#F45197" }}
+              >
+                ถัดไป
+            </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    )
+  }
+
+  renderBodyInfo() {
+    const { statusOtherAttributes } = this.state;
+    return (
+      <div className="card shadow mb-4 col-lg-6 offset-lg-3 col-md-12 col-12" style={{ borderRadius: "20px" }}>
+        <div className="mt-5 mb-5 col-lg-12  col-md-12 col-12">
+          <center>
+            <h5>กรุณาวัดสัดส่วนของคุณ</h5>
+            <h5>โดยใช้รูปตัวอย่างเพื่อเป็นไกด์ในการวัดสัดส่วน</h5>
+          </center>
+        </div>
+        <div className="row">
+          <div className="col-md-7 offset-md-1">
+            <div className="d-flex ">
+              {
+                (this.state.sex === "male") && <img src="./assets/img/male.png" width="100%" alt="" />
+              }
+              {
+                (this.state.sex === "female") && <img src="./assets/img/female.png" width="100%" alt="" />
+              }
+            </div>
+          </div>
+
+          <div className="col-md-3">
+            <div className="form-group">
+              <label className="bmd-label-floating" style={{ color: "#F45197" }}>รอบอก (นิ้ว)</label>
+              <input
+                type="number"
+                className="form-control"
+                id="chest"
+                name="chest"
+                step=".01"
+                value={this.state.chest}
+                onChange={(event) => this.handleChange(event)} />
+            </div>
+            {
+              (statusOtherAttributes === "fail" && this.state.chest === "") &&
+              <small id="emailHelp" className="form-text text-muted mb-3"><h6 style={{ color: "red" }}>กรุณากรอกข้อมูล</h6></small>
+            }
+            <div className="form-group">
+              <label className="bmd-label-floating" style={{ color: "#F45197" }}>รอบเอว (นิ้ว)</label>
+              <input
+                type="number"
+                className="form-control"
+                id="waist"
+                name="waist"
+                step=".01"
+                value={this.state.waist}
+                onChange={(event) => this.handleChange(event)}
+              />
+            </div>
+            {
+              (statusOtherAttributes === "fail" && this.state.waist === "") &&
+              <small id="emailHelp" className="form-text text-muted mb-3"><h6 style={{ color: "red" }}>กรุณากรอกข้อมูล</h6></small>
+            }
+            <div className="form-group">
+              <label className="bmd-label-floating" style={{ color: "#F45197" }}>สะโพก (นิ้ว)</label>
+              <input
+                type="number"
+                className="form-control"
+                id="hip"
+                name="hip"
+                step=".01"
+                value={this.state.hip} onChange={(event) => this.handleChange(event)}
+              />
+            </div>
+            {
+              (statusOtherAttributes === "fail" && this.state.hip === "") &&
+              <small id="emailHelp" className="form-text text-muted mb-3"><h6 style={{ color: "red" }}>กรุณากรอกข้อมูล</h6></small>
+            }
+          </div>
+        </div>
+
+        <div className="space-70 mb-5"></div>
+        <div className="form-group mb-5">
+          <div className="text-center">
+            <div className="row">
+              <div className="col-md-5 offset-md-1">
+                <button
+                  className="btn bottom-pink-video"
+                  onClick={() => this.setState({ otherAttributesPage: "basicInfo" })}
+                  style={{ backgroundColor: "white", color: "#F45197", borderColor: "#F45197" }}
+                  type="button"
+                >ย้อนกลับ</button>
+              </div>
+              <div className="col-md-5">
+                <button
+                  className="btn bottom-pink-video"
+                  onClick={() => this.onUpdateBodyInfo()}
+                  style={{ backgroundColor: "#F45197" }}
+                  type="button"
+                >ยืนยัน</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    )
+  }
+
+  renderBasicBodyInfo() {
+    const sexInfo = this.state.sex;
+    const sexInfoTH = sexInfo === "male" ? "ชาย" : "หญิง";
+    const sexInfoTHBack = sexInfo === "male" ? "หญิง" : "ชาย";
+    const sexInfoEngฺBack = sexInfo === "male" ? "female" : "male";
+    return (
+      <>
+        <div className="card shadow mb-4 col-lg-8 offset-lg-2 col-md-12 col-12" style={{ borderRadius: "20px" }}>
+          <div className="mb-3 col-lg-12  col-md-12 col-12">
+            <center>
+              <h2 className="mt-5 mb-4" style={{ color: "#F45197" }}><b>สรุปรายละเอียด</b></h2>
+              <h5>กรุณาตรวจสอบข้อมูลอีกครั้งเพื่อที่คุณจะได้รับประสบการณ์</h5>
+              <h5>โปรแกรมการออกกำลังกายสำหรับคุณโดยเฉพาะ/อย่างแม่นยำ/อย่างถูกต้อง</h5>
+            </center>
+          </div>
+          <div className="centerForm">
+            <div className="mb-3 row">
+              <label className="col-sm-6 col-form-label">เพศ</label>
+              <div className="col-sm-4">
+                <select onClick={(event) => this.renderHr(event)} onChange={(event) => this.handleChange(event)} className="form-control" id="sex" aria-label="Default select example">
+                  {
+                    sexInfo === "male" ? <option value={sexInfo} selected>{sexInfoTH}</option> :
+                      <option value="female">หญิง</option>
+                  }
+                  <option value={sexInfoEngฺBack}>{sexInfoTHBack}</option>
+
+
+
+                </select>
+              </div>
+            </div>
+          </div>
+          <div className={this.state.staticSex}></div>
+          <div className="centerForm">
+            <div className="mb-3 row">
+              <label className="col-sm-6 col-form-label">อายุ</label>
+              <div className="col-sm-4">
+                <input type="number" id="age" name="age" min="0" value={this.state.age} onClick={(event) => this.renderHr(event)} onChange={(event) => this.handleChange(event)} className="form-control" />
+              </div>
+            </div>
+          </div>
+          <div className={this.state.staticAge}></div>
+          <div className="centerForm">
+            <div className="mb-3 row">
+              <label className="col-sm-6 col-form-label">น้ำหนัก(กก.)</label>
+              <div className="col-sm-4">
+                <input type="number" id="weight" name="weight" step=".01" value={this.state.weight} min="0" onChange={(event) => this.handleChange(event)} onClick={(event) => this.renderHr(event)} className="form-control" />
+              </div>
+            </div>
+          </div>
+          <div className={this.state.staticWeight}></div>
+          <div className="centerForm">
+            <div className="mb-3 row">
+              <label className="col-sm-6 col-form-label">ส่วนสูง (ซม.)</label>
+              <div className="col-sm-4">
+
+                <input type="number" id="height" name="height" step=".01" min="0" value={this.state.height} onChange={(event) => this.handleChange(event)} onClick={(event) => this.renderHr(event)} className="form-control" />
+              </div>
+            </div>
+          </div>
+          <div className={this.state.staticHeight}></div>
+          <div className="centerForm">
+            <div className="mb-3 row">
+              <label className="col-sm-6 col-form-label">รอบอก (นิ้ว)</label>
+              <div className="col-sm-4">
+                <input type="number" step=".01" min="0" name="chest" id="chest" value={this.state.chest} onClick={(event) => this.renderHr(event)} onChange={(event) => this.handleChange(event)} className="form-control" />
+              </div>
+            </div>
+          </div>
+          <div className={this.state.staticChest}></div>
+          <div className="centerForm">
+            <div className="mb-3 row">
+              <label className="col-sm-6 col-form-label">รอบเอว (นิ้ว)</label>
+              <div className="col-sm-4">
+                <input type="number" step=".01" min="0" id="waist" name="waist" value={this.state.waist} onClick={(event) => this.renderHr(event)} onChange={(event) => this.handleChange(event)} className="form-control" />
+              </div>
+            </div>
+          </div>
+          <div className={this.state.staticWaist}></div>
+          <div className="centerForm">
+            <div className="mb-3 row">
+              <label className="col-sm-6 col-form-label">สะโพก (นิ้ว)</label>
+              <div className="col-sm-4">
+                <input type="number" step=".01" min="0" id="hip" name="hip" value={this.state.hip} onClick={(event) => this.renderHr(event)} onChange={(event) => this.handleChange(event)} className="form-control" />
+              </div>
+            </div>
+          </div>
+          <div className={this.state.staticHip}></div>
+          <div className="centerForm">
+            <div className="mb-6 col-lg-6 offset-lg-3 col-md-12 col-12">
+              <button
+                className="btn bottom-pink-video"
+                onClick={() => this.onUpdateProfile()}
+                style={{ backgroundColor: "#F45197" }}
+                type="button"
+              >ยืนยัน</button>
+            </div>
+          </div>
+          <br />
+        </div>
+      </>
+    )
+  }
+
+  renderOtherAttribute() {
+    const { otherAttributesPage } = this.state;
+    return (
+      <div className="card-body">
+        <form>
+          {(otherAttributesPage === "basicInfo") && this.renderBasicInfo()}
+          {(otherAttributesPage === "bodyInfo") && this.renderBodyInfo()}
+          {(otherAttributesPage === "renderBasicBodyInfo") && this.renderBasicBodyInfo()}
+        </form>
+      </div>
+    )
+  }
+
 
   render() {
     const { clickManu, editVDO_click } = this.state;
@@ -1484,7 +2009,7 @@ const mapStateToProps = ({ authUser, exerciseVideos }) => {
   return { user, exerciseVideo, statusVideoList, video, videos, status };
 };
 
-const mapActionsToProps = { videoListForUser, createWeeklyStayfitProgram, updatePlaytime, randomVideo, selectChangeVideo, updatePlaylist };
+const mapActionsToProps = { videoListForUser, createWeeklyStayfitProgram, updatePlaytime, randomVideo, selectChangeVideo, updatePlaylist, updateBodyInfo };
 
 export default connect(
   mapStateToProps,

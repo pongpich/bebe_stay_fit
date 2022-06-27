@@ -22,7 +22,19 @@ export const types = {
   SELECT_CHANGE_VIDEO_FAIL: "SELECT_CHANGE_VIDEO_FAIL",
   UPDATE_PLAYLIST: "UPDATE_PLAYLIST",
   UPDATE_PLAYLIST_SUCCESS: "UPDATE_PLAYLIST_SUCCESS",
+  UPDATE_BODY_INFO: "UPDATE_BODY_INFO",
+  UPDATE_BODY_INFO_SUCCESS: "UPDATE_BODY_INFO_SUCCESS",
 }
+
+export const updateBodyInfo = (user_id, start_date, expire_date, other_attributes) => ({
+  type: types.UPDATE_BODY_INFO,
+  payload: {
+    user_id,
+    start_date,
+    expire_date,
+    other_attributes
+  }
+})
 
 export const updatePlaylist = (user_id, start_date, day_number, playlist, exerciseVideo) => ({
   type: types.UPDATE_PLAYLIST,
@@ -182,6 +194,27 @@ const videoListForUserSagaAsync = async (
   }
 }
 
+const updateBodyInfoSagaAsync = async (
+  user_id,
+  start_date,
+  expire_date,
+  other_attributes
+) => {
+  try {
+    const apiResult = await API.post("bebe", "/updateBodyInfo", {
+      body: {
+        user_id,
+        start_date,
+        expire_date,
+        other_attributes
+      }
+    });
+    return apiResult;
+  } catch (error) {
+    return { error, messsage: error.message };
+  }
+}
+
 const updatePlaytimeSagaAsync = async (
   user_id,
   start_date,
@@ -226,6 +259,29 @@ const createWeeklyStayfitProgramSagaAsync = async (
     return apiResult;
   } catch (error) {
     return { error, messsage: error.message };
+  }
+}
+
+function* updateBodyInfoSaga({ payload }) {
+  const {
+    user_id,
+    start_date,
+    expire_date,
+    other_attributes
+  } = payload
+  try {
+    yield call(
+      updateBodyInfoSagaAsync,
+      user_id,
+      start_date,
+      expire_date,
+      other_attributes
+    );
+    yield put({
+      type: types.UPDATE_BODY_INFO_SUCCESS
+    })
+  } catch (error) {
+    console.log("error from updateBodyInfo :", error);
   }
 }
 
@@ -465,6 +521,10 @@ export function* watchUpdatePlaylist() {
   yield takeEvery(types.UPDATE_PLAYLIST, updatePlaylistSaga)
 }
 
+export function* watchUpdateBodyInfo() {
+  yield takeEvery(types.UPDATE_BODY_INFO, updateBodyInfoSaga)
+}
+
 export function* saga() {
   yield all([
     fork(watchVideoListForUser),
@@ -473,6 +533,7 @@ export function* saga() {
     fork(watchRandomVideo),
     fork(watchSelectChangeVideo),
     fork(watchUpdatePlaylist),
+    fork(watchUpdateBodyInfo),
   ]);
 }
 
@@ -487,10 +548,16 @@ const INIT_STATE = {
   video: {},
   videos: [],
   status: "default",
+  statusUpdateBodyInfo: "default",
 };
 
 export function reducer(state = INIT_STATE, action) {
   switch (action.type) {
+    case types.UPDATE_BODY_INFO_SUCCESS:
+      return {
+        ...state,
+        statusUpdateBodyInfo: "success"
+      }
     case types.UPDATE_PLAYLIST_SUCCESS:
       return {
         ...state,
@@ -515,12 +582,14 @@ export function reducer(state = INIT_STATE, action) {
     case types.CREATE_WEEKLY_STAYFIT_PROGRAM_SUCCESS:
       return {
         ...state,
-        statusVideoList: "default"
+        statusVideoList: "default",
+        statusUpdateBodyInfo: "default"
       }
     case types.VIDEO_LIST_FOR_USER_SUCCESS:
       return {
         ...state,
-        exerciseVideo: action.payload
+        exerciseVideo: action.payload,
+        statusVideoList: "default"
       };
     case types.VIDEO_LIST_FOR_USER_FAIL:
       return {
