@@ -99,8 +99,6 @@ class App extends Component {
                       </a>
                     <ul className="dropdown-menu dropdown-menu-end">
                       <li>
-                        <a className="dropdown-item nav-linkHead pointer" onClick={() => this.props.history.push('/profile')}>Profile</a></li>
-                      <li>
                       <a className="dropdown-item nav-linkHead pointer"  onClick={() => this.onUserLogout()} style={{ cursor: "pointer" }}>
                         ออกจากระบบ
                     </a>

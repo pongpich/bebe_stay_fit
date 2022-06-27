@@ -18,7 +18,7 @@ class ProgramPackage extends React.Component {
       exerciseActivated: true,
       weightLossGoals: null,
       durationWeightLoss: 0,
-      checked: true,
+      checked: false,
       pound_kg: "กิโลกรัม",
     };
   }
@@ -104,6 +104,9 @@ class ProgramPackage extends React.Component {
       <>
         <br />
         <div className="col-12 col-sm-12 col-md-12 col-lg-12  ">
+          <div className="center">
+            <p className="register-to-join"> ลงทะเบียนเข้าร่วม BEBE Stay fit</p>
+          </div>
           <div className="container">
             <div className="row center  ">
               <div className="box1">
@@ -138,15 +141,15 @@ class ProgramPackage extends React.Component {
                   </label>
                 </div>
                 <br />
-                <div className="padding-top2">
-                  <label className="form-label bold font-size4 between color1">เลือกหน่วย
+                <div className="padding-top2 right-onoffswitch">
+                  <label className="form-label bold font-size4   color1">เลือกหน่วย
                     <span className="font-size7 light section">
                       <div className="onoffswitch">
                         <input type="checkbox" name="onoffswitch" className="onoffswitch-checkbox " id="myonoffswitch" onChange={e => this.checkBoxes(e)} defaultChecked={this.state.checked} />
                         <label className="onoffswitch-label" htmlFor="myonoffswitch">
                           <span className="onoffswitch-inner">
                             <div className="between">
-                              <p className="text-float3">ปอนด์ <span className="text-float4"> กิโลกรัม</span></p>
+                              <p className="text-float3">กิโลกรัม <span className="text-float4"> ปอนด์</span></p>
                             </div>
                           </span>
                           <span className="onoffswitch-switch"></span>
@@ -185,7 +188,11 @@ class ProgramPackage extends React.Component {
     return (
       <>
         <br />
+
         <div className="col-12 col-sm-12 col-md-12 col-lg-12 App-headerBackground">
+        <div className="center">
+            <p className="register-to-join"> กรุณาเลือกแพ็คเกจที่คุณต้องการ</p>
+          </div>
           <div className="container center ">
             <div className="box2">
               <div className="center  head-box grad1">
@@ -194,12 +201,13 @@ class ProgramPackage extends React.Component {
                 </div>
               </div>
               <div className="row center">
-                <div className="col-10 col-sm-10 col-md-5 col-lg-5 margin-boxLeft">
+                <div className="col-10 col-sm-10 col-md-4 col-lg-4 margin-boxLeft">
                   <div className="box-starter_set text-center">
                     <p className="bold font-size5 down-top bold">เซตเริ่มต้นสายฟิต</p>
-                    <p className="border-bottom"></p>
+                    <p className="border-bottom4"></p>
                     <p className="font-size5  box-price">  ราคา <span className="font-size6 color-price bold">{priceStarter[0].price.toLocaleString('en')}</span> บาท</p>
-                    <p className="border-bottom margin-leftRight"></p>
+                    <p className="no-renewal">*ระยะเวลา 2 เดือน และไม่มีการต่ออายุ</p>
+                    <p className="border-bottom4 margin-leftRight"></p>
                     <div className="text-left bottom-padding">
                       <li> โปรแกรมออกกำลังกาย</li>
                       <li>คำแนะนำการควบคุมอาหาร</li>
@@ -207,30 +215,29 @@ class ProgramPackage extends React.Component {
                       <li>Fitto Plant Protein 6 กล่อง  <br /><span className="margin-leftRight">(เลือกรสชาติได้)</span></li>
                     </div>
                     <div className="d-grid gap-2 col-8 ol-sm-8  mx-auto   col-md-8 col-lg-8 distance ">
-                      <button className="btn bottom-pink" type="button" onClick={() => this.selectProgram("starter_stay_fit_01")}>
+                      <button className="btn bottom-outlinePink magTop" type="button" onClick={() => this.selectProgram("starter_stay_fit_01")}>
                         เลือกแพ็คเกจนี้
                       </button>
                     </div>
                   </div>
                 </div>
-                <div className="col-10 col-sm-10 col-md-5 col-lg-5 center margin-head">
+                <div className="col-10 col-sm-10 col-md-6 col-lg-6 center margin-head">
                   <div className=" box-starter_set2 text-center">
-                    <div className="linear">
-                      <p className="bold font-size6 down-top bold ">ประหยัดกว่า</p>
-                    </div>
                     <div className="margin-head  box-starter_set1">
                       <div className="box-black">
-                        <p className="bold font-size5 center padding-top">สมัครตามระยะเวลาของโปรแกรม</p>
+                        <p className="save-more bold">ประหยัดกว่า</p>
+                        <p className="bold save-more2 center">สมัครตามระยะเวลาของโปรแกรม</p>
                       </div>
                       <div className="scroll">
                         <div>
                           <p className="font-size5   margin-headText">  ราคา <span className="font-size6 color-price bold">{priceSubscription[0].price.toLocaleString('en')}</span> /  2เดือน</p>
                         </div>
-                        <div className="font-size4">
-                          <li> เราจะทำการเรียกเก็บเงินทุกๆ 2 เดือน</li>
-                          <li> ยกเลิกเมื่อไรก็ได้</li>
-                        </div>
-                        <p className="border-bottom margin-leftRight top-border"></p>
+                        <p className="special-price">
+                        *ราคาพิเศษสำหรับ 2 เดือนแรก เมื่อครบกำหนดจะชำระต่อเป็นรายเดือน
+                        (เดือนละ 1,800 บาท) จนกว่าจะครบตามระยะที่โปรแกรมแนะนำ
+                        **สามารถพักการชำระรายเดือนได้ทุกเวลาตามที่ต้องการ
+                        </p>
+                        <p className="border-bottom4 margin-leftRight top-border"></p>
                         <div className="font-size5 text-left">
                           <li> โปรแกรมออกกำลังกาย</li>
                           <li> คำแนะนำการควบคุมอาหาร</li>
@@ -243,11 +250,11 @@ class ProgramPackage extends React.Component {
                             ฟรีของแถม
                           </p>
                         </div>
-                        <div className="font-size4 text-left margin-top-2 ">
+                        <div className="font-size4 text-left margin-BoxTop">
                           <div className="box-heightPackage"> <img src={shaker} alt="vector" className="shaker-71" /> <p className="span-image">Shaker 1 ชิ้น <br /> <p className="distance-span1">(เฉพาะสั่งซื้อครั้งแรก)</p></p></div>
-                          <div className="box-heightPackage"> <img src={lemonade} alt="vector" className="ellipse-71" /> <p className="span-image">Fitto Pre Workout <p className="distance-span">รส Green Lemonade จำนวน 1 ซอง</p></p></div>
-                          <div className="box-heightPackage"> <img src={latte2} alt="vector" className="ellipse-71" /> <p className="span-image">Fitto Drink <p className="distance-span1">รส Arabica Latte จำนวน 1 ซอง</p></p></div>
-                          <div className="box-heightPackage2"> <img src={lfittocsachet5g} alt="vector" className="ellipse-72" /> <p className="span-image">Fitto Colla C Unflavored <br /> <p className="distance-span1">จำนวน 1 ซอง</p></p></div>
+                          <div className="box-heightPackage1"> <img src={lemonade} alt="vector" className="ellipse-71" /> <p className="span-image1">Fitto Pre Workout <p className="distance-span">รส Green Lemonade จำนวน 1 ซอง</p></p></div>
+                          <div className="box-heightPackage1"> <img src={latte2} alt="vector" className="ellipse-71" /> <p className="span-image1">Fitto Drink <p className="distance-span1">รส Arabica Latte จำนวน 1 ซอง</p></p></div>
+                          <div className="box-heightPackage2"> <img src={lfittocsachet5g} alt="vector" className="ellipse-72" /> <p className="span-image2">Fitto Colla C Unflavored <br /> <p className="distance-span1">จำนวน 1 ซอง</p></p></div>
                         </div>
                         {/*  <div className="example3"></div> */}
                       </div>
