@@ -54,6 +54,15 @@ class App extends Component {
     this.props.clearProgram();
     this.props.history.push('/home');
   }
+  onClickNavbar(e) {
+
+    if (e === "videoList") {
+      this.props.history.push('/videoList')
+    }else{
+      this.props.history.push('/food_supplement')
+    }
+    document.getElementById("navbar-toggler").click();
+  }
 
   renderNavbar() {
     const { user } = this.props;
@@ -66,7 +75,7 @@ class App extends Component {
           {
             (this.props.user !== null) ? 
             <>
-              <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+              <button className="navbar-toggler" type="button" id="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span className="navbar-toggler-icon"></span>
               </button>
               <div className="collapse navbar-collapse padding-left3" id="navbarSupportedContent">
@@ -75,10 +84,10 @@ class App extends Component {
                     (user && user.other_attributes) &&
                     <>
                       <li className="nav-item">
-                        <a className="nav-link pointer " onClick={() => this.props.history.push('/videoList')} >โปรแกรมออกกำลังกาย</a>
+                        <a className="nav-link pointer " onClick={() => this.onClickNavbar("videoList")} >โปรแกรมออกกำลังกาย</a>
                       </li>
                       <li className="nav-item">
-                        <a className="nav-link pointer" onClick={() => this.props.history.push('/food_supplement')}>วิธีการกินอาหารและอาหารเสริม</a>
+                        <a className="nav-link pointer" onClick={() => this.onClickNavbar("food_supplement")}>วิธีการกินอาหารและอาหารเสริม</a>
                       </li>
                     </>
                   }

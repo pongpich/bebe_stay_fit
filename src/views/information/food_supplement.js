@@ -75,11 +75,8 @@ const Food_supplement = () => {
         }
       }
     }
-
-
-
   })
-  console.log(activeSection, "article", article);
+  
   return (
     <>
       <BrowserRouter>
@@ -130,12 +127,12 @@ const Food_supplement = () => {
                         </HashLink>
                       </div>
                     </div>
-                    <HashLink smooth to='#vegetarianFood' className={articleMain === 7 ? "manuFood-Active" : "manuFood"}>
+                    <HashLink smooth to='#vegetarianFood' id="#vegetarianFood" className={articleMain === 7 ? "manuFood-Active" : "manuFood"}>
                       สำหรับทานอาหารมังสวิรัติ
                     </HashLink>
                     <div className="small-box">
                       <div>
-                        <HashLink to='#vegetarianFood' className={article === 7 ? "maun-small-Active" : "maun-small"}>
+                        <HashLink to='#vegetarianFood'  className={article === 7 ? "maun-small-Active" : "maun-small"}>
                           โปรแกรมอาหารสำหรับผู้ที่เลือกกินอาหาร
                           แบบเน้นพืช และแบบมังสวิรัติเคร่งครัด
                           (Plant-Based Diet and Strict Vegan
