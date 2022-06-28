@@ -2802,3 +2802,33 @@ tr:last-child td:last-child {
   height: 90vh;
   padding-bottom: 50px;
 }
+.home-image {
+  width: 100%;
+}
+.box-home {
+  width: 100%;
+  height: 350px;
+  background-color: #FFFFFF;
+}
+.top-Home {
+padding-top: 50px;
+text-align: center;
+}
+.textHome {
+  font-size: 40px;
+  color: #000000;
+}
+.textHome2 {
+  font-size: 32px;
+  color: #E25E96;
+}
+.bottom-pinkLogin2 {
+  background-color: #F8159D !important;
+  margin-top: 40px;
+  height: 70px;
+  width: 500px;
+  color: #ffffff !important;
+  margin-bottom: 50px;
+  border-radius: 40px;
+  font-size: 32px !important;
+}
