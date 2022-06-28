@@ -8,7 +8,7 @@ class Basic_Information extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      checked: true,
+      checked: false,
       typeHei_Wig: "กก_ซม",
       typeHeight: "เซนติเมตร",
       typeWeight: "กิโลกรัม",
@@ -70,7 +70,7 @@ class Basic_Information extends React.Component {
 
   checkBoxes = (e) => {
     const { checked } = e.target
-    if (checked === true) {
+    if (checked === false) {
       var typeHei_Wig = "กก_ซม"
       var typeHeight = "เซนติเมตร"
       var typeWeight = "กิโลกรัม"
@@ -132,7 +132,7 @@ class Basic_Information extends React.Component {
                           <label className="onoffswitch-label" htmlFor="myonoffswitch">
                             <span className="onoffswitch-inner">
                               <div className="between">
-                                <p className="text-float">ปอนด์/ฟ. <span className="text-float1"> กก./ซม.</span></p>
+                                <p className="text-float">กก./ซม. <span className="text-float1">ปอนด์/ฟ.</span></p>
                               </div>
                             </span>
                             <span className="onoffswitch-switch"></span>

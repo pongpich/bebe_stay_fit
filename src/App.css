@@ -1640,6 +1640,7 @@ a {
 }
 
 .text-float {
+  padding-left: 5px;
   position: absolute;
   z-index: 1;
   color: #000000 !important;

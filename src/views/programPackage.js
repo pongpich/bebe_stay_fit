@@ -82,7 +82,7 @@ class ProgramPackage extends React.Component {
 
   checkBoxes = (e) => {
     const { checked } = e.target
-    if (checked === true) {
+    if (checked === false) {
       var pound_kg = "กิโลกรัม"
     } else {
       var pound_kg = "ปอนด์"
