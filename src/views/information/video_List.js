@@ -641,7 +641,7 @@ class videoList extends React.Component {
         <div className="box-videoCenter">
           <div className="col-12 col-sm-12 col-md-12 col-lg-12 ">
             <ul className="">
-              <li className="video-li  video-liPadding-left">
+              <li className="video-li  video-liPadding-left marginLeftRoutine">
                 <a className={this.state.borderBottom1} name="borderBottom1" onClick={e => this.clickBottom(e)}>Routine workout</a>
               </li>
               {/* <li className="video-li  video-liPadding-left   video-liPadding-left2">
@@ -700,7 +700,7 @@ class videoList extends React.Component {
         <div>
           <div className="video-ul2">
             <div className="col-12 col-sm-12 col-md-12 col-lg-12 ">
-              <nav className="navbar">
+              <nav className="navbar marginLeftRoutine">
                 <div className="container-fluid">
                   <ul>
                     <li className="video-li2 ">
@@ -1663,8 +1663,8 @@ class videoList extends React.Component {
   renderBasicInfo() {
     const { statusOtherAttributes } = this.state;
     return (
-      <div>
-        <div className="card shadow mb-4 col-lg-6 offset-lg-3 col-md-12 col-12" style={{ borderRadius: "20px" }}>
+      <div className="center">
+        <div className="card shadow mb-4 col-lg-6 offset-lg-3 col-md-12 col-12 padding-leftRight margin-left" style={{ borderRadius: "20px" }}>
           <div className="mb-3 col-lg-12  col-md-12 col-12">
             <center>
               <h5 className="mt-5">กรุณากรอกข้อมูลด้านล่างเพื่อที่คุณจะได้รับประสบการณ์</h5>
@@ -1687,7 +1687,7 @@ class videoList extends React.Component {
                   <span className="check"></span>
                 </span>
               </label>
-              <label className="form-check-label" style={{ marginLeft: "20px" }}>
+              <label className="form-check-label" style={{ marginLeft: "30px" }}>
                 <input
                   className="form-check-input"
                   type="radio"
@@ -1781,7 +1781,8 @@ class videoList extends React.Component {
   renderBodyInfo() {
     const { statusOtherAttributes } = this.state;
     return (
-      <div className="card shadow mb-4 col-lg-6 offset-lg-3 col-md-12 col-12" style={{ borderRadius: "20px" }}>
+        <div className="center">
+          <div className="card shadow mb-4 col-lg-6 offset-lg-3 col-md-12 col-12 padding-leftRight margin-left" style={{ borderRadius: "20px" }}>
         <div className="mt-5 mb-5 col-lg-12  col-md-12 col-12">
           <center>
             <h5>กรุณาวัดสัดส่วนของคุณ</h5>
@@ -1862,7 +1863,7 @@ class videoList extends React.Component {
                   type="button"
                 >ย้อนกลับ</button>
               </div>
-              <div className="col-md-5">
+              <div className="col-md-5 marginTopMd5">
                 <button
                   className="btn bottom-pink-video"
                   onClick={() => this.onUpdateBodyInfo()}
@@ -1874,6 +1875,7 @@ class videoList extends React.Component {
           </div>
         </div>
       </div>
+        </div>
     )
   }
 
@@ -1883,8 +1885,8 @@ class videoList extends React.Component {
     const sexInfoTHBack = sexInfo === "male" ? "หญิง" : "ชาย";
     const sexInfoEngฺBack = sexInfo === "male" ? "female" : "male";
     return (
-      <>
-        <div className="card shadow mb-4 col-lg-8 offset-lg-2 col-md-12 col-12" style={{ borderRadius: "20px" }}>
+      <div className="center">
+        <div className="card shadow mb-4 col-lg-8 offset-lg-2 col-md-12 col-12 padding-leftRight margin-left" style={{ borderRadius: "20px" }}>
           <div className="mb-3 col-lg-12  col-md-12 col-12">
             <center>
               <h2 className="mt-5 mb-4" style={{ color: "#F45197" }}><b>สรุปรายละเอียด</b></h2>
@@ -1977,7 +1979,7 @@ class videoList extends React.Component {
           </div>
           <br />
         </div>
-      </>
+      </div>
     )
   }
 
