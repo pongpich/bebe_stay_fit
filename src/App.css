@@ -488,6 +488,7 @@
   .navbarLeft {
     visibility: hidden !important;
     height: 0px;
+ 
   }
 
   .navbarHead {
@@ -528,6 +529,8 @@
     height: 100%;
     background-color: #ffffff;
     box-shadow: -2px 8px 7px 7px #bababa;
+
+
   }
 
   .navbarHead {
@@ -2456,7 +2459,7 @@ a:hover {
 }
 
 .maun-small-Active {
-  color: #333333;
+  color: #F45197;
 }
 
 .small-box {
@@ -2789,6 +2792,11 @@ tr:last-child td:last-child {
 .margin-BoxTop {
   margin-top: -45px;
 }
-/* .group_2 {
-   padding-left: 50px;
-} */
+.my_space {
+ padding-top: 15px;
+}
+.manu-scroll {
+  overflow: auto;
+  position: relative;
+  height:100%;
+}

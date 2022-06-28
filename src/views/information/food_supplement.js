@@ -62,22 +62,24 @@ const Food_supplement = () => {
         setArticle(activeSection);
 
       }
-      window.scrollTo(0, 0);
-    }
-    if (activeSection >= 7) {
-      setArticleMain(7);
-      if (activeSection >= 7 || activeSection <= 8) {
-        setArticle(8);
 
-      } else {
-        setArticle(activeSection);
-
+    }else {
+      if (activeSection >= 7) {
+        setArticleMain(7);
+         if (activeSection === 7 ) {
+          setArticle(7);
+  
+        } else {
+          setArticle(activeSection);
+  
+        } 
       }
     }
+ 
 
 
   })
-  console.log("AAA", sectionRefs);
+  console.log( activeSection,"article",article);
   return (
     <>
       <BrowserRouter>
@@ -91,6 +93,7 @@ const Food_supplement = () => {
             <div className="col-lg-3">
               <div className="navbarLeft">
                 <div className="mavbarfood">
+                  <div className="manu-scroll">
                   <HashLink smooth to='#generalFood' id="#generalFood" className={articleMain === 0 ? "manuFood-Active" : "manuFood"}>
                     สำหรับทานอาหารทั่วไป
                   </HashLink>
@@ -100,72 +103,72 @@ const Food_supplement = () => {
                         โปรแกรมอาหาร{"(Nutrition Program)"}
                       </HashLink>
                     </div>
-                    <div>
+                    <div className="my_space">
                       <HashLink smooth to='#general_food_simpleHealth' className={article === 2 ? "maun-small-Active" : "maun-small"}>
                         แนวทางการกินเพื่อสุขภาพแบบง่าย
                       </HashLink>
                     </div>
-                    <div>
+                    <div className="my_space">
                       <HashLink smooth to='#general_food_recommendedHealth' className={article === 3 ? "maun-small-Active" : "maun-small"}>
                         รูปแบบการกินเพื่อสุขภาพที่แนะนำ
                       </HashLink>
                     </div>
-                    <div>
+                    <div className="my_space">
                       <HashLink smooth to='#general_food_eat_foodPprogram' className={article === 4 ? "maun-small-Active" : "maun-small"}>
                         แนวทางการเลือกกินอาหาร
                         ระหว่างอยู่ในโปรแกรม
                       </HashLink>
                     </div>
-                    <div>
+                    <div className="my_space">
                       <HashLink smooth to='#general_food_recommendedApproach' className={article === 5 ? "maun-small-Active" : "maun-small"}>
                         แนวทางที่แนะนำ
                       </HashLink>
                     </div>
-                    <div>
+                    <div className="my_space">
                       <HashLink smooth to='#general_food_AdditionalAdvice' className={article === 6 ? "maun-small-Active" : "maun-small"}>
                         คำแนะนำเพิ่มเติม
                       </HashLink>
                     </div>
                   </div>
-                  <HashLink smooth to='#vegetarianFood' id="#vegetarianFood" className={articleMain === 7 ? "manuFood-Active" : "manuFood"}>
+                  <HashLink smooth to='#vegetarianFood' className={articleMain === 7 ? "manuFood-Active" : "manuFood"}>
                     สำหรับทานอาหารมังสวิรัติ
                   </HashLink>
                   <div className="small-box">
                     <div>
-                      <HashLink to='#vegetarianFood' className={article === 8 ? "maun-small-Active" : "maun-small"}>
+                      <HashLink to='#vegetarianFood' className={article === 7 ? "maun-small-Active" : "maun-small"}>
                         โปรแกรมอาหารสำหรับผู้ที่เลือกกินอาหาร
                         แบบเน้นพืช และแบบมังสวิรัติเคร่งครัด
                         (Plant-Based Diet and Strict Vegan
                         Nutrition Program)
                       </HashLink>
                     </div>
-                    <div>
-                      <HashLink smooth to='#vegetarian_food_plantBased'  className={article === 9 ? "maun-small-Active" : "maun-small"}>
+                    <div className="my_space">
+                      <HashLink smooth to='#vegetarian_food_plantBased'  className={article === 8 ? "maun-small-Active" : "maun-small"}>
                         แนวทางการเลือกกินอาหารแบบเน้นพืช (Plant-Based Diet) และแบบมังสวิรัติเคร่งครัด (Strict Diet) เพื่อสุขภาพ
                       </HashLink>
                     </div>
-                    <div>
-                      <HashLink smooth to='#vegetarian_food_recommendedHealth'  className={article === 11 ? "maun-small-Active" : "maun-small"}>
+                    <div className="my_space">
+                      <HashLink smooth to='#vegetarian_food_recommendedHealth'  className={article === 9 ? "maun-small-Active" : "maun-small"}>
                         รูปแบบการกินเพื่อสุขภาพที่แนะนำ
                       </HashLink>
                     </div>
-                    <div>
-                      <HashLink smooth to='#vegetarian_food_eat_foodPprogram'  className={article === 12 ? "maun-small-Active" : "maun-small"}>
+                    <div className="my_space">
+                      <HashLink smooth to='#vegetarian_food_eat_foodPprogram'  className={article === 10 ? "maun-small-Active" : "maun-small"}>
                         แนวทางการเลือกกินอาหาร
                         ระหว่างอยู่ในโปรแกรม
                       </HashLink>
                     </div>
-                    <div>
-                      <HashLink smooth to='#vegetarian_food_recommendedApproach' id="#" className={article === 13 ? "maun-small-Active" : "maun-small"}>
+                    <div className="my_space">
+                      <HashLink smooth to='#vegetarian_food_recommendedApproach' id="#" className={article === 11 ? "maun-small-Active" : "maun-small"}>
                         แนวทางที่แนะนำ
                       </HashLink>
                     </div>
-                    <div>
-                      <HashLink smooth to='#vegetarian_food_AdditionalAdvice' id="#" className={article === 14 ? "maun-small-Active" : "maun-small"}>
+                    <div className="my_space">
+                      <HashLink smooth to='#vegetarian_food_AdditionalAdvice' id="#" className={article === 12 ? "maun-small-Active" : "maun-small"}>
                         คำแนะนำเพิ่มเติม
                       </HashLink>
                     </div>
-
+                  </div>
                   </div>
                 </div>
               </div>
@@ -216,28 +219,28 @@ const Food_supplement = () => {
                     {vegetarianFood()}
                   </section>
                 </div>
-                <div id='vegetarian_food_plantBased'>
-                  <section className="App-section" ref={sectionRefs[7]}>
+                <div id='vegetarian_food_plantBased'> {/* แนวทางการเลือกกินอาหารแบบเน้นพืช (Plant-Based Diet) และแบบมังสวิรัติเคร่งครัด (Strict Diet) เพื่อสุขภาพ */}
+                  <section className="App-section" ref={sectionRefs[8]}>
                     {vegetarian_food_plantBased()}
                   </section>
                 </div>
                 <div id='vegetarian_food_recommendedHealth'>
-                  <section className="App-section" ref={sectionRefs[7]}>
+                  <section className="App-section" ref={sectionRefs[9]}>
                     {vegetarian_food_recommendedHealth()}
                   </section>
                 </div>
                 <div id='vegetarian_food_eat_foodPprogram'>
-                  <section className="App-section" ref={sectionRefs[7]}>
+                  <section className="App-section" ref={sectionRefs[10]}>
                     {vegetarian_food_eat_foodPprogram()}
                   </section>
                 </div>
                 <div id='vegetarian_food_recommendedApproach'>
-                  <section className="App-section" ref={sectionRefs[7]}>
+                  <section className="App-section" ref={sectionRefs[11]}>
                     {vegetarian_food_recommendedApproach()}
                   </section>
                 </div>
                 <div id='vegetarian_food_AdditionalAdvice'>
-                  <section className="App-section" ref={sectionRefs[7]}>
+                  <section className="App-section" ref={sectionRefs[12]}>
                     {vegetarian_food_AdditionalAdvice()}
                   </section>
                 </div>
