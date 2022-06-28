@@ -51,16 +51,20 @@
     height: 85% !important;
 
   }
+
   .marginTopMd5 {
     margin-top: 10px;
   }
+
   .marginLeftRoutine {
     margin-left: -20px;
   }
+
   .video-link2 {
 
     font-size: 20px !important;
   }
+
   .rectangle14 {
     margin-right: 20px;
     margin-left: 10px !important;
@@ -78,6 +82,15 @@
     border-radius: 40px;
     font-size: 32px !important;
   }
+
+  .win-540 {
+    display: inline !important;
+  }
+
+  .win-541 {
+    display: none !important;
+  }
+
 }
 
 @media only screen and (max-width: 760px) {
@@ -367,7 +380,14 @@
     padding-top: 100px;
     padding-left: 50px;
   }
-  
+
+  .win-540 {
+    display: none;
+  }
+
+  .win-541 {
+    display: inline;
+  }
 
 }
 
@@ -492,6 +512,14 @@
     color: #e25e96;
   }
 
+  .win-540 {
+    display: none;
+  }
+
+  .win-541 {
+    display: inline;
+  }
+
 }
 
 /* หน้าหน้าจอของ หน้า food_supplement  ให้เปิด เปิดตามขนาดหน้าจอ */
@@ -499,7 +527,7 @@
   .navbarLeft {
     visibility: hidden !important;
     height: 0px;
- 
+
   }
 
   .navbarHead {
@@ -526,6 +554,7 @@
     grid-template-columns: none !important;
 
   }
+
   .video-link2 {
     font-weight: bold;
     font-family: BdCondHe;
@@ -563,6 +592,7 @@
     grid-template-columns: auto auto auto auto auto auto;
 
   }
+
   .video-link2 {
     font-weight: bold;
     font-family: BdCondHe;
@@ -599,6 +629,7 @@
   font-family: Regular;
   font-size: 18px !important;
 }
+
 .nav-linkHead2 {
   color: #4F4F4F;
   font-family: Regular;
@@ -845,9 +876,11 @@ a {
 .margin-top-5 {
   margin-top: 80px;
 }
+
 .magTop {
   margin-top: 40px;
 }
+
 .margin-head {
   margin-top: 30px;
 }
@@ -892,6 +925,7 @@ a {
   border: 1px solid #C4C4C4;
   margin-bottom: 20px;
 }
+
 .border-bottom4 {
   margin-top: 0px;
   border-bottom: 1px solid #C4C4C4 !important;
@@ -902,6 +936,7 @@ a {
   margin-left: 20px;
   margin-right: 20px;
 }
+
 .margin-left {
   margin-left: -20px !important;
 }
@@ -954,6 +989,7 @@ a {
   padding-top: 30px;
 
 }
+
 .box-heightPackage1 {
   padding-top: 30px;
   height: 90px;
@@ -1110,10 +1146,12 @@ a {
   padding-left: 60px;
   margin-top: -45px;
 }
+
 .span-image1 {
   padding-left: 60px;
   margin-top: -20px;
 }
+
 .span-image2 {
   padding-left: 60px;
   margin-top: -50px;
@@ -1138,6 +1176,7 @@ a {
   text-align: center;
   font-weight: bold;
 }
+
 .section-sizeLeft {
   font-size: 16px;
   text-align: left;
@@ -2697,10 +2736,11 @@ tr:last-child td:last-child {
   cursor: pointer;
 }
 
-.bottomEditProfile{
+.bottomEditProfile {
   padding-top: 30px;
   margin-left: -30px;
 }
+
 .bottomEditProfileLeft {
   margin-left: 10px;
 }
@@ -2724,6 +2764,7 @@ tr:last-child td:last-child {
   border-radius: 25px;
   width: 150px;
 }
+
 .bottom-outlinePinkRight:focus {
   background-color: #e25e96;
   height: 50px;
@@ -2733,6 +2774,7 @@ tr:last-child td:last-child {
   border-radius: 25px;
   width: 150px;
 }
+
 .bottom-outlinePinkLeft {
   background-color: #ffffff;
   height: 50px;
@@ -2742,6 +2784,7 @@ tr:last-child td:last-child {
   border-radius: 25px;
   width: 150px;
 }
+
 .bottom-outlinePinkLeft:hover {
   background-color: #ffffff;
   height: 50px;
@@ -2751,6 +2794,7 @@ tr:last-child td:last-child {
   border-radius: 25px;
   width: 150px;
 }
+
 .bottom-outlinePinkLeft:focus {
   background-color: #ffffff;
   height: 50px;
@@ -2760,6 +2804,7 @@ tr:last-child td:last-child {
   border-radius: 25px;
   width: 150px;
 }
+
 .padding-rightIcon {
   padding-right: 10px;
   margin-top: -5px;
@@ -2769,6 +2814,7 @@ tr:last-child td:last-child {
   background-color: #e25e96;
   color: #ffffff !important;
 }
+
 .register-to-join {
   margin-left: -20px;
   font-size: 32px;
@@ -2782,57 +2828,70 @@ tr:last-child td:last-child {
   float: right;
   margin-top: -50px;
 }
+
 .no-renewal {
   font-size: 14px;
   margin-top: -60px;
 }
-.special-price  {
+
+.special-price {
   font-size: 14px;
   padding-left: 10px;
   padding-right: 10px;
   margin-top: -10px;
 }
-.save-more{
+
+.save-more {
   font-size: 32px;
   color: #FF0000;
   padding-top: 10px;
 }
+
 .save-more2 {
   margin-top: -15px;
   font-size: 24px;
 }
+
 .margin-BoxTop {
   margin-top: -45px;
 }
+
 .my_space {
- padding-top: 15px;
+  padding-top: 15px;
 }
+
 .manu-scroll {
   overflow: auto;
   position: relative;
   height: 90vh;
   padding-bottom: 50px;
 }
+
 .home-image {
   width: 100%;
 }
+
 .box-home {
   width: 100%;
   height: 350px;
   background-color: #FFFFFF;
 }
+
 .top-Home {
-padding-top: 50px;
-text-align: center;
+  padding-top: 50px;
+  text-align: center;
 }
+
 .textHome {
   font-size: 40px;
   color: #000000;
 }
+
 .textHome2 {
   font-size: 32px;
   color: #E25E96;
 }
+
 .bottom-pinkLogin2 {
   background-color: #F8159D !important;
   margin-top: 40px;
@@ -2847,9 +2906,11 @@ text-align: center;
 .a_link {
   color: #0d6efd;
 }
+
 .a_link:hover {
   color: #E25E96;
 }
+
 .a_link:focus {
   color: #E25E96;
 }
