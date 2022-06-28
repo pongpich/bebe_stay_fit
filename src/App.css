@@ -67,6 +67,17 @@
     margin-top: -15px;
     border-bottom: 3px solid #4f4f4f;
   }
+
+  .bottom-pinkLogin2 {
+    background-color: #F8159D !important;
+    margin-top: 40px;
+    height: 70px;
+    width: 350px !important;
+    color: #ffffff !important;
+    margin-bottom: 50px;
+    border-radius: 40px;
+    font-size: 32px !important;
+  }
 }
 
 @media only screen and (max-width: 760px) {
@@ -2831,4 +2842,14 @@ text-align: center;
   margin-bottom: 50px;
   border-radius: 40px;
   font-size: 32px !important;
+}
+
+.a_link {
+  color: #0d6efd;
+}
+.a_link:hover {
+  color: #E25E96;
+}
+.a_link:focus {
+  color: #E25E96;
 }

@@ -69,7 +69,7 @@ class Home extends React.Component {
     if (prevProps.status !== status) {
       if (status === "success") {
         this.props.history.push('/basic_information');
-        //document.getElementById("remove-model").click(); //ใช้สำหรับซ่อน modal แต่ตอนนี้เอาออกเพราะปรับดีไซด์ชั่วคราวไม่งั้นมีบัค
+        document.getElementById("remove-model").click(); //ใช้สำหรับซ่อน modal แต่ตอนนี้เอาออกเพราะปรับดีไซด์ชั่วคราวไม่งั้นมีบัค
       }
     }
   }
@@ -77,7 +77,7 @@ class Home extends React.Component {
 
   resetPassword() {
     this.props.history.push('/reset_password');
-    // document.getElementById("remove-model").click(); //ใช้สำหรับซ่อน modal แต่ตอนนี้เอาออกเพราะปรับดีไซด์ชั่วคราวไม่งั้นมีบัค
+     document.getElementById("remove-model").click(); //ใช้สำหรับซ่อน modal แต่ตอนนี้เอาออกเพราะปรับดีไซด์ชั่วคราวไม่งั้นมีบัค
   }
 
   onUserLogin() {
@@ -100,6 +100,11 @@ class Home extends React.Component {
     })
   };
 
+  register() {
+    this.props.history.push('/programPackage');
+    document.getElementById("remove-model").click();
+
+  }
 
   homeLogin() {
     return (
@@ -110,7 +115,7 @@ class Home extends React.Component {
             <p className="textHome bold">สนใจสมัคร</p>
             <p className="textHome2 bold" >ปรึกษาผู้เชี่ยวชาญ</p>
             <div className="d-grid gap-2  mx-auto   col-12 col-sm-12  col-md-12 col-lg-12 center ">
-              <button className="btn bottom-pinkLogin2 bold" type="button" onClick={() => this.onUserLogin()}>
+              <button className="btn bottom-pinkLogin2 bold" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal">
                 เข้าสู่ระบบ
               </button>
             </div>
@@ -127,9 +132,58 @@ class Home extends React.Component {
         <img src={part11} alt="vector" className="home-image" />
         <img src={review} alt="vector" className="home-image" />
         <img src={part13} alt="vector" className="home-image" />
-        <img src={price} alt="vector" className="home-image" />
+        <img src={price} alt="vector" className="home-image"  data-bs-toggle="modal" data-bs-target="#exampleModal"/>
         <img src={countdown} alt="vector" className="home-image" />
-        <img src={part16} alt="vector" className="home-image" />
+        <img src={part16} alt="vector" className="home-image" data-bs-toggle="modal" data-bs-target="#exampleModal" />
+
+        
+        <div className="modal fade" id="exampleModal" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div className="modal-dialog">
+          <div className="modal-content padding-leftRight">
+            <div className="modal-headerIn margin-headText">
+              <p className="bold font-size5  color-protein" id="exampleModalLabel"></p>
+              <button type="button" className="btn-close" id="remove-model" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div className="modal-bodyIn">
+              <div className="center margin-bottom margin-top-1">
+                <p className="bold font-size8  color-protein" id="exampleModalLabel">เข้าสู่ระบบ</p>
+              </div>
+              <div className=" col-12 col-sm-12  col-md-12 col-lg-12 padding-top1">
+                <div className="mb-3">
+                  <label className="form-label">อีเมล</label>
+                  <input
+                    type="email"
+                    className="form-control"
+                    id="email"
+                    placeholder="กรุณากรอก Email (Example@mail.com)"
+                    value={this.state.email}
+                    onChange={(event) => this.handleChange(event)}
+                  />
+                </div>
+                <div className="mb-3">
+                  <label className="form-label">รหัสผ่าน</label>
+                  <input
+                    type="password"
+                    className="form-control"
+                    id="password"
+                    value={this.state.password}
+                    onChange={(event) => this.handleChange(event)}
+                  />
+                </div>
+                {this.state.validation !== "true" ?
+                  <h6 style={{ color: "red" }}>กรุณากรอกข้อมูลให้ครบถ้วน</h6>
+                  : null}
+                <div className="d-grid gap-2  mx-auto   col-12 col-sm-12  col-md-12 col-lg-12 distance">
+                  <button className="btn bottom-pinkLogin   font-size6" type="button" onClick={() => this.onUserLogin()}>
+                    เข้าสู่ระบบ
+                  </button>
+                </div>
+                <p className="between margin-top-2 font-size4"><span className="pointer reset" onClick={() => this.resetPassword()}>ลืมรหัสผ่าน</span> <span>ยังไม่เป็นสมาชิก? <a  className="a_link pointer" onClick={() => this.register("register")}>ลงทะเบียน</a></span></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
       </>
     )
   }
@@ -200,8 +254,8 @@ class Home extends React.Component {
     const { validation } = this.state;
     return (
       <>
-        {this.homeLogin()}
-        {/*  {this.login()} */}
+             {this.homeLogin()}
+ {/* {this.login()} */}
       </>
     );
   }
