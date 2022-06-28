@@ -106,7 +106,7 @@ class ProgramPackage extends React.Component {
         <br />
         <div className="col-12 col-sm-12 col-md-12 col-lg-12  ">
           <div className="center">
-            <p className="register-to-join"> ลงทะเบียนเข้าร่วม BEBE Stay fit</p>
+            <p className="register-to-join"> ลงทะเบียนเข้าร่วม Bebe Stayfit</p>
           </div>
           <div className="container">
             <div className="row center  ">
