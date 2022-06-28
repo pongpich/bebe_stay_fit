@@ -26,8 +26,9 @@ class Shipping_Address extends React.Component {
       districtUser: null,
       provinceUser: null,
       zipcodeUser: null,
-      InvoicePerson: null,  //  ข้อมูลใบกำกับภาษี start
+      InvoicePerson: "บุคคลธรรมดา",  //  ข้อมูลใบกำกับภาษี start
       InvoiceTaxpayerName: null,
+      InvoiceTaxpayerBranchName: "",
       InvoiceTaxIdentificationNumber: null,
       InvoiceTelephone: null,
       useShippingAddress: false,
@@ -83,70 +84,79 @@ class Shipping_Address extends React.Component {
   }
 
   shippingAddress(invoice, username, lastname, telephone, addressUser, subdistrictUser, districtUser, provinceUser, zipcodeUser,
-    InvoicePerson, InvoiceTaxpayerName, InvoiceTaxIdentificationNumber, InvoiceTelephone, useShippingAddress,
+    InvoicePerson, InvoiceTaxpayerName, InvoiceTaxpayerBranchName, InvoiceTaxIdentificationNumber, InvoiceTelephone, useShippingAddress,
     InvoiceAddressUser, InvoiceSubdistrict, InvoiceDistrict, InvoiceProvince, InvoiceZipcode) {
-      this.setState({
-        status_submit: "default"
-      })
-        if (username , lastname,telephone ,addressUser,subdistrictUser,districtUser,provinceUser,zipcodeUser !== null ) {
-          this.props.shippingAddress(
-            invoice, username, lastname, telephone, addressUser, subdistrictUser, districtUser, provinceUser, zipcodeUser,
-            InvoicePerson, InvoiceTaxpayerName, InvoiceTaxIdentificationNumber, InvoiceTelephone, useShippingAddress,
-            InvoiceAddressUser, InvoiceSubdistrict, InvoiceDistrict, InvoiceProvince, InvoiceZipcode
-          );
-          const delivery_address = {
-            "firstname": username,
-            "lastname": lastname,
-            "phone": telephone,
-            "address": addressUser,
-            "subdistrict": subdistrictUser,
-            "district": districtUser,
-            "province": provinceUser,
-            "zipcode": zipcodeUser
-          }
-          console.log("delivery_address :", delivery_address);
-          this.props.selectDeliveryAddress(delivery_address);
-          if (this.state.needTaxInvoice) {
-            const receipt_address = {
-              "invoicePerson": InvoicePerson,
-              "InvoiceTaxpayerName": InvoiceTaxpayerName,
-              "InvoiceTaxIdentificationNumber": InvoiceTaxIdentificationNumber,
-              "InvoiceTelephone": InvoiceTelephone,
-              "useShippingAddress": useShippingAddress,
-              "InvoiceAddressUser": useShippingAddress ? addressUser : InvoiceAddressUser,
-              "InvoiceSubdistrict": useShippingAddress ? subdistrictUser : InvoiceSubdistrict,
-              "InvoiceDistrict": useShippingAddress ? districtUser : InvoiceDistrict,
-              "InvoiceProvince": useShippingAddress ? provinceUser : InvoiceProvince,
-              "InvoiceZipcode": useShippingAddress ? zipcodeUser : InvoiceZipcode
-            }
-            console.log("receipt_address :", receipt_address);
-            this.props.selectReceiptAddress(receipt_address);
-          }
-        }else{
-          this.setState({
-            status_submit: "incomplete_information"
-          })
+    this.setState({
+      status_submit: "default"
+    })
+    if (username && lastname && telephone && addressUser && subdistrictUser && districtUser && provinceUser && zipcodeUser) {
+      this.props.shippingAddress(
+        invoice, username, lastname, telephone, addressUser, subdistrictUser, districtUser, provinceUser, zipcodeUser,
+        InvoicePerson, InvoiceTaxpayerName, InvoiceTaxIdentificationNumber, InvoiceTelephone, useShippingAddress,
+        InvoiceAddressUser, InvoiceSubdistrict, InvoiceDistrict, InvoiceProvince, InvoiceZipcode
+      );
+      const delivery_address = {
+        "firstname": username,
+        "lastname": lastname,
+        "phone": telephone,
+        "address": addressUser,
+        "subdistrict": subdistrictUser,
+        "district": districtUser,
+        "province": provinceUser,
+        "zipcode": zipcodeUser
+      }
+      console.log("delivery_address :", delivery_address);
+      this.props.selectDeliveryAddress(delivery_address);
+
+      if (this.state.needTaxInvoice) {
+        const receipt_address = {
+          "invoicePerson": InvoicePerson,
+          "InvoiceTaxpayerName": InvoiceTaxpayerName,
+          "InvoiceTaxpayerBranchName": (InvoicePerson === "นิติบุคคล") ? InvoiceTaxpayerBranchName : "",
+          "InvoiceTaxIdentificationNumber": InvoiceTaxIdentificationNumber,
+          "InvoiceTelephone": InvoiceTelephone,
+          "InvoiceAddressUser": useShippingAddress ? addressUser : InvoiceAddressUser,
+          "InvoiceSubdistrict": useShippingAddress ? subdistrictUser : InvoiceSubdistrict,
+          "InvoiceDistrict": useShippingAddress ? districtUser : InvoiceDistrict,
+          "InvoiceProvince": useShippingAddress ? provinceUser : InvoiceProvince,
+          "InvoiceZipcode": useShippingAddress ? zipcodeUser : InvoiceZipcode
         }
+        console.log("receipt_address :", receipt_address);
+        this.props.selectReceiptAddress(receipt_address);
+      }
+    } else {
+      this.setState({
+        status_submit: "incomplete_information"
+      })
+    }
+  }
+
+  cancelNeedTaxInvoice() {
+    this.setState({ needTaxInvoice: false });
+    document.getElementById("checkedTaxInvoice").checked = false
   }
 
   taxInvoice = (e) => {
     const { checked } = e.target;
 
     this.setState({
-      invoice: checked,
+      invoice: checked
     })
 
     if (checked === true) {
       document.getElementById('clickModal').click();
     }
 
+    if (this.state.needTaxInvoice) {
+      this.setState({ needTaxInvoice: false });
+    }
   }
+
   onChange(e) {
     this.setState({
       [e.target.name]: e.target.value,
     })
   }
-
 
   onChickUseShippingAddress(e) {
 
@@ -190,8 +200,8 @@ class Shipping_Address extends React.Component {
 
   render() {
     const { invoice, username, lastname, telephone, addressUser, subdistrictUser, districtUser, provinceUser, zipcodeUser,
-      InvoicePerson, InvoiceTaxpayerName, InvoiceTaxIdentificationNumber, InvoiceTelephone, useShippingAddress,
-      InvoiceAddressUser, InvoiceSubdistrict, InvoiceDistrict, InvoiceProvince, InvoiceZipcode,status_submit } = this.state;
+      InvoicePerson, InvoiceTaxpayerName, InvoiceTaxpayerBranchName, InvoiceTaxIdentificationNumber, InvoiceTelephone, useShippingAddress,
+      InvoiceAddressUser, InvoiceSubdistrict, InvoiceDistrict, InvoiceProvince, InvoiceZipcode, status_submit } = this.state;
     return (
       <>
         <div className="col-12 col-sm-12 col-md-12 col-lg-12  App-headerBackground center2 padding-top2 ">
@@ -258,18 +268,18 @@ class Shipping_Address extends React.Component {
                       onSelect={e => this.onSelect(e)}
                     />
                   </div>
-                      {
-                        (status_submit === "incomplete_information") &&
-                        <small id="emailHelp" className="form-text text-muted mb-3"><h6 style={{ color: "red" }}>กรุณากรอกข้อมูลให้ครบถ้วน</h6></small>
-                      }
-                  {/* <div className="padding-top2">
+                  {
+                    (status_submit === "incomplete_information") &&
+                    <small id="emailHelp" className="form-text text-muted mb-3"><h6 style={{ color: "red" }}>กรุณากรอกข้อมูลให้ครบถ้วน</h6></small>
+                  }
+                  <div className="padding-top2">
                     <div className="form-check">
                       <input id="checkedTaxInvoice" className="form-check-input" type="checkbox" onClick={e => this.taxInvoice(e)} />
                       <label className="form-check-label">
                         ขอใบเสร็จรับเงิน/ใบกำกับภาษี
                                             </label>
                     </div>
-                  </div> */}
+                  </div>
                 </div>
               </div>
               <div className="d-grid gap-2  mx-auto   col-10 col-sm-10  col-md-10 col-lg-10 distance">
@@ -283,7 +293,7 @@ class Shipping_Address extends React.Component {
                 </div>
                 <button className="btn bottom-pink" type="button" onClick={() => this.shippingAddress(
                   invoice, username, lastname, telephone, addressUser, subdistrictUser, districtUser, provinceUser, zipcodeUser,
-                  InvoicePerson, InvoiceTaxpayerName, InvoiceTaxIdentificationNumber, InvoiceTelephone, useShippingAddress,
+                  InvoicePerson, InvoiceTaxpayerName, InvoiceTaxpayerBranchName, InvoiceTaxIdentificationNumber, InvoiceTelephone, useShippingAddress,
                   InvoiceAddressUser, InvoiceSubdistrict, InvoiceDistrict, InvoiceProvince, InvoiceZipcode
                 )}  >
                   ถัดไป
@@ -303,19 +313,39 @@ class Shipping_Address extends React.Component {
               </div>
               <div className="modal-bodyIn">
                 <div className="form-check form-check-inline">
-                  <input className="form-check-input" type="radio" name="InvoicePerson" onChange={e => this.onChange(e)} id="inlineRadio1" value="บุคคลธรรมดา" />
+                  <input className="form-check-input" type="radio" name="InvoicePerson" checked={this.state.InvoicePerson === "บุคคลธรรมดา"} onChange={e => this.onChange(e)} id="inlineRadio1" value="บุคคลธรรมดา" />
                   <label className="form-check-label">บุคคลธรรมดา</label>
                 </div>
                 <div className="form-check form-check-inline">
-                  <input className="form-check-input" type="radio" name="InvoicePerson" onChange={e => this.onChange(e)} id="inlineRadio2" value="นิติบุคคล" />
+                  <input className="form-check-input" type="radio" name="InvoicePerson" checked={this.state.InvoicePerson === "นิติบุคคล"} onChange={e => this.onChange(e)} id="inlineRadio2" value="นิติบุคคล" />
                   <label className="form-check-label">นิติบุคคล</label>
                 </div>
-                <div className=" col-12 col-sm-12  col-md-12 col-lg-12 padding-top2">
-                  <div className="mb-3">
-                    <label className="form-label bold">ชื่อผู้เสียภาษี</label>
-                    <input type="text" className="form-control" id="exampleFormControlInput1" name="InvoiceTaxpayerName" onChange={e => this.onChange(e)} placeholder="กรอกชื่อ" />
+                {
+                  (this.state.InvoicePerson === "บุคคลธรรมดา") &&
+                  <div className=" col-12 col-sm-12  col-md-12 col-lg-12 padding-top2">
+                    <div className="mb-3">
+                      <label className="form-label bold">ชื่อผู้เสียภาษี</label>
+                      <input type="text" className="form-control" id="exampleFormControlInput1" name="InvoiceTaxpayerName" onChange={e => this.onChange(e)} placeholder="กรอกชื่อ" />
+                    </div>
                   </div>
-                </div>
+                }
+                {
+                  (this.state.InvoicePerson === "นิติบุคคล") &&
+                  <div className="row">
+                    <div className=" col-12 col-sm-12 col-md-6 col-lg-6">
+                      <div className="mb-3">
+                        <label className="form-label bold">ชื่อนิติบุคคล</label>
+                        <input type="text" className="form-control" id="exampleFormControlInput1" name="InvoiceTaxpayerName" onChange={e => this.onChange(e)} placeholder="กรอกชื่อ" />
+                      </div>
+                    </div>
+                    <div className=" col-12 col-sm-12  col-md-6 col-lg-6">
+                      <div className="mb-3">
+                        <label className="form-label bold">สำนักงานใหญ่/สาขา</label>
+                        <input type="text" className="form-control" id="exampleFormControlInput1" name="InvoiceTaxpayerBranchName" onChange={e => this.onChange(e)} placeholder="กรุณาระบุ" />
+                      </div>
+                    </div>
+                  </div>
+                }
                 <div className="row">
                   <div className=" col-12 col-sm-12 col-md-6 col-lg-6">
                     <div className="mb-3">
@@ -352,22 +382,36 @@ class Shipping_Address extends React.Component {
                       <div className=" col-12 col-sm-12 col-md-6 col-lg-6">
                         <div className="mb-3 elementStyle">
                           <label className="form-label bold">แขวง/ตำบล</label>
-                          <InputAddress style={{ width: "100%" }}
+                          {/* <InputAddress style={{ width: "100%" }}
                             address="subdistrict"
                             value={this.state.InvoiceSubdistrict}
                             onChange={e => this.onChange(e)}
                             onSelect={e => this.onSelectInvoice(e)}
+                          /> */}
+                          <input
+                            type="text" className="form-control"
+                            style={{ width: "100%" }}
+                            name="InvoiceSubdistrict"
+                            value={this.state.InvoiceSubdistrict}
+                            onChange={e => this.onChange(e)}
                           />
                         </div>
                       </div>
                       <div className=" col-12 col-sm-12  col-md-6 col-lg-6">
                         <div className="mb-3 elementStyle">
                           <label className="form-label bold">เขต/อำเภอ</label>
-                          <InputAddress style={{ width: "100%" }}
+                          {/* <InputAddress style={{ width: "100%" }}
                             address="district"
                             value={this.state.InvoiceDistrict}
                             onChange={e => this.onChange(e)}
                             onSelect={e => this.onSelectInvoice(e)}
+                          /> */}
+                          <input
+                            type="text" className="form-control"
+                            style={{ width: "100%" }}
+                            name="InvoiceDistrict"
+                            value={this.state.InvoiceDistrict}
+                            onChange={e => this.onChange(e)}
                           />
                         </div>
                       </div>
@@ -376,22 +420,36 @@ class Shipping_Address extends React.Component {
                       <div className=" col-12 col-sm-12 col-md-6 col-lg-6">
                         <div className="mb-3 elementStyle">
                           <label className="form-label bold">จังหวัด</label>
-                          <InputAddress style={{ width: "100%" }}
+                          {/* <InputAddress style={{ width: "100%" }}
                             address="province"
                             value={this.state.InvoiceProvince}
-                            onChange={e => this.onChangeInvoice(e)}
+                            onChange={e => this.onChange(e)}
                             onSelect={e => this.onSelectInvoice(e)}
+                          /> */}
+                          <input
+                            type="text" className="form-control"
+                            style={{ width: "100%" }}
+                            name="InvoiceProvince"
+                            value={this.state.InvoiceProvince}
+                            onChange={e => this.onChange(e)}
                           />
                         </div>
                       </div>
                       <div className=" col-12 col-sm-12  col-md-6 col-lg-6">
                         <div className="mb-3 elementStyle">
                           <label className="form-label bold">รหัสไปรษณีย์</label>
-                          <InputAddress style={{ width: "100%" }}
+                          {/* <InputAddress style={{ width: "100%" }}
                             address="zipcode"
                             value={this.state.InvoiceZipcode}
                             onChange={e => this.onChange(e)}
                             onSelect={e => this.onSelectInvoice(e)}
+                          /> */}
+                          <input
+                            type="text" className="form-control"
+                            style={{ width: "100%" }}
+                            name="InvoiceZipcode"
+                            value={this.state.InvoiceZipcode}
+                            onChange={e => this.onChange(e)}
                           />
                         </div>
                       </div>
@@ -399,8 +457,13 @@ class Shipping_Address extends React.Component {
                   </div>
                 }
                 <div className="col-12 col-sm-12  col-md-12 col-lg-12 center">
-                  <button type="button" className={this.state.pinkModel} onClick={() => document.getElementById("checkedTaxInvoice").checked = false} data-bs-dismiss="modal" >ยกเลิก</button>&nbsp;&nbsp;&nbsp;
-                  <button type="button" className={this.state.pinkModelFocus} onClick={() => this.setState({ needTaxInvoice: true })} data-bs-dismiss="modal">ยืนยัน</button>
+                  <button type="button" className={this.state.pinkModel} onClick={() => this.cancelNeedTaxInvoice()} data-bs-dismiss="modal" >ยกเลิก</button>&nbsp;&nbsp;&nbsp;
+                  {
+                    (this.state.InvoiceTaxIdentificationNumber && this.state.InvoiceTelephone) ?
+                      <button type="button" className={this.state.pinkModelFocus} onClick={() => this.setState({ needTaxInvoice: true })} data-bs-dismiss="modal">ยืนยัน</button>
+                      :
+                      <button type="button" className={this.state.pinkModelFocus}>ยืนยัน</button>
+                  }
                 </div>
               </div>
             </div>
