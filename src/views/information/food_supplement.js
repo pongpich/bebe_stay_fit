@@ -63,23 +63,23 @@ const Food_supplement = () => {
 
       }
 
-    }else {
+    } else {
       if (activeSection >= 7) {
         setArticleMain(7);
-         if (activeSection === 7 ) {
+        if (activeSection === 7) {
           setArticle(7);
-  
+
         } else {
           setArticle(activeSection);
-  
-        } 
+
+        }
       }
     }
- 
+
 
 
   })
-  console.log( activeSection,"article",article);
+  console.log(activeSection, "article", article);
   return (
     <>
       <BrowserRouter>
@@ -94,81 +94,81 @@ const Food_supplement = () => {
               <div className="navbarLeft">
                 <div className="mavbarfood">
                   <div className="manu-scroll">
-                  <HashLink smooth to='#generalFood' id="#generalFood" className={articleMain === 0 ? "manuFood-Active" : "manuFood"}>
-                    สำหรับทานอาหารทั่วไป
-                  </HashLink>
-                  <div className="small-box">
-                    <div>
-                      <HashLink smooth to='#generalFood' id="#generalFood" className={article === 1 ? "maun-small-Active" : "maun-small"}>
-                        โปรแกรมอาหาร{"(Nutrition Program)"}
-                      </HashLink>
+                    <HashLink smooth to='#generalFood' id="#generalFood" className={articleMain === 0 ? "manuFood-Active" : "manuFood"}>
+                      สำหรับทานอาหารทั่วไป
+                    </HashLink>
+                    <div className="small-box">
+                      <div>
+                        <HashLink smooth to='#generalFood' id="#generalFood" className={article === 1 ? "maun-small-Active" : "maun-small"}>
+                          โปรแกรมอาหาร{"(Nutrition Program)"}
+                        </HashLink>
+                      </div>
+                      <div className="my_space">
+                        <HashLink smooth to='#general_food_simpleHealth' className={article === 2 ? "maun-small-Active" : "maun-small"}>
+                          แนวทางการกินเพื่อสุขภาพแบบง่าย
+                        </HashLink>
+                      </div>
+                      <div className="my_space">
+                        <HashLink smooth to='#general_food_recommendedHealth' className={article === 3 ? "maun-small-Active" : "maun-small"}>
+                          รูปแบบการกินเพื่อสุขภาพที่แนะนำ
+                        </HashLink>
+                      </div>
+                      <div className="my_space">
+                        <HashLink smooth to='#general_food_eat_foodPprogram' className={article === 4 ? "maun-small-Active" : "maun-small"}>
+                          แนวทางการเลือกกินอาหาร
+                          ระหว่างอยู่ในโปรแกรม
+                        </HashLink>
+                      </div>
+                      <div className="my_space">
+                        <HashLink smooth to='#general_food_recommendedApproach' className={article === 5 ? "maun-small-Active" : "maun-small"}>
+                          แนวทางที่แนะนำ
+                        </HashLink>
+                      </div>
+                      <div className="my_space">
+                        <HashLink smooth to='#general_food_AdditionalAdvice' className={article === 6 ? "maun-small-Active" : "maun-small"}>
+                          คำแนะนำเพิ่มเติม
+                        </HashLink>
+                      </div>
                     </div>
-                    <div className="my_space">
-                      <HashLink smooth to='#general_food_simpleHealth' className={article === 2 ? "maun-small-Active" : "maun-small"}>
-                        แนวทางการกินเพื่อสุขภาพแบบง่าย
-                      </HashLink>
+                    <HashLink smooth to='#vegetarianFood' className={articleMain === 7 ? "manuFood-Active" : "manuFood"}>
+                      สำหรับทานอาหารมังสวิรัติ
+                    </HashLink>
+                    <div className="small-box">
+                      <div>
+                        <HashLink to='#vegetarianFood' className={article === 7 ? "maun-small-Active" : "maun-small"}>
+                          โปรแกรมอาหารสำหรับผู้ที่เลือกกินอาหาร
+                          แบบเน้นพืช และแบบมังสวิรัติเคร่งครัด
+                          (Plant-Based Diet and Strict Vegan
+                          Nutrition Program)
+                        </HashLink>
+                      </div>
+                      <div className="my_space">
+                        <HashLink smooth to='#vegetarian_food_plantBased' className={article === 8 ? "maun-small-Active" : "maun-small"}>
+                          แนวทางการเลือกกินอาหารแบบเน้นพืช (Plant-Based Diet) และแบบมังสวิรัติเคร่งครัด (Strict Diet) เพื่อสุขภาพ
+                        </HashLink>
+                      </div>
+                      <div className="my_space">
+                        <HashLink smooth to='#vegetarian_food_recommendedHealth' className={article === 9 ? "maun-small-Active" : "maun-small"}>
+                          รูปแบบการกินเพื่อสุขภาพที่แนะนำ
+                        </HashLink>
+                      </div>
+                      <div className="my_space">
+                        <HashLink smooth to='#vegetarian_food_eat_foodPprogram' className={article === 10 ? "maun-small-Active" : "maun-small"}>
+                          แนวทางการเลือกกินอาหาร
+                          ระหว่างอยู่ในโปรแกรม
+                        </HashLink>
+                      </div>
+                      <div className="my_space">
+                        <HashLink smooth to='#vegetarian_food_recommendedApproach' id="#" className={article === 11 ? "maun-small-Active" : "maun-small"}>
+                          แนวทางที่แนะนำ
+                        </HashLink>
+                      </div>
+                      <div className="my_space">
+                        <HashLink smooth to='#vegetarian_food_AdditionalAdvice' id="#" className={article === 12 ? "maun-small-Active" : "maun-small"}>
+                          คำแนะนำเพิ่มเติม
+                        </HashLink>
+                      </div>
                     </div>
-                    <div className="my_space">
-                      <HashLink smooth to='#general_food_recommendedHealth' className={article === 3 ? "maun-small-Active" : "maun-small"}>
-                        รูปแบบการกินเพื่อสุขภาพที่แนะนำ
-                      </HashLink>
-                    </div>
-                    <div className="my_space">
-                      <HashLink smooth to='#general_food_eat_foodPprogram' className={article === 4 ? "maun-small-Active" : "maun-small"}>
-                        แนวทางการเลือกกินอาหาร
-                        ระหว่างอยู่ในโปรแกรม
-                      </HashLink>
-                    </div>
-                    <div className="my_space">
-                      <HashLink smooth to='#general_food_recommendedApproach' className={article === 5 ? "maun-small-Active" : "maun-small"}>
-                        แนวทางที่แนะนำ
-                      </HashLink>
-                    </div>
-                    <div className="my_space">
-                      <HashLink smooth to='#general_food_AdditionalAdvice' className={article === 6 ? "maun-small-Active" : "maun-small"}>
-                        คำแนะนำเพิ่มเติม
-                      </HashLink>
-                    </div>
-                  </div>
-                  <HashLink smooth to='#vegetarianFood' className={articleMain === 7 ? "manuFood-Active" : "manuFood"}>
-                    สำหรับทานอาหารมังสวิรัติ
-                  </HashLink>
-                  <div className="small-box">
-                    <div>
-                      <HashLink to='#vegetarianFood' className={article === 7 ? "maun-small-Active" : "maun-small"}>
-                        โปรแกรมอาหารสำหรับผู้ที่เลือกกินอาหาร
-                        แบบเน้นพืช และแบบมังสวิรัติเคร่งครัด
-                        (Plant-Based Diet and Strict Vegan
-                        Nutrition Program)
-                      </HashLink>
-                    </div>
-                    <div className="my_space">
-                      <HashLink smooth to='#vegetarian_food_plantBased'  className={article === 8 ? "maun-small-Active" : "maun-small"}>
-                        แนวทางการเลือกกินอาหารแบบเน้นพืช (Plant-Based Diet) และแบบมังสวิรัติเคร่งครัด (Strict Diet) เพื่อสุขภาพ
-                      </HashLink>
-                    </div>
-                    <div className="my_space">
-                      <HashLink smooth to='#vegetarian_food_recommendedHealth'  className={article === 9 ? "maun-small-Active" : "maun-small"}>
-                        รูปแบบการกินเพื่อสุขภาพที่แนะนำ
-                      </HashLink>
-                    </div>
-                    <div className="my_space">
-                      <HashLink smooth to='#vegetarian_food_eat_foodPprogram'  className={article === 10 ? "maun-small-Active" : "maun-small"}>
-                        แนวทางการเลือกกินอาหาร
-                        ระหว่างอยู่ในโปรแกรม
-                      </HashLink>
-                    </div>
-                    <div className="my_space">
-                      <HashLink smooth to='#vegetarian_food_recommendedApproach' id="#" className={article === 11 ? "maun-small-Active" : "maun-small"}>
-                        แนวทางที่แนะนำ
-                      </HashLink>
-                    </div>
-                    <div className="my_space">
-                      <HashLink smooth to='#vegetarian_food_AdditionalAdvice' id="#" className={article === 12 ? "maun-small-Active" : "maun-small"}>
-                        คำแนะนำเพิ่มเติม
-                      </HashLink>
-                    </div>
-                  </div>
                   </div>
                 </div>
               </div>
@@ -244,7 +244,7 @@ const Food_supplement = () => {
                     {vegetarian_food_AdditionalAdvice()}
                   </section>
                 </div>
-                
+
               </div>
             </div>
           </div>
