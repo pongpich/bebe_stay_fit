@@ -32,6 +32,7 @@ class Basic_Information extends React.Component {
     if (user && user.other_attributes) {
       this.props.history.push('/videoList');
     }
+    window.scrollTo(0, 0);
   }
 
   componentDidUpdate(prevProps) {

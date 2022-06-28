@@ -12,6 +12,7 @@ class Cc_token extends React.Component {
   componentDidMount() {
     window.gbFunc(this.props.program.price) //ใช้จริง
     //window.gbFunc(1) // สำหรับเทส
+    window.scrollTo(0, 0);
   }
 
   render() {

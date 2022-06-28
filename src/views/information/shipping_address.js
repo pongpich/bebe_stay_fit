@@ -69,7 +69,7 @@ class Shipping_Address extends React.Component {
       provinceUser: this.props.create_provinceUser,
       zipcodeUser: this.props.create_zipcodeUser
     })
-
+    window.scrollTo(0, 0);
   }
 
   componentDidUpdate(prevProps, prevState) {

@@ -62,6 +62,7 @@ const Food_supplement = () => {
         setArticle(activeSection);
 
       }
+      window.scrollTo(0, 0);
     }
     if (activeSection >= 7) {
       setArticleMain(7);

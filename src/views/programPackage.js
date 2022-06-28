@@ -35,6 +35,7 @@ class ProgramPackage extends React.Component {
     if (statusRegister === "success") { //success แสดงว่าสร้าง email นี้ใน table member แล้ว
       this.props.history.push('/fitto_plant_protein');
     }
+    window.scrollTo(0, 0);
   }
 
   exerciseActivatedCheck(event) {

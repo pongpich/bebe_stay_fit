@@ -75,6 +75,7 @@ class Payment extends React.Component {
     if (!delivery_address) {
       this.props.history.push('/shipping_address');
     }
+    window.scrollTo(0, 0);
   }
 
   componentDidUpdate(prevProps, prevState) {

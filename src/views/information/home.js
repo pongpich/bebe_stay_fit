@@ -41,7 +41,7 @@ class Home extends React.Component {
       console.log("setPassword");
     }
 
-
+    window.scrollTo(0, 0);
 
   }
 

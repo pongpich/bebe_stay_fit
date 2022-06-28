@@ -97,7 +97,7 @@ class videoList extends React.Component {
            this.props.user.expire_date,
          );
        } */
-
+       window.scrollTo(0, 0);
   }
 
   componentDidUpdate(prevProps, prevState) {

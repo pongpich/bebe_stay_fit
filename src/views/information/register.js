@@ -37,7 +37,7 @@ class Register extends React.Component {
     if (statusRegister === "success") { //success แสดงว่าสร้าง email นี้ใน table member แล้ว
       this.props.history.push('/fitto_plant_protein');
     }
-
+    window.scrollTo(0, 0);
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -46,6 +46,7 @@ class Register extends React.Component {
     if (prevProps.statusRegister !== statusRegister) {
       this.props.history.push('/fitto_plant_protein');
     }
+
   }
 
   createUser(email, password, confirm_password, phone) {

@@ -21,6 +21,7 @@ class Welcome_NewMember extends React.Component {
     if (user !== null) {
       this.props.history.push('/basic_information');
     }
+    window.scrollTo(0, 0);
   }
 
   componentDidUpdate(prevProps, prevState) {
