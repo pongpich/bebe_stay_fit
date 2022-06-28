@@ -210,13 +210,6 @@ class Payment extends React.Component {
           <div className="col-12 col-sm-12 col-md-10 col-lg-10 center2">
             <img src={group21} alt="vector" className="group19" />
           </div>
-          <div className="col-12 col-sm-12 col-md-10 col-lg-10 center2  margin-headText">
-            <p className="font-size6 bold color-protein"> การชำระเงิน</p>
-          </div>
-          <div className="col-12 col-sm-12 col-md-10 col-lg-10 center2">
-            <button type="button" className={this.state.creditCardFocus} onClick={e => this.pinkModelFocus("1")}>บัตรเครดิต/เดบิต</button>&nbsp;&nbsp;&nbsp;
-                        <button type="button" className={this.state.qrCodeFocus} onClick={e => this.pinkModelFocus("2")}>ชำระด้วย QR Code</button>
-          </div>
           <div className="col-12 col-sm-12 col-md-6 col-lg-6 center2 margin-head">
             {
               /* (this.state.paymentMethod === "creditCard") &&
@@ -282,6 +275,14 @@ class Payment extends React.Component {
               </div>
             </div>
 
+            <div className="col-12 col-sm-12 col-md-10 col-lg-10 center2  margin-headText">
+              <p className="font-size6 bold color-protein"> การชำระเงิน</p>
+            </div>
+            <div className="col-12 col-sm-12 col-md-10 col-lg-10 center2">
+              <button type="button" className={this.state.creditCardFocus} onClick={e => this.pinkModelFocus("1")}>บัตรเครดิต/เดบิต</button>&nbsp;&nbsp;&nbsp;
+              <button type="button" className={this.state.qrCodeFocus} onClick={e => this.pinkModelFocus("2")}>ชำระด้วย QR Code</button>
+            </div>
+
             <div className="d-grid gap-2 col-10 ol-sm-10  mx-auto   col-md-10 col-lg-10 distance">
               {
                 /* (this.state.paymentMethod === "creditCard") &&
@@ -292,6 +293,8 @@ class Payment extends React.Component {
                 <input id="cc_button" className="btn bottom-pink" value="ชำระเงิน" onClick={() => this.props.history.push("cc_token")} />
               }
             </div>
+
+
 
             <form
               id="qr_form"

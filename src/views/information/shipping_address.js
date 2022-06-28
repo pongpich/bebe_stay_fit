@@ -36,7 +36,8 @@ class Shipping_Address extends React.Component {
       InvoiceDistrict: null,
       InvoiceProvince: null,
       InvoiceZipcode: null,
-      needTaxInvoice: false
+      needTaxInvoice: false,
+      status_submit: "default"
     };
   }
   componentDidMount() {
@@ -84,39 +85,48 @@ class Shipping_Address extends React.Component {
   shippingAddress(invoice, username, lastname, telephone, addressUser, subdistrictUser, districtUser, provinceUser, zipcodeUser,
     InvoicePerson, InvoiceTaxpayerName, InvoiceTaxIdentificationNumber, InvoiceTelephone, useShippingAddress,
     InvoiceAddressUser, InvoiceSubdistrict, InvoiceDistrict, InvoiceProvince, InvoiceZipcode) {
-    this.props.shippingAddress(
-      invoice, username, lastname, telephone, addressUser, subdistrictUser, districtUser, provinceUser, zipcodeUser,
-      InvoicePerson, InvoiceTaxpayerName, InvoiceTaxIdentificationNumber, InvoiceTelephone, useShippingAddress,
-      InvoiceAddressUser, InvoiceSubdistrict, InvoiceDistrict, InvoiceProvince, InvoiceZipcode
-    );
-    const delivery_address = {
-      "firstname": username,
-      "lastname": lastname,
-      "phone": telephone,
-      "address": addressUser,
-      "subdistrict": subdistrictUser,
-      "district": districtUser,
-      "province": provinceUser,
-      "zipcode": zipcodeUser
-    }
-    console.log("delivery_address :", delivery_address);
-    this.props.selectDeliveryAddress(delivery_address);
-    if (this.state.needTaxInvoice) {
-      const receipt_address = {
-        "invoicePerson": InvoicePerson,
-        "InvoiceTaxpayerName": InvoiceTaxpayerName,
-        "InvoiceTaxIdentificationNumber": InvoiceTaxIdentificationNumber,
-        "InvoiceTelephone": InvoiceTelephone,
-        "useShippingAddress": useShippingAddress,
-        "InvoiceAddressUser": useShippingAddress ? addressUser : InvoiceAddressUser,
-        "InvoiceSubdistrict": useShippingAddress ? subdistrictUser : InvoiceSubdistrict,
-        "InvoiceDistrict": useShippingAddress ? districtUser : InvoiceDistrict,
-        "InvoiceProvince": useShippingAddress ? provinceUser : InvoiceProvince,
-        "InvoiceZipcode": useShippingAddress ? zipcodeUser : InvoiceZipcode
-      }
-      console.log("receipt_address :", receipt_address);
-      this.props.selectReceiptAddress(receipt_address);
-    }
+      this.setState({
+        status_submit: "default"
+      })
+        if (username , lastname,telephone ,addressUser,subdistrictUser,districtUser,provinceUser,zipcodeUser !== null ) {
+          this.props.shippingAddress(
+            invoice, username, lastname, telephone, addressUser, subdistrictUser, districtUser, provinceUser, zipcodeUser,
+            InvoicePerson, InvoiceTaxpayerName, InvoiceTaxIdentificationNumber, InvoiceTelephone, useShippingAddress,
+            InvoiceAddressUser, InvoiceSubdistrict, InvoiceDistrict, InvoiceProvince, InvoiceZipcode
+          );
+          const delivery_address = {
+            "firstname": username,
+            "lastname": lastname,
+            "phone": telephone,
+            "address": addressUser,
+            "subdistrict": subdistrictUser,
+            "district": districtUser,
+            "province": provinceUser,
+            "zipcode": zipcodeUser
+          }
+          console.log("delivery_address :", delivery_address);
+          this.props.selectDeliveryAddress(delivery_address);
+          if (this.state.needTaxInvoice) {
+            const receipt_address = {
+              "invoicePerson": InvoicePerson,
+              "InvoiceTaxpayerName": InvoiceTaxpayerName,
+              "InvoiceTaxIdentificationNumber": InvoiceTaxIdentificationNumber,
+              "InvoiceTelephone": InvoiceTelephone,
+              "useShippingAddress": useShippingAddress,
+              "InvoiceAddressUser": useShippingAddress ? addressUser : InvoiceAddressUser,
+              "InvoiceSubdistrict": useShippingAddress ? subdistrictUser : InvoiceSubdistrict,
+              "InvoiceDistrict": useShippingAddress ? districtUser : InvoiceDistrict,
+              "InvoiceProvince": useShippingAddress ? provinceUser : InvoiceProvince,
+              "InvoiceZipcode": useShippingAddress ? zipcodeUser : InvoiceZipcode
+            }
+            console.log("receipt_address :", receipt_address);
+            this.props.selectReceiptAddress(receipt_address);
+          }
+        }else{
+          this.setState({
+            status_submit: "incomplete_information"
+          })
+        }
   }
 
   taxInvoice = (e) => {
@@ -181,7 +191,7 @@ class Shipping_Address extends React.Component {
   render() {
     const { invoice, username, lastname, telephone, addressUser, subdistrictUser, districtUser, provinceUser, zipcodeUser,
       InvoicePerson, InvoiceTaxpayerName, InvoiceTaxIdentificationNumber, InvoiceTelephone, useShippingAddress,
-      InvoiceAddressUser, InvoiceSubdistrict, InvoiceDistrict, InvoiceProvince, InvoiceZipcode } = this.state;
+      InvoiceAddressUser, InvoiceSubdistrict, InvoiceDistrict, InvoiceProvince, InvoiceZipcode,status_submit } = this.state;
     return (
       <>
         <div className="col-12 col-sm-12 col-md-12 col-lg-12  App-headerBackground center2 padding-top2 ">
@@ -248,6 +258,10 @@ class Shipping_Address extends React.Component {
                       onSelect={e => this.onSelect(e)}
                     />
                   </div>
+                      {
+                        (status_submit === "incomplete_information") &&
+                        <small id="emailHelp" className="form-text text-muted mb-3"><h6 style={{ color: "red" }}>กรุณากรอกข้อมูลให้ครบถ้วน</h6></small>
+                      }
                   {/* <div className="padding-top2">
                     <div className="form-check">
                       <input id="checkedTaxInvoice" className="form-check-input" type="checkbox" onClick={e => this.taxInvoice(e)} />
@@ -265,7 +279,7 @@ class Shipping_Address extends React.Component {
                 <div style={{ display: 'none' }}>
                   <button className="btn bottom-pink" id="clickModal" data-bs-toggle="modal" data-bs-target="#exampleModal" >
                     chick
-                                    </button>
+                  </button>
                 </div>
                 <button className="btn bottom-pink" type="button" onClick={() => this.shippingAddress(
                   invoice, username, lastname, telephone, addressUser, subdistrictUser, districtUser, provinceUser, zipcodeUser,
@@ -273,7 +287,7 @@ class Shipping_Address extends React.Component {
                   InvoiceAddressUser, InvoiceSubdistrict, InvoiceDistrict, InvoiceProvince, InvoiceZipcode
                 )}  >
                   ถัดไป
-                                </button>
+                </button>
               </div>
             </div>
           </div>
@@ -321,7 +335,7 @@ class Shipping_Address extends React.Component {
                     <input className="form-check-input" type="checkbox" name="useShippingAddress" onClick={e => this.onChickUseShippingAddress(e)} id="flexCheckDefault" defaultChecked={this.state.useShippingAddress} />
                     <label className="form-check-label">
                       ใช้ที่อยู่จัดส่งสินค้า
-                                        </label>
+                    </label>
                   </div>
                 </div>
 
@@ -386,7 +400,7 @@ class Shipping_Address extends React.Component {
                 }
                 <div className="col-12 col-sm-12  col-md-12 col-lg-12 center">
                   <button type="button" className={this.state.pinkModel} onClick={() => document.getElementById("checkedTaxInvoice").checked = false} data-bs-dismiss="modal" >ยกเลิก</button>&nbsp;&nbsp;&nbsp;
-                                    <button type="button" className={this.state.pinkModelFocus} onClick={() => this.setState({ needTaxInvoice: true })} data-bs-dismiss="modal">ยืนยัน</button>
+                  <button type="button" className={this.state.pinkModelFocus} onClick={() => this.setState({ needTaxInvoice: true })} data-bs-dismiss="modal">ยืนยัน</button>
                 </div>
               </div>
             </div>

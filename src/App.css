@@ -100,10 +100,6 @@
     background-color: inherit !important;
   }
 
-  .studio-session {
-    height: 70vh !important;
-    opacity: 0.6;
-  }
 
   .studio-mask {
     width: 350px !important;
@@ -125,7 +121,10 @@
   .studio-session {
     position: absolute !important;
     z-index: 1;
-    height: 115vh;
+    min-height: 92vh;
+    height: 84%;
+    height: 70vh !important;
+    opacity: 0.6;
   }
 
   .box-welcome {
@@ -272,7 +271,7 @@
     padding: 30px 20px 0px 20px;
     background-color: #ffffff;
     z-index: 3 !important;
-    height: 95vh;
+    min-height: 95vh;
     box-shadow: 2px 17px 13px 6px #bababa;
   }
 
@@ -342,6 +341,7 @@
     padding-top: 100px;
     padding-left: 50px;
   }
+  
 
 }
 
@@ -376,14 +376,15 @@
   .studio-session {
     position: absolute !important;
     z-index: 1;
-    height: 95vh;
+    min-height: 91vh;
+    height: 84%;
   }
 
   .information-box3 {
     padding: 30px 20px 0px 20px;
     background-color: #ffffff !important;
     z-index: 3 !important;
-    height: 95vh;
+    min-height: 95vh;
     box-shadow: 2px 17px 13px 6px #bababa;
   }
 
@@ -2293,22 +2294,23 @@ a:hover {
   margin-left: -10px;
   position: absolute !important;
   z-index: 0;
-  height: 94vh;
+  min-height: 94vh;
+  height: 90%;
 }
 
 .studio-mask {
   margin-top: 160px;
   position: absolute !important;
   z-index: 1;
-  /*    width: 500px;
-    height: 500px; */
-  height: 60vh;
+  min-height: 60vh;
+  height: 56%;
 }
 
 .studio-session {
   position: absolute !important;
   z-index: 2;
-  height: 92vh;
+  min-height: 91vh;
+  height: 84%;
 }
 
 .confirm {
