@@ -1,6 +1,11 @@
 import React, { Component } from "react";
 import p4fbebe97111 from "../../assets/img/group224.png";
 import group18 from "../../assets/img/group18.png";
+import group_1 from "../../assets/img/group_1.png";
+import group_2 from "../../assets/img/group_2.png";
+import group_3 from "../../assets/img/group_3.png";
+import group_4 from "../../assets/img/group_4.png";
+import group_5 from "../../assets/img/group_5.png";
 import mask1 from ".././images/mask1.png";
 import mask2 from ".././images/mask2.png";
 import { Link } from 'react-router-dom';
@@ -83,6 +88,11 @@ class Register extends React.Component {
               <div className="col-12 col-sm-12 col-md-7 col-lg-7  information-box2  ">
                 <div className="center2">
                   <img src={group18} alt="vector" className="group18" />
+                 {/*  <img src={group_1} alt="vector"  className="group18"  />
+                  <img src={group_2} alt="vector"  className="group_2" />
+                  <img src={group_3} alt="vector" className="group_2" />
+                  <img src={group_4} alt="vector"  className="group_2" />
+                  <img src={group_5} alt="vector"  className="group_2" /> */}
                 </div>
                 <div className="from-left padding-top2 maigeSm ">
                   <div className="account-fit ">
