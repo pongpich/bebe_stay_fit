@@ -97,7 +97,7 @@ class Register extends React.Component {
                 </div>
                 <div className="from-left padding-top2 maigeSm ">
                   <div className="account-fit ">
-                    <p className="font-size6  bold ">สร้างบัญชี Bebe Stay Fit</p>
+                    <p className="font-size6  bold ">สร้างบัญชี Bebe Stayfit</p>
                     <p className="font-size4 margin-top-1 ">บัญชีที่จะเข้าใช้งานในระบบของ <span className="bold"> Bebe Stay Fit</span></p>
                   </div>
                   <div className="mb-3 ">
