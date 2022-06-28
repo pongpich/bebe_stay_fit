@@ -257,12 +257,37 @@ class Payment extends React.Component {
                 <div className="box-proteinAddress padding-top">
                   <div className="padding-top2">
                     {/* <p className=" bold font-size5 between">แพ็คเกจของคุณ <span className="font-size4 light decoration pointer" onClick={e => this.onChickprice(e)}>เปลี่ยน</span></p> */}
-                    <p>สมัครตามระยะเวลาของโปรแกรม</p>
 
-                    <p className=" bold font-size5">
-                      {programId === "starter_stay_fit_01" ? `${this.state.program.price.toLocaleString('en')}  บาท` : `${this.state.program.price.toLocaleString('en')}   บาท / 2 เดือน`}
+                    <p className="font-size5">
+                      {programId === "starter_stay_fit_01" ?
+                        <>
+                         <p className="font-size5 bold">แพ็คเกจของคุณ</p>
+                          <p className="section-sizeLeft">สมัครตามระยะเวลาของโปรแกรม</p>
+                          <p className="font-size5 bold">
+                            {this.state.program.price.toLocaleString('en')}  บาท
+                          </p>
+                          <p className="font-size4">
+                            *ระยะเวลา 2 เดือน และไม่มีการต่ออายุ
+                          </p>
+                        </>
+                        :
+                        <>
+                          <p className="font-size5 bold">แพ็คเกจของคุณ</p>
+                          <p className="section-sizeLeft">สมัครตามระยะเวลาของโปรแกรม</p>
+                          <p className="font-size5 bold">
+                            {this.state.program.price.toLocaleString('en')}  บาท
+                          </p>
+                          <p className="font-size4">
+                            *ราคาพิเศษสำหรับ 2 เดือนแรก เมื่อครบกำหนดจะชำระต่อเป็น
+                            รายเดือน(เดือนละ 1,800 บาท) จนกว่าจะครบตามระยะที่โปรแกรมแนะนำ <br />
+                            *สามารถพักการชำระรายเดือนได้ทุกเวลาตามที่ต้องการ
+                          </p>
+
+                        </>
+
+                      }
                     </p>
-                    <p className="font-size4">เราจะทำการเรียกเก็บเงินทุกๆ 2 เดือน</p>
+
                   </div>
                   <p className="border-bottom "></p>
                   <div className="padding-top2">
