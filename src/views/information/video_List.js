@@ -97,7 +97,7 @@ class videoList extends React.Component {
            this.props.user.expire_date,
          );
        } */
-       window.scrollTo(0, 0);
+    window.scrollTo(0, 0);
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -609,7 +609,7 @@ class videoList extends React.Component {
               {(this.state.pleaseVerifyNumberPhone === /* false */true) ?
                 <>
                   <h3 className="center-videoText bold color1">
-                    Platform
+                    Bebe Stayfit Program
                   </h3>
                   <div className="play_circle">
                     <img src={play_circle_filled} className="pointer" data-bs-toggle="modal" data-bs-target="#exampleModalViderHead" /> <span className="play_circle_span">WATCH INTRODUCTION</span>
