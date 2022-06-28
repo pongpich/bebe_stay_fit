@@ -48,6 +48,14 @@ Amplify.configure(awsConfig);
 
 class App extends Component {
 
+  constructor(props) {
+    super(props);
+    this.state = {
+      colorFood: "nav-link pointer",
+      colorVideo: "nav-link pointer color1"
+    }
+  }
+
   onUserLogout(event) {
     this.props.logoutUser();
     this.props.clearCreateUser();
@@ -58,8 +66,16 @@ class App extends Component {
 
     if (e === "videoList") {
       this.props.history.push('/videoList')
+      this.setState({
+        colorFood: "nav-link pointer",
+        colorVideo: "nav-link pointer color1"
+      })
     }else{
       this.props.history.push('/food_supplement')
+      this.setState({
+        colorFood: "nav-link pointer color1",
+        colorVideo: "nav-link pointer"
+      })
     }
     document.getElementById("navbar-toggler").click();
   }
@@ -84,10 +100,10 @@ class App extends Component {
                     (user && user.other_attributes) &&
                     <>
                       <li className="nav-item">
-                        <a className="nav-link pointer " onClick={() => this.onClickNavbar("videoList")} >โปรแกรมออกกำลังกาย</a>
+                        <a className={this.state.colorVideo} onClick={() => this.onClickNavbar("videoList")} >โปรแกรมออกกำลังกาย</a>
                       </li>
                       <li className="nav-item">
-                        <a className="nav-link pointer" onClick={() => this.onClickNavbar("food_supplement")}>วิธีการกินอาหารและอาหารเสริม</a>
+                        <a className={this.state.colorFood} onClick={() => this.onClickNavbar("food_supplement")}>วิธีการกินอาหารและอาหารเสริม</a>
                       </li>
                     </>
                   }
