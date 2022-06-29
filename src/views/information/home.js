@@ -61,9 +61,9 @@ class Home extends React.Component {
 
     this.props.getUserProgram(create_user_email);
 
-    if (user_program_id) { //ถ้ามี user_program_id แสดงว่าชำระเงินสำเร็จแล้ว
+  /*   if (user_program_id) { //ถ้ามี user_program_id แสดงว่าชำระเงินสำเร็จแล้ว
       this.props.history.push('/welcome_new_nember');
-    }
+    } */
 
     if (user !== null) {
       this.props.history.push('/basic_information');

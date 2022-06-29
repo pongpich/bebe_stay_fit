@@ -14,9 +14,9 @@ class Welcome_NewMember extends React.Component {
 
     this.props.getUserProgram(create_user_email);
 
-     if (!user_program_id) { //ถ้าไม่มี user_program_id แสดงว่ายังชำระเงินไม่สำเร็จแล้ว
-       this.props.history.push('/programPackage');
-     }
+    if (!user_program_id) { //ถ้าไม่มี user_program_id แสดงว่ายังชำระเงินไม่สำเร็จแล้ว
+      this.props.history.push('/programPackage');
+    }
 
     if (user !== null) {
       this.props.history.push('/basic_information');
@@ -75,6 +75,17 @@ class Welcome_NewMember extends React.Component {
                   >
                     เริ่มต้นใช้งาน
                   </button>
+                  {
+                  this.props.status === "fail" &&
+                  <h6 style={{ color: "red" }}>
+                    รหัสผ่านไม่ถูกต้อง
+                    <span
+                      onClick={() => this.props.history.push("home")}
+                      style={{ cursor: "pointer", textDecoration: "underline" }}
+                    > กลับหน้า Home </span>
+                    แล้วคลิก "เข้าสู่ระบบ"
+                  </h6>
+                  }
                 </div>
               </div>
             </div>
