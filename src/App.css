@@ -90,6 +90,10 @@
   .win-541 {
     display: none !important;
   }
+  .padding-leftRight2 {
+    padding-left: 10px !important;
+    padding-right: 20px !important;
+  }
 
 }
 
@@ -947,6 +951,11 @@ a {
   padding-right: 20px !important;
 }
 
+.padding-leftRight2 {
+  padding-left: 30px;
+  padding-right: 30px;
+}
+
 .text-left {
   text-align: left !important;
   padding-left: 30px;
@@ -1340,9 +1349,9 @@ a {
   font-weight: normal;
 }
 
-.font-size8 {
+/* .font-size8 {
   font-size: 28px !important;
-}
+} */
 
 .linear {
   background: linear-gradient(#e25e96, #ffa0c8) !important;
@@ -2913,4 +2922,13 @@ tr:last-child td:last-child {
 
 .a_link:focus {
   color: #E25E96;
+}
+.exercise-size {
+  font-size: 16px;
+  font-weight: bold;
+}
+.exercise-size2 {
+  font-size: 16px;
+  padding-left: 20px;
+  font-weight: bold;
 }

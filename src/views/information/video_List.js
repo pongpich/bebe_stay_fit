@@ -600,43 +600,43 @@ class videoList extends React.Component {
         </nav>  */}
 
         {
-          (this.state.clickManu === "manu1") ?
-            <div className="box-videoHeadPlatform" style={{
-              backgroundImage: `url(${backgroundImag})`,
-              width: '100%'
-            }}>
+          /*  (this.state.clickManu === "manu1") ? */
+          <div className="box-videoHeadPlatform" style={{
+            backgroundImage: `url(${backgroundImag})`,
+            width: '100%'
+          }}>
 
-              {(this.state.pleaseVerifyNumberPhone === /* false */true) ?
-                <>
-                  <h3 className="center-videoText bold color1">
-                    Bebe Stayfit Program
-                  </h3>
-                  <div className="play_circle">
-                    <img src={play_circle_filled} className="pointer" data-bs-toggle="modal" data-bs-target="#exampleModalViderHead" /> <span className="play_circle_span">WATCH INTRODUCTION</span>
+            {(this.state.pleaseVerifyNumberPhone === /* false */true) ?
+              <>
+                <h3 className="center-videoText bold color1">
+                  Bebe Stayfit Program
+                </h3>
+                <div className="play_circle">
+                  <img src={play_circle_filled} className="pointer" data-bs-toggle="modal" data-bs-target="#exampleModalViderHead" /> <span className="play_circle_span">WATCH INTRODUCTION</span>
 
-                  </div>
-                </>
-                :
-                <div className="pleaseVerify">
-                  <h3 className="bold">
-                    กรุณายืนยันหมายเลขโทรศัพท์ของคุณ
-                  </h3>
-                  <p>การยืนยันจะทำให้ช่วยบัญชีของคุณปลอดภัยยิ่งขึ้น</p>
-                  <div className="col-12 col-sm-12  col-md-12 col-lg-12 center">
-                    <button type="button" className="btn bottom-pink-Whit" >ไว้ทีหลัง</button>&nbsp;&nbsp;&nbsp;
-                  <button type="button" className="btn bottom-pink-video">ยืนยันหมายเลขโทรศัพท์</button>
-                  </div>
                 </div>
+              </>
+              :
+              <div className="pleaseVerify">
+                <h3 className="bold">
+                  กรุณายืนยันหมายเลขโทรศัพท์ของคุณ
+                </h3>
+                <p>การยืนยันจะทำให้ช่วยบัญชีของคุณปลอดภัยยิ่งขึ้น</p>
+                <div className="col-12 col-sm-12  col-md-12 col-lg-12 center">
+                  <button type="button" className="btn bottom-pink-Whit" >ไว้ทีหลัง</button>&nbsp;&nbsp;&nbsp;
+                  <button type="button" className="btn bottom-pink-video">ยืนยันหมายเลขโทรศัพท์</button>
+                </div>
+              </div>
 
-              }
+            }
 
-            </div>
-            :
-            <div className="box-videoHead2">
-              <h3 className="bold">
-                โปรแกรมออกกำลังกาย
-              </h3>
-            </div>
+          </div>
+          /*       :
+                <div className="box-videoHead2">
+                  <h3 className="bold">
+                    โปรแกรมออกกำลังกาย
+                  </h3>
+                </div> */
         }
         <div className="box-videoCenter">
           <div className="col-12 col-sm-12 col-md-12 col-lg-12 ">
@@ -644,7 +644,10 @@ class videoList extends React.Component {
               <li className="video-li  video-liPadding-left marginLeftRoutine">
                 <a className={this.state.borderBottom1} name="borderBottom1" onClick={e => this.clickBottom(e)}>Routine workout</a>
               </li>
-              {/* <li className="video-li  video-liPadding-left   video-liPadding-left2">
+              <li className="video-li  video-liPadding-left   video-liPadding-left2">
+                <a className={this.state.borderBottom2} name="borderBottom2" onClick={e => this.clickBottom(e)}>วิธีออกกำลังกายตามโปรแกรม</a>
+              </li>
+              {/*    <li className="video-li  video-liPadding-left   video-liPadding-left2">
                 <a className={this.state.borderBottom2} name="borderBottom2" onClick={e => this.clickBottom(e)}>คลิปออกกำลังกายทั้งหมด</a>
               </li> */}
             </ul>
@@ -660,7 +663,8 @@ class videoList extends React.Component {
                   :
                   this.routineWorkout()
               :
-              this.videoClipAll()
+              this.exerciseMethod()
+            /*  this.videoClipAll() */
           }
         </div>
 
@@ -1513,6 +1517,62 @@ class videoList extends React.Component {
     )
   }
 
+  exerciseMethod() {
+    return (
+      <>
+        <div>
+          <div className="col-12 col-sm-12 col-md-12 col-lg-12">
+            <div className="padding-leftRight2">
+              <p className="font-size8 color1 bold">วิธีออกกำลังกายตามโปรแกรม</p>
+              <p className="font-size9 bold">โปรแกรมออกกำลังกาย Bebe StayFit</p>
+              <p className="exercise-size">
+                สมาชิกแต่ละบุคคลจะได้รับโปรแกรมที่แตกต่างกัน ขึ้นอยู่กับเกณฑ์น้ำหนักของตนเอง
+                กล่าวคือ โปรแกรมจะออกแบบมาให้เหมาะสมกับแต่ละเกณฑ์น้ำหนัก ดังนั้น จำนวนคลิปและระยะเวลาในการฝึกจะไม่เท่ากัน และถึงแม้จะอยู่ในเกณฑ์น้ำหนักเดียวกัน คลิปที่ได้รับก็จะแตกต่างกันด้วย
+              </p>
+              <p className="font-size9 bold">รูปแบบของโปรแกรมออกกำลังกาย</p>
+              <p className="exercise-size">
+                การออกกำลังกายในโปรแกรมนี้ เป็นการออกกำลังกายแบบ Circuit Training และ Cardio
+              </p>
+              <p className="exercise-size">
+                Circuit Training คือ การรูปแบบการออกกำลังกาย ที่ผสม Weight Training + Cardio เข้าด้วยกัน ทำให้ได้กระตุ้นกล้ามเนื้อและเบิร์นไขมันไปพร้อม ๆ กัน ประหยัดเวลาออกกำลังกาย
+              </p>
+              <p className="exercise-size">
+                ในโปรแกรม จะประกอบด้วยคลิปหมวดต่าง ๆ ดังนี้
+              </p>
+              <p className="exercise-size2">
+                1. &nbsp; Warm Up : เตรียมพร้อมร่างกาย อบอุ่นกล้ามเนื้อและข้อต่อต่าง ๆ ให้พร้อมสำหรับการฝึก < br />
+                2. &nbsp; Main Circuit : เน้นฝึกกล้ามเนื้อมัดสำคัญ มัดใดมัดหนึ่งเป็นหลัก (Main Muscle Focused) < br />
+                3. &nbsp; Sub Circuit : เน้นฝึกกล้ามเนื้อทั่วร่าง (Total Body Focused) ซึ่งทั้งเซอร์กิตทั้ง 2 แบบ จะช่วยเสริมสร้างและรักษามวลกล้ามเนื้อ ทำให้สัดส่วนลดลงและรูปร่างกระชับขึ้น < br />
+                4. &nbsp; Cardio : เน้นฝึกการทำงานของระบบหัวใจ และระบบไหลเวียนเลือด ช่วยเบิร์นไขมันได้ดี < br />
+                5. &nbsp; Cool Down : ยืดเหยียดกล้ามเนื้อ และปรับอัตราการเต้นของหัวใจกลับสู่สภาวะปกติ < br />
+              </p>
+              <p className="font-size9 bold">
+                วิธีการออกกำลังกาย
+              </p>
+              <p className="exercise-size">
+                ออกกำลังกายตามลำดับที่โปรแกรมจัดเรียงให้ ซึ่งได้แก่ เริ่มต้นด้วยการ Warm Up แล้วตามด้วยการออกกำลังกาย Main Circuit, Sub Circuit, Cardio และจบด้วย Cool Down
+              </p>
+              <p className="exercise-size">
+                ออกกำลังกายตามลำดับข้างต้น จะช่วยให้ออกกำลังกายได้อย่างมีประสิทธิภาพและสามารถคาดหวังผลลัพธ์ได้
+              </p>
+              <p className="exercise-size">
+                ในกรณีที่ไม่สามารถออกกำลังกายได้ครบทุกคลิปที่กำหนดให้ สามารถแยกการออกกำลังกายเป็น 2 ช่วงเวลาได้ ซึ่งควรเว้นระยะเวลาให้ห่างกันอย่างน้อย 4-6 ชั่วโมง เช่น ออกกำลังกาย Main Circuit Sub Circuit ช่วงเช้า และออกกำลังกาย cardio ในช่วงเย็น และทุกครั้งที่ออกกำลังกาย จะต้องเริ่มด้วย Warm Up และจบด้วย Cool Down เสมอ
+              </p>
+              <p className="font-size9 bold">
+                จำนวนวันที่ต้องออกกำลังกาย
+              </p>
+              <p className="exercise-size">
+                โปรแกรม กำหนดให้ฝึก 4 วันต่อสัปดาห์ ซึ่งสมาชิกสามารถจัดตาราง หรือกำหนดวันที่จะออกกำลังกายตามโปรแกรมได้ตามความสะดวก ขอแค่ออกกำลังกายให้ครบ 4 วัน/สัปดาห์ ตามที่โปรแกรมกำหนดให้ ก็ถือว่าทำตามโปรแกรมได้ครบแล้ว
+              </p>
+            </div>
+          </div>
+
+        </div>
+
+      </>
+    )
+  }
+
   videoClipAll() {
     return (
       <>
@@ -1683,7 +1743,7 @@ class videoList extends React.Component {
                   checked={this.state.sex === "male"}
                   onChange={this.onChange}
                 /> ชาย
-                          <span className="circle">
+                <span className="circle">
                   <span className="check"></span>
                 </span>
               </label>
@@ -1696,7 +1756,7 @@ class videoList extends React.Component {
                   checked={this.state.sex === "female"}
                   onChange={this.onChange}
                 /> หญิง
-                          <span className="circle">
+                <span className="circle">
                   <span className="check"></span>
                 </span>
               </label>
@@ -1770,7 +1830,7 @@ class videoList extends React.Component {
                 style={{ backgroundColor: "#F45197" }}
               >
                 ถัดไป
-            </button>
+              </button>
             </div>
           </div>
         </div>
@@ -1781,101 +1841,101 @@ class videoList extends React.Component {
   renderBodyInfo() {
     const { statusOtherAttributes } = this.state;
     return (
-        <div className="center">
-          <div className="card shadow mb-4 col-lg-6 offset-lg-3 col-md-12 col-12 padding-leftRight margin-left" style={{ borderRadius: "20px" }}>
-        <div className="mt-5 mb-5 col-lg-12  col-md-12 col-12">
-          <center>
-            <h5>กรุณาวัดสัดส่วนของคุณ</h5>
-            <h5>โดยใช้รูปตัวอย่างเพื่อเป็นไกด์ในการวัดสัดส่วน</h5>
-          </center>
-        </div>
-        <div className="row">
-          <div className="col-md-7 offset-md-1">
-            <div className="d-flex ">
-              {
-                (this.state.sex === "male") && <img src="./assets/img/male.png" width="100%" alt="" />
-              }
-              {
-                (this.state.sex === "female") && <img src="./assets/img/female.png" width="100%" alt="" />
-              }
-            </div>
+      <div className="center">
+        <div className="card shadow mb-4 col-lg-6 offset-lg-3 col-md-12 col-12 padding-leftRight margin-left" style={{ borderRadius: "20px" }}>
+          <div className="mt-5 mb-5 col-lg-12  col-md-12 col-12">
+            <center>
+              <h5>กรุณาวัดสัดส่วนของคุณ</h5>
+              <h5>โดยใช้รูปตัวอย่างเพื่อเป็นไกด์ในการวัดสัดส่วน</h5>
+            </center>
           </div>
-
-          <div className="col-md-3">
-            <div className="form-group">
-              <label className="bmd-label-floating" style={{ color: "#F45197" }}>รอบอก (นิ้ว)</label>
-              <input
-                type="number"
-                className="form-control"
-                id="chest"
-                name="chest"
-                step=".01"
-                value={this.state.chest}
-                onChange={(event) => this.handleChange(event)} />
-            </div>
-            {
-              (statusOtherAttributes === "fail" && this.state.chest === "") &&
-              <small id="emailHelp" className="form-text text-muted mb-3"><h6 style={{ color: "red" }}>กรุณากรอกข้อมูล</h6></small>
-            }
-            <div className="form-group">
-              <label className="bmd-label-floating" style={{ color: "#F45197" }}>รอบเอว (นิ้ว)</label>
-              <input
-                type="number"
-                className="form-control"
-                id="waist"
-                name="waist"
-                step=".01"
-                value={this.state.waist}
-                onChange={(event) => this.handleChange(event)}
-              />
-            </div>
-            {
-              (statusOtherAttributes === "fail" && this.state.waist === "") &&
-              <small id="emailHelp" className="form-text text-muted mb-3"><h6 style={{ color: "red" }}>กรุณากรอกข้อมูล</h6></small>
-            }
-            <div className="form-group">
-              <label className="bmd-label-floating" style={{ color: "#F45197" }}>สะโพก (นิ้ว)</label>
-              <input
-                type="number"
-                className="form-control"
-                id="hip"
-                name="hip"
-                step=".01"
-                value={this.state.hip} onChange={(event) => this.handleChange(event)}
-              />
-            </div>
-            {
-              (statusOtherAttributes === "fail" && this.state.hip === "") &&
-              <small id="emailHelp" className="form-text text-muted mb-3"><h6 style={{ color: "red" }}>กรุณากรอกข้อมูล</h6></small>
-            }
-          </div>
-        </div>
-
-        <div className="space-70 mb-5"></div>
-        <div className="form-group mb-5">
-          <div className="text-center">
-            <div className="row">
-              <div className="col-md-5 offset-md-1">
-                <button
-                  className="btn bottom-pink-video"
-                  onClick={() => this.setState({ otherAttributesPage: "basicInfo" })}
-                  style={{ backgroundColor: "white", color: "#F45197", borderColor: "#F45197" }}
-                  type="button"
-                >ย้อนกลับ</button>
+          <div className="row">
+            <div className="col-md-7 offset-md-1">
+              <div className="d-flex ">
+                {
+                  (this.state.sex === "male") && <img src="./assets/img/male.png" width="100%" alt="" />
+                }
+                {
+                  (this.state.sex === "female") && <img src="./assets/img/female.png" width="100%" alt="" />
+                }
               </div>
-              <div className="col-md-5 marginTopMd5">
-                <button
-                  className="btn bottom-pink-video"
-                  onClick={() => this.onUpdateBodyInfo()}
-                  style={{ backgroundColor: "#F45197" }}
-                  type="button"
-                >ยืนยัน</button>
+            </div>
+
+            <div className="col-md-3">
+              <div className="form-group">
+                <label className="bmd-label-floating" style={{ color: "#F45197" }}>รอบอก (นิ้ว)</label>
+                <input
+                  type="number"
+                  className="form-control"
+                  id="chest"
+                  name="chest"
+                  step=".01"
+                  value={this.state.chest}
+                  onChange={(event) => this.handleChange(event)} />
+              </div>
+              {
+                (statusOtherAttributes === "fail" && this.state.chest === "") &&
+                <small id="emailHelp" className="form-text text-muted mb-3"><h6 style={{ color: "red" }}>กรุณากรอกข้อมูล</h6></small>
+              }
+              <div className="form-group">
+                <label className="bmd-label-floating" style={{ color: "#F45197" }}>รอบเอว (นิ้ว)</label>
+                <input
+                  type="number"
+                  className="form-control"
+                  id="waist"
+                  name="waist"
+                  step=".01"
+                  value={this.state.waist}
+                  onChange={(event) => this.handleChange(event)}
+                />
+              </div>
+              {
+                (statusOtherAttributes === "fail" && this.state.waist === "") &&
+                <small id="emailHelp" className="form-text text-muted mb-3"><h6 style={{ color: "red" }}>กรุณากรอกข้อมูล</h6></small>
+              }
+              <div className="form-group">
+                <label className="bmd-label-floating" style={{ color: "#F45197" }}>สะโพก (นิ้ว)</label>
+                <input
+                  type="number"
+                  className="form-control"
+                  id="hip"
+                  name="hip"
+                  step=".01"
+                  value={this.state.hip} onChange={(event) => this.handleChange(event)}
+                />
+              </div>
+              {
+                (statusOtherAttributes === "fail" && this.state.hip === "") &&
+                <small id="emailHelp" className="form-text text-muted mb-3"><h6 style={{ color: "red" }}>กรุณากรอกข้อมูล</h6></small>
+              }
+            </div>
+          </div>
+
+          <div className="space-70 mb-5"></div>
+          <div className="form-group mb-5">
+            <div className="text-center">
+              <div className="row">
+                <div className="col-md-5 offset-md-1">
+                  <button
+                    className="btn bottom-pink-video"
+                    onClick={() => this.setState({ otherAttributesPage: "basicInfo" })}
+                    style={{ backgroundColor: "white", color: "#F45197", borderColor: "#F45197" }}
+                    type="button"
+                  >ย้อนกลับ</button>
+                </div>
+                <div className="col-md-5 marginTopMd5">
+                  <button
+                    className="btn bottom-pink-video"
+                    onClick={() => this.onUpdateBodyInfo()}
+                    style={{ backgroundColor: "#F45197" }}
+                    type="button"
+                  >ยืนยัน</button>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-        </div>
     )
   }
 

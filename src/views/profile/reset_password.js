@@ -57,11 +57,11 @@ class Reset_password extends Component {
           <div className="col-12 col-sm-12 col-md-5 col-lg-5  center2 ">
             <div className="box-protein margin-bottom1 padding-top">
               <div className="padding-leftRight">
-                <p className="section-size2 margin-top-1 ">โปรดกรอกเบอร์โทรศัพท์ หรืออีเมลของคุณ </p>
+                <p className="section-size2 margin-top-1 ">โปรดกรอก{/* เบอร์โทรศัพท์ หรือ */}อีเมลของคุณ </p>
                 <p className="section-size2 margin-top-1">คุณจะได้รับลิงค์สำหรับสร้างรหัสผ่านใหม่ทางอีเมล</p>
               </div>
               <div class="mb-3  col-10 col-sm-10 col-md-10 col-lg-10 center2 text-left2">
-                <label for="exampleFormControlInput1" className="form-label text-left2  size-login">เบอร์โทรศัพท์ หรืออีเมล</label>
+                <label for="exampleFormControlInput1" className="form-label text-left2  size-login">{/* เบอร์โทรศัพท์ หรือ */}อีเมล</label>
                 <input
                   type="email"
                   className="form-control"
@@ -72,7 +72,7 @@ class Reset_password extends Component {
                 {validationEmail === "fail" ? <h6 style={{ color: "red" }}>กรุณาตรวจสอบสอบ Email: {email} อีกครั้ง</h6> : null}
               </div>
               <div className="col-10 col-sm-10 col-md-10 col-lg-10 center2 padding-bottom padding-top2 ">
-                <button type="button" className="btn bottom-pink-video" onClick={() => this.resetPasswordSucceed(email)}>ยืนยันหมายเลขโทรศัพท์</button>
+                <button type="button" className="btn bottom-pink-video" onClick={() => this.resetPasswordSucceed(email)}>ยืนยันหมาย อีเมล{/* เลขโทรศัพท์ */}</button>
               </div>
             </div>
           </div>
