@@ -87,16 +87,18 @@ class Home extends React.Component {
       this.props.history.push('/welcome_new_nember');
     }
 
-    if (prevProps.status !== status) {
+    if ((prevProps.status !== status)) {
       if (status === "success") {
         this.props.history.push('/basic_information');
         document.getElementById("remove-model").click(); //ใช้สำหรับซ่อน modal แต่ตอนนี้เอาออกเพราะปรับดีไซด์ชั่วคราวไม่งั้นมีบัค
-      }else{
+      }
+      if (status === "fail") {
         this.setState({
-          validationLogin: status
+          validationLogin: "fail"
         })
       }
     }
+
   }
 
 
@@ -107,17 +109,25 @@ class Home extends React.Component {
   }
 
   onUserLogin() {
+    const { status } = this.props;
     this.setState({
       validation: "true",
       validationLogin: "default",
     })
     if ((this.state.email !== "" && this.state.email !== null) && (this.state.password !== "" && this.state.password !== null)) {
-        this.props.loginUser(this.state.email, this.state.password);
-
+      this.props.loginUser(this.state.email, this.state.password);
+      if (status === "success") {
+        this.props.history.push('/basic_information');
+        document.getElementById("remove-model").click(); //ใช้สำหรับซ่อน modal แต่ตอนนี้เอาออกเพราะปรับดีไซด์ชั่วคราวไม่งั้นมีบัค
+      }
+      if (status === "fail") {
+        this.setState({
+          validationLogin: "fail"
+        })
+      }
     } else {
       this.setState({
         validation: "false",
-        validationLogin: "default"
       })
     }
   }
