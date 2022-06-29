@@ -6,6 +6,7 @@ import { API } from "aws-amplify";
 export const types = {
   REGISTER: "REGISTER",
   REGISTER_SUCCESS: "REGISTER_SUCCESS",
+  REGISTER_FAIL: "REGISTER_FAIL",
   SIGNUP_USER: "SIGNUP_USER",
   LOGIN_USER: "LOGIN_USER",
   LOGIN_USER_SUCCESS: "LOGIN_USER_SUCCESS",
@@ -36,7 +37,7 @@ export const types = {
   UPDATE_PROFILE_SUCCESS: "UPDATE_PROFILE_SUCCESS",
 }
 
-export const resetStatusSetPassword= () => ({
+export const resetStatusSetPassword = () => ({
   type: types.RESET_STATUS_SET_PASSWORD
 })
 
@@ -559,15 +560,22 @@ function* registerSaga({ payload }) {
   } = payload
 
   try {
-    yield call(
+    const apiResult = yield call(
       registerSagaAsync,
       email,
       password,
       phone
     );
-    yield put({
-      type: types.REGISTER_SUCCESS
-    })
+    if (apiResult.results.message === "success") {
+      yield put({
+        type: types.REGISTER_SUCCESS
+      })
+    } else if (apiResult.results.message === "existInStayFit" || apiResult.results.message === "existBebefitroutine") {
+      yield put({
+        type: types.REGISTER_FAIL,
+        payload: apiResult.results.message
+      })
+    }
   } catch (error) {
     console.log("error from register :", error);
   }
@@ -683,7 +691,7 @@ function* forgotPasswordSaga({ payload }) {
       forgotPasswordSagaAsync,
       email
     );
-    console.log('TESTS',result);
+    console.log('TESTS', result);
     if (result && result.results && result.results.message) {
       if (result.results.message === "success") {
         yield put({
@@ -895,6 +903,11 @@ export function reducer(state = INIT_STATE, action) {
       return {
         ...state,
         statusRegister: "success"
+      }
+    case types.REGISTER_FAIL:
+      return {
+        ...state,
+        statusRegister: action.payload
       }
     case types.TRIAL_PACKAGE_SUCCESS:
       return {
