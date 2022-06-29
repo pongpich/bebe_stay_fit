@@ -86,23 +86,15 @@ class Home extends React.Component {
     if (prevProps.user_program_id !== user_program_id) {
       this.props.history.push('/welcome_new_nember');
     }
- 
-
- if ((prevProps.status !== this.props.status) || this.props.status === "default") {
-      console.log("aaaa");
-      this.setState({
-        validationLogin: this.props.status
-      })
-    }
-
-    
 
     if (prevProps.status !== status) {
-
-      console.log("status",status);
       if (status === "success") {
         this.props.history.push('/basic_information');
         document.getElementById("remove-model").click(); //ใช้สำหรับซ่อน modal แต่ตอนนี้เอาออกเพราะปรับดีไซด์ชั่วคราวไม่งั้นมีบัค
+      }else{
+        this.setState({
+          validationLogin: status
+        })
       }
     }
   }
@@ -116,7 +108,8 @@ class Home extends React.Component {
 
   onUserLogin() {
     this.setState({
-      validation: "true"
+      validation: "true",
+      validationLogin: "default",
     })
     if ((this.state.email !== "" && this.state.email !== null) && (this.state.password !== "" && this.state.password !== null)) {
         this.props.loginUser(this.state.email, this.state.password);
