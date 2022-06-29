@@ -136,7 +136,7 @@ class App extends Component {
             </>
             : 
             <>
-              <h6 className="nav-link nav-linkHead2">ลงทะเบียน</h6>
+              <a className="nav-link nav-linkHead2 pointer" onClick={() => this.props.history.push('/programPackage')}>ลงทะเบียน</a>
             </>
           }
 

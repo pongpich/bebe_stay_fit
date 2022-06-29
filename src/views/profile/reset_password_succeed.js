@@ -15,6 +15,9 @@ class Reset_password_succeed extends Component {
                                 <p className="section-size2 margin-top-1">ไปทางอีเมลเรียบร้อยแล้วหากไม่พบอีเมลโปรดตรวจสอบที่เมลขยะ</p>
                                 <p className="section-size2 margin-top-1">หรือติดต่อมาหาเราได้ที่ 086-424-5141</p>
                                 <p className="section-size2 margin-top-1">(ตั้งแต่เวลา 6:00-18:00น.)</p>
+                                <div className="col-6 col-sm-6 col-md-6 col-lg-6 center2 padding-bottom padding-top2 ">
+                                    <button type="button" className="btn bottom-pink-video" onClick={() => this.props.history.push('/home')}>กลับสู้หน้าหลัก</button>
+                                </div>
                             </div>
                         </div>
                     </div>
