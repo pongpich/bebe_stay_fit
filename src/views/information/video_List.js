@@ -1022,7 +1022,7 @@ class videoList extends React.Component {
               <div className="modal-body">
 
                 <video className="video" id="videoPlayerIntro" controls
-                  src="https://player.vimeo.com/external/414645540.hd.mp4?s=d2c95abe8443336f858f4bf9243b79fee350a8d4&profile_id=174">
+                  src="https://player.vimeo.com/progressive_redirect/playback/725197026/rendition/720p/file.mp4?loc=external&signature=c18896ade99450a04bf11991805e52ef3f38d749e94c9f488a571567d7fefad0">
                 </video>
               </div>
             </div>
