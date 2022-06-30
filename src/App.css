@@ -1443,6 +1443,10 @@ a {
 
 .text-headWidth1 {
   font-size: 40px;
+  background-color: #ffffff;
+  color: #000000;
+  padding-left: 10px;
+  padding-right: 10px;
 }
 
 .margin-top {
@@ -2937,3 +2941,4 @@ tr:last-child td:last-child {
   color: #000000;
   font-size: 18px;
 }
+
