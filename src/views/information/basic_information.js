@@ -18,7 +18,8 @@ class Basic_Information extends React.Component {
       basicWeight: null,
       practiceDifficultExercises: null,
       injury: null,
-      arePregnant: null
+      arePregnant: null,
+      statusSubmit: "default"
     }
   }
 
@@ -45,27 +46,36 @@ class Basic_Information extends React.Component {
   }
 
   basicInFormation(basicSex, basicAge, typeHei_Wig, basicHeight, basicWeight, practiceDifficultExercises, injury, arePregnant) {
-    this.props.basicInFormation(
-      basicSex, basicAge, typeHei_Wig, basicHeight, basicWeight, practiceDifficultExercises, injury, arePregnant
-    );
+    this.setState({
+      statusSubmit: "default"
+    })
+    if (basicSex && basicAge && typeHei_Wig && basicHeight && basicWeight && practiceDifficultExercises) {
+      this.props.basicInFormation(
+        basicSex, basicAge, typeHei_Wig, basicHeight, basicWeight, practiceDifficultExercises, injury, arePregnant
+      );
 
-    const other_attributes = {
-      sex: this.state.basicSex,
-      age: Number(this.state.basicAge),
-      weight: Number(this.state.basicWeight),
-      unitWeight: this.state.typeWeight,
-      height: Number(this.state.basicHeight),
-      unitHeight: this.state.typeHeight,
-      doDifficultPosture: (practiceDifficultExercises === "sure") ? 'yes' : 'no'
+      const other_attributes = {
+        sex: this.state.basicSex,
+        age: Number(this.state.basicAge),
+        weight: Number(this.state.basicWeight),
+        unitWeight: this.state.typeWeight,
+        height: Number(this.state.basicHeight),
+        unitHeight: this.state.typeHeight,
+        doDifficultPosture: (practiceDifficultExercises === "sure") ? 'yes' : 'no'
+      }
+
+      this.props.updateProfile(
+        this.props.user.user_id,
+        other_attributes,
+        this.props.user.start_date,
+        this.props.user.program_id,
+        (practiceDifficultExercises === "sure") ? false : true // false = ไม่ใช่ is_beginner, true = เป็น is_beginner
+      );
+    } else {
+      this.setState({
+        statusSubmit: "fail"
+      })
     }
-
-    this.props.updateProfile(
-      this.props.user.user_id,
-      other_attributes,
-      this.props.user.start_date,
-      this.props.user.program_id,
-      (practiceDifficultExercises === "sure") ? false : true // false = ไม่ใช่ is_beginner, true = เป็น is_beginner
-    );
   }
 
   checkBoxes = (e) => {
@@ -99,7 +109,7 @@ class Basic_Information extends React.Component {
   render() {
 
 
-    const { basicSex, basicAge, typeHei_Wig, basicHeight, basicWeight, practiceDifficultExercises, injury, arePregnant } = this.state;
+    const { basicSex, basicAge, typeHei_Wig, basicHeight, basicWeight, practiceDifficultExercises, injury, arePregnant, statusSubmit } = this.state;
     return (
       <>
         <div className="col-12 col-sm-12 col-md-12 col-lg-12  App-headerBackground center2 padding-top2 ">
@@ -184,6 +194,10 @@ class Basic_Information extends React.Component {
                                     </div> */}
                 </div>
               </div>
+              {
+                (statusSubmit === "fail") &&
+                <h6 style={{ color: "red" }}>กรุณากรอกข้อมูลให้ครบถ้วน</h6>
+              }
               <div className="d-grid gap-2  mx-auto   col-10 col-sm-10  col-md-10 col-lg-10 distance">
                 <button className="btn bottom-pink" type="button" onClick={() => this.basicInFormation(basicSex, basicAge, typeHei_Wig, basicHeight, basicWeight, practiceDifficultExercises, injury, arePregnant)}  >
                   สร้างโปรแกรมออกกำลังกาย
