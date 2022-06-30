@@ -173,7 +173,7 @@ class Register extends React.Component {
                       <small id="emailHelp" className="form-text text-muted mb-3"><h6 style={{ color: "red" }}>รหัสผ่านไม่ตรงกัน กรุณากรอกใหม่</h6></small>
                     }
                     <div className="padding-top2">
-                      <label className="form-label bold between">เบอร์โทรศัพท์ <span className="font-size4 light" > ใช้ในการยืนยันตัวตนเข้าบัญชี</span></label>
+                      <label className="form-label bold">เบอร์โทรศัพท์</label>
                       <input
                         type="number"
                         className="form-control"
