@@ -191,9 +191,6 @@ class ProgramPackage extends React.Component {
         <br />
 
         <div className="col-12 col-sm-12 col-md-12 col-lg-12 App-headerBackground">
-        <div className="center">
-            <p className="register-to-join"> กรุณาเลือกแพ็คเกจที่คุณต้องการ</p>
-          </div>
           <div className="container center ">
             <div className="box2">
               <div className="center  head-box grad1">
@@ -202,6 +199,9 @@ class ProgramPackage extends React.Component {
                 </div>
               </div>
               <div className="row center">
+                  <div className="center">
+                  <p className="register-to-join"> กรุณาเลือกแพ็คเกจที่คุณต้องการ</p>
+                </div>
                 <div className="col-10 col-sm-10 col-md-4 col-lg-4 margin-boxLeft">
                   <div className="box-starter_set text-center">
                     <p className="bold font-size5 down-top bold">เซตเริ่มต้นสายฟิต</p>
@@ -231,7 +231,7 @@ class ProgramPackage extends React.Component {
                       </div>
                       <div className="scroll">
                         <div>
-                          <p className="font-size5   margin-headText">  ราคา <span className="font-size6 color-price bold">{priceSubscription[0].price.toLocaleString('en')}</span> /  2เดือน</p>
+                          <p className="font-size5   margin-headText">  ราคา <span className="font-size6 color-price bold">{priceSubscription[0].price.toLocaleString('en')}</span> บาท</p>
                         </div>
                         <p className="special-price">
                         *ราคาพิเศษสำหรับ 2 เดือนแรก เมื่อครบกำหนดจะชำระต่อเป็นรายเดือน
@@ -266,6 +266,9 @@ class ProgramPackage extends React.Component {
                       </div>
                     </div>
                   </div>
+                </div>
+                <div className="center">
+                  <p className="result-static"> ผลลัพธ์ที่ได้เป็นค่าทางสถิติ อาจมีการเปลี่ยนแปลงขึ้นอยู่กับสภาวะของแต่ละบุคคล</p>
                 </div>
               </div>
             </div>

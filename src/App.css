@@ -1443,6 +1443,10 @@ a {
 
 .text-headWidth1 {
   font-size: 40px;
+  background-color: #ffffff;
+  color: #000000;
+  padding-left: 10px;
+  padding-right: 10px;
 }
 
 .margin-top {
@@ -2826,10 +2830,10 @@ tr:last-child td:last-child {
 
 .register-to-join {
   margin-left: -20px;
-  font-size: 32px;
+  font-size: 36px;
   margin-top: 20px;
   margin-bottom: 20px;
-  color: #e25e96;
+  color: #000000;
   font-weight: bold;
 }
 
@@ -2851,14 +2855,14 @@ tr:last-child td:last-child {
 }
 
 .save-more {
-  font-size: 32px;
-  color: #FF0000;
+  font-size: 40px;
+  color: #F682B4;
   padding-top: 10px;
 }
 
 .save-more2 {
-  margin-top: -15px;
-  font-size: 24px;
+  margin-top: -20px;
+  font-size: 30px;
 }
 
 .margin-BoxTop {
@@ -2932,3 +2936,9 @@ tr:last-child td:last-child {
   padding-left: 20px;
   font-weight: bold;
 }
+.result-static {
+  padding-top: 50px;
+  color: #000000;
+  font-size: 18px;
+}
+
