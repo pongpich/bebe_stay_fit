@@ -165,7 +165,7 @@ class Payment extends React.Component {
             recurringPeriod: "01",
             allowAccumulate: "Y",
             cardToken: card.token,
-            backgroundUrl: "https://api.planforfit.com/bebe/recurring", // for staging: https://api.planforfit.com/bebedev/recurring
+            backgroundUrl: "https://api.planforfit.com/bebefit/recurring", // for staging: https://api.planforfit.com/bebedev/recurring
             customerName: name,
             customerEmail: create_user_email,
             customerTelephone: create_user_phone,
