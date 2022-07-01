@@ -1,4 +1,6 @@
 @media only screen and (max-width: 540px) {
+
+  
   .maigeSm {
     margin-top: 50px !important;
   }
@@ -95,7 +97,15 @@
     padding-left: 10px !important;
     padding-right: 20px !important;
   }
+  .progress-text-start {
 
+    font-size: 16px !important;
+    color: #ffffff !important;
+  }
+  .text-end {
+    font-size: 20px !important;
+
+  }
 }
 
 @media only screen and (max-width: 760px) {
@@ -1410,6 +1420,7 @@ a {
       #ffffff);
   margin-bottom: 50px;
   padding-bottom: 50px;
+  margin-right: -20px;
 
 }
 
@@ -2951,7 +2962,9 @@ tr:last-child td:last-child {
 .result-static {
   padding-top: 50px;
   color: #000000;
-  font-size: 18px;
+  font-size: 16px;
+  padding-left: 20px;
+  padding-right: 20px;
 }
 
 .part16 {
@@ -3026,4 +3039,106 @@ tr:last-child td:last-child {
   position: absolute;
   margin-top: 160%;
   margin-left: -90%;
+}
+.countdown {
+  background-color: #000000;
+  height: 140px;
+}
+
+@media only screen and (max-width: 480px) {
+
+  .pomodoro {
+    width: 100%;
+  }
+  
+}
+
+.progress-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+}
+
+.progress {
+  margin-top: 20px;
+  background-color: #FFFFFF;
+  border-radius: 30px;
+  height: 60px;
+  width: 80%;
+}
+.progress-text-start {
+  font-size: 28px;
+  color: #FFFFFF;
+}
+
+.progress-text-end {
+  float: right;
+  font-size: 32px;
+  color: #FFFFFF;
+}
+
+.progress-done {
+  position: relative;
+  background-image: linear-gradient(to bottom, #F45197,  #F45197);
+  box-shadow: 0 3px 3px -5px #0D212C, 0 2px 5px #0D212C;
+  color: #000000;
+  font-size: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+
+}
+
+.progress-done::after {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  content: "";
+  background-size: 100%;
+  background-image: linear-gradient(45deg, #fff 25%,
+                                  rgba(0,0,0,0) 25%,
+                                  rgba(0,0,0,0) 50%,
+                                  #fff 50%,
+                                  #fff 75%,
+                                  rgba(0,0,0,0) 75%,
+                                  rgba(0,0,0,0));
+  background-size: 30px 30px;
+  opacity: 0.3;
+  animation: progress-bar-after-1 0.5s infinite linear;     
+}
+
+.box-countdown {
+  text-align: center;
+  background-color: #FFBBCE;
+  width: 100%;
+  height: auto;
+  padding-bottom: 40px;
+}
+
+
+@keyframes progress-bar-after-1 {
+  0% {
+    background-position: 0 100%;
+  }
+  100% {
+    background-position: 30px 100%;
+  }
+}
+
+.text-progress {
+  padding-top: 50px;
+  font-size: 48px;
+  padding-left: 20px;
+  padding-right: 20px;
+  color: #F45197;
+}
+.text-end {
+  padding-top: 1%;
+  font-size: 24px;
+  font-weight: bold;
+  padding-right: 10%;
 }

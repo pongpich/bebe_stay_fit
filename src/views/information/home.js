@@ -76,6 +76,36 @@ class Home extends React.Component {
     }
 
     window.scrollTo(0, 0);
+
+    var progress = document.getElementById("progress-done");
+    var progress2 = document.getElementById("progress-done2");
+    var progressText = document.getElementById("progress-text-start");
+    var progressText2 = document.getElementById("progress-text-start2");
+    const maxMember = 75;
+    const minMember = 30;
+    var member = minMember;
+    const addMemberPerDay = 1;
+    const turningPointOfMember = 49;
+    const dayOfTurningPoint = ((turningPointOfMember - minMember) / addMemberPerDay).toFixed(0);
+    var width;
+    const oneDay = 24 * 60 * 60 * 1000; // hours*minutes*seconds*milliseconds
+    const startDate = new Date('2022-06-30T23:59:59');
+    const currDate = new Date();
+    const diffDays = Math.round(Math.abs((startDate - currDate) / oneDay));
+
+    member = member + (diffDays * addMemberPerDay);
+    if (member > turningPointOfMember) {
+      member = turningPointOfMember + diffDays - dayOfTurningPoint;
+      if (member > maxMember) {
+        member = maxMember;
+      }
+    }
+    width = member / maxMember * 100;
+
+    progress.style.width = width + "%";
+    progressText.innerHTML = "สมัครแล้ว " + member + " คน";
+    progress2.style.width = width + "%";
+    progressText2.innerHTML = "สมัครแล้ว " + member + " คน";
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -145,7 +175,7 @@ class Home extends React.Component {
   homeLogin() {
     return (
       <>
-        <div className="win-541">
+     <div className="win-541">
           <img src={head} alt="vector" className="home-image" />
           <div className="box-home">
             <div className="top-Home">
@@ -172,7 +202,7 @@ class Home extends React.Component {
           <div className="part16">
             <img src={part9} alt="vector" className="home-image part16-1" />
             <a
-               onClick={() => this.props.history.push("/programPackage")}
+              onClick={() => this.props.history.push("/programPackage")}
               className="btn  bold button-pinkLogin3 col-4 col-sm-4  col-md-4 col-lg-4"
               type="button">
               เริ่มคำนวณ
@@ -203,13 +233,24 @@ class Home extends React.Component {
           <div className="part16">
             <img src={price} alt="vector" className="home-image part16-1" />
             <a
-               onClick={() => this.props.history.push("/programPackage")}
+              onClick={() => this.props.history.push("/programPackage")}
               className="btn  bold button-pinkLogin2 col-4 col-sm-4  col-md-4 col-lg-4"
               type="button">
               สมัคร
             </a>
           </div>
-          <img src={countdown} alt="vector" className="home-image" />
+          <div className="box-countdown">
+            <p className="text-progress bold">มีคนสนใจเข้าร่วมแคมเปญมาแล้วทั้งหมด</p>
+            <div className="progress-bar">
+              <div className="progress">
+                <div className="progress-done" id="progress-done">
+                  <div className="progress-text-start bold" id="progress-text-start">
+                  </div>
+                </div>
+              </div>
+            </div>
+            <p className="text-end">จำกัด 75 คน</p>
+          </div>
           <div className="part16">
             <img src={part16} alt="vector" className="home-image part16-1" />
             <a
@@ -220,6 +261,7 @@ class Home extends React.Component {
             </a>
           </div>
         </div>
+
 
         <div className="win-540">
           <img src={head512} alt="vector" className="home-image" />
@@ -248,9 +290,9 @@ class Home extends React.Component {
           <div className="part16">
             <img src={part9512} alt="vector" className="home-image part16-1" />
             <a
-               onClick={() => this.props.history.push("/programPackage")}
+              onClick={() => this.props.history.push("/programPackage")}
               className="btn  bold button2-pinkLogin512 col-10 col-sm-10  col-md-4 col-lg-4"
-             >
+            >
               เริ่มคำนวณ
             </a>
           </div>
@@ -279,13 +321,23 @@ class Home extends React.Component {
           <div className="part16">
             <img src={price512} alt="vector" className="home-image part16-1" />
             <a
-               onClick={() => this.props.history.push("/programPackage")}
+              onClick={() => this.props.history.push("/programPackage")}
               className="btn  bold button1-pinkLogin512 col-7 col-sm-7">
               สมัคร
             </a>
           </div>
-          <img src={countdown512} alt="vector" className="home-image" />
-         
+          <div className="box-countdown">
+            <p className="text-progress bold">มีคนสนใจเข้าร่วมแคมเปญมาแล้วทั้งหมด</p>
+            <div className="progress-bar">
+              <div className="progress">
+                <div className="progress-done" id="progress-done2">
+                  <div className="progress-text-start bold" id="progress-text-start2">
+                  </div>
+                </div>
+              </div>
+            </div>
+            <p className="text-end">จำกัด 75 คน</p>
+          </div>
           <div className="part16">
             <img src={part16512} alt="vector" className="home-image " />
             <a
