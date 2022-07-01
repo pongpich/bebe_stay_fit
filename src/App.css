@@ -2836,7 +2836,9 @@ tr:last-child td:last-child {
 }
 
 .register-to-join {
-  margin-left: -20px;
+  text-align: center;
+  padding-left: 20px;
+  padding-right: 20px;
   font-size: 36px;
   margin-top: 20px;
   margin-bottom: 20px;
