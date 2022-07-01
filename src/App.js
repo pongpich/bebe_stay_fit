@@ -43,8 +43,13 @@ import Amplify from 'aws-amplify';
 import { awsConfig } from "./constants/defaultValues";
 import { BrowserRouter } from 'react-router-dom';
 import user_circle from "./assets/img/user_circle.svg";
+import TagManager from 'react-gtm-module';
 
 Amplify.configure(awsConfig);
+
+TagManager.initialize({
+  gtmId: 'GTM-KLDH7S5',
+});
 
 class App extends Component {
 
@@ -70,7 +75,7 @@ class App extends Component {
         colorFood: "nav-link pointer",
         colorVideo: "nav-link pointer color1"
       })
-    }else{
+    } else {
       this.props.history.push('/food_supplement')
       this.setState({
         colorFood: "nav-link pointer color1",
@@ -89,55 +94,55 @@ class App extends Component {
             <img src={group49} alt="vector" />
           </a>
           {
-            (this.props.user !== null) ? 
-            <>
-              <button className="navbar-toggler" type="button" id="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span className="navbar-toggler-icon"></span>
-              </button>
-              <div className="collapse navbar-collapse padding-left3" id="navbarSupportedContent">
-                <ul className="navbar-nav me-auto mb-2 mb-lg-0 font-size5 bold">
-                  {
-                    (user && user.other_attributes) &&
-                    <>
-                      <li className="nav-item">
-                        <a className={this.state.colorVideo} onClick={() => this.onClickNavbar("videoList")} >โปรแกรมออกกำลังกาย</a>
-                      </li>
-                      <li className="nav-item">
-                        <a className={this.state.colorFood} onClick={() => this.onClickNavbar("food_supplement")}>วิธีการกินอาหารและอาหารเสริม</a>
-                      </li>
-                    </>
-                  }
-                  <li className="nav-item">
-                  </li>
-                </ul>
-                <div>
-                  <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-            {/*         <li className="nav-item">
+            (this.props.user !== null) ?
+              <>
+                <button className="navbar-toggler" type="button" id="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                  <span className="navbar-toggler-icon"></span>
+                </button>
+                <div className="collapse navbar-collapse padding-left3" id="navbarSupportedContent">
+                  <ul className="navbar-nav me-auto mb-2 mb-lg-0 font-size5 bold">
+                    {
+                      (user && user.other_attributes) &&
+                      <>
+                        <li className="nav-item">
+                          <a className={this.state.colorVideo} onClick={() => this.onClickNavbar("videoList")} >โปรแกรมออกกำลังกาย</a>
+                        </li>
+                        <li className="nav-item">
+                          <a className={this.state.colorFood} onClick={() => this.onClickNavbar("food_supplement")}>วิธีการกินอาหารและอาหารเสริม</a>
+                        </li>
+                      </>
+                    }
+                    <li className="nav-item">
+                    </li>
+                  </ul>
+                  <div>
+                    <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+                      {/*         <li className="nav-item">
                       <a className="nav-link nav-linkHead " href="/#" onClick={() => this.onUserLogout()} style={{ cursor: "pointer" }}>
                         ออกจากระบบ
                     </a>
                     </li> */}
-                    <li className="nav-item ">
-                    <a className="nav-link dropdown-toggle nav-linkHead" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">
-                    <img src={user_circle} alt="vector" className="padding-rightIcon" />
-                        {this.props.user.email}
-                      </a>
-                    <ul className="dropdown-menu dropdown-menu-end">
-                      <li>
-                      <a className="dropdown-item nav-linkHead pointer"  onClick={() => this.onUserLogout()} style={{ cursor: "pointer" }}>
-                        ออกจากระบบ
+                      <li className="nav-item ">
+                        <a className="nav-link dropdown-toggle nav-linkHead" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">
+                          <img src={user_circle} alt="vector" className="padding-rightIcon" />
+                          {this.props.user.email}
+                        </a>
+                        <ul className="dropdown-menu dropdown-menu-end">
+                          <li>
+                            <a className="dropdown-item nav-linkHead pointer" onClick={() => this.onUserLogout()} style={{ cursor: "pointer" }}>
+                              ออกจากระบบ
                     </a>
+                          </li>
+                        </ul>
                       </li>
                     </ul>
-                  </li>
-                  </ul>
+                  </div>
                 </div>
-              </div>
-            </>
-            : 
-            <>
-              <a className="nav-link nav-linkHead2 pointer" onClick={() => this.props.history.push('/programPackage')}>ลงทะเบียน</a>
-            </>
+              </>
+              :
+              <>
+                <a className="nav-link nav-linkHead2 pointer" onClick={() => this.props.history.push('/programPackage')}>ลงทะเบียน</a>
+              </>
           }
 
         </div>
