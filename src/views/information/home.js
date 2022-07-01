@@ -169,26 +169,56 @@ class Home extends React.Component {
           <img src={part6} alt="vector" className="home-image" />
           <img src={part7} alt="vector" className="home-image" />
           <img src={part8} alt="vector" className="home-image" />
-          <img src={part9} alt="vector" className="home-image" />
+          <div className="part16">
+            <img src={part9} alt="vector" className="home-image part16-1" />
+            <a
+               onClick={() => this.props.history.push("/programPackage")}
+              className="btn  bold button-pinkLogin3 col-4 col-sm-4  col-md-4 col-lg-4"
+              type="button">
+              เริ่มคำนวณ
+            </a>
+          </div>
           <img src={part10} alt="vector" className="home-image" />
-          <img src={part11} alt="vector" className="home-image" />
+          <div className="box-home">
+            <div className="top-Home">
+              <p className="textHome bold">
+                สำหรับผู้ที่มีปัญหาสุขภาพ แต่ไม่อยากที่จะพลาดแคมเปญนี้
+              </p>
+              <p className="textHome2 bold">
+                สามารถรับคำแนะนำลงทะเบียนปรึกษาผู้เชี่ยวชาญได้ที่
+              </p>
+              <div className="d-grid gap-2  mx-auto   col-12 col-sm-12  col-md-12 col-lg-12 center ">
+                <a
+                  href="https://fittowhey.com/8week/complete"
+                  className="btn bottom-pinkLogin2 bold"
+                  type="button"
+                >
+                  ขอคำปรึกษา
+                </a>
+              </div>
+            </div>
+          </div>
           <img src={review} alt="vector" className="home-image" />
           <img src={part13} alt="vector" className="home-image" />
-          <img
-            src={price}
-            alt="vector"
-            className="home-image"
-            data-bs-toggle="modal"
-            data-bs-target="#exampleModal"
-          />
+          <div className="part16">
+            <img src={price} alt="vector" className="home-image part16-1" />
+            <a
+               onClick={() => this.props.history.push("/programPackage")}
+              className="btn  bold button-pinkLogin2 col-4 col-sm-4  col-md-4 col-lg-4"
+              type="button">
+              สมัคร
+            </a>
+          </div>
           <img src={countdown} alt="vector" className="home-image" />
-          <img
-            src={part16}
-            alt="vector"
-            className="home-image"
-            data-bs-toggle="modal"
-            data-bs-target="#exampleModal"
-          />
+          <div className="part16">
+            <img src={part16} alt="vector" className="home-image part16-1" />
+            <a
+              href="https://fittowhey.com/8week/complete"
+              className="btn  bold button-pinkLogin col-4 col-sm-4  col-md-4 col-lg-4"
+              type="button">
+              คลิก
+            </a>
+          </div>
         </div>
 
         <div className="win-540">
@@ -215,26 +245,56 @@ class Home extends React.Component {
           <img src={part6512} alt="vector" className="home-image" />
           <img src={part7512} alt="vector" className="home-image" />
           <img src={part8512} alt="vector" className="home-image" />
-          <img src={part9512} alt="vector" className="home-image" />
+          <div className="part16">
+            <img src={part9512} alt="vector" className="home-image part16-1" />
+            <a
+               onClick={() => this.props.history.push("/programPackage")}
+              className="btn  bold button2-pinkLogin512 col-10 col-sm-10  col-md-4 col-lg-4"
+             >
+              เริ่มคำนวณ
+            </a>
+          </div>
           <img src={part10512} alt="vector" className="home-image" />
-          <img src={part11512} alt="vector" className="home-image" />
+          <div className="box-home">
+            <div className="top-Home">
+              <p className="textHome bold">
+                สำหรับผู้ที่มีปัญหาสุขภาพ แต่ไม่อยากที่จะพลาดแคมเปญนี้
+              </p>
+              <p className="textHome2 bold">
+                สามารถรับคำแนะนำลงทะเบียนปรึกษาผู้เชี่ยวชาญได้ที่
+              </p>
+              <div className="d-grid gap-2  mx-auto   col-12 col-sm-12  col-md-12 col-lg-12 center ">
+                <a
+                  href="https://fittowhey.com/8week/complete"
+                  className="btn bottom-pinkLogin2 bold"
+                  type="button"
+                >
+                  ขอคำปรึกษา
+                </a>
+              </div>
+            </div>
+          </div>
           <img src={review512} alt="vector" className="home-image" />
           <img src={part13512} alt="vector" className="home-image" />
-          <img
-            src={price512}
-            alt="vector"
-            className="home-image"
-            data-bs-toggle="modal"
-            data-bs-target="#exampleModal"
-          />
+          <div className="part16">
+            <img src={price512} alt="vector" className="home-image part16-1" />
+            <a
+               onClick={() => this.props.history.push("/programPackage")}
+              className="btn  bold button1-pinkLogin512 col-7 col-sm-7">
+              สมัคร
+            </a>
+          </div>
           <img src={countdown512} alt="vector" className="home-image" />
-          <img
-            src={part16512}
-            alt="vector"
-            className="home-image"
-            data-bs-toggle="modal"
-            data-bs-target="#exampleModal"
-          />
+         
+          <div className="part16">
+            <img src={part16512} alt="vector" className="home-image " />
+            <a
+              href="https://fittowhey.com/8week/complete"
+              className="btn  bold button-pinkLogin512 col-10 col-sm-10"
+              type="button">
+              คลิก
+            </a>
+          </div>
         </div>
 
         <div
