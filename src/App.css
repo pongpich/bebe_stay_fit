@@ -73,13 +73,35 @@
     margin-top: -15px;
     border-bottom: 3px solid #4f4f4f;
   }
-
-  .bottom-pinkLogin2,.bottom-pinkLogin2:hover,.bottom-pinkLogin2:focus {
+  .bottom-pinkLogin3,.bottom-pinkLogin3:hover,.bottom-pinkLogin3:focus {
     background-color: #F8159D !important;
-    margin-top: 40px;
+    margin-top: -30px !important;
     height: 70px;
     width: 300px !important;
     color: #ffffff !important;
+    margin-bottom: 50px;
+    border-radius: 40px;
+    font-size: 32px !important;
+  }
+  
+  .bottom-pinkLogin2,.bottom-pinkLogin2:hover,.bottom-pinkLogin2:focus {
+    background-color: #F8159D !important;
+    margin-top: 0px !important;
+    height: 70px;
+    width: 300px !important;
+    color: #ffffff !important;
+    margin-bottom: 50px;
+    border-radius: 40px;
+    font-size: 32px !important;
+  }
+  .bottom-pinkLogin1,.bottom-pinkLogin1:hover,.bottom-pinkLogin1:focus {
+    background-color: #ffffff !important;
+    box-shadow: 0px 2px 12px 1px  #c4c4c4;
+    margin-top: 10px !important;
+    height: 70px;
+    width: 300px !important;
+    border-color: #e25e96;
+    color: #F8159D !important;
     margin-bottom: 50px;
     border-radius: 40px;
     font-size: 32px !important;
@@ -1425,6 +1447,7 @@ a {
 }
 
 .head-box {
+  top: 69px;
   margin-right: 0px;
   margin-top: 30px;
   min-height: 60px;
@@ -2925,9 +2948,33 @@ tr:last-child td:last-child {
   color: #E25E96;
 }
 
+.bottom-pinkLogin1,.bottom-pinkLogin1:hover,.bottom-pinkLogin1:focus {
+  background-color: #ffffff !important;
+  box-shadow: 0px 2px 12px 1px  #c4c4c4;
+  margin-top: 10px;
+  height: 70px;
+  width: 500px;
+  border-color: #e25e96;
+  color: #F8159D !important;
+  margin-bottom: 50px;
+  border-radius: 40px;
+  font-size: 32px !important;
+}
 .bottom-pinkLogin2,.bottom-pinkLogin2:hover,.bottom-pinkLogin2:focus {
   background-color: #F8159D !important;
-  margin-top: 40px;
+  margin-top: 0px;
+  box-shadow: 0px 2px 12px 1px  #c4c4c4;
+  height: 70px;
+  width: 500px;
+  color: #ffffff !important;
+  margin-bottom: 50px;
+  border-radius: 40px;
+  font-size: 32px !important;
+}
+.bottom-pinkLogin3,.bottom-pinkLogin3:hover,.bottom-pinkLogin3:focus {
+  background-color: #F8159D !important;
+  margin-top: -30px;
+  box-shadow: 0px 2px 12px 1px  #c4c4c4;
   height: 70px;
   width: 500px;
   color: #ffffff !important;
@@ -3141,4 +3188,8 @@ tr:last-child td:last-child {
   font-size: 24px;
   font-weight: bold;
   padding-right: 10%;
+}
+.span-package {
+  padding-left: 20px;
+  margin-top: -45px;
 }

@@ -193,7 +193,7 @@ class ProgramPackage extends React.Component {
         <div className="col-12 col-sm-12 col-md-12 col-lg-12 App-headerBackground">
           <div className="container center ">
             <div className="box2">
-              <div className="center  head-box grad1">
+              <div className="center  head-box grad1 sticky-top">
                 <div className="head-width">
                   <p className="text-headWidth">คุณจะสามารถลดน้ำหนัก {weightLossGoals} {pound_kg}  <span className="bold text-headWidth1">ภายใน {durationWeightLoss} เดือน</span></p>
                 </div>
@@ -210,6 +210,7 @@ class ProgramPackage extends React.Component {
                     <p className="no-renewal">*ระยะเวลา 2 เดือน และไม่มีการต่ออายุ</p>
                     <p className="border-bottom4 margin-leftRight"></p>
                     <div className="text-left bottom-padding">
+                      <li> ราคาปกติสำหรับโปรแกรม 2 เดือน</li>
                       <li> โปรแกรมออกกำลังกาย</li>
                       <li>คำแนะนำการควบคุมอาหาร</li>
                       <li>คำแนะนำการทานอาหารเสริม</li>
@@ -240,10 +241,12 @@ class ProgramPackage extends React.Component {
                         </p>
                         <p className="border-bottom4 margin-leftRight top-border"></p>
                         <div className="font-size5 text-left">
+                          <li> ราคาพิเศษสำหรับโปรแกรม 2 เดือนแรก</li>
+                          <li> ต่ออายุอัตโนมัติตามระยะเวลาของโปรแกรม</li>
                           <li> โปรแกรมออกกำลังกาย</li>
                           <li> คำแนะนำการควบคุมอาหาร</li>
                           <li> คำแนะนำการทานอาหารเสริม</li>
-                          <li> Fitto Plant Protein 6 กล่อง  <br /><span className="bold span-image">ทุก 2 เดือน</span>  &nbsp;(เลือกรสชาติได้)</li>
+                          <li> Fitto Plant Protein 6 กล่อง/ทุก 2 เดือน  <br /><span className="span-package"> (ทานเดือนละ 3 กล่อง)</span></li>
                         </div>
                         <br />
                         <div>

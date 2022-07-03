@@ -175,20 +175,25 @@ class Home extends React.Component {
   homeLogin() {
     return (
       <>
-     <div className="win-541">
+        <div className="win-541">
           <img src={head} alt="vector" className="home-image" />
           <div className="box-home">
             <div className="top-Home">
               <p className="textHome bold">สนใจสมัคร</p>
-              <p className="textHome2 bold">ปรึกษาผู้เชี่ยวชาญ</p>
               <div className="d-grid gap-2  mx-auto   col-12 col-sm-12  col-md-12 col-lg-12 center ">
-                <button
-                  className="btn bottom-pinkLogin2 bold"
+                <a
+                  className="btn bottom-pinkLogin1 bold"
                   type="button"
-                  data-bs-toggle="modal"
-                  data-bs-target="#exampleModal"
+                  href="https://fittowhey.com/8week/complete"
                 >
-                  เข้าสู่ระบบ
+                  ปรึกษาผู้เชี่ยวชาญ
+                </a>
+                <button
+                  className="btn bottom-pinkLogin3 bold"
+                  type="button"
+                  onClick={() => this.props.history.push("/programPackage")}
+                >
+                  ลงทะเบียน
                 </button>
               </div>
             </div>
@@ -268,15 +273,20 @@ class Home extends React.Component {
           <div className="box-home">
             <div className="top-Home">
               <p className="textHome bold">สนใจสมัคร</p>
-              <p className="textHome2 bold">ปรึกษาผู้เชี่ยวชาญ</p>
               <div className="d-grid gap-2  mx-auto   col-12 col-sm-12  col-md-12 col-lg-12 center ">
-                <button
-                  className="btn bottom-pinkLogin2 bold"
+              <a
+                  className="btn bottom-pinkLogin1 bold"
                   type="button"
-                  data-bs-toggle="modal"
-                  data-bs-target="#exampleModal"
+                  href="https://fittowhey.com/8week/complete"
                 >
-                  เข้าสู่ระบบ
+                  ปรึกษาผู้เชี่ยวชาญ
+                </a>
+                <button
+                  className="btn bottom-pinkLogin3 bold"
+                  type="button"
+                  onClick={() => this.props.history.push("/programPackage")}
+                >
+                  ลงทะเบียน
                 </button>
               </div>
             </div>

@@ -93,6 +93,7 @@ class App extends Component {
           <a className="navbar-brand" href="/#" onClick={() => this.props.history.push('/')} style={{ color: "white", cursor: "pointer" }}>
             <img src={group49} alt="vector" />
           </a>
+
           {
             (this.props.user !== null) ?
               <>
@@ -101,6 +102,7 @@ class App extends Component {
                 </button>
                 <div className="collapse navbar-collapse padding-left3" id="navbarSupportedContent">
                   <ul className="navbar-nav me-auto mb-2 mb-lg-0 font-size5 bold">
+
                     {
                       (user && user.other_attributes) &&
                       <>
@@ -131,7 +133,7 @@ class App extends Component {
                           <li>
                             <a className="dropdown-item nav-linkHead pointer" onClick={() => this.onUserLogout()} style={{ cursor: "pointer" }}>
                               ออกจากระบบ
-                    </a>
+                            </a>
                           </li>
                         </ul>
                       </li>
@@ -141,7 +143,24 @@ class App extends Component {
               </>
               :
               <>
-                <a className="nav-link nav-linkHead2 pointer" onClick={() => this.props.history.push('/programPackage')}>ลงทะเบียน</a>
+                <button className="navbar-toggler" type="button" id="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                  <span className="navbar-toggler-icon"></span>
+                </button>
+                <div className="collapse navbar-collapse padding-left3" id="navbarSupportedContent">
+                  <ul className="navbar-nav me-auto mb-2 mb-lg-0 font-size5 bold">
+                    <li className="nav-item">
+                      <a className="nav-link pointer"  >ราคา</a>
+                    </li>
+                    <li className="nav-item">
+                      <a className="nav-link pointer" >สร้างโปรแกรมส่วนตัว</a>
+                    </li>
+                  </ul>
+                  <a className="nav-link nav-linkHead2 pointer bold" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                    <img src={user_circle} alt="vector" className="padding-rightIcon" />เข้าสู่ระบบ</a>
+                </div>
+
+
+
               </>
           }
 
