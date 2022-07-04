@@ -40,7 +40,8 @@ class Payment extends React.Component {
       districtUser: this.props.create_districtUser,
       provinceUser: this.props.create_provinceUser,
       zipcodeUser: this.props.create_zipcodeUser,
-      pageUrl: window.location.href
+      pageUrl: window.location.href,
+      status_payment: "default"
     };
     this.onPay = this.onPay.bind(this);
   }
@@ -49,6 +50,13 @@ class Payment extends React.Component {
   componentDidMount() {
     const { user_program_id, products_list, delivery_address, receipt_address } = this.props;
     const { price, productName, email, phone, program, name } = this.state;
+
+    const search = this.props.location.search; // could be '?foo=bar'
+    const params = new URLSearchParams(search);
+
+    const status_payment = params.get("status");
+    console.log("status_payment :", status_payment);
+    this.setState({ status_payment: status_payment });
 
     window.localStorage.setItem('price', price);
     window.localStorage.setItem('productName', productName);
@@ -261,7 +269,7 @@ class Payment extends React.Component {
                     <p className="font-size5">
                       {programId === "starter_stay_fit_01" ?
                         <>
-                         <p className="font-size5 bold">แพ็คเกจของคุณ</p>
+                          <p className="font-size5 bold">แพ็คเกจของคุณ</p>
                           <p className="section-sizeLeft">สมัครตามระยะเวลาของโปรแกรม</p>
                           <p className="font-size5 bold">
                             {this.state.program.price.toLocaleString('en')}  บาท
@@ -304,6 +312,10 @@ class Payment extends React.Component {
             <div className="col-12 col-sm-12 col-md-10 col-lg-10 center2  margin-headText">
               <p className="font-size6 bold color-protein"> การชำระเงิน</p>
             </div>
+            {
+              this.state.status_payment === "unsuccess" &&
+              <h6 style={{ color: "red" }}>ระบบเรียกเก็บเงินไม่สำเร็จกรุณาตรวจสอบข้อมูลบัตรให้ถูกต้องอีกครั้ง หรือเปลี่ยนวิธีการชำระเงิน</h6>
+            }
             <div className="col-12 col-sm-12 col-md-10 col-lg-10 center2">
               <button type="button" className={this.state.creditCardFocus} onClick={e => this.pinkModelFocus("1")}>บัตรเครดิต/เดบิต</button>&nbsp;&nbsp;&nbsp;
               <button type="button" className={this.state.qrCodeFocus} onClick={e => this.pinkModelFocus("2")}>ชำระด้วย QR Code</button>
