@@ -1,6 +1,5 @@
 @media only screen and (max-width: 540px) {
 
-  
   .maigeSm {
     margin-top: 50px !important;
   }
@@ -132,7 +131,7 @@
   .text-headWidth1 {
     font-size: 28px !important;
   }
-  
+
 }
 
 @media only screen and (max-width: 760px) {
@@ -2106,8 +2105,7 @@ a:hover {
 
 .text-video {
   padding-left: 20px;
-  margin-top: -10px;
-  padding-bottom: 20px;
+  padding-bottom: 10px;
 }
 
 .high-impact {
@@ -3186,3 +3184,57 @@ tr:last-child td:last-child {
   padding-left: 20px;
   margin-top: -45px;
 }
+.box-review {
+  position: relative;
+  padding-top: 60px;
+
+  background-color: #F8159D;
+  color: #FFFFFF;
+  height: auto;
+  text-align: center;
+}
+.textHead-review {
+  font-size: 32px;
+  font-weight: bold;
+
+}
+.text-review {
+  margin-top: -10px;
+  font-size: 24px;
+  font-weight: bold;
+}
+.review-boxImage {
+    margin-top: -14%;
+    position: relative;
+}
+.review-image {
+  position: absolute;
+  margin-left: 24%;
+  margin-top: 19%;
+  width: 52%;
+  opacity: 1;
+}
+
+
+/* Buttons */
+
+
+.slideshowDot {
+  display: inline-block;
+  height: 20px;
+  width: 20px;
+  color: #FFFFFF;
+  border-radius: 50%;
+  border: 2px solid #FFFFFF;
+  cursor: pointer;
+  margin: -50px 7px 50px;
+  background-color: #FFFFFF;
+
+}
+.slideshowDot.active {
+  color: #C4C4C4;
+  border: 2px solid #C4C4C4;
+  background-color: #C4C4C4;
+
+}
+

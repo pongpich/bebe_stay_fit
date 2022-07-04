@@ -20,6 +20,13 @@ import part13 from "../../assets/img/home/part13.webp";
 import price from "../../assets/img/home/price.webp";
 import countdown from "../../assets/img/home/countdown.webp";
 import part16 from "../../assets/img/home/part16.webp";
+import rectangle from "../../assets/img/home/rectangle.webp";
+import frame1 from "../../assets/img/home/frame1.webp";
+import frame2 from "../../assets/img/home/frame2.webp";
+import frame3 from "../../assets/img/home/frame3.webp";
+import frame4 from "../../assets/img/home/frame4.webp";
+import frame5 from "../../assets/img/home/frame5.webp";
+import frame6 from "../../assets/img/home/frame6.webp";
 
 /*  win-512 */
 
@@ -48,6 +55,7 @@ class Home extends React.Component {
       validation: "true",
       setPassword: false,
       validationLogin: "default",
+      carousel: 0,
     };
   }
 
@@ -76,6 +84,7 @@ class Home extends React.Component {
     }
 
     window.scrollTo(0, 0);
+    this.timeout();
 
     var progress = document.getElementById("progress-done");
     var progress2 = document.getElementById("progress-done2");
@@ -86,21 +95,24 @@ class Home extends React.Component {
     var member = minMember;
     const addMemberPerDay = 1;
     const turningPointOfMember = 49;
-    const dayOfTurningPoint = ((turningPointOfMember - minMember) / addMemberPerDay).toFixed(0);
+    const dayOfTurningPoint = (
+      (turningPointOfMember - minMember) /
+      addMemberPerDay
+    ).toFixed(0);
     var width;
     const oneDay = 24 * 60 * 60 * 1000; // hours*minutes*seconds*milliseconds
-    const startDate = new Date('2022-06-30T23:59:59');
+    const startDate = new Date("2022-06-30T23:59:59");
     const currDate = new Date();
     const diffDays = Math.round(Math.abs((startDate - currDate) / oneDay));
 
-    member = member + (diffDays * addMemberPerDay);
+    member = member + diffDays * addMemberPerDay;
     if (member > turningPointOfMember) {
       member = turningPointOfMember + diffDays - dayOfTurningPoint;
       if (member > maxMember) {
         member = maxMember;
       }
     }
-    width = member / maxMember * 100;
+    width = (member / maxMember) * 100;
 
     progress.style.width = width + "%";
     progressText.innerHTML = "สมัครแล้ว " + member + " คน";
@@ -125,6 +137,7 @@ class Home extends React.Component {
         });
       }
     }
+    this.timeout()
   }
 
   resetPassword() {
@@ -159,6 +172,30 @@ class Home extends React.Component {
         validation: "false",
       });
     }
+  }
+
+  frame(e) {
+    this.setState({
+      carousel: e
+    });
+  }
+  timeout() {
+
+    if (this.state.carousel < 5) {
+      setTimeout(() => {
+        this.setState({
+          carousel: this.state.carousel+1
+        });
+      }, 7000);
+    }else{
+      setTimeout(() => {
+        this.setState({
+          carousel: 0
+        });
+      }, 7000);
+    }
+    
+ 
   }
 
   handleChange(event) {
@@ -209,7 +246,8 @@ class Home extends React.Component {
             <a
               onClick={() => this.props.history.push("/programPackage")}
               className="btn  bold button-pinkLogin3 col-4 col-sm-4  col-md-4 col-lg-4"
-              type="button">
+              type="button"
+            >
               เริ่มคำนวณ
             </a>
           </div>
@@ -233,24 +271,66 @@ class Home extends React.Component {
               </div>
             </div>
           </div>
-          <img src={review} alt="vector" className="home-image" />
+          <div className="box-review">
+            <div>
+              <p className="textHead-review">
+                ยืนยันผลลัพธ์ว่าทำเเล้วเห็นผลได้จริง
+              </p>
+              <p className="text-review">
+                จากเสียงตอบรับส่วนหนึ่งในผู้ที่เคยทานผลิตภัณฑ์
+              </p>
+              <p className="text-review">เเละร่วมสนุกกิจกรรมจาก FITTO</p>
+            </div>
+              <div className="review-boxImage">
+                  {this.state.carousel === 0  ? 
+                   <img src={frame6} alt="vector" className="review-image" />
+                  :
+                  this.state.carousel === 1  ? 
+                  <img src={frame5} alt="vector" className="review-image" />
+                  :
+                  this.state.carousel === 2  ? 
+                  <img src={frame1} alt="vector" className="review-image" />
+                  :
+                  this.state.carousel === 3  ? 
+                  <img src={frame2} alt="vector" className="review-image" />
+                  :
+                  this.state.carousel === 4  ? 
+                  <img src={frame3} alt="vector" className="review-image" />
+                  :
+                  <img src={frame4} alt="vector" className="review-image" />
+                  }
+              <img src={rectangle} alt="vector" className="home-image" />
+            </div>
+            <button className={this.state.carousel === 0 ? "slideshowDot active" : "slideshowDot"} onClick={() =>  this.frame(0)}></button>
+            <button className={this.state.carousel === 1 ? "slideshowDot active" : "slideshowDot"} onClick={() =>  this.frame(1)}></button>
+            <button className={this.state.carousel === 2 ? "slideshowDot active" : "slideshowDot"} onClick={() =>  this.frame(2)}></button>
+            <button className={this.state.carousel === 3 ? "slideshowDot active" : "slideshowDot"} onClick={() =>  this.frame(3)}></button>
+            <button className={this.state.carousel === 4 ? "slideshowDot active" : "slideshowDot"} onClick={() =>  this.frame(4)}></button>
+            <button className={this.state.carousel === 5 ? "slideshowDot active" : "slideshowDot"} onClick={() =>  this.frame(5)}></button>
+          </div>
+
           <img src={part13} alt="vector" className="home-image" />
           <div className="part16">
             <img src={price} alt="vector" className="home-image part16-1" />
             <a
               onClick={() => this.props.history.push("/programPackage")}
               className="btn  bold button-pinkLogin2 col-4 col-sm-4  col-md-4 col-lg-4"
-              type="button">
+              type="button"
+            >
               สมัคร
             </a>
           </div>
           <div className="box-countdown">
-            <p className="text-progress bold">มีคนสนใจเข้าร่วมแคมเปญมาแล้วทั้งหมด</p>
+            <p className="text-progress bold">
+              มีคนสนใจเข้าร่วมแคมเปญมาแล้วทั้งหมด
+            </p>
             <div className="progress-bar">
               <div className="progress">
                 <div className="progress-done" id="progress-done">
-                  <div className="progress-text-start bold" id="progress-text-start">
-                  </div>
+                  <div
+                    className="progress-text-start bold"
+                    id="progress-text-start"
+                  ></div>
                 </div>
               </div>
             </div>
@@ -261,12 +341,12 @@ class Home extends React.Component {
             <a
               href="https://fittowhey.com/8week/complete"
               className="btn  bold button-pinkLogin col-4 col-sm-4  col-md-4 col-lg-4"
-              type="button">
+              type="button"
+            >
               คลิก
             </a>
           </div>
         </div>
-
 
         <div className="win-540">
           <img src={head512} alt="vector" className="home-image" />
@@ -274,7 +354,7 @@ class Home extends React.Component {
             <div className="top-Home">
               <p className="textHome bold">สนใจสมัคร</p>
               <div className="d-grid gap-2  mx-auto   col-12 col-sm-12  col-md-12 col-lg-12 center ">
-              <a
+                <a
                   className="btn bottom-pinkLogin1 bold"
                   type="button"
                   href="https://fittowhey.com/8week/complete"
@@ -326,23 +406,65 @@ class Home extends React.Component {
               </div>
             </div>
           </div>
-          <img src={review512} alt="vector" className="home-image" />
+          <div className="box-review">
+            <div>
+              <p className="textHead-review">
+                ยืนยันผลลัพธ์ว่าทำเเล้วเห็นผลได้จริง
+              </p>
+              <p className="text-review">
+                จากเสียงตอบรับส่วนหนึ่งในผู้ที่เคยทานผลิตภัณฑ์
+              </p>
+              <p className="text-review">เเละร่วมสนุกกิจกรรมจาก FITTO</p>
+            </div>
+              <div className="review-boxImage">
+                  {this.state.carousel === 0  ? 
+                   <img src={frame6} alt="vector" className="review-image" />
+                  :
+                  this.state.carousel === 1  ? 
+                  <img src={frame5} alt="vector" className="review-image" />
+                  :
+                  this.state.carousel === 2  ? 
+                  <img src={frame1} alt="vector" className="review-image" />
+                  :
+                  this.state.carousel === 3  ? 
+                  <img src={frame2} alt="vector" className="review-image" />
+                  :
+                  this.state.carousel === 4  ? 
+                  <img src={frame3} alt="vector" className="review-image" />
+                  :
+                  <img src={frame4} alt="vector" className="review-image" />
+                  }
+              <img src={rectangle} alt="vector" className="home-image" />
+            </div>
+            <button className={this.state.carousel === 0 ? "slideshowDot active" : "slideshowDot"} onClick={() =>  this.frame(0)}></button>
+            <button className={this.state.carousel === 1 ? "slideshowDot active" : "slideshowDot"} onClick={() =>  this.frame(1)}></button>
+            <button className={this.state.carousel === 2 ? "slideshowDot active" : "slideshowDot"} onClick={() =>  this.frame(2)}></button>
+            <button className={this.state.carousel === 3 ? "slideshowDot active" : "slideshowDot"} onClick={() =>  this.frame(3)}></button>
+            <button className={this.state.carousel === 4 ? "slideshowDot active" : "slideshowDot"} onClick={() =>  this.frame(4)}></button>
+            <button className={this.state.carousel === 5 ? "slideshowDot active" : "slideshowDot"} onClick={() =>  this.frame(5)}></button>
+          </div>
+
           <img src={part13512} alt="vector" className="home-image" />
           <div className="part16">
             <img src={price512} alt="vector" className="home-image part16-1" />
             <a
               onClick={() => this.props.history.push("/programPackage")}
-              className="btn  bold button1-pinkLogin512 col-7 col-sm-7">
+              className="btn  bold button1-pinkLogin512 col-7 col-sm-7"
+            >
               สมัคร
             </a>
           </div>
           <div className="box-countdown">
-            <p className="text-progress bold">มีคนสนใจเข้าร่วมแคมเปญมาแล้วทั้งหมด</p>
+            <p className="text-progress bold">
+              มีคนสนใจเข้าร่วมแคมเปญมาแล้วทั้งหมด
+            </p>
             <div className="progress-bar">
               <div className="progress">
                 <div className="progress-done" id="progress-done2">
-                  <div className="progress-text-start bold" id="progress-text-start2">
-                  </div>
+                  <div
+                    className="progress-text-start bold"
+                    id="progress-text-start2"
+                  ></div>
                 </div>
               </div>
             </div>
@@ -350,10 +472,12 @@ class Home extends React.Component {
           </div>
           <div className="part16">
             <img src={part16512} alt="vector" className="home-image " />
+            <img src={part16512} alt="vector" className="home-image " />
             <a
               href="https://fittowhey.com/8week/complete"
               className="btn  bold button-pinkLogin512 col-10 col-sm-10"
-              type="button">
+              type="button"
+            >
               คลิก
             </a>
           </div>
@@ -550,8 +674,8 @@ class Home extends React.Component {
   }
 
   render() {
-    const { validation, validationLogin } = this.state;
-    console.log("validationLogin", validation, validationLogin);
+    const { validation, validationLogin,carousel } = this.state;
+    console.log("carousel", carousel);
 
     return (
       <>
