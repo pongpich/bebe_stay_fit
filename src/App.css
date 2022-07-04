@@ -9,6 +9,7 @@
     padding-left: 40% !important;
     position: relative;
     padding-top: 50px;
+    margin-left: -10px !important;
   }
 
   .high-impact {
@@ -131,6 +132,7 @@
   .text-headWidth1 {
     font-size: 28px !important;
   }
+  
 }
 
 @media only screen and (max-width: 760px) {
@@ -2119,7 +2121,9 @@ a:hover {
 }
 
 .text-video {
-  padding: 20px;
+  padding-left: 20px;
+  margin-top: -10px;
+  padding-bottom: 20px;
 }
 
 .high-impact {
