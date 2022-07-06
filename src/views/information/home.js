@@ -85,7 +85,6 @@ class Home extends React.Component {
     }
 
     window.scrollTo(0, 0);
-    this.timeout();
 
     var progress = document.getElementById("progress-done");
     var progress2 = document.getElementById("progress-done2");
@@ -138,7 +137,7 @@ class Home extends React.Component {
         });
       }
     }
-    this.timeout()
+/*     this.timeout() */
   }
 
   resetPassword() {
@@ -176,33 +175,41 @@ class Home extends React.Component {
   }
 
   frame(e) {
-    this.setState({
-      carousel: e
-    });
-  }
-  timeout() {
+    console.log("e",e);
 
-    if (this.state.carousel < 6) {
+      this.setState({
+        carousel: e
+      });
+
+      setTimeout(() => {
+
+      }, 9000);
+      this.timeout();
+  }
+
+
+  timeout () {
+
+    if (this.state.carousel === 5) {
+      console.log("if",this.state.carousel );
+      setTimeout(() => {
+        this.setState({
+          carousel: 0
+        });
+      }, 9000);
+    }else if (this.state.carousel < 5){
+  console.log("else",this.state.carousel );
       setTimeout(() => {
         this.setState({
           carousel: this.state.carousel+1
         });
       }, 9000);
-    }else{
-      this.setState({
-        carousel: 5
-      });
-      setTimeout(() => {
-        this.setState({
-          carousel: 0
-        });
-      }, 6000);
     }
     
- 
   }
 
   handleChange(event) {
+
     this.setState({
       [event.target.id]: event.target.value,
     });
@@ -214,6 +221,9 @@ class Home extends React.Component {
   }
 
   homeLogin() {
+    this.timeout()
+
+
     return (
       <>
         <div className="win-541">
@@ -680,7 +690,6 @@ class Home extends React.Component {
 
   render() {
     const { validation, validationLogin,carousel } = this.state;
-    console.log("carousel", carousel);
 
     return (
       <>
