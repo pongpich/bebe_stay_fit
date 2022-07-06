@@ -315,6 +315,7 @@ class Home extends React.Component {
                   }
               <img src={rectangle} alt="vector" className="rectangle-image" />
             </div>
+            <div className="buttons-howDot">
             <button className={this.state.carousel === 0 ? "slideshowDot active" : "slideshowDot"} onClick={() =>  this.frame(0)}></button>
             <button className={this.state.carousel === 1 ? "slideshowDot active" : "slideshowDot"} onClick={() =>  this.frame(1)}></button>
             <button className={this.state.carousel === 2 ? "slideshowDot active" : "slideshowDot"} onClick={() =>  this.frame(2)}></button>
@@ -322,7 +323,7 @@ class Home extends React.Component {
             <button className={this.state.carousel === 4 ? "slideshowDot active" : "slideshowDot"} onClick={() =>  this.frame(4)}></button>
             <button className={this.state.carousel === 5 ? "slideshowDot active" : "slideshowDot"} onClick={() =>  this.frame(5)}></button>
           </div>
-
+          </div>
           <img src={part13} alt="vector" className="home-image" />
           <div className="part16">
             <img src={price} alt="vector" className="home-image part16-1" />

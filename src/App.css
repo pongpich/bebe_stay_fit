@@ -3223,11 +3223,10 @@ tr:last-child td:last-child {
 
 
 .slideshowDot {
-  display: inline-block;
-  height: 20px;
-  width: 20px;
+  height: 35px;
+  width: 35px;
   color: #FFFFFF;
-  border-radius: 100%;
+  border-radius: 50%;
   border: 2px solid #FFFFFF;
   cursor: pointer;
   margin: -50px 7px 50px;
