@@ -1741,7 +1741,7 @@ class videoList extends React.Component {
         <div className="card shadow mb-4 col-lg-6 offset-lg-3 col-md-12 col-12 padding-leftRight margin-left" style={{ borderRadius: "20px" }}>
           <div className="mb-3 col-lg-12  col-md-12 col-12">
             <center>
-              <h5 className="mt-5">กรุณากรอกข้อมูลด้านล่างเพื่อที่คุณจะได้รับประสบการณ์</h5>
+              <h5 className="mt-5">กรุณากรอกข้อมูลรายสัปดาห์ เพื่อที่คุณจะได้รับประสบการณ์</h5>
               <h5>โปรแกรมออกกำลังกายสำหรับคุณโดยเฉพาะ</h5>
             </center>
           </div>
@@ -1750,6 +1750,7 @@ class videoList extends React.Component {
             <div className="form-check" >
               <label className="form-check-label mb-3 mr-4">
                 <input
+                  disabled
                   className="form-check-input"
                   type="radio"
                   value="male"
@@ -1763,6 +1764,7 @@ class videoList extends React.Component {
               </label>
               <label className="form-check-label" style={{ marginLeft: "30px" }}>
                 <input
+                  disabled
                   className="form-check-input"
                   type="radio"
                   value="female"
@@ -1781,6 +1783,7 @@ class videoList extends React.Component {
             <div className="form-group">
               <label className="bmd-label-floating" style={{ color: "#F45197" }}>อายุ</label>
               <input
+                disabled
                 type="number"
                 className="form-control"
                 id="age"
@@ -1972,7 +1975,7 @@ class videoList extends React.Component {
             <div className="mb-3 row">
               <label className="col-sm-6 col-form-label">เพศ</label>
               <div className="col-sm-4">
-                <select onClick={(event) => this.renderHr(event)} onChange={(event) => this.handleChange(event)} className="form-control" id="sex" aria-label="Default select example">
+                <select disabled onClick={(event) => this.renderHr(event)} onChange={(event) => this.handleChange(event)} className="form-control" id="sex" aria-label="Default select example">
                   {
                     sexInfo === "male" ? <option value={sexInfo} selected>{sexInfoTH}</option> :
                       <option value="female">หญิง</option>
@@ -1990,7 +1993,7 @@ class videoList extends React.Component {
             <div className="mb-3 row">
               <label className="col-sm-6 col-form-label">อายุ</label>
               <div className="col-sm-4">
-                <input type="number" id="age" name="age" min="0" value={this.state.age} onClick={(event) => this.renderHr(event)} onChange={(event) => this.handleChange(event)} className="form-control" />
+                <input disabled type="number" id="age" name="age" min="0" value={this.state.age} onClick={(event) => this.renderHr(event)} onChange={(event) => this.handleChange(event)} className="form-control" />
               </div>
             </div>
           </div>
