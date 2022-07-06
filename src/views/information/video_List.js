@@ -302,11 +302,20 @@ class videoList extends React.Component {
   }
 
   toggle(selectedVDO) {
-    if (selectedVDO) {
+  /*   if (selectedVDO) {
       this.setState({
         selectedVDO: selectedVDO
       })
+    } */
+    if (selectedVDO) {
+      this.setState({
+        selectedVDO
+      }, () => {
+        var video = document.getElementById(`videoPlayer`);
+        video.play();
+      })
     }
+    
   }
 
   toggleList(index) {
@@ -626,7 +635,7 @@ class videoList extends React.Component {
                   Bebe Stayfit Program
                 </h3>
                 <div className="play_circle">
-                  <img src={play_circle_filled} className="pointer" data-bs-toggle="modal" data-bs-target="#exampleModalViderHead" /> <span className="play_circle_span">WATCH INTRODUCTION</span>
+                  <img src={play_circle_filled} onClick={() => document.getElementById(`videoPlayerIntro`).play()} className="pointer" data-bs-toggle="modal" data-bs-target="#exampleModalViderHead" /> <span className="play_circle_span">WATCH INTRODUCTION</span>
 
                 </div>
               </>
