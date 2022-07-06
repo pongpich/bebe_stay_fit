@@ -169,6 +169,7 @@ class videoList extends React.Component {
       this.closeEditVDO();
     }
 
+
   }
 
   onDayChange = (day) => {
@@ -275,6 +276,7 @@ class videoList extends React.Component {
     });
 
   }
+
 
   closeToggle() {
     var video = document.getElementById(`videoPlayer`);
@@ -773,7 +775,7 @@ class videoList extends React.Component {
           </div>
           <div className="containerli2">
             <div className="row">
-              <div className="col col-sm col-md-2 col-lg-2 ">
+              <div className="col-2 col-sm-2 col-md-2 col-lg-2 ">
                 <div className="iconCenter ">
                   <div className="start-e">
                     <p className="bold">เริ่มกันเลย!</p>
