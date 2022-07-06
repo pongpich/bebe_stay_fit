@@ -72,7 +72,7 @@ class Reset_password extends Component {
                 {validationEmail === "fail" ? <h6 style={{ color: "red" }}>กรุณาตรวจสอบสอบ Email: {email} อีกครั้ง</h6> : null}
               </div>
               <div className="col-10 col-sm-10 col-md-10 col-lg-10 center2 padding-bottom padding-top2 ">
-                <button type="button" className="btn bottom-pink-video" onClick={() => this.resetPasswordSucceed(email)}>ยืนยันหมาย อีเมล{/* เลขโทรศัพท์ */}</button>
+                <button type="button" className="btn bottom-pink-video" onClick={() => this.resetPasswordSucceed(email)}>ยืนยัน</button>
               </div>
             </div>
           </div>
