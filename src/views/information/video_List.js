@@ -1021,7 +1021,7 @@ class videoList extends React.Component {
               </div>
               <div className="modal-body">
 
-                <video className="video" id="videoPlayerIntro"  controls controlslist="nodownload" muted
+                <video className="video" id="videoPlayerIntro"  controls controlslist="nodownload"  disablepictureinpicture
                   src="https://player.vimeo.com/progressive_redirect/playback/725197026/rendition/720p/file.mp4?loc=external&signature=c18896ade99450a04bf11991805e52ef3f38d749e94c9f488a571567d7fefad0">
                 </video>
               </div>
@@ -1043,7 +1043,7 @@ class videoList extends React.Component {
                 {/* <button onClick={e => this.playVideo(e)}>PLAY</button> */}
               </div>
               <div className="modal-body">
-                <video className="video" id="videoPlayer" controls  controlslist="nodownload" muted src={videoUrl} ></video>
+                <video className="video" id="videoPlayer" controls  controlslist="nodownload" disablepictureinpicture src={videoUrl} ></video>
               </div>
             </div>
           </div>
@@ -1168,7 +1168,7 @@ class videoList extends React.Component {
                     <div className="playlistWrapperBack" >
                       <div className="boxvideo2" >
                         <div className="box-video">
-                          <video poster={`../assets/img/thumb/${item.category.toLowerCase().split(" ").join("")}_g3.jpg`} className="" width="100%" height="100%" controls controlslist="nodownload" muted style={{ borderRadius: "10px 10px 0px 0px", overflow: "hidden" }}>
+                          <video poster={`../assets/img/thumb/${item.category.toLowerCase().split(" ").join("")}_g3.jpg`} className="" width="100%" height="100%" controls controlslist="nodownload" disablepictureinpicture style={{ borderRadius: "10px 10px 0px 0px", overflow: "hidden" }}>
                             <source src={item.url ? `${item.url}` : `https://media.planforfit.com/bebe/video/${item.video_id}_720.mp4`} type="video/mp4"></source>
                           </video>
                         </div>
