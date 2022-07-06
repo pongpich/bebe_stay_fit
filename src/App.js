@@ -86,6 +86,7 @@ class App extends Component {
   }
 
   renderNavbar() {
+    const pagePath = this.props.location.pathname;
     const { user } = this.props;
     return (
       <nav className="navbar navbar-expand-lg bg-light information-box  sticky-top">
@@ -142,26 +143,27 @@ class App extends Component {
                 </div>
               </>
               :
-              <>
-                <button className="navbar-toggler" type="button" id="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                  <span className="navbar-toggler-icon"></span>
-                </button>
-                <div className="collapse navbar-collapse padding-left3" id="navbarSupportedContent">
-                  <ul className="navbar-nav me-auto mb-2 mb-lg-0 font-size5 bold">
-                    <li className="nav-item">
-                      <a className="nav-link pointer"  >ราคา</a>
-                    </li>
-                    <li className="nav-item">
-                      <a className="nav-link pointer" >สร้างโปรแกรมส่วนตัว</a>
-                    </li>
-                  </ul>
-                  <a className="nav-link nav-linkHead2 pointer bold" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                    <img src={user_circle} alt="vector" className="padding-rightIcon" />เข้าสู่ระบบ</a>
-                </div>
-
-
-
-              </>
+              (pagePath === "/home") ?
+                <>
+                  <button className="navbar-toggler" type="button" id="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span className="navbar-toggler-icon"></span>
+                  </button>
+                  <div className="collapse navbar-collapse padding-left3" id="navbarSupportedContent">
+                    <ul className="navbar-nav me-auto mb-2 mb-lg-0 font-size5 bold">
+                      <li className="nav-item">
+                        <a className="nav-link pointer"  >ราคา</a>
+                      </li>
+                      <li className="nav-item">
+                        <a className="nav-link pointer" >สร้างโปรแกรมส่วนตัว</a>
+                      </li>
+                    </ul>
+                    <a className="nav-link nav-linkHead2 pointer bold" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                      <img src={user_circle} alt="vector" className="padding-rightIcon" />เข้าสู่ระบบ</a>
+                  </div>
+                </>
+                :
+                <>
+                </>
           }
 
         </div>
