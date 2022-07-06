@@ -186,7 +186,7 @@ class Home extends React.Component {
         this.setState({
           carousel: this.state.carousel+1
         });
-      }, 7000);
+      }, 9000);
     }else{
       setTimeout(() => {
         this.setState({
@@ -299,7 +299,7 @@ class Home extends React.Component {
                   :
                   <img src={frame4} alt="vector" className="review-image" />
                   }
-              <img src={rectangle} alt="vector" className="home-image" />
+              <img src={rectangle} alt="vector" className="rectangle-image" />
             </div>
             <button className={this.state.carousel === 0 ? "slideshowDot active" : "slideshowDot"} onClick={() =>  this.frame(0)}></button>
             <button className={this.state.carousel === 1 ? "slideshowDot active" : "slideshowDot"} onClick={() =>  this.frame(1)}></button>
@@ -434,7 +434,7 @@ class Home extends React.Component {
                   :
                   <img src={frame4} alt="vector" className="review-image" />
                   }
-              <img src={rectangle} alt="vector" className="home-image" />
+              <img src={rectangle} alt="vector" className="rectangle-image" />
             </div>
             <button className={this.state.carousel === 0 ? "slideshowDot active" : "slideshowDot"} onClick={() =>  this.frame(0)}></button>
             <button className={this.state.carousel === 1 ? "slideshowDot active" : "slideshowDot"} onClick={() =>  this.frame(1)}></button>
@@ -471,7 +471,6 @@ class Home extends React.Component {
             <p className="text-end">จำกัด 75 คน</p>
           </div>
           <div className="part16">
-            <img src={part16512} alt="vector" className="home-image " />
             <img src={part16512} alt="vector" className="home-image " />
             <a
               href="https://fittowhey.com/8week/complete"
