@@ -77,34 +77,34 @@
     background-color: #F8159D !important;
     margin-top: -30px !important;
     height: 70px;
-    width: 300px !important;
+    width: 320px !important;
     color: #ffffff !important;
     margin-bottom: 50px;
     border-radius: 40px;
-    font-size: 32px !important;
+    font-size: 22px !important;
   }
   
   .bottom-pinkLogin2,.bottom-pinkLogin2:hover,.bottom-pinkLogin2:focus {
-    background-color: #F8159D !important;
-    margin-top: 0px !important;
+
+    background-color: #ffffff !important;
     height: 70px;
-    width: 300px !important;
-    color: #ffffff !important;
+    width: 320px !important;
+    color: #F8159D !important;
     margin-bottom: 50px;
     border-radius: 40px;
-    font-size: 32px !important;
+    font-size: 22px !important;
   }
   .bottom-pinkLogin1,.bottom-pinkLogin1:hover,.bottom-pinkLogin1:focus {
     background-color: #ffffff !important;
     box-shadow: 0px 2px 12px 1px  #c4c4c4;
     margin-top: 10px !important;
     height: 70px;
-    width: 300px !important;
+    width: 320px !important;
     border-color: #e25e96;
     color: #F8159D !important;
     margin-bottom: 50px;
     border-radius: 40px;
-    font-size: 32px !important;
+    font-size: 22px !important;
   }
 
   .win-540 {
@@ -131,6 +131,11 @@
   .text-headWidth1 {
     font-size: 28px !important;
   }
+  .review-image {
+    margin-left: 5% !important;
+    margin-top: 32% !important;
+    width: 90% !important;
+}
 
 }
 
@@ -2930,12 +2935,12 @@ tr:last-child td:last-child {
 }
 
 .textHome {
-  font-size: 40px;
+  font-size: 34px;
   color: #000000;
 }
 
 .textHome2 {
-  font-size: 32px;
+  font-size: 28px;
   color: #E25E96;
 }
 
@@ -2953,7 +2958,6 @@ tr:last-child td:last-child {
 }
 .bottom-pinkLogin2,.bottom-pinkLogin2:hover,.bottom-pinkLogin2:focus {
   background-color: #F8159D !important;
-  margin-top: 0px;
   box-shadow: 0px 2px 12px 1px  #c4c4c4;
   height: 70px;
   width: 500px;
@@ -3187,7 +3191,6 @@ tr:last-child td:last-child {
 .box-review {
   position: relative;
   padding-top: 60px;
-
   background-color: #F8159D;
   color: #FFFFFF;
   height: auto;
@@ -3221,8 +3224,8 @@ tr:last-child td:last-child {
 
 .slideshowDot {
   display: inline-block;
-  height: 20px;
-  width: 20px;
+  height: 25px;
+  width: 25px;
   color: #FFFFFF;
   border-radius: 50%;
   border: 2px solid #FFFFFF;
@@ -3240,4 +3243,10 @@ tr:last-child td:last-child {
 
 .rectangle-image {
   width: 100%;
+}
+.buttons-howDot {
+  position: relative;
+  height: 80px;
+  margin-top: -80px;
+  padding-top: 20px;
 }

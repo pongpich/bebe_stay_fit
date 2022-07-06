@@ -45,6 +45,7 @@ import part13512 from "../../assets/img/home512/part13512.webp";
 import price512 from "../../assets/img/home512/price512.webp";
 import countdown512 from "../../assets/img/home512/countdown512.webp";
 import part16512 from "../../assets/img/home512/part16512.webp";
+import rectangle512 from "../../assets/img/home512/rectangle512.webp";
 
 class Home extends React.Component {
   constructor(props) {
@@ -181,18 +182,21 @@ class Home extends React.Component {
   }
   timeout() {
 
-    if (this.state.carousel < 5) {
+    if (this.state.carousel < 6) {
       setTimeout(() => {
         this.setState({
           carousel: this.state.carousel+1
         });
       }, 9000);
     }else{
+      this.setState({
+        carousel: 5
+      });
       setTimeout(() => {
         this.setState({
           carousel: 0
         });
-      }, 7000);
+      }, 6000);
     }
     
  
@@ -261,13 +265,13 @@ class Home extends React.Component {
                 สามารถรับคำแนะนำลงทะเบียนปรึกษาผู้เชี่ยวชาญได้ที่
               </p>
               <div className="d-grid gap-2  mx-auto   col-12 col-sm-12  col-md-12 col-lg-12 center ">
-                <a
+                <button
                   href="https://fittowhey.com/8week/complete"
                   className="btn bottom-pinkLogin2 bold"
                   type="button"
                 >
                   ขอคำปรึกษา
-                </a>
+                </button>
               </div>
             </div>
           </div>
@@ -354,12 +358,12 @@ class Home extends React.Component {
             <div className="top-Home">
               <p className="textHome bold">สนใจสมัคร</p>
               <div className="d-grid gap-2  mx-auto   col-12 col-sm-12  col-md-12 col-lg-12 center ">
-                <a
+                <a href="https://fittowhey.com/8week/complete">
+                <button
                   className="btn bottom-pinkLogin1 bold"
-                  type="button"
-                  href="https://fittowhey.com/8week/complete"
-                >
+                  type="button">
                   ปรึกษาผู้เชี่ยวชาญ
+                </button>
                 </a>
                 <button
                   className="btn bottom-pinkLogin3 bold"
@@ -388,7 +392,7 @@ class Home extends React.Component {
           </div>
           <img src={part10512} alt="vector" className="home-image" />
           <div className="box-home">
-            <div className="top-Home">
+            <div className="top-Home padding-leftRight">
               <p className="textHome bold">
                 สำหรับผู้ที่มีปัญหาสุขภาพ แต่ไม่อยากที่จะพลาดแคมเปญนี้
               </p>
@@ -396,12 +400,12 @@ class Home extends React.Component {
                 สามารถรับคำแนะนำลงทะเบียนปรึกษาผู้เชี่ยวชาญได้ที่
               </p>
               <div className="d-grid gap-2  mx-auto   col-12 col-sm-12  col-md-12 col-lg-12 center ">
-                <a
-                  href="https://fittowhey.com/8week/complete"
+                <a  href="https://fittowhey.com/8week/complete">
+                <button
                   className="btn bottom-pinkLogin2 bold"
-                  type="button"
-                >
+                  type="button">
                   ขอคำปรึกษา
+                </button>
                 </a>
               </div>
             </div>
@@ -434,14 +438,16 @@ class Home extends React.Component {
                   :
                   <img src={frame4} alt="vector" className="review-image" />
                   }
-              <img src={rectangle} alt="vector" className="rectangle-image" />
+              <img src={rectangle512} alt="vector" className="rectangle-image" />
             </div>
+            <div className="buttons-howDot">
             <button className={this.state.carousel === 0 ? "slideshowDot active" : "slideshowDot"} onClick={() =>  this.frame(0)}></button>
             <button className={this.state.carousel === 1 ? "slideshowDot active" : "slideshowDot"} onClick={() =>  this.frame(1)}></button>
             <button className={this.state.carousel === 2 ? "slideshowDot active" : "slideshowDot"} onClick={() =>  this.frame(2)}></button>
             <button className={this.state.carousel === 3 ? "slideshowDot active" : "slideshowDot"} onClick={() =>  this.frame(3)}></button>
             <button className={this.state.carousel === 4 ? "slideshowDot active" : "slideshowDot"} onClick={() =>  this.frame(4)}></button>
             <button className={this.state.carousel === 5 ? "slideshowDot active" : "slideshowDot"} onClick={() =>  this.frame(5)}></button>
+            </div>
           </div>
 
           <img src={part13512} alt="vector" className="home-image" />
