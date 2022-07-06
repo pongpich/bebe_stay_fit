@@ -88,6 +88,18 @@ class videoList extends React.Component {
       if (this.props.statusVideoList !== "no_video") {
         this.addEventToVideo();
       }
+
+      if (user.other_attributes.sex && user.other_attributes.age) {
+        this.setState({
+          sex: user.other_attributes.sex,
+          age: user.other_attributes.age,
+        })
+      } else {
+        this.setState({
+          sex: JSON.parse(user.other_attributes).sex,
+          age: JSON.parse(user.other_attributes).age,
+        })
+      }
     }
 
     /*    if (user && statusVideoList === "no_video") {
@@ -1023,7 +1035,7 @@ class videoList extends React.Component {
               </div>
               <div className="modal-body">
 
-                <video className="video" id="videoPlayerIntro"  controls controlslist="nodownload"  disablepictureinpicture
+                <video className="video" id="videoPlayerIntro" controls controlslist="nodownload" disablepictureinpicture
                   src="https://player.vimeo.com/progressive_redirect/playback/725197026/rendition/720p/file.mp4?loc=external&signature=c18896ade99450a04bf11991805e52ef3f38d749e94c9f488a571567d7fefad0">
                 </video>
               </div>
@@ -1045,7 +1057,7 @@ class videoList extends React.Component {
                 {/* <button onClick={e => this.playVideo(e)}>PLAY</button> */}
               </div>
               <div className="modal-body">
-                <video className="video" id="videoPlayer" controls  controlslist="nodownload" disablepictureinpicture src={videoUrl} ></video>
+                <video className="video" id="videoPlayer" controls controlslist="nodownload" disablepictureinpicture src={videoUrl} ></video>
               </div>
             </div>
           </div>

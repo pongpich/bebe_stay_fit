@@ -486,7 +486,7 @@ function* updateProfileSaga({ payload }) {
     );
     yield put({
       type: types.UPDATE_PROFILE_SUCCESS,
-      payload: other_attributes
+      payload: JSON.stringify(other_attributes)
     })
   } catch (error) {
     console.log("error from updateProfileSaga :", error);
