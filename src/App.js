@@ -98,17 +98,32 @@ class App extends Component {
     if (expired === true) {
       document.getElementById("modalExpireClick").click();
     }
-
   }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.location.pathname !== this.props.location.pathname) {
+      const { user } = this.props;
+      var expired = false;
+      if (user && user.expire_date) {
+        const currentDate = new Date().getTime();
+        const expireDate = new Date(user.expire_date).getTime();
+        expired = (currentDate > expireDate);
+      }
+      if (expired) {
+        document.getElementById("modalExpireClick").click();
+      }
+    }
+  }
+
   renderExpired() {
-   
+
     return (
       <>
-     <div style={{display: 'none' }}>
-     <button type="button" class="btn btn-primary" id="modalExpireClick" data-bs-toggle="modal" data-bs-target="#modalExpire">
-          Launch demo modal
-        </button>
-     </div>
+        <div style={{ display: 'none' }}>
+          <button type="button" class="btn btn-primary" id="modalExpireClick" data-bs-toggle="modal" data-bs-target="#modalExpire">
+            Launch demo modal
+          </button>
+        </div>
         <div class="modal fade" id="modalExpire" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
           <div class="modal-dialog">
             <div class="modal-content">
@@ -117,16 +132,16 @@ class App extends Component {
               </div>
               <div class="modal-bodyExpire">
                 <p className="headText-expire bold">
-                BebeStayFit ของคุณ
+                  BebeStayFit ของคุณ
                 <br />หมดอายุแล้ว
                 </p>
                 <p className="boxText-expire">
-                หากคุณต้องการต้องการเข้าร่วมโปรแกรม <br />
+                  หากคุณต้องการต้องการเข้าร่วมโปรแกรม <br />
                 BebeStayFit ต่อ <br />
-                กรุณาคลิกชำระเงินด้านล่าง 
+                กรุณาคลิกชำระเงินด้านล่าง
                 </p>
                 <div className="btn-expire">
-                 <button type="button" class="btn  bottom-pinkLogin font-size6 col-10 col-sm-10 col-md-10 col-lg-10" data-bs-dismiss="modal">ชำระเงิน</button>
+                  <button type="button" class="btn  bottom-pinkLogin font-size6 col-10 col-sm-10 col-md-10 col-lg-10" data-bs-dismiss="modal">ชำระเงิน</button>
                 </div>
               </div>
             </div>
@@ -226,14 +241,11 @@ class App extends Component {
 
 
   render() {
- 
-
-
     return (
       <div className="App">
         {this.renderNavbar()}
         {this.renderExpired()}
-       
+
         <header className="App-header ">
           <Switch>
             <Route exact path="/">
