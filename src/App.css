@@ -59,8 +59,10 @@
   }
 
   .marginLeftRoutine {
-    margin-left: -20px;
+    margin-left: -30px;
   }
+
+  
 
   .video-link2 {
 
@@ -69,7 +71,7 @@
 
   .rectangle14 {
     margin-right: 20px;
-    margin-left: 10px !important;
+    margin-left: 0px !important;
     margin-top: -15px;
     border-bottom: 3px solid #4f4f4f;
   }
@@ -135,7 +137,17 @@
     margin-left: 5% !important;
     margin-top: 32% !important;
     width: 90% !important;
-}
+  }
+
+  .containerli {
+    --bs-gutter-x: 1.5rem;
+    --bs-gutter-y: 0;
+    width: 100%;
+    padding-right: 20px;
+    padding-left: 0px !important;
+    margin-left: auto;
+    padding-top: 20px;
+  }
 
 }
 
@@ -1940,7 +1952,7 @@ a:hover {
 }
 
 .nav-left2 {
-  padding-left: 50px !important;
+  padding-left: 20px !important;
 }
 
 .video-ul2 {
