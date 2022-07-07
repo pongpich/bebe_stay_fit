@@ -89,7 +89,7 @@ class App extends Component {
 
   componentDidMount() {
     const { user } = this.props;
-    var expired = true;
+    var expired = false;
     if (user && user.expire_date) {
       const currentDate = new Date().getTime();
       const expireDate = new Date(user.expire_date).getTime();
