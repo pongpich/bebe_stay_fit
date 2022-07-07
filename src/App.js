@@ -120,17 +120,17 @@ class App extends Component {
     return (
       <>
         <div style={{ display: 'none' }}>
-          <button type="button" class="btn btn-primary" id="modalExpireClick" data-bs-toggle="modal" data-bs-target="#modalExpire">
+          <button type="button" className="btn btn-primary" id="modalExpireClick" data-bs-toggle="modal" data-bs-target="#modalExpire">
             Launch demo modal
           </button>
         </div>
-        <div class="modal fade" id="modalExpire" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-          <div class="modal-dialog">
-            <div class="modal-content">
-              <div class="modal-header">
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <div className="modal fade" id="modalExpire" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div className="modal-dialog modal-dialog-centered">
+            <div className="modal-content">
+              <div className="modal-header">
+                <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
-              <div class="modal-bodyExpire">
+              <div className="modal-bodyExpire">
                 <p className="headText-expire bold">
                   BebeStayFit ของคุณ
                 <br />หมดอายุแล้ว
@@ -224,6 +224,8 @@ class App extends Component {
                         {/* <a className="nav-link pointer" >สร้างโปรแกรมส่วนตัว</a> */}
                       </li>
                     </ul>
+                    <a className="nav-link nav-linkHead2 pointer bold" onClick={() => this.props.history.push("/programPackage")}>ลงทะเบียน</a>
+                    &nbsp; &nbsp;&nbsp;
                     <a className="nav-link nav-linkHead2 pointer bold" data-bs-toggle="modal" data-bs-target="#exampleModal">
                       <img src={user_circle} alt="vector" className="padding-rightIcon" />เข้าสู่ระบบ</a>
                   </div>
