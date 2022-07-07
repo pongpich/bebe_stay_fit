@@ -223,7 +223,6 @@ class Home extends React.Component {
   homeLogin() {
     this.timeout()
 
-
     return (
       <>
         <div className="win-541">
@@ -235,7 +234,8 @@ class Home extends React.Component {
                 <a
                   className="btn bottom-pinkLogin1 bold"
                   type="button"
-                  href="https://fittowhey.com/8week/complete"
+                  //href="https://fittowhey.com/8week/complete"
+                  onClick={() => this.props.history.push("/complete")}
                 >
                   ปรึกษาผู้เชี่ยวชาญ
                 </a>

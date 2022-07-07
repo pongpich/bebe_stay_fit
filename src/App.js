@@ -273,6 +273,8 @@ class App extends Component {
             <Route path='/cc_checkout' render={() => { window.location.href = "cc_checkout.html" }} />
             <Route path='/cc_token' render={() => { window.location.href = "cc_token.html" }} />
             <Route path='/cc_preotp' render={() => { window.location.href = "cc_preotp.html" }} />
+            <Route path='/complete' render={() => { window.location.href = "complete.html" }} />
+            <Route path='/complete_thankyou' render={() => { window.location.href = "complete_thankyou.html" }} />
             <Route path='/shipping_check' component={Shipping_check} />
             <Route path='/billing_history' component={Billing_history} />
             <Route path='/food_supplement' component={Food_supplement} />
