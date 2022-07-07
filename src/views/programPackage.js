@@ -200,7 +200,7 @@ class ProgramPackage extends React.Component {
               </div>
               <div className="row center">
                   <div className="center">
-                  <p className="register-to-join"> กรุณาเลือกแพ็คเกจที่คุณต้องการ</p>
+                  <p className="register-to-join"> กรุณาเลือกแพ็กเกจที่คุณต้องการ</p>
                 </div>
                 <div className="col-10 col-sm-10 col-md-4 col-lg-4 margin-boxLeft">
                   <div className="box-starter_set text-center">
@@ -218,7 +218,7 @@ class ProgramPackage extends React.Component {
                     </div>
                     <div className="d-grid gap-2 col-8 ol-sm-8  mx-auto   col-md-8 col-lg-8 distance ">
                       <button className="btn bottom-outlinePink magTop" type="button" onClick={() => this.selectProgram("starter_stay_fit_01")}>
-                        เลือกแพ็คเกจนี้
+                        เลือกแพ็กเกจนี้
                       </button>
                     </div>
                   </div>
@@ -264,7 +264,7 @@ class ProgramPackage extends React.Component {
                       </div>
                       <div className="d-grid gap-2 col-8 ol-sm-8  mx-auto   col-md-8 col-lg-8 distance">
                         <button className="btn bottom-pink" type="button" onClick={() => this.selectProgram("subscription_stay_fit_01")} >
-                          เลือกแพ็คเกจนี้
+                          เลือกแพ็กเกจนี้
                         </button>
                       </div>
                     </div>

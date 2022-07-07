@@ -26,7 +26,7 @@ class CancelPackage extends React.Component {
                     <div className="col-12 col-sm-12 col-md-6 col-lg-6 center2">
                         <div className="box-protein margin-bottom1 padding-top2">
                             <div className="padding-top2 text-left margin-leftRight">
-                                <p className="font-size6 bold">แพ็คเกจของคุณ </p>
+                                <p className="font-size6 bold">แพ็กเกจของคุณ </p>
                                 <p className="font-size5 margin-top-1 bold between">ตามระยะเวลาของโปรแกรม <span className="color1 bold font-size5">3,750 บาท / 2 เดือน</span></p>
                             </div>
                             <p className="border-bottom margin-leftRight padding-top2"></p>

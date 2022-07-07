@@ -264,12 +264,12 @@ class Payment extends React.Component {
               <div className="padding-top">
                 <div className="box-proteinAddress padding-top">
                   <div className="padding-top2">
-                    {/* <p className=" bold font-size5 between">แพ็คเกจของคุณ <span className="font-size4 light decoration pointer" onClick={e => this.onChickprice(e)}>เปลี่ยน</span></p> */}
+                    {/* <p className=" bold font-size5 between">แพ็กเกจของคุณ <span className="font-size4 light decoration pointer" onClick={e => this.onChickprice(e)}>เปลี่ยน</span></p> */}
 
                     <p className="font-size5">
                       {programId === "starter_stay_fit_01" ?
                         <>
-                          <p className="font-size5 bold">แพ็คเกจของคุณ</p>
+                          <p className="font-size5 bold">แพ็กเกจของคุณ</p>
                           <p className="section-sizeLeft">สมัครตามระยะเวลาของโปรแกรม</p>
                           <p className="font-size5 bold">
                             {this.state.program.price.toLocaleString('en')}  บาท
@@ -280,7 +280,7 @@ class Payment extends React.Component {
                         </>
                         :
                         <>
-                          <p className="font-size5 bold">แพ็คเกจของคุณ</p>
+                          <p className="font-size5 bold">แพ็กเกจของคุณ</p>
                           <p className="section-sizeLeft">สมัครตามระยะเวลาของโปรแกรม</p>
                           <p className="font-size5 bold">
                             {this.state.program.price.toLocaleString('en')}  บาท

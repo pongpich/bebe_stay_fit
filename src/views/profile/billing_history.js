@@ -19,7 +19,7 @@ class Billing_history extends React.Component {
                                 <h4 className="color1 bold">BEBEStayFit</h4>
                             </div>
                             <div className="padding-top2 margin-leftRight">
-                                <p className="font-size6 text-left2 bold">แพ็คเกจของคุณ </p>
+                                <p className="font-size6 text-left2 bold">แพ็กเกจของคุณ </p>
                                 <p className="font-size0 margin-top-1 bold between">ตามระยะเวลาของโปรแกรม <span className="color1 bold font-size0">3,750 บาท / 2 เดือน</span></p>
                                 <p className=" font-size4 margin-top-1 right">วันตัดรอบบิล 30 มิ.ย. 2565</p>
                             </div>
@@ -34,7 +34,7 @@ class Billing_history extends React.Component {
                             </div>
                             <p className="border-bottom margin-leftRight"></p>
                             <div className="padding-top2 margin-leftRight">
-                            <p className="font-size0 margin-top-1  between">แพ็คเกจของคุณ <span className="bold font-size0">ตามระยะเวลาของโปรแกรม</span></p>
+                            <p className="font-size0 margin-top-1  between">แพ็กเกจของคุณ <span className="bold font-size0">ตามระยะเวลาของโปรแกรม</span></p>
                             <p className="font-size0 margin-top-1  between">ชำระผ่าน <span className="bold font-size0">QR code</span></p>
                             </div>
                         </div>
@@ -44,7 +44,7 @@ class Billing_history extends React.Component {
                             </div>
                             <p className="border-bottom margin-leftRight"></p>
                             <div className="padding-top2 margin-leftRight">
-                            <p className="font-size0 margin-top-1  between">แพ็คเกจของคุณ <span className="bold font-size0">ตามระยะเวลาของโปรแกรม</span></p>
+                            <p className="font-size0 margin-top-1  between">แพ็กเกจของคุณ <span className="bold font-size0">ตามระยะเวลาของโปรแกรม</span></p>
                             <p className="font-size0 margin-top-1  between">ชำระผ่าน <span className="bold font-size0">บัตรเดบิต/เครดิต **********1234</span></p>
                             </div>
                         </div>

@@ -275,13 +275,15 @@ class Home extends React.Component {
                 สามารถรับคำแนะนำลงทะเบียนปรึกษาผู้เชี่ยวชาญได้ที่
               </p>
               <div className="d-grid gap-2  mx-auto   col-12 col-sm-12  col-md-12 col-lg-12 center ">
-                <button
-                  href="https://fittowhey.com/8week/complete"
-                  className="btn bottom-pinkLogin2 bold"
-                  type="button"
-                >
-                  ขอคำปรึกษา
-                </button>
+                <a href="https://fittowhey.com/8week/complete">
+                  <button
+                    href="https://fittowhey.com/8week/complete"
+                    className="btn bottom-pinkLogin2 bold"
+                    type="button"
+                  >
+                    ขอคำปรึกษา
+                  </button>
+                </a>
               </div>
             </div>
           </div>

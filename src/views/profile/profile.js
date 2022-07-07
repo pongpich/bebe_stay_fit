@@ -44,7 +44,7 @@ class Profile extends React.Component {
                 <h4 className="color1 bold">BEBEStayFit</h4>
               </div>
               <div className="padding-top2  margin-leftRight">
-                <p className="font-size6 text-left2 bold">แพ็คเกจของคุณ </p>
+                <p className="font-size6 text-left2 bold">แพ็กเกจของคุณ </p>
                 <p className="font-size0 margin-top-1 bold between">ตามระยะเวลาของโปรแกรม <span className="color1 bold font-size0">3,750 บาท / 2 เดือน</span></p>
                 <p className=" font-size4 margin-top-1 right color3">วันตัดรอบบิล 30 มิ.ย. 2565</p>
 
@@ -55,7 +55,7 @@ class Profile extends React.Component {
                   ประวัติการเรียกเก็บ
                                 </button>
                 <button className="btn bottom-outlineGrey margin-top-3" type="button" >
-                  ยกเลิกแพ็คเกจ
+                  ยกเลิกแพ็กเกจ
                                 </button>
               </div>
             </div>
