@@ -137,7 +137,7 @@ class Home extends React.Component {
         });
       }
     }
-/*     this.timeout() */
+    /*     this.timeout() */
   }
 
   resetPassword() {
@@ -175,37 +175,37 @@ class Home extends React.Component {
   }
 
   frame(e) {
-    console.log("e",e);
+    console.log("e", e);
 
-      this.setState({
-        carousel: e
-      });
+    this.setState({
+      carousel: e
+    });
 
-      setTimeout(() => {
+    setTimeout(() => {
 
-      }, 9000);
-      this.timeout();
+    }, 9000);
+    this.timeout();
   }
 
 
-  timeout () {
+  timeout() {
 
     if (this.state.carousel === 5) {
-      console.log("if",this.state.carousel );
+      console.log("if", this.state.carousel);
       setTimeout(() => {
         this.setState({
           carousel: 0
         });
       }, 9000);
-    }else if (this.state.carousel < 5){
-  console.log("else",this.state.carousel );
+    } else if (this.state.carousel < 5) {
+      console.log("else", this.state.carousel);
       setTimeout(() => {
         this.setState({
-          carousel: this.state.carousel+1
+          carousel: this.state.carousel + 1
         });
       }, 9000);
     }
-    
+
   }
 
   handleChange(event) {
@@ -295,34 +295,34 @@ class Home extends React.Component {
               </p>
               <p className="text-review">เเละร่วมสนุกกิจกรรมจาก FITTO</p>
             </div>
-              <div className="review-boxImage">
-                  {this.state.carousel === 0  ? 
-                   <img src={frame6} alt="vector" className="review-image" />
-                  :
-                  this.state.carousel === 1  ? 
+            <div className="review-boxImage">
+              {this.state.carousel === 0 ?
+                <img src={frame6} alt="vector" className="review-image" />
+                :
+                this.state.carousel === 1 ?
                   <img src={frame5} alt="vector" className="review-image" />
                   :
-                  this.state.carousel === 2  ? 
-                  <img src={frame1} alt="vector" className="review-image" />
-                  :
-                  this.state.carousel === 3  ? 
-                  <img src={frame2} alt="vector" className="review-image" />
-                  :
-                  this.state.carousel === 4  ? 
-                  <img src={frame3} alt="vector" className="review-image" />
-                  :
-                  <img src={frame4} alt="vector" className="review-image" />
-                  }
+                  this.state.carousel === 2 ?
+                    <img src={frame1} alt="vector" className="review-image" />
+                    :
+                    this.state.carousel === 3 ?
+                      <img src={frame2} alt="vector" className="review-image" />
+                      :
+                      this.state.carousel === 4 ?
+                        <img src={frame3} alt="vector" className="review-image" />
+                        :
+                        <img src={frame4} alt="vector" className="review-image" />
+              }
               <img src={rectangle} alt="vector" className="rectangle-image" />
             </div>
             <div className="buttons-howDot">
-            <button className={this.state.carousel === 0 ? "slideshowDot active" : "slideshowDot"} onClick={() =>  this.frame(0)}></button>
-            <button className={this.state.carousel === 1 ? "slideshowDot active" : "slideshowDot"} onClick={() =>  this.frame(1)}></button>
-            <button className={this.state.carousel === 2 ? "slideshowDot active" : "slideshowDot"} onClick={() =>  this.frame(2)}></button>
-            <button className={this.state.carousel === 3 ? "slideshowDot active" : "slideshowDot"} onClick={() =>  this.frame(3)}></button>
-            <button className={this.state.carousel === 4 ? "slideshowDot active" : "slideshowDot"} onClick={() =>  this.frame(4)}></button>
-            <button className={this.state.carousel === 5 ? "slideshowDot active" : "slideshowDot"} onClick={() =>  this.frame(5)}></button>
-          </div>
+              <button className={this.state.carousel === 0 ? "slideshowDot active" : "slideshowDot"} onClick={() => this.frame(0)}></button>
+              <button className={this.state.carousel === 1 ? "slideshowDot active" : "slideshowDot"} onClick={() => this.frame(1)}></button>
+              <button className={this.state.carousel === 2 ? "slideshowDot active" : "slideshowDot"} onClick={() => this.frame(2)}></button>
+              <button className={this.state.carousel === 3 ? "slideshowDot active" : "slideshowDot"} onClick={() => this.frame(3)}></button>
+              <button className={this.state.carousel === 4 ? "slideshowDot active" : "slideshowDot"} onClick={() => this.frame(4)}></button>
+              <button className={this.state.carousel === 5 ? "slideshowDot active" : "slideshowDot"} onClick={() => this.frame(5)}></button>
+            </div>
           </div>
           <img src={part13} alt="vector" className="home-image" />
           <div className="part16">
@@ -370,11 +370,11 @@ class Home extends React.Component {
               <p className="textHome bold">สนใจสมัคร</p>
               <div className="d-grid gap-2  mx-auto   col-12 col-sm-12  col-md-12 col-lg-12 center ">
                 <a href="https://fittowhey.com/8week/complete">
-                <button
-                  className="btn bottom-pinkLogin1 bold"
-                  type="button">
-                  ปรึกษาผู้เชี่ยวชาญ
-                </button>
+                  <button
+                    className="btn bottom-pinkLogin1 bold"
+                    type="button">
+                    ปรึกษาผู้เชี่ยวชาญ
+                  </button>
                 </a>
                 <button
                   className="btn bottom-pinkLogin3 bold"
@@ -411,12 +411,12 @@ class Home extends React.Component {
                 สามารถรับคำแนะนำลงทะเบียนปรึกษาผู้เชี่ยวชาญได้ที่
               </p>
               <div className="d-grid gap-2  mx-auto   col-12 col-sm-12  col-md-12 col-lg-12 center ">
-                <a  href="https://fittowhey.com/8week/complete">
-                <button
-                  className="btn bottom-pinkLogin2 bold"
-                  type="button">
-                  ขอคำปรึกษา
-                </button>
+                <a href="https://fittowhey.com/8week/complete">
+                  <button
+                    className="btn bottom-pinkLogin2 bold"
+                    type="button">
+                    ขอคำปรึกษา
+                  </button>
                 </a>
               </div>
             </div>
@@ -431,33 +431,33 @@ class Home extends React.Component {
               </p>
               <p className="text-review">เเละร่วมสนุกกิจกรรมจาก FITTO</p>
             </div>
-              <div className="review-boxImage">
-                  {this.state.carousel === 0  ? 
-                   <img src={frame6} alt="vector" className="review-image" />
-                  :
-                  this.state.carousel === 1  ? 
+            <div className="review-boxImage">
+              {this.state.carousel === 0 ?
+                <img src={frame6} alt="vector" className="review-image" />
+                :
+                this.state.carousel === 1 ?
                   <img src={frame5} alt="vector" className="review-image" />
                   :
-                  this.state.carousel === 2  ? 
-                  <img src={frame1} alt="vector" className="review-image" />
-                  :
-                  this.state.carousel === 3  ? 
-                  <img src={frame2} alt="vector" className="review-image" />
-                  :
-                  this.state.carousel === 4  ? 
-                  <img src={frame3} alt="vector" className="review-image" />
-                  :
-                  <img src={frame4} alt="vector" className="review-image" />
-                  }
+                  this.state.carousel === 2 ?
+                    <img src={frame1} alt="vector" className="review-image" />
+                    :
+                    this.state.carousel === 3 ?
+                      <img src={frame2} alt="vector" className="review-image" />
+                      :
+                      this.state.carousel === 4 ?
+                        <img src={frame3} alt="vector" className="review-image" />
+                        :
+                        <img src={frame4} alt="vector" className="review-image" />
+              }
               <img src={rectangle512} alt="vector" className="rectangle-image" />
             </div>
             <div className="buttons-howDot">
-            <button className={this.state.carousel === 0 ? "slideshowDot active" : "slideshowDot"} onClick={() =>  this.frame(0)}></button>
-            <button className={this.state.carousel === 1 ? "slideshowDot active" : "slideshowDot"} onClick={() =>  this.frame(1)}></button>
-            <button className={this.state.carousel === 2 ? "slideshowDot active" : "slideshowDot"} onClick={() =>  this.frame(2)}></button>
-            <button className={this.state.carousel === 3 ? "slideshowDot active" : "slideshowDot"} onClick={() =>  this.frame(3)}></button>
-            <button className={this.state.carousel === 4 ? "slideshowDot active" : "slideshowDot"} onClick={() =>  this.frame(4)}></button>
-            <button className={this.state.carousel === 5 ? "slideshowDot active" : "slideshowDot"} onClick={() =>  this.frame(5)}></button>
+              <button className={this.state.carousel === 0 ? "slideshowDot active" : "slideshowDot"} onClick={() => this.frame(0)}></button>
+              <button className={this.state.carousel === 1 ? "slideshowDot active" : "slideshowDot"} onClick={() => this.frame(1)}></button>
+              <button className={this.state.carousel === 2 ? "slideshowDot active" : "slideshowDot"} onClick={() => this.frame(2)}></button>
+              <button className={this.state.carousel === 3 ? "slideshowDot active" : "slideshowDot"} onClick={() => this.frame(3)}></button>
+              <button className={this.state.carousel === 4 ? "slideshowDot active" : "slideshowDot"} onClick={() => this.frame(4)}></button>
+              <button className={this.state.carousel === 5 ? "slideshowDot active" : "slideshowDot"} onClick={() => this.frame(5)}></button>
             </div>
           </div>
 
@@ -690,7 +690,7 @@ class Home extends React.Component {
   }
 
   render() {
-    const { validation, validationLogin,carousel } = this.state;
+    const { validation, validationLogin, carousel } = this.state;
 
     return (
       <>

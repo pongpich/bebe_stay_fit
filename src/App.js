@@ -87,11 +87,53 @@ class App extends Component {
     document.getElementById("navbar-toggler").click();
   }
 
+  componentDidMount() {
+    const { user } = this.props;
+    var expired = true;
+    if (user && user.expire_date) {
+      const currentDate = new Date().getTime();
+      const expireDate = new Date(user.expire_date).getTime();
+      expired = (currentDate > expireDate);
+    }
+    if (expired === true) {
+      document.getElementById("modalExpireClick").click();
+    }
+
+  }
   renderExpired() {
+   
     return (
-      <div>
-        <h1>หมดอายุ</h1>
-      </div>
+      <>
+     <div style={{display: 'none' }}>
+     <button type="button" class="btn btn-primary" id="modalExpireClick" data-bs-toggle="modal" data-bs-target="#modalExpire">
+          Launch demo modal
+        </button>
+     </div>
+        <div class="modal fade" id="modalExpire" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-bodyExpire">
+                <p className="headText-expire bold">
+                BebeStayFit ของคุณ
+                <br />หมดอายุแล้ว
+                </p>
+                <p className="boxText-expire">
+                หากคุณต้องการต้องการเข้าร่วมโปรแกรม <br />
+                BebeStayFit ต่อ <br />
+                กรุณาคลิกชำระเงินด้านล่าง 
+                </p>
+                <div className="btn-expire">
+                 <button type="button" class="btn  bottom-pinkLogin font-size6 col-10 col-sm-10 col-md-10 col-lg-10" data-bs-dismiss="modal">ชำระเงิน</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </>
     )
   }
 
@@ -161,7 +203,7 @@ class App extends Component {
                   <div className="collapse navbar-collapse padding-left3" id="navbarSupportedContent">
                     <ul className="navbar-nav me-auto mb-2 mb-lg-0 font-size5 bold">
                       <li className="nav-item">
-                       {/*  <a className="nav-link pointer"  >ราคา</a> */}
+                        {/*  <a className="nav-link pointer"  >ราคา</a> */}
                       </li>
                       <li className="nav-item">
                         {/* <a className="nav-link pointer" >สร้างโปรแกรมส่วนตัว</a> */}
@@ -182,19 +224,16 @@ class App extends Component {
     )
   }
 
+
   render() {
-    const { user } = this.props;
-    var expired = false;
-    if (user && user.expire_date) {
-      const currentDate = new Date().getTime();
-      const expireDate = new Date(user.expire_date).getTime();
-      expired = (currentDate > expireDate);
-    }
+ 
+
 
     return (
       <div className="App">
         {this.renderNavbar()}
-        {expired && this.renderExpired()}
+        {this.renderExpired()}
+       
         <header className="App-header ">
           <Switch>
             <Route exact path="/">
