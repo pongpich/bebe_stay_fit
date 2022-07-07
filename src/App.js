@@ -32,6 +32,8 @@ import { logoutUser } from "./redux/auth";
 import { clearCreateUser } from "./redux/createUser";
 import { clearProgram } from "./redux/exerciseProgram";
 
+import moment from 'moment';
+
 import {
   BrowserRouter as Router,
   Switch,
@@ -83,6 +85,14 @@ class App extends Component {
       })
     }
     document.getElementById("navbar-toggler").click();
+  }
+
+  renderExpired() {
+    return (
+      <div>
+        <h1>หมดอายุ</h1>
+      </div>
+    )
   }
 
   renderNavbar() {
@@ -149,7 +159,7 @@ class App extends Component {
                     <span className="navbar-toggler-icon"></span>
                   </button>
                   <div className="collapse navbar-collapse padding-left3" id="navbarSupportedContent">
-           {/*          <ul className="navbar-nav me-auto mb-2 mb-lg-0 font-size5 bold">
+                    {/*          <ul className="navbar-nav me-auto mb-2 mb-lg-0 font-size5 bold">
                       <li className="nav-item">
                         <a className="nav-link pointer"  >ราคา</a>
                       </li>
@@ -232,9 +242,18 @@ class App extends Component {
   }
 
   render() {
+    const { user } = this.props;
+    var expired = false;
+    if (user && user.expire_date) {
+      const currentDate = new Date().getTime();
+      const expireDate = new Date(user.expire_date).getTime();
+      expired = (currentDate > expireDate);
+    }
+
     return (
       <div className="App">
         {this.renderNavbar()}
+        {expired && this.renderExpired()}
         <header className="App-header ">
           <Switch>
             <Route exact path="/">
