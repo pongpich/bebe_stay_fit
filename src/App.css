@@ -149,6 +149,15 @@
     padding-top: 20px;
   }
 
+  .form-check-reverse {
+    padding-right: 1.5em;
+    margin-left: -20px !important;
+    text-align: left !important;
+  }
+  .form-switch.form-check-reverse {
+    padding-right: 35px !important;
+  }
+
 }
 
 @media only screen and (max-width: 760px) {
@@ -242,10 +251,7 @@
     height: 520px !important;
   }
 
-  .form-check-reverse {
-    text-align: left;
-    float: left;
-  }
+ 
 
   .iconCenter {
     padding-left: 40% !important;

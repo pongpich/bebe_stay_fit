@@ -786,7 +786,7 @@ class videoList extends React.Component {
                 <img src={edit} className="icon-edit" />
                 แก้ไขคลิปออกกำลังกาย
               </div> */}
-              <div className="col col-lg-3">
+              <div className="col-4">
                 <div className="form-check form-switch form-check-reverse">
                   <input className="form-check-input" type="checkbox" id="autoPlayCheck" onClick={() => this.autoPlayCheck()} />
                   <label className="form-check-label" >เล่นต่อเนื่องอัตโนมัติ</label>
