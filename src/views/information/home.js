@@ -101,7 +101,7 @@ class Home extends React.Component {
     ).toFixed(0);
     var width;
     const oneDay = 24 * 60 * 60 * 1000; // hours*minutes*seconds*milliseconds
-    const startDate = new Date("2022-06-30T23:59:59");
+    const startDate = new Date("2022-07-07T23:59:59");
     const currDate = new Date();
     const diffDays = Math.round(Math.abs((startDate - currDate) / oneDay));
 
