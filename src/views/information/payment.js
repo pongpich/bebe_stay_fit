@@ -316,19 +316,27 @@ class Payment extends React.Component {
               this.state.status_payment === "unsuccess" &&
               <h6 style={{ color: "red" }}>ระบบเรียกเก็บเงินไม่สำเร็จกรุณาตรวจสอบข้อมูลบัตรให้ถูกต้องอีกครั้ง หรือเปลี่ยนวิธีการชำระเงิน</h6>
             }
-            <div className="col-12 col-sm-12 col-md-10 col-lg-10 center2">
+            <div className="col-12 col-sm-12 col-md-12 col-lg-12 center2">
               <button type="button" className={this.state.creditCardFocus} onClick={e => this.pinkModelFocus("1")}>บัตรเครดิต/เดบิต</button>&nbsp;&nbsp;&nbsp;
               <button type="button" className={this.state.qrCodeFocus} onClick={e => this.pinkModelFocus("2")}>ชำระด้วย QR Code</button>
             </div>
+            <div className="center">
+            <div className="col-11 col-sm-11 col-md-11 col-lg-11 boxText-qrCode" >
+                <p>1. หลังกด “ชำระเงิน” คุณจะได้รับ QR Code เพื่อชำระ</p>
+                <p>2.เปิดแอปพลิเคชันธนาคารที่คุณมี</p>
+                <p>3. ไปยังเมนู “สแกน” หรือ “สแกนจ่าย”</p>
+                <p>4. ตรวจสอบชื่อบัญชี ชื่อบัญชี และยอดที่คุณต้องชำระก่อนทำรายการ</p>
+            </div>
+            </div>
 
-            <div className="d-grid gap-2 col-10 ol-sm-10  mx-auto   col-md-10 col-lg-10 distance">
+            <div className="d-grid gap-2 col-10 col-sm-10  mx-auto   col-md-10 col-lg-10 distance">
               {
                 /* (this.state.paymentMethod === "creditCard") &&
                 <input id="cc_button" className="btn bottom-pink" value="ชำระเงิน" onClick={() => this.onPay()} /> */
               }
               {
                 (this.state.paymentMethod === "creditCard") &&
-                <input id="cc_button" className="btn bottom-pink" value="ชำระเงิน" onClick={() => this.props.history.push("cc_token")} />
+                <input id="cc_button" className="btn bottom-pink col-12 col-sm-12" value="ชำระเงิน" onClick={() => this.props.history.push("cc_token")} />
               }
             </div>
 
