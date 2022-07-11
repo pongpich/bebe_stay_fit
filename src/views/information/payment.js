@@ -320,14 +320,17 @@ class Payment extends React.Component {
               <button type="button" className={this.state.creditCardFocus} onClick={e => this.pinkModelFocus("1")}>บัตรเครดิต/เดบิต</button>&nbsp;&nbsp;&nbsp;
               <button type="button" className={this.state.qrCodeFocus} onClick={e => this.pinkModelFocus("2")}>ชำระด้วย QR Code</button>
             </div>
-            <div className="center">
-            <div className="col-11 col-sm-11 col-md-11 col-lg-11 boxText-qrCode" >
-                <p>1. หลังกด “ชำระเงิน” คุณจะได้รับ QR Code เพื่อชำระ</p>
-                <p>2.เปิดแอปพลิเคชันธนาคารที่คุณมี</p>
-                <p>3. ไปยังเมนู “สแกน” หรือ “สแกนจ่าย”</p>
-                <p>4. ตรวจสอบชื่อบัญชี ชื่อบัญชี และยอดที่คุณต้องชำระก่อนทำรายการ</p>
-            </div>
-            </div>
+            {
+              (this.state.paymentMethod === "qrCode") &&
+              <div className="center">
+                <div className="col-11 col-sm-11 col-md-11 col-lg-11 boxText-qrCode" >
+                  <p>1. หลังกด “ชำระเงิน” คุณจะได้รับ QR Code เพื่อชำระ</p>
+                  <p>2. เปิดแอปพลิเคชันธนาคารที่คุณมี</p>
+                  <p>3. ไปยังเมนู “สแกน” หรือ “สแกนจ่าย”</p>
+                  <p>4. ตรวจสอบชื่อบัญชี ชื่อบัญชี และยอดที่คุณต้องชำระก่อนทำรายการ</p>
+                </div>
+              </div>
+            }
 
             <div className="d-grid gap-2 col-10 col-sm-10  mx-auto   col-md-10 col-lg-10 distance">
               {
