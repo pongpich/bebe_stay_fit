@@ -9,6 +9,7 @@ import { reducer as exerciseProgram} from './exerciseProgram';
 import { reducer as shippingAddress} from './shippingAddress';
 import { reducer as basicInFormation} from './basicInFormation';
 import { reducer as update} from './update';
+import { reducer as get} from './get';
 import { reducer as exerciseVideos} from './exerciseVideos';
 
 
@@ -25,6 +26,7 @@ const reducers = combineReducers({
   shippingAddress,
   basicInFormation,
   update,
+  get,
   exerciseVideos
 });
 

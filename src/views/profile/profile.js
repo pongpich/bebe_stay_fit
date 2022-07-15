@@ -2,8 +2,16 @@ import React, { Component } from "react";
 import ellipse17 from "../../assets/img/ellipse17_2.png";
 import user_circle from "../../assets/img/user_circle.svg";
 import { Link } from 'react-router-dom';
+import { connect } from "react-redux";
+import { getSubscriptionProducts } from "../../redux/get"
 
 class Profile extends React.Component {
+
+  componentDidMount() {
+    const { user } = this.props;
+    this.props.getSubscriptionProducts(user.user_id);
+  }
+
   render() {
     return (
       <>
@@ -68,5 +76,16 @@ class Profile extends React.Component {
   }
 }
 
-export default Profile;
+const mapStateToProps = ({ get, authUser }) => {
+  const { delivery_address } = get;
+  const { user } = authUser;
+  return { delivery_address, user };
+};
+
+const mapActionsToProps = { getSubscriptionProducts };
+
+export default connect(
+  mapStateToProps,
+  mapActionsToProps
+)(Profile);
 
