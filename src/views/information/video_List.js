@@ -24,6 +24,8 @@ import { convertFormatTime, convertSecondsToMinutes } from "../../helpers/utils"
 import { completeVideoPlayPercentage, minimumVideoPlayPercentage, updateFrequency } from "../../constants/defaultValues";
 import backgroundImag from '../../assets/img/bgintro_lg.d22ae02a.png';
 import Food_supplement from '../information/food_supplement';
+import challenge from '../information/challenge';
+import Challenge from "../information/challenge";
 
 class videoList extends React.Component {
 
@@ -34,6 +36,7 @@ class videoList extends React.Component {
       clickManu: "manu1",
       borderBottom1: "video-link rectangle13 color1",
       borderBottom2: "video-link",
+      borderBottom3:"video-link",
       videoLi: "video-li ",
       focusDay: 0,
       urlVideo: null,
@@ -273,18 +276,25 @@ class videoList extends React.Component {
       var clickManu = "manu1"
       var bottom1 = "video-link rectangle13 color1"
       var bottom2 = "video-link"
+      var bottom3 = "video-link"
 
-    } else {
+    } else if (name === 'borderBottom2') {
       console.log("2");
       var clickManu = "manu2"
       var bottom1 = "video-link "
       var bottom2 = "video-link rectangle13 color1"
-
+      var bottom3 = "video-link"
+    }else{
+      var clickManu = "manu3"
+      var bottom1 = "video-link"
+      var bottom2 = "video-link"
+      var bottom3 = "video-link  rectangle13 color1"
     }
     this.setState({
       clickManu: clickManu,
       borderBottom1: bottom1,
       borderBottom2: bottom2,
+      borderBottom3: bottom3,
     });
 
   }
@@ -663,12 +673,15 @@ class videoList extends React.Component {
         }
         <div className="box-videoCenter">
           <div className="col-12 col-sm-12 col-md-12 col-lg-12 ">
-            <ul className="">
+            <ul className="video-maun">
               <li className="video-li  video-liPadding-left marginLeftRoutine">
                 <a className={this.state.borderBottom1} name="borderBottom1" onClick={e => this.clickBottom(e)}>Workout Routine</a>
               </li>
               <li className="video-li  video-liPadding-left   video-liPadding-left2">
-                <a className={this.state.borderBottom2} name="borderBottom2" onClick={e => this.clickBottom(e)}>วิธีออกกำลังกายตามโปรแกรม</a>
+                <a className={this.state.borderBottom2} name="borderBottom2" onClick={e => this.clickBottom(e)}>ชาเลนจ์</a>
+              </li>
+              <li className="video-li  video-liPadding-left   video-liPadding-left2">
+                <a className={this.state.borderBottom3} name="borderBottom3" onClick={e => this.clickBottom(e)}>วิธีออกกำลังกายตามโปรแกรม</a>
               </li>
               {/*    <li className="video-li  video-liPadding-left   video-liPadding-left2">
                 <a className={this.state.borderBottom2} name="borderBottom2" onClick={e => this.clickBottom(e)}>คลิปออกกำลังกายทั้งหมด</a>
@@ -686,6 +699,9 @@ class videoList extends React.Component {
                   :
                   this.routineWorkout()
               :
+              this.state.clickManu === "manu2" ?
+              <Challenge/>
+              : 
               this.exerciseMethod()
             /*  this.videoClipAll() */
           }
