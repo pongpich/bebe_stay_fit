@@ -7,6 +7,7 @@ import Fitto_Plant_Protein from '../src/views/information/fitto_plant_protein';
 import InformationCalculate from "../src/views/information/information_calculate";
 import Shipping_Address from "../src/views/information/shipping_address";
 import Payment from "../src/views/information/payment";
+import SubscriptionPayment from "../src/views/information/subscriptionPayment";
 import Welcome_NewMember from "../src/views/information/welcome_new_member";
 import Basic_Information from "../src/views/information/basic_information";
 import Your_Program from "../src/views/information/your_program";
@@ -132,16 +133,22 @@ class App extends Component {
               </div>
               <div className="modal-bodyExpire">
                 <p className="headText-expire bold">
-                  BebeStayFit ของคุณ
+                  Bebe Stay Fit ของคุณ
                 <br />หมดอายุแล้ว
                 </p>
                 <p className="boxText-expire">
                   หากคุณต้องการต้องการเข้าร่วมโปรแกรม <br />
-                BebeStayFit ต่อ <br />
+                Bebe Stay Fit ต่อ <br />
                 กรุณาคลิกชำระเงินด้านล่าง
                 </p>
                 <div className="btn-expire">
-                  <button type="button" class="btn  bottom-pinkLogin font-size6 col-10 col-sm-10 col-md-10 col-lg-10" data-bs-dismiss="modal">ชำระเงิน</button>
+                  <button
+                    type="button"
+                    class="btn  bottom-pinkLogin font-size6 col-10 col-sm-10 col-md-10 col-lg-10"
+                    data-bs-dismiss="modal"
+                  >
+                    ชำระเงิน
+                  </button>
                 </div>
               </div>
             </div>
@@ -261,6 +268,7 @@ class App extends Component {
             <Route path='/fitto_plant_protein' component={Fitto_Plant_Protein} />
             <Route path='/shipping_address' component={Shipping_Address} />
             <Route path='/payment' component={Payment} />
+            <Route path='/subscription_payment' component={SubscriptionPayment} />
             <Route path='/welcome_new_nember' component={Welcome_NewMember} />
             <Route path='/basic_information' component={Basic_Information} />
             <Route path='/your_program' component={Your_Program} />
