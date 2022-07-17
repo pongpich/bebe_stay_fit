@@ -164,10 +164,6 @@ class SubscriptionPayment extends React.Component {
             customerName: name,
             customerEmail: create_user_email,
             customerTelephone: create_user_phone,
-            merchantDefined1: program.program_id,
-            merchantDefined2: products_list,
-            merchantDefined3: delivery_address,
-            merchantDefined4: receipt_address
           }
 
           const recurringConfig = {
@@ -207,46 +203,6 @@ class SubscriptionPayment extends React.Component {
             <img src={group21} alt="vector" className="group19" />
           </div>
           <div className="col-12 col-sm-12 col-md-6 col-lg-6 center2 margin-head">
-            {
-              /* (this.state.paymentMethod === "creditCard") &&
-              <div className="box-protein">
-                <div className="padding-top">
-                  <div className="box-proteinAddress padding-top">
-                    <div>
-                      <img src={payment1} alt="vector" className="img-payment" />&nbsp;
-                                        <img src={payment2} alt="vector" className="img-payment" />&nbsp;
-                                        <img src={payment3} alt="vector" className="img-payment" />&nbsp;
-                                        <img src={payment4} alt="vector" className="img-payment" />&nbsp;
-                                        <img src={payment5} alt="vector" className="img-payment" />
-                    </div>
-
-                    <form action="#" method="POST">
-                      <div className="padding-top2">
-                        <label className="form-label bold font-size4">หมายเลขบัตร 16 หลัก</label>
-                        <input type="text" className="form-control" id="cardNumber" maxLength="16" placeholder="หมายเลขบัตร" onChange={(event) => this.handleChange(event)} />
-                      </div>
-                      <div className="padding-top2">
-                        <label className="form-label bold font-size4">ชื่อบนบัตร</label>
-                        <input type="text" className="form-control" id="name" placeholder="ชื่อ และนามสกุลที่อยู่บนบัตร" onChange={(event) => this.handleChange(event)} />
-                      </div>
-                      <div className="padding-top2">
-                        <label className="form-label bold font-size4">วันหมดอายุ (เดือน)</label>
-                        <input type="text" className="form-control" id="expirationMonth" maxLength="2" placeholder="ตัวอย่าง เช่น 05" onChange={(event) => this.handleChange(event)} />
-                      </div>
-                      <div className="padding-top2">
-                        <label className="form-label bold font-size4">วันหมดอายุ (ปี)</label>
-                        <input type="text" className="form-control" id="expirationYear" maxLength="2" placeholder="ตัวอย่าง เช่น 22" onChange={(event) => this.handleChange(event)} />
-                      </div>
-                      <div className="padding-top2">
-                        <label className="form-label bold font-size4">รหัส CVV</label>
-                        <input type="password" className="form-control" id="securityCode" maxLength="4" autoComplete="off" action="click" placeholder="รหัสหลังบัตร" onChange={(event) => this.handleChange(event)} />
-                      </div>
-                    </form>
-                  </div>
-                </div>
-              </div> */
-            }
-
             <div className="box-protein  margin-head">
               <div className="padding-top">
                 <div className="box-proteinAddress padding-top">
@@ -303,7 +259,7 @@ class SubscriptionPayment extends React.Component {
               this.state.status_payment === "unsuccess" &&
               <h6 style={{ color: "red" }}>ระบบเรียกเก็บเงินไม่สำเร็จกรุณาตรวจสอบข้อมูลบัตรให้ถูกต้องอีกครั้ง หรือเปลี่ยนวิธีการชำระเงิน</h6>
             }
-            <div className="col-12 col-sm-12 col-md-12 col-lg-12 center2">
+            <div className="col-12 col-sm-12 col-md-12 col-lg-12 center2 mb-4">
               <button type="button" className={this.state.creditCardFocus} onClick={e => this.pinkModelFocus("1")}>บัตรเครดิต/เดบิต</button>&nbsp;&nbsp;&nbsp;
               <button type="button" className={this.state.qrCodeFocus} onClick={e => this.pinkModelFocus("2")}>ชำระด้วย QR Code</button>
             </div>
@@ -318,15 +274,54 @@ class SubscriptionPayment extends React.Component {
                 </div>
               </div>
             }
+            {
+              (this.state.paymentMethod === "creditCard") &&
+              <div className="box-protein">
+                <div className="padding-top">
+                  <div className="box-proteinAddress padding-top">
+                    <div>
+                      <img src={payment1} alt="vector" className="img-payment" />&nbsp;
+                                        <img src={payment2} alt="vector" className="img-payment" />&nbsp;
+                                        <img src={payment3} alt="vector" className="img-payment" />&nbsp;
+                                        <img src={payment4} alt="vector" className="img-payment" />&nbsp;
+                                        <img src={payment5} alt="vector" className="img-payment" />
+                    </div>
+
+                    <form action="#" method="POST">
+                      <div className="padding-top2">
+                        <label className="form-label bold font-size4">หมายเลขบัตร 16 หลัก</label>
+                        <input type="text" className="form-control" id="cardNumber" maxLength="16" placeholder="หมายเลขบัตร" onChange={(event) => this.handleChange(event)} />
+                      </div>
+                      <div className="padding-top2">
+                        <label className="form-label bold font-size4">ชื่อบนบัตร</label>
+                        <input type="text" className="form-control" id="name" placeholder="ชื่อ และนามสกุลที่อยู่บนบัตร" onChange={(event) => this.handleChange(event)} />
+                      </div>
+                      <div className="padding-top2">
+                        <label className="form-label bold font-size4">วันหมดอายุ (เดือน)</label>
+                        <input type="text" className="form-control" id="expirationMonth" maxLength="2" placeholder="ตัวอย่าง เช่น 05" onChange={(event) => this.handleChange(event)} />
+                      </div>
+                      <div className="padding-top2">
+                        <label className="form-label bold font-size4">วันหมดอายุ (ปี)</label>
+                        <input type="text" className="form-control" id="expirationYear" maxLength="2" placeholder="ตัวอย่าง เช่น 22" onChange={(event) => this.handleChange(event)} />
+                      </div>
+                      <div className="padding-top2">
+                        <label className="form-label bold font-size4">รหัส CVV</label>
+                        <input type="password" className="form-control" id="securityCode" maxLength="4" autoComplete="off" action="click" placeholder="รหัสหลังบัตร" onChange={(event) => this.handleChange(event)} />
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            }
 
             <div className="d-grid gap-2 col-10 col-sm-10  mx-auto   col-md-10 col-lg-10 distance">
               {
-                /* (this.state.paymentMethod === "creditCard") &&
-                <input id="cc_button" className="btn bottom-pink" value="ชำระเงิน" onClick={() => this.onPay()} /> */
+                (this.state.paymentMethod === "creditCard") &&
+                <input id="cc_button" className="btn bottom-pink" value="ชำระเงิน" onClick={() => this.onPay()} />
               }
               {
-                (this.state.paymentMethod === "creditCard") &&
-                <input id="cc_button" className="btn bottom-pink col-12 col-sm-12" value="ชำระเงิน" onClick={() => this.props.history.push("cc_token")} />
+                /* (this.state.paymentMethod === "creditCard") &&
+                <input id="cc_button" className="btn bottom-pink col-12 col-sm-12" value="ชำระเงิน" onClick={() => this.props.history.push("cc_token") */
               }
             </div>
 

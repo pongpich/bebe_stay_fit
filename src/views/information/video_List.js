@@ -677,9 +677,9 @@ class videoList extends React.Component {
               <li className="video-li  video-liPadding-left marginLeftRoutine">
                 <a className={this.state.borderBottom1} name="borderBottom1" onClick={e => this.clickBottom(e)}>Workout Routine</a>
               </li>
-              <li className="video-li  video-liPadding-left   video-liPadding-left2">
+              {/* <li className="video-li  video-liPadding-left   video-liPadding-left2">
                 <a className={this.state.borderBottom2} name="borderBottom2" onClick={e => this.clickBottom(e)}>ชาเลนจ์</a>
-              </li>
+              </li> */}
               <li className="video-li  video-liPadding-left   video-liPadding-left2">
                 <a className={this.state.borderBottom3} name="borderBottom3" onClick={e => this.clickBottom(e)}>วิธีออกกำลังกายตามโปรแกรม</a>
               </li>
