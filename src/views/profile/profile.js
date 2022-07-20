@@ -3,7 +3,7 @@ import ellipse17 from "../../assets/img/ellipse17_2.png";
 import user_circle from "../../assets/img/user_circle.svg";
 import { Link } from 'react-router-dom';
 import { connect } from "react-redux";
-import { getSubscriptionProducts } from "../../redux/get"
+import { getSubscriptionProducts } from "../../redux/get";
 
 class Profile extends React.Component {
 
@@ -13,6 +13,8 @@ class Profile extends React.Component {
   }
 
   render() {
+    const address = JSON.parse(this.props.delivery_address);
+
     return (
       <>
         <div className="padding-top4 center">
@@ -21,15 +23,15 @@ class Profile extends React.Component {
         <div className="col-12 col-sm-12 col-md-12 col-lg-12  center2 ">
           <div className="col-12 col-sm-12 col-md-6 col-lg-6 center2">
             <div className="box-protein margin-bottom1 padding-top2">
-              <div className="padding-top img-ellipse17">
+     {/*          <div className="padding-top img-ellipse17">
                 <img src={ellipse17} alt="vector" />
-              </div>
+              </div> */}
               <div className="padding-top2">
-                <p className="section-size">บพิตร์ เตชะวัฒนานันท์</p>
-                <p className="margin-top-1 bold">borpit.techa@gmail.com</p>
-                <p className="margin-top-1 section-size">367/161 จรัญสนิทวงศ์33 แยก3</p>
-                <p className="margin-top-1 section-size">แขวงบางขุนศรี เขตบางกอกน้อย</p>
-                <p className="margin-top-1 section-size">กรุงเทพมหานคร 10700</p>
+                <p className="section-size">{address.firstname} {address.lastname}</p>
+                <p className="margin-top-1 bold">  {this.props.user.email}</p>
+                <p className="margin-top-1 section-size">{address.address} {address.subdistrict}</p>
+                <p className="margin-top-1 section-size">{address.district}</p>
+                <p className="margin-top-1 section-size">{address.province} {address.zipcode}</p>
 
               </div>
               <p className="border-bottom margin-leftRight"></p>
@@ -38,9 +40,9 @@ class Profile extends React.Component {
                                     แก้ไขข้อมูล
                                 </button> */}
                 <Link to="/edit_profile" className="btn bottom-pink " type="button">แก้ไขข้อมูล</Link>
-                <button className="btn bottom-outlinePink margin-top-3 " type="button" >
+                <button className="btn bottom-outlinePink margin-top-3 " type="button" onClick={() => this.props.history.push("/reset_password")} >
                   เปลี่ยนรหัสผ่าน
-                                </button>
+          </button>
               </div>
             </div>
           </div>

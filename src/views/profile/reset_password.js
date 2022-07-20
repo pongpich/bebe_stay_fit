@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import { connect } from "react-redux";
-import { forgotPassword, resetStatusSetPassword } from "../../redux/auth"
+import { forgotPassword, resetStatusSetPassword } from "../../redux/auth";
+import { getSubscriptionProducts } from "../../redux/get";
+
 
 class Reset_password extends Component {
   constructor(props) {
@@ -26,6 +28,11 @@ class Reset_password extends Component {
   }
 
   componentDidMount() {
+    if (this.props.user !== null) {
+      this.setState({
+        email: this.props.user.email
+      });
+    }
     this.props.resetStatusSetPassword();
   }
 
@@ -48,10 +55,11 @@ class Reset_password extends Component {
 
   render() {
     const { email, validationEmail } = this.state;
+    console.log("AA",this.props.statusForgotPassword);
     return (
       <>
         <div className="padding-top4 center">
-          <p className="font-size8 bold color-protein"> ลืมรหัสผ่าน</p>
+          <p className="font-size8 bold color-protein"> ลืมรหัสผ่าน </p>
         </div>
         <div className="col-12 col-sm-12 col-md-12 col-lg-12  center2 ">
           <div className="col-12 col-sm-12 col-md-5 col-lg-5  center2 ">
@@ -84,12 +92,28 @@ class Reset_password extends Component {
 
 const mapStateToProps = ({ authUser }) => {
   const { statusForgotPassword } = authUser;
-  return { statusForgotPassword };
+  const { user } = authUser;
+  return { statusForgotPassword ,user};
 };
 
-const mapActionsToProps = { forgotPassword, resetStatusSetPassword };
+const mapActionsToProps = {getSubscriptionProducts, forgotPassword, resetStatusSetPassword };
 
 export default connect(
   mapStateToProps,
   mapActionsToProps
 )(Reset_password);
+
+/* 
+
+const mapStateToProps = ({ get, authUser,editAddress }) => {
+  const { delivery_address } = get;
+  const { user } = authUser;
+  return { delivery_address, user };
+};
+
+const mapActionsToProps = { getSubscriptionProducts,putSubscriptionAddress };
+
+export default connect(
+  mapStateToProps,
+  mapActionsToProps
+)(EditProfile); */

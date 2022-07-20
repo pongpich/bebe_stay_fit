@@ -3,10 +3,93 @@ import React, { Component } from "react";
 import ellipse17_2 from "../../assets/img/ellipse17_2.png";
 
 import user_circle from "../../assets/img/user_circle.svg";
-
+import { connect } from "react-redux";
+import { getSubscriptionProducts } from "../../redux/get";
+import { putSubscriptionAddress } from "../../redux/updateAddress";
+import InputAddress from 'react-thailand-address-autocomplete';
 
 class EditProfile extends React.Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      firstname: null,
+      lastname: null,
+      phone: null,
+      address: null,
+      subdistrict: null,
+      district: null,
+      province: null,
+      zipcode: null
+    };
+  }
+
+  onChange(e) {
+    console.log("AA",e.target.value,e.target.name);
+    this.setState({
+      [e.target.name]: e.target.value,
+    })
+  }
+
+  onSelect(fullAddress) {
+
+    const { subdistrict, district, province, zipcode } = fullAddress
+    this.setState({
+      subdistrict,
+      district,
+      province,
+      zipcode,
+      subdistrictUser: subdistrict,
+      districtUser: district,
+      provinceUser: province,
+      zipcodeUser: zipcode
+    })
+  }
+
+  setAddress(e) {
+    this.setState({
+      firstname: e.firstname,
+      lastname: e.lastname,
+      phone: e.phone,
+      address: e.address,
+      subdistrict: e.subdistrict,
+      district: e.district,
+      province: e.province,
+      zipcode: e.zipcode,
+    })
+  }
+
+
+  onSubmit() {
+      const user_id = this.props.user.user_id;
+      const {firstname,lastname,phone,address,subdistrict,district,province,zipcode} = this.state;
+      const data = {
+        firstname,
+        lastname,
+        phone,
+        address,
+        subdistrict,
+        district,
+        province,
+        zipcode
+      }
+      this.props.putSubscriptionAddress(user_id,data);
+      this.props.history.push('/profile');
+  }
+
+  
+
+  componentDidMount() {
+
+    const address = JSON.parse(this.props.delivery_address);
+  
+
+    this.setAddress(address);
+  }
+
   render() {
+    const { firstname, lastname, phone, address, subdistrict, district, province, zipcode } = this.state;
+console.log("AA",this.props.user);
     return (
       <>
         <div className="padding-top4 center">
@@ -78,48 +161,58 @@ class EditProfile extends React.Component {
                 <div className="row">
                   <div className="col-12 col-sm-12 col-md-6 col-lg-6">
                     <label className="form-label bold font-size4">ชื่อ</label>
-                    <input type="email" className="form-control" id="exampleFormControlInput1" placeholder="" />
+                    <input type="text" className="form-control" name="firstname"  value={firstname} onChange={e => this.onChange(e)} id="exampleFormControlInput1" />
                   </div>
                   <div className="col-12 col-sm-12 col-md-6 col-lg-6">
                     <label className="form-label bold font-size4">นามสกุล</label>
-                    <input type="email" className="form-control" id="exampleFormControlInput1" placeholder="" />
+                    <input type="text" className="form-control" name="lastname"  value={lastname} onChange={e => this.onChange(e)} id="exampleFormControlInput1" />
                   </div>
                 </div>
                 <div className="padding-top2">
                   <label className="form-label bold font-size4">เบอร์โทรศัพท์</label>
-                  <input type="email" className="form-control" id="exampleFormControlInput1" placeholder="" />
+                  <input type="text" className="form-control" name="phone" value={phone} onChange={e => this.onChange(e)} id="exampleFormControlInput1" />
                 </div>
                 <div className="padding-top2">
                   <label className="form-label bold font-size4">ที่อยู่</label>
-                  <input type="email" className="form-control" id="exampleFormControlInput1" placeholder="กรอกบ้านเลขที่, หมู่, ซอย, อาคาร, ถนน และจัดสุงเกต(ถ้ามี)" />
+                  <input type="text" className="form-control"  name="address" value={address} onChange={e => this.onChange(e)} id="exampleFormControlInput1" />
                 </div>
-                <div className="padding-top2">
-                  <label className="form-label bold font-size4">แขวง/ตำบล</label>
-                  <select className="form-select" aria-label="Default select example">
-                    <option >เลือก</option>
-                    <option >Classic malt Flavor</option>
-                  </select>
-                </div>
-                <div className="padding-top2">
-                  <label className="form-label bold font-size4">เขต/อำเภอ</label>
-                  <select className="form-select" aria-label="Default select example">
-                    <option >เลือก</option>
-                    <option >Classic malt Flavor</option>
-                  </select>
-                </div>
-                <div className="padding-top2">
-                  <label className="form-label bold font-size4">จังหวัด</label>
-                  <select className="form-select" aria-label="Default select example">
-                    <option >เลือก</option>
-                    <option >Classic malt Flavor</option>
-                  </select>
-                </div>
-                <div className="padding-top2">
-                  <label className="form-label bold font-size4">รหัสไปรษณีย์</label>
-                  <select className="form-select" aria-label="Default select example">
-                    <option >เลือก</option>
-                    <option>Classic malt Flavor</option>
-                  </select>
+                <div className="elementStyle">
+                  <div className="padding-top2">
+                    <label className="form-label bold font-size4">แขวง/ตำบล</label>
+                    <InputAddress style={{ width: "100%" }}
+                      address="subdistrict"
+                      value={subdistrict}
+                      onChange={e => this.onChange(e)}
+                      onSelect={e => this.onSelect(e)}
+                    />
+                  </div>
+                  <div className="col-12 col-sm-12  col-md-12 col-lg-12 padding-top2">
+                    <label className="form-label bold font-size4">เขต/อำเภอ</label>
+                    <InputAddress style={{ width: "100%" }}
+                      address="district"
+                      value={district}
+                      onChange={e => this.onChange(e)}
+                      onSelect={e => this.onSelect(e)}
+                    />
+                  </div>
+                  <div className="padding-top2">
+                    <label className="form-label bold font-size4">จังหวัด</label>
+                    <InputAddress style={{ width: "100%" }}
+                      address="province"
+                      value={province}
+                      onChange={e => this.onChange(e)}
+                      onSelect={e => this.onSelect(e)}
+                    />
+                  </div>
+                  <div className=" col-12 col-sm-12  col-md-12 col-lg-12 padding-top2">
+                    <label className="form-label bold font-size4">รหัสไปรษณีย์</label>
+                    <InputAddress style={{ width: "100%" }}
+                      address="subdistrict"
+                      value={this.state.zipcode}
+                      onChange={e => this.onChange(e)}
+                      onSelect={e => this.onSelect(e)}
+                    />
+                  </div>
                 </div>
               </div>
             </div>
@@ -141,8 +234,8 @@ class EditProfile extends React.Component {
           <div className="bottomEditProfile">
 
 
-          <button type="button" className="btn bottom-outlinePinkLeft ">ยกเลิก</button>
-          <button type="button" className="btn bottom-outlinePinkRight bottomEditProfileLeft ">บันทึก</button>
+            <button type="button" className="btn bottom-outlinePinkLeft " onClick={() => this.props.history.push('/profile')}>ยกเลิก</button>
+            <button type="button" className="btn bottom-outlinePinkRight bottomEditProfileLeft " onClick={() => this.onSubmit()}>บันทึก</button>
           </div>
           {/*   <div className="">
             <div className="row">
@@ -159,5 +252,18 @@ class EditProfile extends React.Component {
   }
 }
 
-export default EditProfile;
-;
+
+
+const mapStateToProps = ({ get, authUser,editAddress }) => {
+  const { delivery_address } = get;
+  const { user } = authUser;
+  return { delivery_address, user };
+};
+
+const mapActionsToProps = { getSubscriptionProducts,putSubscriptionAddress };
+
+export default connect(
+  mapStateToProps,
+  mapActionsToProps
+)(EditProfile);
+

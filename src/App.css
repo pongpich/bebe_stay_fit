@@ -1892,6 +1892,9 @@ a {
 .elementStyle div {
   display: block !important;
 }
+.elemen-div {
+  display: block !important;
+}
 
 .pointer {
   cursor: pointer;

@@ -318,9 +318,9 @@ class Challenge extends Component {
                                     </div>
                                 </div>
                             </div>
-                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalChallenge">
+             {/*                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalChallenge">
                                 Launch demo modal
-                                </button>
+                                </button> */}
 
                             <p className="circle-VideoAll">คลิปแบบซื้อ <span className="color1"> ดูทั้งหมด {'>'}</span></p>
                             <div className="box-VideoChallenge">

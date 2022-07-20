@@ -134,12 +134,12 @@ class App extends Component {
               <div className="modal-bodyExpire">
                 <p className="headText-expire bold">
                   Bebe Stay Fit ของคุณ
-                <br />หมดอายุแล้ว
+                  <br />หมดอายุแล้ว
                 </p>
                 <p className="boxText-expire">
                   หากคุณต้องการต้องการเข้าร่วมโปรแกรม <br />
-                Bebe Stay Fit ต่อ <br />
-                กรุณาคลิกชำระเงินด้านล่าง
+                  Bebe Stay Fit ต่อ <br />
+                  กรุณาคลิกชำระเงินด้านล่าง
                 </p>
                 <div className="btn-expire">
                   <button
@@ -205,6 +205,11 @@ class App extends Component {
                           {this.props.user.email}
                         </a>
                         <ul className="dropdown-menu dropdown-menu-end">
+                          <li className="nav-item">
+                            <a className="nav-link nav-linkHead" onClick={() => this.props.history.push('/profile')} style={{ cursor: "pointer" }}>
+                              Profile
+                            </a>
+                          </li>
                           <li>
                             <a className="dropdown-item nav-linkHead pointer" onClick={() => this.onUserLogout()} style={{ cursor: "pointer" }}>
                               ออกจากระบบ
