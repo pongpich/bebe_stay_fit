@@ -9,6 +9,7 @@ import { Link } from 'react-router-dom';
 import { connect } from "react-redux";
 import { getUserProgram } from "../../redux/exerciseProgram"
 import { insertSubscriptionProducts } from "../../redux/createUser"
+import { getSubscriptionProducts } from "../../redux/get"
 
 import axios from 'axios';
 import moment from 'moment';
@@ -21,34 +22,38 @@ class SubscriptionPayment extends React.Component {
       creditCardFocus: "btn btn-outline-pinkFocus",
       qrCodeFocus: "btn btn-outline-pink",
       paymentMethod: "creditCard",
-      price: 1.00, //สำหรับเทส
+      price: 1, //สำหรับเทส
       productName: "bebe stay fit",
       name: `${this.props.create_username} ${this.props.create_lastname}`,
       cardNumber: "",
       expirationMonth: "",
       expirationYear: "",
       securityCode: "",
-      email: this.props.create_user_email,
-      phone: this.props.create_user_phone,
+      email: this.props.user.email,
+      phone: this.props.user.phone,
       program: '',
-      username: this.props.create_username,
-      lastname: this.props.create_lastname,
-      telephone: this.props.create_ltelephone,
-      addressUser: this.props.create_addressUser,
-      subdistrictUser: this.props.create_subdistrictUser,
-      districtUser: this.props.create_districtUser,
-      provinceUser: this.props.create_provinceUser,
-      zipcodeUser: this.props.create_zipcodeUser,
+      product1: JSON.parse(this.props.products_list).product1,
+      product2: JSON.parse(this.props.products_list).product2,
+      product3: JSON.parse(this.props.products_list).product3,
+      username: JSON.parse(this.props.delivery_address).firstname,
+      lastname: JSON.parse(this.props.delivery_address).lastname,
+      telephone: JSON.parse(this.props.delivery_address).phone,
+      addressUser: JSON.parse(this.props.delivery_address).address,
+      subdistrictUser: JSON.parse(this.props.delivery_address).subdistrict,
+      districtUser: JSON.parse(this.props.delivery_address).district,
+      provinceUser: JSON.parse(this.props.delivery_address).province,
+      zipcodeUser: JSON.parse(this.props.delivery_address).zipcode,
       pageUrl: window.location.href,
-      status_payment: "default"
+      status_payment: "default",
     };
     this.onPay = this.onPay.bind(this);
   }
 
 
   componentDidMount() {
-    /* const { user_program_id, products_list, delivery_address, receipt_address } = this.props;
-    const { price, productName, email, phone, program, name } = this.state;
+    const { price, productName, name, email, phone } = this.state;
+    const { user } = this.props;
+    this.props.getSubscriptionProducts(user.user_id);
 
     const search = this.props.location.search; // could be '?foo=bar'
     const params = new URLSearchParams(search);
@@ -62,26 +67,6 @@ class SubscriptionPayment extends React.Component {
     window.localStorage.setItem('name', name);
     window.localStorage.setItem('email', email);
     window.localStorage.setItem('phone', phone);
-    window.localStorage.setItem('program_id', program.program_id);
-    window.localStorage.setItem('products_list', products_list);
-    window.localStorage.setItem('delivery_address', delivery_address);
-    window.localStorage.setItem('receipt_address', receipt_address);
-    this.props.insertSubscriptionProducts(
-      email,
-      products_list,
-      delivery_address,
-      receipt_address
-    );
-
-    this.props.getUserProgram(email);
-
-    if (user_program_id) { //ถ้ามี user_program_id แสดงว่าชำระเงินสำเร็จแล้ว
-      this.props.history.push('/welcome_new_nember');
-    }
-
-    if (!delivery_address) {
-      this.props.history.push('/shipping_address');
-    } */
     window.scrollTo(0, 0);
   }
 
@@ -119,7 +104,7 @@ class SubscriptionPayment extends React.Component {
   }
 
   onPay() {
-    const { price, name, cardNumber, expirationMonth, expirationYear, securityCode } = this.state;
+    const { price, name, cardNumber, expirationMonth, expirationYear, securityCode, status_payment, pageUrl } = this.state;
     const { create_user_email, create_user_phone, program, history, products_list, delivery_address, receipt_address } = this.props;
 
     const baseURL = "https://api.gbprimepay.com";
@@ -149,7 +134,7 @@ class SubscriptionPayment extends React.Component {
       .then(function (response) {
         const { card, resultCode } = response.data;
         var referenceNo = moment().format("YYYYMMDDHHmmss")
-        console.log("Response from token service: ", card.token, referenceNo);
+        console.log("Response from token service: ", card.token, referenceNo, resultCode);
         if (resultCode === "00") {
           const recurringData = {
             processType: "I",
@@ -175,8 +160,18 @@ class SubscriptionPayment extends React.Component {
           axios
             .post(recurringURL, recurringData, recurringConfig)
             .then(function (recurring_resp) {
-              console.log("Response from recurring service: ", recurring_resp);
-              history.push('/welcome_new_nember');
+              const { resultCode } = recurring_resp.data;
+              console.log("Response from recurring service: ", recurring_resp, resultCode);
+              if (resultCode === "00") {
+                history.push('/videoList');
+              } else {
+                if (pageUrl.includes("localhost") || pageUrl.includes("127.0.0.1")) {
+                  window.location.href = "http://localhost:3000/#/subscription_payment?status=unsuccess";
+                } else {
+                  window.location.href = "https://fit.bebefitroutine.com/#/subscription_payment?status=unsuccess";
+                }
+                window.location.reload();
+              }
             })
         }
       })
@@ -203,60 +198,11 @@ class SubscriptionPayment extends React.Component {
             <img src={group21} alt="vector" className="group19" />
           </div>
           <div className="col-12 col-sm-12 col-md-6 col-lg-6 center2 margin-head">
-            <div className="box-protein  margin-head">
-              <div className="padding-top">
-                <div className="box-proteinAddress padding-top">
-                  <div className="padding-top2">
-                    {/* <p className=" bold font-size5 between">แพ็กเกจของคุณ <span className="font-size4 light decoration pointer" onClick={e => this.onChickprice(e)}>เปลี่ยน</span></p> */}
-
-                    <p className="font-size5">
-                      {/* {programId === "starter_stay_fit_01" ?
-                        <>
-                          <p className="font-size5 bold">แพ็กเกจของคุณ</p>
-                          <p className="section-sizeLeft">สมัครตามระยะเวลาของโปรแกรม</p>
-                          <p className="font-size5 bold">
-                            {this.state.program.price.toLocaleString('en')}  บาท
-                          </p>
-                          <p className="font-size4">
-                            *ระยะเวลา 2 เดือน และไม่มีการต่ออายุ
-                          </p>
-                        </>
-                        :
-                        <>
-                          <p className="font-size5 bold">แพ็กเกจของคุณ</p>
-                          <p className="section-sizeLeft">สมัครตามระยะเวลาของโปรแกรม</p>
-                          <p className="font-size5 bold">
-                            {this.state.program.price.toLocaleString('en')}  บาท
-                          </p>
-                          <p className="font-size4">
-                            *ราคาพิเศษสำหรับ 2 เดือนแรก เมื่อครบกำหนดจะชำระต่อเป็น
-                            รายเดือน(เดือนละ 1,800 บาท) จนกว่าจะครบตามระยะที่โปรแกรมแนะนำ <br />
-                            *สามารถพักการชำระรายเดือนได้ทุกเวลาตามที่ต้องการ
-                          </p>
-
-                        </>
-
-                      } */}
-                    </p>
-
-                  </div>
-                  <p className="border-bottom "></p>
-                  <div className="padding-top2">
-                    <p className=" bold font-size5 between">ที่อยู่ในการจัดส่งสินค้า <span className="font-size4 light decoration pointer" onClick={() => this.props.history.push('/shipping_address')}>เปลี่ยน</span></p>
-                    <p>{this.state.username} &nbsp; {this.state.lastname}  </p>
-                    <p>{this.state.telephone} </p>
-                    <p>{this.state.addressUser} &nbsp;{this.state.subdistrictUser}&nbsp;{this.state.districtUser}</p>
-                    <p>{this.state.provinceUser}&nbsp;{this.state.zipcodeUser} </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-
             <div className="col-12 col-sm-12 col-md-10 col-lg-10 center2  margin-headText">
               <p className="font-size6 bold color-protein"> การชำระเงิน</p>
             </div>
             {
-              this.state.status_payment === "unsuccess" &&
+              ((this.state.status_payment === "unsuccess") && (this.state.paymentMethod === "creditCard")) &&
               <h6 style={{ color: "red" }}>ระบบเรียกเก็บเงินไม่สำเร็จกรุณาตรวจสอบข้อมูลบัตรให้ถูกต้องอีกครั้ง หรือเปลี่ยนวิธีการชำระเงิน</h6>
             }
             <div className="col-12 col-sm-12 col-md-12 col-lg-12 center2 mb-4">
@@ -313,8 +259,60 @@ class SubscriptionPayment extends React.Component {
                 </div>
               </div>
             }
+            <div className="box-protein  margin-head">
+              <div className="padding-top">
+                <div className="box-proteinAddress padding-top">
+                  <div className="padding-top2">
+                    {/* <p className=" bold font-size5 between">แพ็กเกจของคุณ <span className="font-size4 light decoration pointer" onClick={e => this.onChickprice(e)}>เปลี่ยน</span></p> */}
+                    <p className="font-size5">
+                      <>
+                        <p className="font-size5 bold">แพ็กเกจของคุณ</p>
+                        <p className="section-sizeLeft">สมัครตามระยะเวลาของโปรแกรม</p>
+                        <p className="font-size5 bold">{this.state.price.toLocaleString('en')}  บาท</p>
+                        {
+                          (this.state.paymentMethod === "creditCard") &&
+                          <p className="font-size4">
+                            *หลังจากนี้เราจะทำการเรียกเก็บเงินทุกๆเดือนอัตโนมัติ
+                          <br />
+                          จนกว่าจะครบตามระยะเวลาที่โปรแกรมแนะนำ
+                        </p>
+                        }
+                      </>
+                    </p>
+                  </div>
+                  <p className="border-bottom "></p>
+                  <div className="padding-top2">
+                    {/* <p className=" bold font-size5 between">แพ็กเกจของคุณ <span className="font-size4 light decoration pointer" onClick={e => this.onChickprice(e)}>เปลี่ยน</span></p> */}
+                    <p className="font-size5">
+                      <>
+                        <p className="font-size5 bold">รสชาติของ Fitto Plant Protein</p>
+                        <p className="font-size4">
+                          กล่องที่ 1 - {this.state.product1}
+                          <br />
+                          กล่องที่ 2 - {this.state.product2}
+                          <br />
+                          กล่องที่ 3 - {this.state.product3}
+                        </p>
+                      </>
+                    </p>
+                  </div>
+                  <p className="border-bottom "></p>
+                  <div className="padding-top2">
+                    <p className=" bold font-size5 between">ที่อยู่ในการจัดส่งสินค้า {/* <span className="font-size4 light decoration pointer" onClick={() => this.props.history.push('/shipping_address')}>เปลี่ยน</span> */}</p>
+                    <p>{this.state.username} &nbsp; {this.state.lastname}  </p>
+                    <p>{this.state.telephone} </p>
+                    <p>{this.state.addressUser} &nbsp;{this.state.subdistrictUser}&nbsp;{this.state.districtUser}</p>
+                    <p>{this.state.provinceUser}&nbsp;{this.state.zipcodeUser} </p>
+                  </div>
+                </div>
+              </div>
+            </div>
 
             <div className="d-grid gap-2 col-10 col-sm-10  mx-auto   col-md-10 col-lg-10 distance">
+              {
+                ((this.state.status_payment === "unsuccess") && (this.state.paymentMethod === "creditCard")) &&
+                <h6 style={{ color: "red" }}>ระบบเรียกเก็บเงินไม่สำเร็จกรุณาตรวจสอบข้อมูลบัตรให้ถูกต้องอีกครั้ง หรือเปลี่ยนวิธีการชำระเงิน</h6>
+              }
               {
                 (this.state.paymentMethod === "creditCard") &&
                 <input id="cc_button" className="btn bottom-pink" value="ชำระเงิน" onClick={() => this.onPay()} />
@@ -324,9 +322,6 @@ class SubscriptionPayment extends React.Component {
                 <input id="cc_button" className="btn bottom-pink col-12 col-sm-12" value="ชำระเงิน" onClick={() => this.props.history.push("cc_token") */
               }
             </div>
-
-
-
             <form
               id="qr_form"
               action={
@@ -335,25 +330,12 @@ class SubscriptionPayment extends React.Component {
                   :
                   "https://fit.bebefitroutine.com/#/qr_checkout"
               }
-              //action={"https://api.gbprimepay.com/gbp/gateway/qrcode"}
-              //method="POST"
               className="d-grid gap-2 col-10 ol-sm-10  mx-auto   col-md-10 col-lg-10 distance">
-              {/* <input id="qr_token" type="hidden" name="token" />
-              <input id="qr_refNo" type="hidden" name="referenceNo" />
-              <input id="qr_bgUrl" type="hidden" name="backgroundUrl" />
-              <input id="qr_amount" type="hidden" name="amount" />
-              <input id="qr_detail" type="hidden" name="detail" />
-              <input id="qr_name" type="hidden" name="customerName" />
-              <input id="qr_email" type="hidden" name="customerEmail" />
-              <input id="qr_phone" type="hidden" name="customerTelephone" />
-              <input id="qr_programID" type="hidden" name="merchantDefined1" /> */}
               {
                 (this.state.paymentMethod === "qrCode") &&
                 <input id="qr_button" type="submit" className="btn bottom-pink" value="ชำระเงิน" />
               }
             </form>
-
-            {/*  <Link to="/welcome_new_nember" className="btn bottom-pink" type="button">ชำระเงิน</Link> */}
 
           </div>
         </div>
@@ -364,20 +346,16 @@ class SubscriptionPayment extends React.Component {
   }
 }
 
-const mapStateToProps = ({ createUser, exerciseProgram, shippingAddress }) => {
+const mapStateToProps = ({ authUser, createUser, exerciseProgram, get }) => {
+  const { user } = authUser;
   const { create_user_email, create_user_password, create_user_phone } = createUser;
   const { program, allProgram, user_program_id } = exerciseProgram;
-  const { products_list, delivery_address, receipt_address, create_username, create_lastname, create_telephone, create_addressUser,
-    create_subdistrictUser, create_districtUser, create_provinceUser, create_zipcodeUser } = shippingAddress;
-  return {
-    products_list, delivery_address, receipt_address, create_user_email, create_user_password, create_user_phone, program, allProgram,
-    create_username, create_lastname, create_telephone, create_addressUser,
-    create_subdistrictUser, create_districtUser, create_provinceUser, create_zipcodeUser, user_program_id
-  };
+  const { delivery_address, products_list } = get;
+  return { user, create_user_email, create_user_password, create_user_phone, program, allProgram, user_program_id, delivery_address, products_list };
 };
 
 
-const mapActionsToProps = { getUserProgram, insertSubscriptionProducts };
+const mapActionsToProps = { getUserProgram, insertSubscriptionProducts, getSubscriptionProducts };
 
 export default connect(
   mapStateToProps,

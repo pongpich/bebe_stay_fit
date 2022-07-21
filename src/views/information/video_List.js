@@ -677,9 +677,9 @@ class videoList extends React.Component {
               <li className="video-li  video-liPadding-left marginLeftRoutine">
                 <a className={this.state.borderBottom1} name="borderBottom1" onClick={e => this.clickBottom(e)}>Workout Routine</a>
               </li>
-              <li className="video-li  video-liPadding-left   video-liPadding-left2">
+          {/*     <li className="video-li  video-liPadding-left   video-liPadding-left2">
                 <a className={this.state.borderBottom2} name="borderBottom2" onClick={e => this.clickBottom(e)}>ชาเลนจ์</a>
-              </li>
+              </li> */}
               <li className="video-li  video-liPadding-left   video-liPadding-left2">
                 <a className={this.state.borderBottom3} name="borderBottom3" onClick={e => this.clickBottom(e)}>วิธีออกกำลังกายตามโปรแกรม</a>
               </li>
@@ -720,8 +720,8 @@ class videoList extends React.Component {
     let allMinute = [];
     let allSecond = [];
     if (this.props.exerciseVideo) {
-      todayExercise.map((item) => (allMinute.push(Number((item.duration.toFixed(2)).split(".")[0]))));
-      todayExercise.map((item) => (allSecond.push(Number((item.duration.toFixed(2)).split(".")[1]))));
+      todayExercise.map((item) => (allMinute.push(Number(item.duration && (item.duration.toFixed(2)).split(".")[0]))));
+      todayExercise.map((item) => (allSecond.push(Number(item.duration && (item.duration.toFixed(2)).split(".")[1]))));
     }
     let sumMinute = allMinute.reduce((acc, curr) => acc += curr, 0).toFixed(0);
     let sumSecond = allSecond.reduce((acc, curr) => acc += curr, 0).toFixed(0);
