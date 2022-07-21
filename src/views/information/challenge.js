@@ -18,9 +18,10 @@ class Challenge extends Component {
             scoreboard: "challenge-link",
             friendList: "challenge-link chalLeft",
             team: null,
-            addteam: 1,
-            outteam: true,
-            friend: null
+            addteam: null,
+            outteam: false, // ออกจากทีม
+            friend: 1,
+            addfriend: false
         }
     }
 
@@ -38,8 +39,11 @@ class Challenge extends Component {
 
     
     }
-
-
+    componentDidUpdate() {
+       /*  if (this.state.addteam === "add") {
+            this.clickAddTeam(null)
+        } */
+    }
 
     challengeBottom = (e) => {
 
@@ -102,6 +106,20 @@ class Challenge extends Component {
             });
         }
     }
+    clickAddTeam(e) {
+        let name = e;
+        console.log(name);
+        this.setState({
+            addteam: name,
+        });
+        
+    }
+    clickaddfriend (e) {
+        let name = e;
+        this.setState({
+            addfriend: name,
+        });
+    } 
 
     clickOutTeamList(e) {
         this.setState({
@@ -159,8 +177,8 @@ class Challenge extends Component {
                 <p className="text-teamHead">คุณยังไม่มีทีม</p>
                 <div className="col-12 col-sm-12 col-md-12 col-lg-12  center2  margin-top-3">
                     <div className="bottom-teamList">
-                        <button type="button" className="btn bottom-outlineaddTeam " onClick={(e) => this.clickTeam("add")}>สร้างทีมของคุณ</button>
-                        <button type="button" className="btn bottom-outlineaddTeam bottomEditProfileLeft" onClick={(e) => this.clickTeam("invite")}>สุ่มเข้าร่วมทีม</button>
+                        <button type="button" className="btn bottom-outlineaddTeam " onClick={(e) => this.clickAddTeam("add")}>สร้างทีมของคุณ</button>
+                        <button type="button" className="btn bottom-outlineaddTeam bottomEditProfileLeft" onClick={(e) => this.clickAddTeam("invite")}>สุ่มเข้าร่วมทีม</button>
                     </div>
                 </div>
             </>
@@ -190,7 +208,7 @@ class Challenge extends Component {
                 </div>
                 <div className="col-12 col-sm-12 col-md-12 col-lg-12  center2  margin-top-3">
                     <div className="bottom-teamList">
-                        <button type="button" className="btn bottom-outlineaddTeam " onClick={(e) => this.clickTeam(null)}>ยืนยันการตั้งชื่อ</button>
+                        <button type="button" className="btn bottom-outlineaddTeam " onClick={(e) => this.clickTeam(null)}>ส่งคำขอ</button>
                     </div>
                 </div>
             </>
@@ -245,11 +263,32 @@ class Challenge extends Component {
             </>
         )
     }
+
+    addfriendList() {
+        return(
+            <>
+             <div className="box-challengeIn">
+             <p className="text-addteam"> <img src={vectorinvite} />&nbsp; เพิ่มเพื่อน</p>
+                <div className="input-team col-8 col-sm-8 col-md-8 col-lg-8">
+                    <input type="text" className="form-control" id="exampleFormControlInput1" placeholder="ชื่อทีมต้องมากกว่า 6 ตัวอักษร" />
+                </div>
+                <div className="col-12 col-sm-12 col-md-12 col-lg-12  center2  margin-top-3">
+                    <div className="bottom-teamList">
+                        <button type="button" className="btn bottom-outlineaddTeam " >ส่งคำขอ</button>
+                    </div>
+                </div>
+             </div>
+            
+            </>
+        )
+    }
+
+
     friendList() {
-        const { friend } = this.state;
+        const { friend,addfriend } = this.state;
         return (
             <>
-            {
+            { addfriend  === false ?
                 friend !== null ?
                 <>
                  <div className="box-challengeIn">
@@ -261,10 +300,10 @@ class Challenge extends Component {
                 <p className="text-challenge"><p><span>5. </span>HummingBirth</p>  <span>Newbie</span><span className="span-challenge"> 1 คะแนน</span></p>
                 <p className="text-comment">*รายการจะถุูก Reset ทุกวันอาทิตย์</p>
                 <p className="text-comment">*คะแนนจะถูกสรุปทุกวันอาทิตย์</p>
-             {/*    <p className="border-bottom"></p>
-                <p className="rules-out"> <p  onClick={(e) => this.clickOutTeamList(true)}>ออกจากทีม</p> <span className="rules-invite" onClick={(e) => this.clickTeam("invite")}>+ ชวนเพื่อนเข้าทีม</span></p> */}
+                <p className="border-bottom"></p>
+                <p className="rules-add"> <p  data-bs-toggle="modal" data-bs-target="#modalAddfriendList" >วิธีการเพิ่มจำนวนเพื่อน</p> <span className="rules-invite" onClick={(e) => this.clickaddfriend(true)}>+ เพิ่มเพื่อน</span></p>
 
-
+                
                 </div>
                 </>
                 :
@@ -276,11 +315,13 @@ class Challenge extends Component {
                     <p className="text-teamHead">คุณยังไม่มีเพื่อน</p>
                     <div className="col-12 col-sm-12 col-md-12 col-lg-12  center2  margin-top-3">
                         <div className="bottom-teamList">
-                            <button type="button" className="btn bottom-outlineaddTeam " onClick={(e) => this.clickTeam("add")}>เพิ่มเพื่อน</button>
+                            <button type="button" className="btn bottom-outlineaddTeam " onClick={(e) => this.clickaddfriend(true)}>เพิ่มเพื่อน</button>
                         </div>
                     </div>
                     </div>
                 </>
+                :
+                this.addfriendList()
 
             }
                
@@ -481,6 +522,29 @@ class Challenge extends Component {
                                         <button type="button" className="btn bottom-outlineoutTeam bottomEditProfileLeft">เข้าร่วมทีม</button>
                                     </div>
                                 </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                   {/* <!-- Modal add เพื่อน --> */}
+                   <div class="modal fade" id="modalAddfriendList" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-bodyChallenge">
+                                <p className="rules-modal">วิธีการเพิ่มจำนวนเพื่อน</p>
+                                <div className="headBox">
+                                    <p className="textmodel-addfriend">เริ่มต้นสามารถ add เพื่อนได้ 1 คน</p>
+                                    <p className="textmodel-addfriend">ทำ 1 active week จะสามารถเพิ่มเพื่อนได้อีก 2 คน</p>
+                                    <p className="textmodel-addfriend">จำนวนเพื่อนสูงสุดที่สามารภมีได้ = 15 คน</p>
+                                    <p className="textmodel-addfriend">มี microleaderboard สำหรับเพื่อน</p>
+                                    <p className="textmodel-addfriend">เข้าอยู่ในระบบ Bebe stay fit ครบ 4 วันใน 1 อาทิตย์จะเพิ่ม  จำนวนเพื่อนได้ 2 คน</p>
+                                    <p className="textmodel-addfriend">จำนวนเพื่อนมีาสูงสุดได้ 15 คน</p>
+                                    <button type="button" className="btn bottom-pink-video close" data-bs-dismiss="modal" >ปิด</button>
                                 </div>
                             </div>
                         </div>

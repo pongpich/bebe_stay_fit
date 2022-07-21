@@ -3537,6 +3537,18 @@ tr:last-child td:last-child {
   display: flex;
   justify-content: space-between;
 }
+.rules-add {
+  padding-top: 20px;
+  font-weight: bold;
+  font-family: BdCondHe;
+  font-size: 16px;
+  color: #E25E96;
+  text-decoration:underline solid #E25E96;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+}
+
 .rules-invite {
 
   color: #E25E96;
@@ -3579,6 +3591,12 @@ tr:last-child td:last-child {
   font-family: Light;
   color: #000000;
   font-size: 14px;
+}
+.textmodel-addfriend {
+  font-family: Light;
+  color: #000000;
+  font-size: 14px;
+  line-height: 1;
 }
 
 .close {
