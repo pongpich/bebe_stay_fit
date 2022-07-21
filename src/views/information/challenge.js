@@ -1,8 +1,12 @@
 import React, { Component } from 'react';
 import vectorinvite from '../../assets/img/vectorinvite.png';
-import mvp from '../../assets/img/mvp.png';
+import mvp_gold from '../../assets/img/mvp_gold.png';
+import mvp_copper from '../../assets/img/mvp_copper.png';
+import mvp_money from '../../assets/img/mvp_money.png';
 import newbie from '../../assets/img/newbie.png';
 import ellipse24 from '../../assets/img/ellipse24.png';
+import group23 from '../../assets/img/group23.png';
+import group22 from '../../assets/img/group22.png';
 
 class Challenge extends Component {
     constructor(props) {
@@ -14,8 +18,9 @@ class Challenge extends Component {
             scoreboard: "challenge-link",
             friendList: "challenge-link chalLeft",
             team: null,
-            addteam: null,
-            outteam: false,
+            addteam: 1,
+            outteam: true,
+            friend: null
         }
     }
 
@@ -149,7 +154,7 @@ class Challenge extends Component {
         return (
             <>
             <div className="col-12 col-sm-12 col-md-12 col-lg-12 ellipse24">
-            <img src={ellipse24}/>
+            <img src={group23}/>
             </div>
                 <p className="text-teamHead">คุณยังไม่มีทีม</p>
                 <div className="col-12 col-sm-12 col-md-12 col-lg-12  center2  margin-top-3">
@@ -208,9 +213,9 @@ class Challenge extends Component {
         return (
             <>
                 <p className="headTeam bold">ทีม : หมีไฟพยักษ์ขาว <span className="span-challenge headTeamSpan">จำนวนสมาชิก 3/10 คน</span></p>
-                <p className="text-challenge"><p><span className="color-mvp1">1. </span>HummingBirth  <img src={mvp} className="image-mvp" />&nbsp;</p> <span>Newbie</span><span className="span-challenge"> 20 คะแนน</span></p>
-                <p className="text-challenge"><p><span className="color-mvp2">2. </span>HummingBirth</p>  <span>Newbie</span><span className="span-challenge"> 10 คะแนน</span></p>
-                <p className="text-challenge"><p><span className="color-mvp3">3. </span>HummingBirth</p>  <span>Newbie</span><span className="span-challenge"> 8 คะแนน</span></p>
+                <p className="text-challenge"><p><span className="color-mvp1">1. </span>HummingBirth  <img src={mvp_gold} className="image-mvp" />&nbsp;</p> <span>Newbie</span><span className="span-challenge"> 20 คะแนน</span></p>
+                <p className="text-challenge"><p><span className="color-mvp2">2. </span>HummingBirth  <img src={mvp_money} className="image-mvp" />&nbsp;</p>  <span>Newbie</span><span className="span-challenge"> 10 คะแนน</span></p>
+                <p className="text-challenge"><p><span className="color-mvp3">3. </span>HummingBirth  <img src={mvp_copper} className="image-mvp" />&nbsp;</p>  <span>Newbie</span><span className="span-challenge"> 8 คะแนน</span></p>
                 <p className="text-challenge"><p><span>4. </span>HummingBirth</p>  <span>Newbie</span><span className="span-challenge"> 2 คะแนน</span></p>
                 <p className="text-challenge"><p><span>5. </span>HummingBirth</p>  <span>Newbie</span><span className="span-challenge"> 1 คะแนน</span></p>
                 <p className="text-comment">*รายการจะถุูก Reset ทุกวันอาทิตย์</p>
@@ -227,9 +232,9 @@ class Challenge extends Component {
             <>
                 <div className="box-challengeIn">
                 <p className="headTeam bold">กระดานคะแนนทีม<span className="span-challenge headTeamSpan">จำนวนสมาชิก 3/10 คน</span></p>
-                <p className="text-challenge"><p><span className="color-mvp1">1. </span>HummingBirth  <img src={mvp} className="image-mvp" />&nbsp;</p> <span>Newbie</span><span className="span-challenge"> 20 คะแนน</span></p>
-                <p className="text-challenge"><p><span className="color-mvp2">2. </span>HummingBirth</p>  <span>Newbie</span><span className="span-challenge"> 10 คะแนน</span></p>
-                <p className="text-challenge"><p><span className="color-mvp3">3. </span>HummingBirth</p>  <span>Newbie</span><span className="span-challenge"> 8 คะแนน</span></p>
+                <p className="text-challenge"><p><span className="color-mvp1">1. </span>HummingBirth  <img src={mvp_gold} className="image-mvp" />&nbsp;</p> <span>Newbie</span><span className="span-challenge"> 20 คะแนน</span></p>
+                <p className="text-challenge"><p><span className="color-mvp2">2. </span>HummingBirth  <img src={mvp_money} className="image-mvp" />&nbsp;</p>  <span>Newbie</span><span className="span-challenge"> 10 คะแนน</span></p>
+                <p className="text-challenge"><p><span className="color-mvp3">3. </span>HummingBirth  <img src={mvp_copper} className="image-mvp" />&nbsp;</p>  <span>Newbie</span><span className="span-challenge"> 8 คะแนน</span></p>
                 <p className="text-challenge"><p><span>4. </span>HummingBirth</p>  <span>Newbie</span><span className="span-challenge"> 2 คะแนน</span></p>
                 <p className="text-challenge"><p><span>5. </span>HummingBirth</p>  <span>Newbie</span><span className="span-challenge"> 1 คะแนน</span></p>
                 <p className="text-comment">*รายการจะถุูก Reset ทุกวันอาทิตย์</p>
@@ -241,13 +246,17 @@ class Challenge extends Component {
         )
     }
     friendList() {
+        const { friend } = this.state;
         return (
             <>
-                <div className="box-challengeIn">
+            {
+                friend !== null ?
+                <>
+                 <div className="box-challengeIn">
                 <p className="headTeam bold">รายชื่อเพื่อน <span className="span-challenge headTeamSpan">จำนวนสมาชิก 3/10 คน</span></p>
-                <p className="text-challenge"><p><span className="color-mvp1">1. </span>HummingBirth  <img src={mvp} className="image-mvp" />&nbsp;</p> <span>Newbie</span><span className="span-challenge"> 20 คะแนน</span></p>
-                <p className="text-challenge"><p><span className="color-mvp2">2. </span>HummingBirth</p>  <span>Newbie</span><span className="span-challenge"> 10 คะแนน</span></p>
-                <p className="text-challenge"><p><span className="color-mvp3">3. </span>HummingBirth</p>  <span>Newbie</span><span className="span-challenge"> 8 คะแนน</span></p>
+                <p className="text-challenge"><p><span className="color-mvp1">1. </span>HummingBirth  <img src={mvp_gold} className="image-mvp" />&nbsp;</p> <span>Newbie</span><span className="span-challenge"> 20 คะแนน</span></p>
+                <p className="text-challenge"><p><span className="color-mvp2">2. </span>HummingBirth <img src={mvp_money} className="image-mvp" />&nbsp;</p>  <span>Newbie</span><span className="span-challenge"> 10 คะแนน</span></p>
+                <p className="text-challenge"><p><span className="color-mvp3">3. </span>HummingBirth <img src={mvp_copper} className="image-mvp" />&nbsp;</p>  <span>Newbie</span><span className="span-challenge"> 8 คะแนน</span></p>
                 <p className="text-challenge"><p><span>4. </span>HummingBirth</p>  <span>Newbie</span><span className="span-challenge"> 2 คะแนน</span></p>
                 <p className="text-challenge"><p><span>5. </span>HummingBirth</p>  <span>Newbie</span><span className="span-challenge"> 1 คะแนน</span></p>
                 <p className="text-comment">*รายการจะถุูก Reset ทุกวันอาทิตย์</p>
@@ -257,6 +266,24 @@ class Challenge extends Component {
 
 
                 </div>
+                </>
+                :
+                <>
+                    <div  className="box-challengeIn">
+                    <div className="col-12 col-sm-12 col-md-12 col-lg-12 ellipse24">
+                    <img src={group22}/>
+                    </div>
+                    <p className="text-teamHead">คุณยังไม่มีเพื่อน</p>
+                    <div className="col-12 col-sm-12 col-md-12 col-lg-12  center2  margin-top-3">
+                        <div className="bottom-teamList">
+                            <button type="button" className="btn bottom-outlineaddTeam " onClick={(e) => this.clickTeam("add")}>เพิ่มเพื่อน</button>
+                        </div>
+                    </div>
+                    </div>
+                </>
+
+            }
+               
             </>
         )
     }
