@@ -20,6 +20,7 @@ import vector4 from "../images/vector4.png";
 import { loadingLogo } from "aws-amplify";
 import { connect } from "react-redux";
 import { videoListForUser, createWeeklyStayfitProgram, updatePlaytime, randomVideo, selectChangeVideo, updatePlaylist, updateBodyInfo } from "../../redux/exerciseVideos"
+import { getExpireDate } from "../../redux/auth"
 import { convertFormatTime, convertSecondsToMinutes } from "../../helpers/utils"
 import { completeVideoPlayPercentage, minimumVideoPlayPercentage, updateFrequency } from "../../constants/defaultValues";
 import backgroundImag from '../../assets/img/bgintro_lg.d22ae02a.png';
@@ -36,7 +37,7 @@ class videoList extends React.Component {
       clickManu: "manu1",
       borderBottom1: "video-link rectangle13 color1",
       borderBottom2: "video-link",
-      borderBottom3:"video-link",
+      borderBottom3: "video-link",
       videoLi: "video-li ",
       focusDay: 0,
       urlVideo: null,
@@ -103,6 +104,8 @@ class videoList extends React.Component {
           age: JSON.parse(user.other_attributes).age,
         })
       }
+
+      this.props.getExpireDate(user.email);
     }
 
     /*    if (user && statusVideoList === "no_video") {
@@ -123,6 +126,16 @@ class videoList extends React.Component {
         this.props.user.start_date,
         this.props.user.expire_date,
       ); */
+    }
+
+    if (user && prevProps.user && (prevProps.user.expire_date !== user.expire_date)) {
+      this.props.videoListForUser(
+        this.props.user.user_id,
+        this.props.user.other_attributes.weight,
+        this.props.user.start_date,
+        this.props.user.expire_date,
+        this.props.user.offset
+      );
     }
 
     if (user && prevProps.user && ((prevProps.statusVideoList !== statusVideoList) && statusVideoList !== "no_video")) {
@@ -284,7 +297,7 @@ class videoList extends React.Component {
       var bottom1 = "video-link "
       var bottom2 = "video-link rectangle13 color1"
       var bottom3 = "video-link"
-    }else{
+    } else {
       var clickManu = "manu3"
       var bottom1 = "video-link"
       var bottom2 = "video-link"
@@ -312,11 +325,11 @@ class videoList extends React.Component {
   }
 
   toggle(selectedVDO) {
-  /*   if (selectedVDO) {
-      this.setState({
-        selectedVDO: selectedVDO
-      })
-    } */
+    /*   if (selectedVDO) {
+        this.setState({
+          selectedVDO: selectedVDO
+        })
+      } */
     if (selectedVDO) {
       this.setState({
         selectedVDO
@@ -325,7 +338,7 @@ class videoList extends React.Component {
         video.play();
       })
     }
-    
+
   }
 
   toggleList(index) {
@@ -677,7 +690,7 @@ class videoList extends React.Component {
               <li className="video-li  video-liPadding-left marginLeftRoutine">
                 <a className={this.state.borderBottom1} name="borderBottom1" onClick={e => this.clickBottom(e)}>Workout Routine</a>
               </li>
-          {/*     <li className="video-li  video-liPadding-left   video-liPadding-left2">
+              {/*     <li className="video-li  video-liPadding-left   video-liPadding-left2">
                 <a className={this.state.borderBottom2} name="borderBottom2" onClick={e => this.clickBottom(e)}>ชาเลนจ์</a>
               </li> */}
               <li className="video-li  video-liPadding-left   video-liPadding-left2">
@@ -700,9 +713,9 @@ class videoList extends React.Component {
                   this.routineWorkout()
               :
               this.state.clickManu === "manu2" ?
-              <Challenge/>
-              : 
-              this.exerciseMethod()
+                <Challenge />
+                :
+                this.exerciseMethod()
             /*  this.videoClipAll() */
           }
         </div>
@@ -2113,7 +2126,7 @@ const mapStateToProps = ({ authUser, exerciseVideos }) => {
   return { user, exerciseVideo, statusVideoList, video, videos, status };
 };
 
-const mapActionsToProps = { videoListForUser, createWeeklyStayfitProgram, updatePlaytime, randomVideo, selectChangeVideo, updatePlaylist, updateBodyInfo };
+const mapActionsToProps = { videoListForUser, createWeeklyStayfitProgram, updatePlaytime, randomVideo, selectChangeVideo, updatePlaylist, updateBodyInfo, getExpireDate };
 
 export default connect(
   mapStateToProps,

@@ -91,19 +91,21 @@ class App extends Component {
   componentDidMount() {
     const { user } = this.props;
     var expired = false;
-    if (user && user.expire_date) {
-      const currentDate = new Date().getTime();
-      const expireDate = new Date(user.expire_date).getTime();
-      expired = (currentDate > expireDate);
-    }
-    if (expired === true) {
-      document.getElementById("modalExpireClick").click();
+    if (this.props.location.pathname === "/videoList") {
+      if (user && user.expire_date) {
+        const currentDate = new Date().getTime();
+        const expireDate = new Date(user.expire_date).getTime();
+        expired = (currentDate > expireDate);
+      }
+      if (expired === true) {
+        document.getElementById("modalExpireClick").click();
+      }
     }
   }
 
   componentDidUpdate(prevProps) {
-    if (prevProps.location.pathname !== this.props.location.pathname) {
-      const { user } = this.props;
+    const { user } = this.props;
+    if ((prevProps.location.pathname !== this.props.location.pathname) && (this.props.location.pathname === "/videoList")) {
       var expired = false;
       if (user && user.expire_date) {
         const currentDate = new Date().getTime();
@@ -111,6 +113,18 @@ class App extends Component {
         expired = (currentDate > expireDate);
       }
       if (expired) {
+        document.getElementById("modalExpireClick").click();
+      }
+    }
+
+    if (user && prevProps.user && (prevProps.user.expire_date !== user.expire_date) && (this.props.location.pathname === "/videoList")) {
+      var expired = false;
+      if (user && user.expire_date) {
+        const currentDate = new Date().getTime();
+        const expireDate = new Date(user.expire_date).getTime();
+        expired = (currentDate > expireDate);
+      }
+      if (!expired) {
         document.getElementById("modalExpireClick").click();
       }
     }
@@ -146,6 +160,7 @@ class App extends Component {
                     type="button"
                     class="btn  bottom-pinkLogin font-size6 col-10 col-sm-10 col-md-10 col-lg-10"
                     data-bs-dismiss="modal"
+                    //onClick={() => this.props.history.push('/subscription_payment')}
                   >
                     ชำระเงิน
                   </button>
