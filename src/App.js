@@ -205,11 +205,11 @@ class App extends Component {
                           {this.props.user.email}
                         </a>
                         <ul className="dropdown-menu dropdown-menu-end">
-                          <li className="nav-item">
+                          {/* <li className="nav-item">
                             <a className="nav-link nav-linkHead" onClick={() => this.props.history.push('/profile')} style={{ cursor: "pointer" }}>
                               Profile
                             </a>
-                          </li>
+                          </li> */}
                           <li>
                             <a className="dropdown-item nav-linkHead pointer" onClick={() => this.onUserLogout()} style={{ cursor: "pointer" }}>
                               ออกจากระบบ
@@ -283,6 +283,7 @@ class App extends Component {
             <Route path='/programPackage' component={ProgramPackage} />
             <Route path='/videoList' component={videoList} />
             <Route path='/qr_checkout' render={() => { window.location.href = "qr_checkout.html" }} />
+            <Route path='/qr_checkout_subscription' render={() => { window.location.href = "qr_checkout_subscription.html" }} />
             <Route path='/cc_checkout' render={() => { window.location.href = "cc_checkout.html" }} />
             <Route path='/cc_token' render={() => { window.location.href = "cc_token.html" }} />
             <Route path='/cc_preotp' render={() => { window.location.href = "cc_preotp.html" }} />
