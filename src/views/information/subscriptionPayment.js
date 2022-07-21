@@ -24,7 +24,7 @@ class SubscriptionPayment extends React.Component {
       paymentMethod: "creditCard",
       price: 1, //สำหรับเทส
       productName: "bebe stay fit",
-      name: `${this.props.create_username} ${this.props.create_lastname}`,
+      name: this.props.delivery_address && `${JSON.parse(this.props.delivery_address).firstname} ${JSON.parse(this.props.delivery_address).lastname}`,
       cardNumber: "",
       expirationMonth: "",
       expirationYear: "",
@@ -35,7 +35,7 @@ class SubscriptionPayment extends React.Component {
       product1: this.props.products_list && JSON.parse(this.props.products_list).product1,
       product2: this.props.products_list && JSON.parse(this.props.products_list).product2,
       product3: this.props.products_list && JSON.parse(this.props.products_list).product3,
-      username: this.props.products_list && JSON.parse(this.props.delivery_address).firstname,
+      username: this.props.delivery_address && JSON.parse(this.props.delivery_address).firstname,
       lastname: this.props.delivery_address && JSON.parse(this.props.delivery_address).lastname,
       telephone: this.props.delivery_address && JSON.parse(this.props.delivery_address).phone,
       addressUser: this.props.delivery_address && JSON.parse(this.props.delivery_address).address,
@@ -92,7 +92,9 @@ class SubscriptionPayment extends React.Component {
         districtUser: this.props.delivery_address && JSON.parse(this.props.delivery_address).district,
         provinceUser: this.props.delivery_address && JSON.parse(this.props.delivery_address).province,
         zipcodeUser: this.props.delivery_address && JSON.parse(this.props.delivery_address).zipcode,
+        name: this.props.delivery_address && `${JSON.parse(this.props.delivery_address).firstname} ${JSON.parse(this.props.delivery_address).lastname}`
       })
+      window.localStorage.setItem('name', this.props.delivery_address && `${JSON.parse(this.props.delivery_address).firstname} ${JSON.parse(this.props.delivery_address).lastname}`);
     }
 
   }
@@ -159,9 +161,9 @@ class SubscriptionPayment extends React.Component {
           const recurringData = {
             processType: "I",
             referenceNo,
-            recurringAmount: price,
+            recurringAmount: price * 24,
             recurringInterval: "M",
-            recurringCount: 1,
+            recurringCount: 24,
             recurringPeriod: "01",
             allowAccumulate: "Y",
             cardToken: card.token,
@@ -219,7 +221,7 @@ class SubscriptionPayment extends React.Component {
           </div>
           <div className="col-12 col-sm-12 col-md-6 col-lg-6 center2 margin-head">
             <div className="col-12 col-sm-12 col-md-10 col-lg-10 center2  margin-headText">
-              <p className="font-size6 bold color-protein"> การชำระเงิน</p>
+              <p className="font-size6 bold color-protein"> การชำระเงิน </p>
             </div>
             {
               ((this.state.status_payment === "unsuccess") && (this.state.paymentMethod === "creditCard")) &&
