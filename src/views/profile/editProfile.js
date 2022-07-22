@@ -5,7 +5,7 @@ import ellipse17_2 from "../../assets/img/ellipse17_2.png";
 import user_circle from "../../assets/img/user_circle.svg";
 import { connect } from "react-redux";
 import { getSubscriptionProducts } from "../../redux/get";
-import { putSubscriptionAddress } from "../../redux/updateAddress";
+import { putSubscriptionAddress, clearSubscriptionAddress } from "../../redux/updateAddress";
 import InputAddress from 'react-thailand-address-autocomplete';
 
 class EditProfile extends React.Component {
@@ -24,8 +24,23 @@ class EditProfile extends React.Component {
     };
   }
 
+
+  componentDidMount() {
+    const address = JSON.parse(this.props.delivery_address);
+    this.setAddress(address);
+
+    this.props.clearSubscriptionAddress();
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    const { status_update_address } = this.props;
+    if ((prevProps.status_update_address !== status_update_address) && (status_update_address === "success")) {
+      this.props.history.push('/profile');
+    }
+  }
+
   onChange(e) {
-    console.log("AA",e.target.value,e.target.name);
+    console.log("AA", e.target.value, e.target.name);
     this.setState({
       [e.target.name]: e.target.value,
     })
@@ -59,37 +74,25 @@ class EditProfile extends React.Component {
     })
   }
 
-
   onSubmit() {
-      const user_id = this.props.user.user_id;
-      const {firstname,lastname,phone,address,subdistrict,district,province,zipcode} = this.state;
-      const data = {
-        firstname,
-        lastname,
-        phone,
-        address,
-        subdistrict,
-        district,
-        province,
-        zipcode
-      }
-      this.props.putSubscriptionAddress(user_id,data);
-      this.props.history.push('/profile');
-  }
-
-  
-
-  componentDidMount() {
-
-    const address = JSON.parse(this.props.delivery_address);
-  
-
-    this.setAddress(address);
+    const user_id = this.props.user.user_id;
+    const { firstname, lastname, phone, address, subdistrict, district, province, zipcode } = this.state;
+    const data = {
+      firstname,
+      lastname,
+      phone,
+      address,
+      subdistrict,
+      district,
+      province,
+      zipcode
+    }
+    this.props.putSubscriptionAddress(user_id, data);
   }
 
   render() {
     const { firstname, lastname, phone, address, subdistrict, district, province, zipcode } = this.state;
-console.log("AA",this.props.user);
+    console.log("AA", this.props.user);
     return (
       <>
         <div className="padding-top4 center">
@@ -161,11 +164,11 @@ console.log("AA",this.props.user);
                 <div className="row">
                   <div className="col-12 col-sm-12 col-md-6 col-lg-6">
                     <label className="form-label bold font-size4">ชื่อ</label>
-                    <input type="text" className="form-control" name="firstname"  value={firstname} onChange={e => this.onChange(e)} id="exampleFormControlInput1" />
+                    <input type="text" className="form-control" name="firstname" value={firstname} onChange={e => this.onChange(e)} id="exampleFormControlInput1" />
                   </div>
                   <div className="col-12 col-sm-12 col-md-6 col-lg-6">
                     <label className="form-label bold font-size4">นามสกุล</label>
-                    <input type="text" className="form-control" name="lastname"  value={lastname} onChange={e => this.onChange(e)} id="exampleFormControlInput1" />
+                    <input type="text" className="form-control" name="lastname" value={lastname} onChange={e => this.onChange(e)} id="exampleFormControlInput1" />
                   </div>
                 </div>
                 <div className="padding-top2">
@@ -174,7 +177,7 @@ console.log("AA",this.props.user);
                 </div>
                 <div className="padding-top2">
                   <label className="form-label bold font-size4">ที่อยู่</label>
-                  <input type="text" className="form-control"  name="address" value={address} onChange={e => this.onChange(e)} id="exampleFormControlInput1" />
+                  <input type="text" className="form-control" name="address" value={address} onChange={e => this.onChange(e)} id="exampleFormControlInput1" />
                 </div>
                 <div className="elementStyle">
                   <div className="padding-top2">
@@ -254,13 +257,14 @@ console.log("AA",this.props.user);
 
 
 
-const mapStateToProps = ({ get, authUser,editAddress }) => {
+const mapStateToProps = ({ get, authUser, updateAddress }) => {
   const { delivery_address } = get;
   const { user } = authUser;
-  return { delivery_address, user };
+  const { status_update_address } = updateAddress;
+  return { delivery_address, user, status_update_address };
 };
 
-const mapActionsToProps = { getSubscriptionProducts,putSubscriptionAddress };
+const mapActionsToProps = { getSubscriptionProducts, putSubscriptionAddress, clearSubscriptionAddress };
 
 export default connect(
   mapStateToProps,

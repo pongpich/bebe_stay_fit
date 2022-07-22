@@ -116,11 +116,19 @@ export function* saga() {
 /* REDUCER Section */
 
 const INIT_STATE = {
+  delivery_address: null,
+  products_list: null,
   register_log: null
 };
 
 export function reducer(state = INIT_STATE, action) {
   switch (action.type) {
+    case types.GET_SUBSCRIPTION_PRODUCTS_SUCCESS:
+      return {
+        ...state,
+        delivery_address: action.payload.delivery_address,
+        products_list: action.payload.products_list
+      }
     case types.GET_REGISTER_LOG_SUCCESS:
       return {
         ...state,

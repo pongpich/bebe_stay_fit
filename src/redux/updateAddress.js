@@ -6,7 +6,12 @@ import { API } from "aws-amplify";
 export const types = {
   POST_SUBSCRIPTION_ADDRESS: "POST_SUBSCRIPTION_ADDRESS",
   POST_SUBSCRIPTION_ADDRESS_SUCCESS: "POST_SUBSCRIPTION_ADDRESS_SUCCESS",
+  CLEAR_SUBSCRIPTION_ADDRESS: "CLEAR_SUBSCRIPTION_ADDRESS"
 }
+
+export const clearSubscriptionAddress = () => ({
+  type: types.CLEAR_SUBSCRIPTION_ADDRESS
+})
 
 export const putSubscriptionAddress = (user_id,data) => ({
 
@@ -48,8 +53,7 @@ export const putSubscriptionAddress = (user_id,data) => ({
         data
       );
       yield put({
-        type: types.POST_SUBSCRIPTION_ADDRESS_SUCCESS,
-        payload: apiResult.results
+        type: types.POST_SUBSCRIPTION_ADDRESS_SUCCESS
       })
       console.log("apiResult :", apiResult);
     } catch (error) {
@@ -68,15 +72,20 @@ export const putSubscriptionAddress = (user_id,data) => ({
   }
 
   const INIT_STATE = {
-    Delivery_address: null
+    status_update_address: "default",
   };
   
   export function reducer(state = INIT_STATE, action) {
     switch (action.type) {
-      case types.POST_SUBSCRIPTION_ADDRESS:
+      case types.POST_SUBSCRIPTION_ADDRESS_SUCCESS:
         return {
           ...state,
-          Delivery_address: action.payload.Delivery_address,
+          status_update_address: "success"
+        }
+      case types.CLEAR_SUBSCRIPTION_ADDRESS:
+        return {
+          ...state,
+          status_update_address: "default"
         }
       default:
         return { ...state };

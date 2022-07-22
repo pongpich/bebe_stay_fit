@@ -160,7 +160,7 @@ class App extends Component {
                     type="button"
                     class="btn  bottom-pinkLogin font-size6 col-10 col-sm-10 col-md-10 col-lg-10"
                     data-bs-dismiss="modal"
-                    //onClick={() => this.props.history.push('/subscription_payment')}
+                    onClick={() => this.props.history.push('/subscription_payment')}
                   >
                     ชำระเงิน
                   </button>
@@ -220,13 +220,13 @@ class App extends Component {
                           {this.props.user.email}
                         </a>
                         <ul className="dropdown-menu dropdown-menu-end">
-                          {/* <li className="nav-item">
-                            <a className="nav-link nav-linkHead" onClick={() => this.props.history.push('/profile')} style={{ cursor: "pointer" }}>
+                          <li className="nav-item">
+                            <a className="dropdown-item nav-linkHead pointer" onClick={() => this.props.history.push('/profile')}>
                               Profile
                             </a>
-                          </li> */}
+                          </li>
                           <li>
-                            <a className="dropdown-item nav-linkHead pointer" onClick={() => this.onUserLogout()} style={{ cursor: "pointer" }}>
+                            <a className="dropdown-item nav-linkHead pointer" onClick={() => this.onUserLogout()}>
                               ออกจากระบบ
                             </a>
                           </li>
