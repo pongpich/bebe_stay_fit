@@ -22,7 +22,7 @@ class SubscriptionPayment extends React.Component {
       onFocus: "btn btn-outline-pinkFocus",
       notFocus: "btn btn-outline-pink",
       paymentMethod: "qrCode",
-      price: 1800, // 1บาท สำหรับเทส / 1800บาท สำหรับใช้จริง
+      price: (this.props.user.program_id === "test") ? 1 : 1800, // 1บาท สำหรับเทส / 1800บาท สำหรับใช้จริง
       productName: "bebe stay fit",
       name: this.props.delivery_address && `${JSON.parse(this.props.delivery_address).firstname} ${JSON.parse(this.props.delivery_address).lastname}`,
       cardNumber: "",
