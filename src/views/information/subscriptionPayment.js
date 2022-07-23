@@ -19,10 +19,10 @@ class SubscriptionPayment extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      creditCardFocus: "btn btn-outline-pinkFocus",
-      qrCodeFocus: "btn btn-outline-pink",
-      paymentMethod: "creditCard",
-      price: 1, //สำหรับเทส
+      onFocus: "btn btn-outline-pinkFocus",
+      notFocus: "btn btn-outline-pink",
+      paymentMethod: "qrCode",
+      price: 1800, // 1บาท สำหรับเทส / 1800บาท สำหรับใช้จริง
       productName: "bebe stay fit",
       name: this.props.delivery_address && `${JSON.parse(this.props.delivery_address).firstname} ${JSON.parse(this.props.delivery_address).lastname}`,
       cardNumber: "",
@@ -102,23 +102,14 @@ class SubscriptionPayment extends React.Component {
   pinkModelFocus = (e) => {
     if (e === "1") {
       //เลือกชำระด้วย creditCard
-      var qrCodeFocus = "btn btn-outline-pink";
-      var creditCardFocus = "btn btn-outline-pinkFocus";
       this.setState({ paymentMethod: "creditCard" })
       console.log("บัตรเครดิต");
     } else {
       //เลือกชำระด้วย qrCode
-      var qrCodeFocus = "btn btn-outline-pinkFocus";
-      var creditCardFocus = "btn btn-outline-pink";
       this.setState({ paymentMethod: "qrCode" })
       console.log("QR code");
     }
     console.log("e :", e);
-    this.setState({
-      qrCodeFocus: qrCodeFocus,
-      creditCardFocus: creditCardFocus,
-    })
-
   }
 
   onChickprice = (e) => {
@@ -228,8 +219,8 @@ class SubscriptionPayment extends React.Component {
               <h6 style={{ color: "red" }}>ระบบเรียกเก็บเงินไม่สำเร็จกรุณาตรวจสอบข้อมูลบัตรให้ถูกต้องอีกครั้ง หรือเปลี่ยนวิธีการชำระเงิน</h6>
             }
             <div className="col-12 col-sm-12 col-md-12 col-lg-12 center2 mb-4">
-              <button type="button" className={this.state.creditCardFocus} onClick={e => this.pinkModelFocus("1")}>บัตรเครดิต/เดบิต</button>&nbsp;&nbsp;&nbsp;
-              <button type="button" className={this.state.qrCodeFocus} onClick={e => this.pinkModelFocus("2")}>ชำระด้วย QR Code</button>
+              {/* <button type="button" className={(this.state.paymentMethod === "creditCard") ? this.state.onFocus : this.state.notFocus} onClick={e => this.pinkModelFocus("1")}>บัตรเครดิต/เดบิต</button>&nbsp;&nbsp;&nbsp; */}
+              <button type="button" className={(this.state.paymentMethod === "qrCode") ? this.state.onFocus : this.state.notFocus} onClick={e => this.pinkModelFocus("2")}>ชำระด้วย QR Code</button>
             </div>
             {
               (this.state.paymentMethod === "qrCode") &&
