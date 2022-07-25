@@ -12,6 +12,7 @@ import { reducer as update} from './update';
 import { reducer as get} from './get';
 import { reducer as exerciseVideos} from './exerciseVideos';
 import { reducer as updateAddress} from './updateAddress';
+import { reducer as challenges} from './challenges';
 
 
 const persistConfig = {
@@ -29,7 +30,8 @@ const reducers = combineReducers({
   update,
   get,
   exerciseVideos,
-  updateAddress
+  updateAddress,
+  challenges
 });
 
 const persistedReducer = persistReducer(persistConfig, reducers)
