@@ -55,6 +55,9 @@ class Challenge extends Component {
 
     if ((prevProps.statusCreateTeam !== statusCreateTeam) && (statusCreateTeam === "success")) {
       this.props.getGroupID(user.user_id);
+      this.setState({
+        addteam: null, //กำหนด addteam เป็น null เพื่อซ่อนหน้าการยืนยันการตั้งชื่อทีม
+      })
     }
 
     //เช็คว่าถ้ามีทีมว่างให้ผู้ใช้อยู่ทีมที่ว่างและสมาชิกน้อยสุด
@@ -69,10 +72,16 @@ class Challenge extends Component {
     }
 
     //หลังจาก assignGroupToMember จะมีการ กำหนด statusGetNumberOfTeamNotFull = default ให้ทำการ getGroupID
-    //หรือ หลังจาก leaveTeam ให้ getGroupID (group_id ที่ได้ จะเป็น null)
-    if ((prevProps.statusGetNumberOfTeamNotFull !== statusGetNumberOfTeamNotFull && statusGetNumberOfTeamNotFull === "default")
-      || (prevProps.statusLeaveTeam === "default" && statusLeaveTeam === "success")) {
+    if (prevProps.statusGetNumberOfTeamNotFull !== statusGetNumberOfTeamNotFull && statusGetNumberOfTeamNotFull === "default") {
       this.props.getGroupID(this.props.user.user_id);
+    }
+
+    //หลังจาก leaveTeam ให้ getGroupID (group_id ที่ได้ จะเป็น null)
+    if ((prevProps.statusLeaveTeam !== statusLeaveTeam) && (statusLeaveTeam === "success")) {
+      this.props.getGroupID(this.props.user.user_id);
+      this.setState({
+        outteam: false  //กำหนด outteam: false เพื่อซ่อนหน้ายืนยันการออกทีม
+      })
     }
 
   }
@@ -85,8 +94,10 @@ class Challenge extends Component {
 
   createTeam(teamName) {
     const { user } = this.props;
+    //ตัด ' และ ช่องว่างหน้าหลัง string ออก เพื่อป้องกันบัค SQL syntax
+    const teamNameSplit = teamName.trim().split("'").join(' ')
     if (teamName.length > 6) {
-      this.props.createChallengeGroup(user.user_id, teamName, user.start_date)
+      this.props.createChallengeGroup(user.user_id, teamNameSplit, user.start_date)
     } else {
       this.setState({
         teamName: ""
@@ -293,13 +304,14 @@ class Challenge extends Component {
     )
   }
   outTeamList() {
+    const { user } = this.props;
     return (
       <>
         <p className="text-teamHeadout">คุณยืนยันที่จะออกจากทีมหรือไม่</p>
         <div className="col-12 col-sm-12 col-md-12 col-lg-12  center2  margin-top-3">
           <div className="bottom-teamList">
             <button type="button" className="btn bottom-outlinebackTeam " onClick={(e) => this.clickOutTeamList(false)}>ย้อนกลับ</button>
-            <button type="button" className="btn bottom-outlineoutTeam bottomEditProfileLeft" onClick={(e) => this.clickOutTeamList(false)}>ออกจากทีม</button>
+            <button type="button" className="btn bottom-outlineoutTeam bottomEditProfileLeft" onClick={() => this.props.leaveTeam(user.user_id)}>ออกจากทีม</button>
           </div>
         </div>
       </>

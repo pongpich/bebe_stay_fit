@@ -952,6 +952,11 @@ export function reducer(state = INIT_STATE, action) {
         ...state,
         statusCreateTeam: "fail"
       }
+    case types.LEAVE_TEAM:
+      return {
+        ...state,
+        statusLeaveTeam: "loading"
+      }
     case types.LEAVE_TEAM_SUCCESS:
       return {
         ...state,
