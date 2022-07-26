@@ -10,6 +10,7 @@ import group22 from '../../assets/img/group22.png';
 import { getRank, getLogWeight, getIsReducedWeight, getLogWeightTeam, getDailyTeamWeightBonus, getNumberOfTeamNotFull, assignGroupToMember, clearChallenges, createChallengeGroup, leaveTeam, getMembersAndRank, getGroupName, getScoreOfTeam, getLeaderboard, getChallengePeriod } from "../../redux/challenges";
 import { getGroupID } from "../../redux/auth";
 import { connect } from "react-redux";
+import moment from "moment"
 
 class Challenge extends Component {
   constructor(props) {
@@ -48,6 +49,12 @@ class Challenge extends Component {
 
 
     this.props.getGroupID(user.user_id);
+
+    this.props.getGroupName(user.group_id);
+    this.props.getLogWeightTeam(this.props.user.group_id);
+    this.props.getMembersAndRank(this.props.user.group_id, this.props.user.start_date);
+    this.props.getRank(this.props.user.user_id, this.props.user.start_date);
+    this.props.getLeaderboard();
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -82,6 +89,19 @@ class Challenge extends Component {
       this.setState({
         outteam: false  //กำหนด outteam: false เพื่อซ่อนหน้ายืนยันการออกทีม
       })
+    }
+
+    //หลังจาก getGroupID จะมีการแก้ไขค่า user.group_id ที่ Reducer authUser
+    if (user && user.group_id !== prevProps.user.group_id) {
+      this.props.getRank(this.props.user.user_id, this.props.user.start_date);
+      //this.props.getLogWeight(this.props.user.user_id);
+      this.props.getLogWeightTeam(this.props.user.group_id);
+      //this.props.getIsReducedWeight(this.props.user.user_id);
+      //this.props.getDailyTeamWeightBonus(this.props.user.user_id);
+      this.props.getMembersAndRank(this.props.user.group_id, this.props.user.start_date);
+      this.props.getGroupName(this.props.user.group_id);
+      //this.props.getScoreOfTeam(this.props.user.group_id);
+      this.props.getLeaderboard();
     }
 
   }
@@ -318,14 +338,51 @@ class Challenge extends Component {
     )
   }
   teamYou() {
+    const { numberOfMembers, membersOfTeam, group_name, totalScoreOfTeam } = this.props;
     return (
       <>
-        <p className="headTeam bold">ทีม : หมีไฟพยักษ์ขาว <span className="span-challenge headTeamSpan">จำนวนสมาชิก 3/10 คน</span></p>
-        <p className="text-challenge"><p><span className="color-mvp1">1. </span>HummingBirth  <img src={mvp_gold} className="image-mvp" />&nbsp;</p> <span>Newbie</span><span className="span-challenge"> 20 คะแนน</span></p>
-        <p className="text-challenge"><p><span className="color-mvp2">2. </span>HummingBirth  <img src={mvp_money} className="image-mvp" />&nbsp;</p>  <span>Newbie</span><span className="span-challenge"> 10 คะแนน</span></p>
-        <p className="text-challenge"><p><span className="color-mvp3">3. </span>HummingBirth  <img src={mvp_copper} className="image-mvp" />&nbsp;</p>  <span>Newbie</span><span className="span-challenge"> 8 คะแนน</span></p>
-        <p className="text-challenge"><p><span>4. </span>HummingBirth</p>  <span>Newbie</span><span className="span-challenge"> 2 คะแนน</span></p>
-        <p className="text-challenge"><p><span>5. </span>HummingBirth</p>  <span>Newbie</span><span className="span-challenge"> 1 คะแนน</span></p>
+        <p className="headTeam bold">ทีม : {group_name} <span className="span-challenge headTeamSpan">จำนวนสมาชิก {numberOfMembers}/10 คน</span></p>
+        {
+          (membersOfTeam) &&
+          membersOfTeam.map((item, index) =>
+            <p className="text-challenge">
+              <p>
+                <span className={(index + 1 === 1) ? "color-mvp1" : (index + 1 === 2) ? "color-mvp2" : (index + 1 === 3) ? "color-mvp3" : ""}>{index + 1}. </span>
+                {
+                  item.facebook ?
+                    item.facebook
+                    :
+                    item.first_name ?
+                      `${item.first_name} ${item.last_name}`
+                      :
+                      item.email
+                }
+                {
+                  (index + 1 === 1) &&
+                  <img src={mvp_gold} className="image-mvp" />
+                }
+                {
+                  (index + 1 === 2) &&
+                  <img src={mvp_money} className="image-mvp" />
+                }
+                {
+                  (index + 1 === 3) &&
+                  <img src={mvp_copper} className="image-mvp" />
+                }
+                &nbsp;
+              </p>
+              <span>
+                {
+                  item.end_rank ?
+                    item.end_rank.charAt(0).toUpperCase() + item.end_rank.substr(1).toLowerCase()
+                    :
+                    item.start_rank.charAt(0).toUpperCase() + item.start_rank.substr(1).toLowerCase()
+                }
+              </span>
+              <span className="span-challenge"> {item.total_score} คะแนน</span>
+            </p>
+          )
+        }
         <p className="text-comment">*รายการจะถุูก Reset ทุกวันอาทิตย์</p>
         <p className="text-comment">*คะแนนจะถูกสรุปทุกวันอาทิตย์</p>
         <p className="border-bottom"></p>
@@ -336,17 +393,142 @@ class Challenge extends Component {
   }
 
   scoreboard() {
+    const { selectedScoreBoard } = this.state;
+    const { user, teamRank, individualRank } = this.props;
+    //const teamRankFilter = teamRank.filter(item => user.fb_group === item.fb_group);
+    const individualRankFilter = individualRank;
+
+    var myRank = individualRank.filter(item => item.user_id === this.props.user.user_id);
+    // myRank[0] === undefined คือกรณีผู้ใช้ไม่มีข้อมูลอยู่เลยใน member_event_log  (ทำให้เกิดบัค จึงต้องกำหนดค่าให้)
+    if (myRank[0] === undefined) {
+      myRank[0] = { "rank": 0, "facebook": user.facebook ? user.facebook : user.first_name ? `${user.first_name} ${user.last_name}` : user.email, "total_score": 0 };
+    }
+
+    var myRankIndex = individualRankFilter.findIndex(item => item.user_id === this.props.user.user_id);
     return (
       <>
         <div className="box-challengeIn">
-          <p className="headTeam bold">กระดานคะแนนทีม<span className="span-challenge headTeamSpan">จำนวนสมาชิก 3/10 คน</span></p>
-          <p className="text-challenge"><p><span className="color-mvp1">1. </span>HummingBirth  <img src={mvp_gold} className="image-mvp" />&nbsp;</p> <span>Newbie</span><span className="span-challenge"> 20 คะแนน</span></p>
-          <p className="text-challenge"><p><span className="color-mvp2">2. </span>HummingBirth  <img src={mvp_money} className="image-mvp" />&nbsp;</p>  <span>Newbie</span><span className="span-challenge"> 10 คะแนน</span></p>
-          <p className="text-challenge"><p><span className="color-mvp3">3. </span>HummingBirth  <img src={mvp_copper} className="image-mvp" />&nbsp;</p>  <span>Newbie</span><span className="span-challenge"> 8 คะแนน</span></p>
-          <p className="text-challenge"><p><span>4. </span>HummingBirth</p>  <span>Newbie</span><span className="span-challenge"> 2 คะแนน</span></p>
-          <p className="text-challenge"><p><span>5. </span>HummingBirth</p>  <span>Newbie</span><span className="span-challenge"> 1 คะแนน</span></p>
-          <p className="text-comment">*รายการจะถุูก Reset ทุกวันอาทิตย์</p>
-          <p className="text-comment">*คะแนนจะถูกสรุปทุกวันอาทิตย์</p>
+          <div className="row">
+            <p
+              className="headTeam bold"
+              style={{ color: `${selectedScoreBoard === "team" ? "#F45197" : "grey"}`, cursor: "pointer" }}
+              onClick={() => this.setState({ selectedScoreBoard: "team" })}
+            >กระดานคะแนนทีม</p>
+            <p
+              className="headTeam bold"
+              style={{ color: `${selectedScoreBoard === "individual" ? "#F45197" : "grey"}`, cursor: "pointer" }}
+              onClick={() => this.setState({ selectedScoreBoard: "individual" })}
+            >กระดานคะแนนเดี่ยว</p>
+          </div>
+          <hr className="w-100"></hr>
+          {
+            (teamRank && (selectedScoreBoard === "team")) &&
+            teamRank.map((item, index) =>
+              <p className="text-challenge">
+                <p>
+                  <span className={(index + 1 === 1) ? "color-mvp1" : (index + 1 === 2) ? "color-mvp2" : (index + 1 === 3) ? "color-mvp3" : ""}>{index + 1}. </span>
+                  {
+                    item.group_name ?
+                      item.group_name
+                      :
+                      ""
+                  }
+                  {
+                    (index + 1 === 1) &&
+                    <img src={mvp_gold} className="image-mvp" />
+                  }
+                  {
+                    (index + 1 === 2) &&
+                    <img src={mvp_money} className="image-mvp" />
+                  }
+                  {
+                    (index + 1 === 3) &&
+                    <img src={mvp_copper} className="image-mvp" />
+                  }
+                &nbsp;
+              </p>
+                <span>
+
+                </span>
+                <span className="span-challenge"> {item.totalScoreOfTeam ? item.totalScoreOfTeam : 0} คะแนน</span>
+              </p>
+            )
+          }
+          {
+            (selectedScoreBoard === "individual") &&
+            <div className="col-lg-12  mb-3" style={{ float: "left" }}>
+              {
+                <b className="row mb-4">
+                  <p className="card-text col-12">
+                    <span className={(myRankIndex + 1 === 1) ? "color-mvp1" : (myRankIndex + 1 === 2) ? "color-mvp2" : (myRankIndex + 1 === 3) ? "color-mvp3" : ""}>
+                      {myRankIndex + 1}. </span>
+                    {
+                      myRank[0].facebook ?
+                        myRank[0].facebook
+                        :
+                        myRank[0].first_name ?
+                          `${myRank[0].first_name} ${myRank[0].last_name}`
+                          :
+                          myRank[0].email
+                    }
+                    {
+                      (myRankIndex + 1 === 1) &&
+                      <img src={mvp_gold} className="image-mvp" />
+                    }
+                    {
+                      (myRankIndex + 1 === 2) &&
+                      <img src={mvp_money} className="image-mvp" />
+                    }
+                    {
+                      (myRankIndex + 1 === 3) &&
+                      <img src={mvp_copper} className="image-mvp" />
+                    }
+                &nbsp;
+                    <span style={{ float: "right", color: "#F45197" }}>
+                      {myRank[0].total_score ? myRank[0].total_score : 0} คะแนน
+                    </span>
+                  </p>
+                </b>
+              }
+              {
+                (individualRankFilter) &&
+                individualRankFilter.map((item, index) => {
+                  const fullName = `${item.first_name} ${item.last_name}`;
+                  const rankDetail = `${
+                    item.facebook ?
+                      item.facebook
+                      :
+                      item.first_name ?
+                        fullName
+                        :
+                        item.email
+                    }`;
+                  return (
+                    <p className="card-text">
+                      <span className={(index + 1 === 1) ? "color-mvp1" : (index + 1 === 2) ? "color-mvp2" : (index + 1 === 3) ? "color-mvp3" : ""}
+                      >{index + 1}. </span>
+                      {rankDetail}
+                      {
+                        (index + 1 === 1) &&
+                        <img src={mvp_gold} className="image-mvp" />
+                      }
+                      {
+                        (index + 1 === 2) &&
+                        <img src={mvp_money} className="image-mvp" />
+                      }
+                      {
+                        (index + 1 === 3) &&
+                        <img src={mvp_copper} className="image-mvp" />
+                      }
+                      <span style={{ float: "right", color: "#F45197" }}>
+                        {item.total_score ? item.total_score : 0} คะแนน
+                      </span>
+                    </p>
+                  )
+                })
+              }
+            </div>
+          }
 
         </div>
 
@@ -423,6 +605,7 @@ class Challenge extends Component {
 
   render() {
     const { challenge, allMissions, teamList, scoreboard, friendList } = this.state;
+    const { rank } = this.props;
     return (
       <>
         <div className="box-challenge">
@@ -435,7 +618,7 @@ class Challenge extends Component {
                 <a className={teamList} name="teamList" onClick={e => this.challengeBottom(e)}>รายชื่อภายในทีม</a>
               </li>
               <li className="video-li">
-                <a className={scoreboard} name="scoreboard" onClick={e => this.challengeBottom(e)}>กระดานคะแนนทีม</a>
+                <a className={scoreboard} name="scoreboard" onClick={e => this.challengeBottom(e)}>กระดานคะแนน</a>
               </li>
               <li className="video-li">
                 <a className={friendList} name="friendList" onClick={e => this.challengeBottom(e)}>รายชื่อเพื่อน</a>
@@ -463,8 +646,15 @@ class Challenge extends Component {
                 </div>
                 <div class="col-12 col-sm-12 col-md-5 col-lg-5">
                   <div className="emblem-box">
-                    <img src={newbie} />
-                    <p className="circleTextHead color1">Newbie</p>
+                    <img src={`./assets/img/rank/${rank}.png`} width="45%" height="45%" />
+                    <p className="circleTextHead color1">
+                      {
+                        rank ?
+                          rank.charAt(0).toUpperCase() + rank.substr(1).toLowerCase()
+                          :
+                          ""
+                      }
+                    </p>
                     {/* <div className="circle-progress"></div> */}
                     <div className="progress-barChallenge">
                       <div className="progressChallenge">
@@ -472,7 +662,7 @@ class Challenge extends Component {
                       </div>
                     </div>
 
-                    <p className="circleTextHead">0/100 Point</p>
+                    <p className="circleTextHead">0/41 Point</p>
                   </div>
                 </div>
               </div>
@@ -647,8 +837,8 @@ class Challenge extends Component {
 
 const mapStateToProps = ({ authUser, challenges }) => {
   const { user } = authUser;
-  const { statusCreateTeam, numberOfTeamNotFull, statusGetNumberOfTeamNotFull, statusLeaveTeam } = challenges;
-  return { user, statusCreateTeam, numberOfTeamNotFull, statusGetNumberOfTeamNotFull, statusLeaveTeam };
+  const { statusCreateTeam, numberOfTeamNotFull, statusGetNumberOfTeamNotFull, statusLeaveTeam, numberOfMembers, membersOfTeam, group_name, totalScoreOfTeam, rank, teamRank, individualRank } = challenges;
+  return { user, statusCreateTeam, numberOfTeamNotFull, statusGetNumberOfTeamNotFull, statusLeaveTeam, numberOfMembers, membersOfTeam, group_name, totalScoreOfTeam, rank, teamRank, individualRank };
 };
 
 const mapActionsToProps = { getGroupID, getRank, getLogWeight, getIsReducedWeight, getLogWeightTeam, getDailyTeamWeightBonus, getNumberOfTeamNotFull, assignGroupToMember, clearChallenges, createChallengeGroup, leaveTeam, getMembersAndRank, getGroupName, getScoreOfTeam, getLeaderboard, getChallengePeriod };

@@ -655,7 +655,6 @@ function* createChallengeGroupSaga({ payload }) {
       group_name,
       start_date
     );
-    console.log("apiResult :", apiResult);
     if (apiResult.results.message === "success") {
       yield put({
         type: types.CREATE_CHALLENGE_GROUP_SUCCESS
@@ -698,6 +697,7 @@ function* getMembersAndRankSaga({ payload }) {
       group_id,
       start_date
     );
+    console.log("apiResult :", apiResult);
     yield put({
       type: types.GET_MEMBERS_AND_RANK_SUCCESS,
       payload: apiResult.results.members
