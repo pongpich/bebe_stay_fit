@@ -1142,8 +1142,8 @@ class videoList extends React.Component {
                
                 <div className="col-12 col-sm-12 col-md-12 col-lg-12  center2  margin-top">
                   <div className="bottom-Weight">
-                    <button type="button" className="btn bottom-outlinePinkLeft " data-bs-dismiss="modal" aria-label="Close">ยกเลิก</button>
-                    <button type="button" className="btn bottom-outlinePinkRight bottomEditProfileLeft " >บันทึก</button>
+                    <button type="button" className="btn bottom-outlinePinkLeft " data-bs-dismiss="modal" aria-label="Close">ปิด</button>
+                    <button type="button" className="btn bottom-outlinePinkRight bottomEditProfileLeft " >ยืนยัน</button>
                   </div>
                 </div>
               </div>
