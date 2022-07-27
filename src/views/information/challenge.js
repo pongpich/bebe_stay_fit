@@ -36,24 +36,17 @@ class Challenge extends Component {
 
   componentDidMount() {
     const { user } = this.props;
-
-    var progressChallenge = document.getElementById("progress-doneChallenge");
-
-    const maxMember = 100;
-    const minMember = 30;
-    var member = minMember;
-
-    const width = (member / maxMember) * 100;
-
-    progressChallenge.style.width = width + "%";
-
-
+    
     this.props.getGroupID(user.user_id);
 
-    this.props.getGroupName(user.group_id);
-    this.props.getLogWeightTeam(this.props.user.group_id);
-    this.props.getMembersAndRank(this.props.user.group_id, this.props.user.start_date);
     this.props.getRank(this.props.user.user_id, this.props.user.start_date);
+    this.props.getLogWeight(this.props.user.user_id);
+    this.props.getLogWeightTeam(this.props.user.group_id);
+    this.props.getIsReducedWeight(this.props.user.user_id);
+    this.props.getDailyTeamWeightBonus(this.props.user.user_id);
+    this.props.getMembersAndRank(this.props.user.group_id, this.props.user.start_date);
+    this.props.getGroupName(this.props.user.group_id);
+    this.props.getScoreOfTeam(this.props.user.group_id);
     this.props.getLeaderboard();
   }
 
@@ -94,13 +87,13 @@ class Challenge extends Component {
     //หลังจาก getGroupID จะมีการแก้ไขค่า user.group_id ที่ Reducer authUser
     if (user && user.group_id !== prevProps.user.group_id) {
       this.props.getRank(this.props.user.user_id, this.props.user.start_date);
-      //this.props.getLogWeight(this.props.user.user_id);
+      this.props.getLogWeight(this.props.user.user_id);
       this.props.getLogWeightTeam(this.props.user.group_id);
-      //this.props.getIsReducedWeight(this.props.user.user_id);
-      //this.props.getDailyTeamWeightBonus(this.props.user.user_id);
+      this.props.getIsReducedWeight(this.props.user.user_id);
+      this.props.getDailyTeamWeightBonus(this.props.user.user_id);
       this.props.getMembersAndRank(this.props.user.group_id, this.props.user.start_date);
       this.props.getGroupName(this.props.user.group_id);
-      //this.props.getScoreOfTeam(this.props.user.group_id);
+      this.props.getScoreOfTeam(this.props.user.group_id);
       this.props.getLeaderboard();
     }
 
@@ -123,6 +116,26 @@ class Challenge extends Component {
         teamName: ""
       })
     }
+  }
+
+  isExerciseCompleted(activites) {
+    //let isCompleted = true;
+    let count = 4;
+
+    //if (activites.length <= 0) isCompleted = false;
+
+    for (let dayIndex = 0; dayIndex < activites.length; dayIndex++) {
+      const dailyExercises = activites[dayIndex];
+      for (let exIndex = 0; exIndex < dailyExercises.length; exIndex++) {
+        const exercise = dailyExercises[exIndex];
+        if (parseFloat(exercise.play_time) / parseFloat(exercise.duration) < 0.9) {
+          //isCompleted = false;
+          count = count - 1;
+          break;
+        }
+      }
+    }
+    return count;
   }
 
 
@@ -210,12 +223,15 @@ class Challenge extends Component {
   }
 
   allMissions() {
+    const { logWeightCount, isReducedWeight, logWeightTeamCount, numberOfMembers, dailyTeamWeightBonusCount } = this.props;
+    const isExerciseCompleted = this.isExerciseCompleted(this.props.exerciseVideo);
     return (
       <>
         <div className="box-challengeIn">
           <p className="headChallenge">รายการชาเรนจ์แบบทีม <span>รายการชาเรนจ์แบบเดี่ยว</span></p>
-          <p className="text-challenge">ทีมชั่งน้ำหนักครบ 7 วัน &nbsp; 0/7 <span className="span-challenge"> ชั่งน้ำหนัก 2 ครั้ง ใน 1 สัปดาห์ &nbsp; 0/2</span></p>
-          <p className="text-challengeRight">ออกกำลังกายครบ 4วัน&nbsp; 0/4</p>
+          <p className="text-challenge">ทีมชั่งน้ำหนักครบ {numberOfMembers * 2} ครั้ง &nbsp; {logWeightTeamCount}/{numberOfMembers * 2} <span className="span-challenge"> ชั่งน้ำหนัก 2 ครั้ง ใน 1 สัปดาห์ &nbsp; {logWeightCount}/2</span></p>
+          <p className="text-challenge">ทีมชั่งน้ำหนักครบ 7 วัน &nbsp; {dailyTeamWeightBonusCount}/7 <span className="span-challenge"> น้ำหนักลดลงจากสัปดาห์ก่อน &nbsp; {isReducedWeight ? 1 : 0}/1</span></p>
+          <p className="text-challengeRight">ออกกำลังกายครบ 4 วัน&nbsp; {(this.props.statusVideoList !== 'no_video') ? isExerciseCompleted : 0}/4</p>
           <p className="text-comment">*รายการจะถุูก Reset ทุกวันอาทิตย์</p>
           <p className="text-comment">*คะแนนจะถูกสรุปทุกวันอาทิตย์</p>
           <p className="border-bottom"></p>
@@ -605,7 +621,15 @@ class Challenge extends Component {
 
   render() {
     const { challenge, allMissions, teamList, scoreboard, friendList } = this.state;
-    const { rank } = this.props;
+    const { rank, logWeightCount, isReducedWeight, logWeightTeamCount, numberOfMembers, dailyTeamWeightBonusCount } = this.props;
+    const isExerciseCompleted = this.isExerciseCompleted(this.props.exerciseVideo);
+    var { scoreInWeek } = this.state;
+    if (logWeightCount >= 2) { scoreInWeek += 10 }; //ชั่งน้ำหนักครบ 2 ครั้ง
+    if (isReducedWeight) { scoreInWeek += 10 }; //น้ำหนักลดลงจากสัปดาห์ก่อน
+    if (isExerciseCompleted === 4) { scoreInWeek += 10 }; //ออกกำลังกายครบทั้งสัปดาห์
+    if (logWeightTeamCount >= numberOfMembers * 2) { scoreInWeek += 10 }; //ทีมชั่งน้ำหนักครบ คนละ2ครั้ง
+    if (dailyTeamWeightBonusCount > 0) { scoreInWeek += dailyTeamWeightBonusCount * 10 }; //ในแต่ละวันมีสมาชิกชั่งน้ำหนัก
+    if (scoreInWeek > 41) { scoreInWeek = 41 }; //เพื่อไม่ให้เกินหลอด
     return (
       <>
         <div className="box-challenge">
@@ -658,11 +682,11 @@ class Challenge extends Component {
                     {/* <div className="circle-progress"></div> */}
                     <div className="progress-barChallenge">
                       <div className="progressChallenge">
-                        <div className="progress-doneChallenge" id="progress-doneChallenge"></div>
+                        <div className="progress-doneChallenge" id="progress-doneChallenge" style={{ width: `${(scoreInWeek / 41) * 100}%` }}></div>
                       </div>
                     </div>
 
-                    <p className="circleTextHead">0/41 Point</p>
+                    <p className="circleTextHead">{scoreInWeek}/41 Point</p>
                   </div>
                 </div>
               </div>
@@ -835,10 +859,11 @@ class Challenge extends Component {
   }
 }
 
-const mapStateToProps = ({ authUser, challenges }) => {
+const mapStateToProps = ({ authUser, challenges, exerciseVideos }) => {
   const { user } = authUser;
-  const { statusCreateTeam, numberOfTeamNotFull, statusGetNumberOfTeamNotFull, statusLeaveTeam, numberOfMembers, membersOfTeam, group_name, totalScoreOfTeam, rank, teamRank, individualRank } = challenges;
-  return { user, statusCreateTeam, numberOfTeamNotFull, statusGetNumberOfTeamNotFull, statusLeaveTeam, numberOfMembers, membersOfTeam, group_name, totalScoreOfTeam, rank, teamRank, individualRank };
+  const { exerciseVideo, statusVideoList } = exerciseVideos;
+  const { statusCreateTeam, numberOfTeamNotFull, statusGetNumberOfTeamNotFull, statusLeaveTeam, membersOfTeam, group_name, totalScoreOfTeam, rank, teamRank, individualRank, logWeightCount, isReducedWeight, logWeightTeamCount, numberOfMembers, dailyTeamWeightBonusCount } = challenges;
+  return { user, statusCreateTeam, numberOfTeamNotFull, statusGetNumberOfTeamNotFull, statusLeaveTeam, membersOfTeam, group_name, totalScoreOfTeam, rank, teamRank, individualRank, logWeightCount, isReducedWeight, logWeightTeamCount, numberOfMembers, dailyTeamWeightBonusCount, exerciseVideo, statusVideoList };
 };
 
 const mapActionsToProps = { getGroupID, getRank, getLogWeight, getIsReducedWeight, getLogWeightTeam, getDailyTeamWeightBonus, getNumberOfTeamNotFull, assignGroupToMember, clearChallenges, createChallengeGroup, leaveTeam, getMembersAndRank, getGroupName, getScoreOfTeam, getLeaderboard, getChallengePeriod };
