@@ -21,6 +21,7 @@ import { loadingLogo } from "aws-amplify";
 import { connect } from "react-redux";
 import { videoListForUser, createWeeklyStayfitProgram, updatePlaytime, randomVideo, selectChangeVideo, updatePlaylist, updateBodyInfo } from "../../redux/exerciseVideos"
 import { getExpireDate } from "../../redux/auth"
+import { getDailyWeighChallenge } from "../../redux/challenges"
 import { convertFormatTime, convertSecondsToMinutes } from "../../helpers/utils"
 import { completeVideoPlayPercentage, minimumVideoPlayPercentage, updateFrequency } from "../../constants/defaultValues";
 import backgroundImag from '../../assets/img/bgintro_lg.d22ae02a.png';
@@ -66,13 +67,14 @@ class videoList extends React.Component {
       staticWaist: "hr",
       staticHip: "hr",
       other_attributes: "",
+      weightInDailyWeighChallenge: "",
     }
     this.addEventToVideo = this.addEventToVideo.bind(this);
     this.onVideoTimeUpdate = this.onVideoTimeUpdate.bind(this);
   }
 
   componentDidMount() {
-    const { user, exerciseVideo, statusVideoList } = this.props;
+    const { user, exerciseVideo, statusVideoList, dailyWeighChallenge } = this.props;
 
     if (user === null) {
       this.props.history.push('/welcome_new_nember');
@@ -106,6 +108,8 @@ class videoList extends React.Component {
       }
 
       this.props.getExpireDate(user.email);
+
+      this.props.getDailyWeighChallenge(user.user_id);
     }
 
     /*    if (user && statusVideoList === "no_video") {
@@ -119,7 +123,7 @@ class videoList extends React.Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    const { user, statusVideoList, exerciseVideo } = this.props;
+    const { user, statusVideoList, exerciseVideo, dailyWeighChallenge, statusGetDailyWeighChallenge } = this.props;
     if (user && prevProps.user && ((prevProps.statusVideoList !== statusVideoList) && statusVideoList === "no_video")) {
       /* this.props.createWeeklyStayfitProgram(
         this.props.user.user_id,
@@ -196,8 +200,11 @@ class videoList extends React.Component {
     if (prevProps.status === "processing" && this.props.status === "success") {
       this.closeEditVDO();
     }
-
-
+    if ((prevProps.statusGetDailyWeighChallenge !== statusGetDailyWeighChallenge) && (statusGetDailyWeighChallenge === "success")) {
+      if (dailyWeighChallenge) {
+        document.getElementById("modalDailyWeighChallengeClick").click();
+      }
+    }
   }
 
   onDayChange = (day) => {
@@ -801,7 +808,7 @@ class videoList extends React.Component {
                       <a className="decoration color1">ดูวีดีโอออกกำลังกายอาทิย์ที่ผ่านมา</a>
                     </li>
                   </ul> */}
-                  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalWeight">
+                  <button style={{ display: 'none' }} id="modalDailyWeighChallengeClick" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalWeight">
                     Launch demo modal
                   </button>
 
@@ -1123,33 +1130,41 @@ class videoList extends React.Component {
         </div>
 
         {/* กรอกน้ำหนัก*/}
-        <div className="modal fade" id="modalWeight" aria-labelledby="modalWeight" >
-          <div className="modal-dialog modal-dialog-centered">
-            <div className="modal-content">
-              <div className="modal-header">
-                <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close" ></button>
-              </div>
-              <div className="modal-bodyWeight">
+        {
+          <div className="modal fade" id="modalWeight" aria-labelledby="modalWeight" >
+            <div className="modal-dialog modal-dialog-centered">
+              <div className="modal-content">
+                <div className="modal-header">
+                  <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close" ></button>
+                </div>
+                <div className="modal-bodyWeight">
 
-                <p className="kg-weightText">กรุณากรอกน้ำหนักปัจจุบันของคุณ</p>
-                <div className="col-10 col-sm-10 col-md-8 col-lg-8 center2">
-                <div class="input-group mb-3">
-                  <input type="text" class="form-control" placeholder="EP. 55 kg"
-                    aria-label="Recipient's username" aria-describedby="basic-addon2" />
-                  <span class="input-group-text kg-weight" id="basic-addon2">KG</span>
-                </div>
-                </div>
-               
-                <div className="col-12 col-sm-12 col-md-12 col-lg-12  center2  margin-top">
-                  <div className="bottom-Weight">
-                    <button type="button" className="btn bottom-outlinePinkLeft " data-bs-dismiss="modal" aria-label="Close">ปิด</button>
-                    <button type="button" className="btn bottom-outlinePinkRight bottomEditProfileLeft " >ยืนยัน</button>
+                  <p className="kg-weightText">กรุณากรอกน้ำหนักปัจจุบันของคุณ</p>
+                  <div className="col-10 col-sm-10 col-md-8 col-lg-8 center2">
+                    <div class="input-group mb-3">
+                      <input
+                        type="number"
+                        className="form-control"
+                        style={{ textAlign: "right" }}
+                        id="weightInDailyWeighChallenge"
+                        value={this.state.weightInDailyWeighChallenge}
+                        onChange={(event) => this.handleChange(event)}
+                      />
+                      <span class="input-group-text kg-weight" id="basic-addon2">KG</span>
+                    </div>
+                  </div>
+
+                  <div className="col-12 col-sm-12 col-md-12 col-lg-12  center2  margin-top">
+                    <div className="bottom-Weight">
+                      <button type="button" className="btn bottom-outlinePinkLeft " data-bs-dismiss="modal" aria-label="Close">ปิด</button>
+                      <button type="button" className="btn bottom-outlinePinkRight bottomEditProfileLeft " >ยืนยัน</button>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
+        }
 
       </>
     )
@@ -2156,13 +2171,14 @@ class videoList extends React.Component {
   }
 }
 
-const mapStateToProps = ({ authUser, exerciseVideos }) => {
+const mapStateToProps = ({ authUser, exerciseVideos, challenges }) => {
   const { user } = authUser;
+  const { dailyWeighChallenge, statusPostDailyWeighChallenge, statusGetDailyWeighChallenge } = challenges;
   const { exerciseVideo, statusVideoList, video, videos, status } = exerciseVideos;
-  return { user, exerciseVideo, statusVideoList, video, videos, status };
+  return { user, exerciseVideo, statusVideoList, video, videos, status, dailyWeighChallenge, statusPostDailyWeighChallenge, statusGetDailyWeighChallenge };
 };
 
-const mapActionsToProps = { videoListForUser, createWeeklyStayfitProgram, updatePlaytime, randomVideo, selectChangeVideo, updatePlaylist, updateBodyInfo, getExpireDate };
+const mapActionsToProps = { videoListForUser, createWeeklyStayfitProgram, updatePlaytime, randomVideo, selectChangeVideo, updatePlaylist, updateBodyInfo, getExpireDate, getDailyWeighChallenge };
 
 export default connect(
   mapStateToProps,

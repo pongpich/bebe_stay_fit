@@ -863,6 +863,7 @@ const INIT_STATE = {
   numberOfMembers: 0,
   dailyTeamWeightBonusCount: 0,
   dailyWeighChallenge: false,
+  statusGetDailyWeighChallenge: "default",
   statusPostDailyWeighChallenge: "default",
   numberOfTeamNotFull: 0,
   statusGetNumberOfTeamNotFull: "default",
@@ -967,11 +968,17 @@ export function reducer(state = INIT_STATE, action) {
         ...state,
         isReducedWeight: action.payload
       }
+    case types.GET_DAILY_WEIGH_CHALLENGE:
+      return {
+        ...state,
+        statusGetDailyWeighChallenge: "loading"
+      }
     case types.GET_DAILY_WEIGH_CHALLENGE_SUCCESS:
       return {
         ...state,
         dailyWeighChallenge: action.payload,
-        statusPostDailyWeighChallenge: "default"
+        statusPostDailyWeighChallenge: "default",
+        statusGetDailyWeighChallenge: "success"
       }
     case types.POST_DAILY_WEIGH_CHALLENGE:
       return {
