@@ -3771,7 +3771,7 @@ tr:last-child td:last-child {
   color: #936037;
 }
 .image-mvp {
-  position: absolute;
+  position: relative;
   padding-left: 10px;
   margin-top: -13px;
 }

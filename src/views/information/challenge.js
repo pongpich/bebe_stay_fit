@@ -512,9 +512,9 @@ class Challenge extends Component {
           }
           {
             (selectedScoreBoard === "individual") &&
-            <div className="col-lg-12  mb-3" style={{ float: "left" }}>
+            <div>
               {
-                <b className="row mb-4">
+                <b className="row mb-12">
                   <p className="card-text col-12">
                     <div class="container text-center">
                       <div class="row justify-content-md-center">
