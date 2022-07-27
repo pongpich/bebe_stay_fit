@@ -36,7 +36,7 @@ class Challenge extends Component {
 
   componentDidMount() {
     const { user } = this.props;
-    
+
     this.props.getGroupID(user.user_id);
 
     this.props.getRank(this.props.user.user_id, this.props.user.start_date);
@@ -424,18 +424,32 @@ class Challenge extends Component {
     return (
       <>
         <div className="box-challengeIn">
-          <div className="row">
-            <p
-              className="headTeam bold"
-              style={{ color: `${selectedScoreBoard === "team" ? "#F45197" : "grey"}`, cursor: "pointer" }}
+          <ul className="">
+            <li
+              className="leader-board-li bold"
+              style={{ color: `${selectedScoreBoard === "team" ? "#F45197" : "grey"}`, cursor: "pointer", marginRight: 10 }}
               onClick={() => this.setState({ selectedScoreBoard: "team" })}
-            >กระดานคะแนนทีม</p>
-            <p
-              className="headTeam bold"
+            >กระดานคะแนนทีม</li>
+            <li
+              className="leader-board-li bold"
               style={{ color: `${selectedScoreBoard === "individual" ? "#F45197" : "grey"}`, cursor: "pointer" }}
               onClick={() => this.setState({ selectedScoreBoard: "individual" })}
-            >กระดานคะแนนเดี่ยว</p>
-          </div>
+            >กระดานคะแนนเดี่ยว</li>
+          </ul>
+          {/* <ul className="challenge">
+            <li className="video-li  video-liPadding-left">
+              <a className={allMissions} name="allMissions" onClick={e => this.challengeBottom(e)}>ภารกิจทั้งหมด</a>
+            </li>
+            <li className="video-li">
+              <a className={teamList} name="teamList" onClick={e => this.challengeBottom(e)}>รายชื่อภายในทีม</a>
+            </li>
+            <li className="video-li">
+              <a className={scoreboard} name="scoreboard" onClick={e => this.challengeBottom(e)}>กระดานคะแนน</a>
+            </li>
+            <li className="video-li">
+              <a className={friendList} name="friendList" onClick={e => this.challengeBottom(e)}>รายชื่อเพื่อน</a>
+            </li>
+          </ul> */}
           <hr className="w-100"></hr>
           {
             (teamRank && (selectedScoreBoard === "team")) &&
@@ -500,7 +514,7 @@ class Challenge extends Component {
                       <img src={mvp_copper} className="image-mvp" />
                     }
                 &nbsp;
-                    <span style={{ float: "right", color: "#F45197" }}>
+                    <span style={{ float: "right" }}>
                       {myRank[0].total_score ? myRank[0].total_score : 0} คะแนน
                     </span>
                   </p>
@@ -536,7 +550,7 @@ class Challenge extends Component {
                         (index + 1 === 3) &&
                         <img src={mvp_copper} className="image-mvp" />
                       }
-                      <span style={{ float: "right", color: "#F45197" }}>
+                      <span style={{ float: "right" }}>
                         {item.total_score ? item.total_score : 0} คะแนน
                       </span>
                     </p>

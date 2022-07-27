@@ -1971,6 +1971,13 @@ a {
   margin-bottom: 50px;
 }
 
+.leader-board-li {
+  display: inline ;
+  position: relative;
+  left:-20px;
+  margin-bottom: 30px;
+}
+
 .video-liPadding-left {
   padding-bottom: 50px;
   margin-top: 100px;
