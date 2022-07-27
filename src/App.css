@@ -189,14 +189,15 @@
   .circle-team {
     left: 70% !important;
   }
+
 }
-@media only screen and (max-width: 767px) {
+/* @media only screen and (max-width: 767px) {
   .emblem-box {
-    margin-top: 20px;
+    margin-top: 50px !important;
     width: auto !important;
 
   }
-}
+} */
 @media only screen and (max-width: 760px) {
 
   .information-box2 {
@@ -493,7 +494,14 @@
 
 
 }
+@media only screen and (max-width: 991px) {
+  .emblem-box {
+    width:  100% !important;
+    margin-top: 50px !important;
+    width: auto !important;
 
+  }
+}
 @media only screen and (min-width: 960px) {
   .information-box2 {
     padding: 30px 20px 0px 20px;
@@ -1056,8 +1064,20 @@ a {
   padding-left: 30px;
 }
 
-.text-left2 {
+.text-leftmvp {
   text-align: left !important;
+  padding-left: 10px;
+}
+.text-left {
+  text-align: left !important;
+  padding-left: 30px;
+}
+.text-rightmvp {
+  padding-left: 13%;
+  display: flex;
+  justify-content: center;
+  justify-content: space-between;
+  text-align: right !important;
 }
 
 .from-left {
@@ -3462,7 +3482,8 @@ tr:last-child td:last-child {
   color: #707174;
   cursor: pointer;
   font-size: 14px !important;
-  padding-left: 20px;
+  padding-left: 10px;
+  padding-right: 10px;
 }
 .challenge {
   margin-left: 0px;
@@ -3530,6 +3551,7 @@ tr:last-child td:last-child {
 .span-challenge{
   text-align:right;
 }
+
 .rules {
   padding-top: 20px;
   font-weight: bold;
@@ -3627,7 +3649,7 @@ tr:last-child td:last-child {
   margin-bottom: 20px;
 }
 .emblem-box {
-  max-width: 550px;
+
   height: 100%;
   background-color: #ffffff;
   box-shadow: 0px 1px 14px 0px #c4c4c4;
@@ -3749,9 +3771,14 @@ tr:last-child td:last-child {
   color: #936037;
 }
 .image-mvp {
-  position:absolute;
-  margin-top: -20px;
+  position: absolute;
   padding-left: 10px;
+  margin-top: -13px;
+}
+.image-mv2 {
+  position: relative;
+  padding-left: 10px;
+  margin-top: -13px;
 }
 .ellipse24 {
   padding-top: 40px;
@@ -3806,6 +3833,11 @@ tr:last-child td:last-child {
 
 }
 
+.color2 {
+  color: #000000 !important;
+  padding-left: 10px !important;
+}
+
 .pay-user {
   background-color: #F45197;
   text-align: center;
@@ -3827,4 +3859,7 @@ color: #e25e96;
 font-size: 18px;
 font-weight: bold;
 font-family: BdCondHe;
+}
+.span-mvp2 {
+  float: right;
 }

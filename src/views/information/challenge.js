@@ -359,43 +359,61 @@ class Challenge extends Component {
       <>
         <p className="headTeam bold">ทีม : {group_name} <span className="span-challenge headTeamSpan">จำนวนสมาชิก {numberOfMembers}/10 คน</span></p>
         {
+
+
+
           (membersOfTeam) &&
           membersOfTeam.map((item, index) =>
             <p className="text-challenge">
-              <p>
-                <span className={(index + 1 === 1) ? "color-mvp1" : (index + 1 === 2) ? "color-mvp2" : (index + 1 === 3) ? "color-mvp3" : ""}>{index + 1}. </span>
-                {
-                  item.facebook ?
-                    item.facebook
-                    :
-                    item.first_name ?
-                      `${item.first_name} ${item.last_name}`
-                      :
-                      item.email
-                }
-                {
-                  (index + 1 === 1) &&
-                  <img src={mvp_gold} className="image-mvp" />
-                }
-                {
-                  (index + 1 === 2) &&
-                  <img src={mvp_money} className="image-mvp" />
-                }
-                {
-                  (index + 1 === 3) &&
-                  <img src={mvp_copper} className="image-mvp" />
-                }
-                &nbsp;
-              </p>
-              <span>
-                {
-                  item.end_rank ?
-                    item.end_rank.charAt(0).toUpperCase() + item.end_rank.substr(1).toLowerCase()
-                    :
-                    item.start_rank.charAt(0).toUpperCase() + item.start_rank.substr(1).toLowerCase()
-                }
-              </span>
-              <span className="span-challenge"> {item.total_score} คะแนน</span>
+              <div class="container text-center">
+                <div class="row justify-content-md-center">
+                  <div class="col-12 col-sm-12 col-md-6 col-lg-6">
+                    <p className="text-leftmvp">
+                      <span className={(index + 1 === 1) ? "color-mvp1" : (index + 1 === 2) ? "color-mvp2" : (index + 1 === 3) ? "color-mvp3" : ""}>{index + 1}.
+                        {
+                          <span className="color2">
+                            {
+                              item.facebook ?
+                                item.facebook
+                                :
+                                item.first_name ?
+                                  `${item.first_name} ${item.last_name}`
+                                  :
+                                  item.email
+                            }
+                          </span>
+
+                        }
+                        {
+                          (index + 1 === 1) &&
+                          <img src={mvp_gold} className="image-mvp" />
+                        }
+                        {
+                          (index + 1 === 2) &&
+                          <img src={mvp_money} className="image-mvp" />
+                        }
+                        {
+                          (index + 1 === 3) &&
+                          <img src={mvp_copper} className="image-mvp" />
+                        }
+                        &nbsp;
+                      </span>
+                    </p>
+                  </div>
+                  <div class="col-12 col-sm-12 col-md-6 col-lg-6 text-rightmvp">
+                    <span>
+                      {
+                        item.end_rank ?
+                          item.end_rank.charAt(0).toUpperCase() + item.end_rank.substr(1).toLowerCase()
+                          :
+                          item.start_rank.charAt(0).toUpperCase() + item.start_rank.substr(1).toLowerCase()
+                      }
+                    </span>
+                    <span className="span-challenge"> {item.total_score} คะแนน</span>
+                  </div>
+                </div>
+              </div>
+
             </p>
           )
         }
@@ -452,35 +470,43 @@ class Challenge extends Component {
           </ul> */}
           <hr className="w-100"></hr>
           {
+
             (teamRank && (selectedScoreBoard === "team")) &&
             teamRank.map((item, index) =>
               <p className="text-challenge">
-                <p>
-                  <span className={(index + 1 === 1) ? "color-mvp1" : (index + 1 === 2) ? "color-mvp2" : (index + 1 === 3) ? "color-mvp3" : ""}>{index + 1}. </span>
-                  {
-                    item.group_name ?
-                      item.group_name
-                      :
-                      ""
-                  }
-                  {
-                    (index + 1 === 1) &&
-                    <img src={mvp_gold} className="image-mvp" />
-                  }
-                  {
-                    (index + 1 === 2) &&
-                    <img src={mvp_money} className="image-mvp" />
-                  }
-                  {
-                    (index + 1 === 3) &&
-                    <img src={mvp_copper} className="image-mvp" />
-                  }
-                &nbsp;
-              </p>
-                <span>
+                <div class="container text-center">
+                  <div class="row justify-content-md-center">
+                    <div class="col-12 col-sm-12 col-md-8 col-lg-8">
+                      <p className="text-leftmvp">
+                        <span className={(index + 1 === 1) ? "color-mvp1" : (index + 1 === 2) ? "color-mvp2" : (index + 1 === 3) ? "color-mvp3" : ""}>{index + 1}. </span>
+                        {
+                          item.group_name ?
+                            /* item.group_name  */
+                            " asdasdsale_tasdasdeam@planforfit.com "
 
-                </span>
-                <span className="span-challenge"> {item.totalScoreOfTeam ? item.totalScoreOfTeam : 0} คะแนน</span>
+
+                            :
+                            ""
+                        }
+                        {
+                          (index + 1 === 1) &&
+                          <img src={mvp_gold} className="image-mvp2" />
+                        }
+                        {
+                          (index + 1 === 2) &&
+                          <img src={mvp_money} className="image-mvp2" />
+                        }
+                        {
+                          (index + 1 === 3) &&
+                          <img src={mvp_copper} className="image-mvp2" />
+                        }
+                      </p>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-4 col-lg-4" >
+                      <span className="span-mvp2"> {item.totalScoreOfTeam ? item.totalScoreOfTeam : 0} คะแนน</span>
+                    </div>
+                  </div>
+                </div>
               </p>
             )
           }
@@ -490,33 +516,40 @@ class Challenge extends Component {
               {
                 <b className="row mb-4">
                   <p className="card-text col-12">
-                    <span className={(myRankIndex + 1 === 1) ? "color-mvp1" : (myRankIndex + 1 === 2) ? "color-mvp2" : (myRankIndex + 1 === 3) ? "color-mvp3" : ""}>
-                      {myRankIndex + 1}. </span>
-                    {
-                      myRank[0].facebook ?
-                        myRank[0].facebook
-                        :
-                        myRank[0].first_name ?
-                          `${myRank[0].first_name} ${myRank[0].last_name}`
-                          :
-                          myRank[0].email
-                    }
-                    {
-                      (myRankIndex + 1 === 1) &&
-                      <img src={mvp_gold} className="image-mvp" />
-                    }
-                    {
-                      (myRankIndex + 1 === 2) &&
-                      <img src={mvp_money} className="image-mvp" />
-                    }
-                    {
-                      (myRankIndex + 1 === 3) &&
-                      <img src={mvp_copper} className="image-mvp" />
-                    }
-                &nbsp;
-                    <span style={{ float: "right" }}>
-                      {myRank[0].total_score ? myRank[0].total_score : 0} คะแนน
-                    </span>
+                    <div class="container text-center">
+                      <div class="row justify-content-md-center">
+                        <div class="col-12 col-sm-12 col-md-8 col-lg-8 text-leftmvp">
+                          <span className={(myRankIndex + 1 === 1) ? "color-mvp1" : (myRankIndex + 1 === 2) ? "color-mvp2" : (myRankIndex + 1 === 3) ? "color-mvp3" : ""}>
+                            {myRankIndex + 1}. </span>
+                          {
+                            myRank[0].facebook ?
+                              myRank[0].facebook
+                              :
+                              myRank[0].first_name ?
+                                `${myRank[0].first_name} ${myRank[0].last_name}`
+                                :
+                                myRank[0].email
+                          }
+                          {
+                            (myRankIndex + 1 === 1) &&
+                            <img src={mvp_gold} className="image-mvp" />
+                          }
+                          {
+                            (myRankIndex + 1 === 2) &&
+                            <img src={mvp_money} className="image-mvp" />
+                          }
+                          {
+                            (myRankIndex + 1 === 3) &&
+                            <img src={mvp_copper} className="image-mvp" />
+                          }
+                        </div>
+                        <div class="col-12 col-sm-12 col-md-4 col-lg-4" >
+                          <span style={{ float: "right" }}>
+                            {myRank[0].total_score ? myRank[0].total_score : 0} คะแนน
+                          </span>
+                        </div>
+                      </div>
+                    </div>
                   </p>
                 </b>
               }
@@ -524,35 +557,42 @@ class Challenge extends Component {
                 (individualRankFilter) &&
                 individualRankFilter.map((item, index) => {
                   const fullName = `${item.first_name} ${item.last_name}`;
-                  const rankDetail = `${
-                    item.facebook ?
-                      item.facebook
+                  const rankDetail = `${item.facebook ?
+                    item.facebook
+                    :
+                    item.first_name ?
+                      fullName
                       :
-                      item.first_name ?
-                        fullName
-                        :
-                        item.email
+                      item.email
                     }`;
                   return (
                     <p className="card-text">
-                      <span className={(index + 1 === 1) ? "color-mvp1" : (index + 1 === 2) ? "color-mvp2" : (index + 1 === 3) ? "color-mvp3" : ""}
-                      >{index + 1}. </span>
-                      {rankDetail}
-                      {
-                        (index + 1 === 1) &&
-                        <img src={mvp_gold} className="image-mvp" />
-                      }
-                      {
-                        (index + 1 === 2) &&
-                        <img src={mvp_money} className="image-mvp" />
-                      }
-                      {
-                        (index + 1 === 3) &&
-                        <img src={mvp_copper} className="image-mvp" />
-                      }
-                      <span style={{ float: "right" }}>
-                        {item.total_score ? item.total_score : 0} คะแนน
-                      </span>
+                      <div class="container text-center">
+                        <div class="row justify-content-md-center">
+                          <div class="col-12 col-sm-12 col-md-8 col-lg-8 text-leftmvp">
+                            <span className={(index + 1 === 1) ? "color-mvp1" : (index + 1 === 2) ? "color-mvp2" : (index + 1 === 3) ? "color-mvp3" : ""}
+                            >{index + 1}. </span>
+                            {rankDetail}
+                            {
+                              (index + 1 === 1) &&
+                              <img src={mvp_gold} className="image-mvp" />
+                            }
+                            {
+                              (index + 1 === 2) &&
+                              <img src={mvp_money} className="image-mvp" />
+                            }
+                            {
+                              (index + 1 === 3) &&
+                              <img src={mvp_copper} className="image-mvp" />
+                            }
+                          </div>
+                          <div class="col-12 col-sm-12 col-md-4 col-lg-4" >
+                            <span style={{ float: "right" }}>
+                              {item.total_score ? item.total_score : 0} คะแนน
+                            </span>
+                          </div>
+                        </div>
+                      </div>
                     </p>
                   )
                 })
@@ -666,7 +706,7 @@ class Challenge extends Component {
           <div className="box-challengeManu">
             <div class="container">
               <div class="row justify-content-md-center">
-                <div class="col-12 col-sm-12 col-md-7 col-lg-7">
+                <div class="col-12 col-sm-12 col-md-12 col-lg-7">
                   {challenge === "challenge1" ?
                     this.allMissions()
                     :
@@ -682,7 +722,7 @@ class Challenge extends Component {
 
 
                 </div>
-                <div class="col-12 col-sm-12 col-md-5 col-lg-5">
+                <div class="col-12 col-sm-12 col-md-12 col-lg-5">
                   <div className="emblem-box">
                     <img src={`./assets/img/rank/${rank}.png`} width="45%" height="45%" />
                     <p className="circleTextHead color1">
@@ -811,7 +851,7 @@ class Challenge extends Component {
                   <br />
                   <p className="headTextBox"><li>การสะสมคะแนน </li></p>
                   <p className="textBoxchallenge"><span className="bold">คะแนนส่วนบุคคล</span> จะได้รับจากภารกิจ โดยจำนวนคะแนนที่ได้รับนั้นจะขึ้นอยู่กับ Rank ในแต่ละสัปดาห์ ยิ่ง Rank สูงจะได้คะแนนมากขึ้น
-                                        คะแนนของทีม จะเป็นคะแนนสะสมรวมของสมาชิกถ้าคนในทีมทำภารกิจสำเร็จ ผู้ร่วมทีมจะได้รับคะแนนด้วยเช่นกัน</p>
+                    คะแนนของทีม จะเป็นคะแนนสะสมรวมของสมาชิกถ้าคนในทีมทำภารกิจสำเร็จ ผู้ร่วมทีมจะได้รับคะแนนด้วยเช่นกัน</p>
                   <br />
                   <p className="headTextBox"><li>รายละเอียดของรางวัลประจำ Season </li></p>
                   <p className="textBoxchallenge">สามารถติดตามของรางวัลได้ทาง Facebook Group</p>
