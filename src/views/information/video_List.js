@@ -202,12 +202,12 @@ class videoList extends React.Component {
     }
     if ((prevProps.statusGetDailyWeighChallenge !== statusGetDailyWeighChallenge) && (statusGetDailyWeighChallenge === "success")) {
       if (dailyWeighChallenge) {
-        document.getElementById("modalDailyWeighChallengeClick").click();
+        document.getElementById("modalDailyWeighChallengeClick") && document.getElementById("modalDailyWeighChallengeClick").click();
       }
     }
     if (prevProps.statusPostDailyWeighChallenge !== statusPostDailyWeighChallenge && statusPostDailyWeighChallenge === "success") {
       //เมื่อกรอกน้ำหนักภารกิจประจำวันเสร็จ สั่งให้ซ่อน Popup
-      document.getElementById("modalDailyWeighChallengeClick").click();
+      document.getElementById("modalDailyWeighChallengeClick") && document.getElementById("modalDailyWeighChallengeClick").click();
     }
   }
 

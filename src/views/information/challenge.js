@@ -481,8 +481,7 @@ class Challenge extends Component {
                         <span className={(index + 1 === 1) ? "color-mvp1" : (index + 1 === 2) ? "color-mvp2" : (index + 1 === 3) ? "color-mvp3" : ""}>{index + 1}. </span>
                         {
                           item.group_name ?
-                            item.group_name 
-
+                            item.group_name
                             :
                             ""
                         }
@@ -512,7 +511,7 @@ class Challenge extends Component {
             (selectedScoreBoard === "individual") &&
             <div>
               {
-                <b className="row mb-12">
+                <b className="row mb-4">
                   <p className="card-text col-12">
                     <div class="container text-center">
                       <div class="row justify-content-md-center">
