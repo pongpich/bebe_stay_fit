@@ -21,7 +21,7 @@ import { loadingLogo } from "aws-amplify";
 import { connect } from "react-redux";
 import { videoListForUser, createWeeklyStayfitProgram, updatePlaytime, randomVideo, selectChangeVideo, updatePlaylist, updateBodyInfo } from "../../redux/exerciseVideos"
 import { getExpireDate } from "../../redux/auth"
-import { getDailyWeighChallenge } from "../../redux/challenges"
+import { getDailyWeighChallenge, postDailyWeighChallenge } from "../../redux/challenges"
 import { convertFormatTime, convertSecondsToMinutes } from "../../helpers/utils"
 import { completeVideoPlayPercentage, minimumVideoPlayPercentage, updateFrequency } from "../../constants/defaultValues";
 import backgroundImag from '../../assets/img/bgintro_lg.d22ae02a.png';
@@ -123,7 +123,7 @@ class videoList extends React.Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    const { user, statusVideoList, exerciseVideo, dailyWeighChallenge, statusGetDailyWeighChallenge } = this.props;
+    const { user, statusVideoList, exerciseVideo, dailyWeighChallenge, statusGetDailyWeighChallenge, statusPostDailyWeighChallenge } = this.props;
     if (user && prevProps.user && ((prevProps.statusVideoList !== statusVideoList) && statusVideoList === "no_video")) {
       /* this.props.createWeeklyStayfitProgram(
         this.props.user.user_id,
@@ -204,6 +204,17 @@ class videoList extends React.Component {
       if (dailyWeighChallenge) {
         document.getElementById("modalDailyWeighChallengeClick").click();
       }
+    }
+    if (prevProps.statusPostDailyWeighChallenge !== statusPostDailyWeighChallenge && statusPostDailyWeighChallenge === "success") {
+      //เมื่อกรอกน้ำหนักภารกิจประจำวันเสร็จ สั่งให้ซ่อน Popup
+      document.getElementById("modalDailyWeighChallengeClick").click();
+    }
+  }
+
+  submitDailyWeighChallenge(weight) {
+    const { user } = this.props;
+    if (weight > 0 && weight < 300) {
+      this.props.postDailyWeighChallenge(user.user_id, weight)
     }
   }
 
@@ -1155,10 +1166,13 @@ class videoList extends React.Component {
                   </div>
 
                   <div className="col-12 col-sm-12 col-md-12 col-lg-12  center2  margin-top">
-                    <div className="bottom-Weight">
-                      <button type="button" className="btn bottom-outlinePinkLeft " data-bs-dismiss="modal" aria-label="Close">ปิด</button>
-                      <button type="button" className="btn bottom-outlinePinkRight bottomEditProfileLeft " >ยืนยัน</button>
-                    </div>
+                    {
+                      (this.props.statusPostDailyWeighChallenge !== "loading") &&
+                      <div className="bottom-Weight">
+                        <button type="button" className="btn bottom-outlinePinkLeft " data-bs-dismiss="modal" aria-label="Close">ปิด</button>
+                        <button type="button" className="btn bottom-outlinePinkRight bottomEditProfileLeft " onClick={() => this.submitDailyWeighChallenge(this.state.weightInDailyWeighChallenge)}>ยืนยัน</button>
+                      </div>
+                    }
                   </div>
                 </div>
               </div>
@@ -2178,7 +2192,7 @@ const mapStateToProps = ({ authUser, exerciseVideos, challenges }) => {
   return { user, exerciseVideo, statusVideoList, video, videos, status, dailyWeighChallenge, statusPostDailyWeighChallenge, statusGetDailyWeighChallenge };
 };
 
-const mapActionsToProps = { videoListForUser, createWeeklyStayfitProgram, updatePlaytime, randomVideo, selectChangeVideo, updatePlaylist, updateBodyInfo, getExpireDate, getDailyWeighChallenge };
+const mapActionsToProps = { videoListForUser, createWeeklyStayfitProgram, updatePlaytime, randomVideo, selectChangeVideo, updatePlaylist, updateBodyInfo, getExpireDate, getDailyWeighChallenge, postDailyWeighChallenge };
 
 export default connect(
   mapStateToProps,
