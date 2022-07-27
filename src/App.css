@@ -2366,6 +2366,11 @@ a:hover {
   border-top-right-radius: var(--bs-modal-inner-border-radius);
 }
 
+.modal-bodyWeight {
+  height: "auto";
+  text-align: center;
+  padding-bottom: 10px;
+}
 .modal-body {
   height: 90vh;
 }
@@ -2864,6 +2869,9 @@ tr:last-child td:last-child {
 .bottomEditProfile {
   padding-top: 30px;
   margin-left: -30px;
+}
+.bottom-Weight {
+  padding-top: 30px;
 }
 .bottom-teamList {
   padding-top: 50px;
@@ -3808,24 +3816,15 @@ tr:last-child td:last-child {
   font-size: 18px;
   border-radius: 30px;
 }
-
-/* .progress-doneChallenge::after {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  content: "";
-  border-radius: 30px;
-  background-size: 100%;
-  background-image: linear-gradient(45deg, #fff 25%,
-                                  rgba(0,0,0,0) 25%,
-                                  rgba(0,0,0,0) 50%,
-                                  #fff 50%,
-                                  #fff 75%,
-                                  rgba(0,0,0,0) 75%,
-                                  rgba(0,0,0,0));
-  background-size: 30px 30px;
-  opacity: 0.3;
-  animation: progress-bar-after-1 0.5s infinite linear;     
-} */
+.kg-weight {
+color: #e25e96;
+font-size: 16px;
+font-weight: bold;
+font-family: BdCondHe;
+}
+.kg-weightText {
+color: #e25e96;
+font-size: 18px;
+font-weight: bold;
+font-family: BdCondHe;
+}

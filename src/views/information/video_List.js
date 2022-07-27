@@ -801,6 +801,10 @@ class videoList extends React.Component {
                       <a className="decoration color1">ดูวีดีโอออกกำลังกายอาทิย์ที่ผ่านมา</a>
                     </li>
                   </ul> */}
+                  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalWeight">
+                    Launch demo modal
+                  </button>
+
                 </div>
               </nav>
               <div className="rectangle14"></div>
@@ -1117,6 +1121,36 @@ class videoList extends React.Component {
             </div>
           </div>
         </div>
+
+        {/* กรอกน้ำหนัก*/}
+        <div className="modal fade" id="modalWeight" aria-labelledby="modalWeight" >
+          <div className="modal-dialog modal-dialog-centered">
+            <div className="modal-content">
+              <div className="modal-header">
+                <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close" ></button>
+              </div>
+              <div className="modal-bodyWeight">
+
+                <p className="kg-weightText">กรุณากรอกน้ำหนักปัจจุบันของคุณ</p>
+                <div className="col-10 col-sm-10 col-md-8 col-lg-8 center2">
+                <div class="input-group mb-3">
+                  <input type="text" class="form-control" placeholder="EP. 55 kg"
+                    aria-label="Recipient's username" aria-describedby="basic-addon2" />
+                  <span class="input-group-text kg-weight" id="basic-addon2">KG</span>
+                </div>
+                </div>
+               
+                <div className="col-12 col-sm-12 col-md-12 col-lg-12  center2  margin-top">
+                  <div className="bottom-Weight">
+                    <button type="button" className="btn bottom-outlinePinkLeft " data-bs-dismiss="modal" aria-label="Close">ยกเลิก</button>
+                    <button type="button" className="btn bottom-outlinePinkRight bottomEditProfileLeft " >บันทึก</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
       </>
     )
   }
@@ -1459,6 +1493,8 @@ class videoList extends React.Component {
             </div>
           </div>
         </div>
+
+
       </>
     )
   }
