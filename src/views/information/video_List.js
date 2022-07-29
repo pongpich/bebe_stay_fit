@@ -8,7 +8,21 @@ import ellipse2 from "../images/ellipse2.png";
 import line1 from "../images/line1.png";
 import ellipse5 from "../images/ellipse5.png";
 import eCheck from "../images/check.svg";
+import frame41 from "../../assets/img/frame41.png";
+import frame40 from "../../assets/img/frame40.png";
+import frame42 from "../../assets/img/frame42.png";
+import frame43 from "../../assets/img/frame43.png";
+import frame44 from "../../assets/img/frame44.png";
+import frame45 from "../../assets/img/frame45.png";
 import e2 from "../images/2.png";
+import icon_web from "../../assets/img/icon-web.png";
+import facebook from "../../assets/img/icon-facebook.png";
+import twitter from "../../assets/img/icon-Twitter.png";
+import message from "../../assets/img/icon-message-fa.png";
+import line from "../../assets/img/icon-line.png";
+import tiktok from "../../assets/img/icon-tiktok.png";
+import whatsApp from "../../assets/img/icon-WhatsApp.png";
+import instagram from "../../assets/img/icon-instagram.png";
 import e3 from "../images/3.png";
 import e4 from "../images/4.png";
 import e5 from "../images/5.png";
@@ -822,7 +836,9 @@ class videoList extends React.Component {
                   <button style={{ display: 'none' }} id="modalDailyWeighChallengeClick" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalWeight">
                     Launch demo modal
                   </button>
-
+                  <button  style={{ display: 'none' }} type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalSubscription-share">
+                    modalSubscription
+                    </button>
                 </div>
               </nav>
               <div className="rectangle14"></div>
@@ -1179,10 +1195,211 @@ class videoList extends React.Component {
             </div>
           </div>
         }
+        asdasdas
+        {/* <!-- Modal  modalSubscription --> */}
+        <div class="modal fade" id="modalSubscription-share" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog   modal-lg modal-dialog-centered">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-subscription">
+                  {
+                    this.nieyeah()
+                    /* this.staycool() 
+                    this.super()
+                    this.wow()
+                    this.thankYou()
+                    this.goodJob()*/
+                  }
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        
 
       </>
     )
   }
+  /* เเชร์  */
+  nieyeah() {
+    return (
+      <div class="container text-center">
+      <div class="row justify-content-md-center">
+        <div class="col-12 col-sm-12 col-md-12 col-lg-6">
+         <img src={frame41} className="frame41" />
+         <img src={icon_web} className="icon_web" />
+        </div>
+        <div class="col-12 col-sm-12 col-md-12 col-lg-6  ">
+           <div className="canterMode-box">
+             <p className="modeText-box">วันนี้คุณเล่นสำเร็จแล้ว</p>
+            <p>xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx <br/>xxxxxxxxxxxxxxxx</p>
+
+            <p className="share-success">แชร์ความสำเร็จ</p>
+            <div className="box-share">
+            <img src={facebook} className="icon-share" />
+            <img src={twitter} className="icon-share" />
+            <img src={message} className="icon-share" />
+            <img src={line} className="icon-share" />
+            <img src={tiktok} className="icon-share" />
+            <img src={whatsApp} className="icon-share" />
+            <img src={instagram} className="icon-share" />
+            </div>
+           </div>
+        </div>
+      </div>
+    </div>
+    )
+  } 
+
+  staycool() {
+    return (
+      <div class="container text-center">
+      <div class="row justify-content-md-center">
+        <div class="col-12 col-sm-12 col-md-12 col-lg-6">
+         <img src={frame40} className="frame40" />
+         <img src={icon_web} className="icon_web" />
+        </div>
+        <div class="col-12 col-sm-12 col-md-12 col-lg-6  ">
+           <div className="canterMode-box">
+             <p className="modeText-box">ทีมอันดับที่ 1 ประจำสัปดาห์</p>
+            <p>xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx <br/>xxxxxxxxxxxxxxxx</p>
+
+            <p className="share-success">แชร์ความสำเร็จ</p>
+            <div className="box-share">
+            <img src={facebook} className="icon-share" />
+            <img src={twitter} className="icon-share" />
+            <img src={message} className="icon-share" />
+            <img src={line} className="icon-share" />
+            <img src={tiktok} className="icon-share" />
+            <img src={whatsApp} className="icon-share" />
+            <img src={instagram} className="icon-share" />
+            </div>
+           </div>
+        </div>
+      </div>
+    </div>
+    )
+  } 
+  super() {
+    return (
+      <div class="container text-center">
+      <div class="row justify-content-md-center">
+        <div class="col-12 col-sm-12 col-md-12 col-lg-6">
+         <img src={frame42} className="frame40" />
+         <img src={icon_web} className="icon_web" />
+        </div>
+        <div class="col-12 col-sm-12 col-md-12 col-lg-6  ">
+           <div className="canterMode-box">
+             <p className="modeText-box">คุณมีเพื่อนในรายชื่อ 10 คน</p>
+            <p>xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx <br/>xxxxxxxxxxxxxxxx</p>
+
+            <p className="share-success">แชร์ความสำเร็จ</p>
+            <div className="box-share">
+            <img src={facebook} className="icon-share" />
+            <img src={twitter} className="icon-share" />
+            <img src={message} className="icon-share" />
+            <img src={line} className="icon-share" />
+            <img src={tiktok} className="icon-share" />
+            <img src={whatsApp} className="icon-share" />
+            <img src={instagram} className="icon-share" />
+            </div>
+           </div>
+        </div>
+      </div>
+    </div>
+    )
+  } 
+  wow() {
+    return (
+      <div class="container text-center">
+      <div class="row justify-content-md-center">
+        <div class="col-12 col-sm-12 col-md-12 col-lg-6">
+         <img src={frame43} className="frame40" />
+         <img src={icon_web} className="icon_web" />
+        </div>
+        <div class="col-12 col-sm-12 col-md-12 col-lg-6  ">
+           <div className="canterMode-box">
+             <p className="modeText-box">ทีมอันดับที่ 2 ประจำสัปดาห์</p>
+            <p>xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx <br/>xxxxxxxxxxxxxxxx</p>
+
+            <p className="share-success">แชร์ความสำเร็จ</p>
+            <div className="box-share">
+            <img src={facebook} className="icon-share" />
+            <img src={twitter} className="icon-share" />
+            <img src={message} className="icon-share" />
+            <img src={line} className="icon-share" />
+            <img src={tiktok} className="icon-share" />
+            <img src={whatsApp} className="icon-share" />
+            <img src={instagram} className="icon-share" />
+            </div>
+           </div>
+        </div>
+      </div>
+    </div>
+    )
+  } 
+  thankYou() {
+    return (
+      <div class="container text-center">
+      <div class="row justify-content-md-center">
+        <div class="col-12 col-sm-12 col-md-12 col-lg-6">
+         <img src={frame44} className="frame40" />
+         <img src={icon_web} className="icon_web" />
+        </div>
+        <div class="col-12 col-sm-12 col-md-12 col-lg-6  ">
+           <div className="canterMode-box">
+             <p className="modeText-box">ทีมอันดับที่ 3-10 ประจำสัปดาห์</p>
+            <p>xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx <br/>xxxxxxxxxxxxxxxx</p>
+
+            <p className="share-success">แชร์ความสำเร็จ</p>
+            <div className="box-share">
+            <img src={facebook} className="icon-share" />
+            <img src={twitter} className="icon-share" />
+            <img src={message} className="icon-share" />
+            <img src={line} className="icon-share" />
+            <img src={tiktok} className="icon-share" />
+            <img src={whatsApp} className="icon-share" />
+            <img src={instagram} className="icon-share" />
+            </div>
+           </div>
+        </div>
+      </div>
+    </div>
+    )
+  } 
+  goodJob() {
+    return (
+      <div class="container text-center">
+      <div class="row justify-content-md-center">
+        <div class="col-12 col-sm-12 col-md-12 col-lg-6">
+         <img src={frame45} className="frame40" />
+         <img src={icon_web} className="icon_web" />
+        </div>
+        <div class="col-12 col-sm-12 col-md-12 col-lg-6  ">
+           <div className="canterMode-box">
+             <p className="modeText-box">เข้าสู่ระบบทุกวันจนจบฤดูกาล</p>
+            <p>xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx <br/>xxxxxxxxxxxxxxxx</p>
+
+            <p className="share-success">แชร์ความสำเร็จ</p>
+            <div className="box-share">
+            <img src={facebook} className="icon-share" />
+            <img src={twitter} className="icon-share" />
+            <img src={message} className="icon-share" />
+            <img src={line} className="icon-share" />
+            <img src={tiktok} className="icon-share" />
+            <img src={whatsApp} className="icon-share" />
+            <img src={instagram} className="icon-share" />
+            </div>
+           </div>
+        </div>
+      </div>
+    </div>
+    )
+  } 
+
 
   renderEditVDO() {
     const { focusDay, selectedVDO, tempPlaylist, selectChangeVideoList } = this.state;

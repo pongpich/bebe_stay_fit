@@ -1,5 +1,7 @@
 @media only screen and (max-width: 540px) {
-
+  .icon_web {
+    padding-left: 6px !important;
+  }
   .maigeSm {
     margin-top: 50px !important;
   }
@@ -499,8 +501,29 @@
     width:  100% !important;
     margin-top: 50px !important;
     width: auto !important;
-
   }
+  .modal-subscription {
+    margin-top: -52px !important;
+    margin-right: -20px !important;
+  }
+  .frame41 {
+    border-top-right-radius: 10px;
+    width: 100%;  
+    border-top-left-radius: 10px;
+  }
+  .frame40 {
+    border-bottom-left-radius: 0px !important;
+    border-top-right-radius: 10px;
+  }
+  .icon_web {
+    margin-left: -96.4% !important;
+    margin-top: 3px !important;
+    border-bottom-left-radius: 0px !important;
+    border-bottom-right-radius: 10px;
+    border-top-left-radius: 10px;
+    padding-left: 1px;
+  }
+ 
 }
 @media only screen and (min-width: 960px) {
   .information-box2 {
@@ -627,6 +650,7 @@
 
 /* หน้าหน้าจอของ หน้า food_supplement  ให้เปิด เปิดตามขนาดหน้าจอ */
 @media only screen and (max-width: 992px) {
+  
   .navbarLeft {
     visibility: hidden !important;
     height: 0px;
@@ -3603,6 +3627,11 @@ tr:last-child td:last-child {
   outline: 0;
   margin-top: -10px;
 }
+.modal-subscription {
+  margin-top: -50px;
+  margin-right: -15px;
+  position: relative;
+}
 .rules-modal {
   margin-top: -10px;
   text-align: center;
@@ -3862,4 +3891,56 @@ font-family: BdCondHe;
 }
 .span-mvp2 {
   float: right;
+}
+.frame41 {
+  width: 100%;
+}
+.icon_web {
+  position: absolute;
+  z-index: 1;
+  margin-left: -51px;
+  margin-top: 2px;
+  border-bottom-left-radius: 10px;
+}
+.canterMode-box {
+  margin-top: 50px;
+  text-align: center;
+  display: inline-block;
+}
+.modeText-box {
+ font-size: 24px;
+ color: #F45197;
+ font-weight: bold;
+font-family: BdCondHe;
+}
+.share-success {
+  font-size: 20px;
+  color: #F45197;
+  font-weight: bold;
+ font-family: BdCondHe;
+}
+.box-share {
+  position: relative;
+  border: 1px solid #E25E96;
+  width: 100%;
+  padding-top: 15px;
+  padding-left: 10px;
+  padding-right: 10px;
+  height: 70px;
+  margin-bottom: 40px;
+  border-radius: 100px;
+}
+.icon-share {
+  padding-left: 4px;
+  padding-right: 4px;
+  cursor: pointer;
+}
+.frame40 {
+  margin-top: 2px;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+  width: 100%;
+}
+.btn-close {
+  z-index: 2 !important;
 }
