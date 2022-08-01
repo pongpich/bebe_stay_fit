@@ -7,7 +7,7 @@ import newbie from '../../assets/img/newbie.png';
 import ellipse24 from '../../assets/img/ellipse24.png';
 import group23 from '../../assets/img/group23.png';
 import group22 from '../../assets/img/group22.png';
-import { getRank, getLogWeight, getIsReducedWeight, getLogWeightTeam, getDailyTeamWeightBonus, getNumberOfTeamNotFull, assignGroupToMember, clearChallenges, createChallengeGroup, leaveTeam, getMembersAndRank, getGroupName, getScoreOfTeam, getLeaderboard, getChallengePeriod } from "../../redux/challenges";
+import { getFriendList, getRank, getLogWeight, getIsReducedWeight, getLogWeightTeam, getDailyTeamWeightBonus, getNumberOfTeamNotFull, assignGroupToMember, clearChallenges, createChallengeGroup, leaveTeam, getMembersAndRank, getGroupName, getScoreOfTeam, getLeaderboard, getChallengePeriod } from "../../redux/challenges";
 import { getGroupID } from "../../redux/auth";
 import { connect } from "react-redux";
 import moment from "moment"
@@ -48,6 +48,7 @@ class Challenge extends Component {
     this.props.getGroupName(this.props.user.group_id);
     this.props.getScoreOfTeam(this.props.user.group_id);
     this.props.getLeaderboard();
+    this.props.getFriendList(this.props.user.user_id);
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -417,8 +418,6 @@ class Challenge extends Component {
             </p>
           )
         }
-        <p className="text-comment">*รายการจะถุูก Reset ทุกวันอาทิตย์</p>
-        <p className="text-comment">*คะแนนจะถูกสรุปทุกวันอาทิตย์</p>
         <p className="border-bottom"></p>
         <p className="rules-out"> <p onClick={(e) => this.clickOutTeamList(true)}>ออกจากทีม</p> <span className="rules-invite" onClick={(e) => this.clickTeam("invite")}>+ ชวนเพื่อนเข้าทีม</span></p>
       </>
@@ -454,20 +453,6 @@ class Challenge extends Component {
               onClick={() => this.setState({ selectedScoreBoard: "individual" })}
             >กระดานคะแนนเดี่ยว</li>
           </ul>
-          {/* <ul className="challenge">
-            <li className="video-li  video-liPadding-left">
-              <a className={allMissions} name="allMissions" onClick={e => this.challengeBottom(e)}>ภารกิจทั้งหมด</a>
-            </li>
-            <li className="video-li">
-              <a className={teamList} name="teamList" onClick={e => this.challengeBottom(e)}>รายชื่อภายในทีม</a>
-            </li>
-            <li className="video-li">
-              <a className={scoreboard} name="scoreboard" onClick={e => this.challengeBottom(e)}>กระดานคะแนน</a>
-            </li>
-            <li className="video-li">
-              <a className={friendList} name="friendList" onClick={e => this.challengeBottom(e)}>รายชื่อเพื่อน</a>
-            </li>
-          </ul> */}
           <hr className="w-100"></hr>
           {
 
@@ -625,20 +610,58 @@ class Challenge extends Component {
 
   friendList() {
     const { friend, addfriend } = this.state;
+    const { friend_list } = this.props;
     return (
       <>
         {addfriend === false ?
-          friend !== null ?
+          friend_list ?
             <>
               <div className="box-challengeIn">
-                <p className="headTeam bold">รายชื่อเพื่อน <span className="span-challenge headTeamSpan">จำนวนสมาชิก 3/10 คน</span></p>
-                <p className="text-challenge"><p><span className="color-mvp1">1. </span>HummingBirth  <img src={mvp_gold} className="image-mvp" />&nbsp;</p> <span>Newbie</span><span className="span-challenge"> 20 คะแนน</span></p>
-                <p className="text-challenge"><p><span className="color-mvp2">2. </span>HummingBirth <img src={mvp_money} className="image-mvp" />&nbsp;</p>  <span>Newbie</span><span className="span-challenge"> 10 คะแนน</span></p>
-                <p className="text-challenge"><p><span className="color-mvp3">3. </span>HummingBirth <img src={mvp_copper} className="image-mvp" />&nbsp;</p>  <span>Newbie</span><span className="span-challenge"> 8 คะแนน</span></p>
-                <p className="text-challenge"><p><span>4. </span>HummingBirth</p>  <span>Newbie</span><span className="span-challenge"> 2 คะแนน</span></p>
-                <p className="text-challenge"><p><span>5. </span>HummingBirth</p>  <span>Newbie</span><span className="span-challenge"> 1 คะแนน</span></p>
-                <p className="text-comment">*รายการจะถุูก Reset ทุกวันอาทิตย์</p>
-                <p className="text-comment">*คะแนนจะถูกสรุปทุกวันอาทิตย์</p>
+                <p className="headTeam bold">รายชื่อเพื่อน <span className="span-challenge headTeamSpan">เพื่อน {friend_list.length}/15 คน</span></p>
+                {
+                  (friend_list) &&
+                  friend_list.map((item, index) =>
+                    <p className="text-challenge">
+                      <div class="container text-center">
+                        <div class="row justify-content-md-center">
+                          <div class="col-12 col-sm-12 col-md-6 col-lg-6">
+                            <p className="text-leftmvp">
+                              <span>{index + 1}.
+                                {
+                                  <span className="color2">
+                                    {
+                                      item.facebook ?
+                                        item.facebook
+                                        :
+                                        item.first_name ?
+                                          `${item.first_name} ${item.last_name}`
+                                          :
+                                          item.email
+                                    }
+                                  </span>
+
+                                }
+                          &nbsp;
+                        </span>
+                            </p>
+                          </div>
+                          <div class="col-12 col-sm-12 col-md-6 col-lg-6 text-rightmvp">
+                            <span>
+                              {
+                                item.end_rank ?
+                                  item.end_rank.charAt(0).toUpperCase() + item.end_rank.substr(1).toLowerCase()
+                                  :
+                                  item.start_rank.charAt(0).toUpperCase() + item.start_rank.substr(1).toLowerCase()
+                              }
+                            </span>
+                            <span className="span-challenge"> {item.total_score} คะแนน</span>
+                          </div>
+                        </div>
+                      </div>
+
+                    </p>
+                  )
+                }
                 <p className="border-bottom"></p>
                 <p className="rules-add"> <p data-bs-toggle="modal" data-bs-target="#modalAddfriendList" >วิธีการเพิ่มจำนวนเพื่อน</p> <span className="rules-invite" onClick={(e) => this.clickaddfriend(true)}>+ เพิ่มเพื่อน</span></p>
 
@@ -721,7 +744,7 @@ class Challenge extends Component {
                 </div>
                 <div class="col-12 col-sm-12 col-md-12 col-lg-5">
                   <div className="emblem-box">
-                    <img src={`./assets/img/rank/${rank}.png`} width="45%" height="45%" />
+                    <img src={`./assets/img/rank/${rank}.png`} width="200" height="200" />
                     <p className="circleTextHead color1">
                       {
                         rank ?
@@ -913,11 +936,11 @@ class Challenge extends Component {
 const mapStateToProps = ({ authUser, challenges, exerciseVideos }) => {
   const { user } = authUser;
   const { exerciseVideo, statusVideoList } = exerciseVideos;
-  const { statusCreateTeam, numberOfTeamNotFull, statusGetNumberOfTeamNotFull, statusLeaveTeam, membersOfTeam, group_name, totalScoreOfTeam, rank, teamRank, individualRank, logWeightCount, isReducedWeight, logWeightTeamCount, numberOfMembers, dailyTeamWeightBonusCount } = challenges;
-  return { user, statusCreateTeam, numberOfTeamNotFull, statusGetNumberOfTeamNotFull, statusLeaveTeam, membersOfTeam, group_name, totalScoreOfTeam, rank, teamRank, individualRank, logWeightCount, isReducedWeight, logWeightTeamCount, numberOfMembers, dailyTeamWeightBonusCount, exerciseVideo, statusVideoList };
+  const { statusCreateTeam, numberOfTeamNotFull, statusGetNumberOfTeamNotFull, statusLeaveTeam, membersOfTeam, group_name, totalScoreOfTeam, rank, teamRank, individualRank, logWeightCount, isReducedWeight, logWeightTeamCount, numberOfMembers, dailyTeamWeightBonusCount, friend_list, statusGetFriendList } = challenges;
+  return { user, statusCreateTeam, numberOfTeamNotFull, statusGetNumberOfTeamNotFull, statusLeaveTeam, membersOfTeam, group_name, totalScoreOfTeam, rank, teamRank, individualRank, logWeightCount, isReducedWeight, logWeightTeamCount, numberOfMembers, dailyTeamWeightBonusCount, exerciseVideo, statusVideoList, friend_list, statusGetFriendList };
 };
 
-const mapActionsToProps = { getGroupID, getRank, getLogWeight, getIsReducedWeight, getLogWeightTeam, getDailyTeamWeightBonus, getNumberOfTeamNotFull, assignGroupToMember, clearChallenges, createChallengeGroup, leaveTeam, getMembersAndRank, getGroupName, getScoreOfTeam, getLeaderboard, getChallengePeriod };
+const mapActionsToProps = { getGroupID, getRank, getLogWeight, getIsReducedWeight, getLogWeightTeam, getDailyTeamWeightBonus, getNumberOfTeamNotFull, assignGroupToMember, clearChallenges, createChallengeGroup, leaveTeam, getMembersAndRank, getGroupName, getScoreOfTeam, getLeaderboard, getChallengePeriod, getFriendList };
 
 export default connect(
   mapStateToProps,

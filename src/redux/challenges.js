@@ -40,8 +40,18 @@ export const types = {
   GET_CHALLENGE_PERIOD: "GET_CHALLENGE_PERIOD",
   GET_CHALLENGE_PERIOD_SUCCESS: "GET_CHALLENGE_PERIOD_SUCCESS",
   SELECT_MEMBER_EVENT_LOG: "SELECT_MEMBER_EVENT_LOG",
-  SELECT_MEMBER_EVENT_LOG_SUCCESS: "SELECT_MEMBER_EVENT_LOG_SUCCESS"
+  SELECT_MEMBER_EVENT_LOG_SUCCESS: "SELECT_MEMBER_EVENT_LOG_SUCCESS",
+  GET_FRIEND_LIST: "GET_FRIEND_LIST",
+  GET_FRIEND_LIST_SUCCESS: "GET_FRIEND_LIST_SUCCESS",
+  GET_FRIEND_LIST_FAIL: "GET_FRIEND_LIST_FAIL"
 }
+
+export const getFriendList = (user_id) => ({
+  type: types.GET_FRIEND_LIST,
+  payload: {
+    user_id
+  }
+});
 
 export const selectMemberEventLog = (email) => ({
   type: types.SELECT_MEMBER_EVENT_LOG,
@@ -166,6 +176,22 @@ export const getIsReducedWeight = (user_id) => ({
 /* END OF ACTION Section */
 
 /* SAGA Section */
+
+const getFriendListSagaAsync = async (
+  user_id
+) => {
+  try {
+    const apiResult = await API.get("bebe", "/getFriendList", {
+      queryStringParameters: {
+        user_id
+      }
+    });
+    return apiResult
+  } catch (error) {
+    console.log("error :", error);
+    return { error, messsage: error.message }
+  }
+}
 
 const getRankSagaAsync = async (
   user_id,
@@ -465,6 +491,32 @@ function* getRankSaga({ payload }) {
     })
   } catch (error) {
     console.log("error from getRankSaga :", error);
+  }
+}
+
+function* getFriendListSaga({ payload }) {
+  const {
+    user_id
+  } = payload
+  try {
+    const apiResult = yield call(
+      getFriendListSagaAsync,
+      user_id
+    );
+    console.log("apiResult :", apiResult);
+    if (apiResult.results.message === "success") {
+      yield put({
+        type: types.GET_FRIEND_LIST_SUCCESS,
+        payload: apiResult.results.friend_list
+      })
+    } else if (apiResult.results.message === "friendless") {
+      yield put({
+        type: types.GET_FRIEND_LIST_FAIL
+      })
+    }
+
+  } catch (error) {
+    console.log("error from getFriendListSaga :", error);
   }
 }
 
@@ -829,6 +881,10 @@ export function* watchSelectMemberEventLog() {
   yield takeEvery(types.SELECT_MEMBER_EVENT_LOG, selectMemberEventLogSaga)
 }
 
+export function* watchGetFriendList() {
+  yield takeEvery(types.GET_FRIEND_LIST, getFriendListSaga)
+}
+
 export function* saga() {
   yield all([
     fork(watchGetRank),
@@ -848,6 +904,7 @@ export function* saga() {
     fork(watchGetLeaderboard),
     fork(watchGetChallengePeriod),
     fork(watchSelectMemberEventLog),
+    fork(watchGetFriendList),
   ]);
 }
 
@@ -876,10 +933,28 @@ const INIT_STATE = {
   statusCreateTeam: "default",
   challengePeriod: true,
   memberEventLog: [],
+  friend_list: [],
+  statusGetFriendList: "default"
 };
 
 export function reducer(state = INIT_STATE, action) {
   switch (action.type) {
+    case types.GET_FRIEND_LIST:
+      return {
+        ...state,
+        statusGetFriendList: "loading"
+      }
+    case types.GET_FRIEND_LIST_SUCCESS:
+      return {
+        ...state,
+        friend_list: action.payload,
+        statusGetFriendList: "success"
+      }
+    case types.GET_FRIEND_LIST_FAIL:
+      return {
+        ...state,
+        statusGetFriendList: "fail"
+      }
     case types.SELECT_MEMBER_EVENT_LOG_SUCCESS:
       return {
         ...state,
