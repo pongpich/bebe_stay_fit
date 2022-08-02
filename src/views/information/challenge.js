@@ -448,58 +448,230 @@ class Challenge extends Component {
     var myRankIndex = individualRankFilter.findIndex(item => item.user_id === this.props.user.user_id);
     return (
       <>
-        <div className="box-challengeIn">
-          <ul className="">
-            <li
-              className="leader-board-li bold"
-              style={{ color: `${selectedScoreBoard === "team" ? "#F45197" : "grey"}`, cursor: "pointer", marginRight: 10 }}
-              onClick={() => this.setState({ selectedScoreBoard: "team" })}
-            >กระดานคะแนนทีม</li>
-            <li
-              className="leader-board-li bold"
-              style={{ color: `${selectedScoreBoard === "individual" ? "#F45197" : "grey"}`, cursor: "pointer" }}
-              onClick={() => this.setState({ selectedScoreBoard: "individual" })}
-            >กระดานคะแนนเดี่ยว</li>
-          </ul>
+        <div className="box-challengeInScore">
+          <div className="box-challengeScore">
+            <ul className="">
+              <li
+                className="leader-board-li bold"
+                style={{ color: `${selectedScoreBoard === "team" ? "#F45197" : "grey"}`, cursor: "pointer", marginRight: 10 }}
+                onClick={() => this.setState({ selectedScoreBoard: "team" })}
+              >กระดานคะแนนทีม</li>
+              <li
+                className="leader-board-li bold"
+                style={{ color: `${selectedScoreBoard === "individual" ? "#F45197" : "grey"}`, cursor: "pointer" }}
+                onClick={() => this.setState({ selectedScoreBoard: "individual" })}
+              >กระดานคะแนนเดี่ยว</li>
+            </ul>
+            <hr className="w-100"></hr>
+            {
+              (teamRank && (selectedScoreBoard === "team")) &&
+              teamRank.map((item, index) =>
+
+                <p className="text-challenge">
+                  <div class="container text-center">
+                    {
+             
+                     item.group_id != user.group_id ?
+                        <>
+                          <div class="row justify-content-md-center">
+                            <div class="col-12 col-sm-12 col-md-8 col-lg-8">
+                              <p className="text-leftmvp">
+                                <span className={(index + 1 === 1) ? "color-mvp1" : (index + 1 === 2) ? "color-mvp2" : (index + 1 === 3) ? "color-mvp3" : ""}>{index + 1}. </span>
+                                {
+                                  item.group_name ?
+                                    `${item.group_name} `
+                                    :
+                                    ""
+                                }
+                                {
+                                  (index + 1 === 1) &&
+                                  <img src={mvp_gold} className="image-mvp2" />
+                                }
+                                {
+                                  (index + 1 === 2) &&
+                                  <img src={mvp_money} className="image-mvp2" />
+                                }
+                                {
+                                  (index + 1 === 3) &&
+                                  <img src={mvp_copper} className="image-mvp2" />
+                                }
+                              </p>
+                            </div>
+                            <div class="col-12 col-sm-12 col-md-4 col-lg-4" >
+                              <span className="span-mvp2"> {item.totalScoreOfTeam ? item.totalScoreOfTeam : 0} คะแนน</span>
+                            </div>
+                          </div>
+                        </>
+                        :
+                        <>
+                          <div class="row justify-content-md-center backg-you">
+                            <div class="col-12 col-sm-12 col-md-8 col-lg-8">
+                              <p className="text-leftmvp">
+                                <span className={(index + 1 === 1) ? "color-mvp1" : (index + 1 === 2) ? "color-mvp2" : (index + 1 === 3) ? "color-mvp3" : ""}>{index + 1}. </span>
+                                {
+                                  item.group_name ?
+                                    `${item.group_name} `
+                                    :
+                                    ""
+                                }
+                                {
+                                  (index + 1 === 1) &&
+                                  <img src={mvp_gold} className="image-mvp2" />
+                                }
+                                {
+                                  (index + 1 === 2) &&
+                                  <img src={mvp_money} className="image-mvp2" />
+                                }
+                                {
+                                  (index + 1 === 3) &&
+                                  <img src={mvp_copper} className="image-mvp2" />
+                                }
+                              </p>
+                            </div>
+                            <div class="col-12 col-sm-12 col-md-4 col-lg-4" >
+                              <span className="span-mvp2"> {item.totalScoreOfTeam ? item.totalScoreOfTeam : 0} คะแนน</span>
+                            </div>
+                          </div>
+                        </>
+                    }
+
+
+                  </div>
+                </p>
+              )
+            }
+            {
+              (selectedScoreBoard === "individual") &&
+              <div>
+                {
+                  (individualRankFilter) &&
+                  individualRankFilter.map((item, index) => {
+                    const fullName = `${item.first_name} ${item.last_name}`;
+                    const rankDetail = `${item.facebook ?
+                      item.facebook
+                      :
+                      item.first_name ?
+                        fullName
+                        :
+                        item.email
+                      }`;
+                    return (
+                      <div className="card-text">
+                        <div class="container text-center">
+                          {
+                            rankDetail !== user.email ?
+                              <>
+                                <div class="row justify-content-md-center">
+                                  <div class="col-12 col-sm-12 col-md-8 col-lg-8 text-leftmvp">
+                                    <span className={(index + 1 === 1) ? "color-mvp1" : (index + 1 === 2) ? "color-mvp2" : (index + 1 === 3) ? "color-mvp3" : ""}
+                                    >{index + 1}. </span>
+                                    {rankDetail}
+                                    {
+                                      (index + 1 === 1) &&
+                                      <img src={mvp_gold} className="image-mvp" />
+                                    }
+                                    {
+                                      (index + 1 === 2) &&
+                                      <img src={mvp_money} className="image-mvp" />
+                                    }
+                                    {
+                                      (index + 1 === 3) &&
+                                      <img src={mvp_copper} className="image-mvp" />
+                                    }
+                                  </div>
+                                  <div class="col-12 col-sm-12 col-md-4 col-lg-4" >
+                                    <span style={{ float: "right" }}>
+                                      {item.total_score ? item.total_score : 0} คะแนน
+                                    </span>
+                                  </div>
+                                </div>
+                              </>
+                              :
+                              <>
+                                <div class="row justify-content-md-center backg-you">
+                                  <div class="col-12 col-sm-12 col-md-8 col-lg-8 text-leftmvp">
+                                    <span className={(index + 1 === 1) ? "color-mvp1" : (index + 1 === 2) ? "color-mvp2" : (index + 1 === 3) ? "color-mvp3" : ""}
+                                    >{index + 1}. </span>
+                                    {rankDetail}
+                                    {
+                                      (index + 1 === 1) &&
+                                      <img src={mvp_gold} className="image-mvp" />
+                                    }
+                                    {
+                                      (index + 1 === 2) &&
+                                      <img src={mvp_money} className="image-mvp" />
+                                    }
+                                    {
+                                      (index + 1 === 3) &&
+                                      <img src={mvp_copper} className="image-mvp" />
+                                    }
+                                  </div>
+                                  <div class="col-12 col-sm-12 col-md-4 col-lg-4" >
+                                    <span style={{ float: "right" }}>
+                                      {item.total_score ? item.total_score : 0} คะแนน
+                                    </span>
+                                  </div>
+                                </div>
+                              </>
+                          }
+
+
+                        </div>
+                      </div>
+
+                    )
+                  })
+                }
+              </div>
+            }
+          </div>
           <hr className="w-100"></hr>
           {
+              (teamRank && (selectedScoreBoard === "team")) &&
+              teamRank.map((item, index) =>
 
-            (teamRank && (selectedScoreBoard === "team")) &&
-            teamRank.map((item, index) =>
-              <p className="text-challenge">
-                <div class="container text-center">
-                  <div class="row justify-content-md-center">
-                    <div class="col-12 col-sm-12 col-md-8 col-lg-8">
-                      <p className="text-leftmvp">
-                        <span className={(index + 1 === 1) ? "color-mvp1" : (index + 1 === 2) ? "color-mvp2" : (index + 1 === 3) ? "color-mvp3" : ""}>{index + 1}. </span>
-                        {
-                          item.group_name ?
-                            `${item.group_name} `
-                            :
-                            ""
-                        }
-                        {
-                          (index + 1 === 1) &&
-                          <img src={mvp_gold} className="image-mvp2" />
-                        }
-                        {
-                          (index + 1 === 2) &&
-                          <img src={mvp_money} className="image-mvp2" />
-                        }
-                        {
-                          (index + 1 === 3) &&
-                          <img src={mvp_copper} className="image-mvp2" />
-                        }
-                      </p>
-                    </div>
-                    <div class="col-12 col-sm-12 col-md-4 col-lg-4" >
-                      <span className="span-mvp2"> {item.totalScoreOfTeam ? item.totalScoreOfTeam : 0} คะแนน</span>
-                    </div>
+                <p className="text-challenge">
+                  <div class="container text-center">
+                    {
+             
+                     item.group_id == user.group_id ?
+                        <>
+                          <div class="row justify-content-md-center">
+                            <div class="col-12 col-sm-12 col-md-8 col-lg-8">
+                              <p className="text-leftmvp">
+                                <span className={(index + 1 === 1) ? "color-mvp1" : (index + 1 === 2) ? "color-mvp2" : (index + 1 === 3) ? "color-mvp3" : ""}>{index + 1}. </span>
+                                {
+                                  item.group_name ?
+                                    `${item.group_name} `
+                                    :
+                                    ""
+                                }
+                                {
+                                  (index + 1 === 1) &&
+                                  <img src={mvp_gold} className="image-mvp2" />
+                                }
+                                {
+                                  (index + 1 === 2) &&
+                                  <img src={mvp_money} className="image-mvp2" />
+                                }
+                                {
+                                  (index + 1 === 3) &&
+                                  <img src={mvp_copper} className="image-mvp2" />
+                                }
+                              </p>
+                            </div>
+                            <div class="col-12 col-sm-12 col-md-4 col-lg-4" >
+                              <span className="span-mvp2"> {item.totalScoreOfTeam ? item.totalScoreOfTeam : 0} คะแนน</span>
+                            </div>
+                          </div>
+                        </>
+                        :
+                     null
+                    }
                   </div>
-                </div>
-              </p>
-            )
-          }
+                </p>
+              )
+            }
           {
             (selectedScoreBoard === "individual") &&
             <div>
@@ -543,55 +715,11 @@ class Challenge extends Component {
                   </p>
                 </b>
               }
-              {
-                (individualRankFilter) &&
-                individualRankFilter.map((item, index) => {
-                  const fullName = `${item.first_name} ${item.last_name}`;
-                  const rankDetail = `${item.facebook ?
-                    item.facebook
-                    :
-                    item.first_name ?
-                      fullName
-                      :
-                      item.email
-                    }`;
-                  return (
-                    <p className="card-text">
-                      <div class="container text-center">
-                        <div class="row justify-content-md-center">
-                          <div class="col-12 col-sm-12 col-md-8 col-lg-8 text-leftmvp">
-                            <span className={(index + 1 === 1) ? "color-mvp1" : (index + 1 === 2) ? "color-mvp2" : (index + 1 === 3) ? "color-mvp3" : ""}
-                            >{index + 1}. </span>
-                            {rankDetail}
-                            {
-                              (index + 1 === 1) &&
-                              <img src={mvp_gold} className="image-mvp" />
-                            }
-                            {
-                              (index + 1 === 2) &&
-                              <img src={mvp_money} className="image-mvp" />
-                            }
-                            {
-                              (index + 1 === 3) &&
-                              <img src={mvp_copper} className="image-mvp" />
-                            }
-                          </div>
-                          <div class="col-12 col-sm-12 col-md-4 col-lg-4" >
-                            <span style={{ float: "right" }}>
-                              {item.total_score ? item.total_score : 0} คะแนน
-                            </span>
-                          </div>
-                        </div>
-                      </div>
-                    </p>
-                  )
-                })
-              }
+
             </div>
           }
-
+          {/* ฟหกฟหก */}
         </div>
-
       </>
     )
   }
@@ -649,8 +777,8 @@ class Challenge extends Component {
                                   </span>
 
                                 }
-                          &nbsp;
-                        </span>
+                                &nbsp;
+                              </span>
                             </p>
                           </div>
                           <div class="col-12 col-sm-12 col-md-6 col-lg-6 text-rightmvp">
@@ -734,7 +862,7 @@ class Challenge extends Component {
           <div className="box-challengeManu">
             <div class="container">
               <div class="row justify-content-md-center">
-                <div class="col-12 col-sm-12 col-md-12 col-lg-7">
+                <div class="col-12 col-sm-12 col-md-12 col-lg-6">
                   {challenge === "challenge1" ?
                     this.allMissions()
                     :
@@ -747,10 +875,8 @@ class Challenge extends Component {
                         this.friendList()
 
                   }
-
-
                 </div>
-                <div class="col-12 col-sm-12 col-md-12 col-lg-5">
+                <div class="col-12 col-sm-12 col-md-12 col-lg-3">
                   <div className="emblem-box">
                     <img src={`./assets/img/rank/${rank}.png`} width="200" height="200" />
                     <p className="circleTextHead color1">
@@ -769,6 +895,12 @@ class Challenge extends Component {
                     </div>
 
                     <p className="circleTextHead">{scoreInWeek}/41 Point</p>
+                  </div>
+                </div>
+
+                <div class="col-12 col-sm-12 col-md-12 col-lg-3">
+                  <div className="emblem-box2">
+                    <p className="point-user"> 5000 Point</p>
                   </div>
                 </div>
               </div>
@@ -901,9 +1033,9 @@ class Challenge extends Component {
                 <p className="rules-modal">รายละเอียดคะเเนน</p>
                 <div className="headBox">
                   <p className="headTextBox color1"><li>รายการชาเรนจ์แบบเดี่ยว</li></p>
-                  <p className="textBoxchallenge bold">ชั่งน้ำหนักครบ 2 ครั้ง  <span  className="normal">จะได้รับ 10 คะเเนน</span></p>
-                  <p className="textBoxchallenge bold">น้ำหนักลดลงจากสัปดาห์ก่อน <span  className="normal">จะได้รับ 10 คะเเนน</span></p>
-                  <p className="textBoxchallenge bold">ออกกำลังกายครบ 4 วันต่อสัปดาห์  <span  className="normal">จะได้รับ 10 คะเเนน</span></p>
+                  <p className="textBoxchallenge bold">ชั่งน้ำหนักครบ 2 ครั้ง  <span className="normal">จะได้รับ 10 คะเเนน</span></p>
+                  <p className="textBoxchallenge bold">น้ำหนักลดลงจากสัปดาห์ก่อน <span className="normal">จะได้รับ 10 คะเเนน</span></p>
+                  <p className="textBoxchallenge bold">ออกกำลังกายครบ 4 วันต่อสัปดาห์  <span className="normal">จะได้รับ 10 คะเเนน</span></p>
                   <br />
                   <p className="headTextBox color1"><li>รายการชาเรนจ์แบบทีม</li></p>
                   <p className="textBoxchallenge bold">สมาชิกทุกคนชั่งน้ำครบ 2 ครั้ง  <span className="normal"> ทั้งทีมจะได้รับ คนละ 10 คะเเนน </span></p>

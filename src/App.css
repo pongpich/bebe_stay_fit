@@ -180,13 +180,17 @@
   }
 
   .box-challengeIn {
-    margin-left: -20px !important;
-    margin-right: -20px !important;
+    margin-left: -10px !important;
+    margin-right: -10px !important;
   }
 
   .emblem-box {
-    margin-left: -20px;
-    margin-right: -20px;
+    margin-left: -10px;
+    margin-right: -10px;
+  }
+  .emblem-box2 {
+    margin-left: -10px;
+    margin-right: -10px;
   }
   .circle-team {
     left: 70% !important;
@@ -502,9 +506,18 @@
     margin-top: 50px !important;
     width: auto !important;
   }
+  .emblem-box2 {
+    width:  100% !important;
+    margin-top: 100px !important;
+    width: auto !important;
+  }
+
   .modal-subscription {
     margin-top: -52px !important;
     margin-right: -20px !important;
+  }
+  .box-challengeManu {
+    margin-bottom: 100px !important;
   }
   .frame41 {
     border-top-right-radius: 10px;
@@ -533,7 +546,9 @@
     box-shadow: 2px 17px 13px 6px #bababa;
     min-height: 93vh;
   }
-
+  .box-challengeScore {
+    line-height: 2;
+  }
   .group18 {
     padding-left: 10px;
     width: 80%;
@@ -3528,6 +3543,7 @@ tr:last-child td:last-child {
   height: 100%;
   background-color: #ffffff;
 
+
 }
 
 .box-challengeIn {
@@ -3539,11 +3555,27 @@ tr:last-child td:last-child {
   border-radius: 5px;
 
 }
+
+.box-challengeInScore {
+  width: auto;
+  height: 100%;
+  background-color: #ffffff;
+  box-shadow: 0px 1px 14px 0px #c4c4c4;
+  padding: 20px;
+  border-radius: 5px;
+
+}
+.box-challengeScore {
+  padding-left: 10px;
+  height: 400px;
+  overflow: scroll;
+  background-color: #ffffff;
+}
 .box-challengeManu {
   margin-top: -30px;
   display: flex;
   text-align: left;
-
+ 
 }
 .headChallenge {
   font-weight: bold;
@@ -3680,7 +3712,16 @@ tr:last-child td:last-child {
   margin-bottom: 20px;
 }
 .emblem-box {
-
+  position: relative;
+  height: 100%;
+  background-color: #ffffff;
+  box-shadow: 0px 1px 14px 0px #c4c4c4;
+  padding-top: 40px;
+  border-radius: 5px;
+  text-align: center;
+}
+.emblem-box2 {
+  position: relative;
   height: 100%;
   background-color: #ffffff;
   box-shadow: 0px 1px 14px 0px #c4c4c4;
@@ -3945,4 +3986,22 @@ font-family: BdCondHe;
 }
 .btn-close {
   z-index: 2 !important;
+}
+.point-user {
+  font-size: 32px;
+  color: #F45197;
+  font-weight: bold;
+ font-family: BdCondHe;
+margin-top: 10%;
+}
+.box-w {
+  background-color: #0d6efd;
+  width: "auto";
+  height: 500px;
+  position: relative;
+} 
+.backg-you {
+  padding: 10px;
+  background-color: #c0c0c02e;
+  border-radius: 6px;
 }
