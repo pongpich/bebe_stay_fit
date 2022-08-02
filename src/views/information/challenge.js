@@ -236,7 +236,15 @@ class Challenge extends Component {
           <p className="text-comment">*รายการจะถุูก Reset ทุกวันอาทิตย์</p>
           <p className="text-comment">*คะแนนจะถูกสรุปทุกวันอาทิตย์</p>
           <p className="border-bottom"></p>
-          <p className="rules" data-bs-toggle="modal" data-bs-target="#exampleModal">กฎและกติกา</p>
+          <ul className="rules-bottom">
+            <li className="li">
+              <a className="rules" data-bs-toggle="modal" data-bs-target="#exampleModalScore">รายละเอียดคะแนน</a>
+            </li>
+            <li className="li">
+              <a className="rules" data-bs-toggle="modal" data-bs-target="#exampleModal">กฎและกติกา</a>
+            </li>
+          </ul>
+
         </div>
       </>
     )
@@ -875,6 +883,44 @@ class Challenge extends Component {
                   <br />
                   <p className="headTextBox"><li>รายละเอียดของรางวัลประจำ Season </li></p>
                   <p className="textBoxchallenge">สามารถติดตามของรางวัลได้ทาง Facebook Group</p>
+                  <button type="button" className="btn bottom-pink-video close" data-bs-dismiss="modal" >ปิด</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* <!-- Modal รายละเอียดคะเเนน --> */}
+        <div class="modal fade" id="exampleModalScore" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-bodyChallenge">
+                <p className="rules-modal">รายละเอียดคะเเนน</p>
+                <div className="headBox">
+                  <p className="headTextBox color1"><li>รายการชาเรนจ์แบบเดี่ยว</li></p>
+                  <p className="textBoxchallenge bold">ชั่งน้ำหนักครบ 2 ครั้ง  <span  className="normal">จะได้รับ 10 คะเเนน</span></p>
+                  <p className="textBoxchallenge bold">น้ำหนักลดลงจากสัปดาห์ก่อน <span  className="normal">จะได้รับ 10 คะเเนน</span></p>
+                  <p className="textBoxchallenge bold">ออกกำลังกายครบ 4 วันต่อสัปดาห์  <span  className="normal">จะได้รับ 10 คะเเนน</span></p>
+                  <br />
+                  <p className="headTextBox color1"><li>รายการชาเรนจ์แบบทีม</li></p>
+                  <p className="textBoxchallenge bold">สมาชิกทุกคนชั่งน้ำครบ 2 ครั้ง  <span className="normal"> ทั้งทีมจะได้รับ คนละ 10 คะเเนน </span></p>
+                  <p className="textBoxchallenge bold">ในเเต่ละวันมีสมาชิกอย่างน้อย 1 คน ชั่งน้ำหนัก</p>
+                  <p className="textBoxchallenge"><span className="bold">- ครบ 7 วัน</span> ทั้งทีมจะได้รับ คนละ 70 คะเเนน</p>
+                  <p className="textBoxchallenge"><span className="bold">- ครบ 6 วัน</span> ทั้งทีมจะได้รับ คนละ 60 คะเเนน</p>
+                  <p className="textBoxchallenge"><span className="bold">- ครบ 5 วัน</span> ทั้งทีมจะได้รับ คนละ 50 คะเเนน</p>
+                  <p className="textBoxchallenge"><span className="bold">- ครบ 4 วัน</span> ทั้งทีมจะได้รับ คนละ 40 คะเเนน</p>
+                  <p className="textBoxchallenge"><span className="bold">- ครบ 3 วัน</span> ทั้งทีมจะได้รับ คนละ 30 คะเเนน</p>
+                  <p className="textBoxchallenge"><span className="bold">- ครบ 2 วัน</span> ทั้งทีมจะได้รับ คนละ 20 คะเเนน</p>
+                  <p className="textBoxchallenge"><span className="bold">- ครบ 1 วัน</span> ทั้งทีมจะได้รับ คนละ 10 คะเเนน</p>
+                  <br />
+                  <p className="headTextBox"><li>Bonus Rank </li></p>
+                  <p className="textBoxchallenge"><span className="bold">หากสัปดาห์นั้นอยู่ใหน Rank "Gold"</span> จะได้รับคะเเนนพิเศษ 5 คะเเนน</p>
+                  <p className="textBoxchallenge"><span className="bold">หากสัปดาห์นั้นอยู่ใหน Rank "Platinum"</span> จะได้รับคะเเนนพิเศษ 10 คะเเนน</p>
+                  <br />
+                  <p className="textBoxchallenge color1">ระบบจะอัปเดตคะเเนนทุกวันอาทิตย์เวลา 00.00 น.</p>
                   <button type="button" className="btn bottom-pink-video close" data-bs-dismiss="modal" >ปิด</button>
                 </div>
               </div>
