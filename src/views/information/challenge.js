@@ -54,7 +54,13 @@ class Challenge extends Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    const { user, statusCreateTeam, statusGetNumberOfTeamNotFull, numberOfTeamNotFull, statusLeaveTeam, statusSendFriendRequest } = this.props;
+    const { user, statusCreateTeam, statusGetNumberOfTeamNotFull, numberOfTeamNotFull, statusLeaveTeam, statusSendFriendRequest, statusGetFriendRequest, friend_request } = this.props;
+
+    if ((prevProps.statusGetFriendRequest !== statusGetFriendRequest) && statusGetFriendRequest === "success") {
+      if (friend_request[0]) { //friend_request[0] คือ คำขอเป็นเพื่อนที่เก่าที่สุดที่ยังไม่ตอบรับ
+        document.getElementById("buttonModalFriendRequest") && document.getElementById("buttonModalFriendRequest").click();
+      }
+    }
 
     if ((prevProps.statusSendFriendRequest !== statusSendFriendRequest) && (statusSendFriendRequest === "success")) {
       this.clickaddfriend(false)
@@ -932,9 +938,13 @@ class Challenge extends Component {
               {/*                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalChallenge">
                                 Launch demo modal
                                 </button> */}
-              <button style={{ display: 'none' }} id="buttonModalFriendRequest" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalFriendRequest">
+              <button
+                style={{ display: 'none' }}
+                id="buttonModalFriendRequest"
+                type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalFriendRequest"
+              >
                 Launch demo modal
-                                </button>
+              </button>
 
               {/* <p className="circle-VideoAll">คลิปแบบซื้อ <span className="color1"> ดูทั้งหมด {'>'}</span></p> */}
               {/* <div className="box-VideoChallenge">
@@ -1120,8 +1130,8 @@ class Challenge extends Component {
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
               <div class="modal-bodyChallenge">
-                <p className="rules-modal">คำชวนเข้าร่วมทีมชาเลนจ์</p>
-                <p className="textModel-challenge"><span className="bold">HummingBirth</span> ต้องการชวนคุณเป็นเพื่อน</p>
+                <p className="rules-modal">คำขอเป็นเพื่อน</p>
+                <p className="textModel-challenge"><span className="bold">{this.props.friend_request[0] && this.props.friend_request[0].email}</span> ต้องการเป็นเพื่อนกับคุณ</p>
                 <div className="headBox">
 
                   <div className="col-12 col-sm-12 col-md-12 col-lg-12  center2  margin-top-3">
