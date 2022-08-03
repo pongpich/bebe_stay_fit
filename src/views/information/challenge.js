@@ -7,7 +7,7 @@ import newbie from '../../assets/img/newbie.png';
 import ellipse24 from '../../assets/img/ellipse24.png';
 import group23 from '../../assets/img/group23.png';
 import group22 from '../../assets/img/group22.png';
-import { getFriendList, getRank, getLogWeight, getIsReducedWeight, getLogWeightTeam, getDailyTeamWeightBonus, getNumberOfTeamNotFull, assignGroupToMember, clearChallenges, createChallengeGroup, leaveTeam, getMembersAndRank, getGroupName, getScoreOfTeam, getLeaderboard, getChallengePeriod } from "../../redux/challenges";
+import { getFriendList, getRank, getLogWeight, getIsReducedWeight, getLogWeightTeam, getDailyTeamWeightBonus, getNumberOfTeamNotFull, assignGroupToMember, clearChallenges, createChallengeGroup, leaveTeam, getMembersAndRank, getGroupName, getScoreOfTeam, getLeaderboard, getChallengePeriod, sendFriendRequest } from "../../redux/challenges";
 import { getGroupID } from "../../redux/auth";
 import { connect } from "react-redux";
 import moment from "moment"
@@ -30,7 +30,8 @@ class Challenge extends Component {
       teamName: "",
       selectedNavLink: "mission",
       selectedScoreBoard: "team",
-      statusRandomTeam: "default"
+      statusRandomTeam: "default",
+      emailAddFriend: ""
     }
   }
 
@@ -52,7 +53,11 @@ class Challenge extends Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    const { user, statusCreateTeam, statusGetNumberOfTeamNotFull, numberOfTeamNotFull, statusLeaveTeam } = this.props;
+    const { user, statusCreateTeam, statusGetNumberOfTeamNotFull, numberOfTeamNotFull, statusLeaveTeam, statusSendFriendRequest } = this.props;
+
+    if ((prevProps.statusSendFriendRequest !== statusSendFriendRequest) && (statusSendFriendRequest === "success")) {
+      this.clickaddfriend(false)
+    }
 
     if ((prevProps.statusCreateTeam !== statusCreateTeam) && (statusCreateTeam === "success")) {
       this.props.getGroupID(user.user_id);
@@ -171,6 +176,7 @@ class Challenge extends Component {
       var teamList = "challenge-link"
       var scoreboard = "challenge-link"
       var friendList = "challenge-link chalLeft color1"
+      this.clickaddfriend(false)
     }
     this.setState({
       challenge: challenge,
@@ -725,16 +731,29 @@ class Challenge extends Component {
   }
 
   addfriendList() {
+    const { emailAddFriend } = this.state;
+    const { user, statusSendFriendRequest } = this.props;
     return (
       <>
         <div className="box-challengeIn">
           <p className="text-addteam"> <img src={vectorinvite} />&nbsp; เพิ่มเพื่อน</p>
           <div className="input-team col-8 col-sm-8 col-md-8 col-lg-8">
-            <input type="text" className="form-control" id="exampleFormControlInput1" placeholder="ชื่อทีมต้องมากกว่า 6 ตัวอักษร" />
+            <input
+              type=""
+              className="form-control"
+              placeholder="อีเมลเพื่อนของคุณที่สมัคร Bebe Stayfit"
+              id="emailAddFriend"
+              value={emailAddFriend}
+              onChange={(event) => this.handleChange(event)}
+            />
           </div>
           <div className="col-12 col-sm-12 col-md-12 col-lg-12  center2  margin-top-3">
             <div className="bottom-teamList">
-              <button type="button" className="btn bottom-outlineaddTeam " >ส่งคำขอ</button>
+              {
+                (statusSendFriendRequest === "fail") &&
+                <h6 style={{ color: "red" }}>ไม่พบผู้ใช้ที่ต้้องการเพิ่มเพื่อนอยู่ในระบบ</h6>
+              }
+              <button type="button" className="btn bottom-outlineaddTeam " onClick={() => this.props.sendFriendRequest(user.user_id, emailAddFriend)} >ส่งคำขอ</button>
             </div>
           </div>
         </div>
@@ -750,7 +769,7 @@ class Challenge extends Component {
     return (
       <>
         {addfriend === false ?
-          friend_list ?
+          (friend_list && friend_list.length > 0) ?
             <>
               <div className="box-challengeIn">
                 <p className="headTeam bold">รายชื่อเพื่อน <span className="span-challenge headTeamSpan">เพื่อน {friend_list.length}/15 คน</span></p>
@@ -902,7 +921,8 @@ class Challenge extends Component {
                   user.group_id &&
                   <div class="col-12 col-sm-12 col-md-12 col-lg-3">
                     <div className="emblem-box2">
-                      <p className="point-user"> {totalScoreOfTeam} Point</p>
+                      <p className="point-user"> คะแนนทีม </p>
+                      <h3 className=""> {totalScoreOfTeam} Point </h3>
                     </div>
                   </div>
                 }
@@ -1117,11 +1137,11 @@ class Challenge extends Component {
 const mapStateToProps = ({ authUser, challenges, exerciseVideos }) => {
   const { user } = authUser;
   const { exerciseVideo, statusVideoList } = exerciseVideos;
-  const { statusCreateTeam, numberOfTeamNotFull, statusGetNumberOfTeamNotFull, statusLeaveTeam, membersOfTeam, group_name, totalScoreOfTeam, rank, teamRank, individualRank, logWeightCount, isReducedWeight, logWeightTeamCount, numberOfMembers, dailyTeamWeightBonusCount, friend_list, statusGetFriendList } = challenges;
-  return { user, statusCreateTeam, numberOfTeamNotFull, statusGetNumberOfTeamNotFull, statusLeaveTeam, membersOfTeam, group_name, totalScoreOfTeam, rank, teamRank, individualRank, logWeightCount, isReducedWeight, logWeightTeamCount, numberOfMembers, dailyTeamWeightBonusCount, exerciseVideo, statusVideoList, friend_list, statusGetFriendList };
+  const { statusCreateTeam, numberOfTeamNotFull, statusGetNumberOfTeamNotFull, statusLeaveTeam, membersOfTeam, group_name, totalScoreOfTeam, rank, teamRank, individualRank, logWeightCount, isReducedWeight, logWeightTeamCount, numberOfMembers, dailyTeamWeightBonusCount, friend_list, statusGetFriendList, statusSendFriendRequest } = challenges;
+  return { user, statusCreateTeam, numberOfTeamNotFull, statusGetNumberOfTeamNotFull, statusLeaveTeam, membersOfTeam, group_name, totalScoreOfTeam, rank, teamRank, individualRank, logWeightCount, isReducedWeight, logWeightTeamCount, numberOfMembers, dailyTeamWeightBonusCount, exerciseVideo, statusVideoList, friend_list, statusGetFriendList, statusSendFriendRequest };
 };
 
-const mapActionsToProps = { getGroupID, getRank, getLogWeight, getIsReducedWeight, getLogWeightTeam, getDailyTeamWeightBonus, getNumberOfTeamNotFull, assignGroupToMember, clearChallenges, createChallengeGroup, leaveTeam, getMembersAndRank, getGroupName, getScoreOfTeam, getLeaderboard, getChallengePeriod, getFriendList };
+const mapActionsToProps = { getGroupID, getRank, getLogWeight, getIsReducedWeight, getLogWeightTeam, getDailyTeamWeightBonus, getNumberOfTeamNotFull, assignGroupToMember, clearChallenges, createChallengeGroup, leaveTeam, getMembersAndRank, getGroupName, getScoreOfTeam, getLeaderboard, getChallengePeriod, getFriendList, sendFriendRequest };
 
 export default connect(
   mapStateToProps,

@@ -43,7 +43,10 @@ export const types = {
   SELECT_MEMBER_EVENT_LOG_SUCCESS: "SELECT_MEMBER_EVENT_LOG_SUCCESS",
   GET_FRIEND_LIST: "GET_FRIEND_LIST",
   GET_FRIEND_LIST_SUCCESS: "GET_FRIEND_LIST_SUCCESS",
-  GET_FRIEND_LIST_FAIL: "GET_FRIEND_LIST_FAIL"
+  GET_FRIEND_LIST_FAIL: "GET_FRIEND_LIST_FAIL",
+  SEND_FRIEND_REQUEST: "SEND_FRIEND_REQUEST",
+  SEND_FRIEND_REQUEST_SUCCESS: "SEND_FRIEND_REQUEST_SUCCESS",
+  SEND_FRIEND_REQUEST_FAIL: "SEND_FRIEND_REQUEST_FAIL",
 }
 
 export const getFriendList = (user_id) => ({
@@ -103,6 +106,14 @@ export const createChallengeGroup = (user_id, group_name, start_date) => ({
     user_id,
     group_name,
     start_date
+  }
+})
+
+export const sendFriendRequest = (user_id, to) => ({
+  type: types.SEND_FRIEND_REQUEST,
+  payload: {
+    user_id,
+    to
   }
 })
 
@@ -383,6 +394,24 @@ const createChallengeGroupSagaAsync = async (
         user_id,
         group_name,
         start_date
+      }
+    });
+    return apiResult
+  } catch (error) {
+    console.log("error :", error);
+    return { error, messsage: error.message }
+  }
+}
+
+const sendFriendRequestSagaAsync = async (
+  user_id,
+  to
+) => {
+  try {
+    const apiResult = await API.post("bebe", "/sendFriendRequest", {
+      body: {
+        user_id,
+        to
       }
     });
     return apiResult
@@ -721,6 +750,31 @@ function* createChallengeGroupSaga({ payload }) {
   }
 }
 
+function* sendFriendRequestSaga({ payload }) {
+  const {
+    user_id,
+    to
+  } = payload
+  try {
+    const apiResult = yield call(
+      sendFriendRequestSagaAsync,
+      user_id,
+      to
+    );
+    if (apiResult.results.message === "success" || apiResult.results.message === "friend_request_exists") {
+      yield put({
+        type: types.SEND_FRIEND_REQUEST_SUCCESS
+      })
+    } else if (apiResult.results.message === "user_not_exists") {
+      yield put({
+        type: types.SEND_FRIEND_REQUEST_FAIL
+      })
+    }
+  } catch (error) {
+    console.log("error from createChallengeGroupSaga :", error);
+  }
+}
+
 function* leaveTeamSaga({ payload }) {
   const {
     user_id
@@ -885,6 +939,10 @@ export function* watchGetFriendList() {
   yield takeEvery(types.GET_FRIEND_LIST, getFriendListSaga)
 }
 
+export function* watchSendFriendRequest() {
+  yield takeEvery(types.SEND_FRIEND_REQUEST, sendFriendRequestSaga)
+}
+
 export function* saga() {
   yield all([
     fork(watchGetRank),
@@ -905,6 +963,7 @@ export function* saga() {
     fork(watchGetChallengePeriod),
     fork(watchSelectMemberEventLog),
     fork(watchGetFriendList),
+    fork(watchSendFriendRequest),
   ]);
 }
 
@@ -934,11 +993,27 @@ const INIT_STATE = {
   challengePeriod: true,
   memberEventLog: [],
   friend_list: [],
-  statusGetFriendList: "default"
+  statusGetFriendList: "default",
+  statusSendFriendRequest: "default"
 };
 
 export function reducer(state = INIT_STATE, action) {
   switch (action.type) {
+    case types.SEND_FRIEND_REQUEST:
+      return {
+        ...state,
+        statusSendFriendRequest: "loading"
+      }
+    case types.SEND_FRIEND_REQUEST_SUCCESS:
+      return {
+        ...state,
+        statusSendFriendRequest: "success"
+      }
+    case types.SEND_FRIEND_REQUEST_FAIL:
+      return {
+        ...state,
+        statusSendFriendRequest: "fail"
+      }
     case types.GET_FRIEND_LIST:
       return {
         ...state,
@@ -953,6 +1028,7 @@ export function reducer(state = INIT_STATE, action) {
     case types.GET_FRIEND_LIST_FAIL:
       return {
         ...state,
+        friend_list: [],
         statusGetFriendList: "fail"
       }
     case types.SELECT_MEMBER_EVENT_LOG_SUCCESS:
