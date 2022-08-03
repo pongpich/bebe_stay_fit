@@ -25,6 +25,14 @@ import Food_supplement from './views/information/food_supplement';
 import Reset_password from './views/profile/reset_password';
 import Reset_password_succeed from './views/profile/reset_password_succeed';
 import New_password from './views/profile/new_password';
+import { IntlProvider } from "react-intl";
+import AppLocale from "./lang";
+import IntlMessages from "../src/helpers/IntlMessages";
+import { changeLocale } from "../src/redux/actions";
+
+import {
+  localeOptions
+} from "../src/constants/defaultValues";
 
 //import Home from '../views/home';Welcome_NewMember
 
@@ -60,9 +68,22 @@ class App extends Component {
     super(props);
     this.state = {
       colorFood: "nav-link pointer",
-      colorVideo: "nav-link pointer color1"
+      colorVideo: "nav-link pointer color1",
+      thEn: null,
     }
   }
+
+  handleChangeLocale = locale => {
+    this.props.changeLocale(locale);
+    if (locale === "th") {
+      var thEn = "ไทย";
+    } else {
+      var thEn = "English";
+    }
+    this.setState({
+      thEn: thEn
+    })
+  };
 
   onUserLogout(event) {
     this.props.logoutUser();
@@ -89,7 +110,8 @@ class App extends Component {
   }
 
   componentDidMount() {
-    const { user } = this.props;
+
+    const { user, locale } = this.props;
     var expired = false;
     if (this.props.location.pathname === "/videoList") {
       if (user && user.expire_date) {
@@ -100,6 +122,16 @@ class App extends Component {
       if (expired === true) {
         document.getElementById("modalExpireClick").click();
       }
+    }
+
+    if (locale === "th") {
+      this.setState({
+        thEn: "ไทย"
+      })
+    } else {
+      this.setState({
+        thEn: "English"
+      })
     }
   }
 
@@ -173,10 +205,31 @@ class App extends Component {
       </>
     )
   }
+  manuTH_EN() {
+    const { thEn } = this.state;
+    return(
+      <div class="dropdown">
+      <a class="nav-link nav-linkHead2 pointer bold dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+        {thEn}
+      </a>
+      <ul class="dropdown-menu dropdown-menu-end">
+        {localeOptions.map((l) => {
+          return (
+            <li><a class="dropdown-item"
+              onClick={() => this.handleChangeLocale(l.id)}
+              key={l.id}
+            >{l.name}</a></li>
+          );
+        })}
+      </ul>
+    </div>
+    )
+  }
 
   renderNavbar() {
     const pagePath = this.props.location.pathname;
     const { user } = this.props;
+ 
     return (
       <nav className="navbar navbar-expand-lg bg-light information-box  sticky-top">
         <div className="container-fluid nav-left2">
@@ -214,6 +267,7 @@ class App extends Component {
                         ออกจากระบบ
                     </a>
                     </li> */}
+                        {this.manuTH_EN()}
                       <li className="nav-item ">
                         <a className="nav-link dropdown-toggle nav-linkHead" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">
                           <img src={user_circle} alt="vector" className="padding-rightIcon" />
@@ -251,15 +305,22 @@ class App extends Component {
                         {/* <a className="nav-link pointer" >สร้างโปรแกรมส่วนตัว</a> */}
                       </li>
                     </ul>
+                    {this.manuTH_EN()}
+                    &nbsp; &nbsp;&nbsp;
                     <a className="nav-link nav-linkHead2 pointer bold" onClick={() => this.props.history.push("/programPackage")}>ลงทะเบียน</a>
                     &nbsp; &nbsp;&nbsp;
                     <a className="nav-link nav-linkHead2 pointer bold" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                      <img src={user_circle} alt="vector" className="padding-rightIcon" />เข้าสู่ระบบ</a>
+                      <img src={user_circle} alt="vector" className="padding-rightIcon" /><IntlMessages id="navbar.login" /></a>
+                    <div class="dropdown">
+                    </div>
                   </div>
+
                 </>
                 :
                 <>
+                 {this.manuTH_EN()}
                 </>
+           
           }
 
         </div>
@@ -270,76 +331,91 @@ class App extends Component {
 
 
   render() {
+    const { locale } = this.props;
+    const currentAppLocale = AppLocale[locale];
+
+    /*   const currentAppLocale = AppLocale[locale];
+  locale */
+
     return (
-      <div className="App">
-        {this.renderNavbar()}
-        {this.renderExpired()}
+      <div>
+        <IntlProvider
+          locale={currentAppLocale.locale}
+          messages={currentAppLocale.messages}
+        >
+          <div className="App">
+            {this.renderNavbar()}
+            {this.renderExpired()}
 
-        <header className="App-header ">
-          <Switch>
-            <Route exact path="/">
-              <Redirect to="/home" />
-            </Route>
-            <Route path='/home' component={Home} />
-            <Route path='/information_calculate' component={InformationCalculate} />
-            <Route path='/buy_program' component={Buy_program} />
-            <Route path='/register' component={Register} />
-            {/* <Route path='/cc_token' component={Cc_token} /> */}
-            <Route path='/fitto_plant_protein' component={Fitto_Plant_Protein} />
-            <Route path='/shipping_address' component={Shipping_Address} />
-            <Route path='/payment' component={Payment} />
-            <Route path='/subscription_payment' component={SubscriptionPayment} />
-            <Route path='/welcome_new_nember' component={Welcome_NewMember} />
-            <Route path='/basic_information' component={Basic_Information} />
-            <Route path='/your_program' component={Your_Program} />
-            <Route path='/profile' component={Profile} />
-            <Route path='/edit_profile' component={EditProfile} />
-            <Route path='/cancel_package_succeed' component={Cancel_Package_Succeed} />
-            <Route path='/programPackage' component={ProgramPackage} />
-            <Route path='/videoList' component={videoList} />
-            <Route path='/qr_checkout' render={() => { window.location.href = "qr_checkout.html" }} />
-            <Route path='/qr_checkout_subscription' render={() => { window.location.href = "qr_checkout_subscription.html" }} />
-            <Route path='/cc_checkout' render={() => { window.location.href = "cc_checkout.html" }} />
-            <Route path='/cc_token' render={() => { window.location.href = "cc_token.html" }} />
-            <Route path='/cc_preotp' render={() => { window.location.href = "cc_preotp.html" }} />
-            <Route path='/complete' render={() => { window.location.href = "complete.html" }} />
-            <Route path='/complete_thankyou' render={() => { window.location.href = "complete_thankyou.html" }} />
-            <Route path='/shipping_check' component={Shipping_check} />
-            <Route path='/billing_history' component={Billing_history} />
-            <Route path='/food_supplement' component={Food_supplement} />
-            <Route path='/reset_password' component={Reset_password} />
-            <Route path='/reset_password_succeed' component={Reset_password_succeed} />
-            <Route path='/new_password' component={New_password} />
+            <header className="App-header ">
+              <Switch>
+                <Route exact path="/">
+                  <Redirect to="/home" />
+                </Route>
+                <Route path='/home' component={Home} />
+                <Route path='/information_calculate' component={InformationCalculate} />
+                <Route path='/buy_program' component={Buy_program} />
+                <Route path='/register' component={Register} />
+                {/* <Route path='/cc_token' component={Cc_token} /> */}
+                <Route path='/fitto_plant_protein' component={Fitto_Plant_Protein} />
+                <Route path='/shipping_address' component={Shipping_Address} />
+                <Route path='/payment' component={Payment} />
+                <Route path='/subscription_payment' component={SubscriptionPayment} />
+                <Route path='/welcome_new_nember' component={Welcome_NewMember} />
+                <Route path='/basic_information' component={Basic_Information} />
+                <Route path='/your_program' component={Your_Program} />
+                <Route path='/profile' component={Profile} />
+                <Route path='/edit_profile' component={EditProfile} />
+                <Route path='/cancel_package_succeed' component={Cancel_Package_Succeed} />
+                <Route path='/programPackage' component={ProgramPackage} />
+                <Route path='/videoList' component={videoList} />
+                <Route path='/qr_checkout' render={() => { window.location.href = "qr_checkout.html" }} />
+                <Route path='/qr_checkout_subscription' render={() => { window.location.href = "qr_checkout_subscription.html" }} />
+                <Route path='/cc_checkout' render={() => { window.location.href = "cc_checkout.html" }} />
+                <Route path='/cc_token' render={() => { window.location.href = "cc_token.html" }} />
+                <Route path='/cc_preotp' render={() => { window.location.href = "cc_preotp.html" }} />
+                <Route path='/complete' render={() => { window.location.href = "complete.html" }} />
+                <Route path='/complete_thankyou' render={() => { window.location.href = "complete_thankyou.html" }} />
+                <Route path='/shipping_check' component={Shipping_check} />
+                <Route path='/billing_history' component={Billing_history} />
+                <Route path='/food_supplement' component={Food_supplement} />
+                <Route path='/reset_password' component={Reset_password} />
+                <Route path='/reset_password_succeed' component={Reset_password_succeed} />
+                <Route path='/new_password' component={New_password} />
 
-            {/* เเก้การที่เว็บ กด F5 เเล้ว มันเปลี่ยน Url  scrollspy*/}
-            <Route path='/generalFood' component={Food_supplement} />
-            <Route path='/vegetarianFood' component={Food_supplement} />
-            <Route path='/general_food_simpleHealth' component={Food_supplement} />
-            <Route path='/general_food_recommendedHealth' component={Food_supplement} />
-            <Route path='/general_food_eat_foodPprogram' component={Food_supplement} />
-            <Route path='/general_food_recommendedApproach' component={Food_supplement} />
-            <Route path='/general_food_AdditionalAdvice' component={Food_supplement} />
-            <Route path='/vegetarian_food_plantBased' component={Food_supplement} />
-            <Route path='/vegetarian_food_recommendedHealth' component={Food_supplement} />
-            <Route path='/vegetarian_food_eat_foodPprogram' component={Food_supplement} />
-            <Route path='/vegetarian_food_recommendedApproach' component={Food_supplement} />
-            <Route path='/vegetarian_food_AdditionalAdvice' component={Food_supplement} />
-          </Switch>
-        </header>
+                {/* เเก้การที่เว็บ กด F5 เเล้ว มันเปลี่ยน Url  scrollspy*/}
+                <Route path='/generalFood' component={Food_supplement} />
+                <Route path='/vegetarianFood' component={Food_supplement} />
+                <Route path='/general_food_simpleHealth' component={Food_supplement} />
+                <Route path='/general_food_recommendedHealth' component={Food_supplement} />
+                <Route path='/general_food_eat_foodPprogram' component={Food_supplement} />
+                <Route path='/general_food_recommendedApproach' component={Food_supplement} />
+                <Route path='/general_food_AdditionalAdvice' component={Food_supplement} />
+                <Route path='/vegetarian_food_plantBased' component={Food_supplement} />
+                <Route path='/vegetarian_food_recommendedHealth' component={Food_supplement} />
+                <Route path='/vegetarian_food_eat_foodPprogram' component={Food_supplement} />
+                <Route path='/vegetarian_food_recommendedApproach' component={Food_supplement} />
+                <Route path='/vegetarian_food_AdditionalAdvice' component={Food_supplement} />
+              </Switch>
+            </header>
+          </div>
+        </IntlProvider>
       </div>
     )
   }
 }
 
-const mapStateToProps = ({ authUser }) => {
+const mapStateToProps = ({ authUser, settings }) => {
   const { user } = authUser;
-  return { user };
+  const { locale } = settings;
+  return { user, locale };
 };
 
 const mapActionsToProps = {
   logoutUser,
   clearCreateUser,
-  clearProgram
+  clearProgram,
+  changeLocale
 };
 
 

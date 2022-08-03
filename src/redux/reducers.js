@@ -3,6 +3,7 @@ import { persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import hardSet from 'redux-persist/lib/stateReconciler/hardSet';
 
+import settings from './settings/reducer';
 import { reducer as authUser} from './auth';
 import { reducer as createUser} from './createUser';
 import { reducer as exerciseProgram} from './exerciseProgram';
@@ -23,6 +24,7 @@ const persistConfig = {
 
 const reducers = combineReducers({
   authUser,
+  settings,
   createUser,
   exerciseProgram,
   shippingAddress,

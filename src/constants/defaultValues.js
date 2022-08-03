@@ -1,6 +1,11 @@
 export const completeVideoPlayPercentage = 0.9;
 export const minimumVideoPlayPercentage = 0.75;
 export const updateFrequency = 0.5;
+export const defaultLocale = "th";
+export const localeOptions = [
+  { id: "th", name: "ไทย" },
+  { id: "en", name: "English" },
+];
 
 const dev = {
   Storage: {
