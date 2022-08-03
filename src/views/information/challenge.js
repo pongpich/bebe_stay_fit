@@ -7,7 +7,7 @@ import newbie from '../../assets/img/newbie.png';
 import ellipse24 from '../../assets/img/ellipse24.png';
 import group23 from '../../assets/img/group23.png';
 import group22 from '../../assets/img/group22.png';
-import { getFriendList, getRank, getLogWeight, getIsReducedWeight, getLogWeightTeam, getDailyTeamWeightBonus, getNumberOfTeamNotFull, assignGroupToMember, clearChallenges, createChallengeGroup, leaveTeam, getMembersAndRank, getGroupName, getScoreOfTeam, getLeaderboard, getChallengePeriod, sendFriendRequest } from "../../redux/challenges";
+import { getFriendList, getRank, getLogWeight, getIsReducedWeight, getLogWeightTeam, getDailyTeamWeightBonus, getNumberOfTeamNotFull, assignGroupToMember, clearChallenges, createChallengeGroup, leaveTeam, getMembersAndRank, getGroupName, getScoreOfTeam, getLeaderboard, getChallengePeriod, sendFriendRequest, getFriendRequest } from "../../redux/challenges";
 import { getGroupID } from "../../redux/auth";
 import { connect } from "react-redux";
 import moment from "moment"
@@ -50,6 +50,7 @@ class Challenge extends Component {
     this.props.getScoreOfTeam(this.props.user.group_id);
     this.props.getLeaderboard();
     this.props.getFriendList(this.props.user.user_id);
+    this.props.getFriendRequest(this.props.user.user_id);
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -235,7 +236,7 @@ class Challenge extends Component {
     return (
       <>
         <div className="box-challengeIn">
-          <p className="headChallenge">รายการชาเรนจ์แบบทีม <span>รายการชาเรนจ์แบบเดี่ยว</span></p>
+          <p className="headChallenge">รายการชาเลนจ์แบบทีม <span>รายการชาเลนจ์แบบเดี่ยว</span></p>
           <p className="text-challenge">ทีมชั่งน้ำหนักครบ {numberOfMembers * 2} ครั้ง &nbsp; {logWeightTeamCount}/{numberOfMembers * 2} <span className="span-challenge"> ชั่งน้ำหนัก 2 ครั้ง ใน 1 สัปดาห์ &nbsp; {logWeightCount}/2</span></p>
           <p className="text-challenge">ทีมชั่งน้ำหนักครบ 7 วัน &nbsp; {dailyTeamWeightBonusCount}/7 <span className="span-challenge"> น้ำหนักลดลงจากสัปดาห์ก่อน &nbsp; {isReducedWeight ? 1 : 0}/1</span></p>
           <p className="text-challengeRight">ออกกำลังกายครบ 4 วัน&nbsp; {(this.props.statusVideoList !== 'no_video') ? isExerciseCompleted : 0}/4</p>
@@ -455,20 +456,21 @@ class Challenge extends Component {
     return (
       <>
         <div className="box-challengeInScore">
+          <ul className="">
+            <li
+              className="leader-board-li bold"
+              style={{ color: `${selectedScoreBoard === "team" ? "#F45197" : "grey"}`, cursor: "pointer", marginRight: 10 }}
+              onClick={() => this.setState({ selectedScoreBoard: "team" })}
+            >กระดานคะแนนทีม</li>
+            <li
+              className="leader-board-li bold"
+              style={{ color: `${selectedScoreBoard === "individual" ? "#F45197" : "grey"}`, cursor: "pointer" }}
+              onClick={() => this.setState({ selectedScoreBoard: "individual" })}
+            >กระดานคะแนนเดี่ยว</li>
+          </ul>
+          <hr className="w-100"></hr>
           <div className="box-challengeScore">
-            <ul className="">
-              <li
-                className="leader-board-li bold"
-                style={{ color: `${selectedScoreBoard === "team" ? "#F45197" : "grey"}`, cursor: "pointer", marginRight: 10 }}
-                onClick={() => this.setState({ selectedScoreBoard: "team" })}
-              >กระดานคะแนนทีม</li>
-              <li
-                className="leader-board-li bold"
-                style={{ color: `${selectedScoreBoard === "individual" ? "#F45197" : "grey"}`, cursor: "pointer" }}
-                onClick={() => this.setState({ selectedScoreBoard: "individual" })}
-              >กระดานคะแนนเดี่ยว</li>
-            </ul>
-            <hr className="w-100"></hr>
+
             {
               (teamRank && (selectedScoreBoard === "team")) &&
               teamRank.map((item, index) =>
@@ -930,6 +932,9 @@ class Challenge extends Component {
               {/*                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalChallenge">
                                 Launch demo modal
                                 </button> */}
+              <button style={{ display: 'none' }} id="buttonModalFriendRequest" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalFriendRequest">
+                Launch demo modal
+                                </button>
 
               {/* <p className="circle-VideoAll">คลิปแบบซื้อ <span className="color1"> ดูทั้งหมด {'>'}</span></p> */}
               {/* <div className="box-VideoChallenge">
@@ -1055,12 +1060,12 @@ class Challenge extends Component {
               <div class="modal-bodyChallenge">
                 <p className="rules-modal">รายละเอียดคะเเนน</p>
                 <div className="headBox">
-                  <p className="headTextBox color1"><li>รายการชาเรนจ์แบบเดี่ยว</li></p>
+                  <p className="headTextBox color1"><li>รายการชาเลนจ์แบบเดี่ยว</li></p>
                   <p className="textBoxchallenge bold">ชั่งน้ำหนักครบ 2 ครั้ง  <span className="normal">จะได้รับ 10 คะเเนน</span></p>
                   <p className="textBoxchallenge bold">น้ำหนักลดลงจากสัปดาห์ก่อน <span className="normal">จะได้รับ 10 คะเเนน</span></p>
                   <p className="textBoxchallenge bold">ออกกำลังกายครบ 4 วันต่อสัปดาห์  <span className="normal">จะได้รับ 10 คะเเนน</span></p>
                   <br />
-                  <p className="headTextBox color1"><li>รายการชาเรนจ์แบบทีม</li></p>
+                  <p className="headTextBox color1"><li>รายการชาเลนจ์แบบทีม</li></p>
                   <p className="textBoxchallenge bold">สมาชิกทุกคนชั่งน้ำครบ 2 ครั้ง  <span className="normal"> ทั้งทีมจะได้รับ คนละ 10 คะเเนน </span></p>
                   <p className="textBoxchallenge bold">ในเเต่ละวันมีสมาชิกอย่างน้อย 1 คน ชั่งน้ำหนัก</p>
                   <p className="textBoxchallenge"><span className="bold">- ครบ 7 วัน</span> ทั้งทีมจะได้รับ คนละ 70 คะเเนน</p>
@@ -1083,7 +1088,7 @@ class Challenge extends Component {
           </div>
         </div>
 
-        {/* <!-- Modal คำชวนเข้าร่วมทีมชาเรนจ์ --> */}
+        {/* <!-- Modal คำชวนเข้าร่วมทีมชาเลนจ์ --> */}
         <div class="modal fade" id="modalChallenge" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
           <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
@@ -1091,8 +1096,32 @@ class Challenge extends Component {
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
               <div class="modal-bodyChallenge">
-                <p className="rules-modal">คำชวนเข้าร่วมทีมชาเรนจ์</p>
+                <p className="rules-modal">คำชวนเข้าร่วมทีมชาเลนจ์</p>
                 <p className="textModel-challenge"><span className="bold">HummingBirth</span> ต้องการชวนคุณเข้าร่วมทีม</p>
+                <div className="headBox">
+
+                  <div className="col-12 col-sm-12 col-md-12 col-lg-12  center2  margin-top-3">
+                    <div className="bottom-teamList">
+                      <button type="button" className="btn bottom-outlinebackTeam">ปฎิเสธ</button>
+                      <button type="button" className="btn bottom-outlineoutTeam bottomEditProfileLeft">เข้าร่วมทีม</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* <!-- Modal คำขอเป็นเพื่อน --> */}
+        <div class="modal fade" id="modalFriendRequest" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-bodyChallenge">
+                <p className="rules-modal">คำชวนเข้าร่วมทีมชาเลนจ์</p>
+                <p className="textModel-challenge"><span className="bold">HummingBirth</span> ต้องการชวนคุณเป็นเพื่อน</p>
                 <div className="headBox">
 
                   <div className="col-12 col-sm-12 col-md-12 col-lg-12  center2  margin-top-3">
@@ -1137,11 +1166,11 @@ class Challenge extends Component {
 const mapStateToProps = ({ authUser, challenges, exerciseVideos }) => {
   const { user } = authUser;
   const { exerciseVideo, statusVideoList } = exerciseVideos;
-  const { statusCreateTeam, numberOfTeamNotFull, statusGetNumberOfTeamNotFull, statusLeaveTeam, membersOfTeam, group_name, totalScoreOfTeam, rank, teamRank, individualRank, logWeightCount, isReducedWeight, logWeightTeamCount, numberOfMembers, dailyTeamWeightBonusCount, friend_list, statusGetFriendList, statusSendFriendRequest } = challenges;
-  return { user, statusCreateTeam, numberOfTeamNotFull, statusGetNumberOfTeamNotFull, statusLeaveTeam, membersOfTeam, group_name, totalScoreOfTeam, rank, teamRank, individualRank, logWeightCount, isReducedWeight, logWeightTeamCount, numberOfMembers, dailyTeamWeightBonusCount, exerciseVideo, statusVideoList, friend_list, statusGetFriendList, statusSendFriendRequest };
+  const { statusCreateTeam, numberOfTeamNotFull, statusGetNumberOfTeamNotFull, statusLeaveTeam, membersOfTeam, group_name, totalScoreOfTeam, rank, teamRank, individualRank, logWeightCount, isReducedWeight, logWeightTeamCount, numberOfMembers, dailyTeamWeightBonusCount, friend_list, statusGetFriendList, statusSendFriendRequest, friend_request, statusGetFriendRequest } = challenges;
+  return { user, statusCreateTeam, numberOfTeamNotFull, statusGetNumberOfTeamNotFull, statusLeaveTeam, membersOfTeam, group_name, totalScoreOfTeam, rank, teamRank, individualRank, logWeightCount, isReducedWeight, logWeightTeamCount, numberOfMembers, dailyTeamWeightBonusCount, exerciseVideo, statusVideoList, friend_list, statusGetFriendList, statusSendFriendRequest, friend_request, statusGetFriendRequest };
 };
 
-const mapActionsToProps = { getGroupID, getRank, getLogWeight, getIsReducedWeight, getLogWeightTeam, getDailyTeamWeightBonus, getNumberOfTeamNotFull, assignGroupToMember, clearChallenges, createChallengeGroup, leaveTeam, getMembersAndRank, getGroupName, getScoreOfTeam, getLeaderboard, getChallengePeriod, getFriendList, sendFriendRequest };
+const mapActionsToProps = { getGroupID, getRank, getLogWeight, getIsReducedWeight, getLogWeightTeam, getDailyTeamWeightBonus, getNumberOfTeamNotFull, assignGroupToMember, clearChallenges, createChallengeGroup, leaveTeam, getMembersAndRank, getGroupName, getScoreOfTeam, getLeaderboard, getChallengePeriod, getFriendList, sendFriendRequest, getFriendRequest };
 
 export default connect(
   mapStateToProps,
