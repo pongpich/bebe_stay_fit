@@ -207,29 +207,29 @@ class App extends Component {
   }
   manuTH_EN() {
     const { thEn } = this.state;
-    return(
+    return (
       <div class="dropdown">
-      <a class="nav-link nav-linkHead2 pointer bold dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-        {thEn}
-      </a>
-      <ul class="dropdown-menu dropdown-menu-end">
-        {localeOptions.map((l) => {
-          return (
-            <li><a class="dropdown-item"
-              onClick={() => this.handleChangeLocale(l.id)}
-              key={l.id}
-            >{l.name}</a></li>
-          );
-        })}
-      </ul>
-    </div>
+        <a class="nav-link nav-linkHead2 pointer bold dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+          {thEn}
+        </a>
+        <ul class="dropdown-menu dropdown-menu-end">
+          {localeOptions.map((l) => {
+            return (
+              <li><a class="dropdown-item"
+                onClick={() => this.handleChangeLocale(l.id)}
+                key={l.id}
+              >{l.name}</a></li>
+            );
+          })}
+        </ul>
+      </div>
     )
   }
 
   renderNavbar() {
     const pagePath = this.props.location.pathname;
     const { user } = this.props;
- 
+
     return (
       <nav className="navbar navbar-expand-lg bg-light information-box  sticky-top">
         <div className="container-fluid nav-left2">
@@ -267,7 +267,7 @@ class App extends Component {
                         ออกจากระบบ
                     </a>
                     </li> */}
-                        {this.manuTH_EN()}
+                      {this.manuTH_EN()}
                       <li className="nav-item ">
                         <a className="nav-link dropdown-toggle nav-linkHead" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">
                           <img src={user_circle} alt="vector" className="padding-rightIcon" />
@@ -318,9 +318,9 @@ class App extends Component {
                 </>
                 :
                 <>
-                 {this.manuTH_EN()}
+                  {this.manuTH_EN()}
                 </>
-           
+
           }
 
         </div>
@@ -407,7 +407,12 @@ class App extends Component {
 
 const mapStateToProps = ({ authUser, settings }) => {
   const { user } = authUser;
-  const { locale } = settings;
+  let locale;
+  if (settings) {
+    locale = settings.locale;
+  } else {
+    locale = "th";
+  }
   return { user, locale };
 };
 
