@@ -470,8 +470,8 @@ class Challenge extends Component {
                 <p className="text-challenge">
                   <div class="container text-center">
                     {
-             
-                     item.group_id != user.group_id ?
+
+                      item.group_id != user.group_id ?
                         <>
                           <div class="row justify-content-md-center">
                             <div class="col-12 col-sm-12 col-md-8 col-lg-8">
@@ -627,51 +627,51 @@ class Challenge extends Component {
           </div>
           <hr className="w-100"></hr>
           {
-              (teamRank && (selectedScoreBoard === "team")) &&
-              teamRank.map((item, index) =>
+            (teamRank && (selectedScoreBoard === "team")) &&
+            teamRank.map((item, index) =>
 
-                <p className="text-challenge">
-                  <div class="container text-center">
-                    {
-             
-                     item.group_id == user.group_id ?
-                        <>
-                          <div class="row justify-content-md-center">
-                            <div class="col-12 col-sm-12 col-md-8 col-lg-8">
-                              <p className="text-leftmvp">
-                                <span className={(index + 1 === 1) ? "color-mvp1" : (index + 1 === 2) ? "color-mvp2" : (index + 1 === 3) ? "color-mvp3" : ""}>{index + 1}. </span>
-                                {
-                                  item.group_name ?
-                                    `${item.group_name} `
-                                    :
-                                    ""
-                                }
-                                {
-                                  (index + 1 === 1) &&
-                                  <img src={mvp_gold} className="image-mvp2" />
-                                }
-                                {
-                                  (index + 1 === 2) &&
-                                  <img src={mvp_money} className="image-mvp2" />
-                                }
-                                {
-                                  (index + 1 === 3) &&
-                                  <img src={mvp_copper} className="image-mvp2" />
-                                }
-                              </p>
-                            </div>
-                            <div class="col-12 col-sm-12 col-md-4 col-lg-4" >
-                              <span className="span-mvp2"> {item.totalScoreOfTeam ? item.totalScoreOfTeam : 0} คะแนน</span>
-                            </div>
+              <p className="text-challenge">
+                <div class="container text-center">
+                  {
+
+                    item.group_id == user.group_id ?
+                      <>
+                        <div class="row justify-content-md-center">
+                          <div class="col-12 col-sm-12 col-md-8 col-lg-8">
+                            <p className="text-leftmvp">
+                              <span className={(index + 1 === 1) ? "color-mvp1" : (index + 1 === 2) ? "color-mvp2" : (index + 1 === 3) ? "color-mvp3" : ""}>{index + 1}. </span>
+                              {
+                                item.group_name ?
+                                  `${item.group_name} `
+                                  :
+                                  ""
+                              }
+                              {
+                                (index + 1 === 1) &&
+                                <img src={mvp_gold} className="image-mvp2" />
+                              }
+                              {
+                                (index + 1 === 2) &&
+                                <img src={mvp_money} className="image-mvp2" />
+                              }
+                              {
+                                (index + 1 === 3) &&
+                                <img src={mvp_copper} className="image-mvp2" />
+                              }
+                            </p>
                           </div>
-                        </>
-                        :
-                     null
-                    }
-                  </div>
-                </p>
-              )
-            }
+                          <div class="col-12 col-sm-12 col-md-4 col-lg-4" >
+                            <span className="span-mvp2"> {item.totalScoreOfTeam ? item.totalScoreOfTeam : 0} คะแนน</span>
+                          </div>
+                        </div>
+                      </>
+                      :
+                      null
+                  }
+                </div>
+              </p>
+            )
+          }
           {
             (selectedScoreBoard === "individual") &&
             <div>
@@ -831,7 +831,7 @@ class Challenge extends Component {
 
   render() {
     const { challenge, allMissions, teamList, scoreboard, friendList } = this.state;
-    const { rank, logWeightCount, isReducedWeight, logWeightTeamCount, numberOfMembers, dailyTeamWeightBonusCount } = this.props;
+    const { rank, logWeightCount, isReducedWeight, logWeightTeamCount, numberOfMembers, dailyTeamWeightBonusCount, user, totalScoreOfTeam } = this.props;
     const isExerciseCompleted = this.isExerciseCompleted(this.props.exerciseVideo);
     var { scoreInWeek } = this.state;
     if (logWeightCount >= 2) { scoreInWeek += 10 }; //ชั่งน้ำหนักครบ 2 ครั้ง
@@ -898,11 +898,14 @@ class Challenge extends Component {
                   </div>
                 </div>
 
-                <div class="col-12 col-sm-12 col-md-12 col-lg-3">
-                  <div className="emblem-box2">
-                    <p className="point-user"> 5000 Point</p>
+                {
+                  user.group_id &&
+                  <div class="col-12 col-sm-12 col-md-12 col-lg-3">
+                    <div className="emblem-box2">
+                      <p className="point-user"> {totalScoreOfTeam} Point</p>
+                    </div>
                   </div>
-                </div>
+                }
               </div>
               {/*                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalChallenge">
                                 Launch demo modal
