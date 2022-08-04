@@ -7,7 +7,7 @@ import newbie from '../../assets/img/newbie.png';
 import ellipse24 from '../../assets/img/ellipse24.png';
 import group23 from '../../assets/img/group23.png';
 import group22 from '../../assets/img/group22.png';
-import { getFriendList, getRank, getLogWeight, getIsReducedWeight, getLogWeightTeam, getDailyTeamWeightBonus, getNumberOfTeamNotFull, assignGroupToMember, clearChallenges, createChallengeGroup, leaveTeam, getMembersAndRank, getGroupName, getScoreOfTeam, getLeaderboard, getChallengePeriod, sendFriendRequest, getFriendRequest, acceptFriend, rejectFriend, getMaxFriends } from "../../redux/challenges";
+import { getFriendList, getRank, getLogWeight, getIsReducedWeight, getLogWeightTeam, getDailyTeamWeightBonus, getNumberOfTeamNotFull, assignGroupToMember, clearChallenges, createChallengeGroup, leaveTeam, getMembersAndRank, getGroupName, getScoreOfTeam, getLeaderboard, getChallengePeriod, sendFriendRequest, getFriendRequest, acceptFriend, rejectFriend, getMaxFriends, deleteFriend } from "../../redux/challenges";
 import { getGroupID } from "../../redux/auth";
 import { connect } from "react-redux";
 import moment from "moment"
@@ -31,7 +31,8 @@ class Challenge extends Component {
       selectedNavLink: "mission",
       selectedScoreBoard: "team",
       statusRandomTeam: "default",
-      emailAddFriend: ""
+      emailAddFriend: "",
+      emailDeleteFriend: "",
     }
   }
 
@@ -55,7 +56,12 @@ class Challenge extends Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    const { user, statusCreateTeam, statusGetNumberOfTeamNotFull, numberOfTeamNotFull, statusLeaveTeam, statusSendFriendRequest, statusGetFriendRequest, friend_request, statusAcceptFriend, statusRejectFriend } = this.props;
+    const { user, statusCreateTeam, statusGetNumberOfTeamNotFull, numberOfTeamNotFull, statusLeaveTeam, statusSendFriendRequest, statusGetFriendRequest, friend_request, statusAcceptFriend, statusRejectFriend, statusDeleteFriend } = this.props;
+
+    if ((prevProps.statusDeleteFriend !== statusDeleteFriend) && (statusDeleteFriend === "success")) {
+      document.getElementById("buttonModalDeleteFriend") && document.getElementById("buttonModalDeleteFriend").click();
+      this.props.getFriendList(this.props.user.user_id);
+    }
 
     if ((prevProps.statusRejectFriend !== statusRejectFriend) && (statusRejectFriend === "success")) {
       document.getElementById("buttonModalFriendRequest") && document.getElementById("buttonModalFriendRequest").click();
@@ -129,6 +135,13 @@ class Challenge extends Component {
       [event.target.id]: event.target.value
     })
   };
+
+  onDeleteFriendModal(friend_email) {
+    this.setState({
+      emailDeleteFriend: friend_email
+    })
+    document.getElementById("buttonModalDeleteFriend") && document.getElementById("buttonModalDeleteFriend").click()
+  }
 
   createTeam(teamName) {
     const { user } = this.props;
@@ -830,6 +843,7 @@ class Challenge extends Component {
                               }
                             </span>
                             <span className="span-challenge"> {item.total_score} คะแนน</span>
+                            <span className="" style={{ color: "gray", cursor: "pointer" }} onClick={() => this.onDeleteFriendModal(item.email)}> X</span>
                           </div>
                         </div>
                       </div>
@@ -964,6 +978,14 @@ class Challenge extends Component {
                 style={{ display: 'none' }}
                 id="buttonModalFriendRequest"
                 type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalFriendRequest"
+              >
+                Launch demo modal
+              </button>
+
+              <button
+                style={{ display: 'none' }}
+                id="buttonModalDeleteFriend"
+                type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalDeleteFriend"
               >
                 Launch demo modal
               </button>
@@ -1144,6 +1166,46 @@ class Challenge extends Component {
           </div>
         </div>
 
+        {/* <!-- Modal ยืนยันการลบเพื่อน --> */}
+        <div class="modal fade" id="modalDeleteFriend" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-bodyChallenge">
+                <p className="rules-modal">ยืนยันการลบเพื่อน</p>
+                <p className="textModel-challenge">คุณต้องการลบ <span className="bold">{this.state.emailDeleteFriend}</span></p>
+                <p className="textModel-challenge">ออกจากรายชื่อเพื่อนหรือไม่</p>
+                <div className="headBox">
+
+                  <div className="col-12 col-sm-12 col-md-12 col-lg-12  center2  margin-top-3">
+                    {
+                      (this.props.statusDeleteFriend !== "loading") &&
+                      <div className="bottom-teamList">
+                        <button
+                          type="button"
+                          className="btn bottom-outlinebackTeam"
+                          onClick={() => document.getElementById("buttonModalDeleteFriend") && document.getElementById("buttonModalDeleteFriend").click()}
+                        >
+                          ยกเลิก
+                        </button>
+                        <button
+                          type="button"
+                          className="btn bottom-outlineoutTeam bottomEditProfileLeft"
+                          onClick={() => this.props.deleteFriend((this.props.user && this.props.user.user_id), (this.state.emailDeleteFriend))}
+                        >
+                          ลบเพื่อน
+                        </button>
+                      </div>
+                    }
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
         {/* <!-- Modal คำขอเป็นเพื่อน --> */}
         <div class="modal fade" id="modalFriendRequest" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
           <div class="modal-dialog modal-dialog-centered">
@@ -1193,12 +1255,10 @@ class Challenge extends Component {
               <div class="modal-bodyChallenge">
                 <p className="rules-modal">วิธีการเพิ่มจำนวนเพื่อน</p>
                 <div className="headBox">
-                  <p className="textmodel-addfriend">เริ่มต้นสามารถ add เพื่อนได้ 1 คน</p>
-                  <p className="textmodel-addfriend">ทำ 1 active week จะสามารถเพิ่มเพื่อนได้อีก 2 คน</p>
-                  <p className="textmodel-addfriend">จำนวนเพื่อนสูงสุดที่สามารภมีได้ = 15 คน</p>
-                  <p className="textmodel-addfriend">มี microleaderboard สำหรับเพื่อน</p>
-                  <p className="textmodel-addfriend">เข้าอยู่ในระบบ Bebe stay fit ครบ 4 วันใน 1 อาทิตย์จะเพิ่ม  จำนวนเพื่อนได้ 2 คน</p>
-                  <p className="textmodel-addfriend">จำนวนเพื่อนมีาสูงสุดได้ 15 คน</p>
+                  <p className="textmodel-addfriend">เริ่มต้นสามารถเพิ่มเพื่อนได้ 1 คน</p>
+                  <p className="textmodel-addfriend">ในแต่ละสัปดาห์ออกกำลังกายครบ จะเพิ่มจำนวนเพื่อน 2 คน</p>
+                  <p className="textmodel-addfriend">ในแต่ละสัปดาห์เข้าอยู่ในระบบ Bebe Stay Fit ครบ 4 วัน จะเพิ่มจำนวนเพื่อน 2 คน</p>
+                  <p className="textmodel-addfriend">จำนวนเพื่อนมีสูงสุดได้ 15 คน</p>
                   <button type="button" className="btn bottom-pink-video close" data-bs-dismiss="modal" >ปิด</button>
                 </div>
               </div>
@@ -1213,11 +1273,11 @@ class Challenge extends Component {
 const mapStateToProps = ({ authUser, challenges, exerciseVideos }) => {
   const { user } = authUser;
   const { exerciseVideo, statusVideoList } = exerciseVideos;
-  const { statusCreateTeam, numberOfTeamNotFull, statusGetNumberOfTeamNotFull, statusLeaveTeam, membersOfTeam, group_name, totalScoreOfTeam, rank, teamRank, individualRank, logWeightCount, isReducedWeight, logWeightTeamCount, numberOfMembers, dailyTeamWeightBonusCount, friend_list, statusGetFriendList, statusSendFriendRequest, friend_request, statusGetFriendRequest, statusAcceptFriend, statusRejectFriend, statusGetMaxFriends, max_friends } = challenges;
-  return { user, statusCreateTeam, numberOfTeamNotFull, statusGetNumberOfTeamNotFull, statusLeaveTeam, membersOfTeam, group_name, totalScoreOfTeam, rank, teamRank, individualRank, logWeightCount, isReducedWeight, logWeightTeamCount, numberOfMembers, dailyTeamWeightBonusCount, exerciseVideo, statusVideoList, friend_list, statusGetFriendList, statusSendFriendRequest, friend_request, statusGetFriendRequest, statusAcceptFriend, statusRejectFriend, statusGetMaxFriends, max_friends };
+  const { statusCreateTeam, numberOfTeamNotFull, statusGetNumberOfTeamNotFull, statusLeaveTeam, membersOfTeam, group_name, totalScoreOfTeam, rank, teamRank, individualRank, logWeightCount, isReducedWeight, logWeightTeamCount, numberOfMembers, dailyTeamWeightBonusCount, friend_list, statusGetFriendList, statusSendFriendRequest, friend_request, statusGetFriendRequest, statusAcceptFriend, statusRejectFriend, statusGetMaxFriends, max_friends, statusDeleteFriend } = challenges;
+  return { user, statusCreateTeam, numberOfTeamNotFull, statusGetNumberOfTeamNotFull, statusLeaveTeam, membersOfTeam, group_name, totalScoreOfTeam, rank, teamRank, individualRank, logWeightCount, isReducedWeight, logWeightTeamCount, numberOfMembers, dailyTeamWeightBonusCount, exerciseVideo, statusVideoList, friend_list, statusGetFriendList, statusSendFriendRequest, friend_request, statusGetFriendRequest, statusAcceptFriend, statusRejectFriend, statusGetMaxFriends, max_friends, statusDeleteFriend };
 };
 
-const mapActionsToProps = { getGroupID, getRank, getLogWeight, getIsReducedWeight, getLogWeightTeam, getDailyTeamWeightBonus, getNumberOfTeamNotFull, assignGroupToMember, clearChallenges, createChallengeGroup, leaveTeam, getMembersAndRank, getGroupName, getScoreOfTeam, getLeaderboard, getChallengePeriod, getFriendList, sendFriendRequest, getFriendRequest, acceptFriend, rejectFriend, getMaxFriends };
+const mapActionsToProps = { getGroupID, getRank, getLogWeight, getIsReducedWeight, getLogWeightTeam, getDailyTeamWeightBonus, getNumberOfTeamNotFull, assignGroupToMember, clearChallenges, createChallengeGroup, leaveTeam, getMembersAndRank, getGroupName, getScoreOfTeam, getLeaderboard, getChallengePeriod, getFriendList, sendFriendRequest, getFriendRequest, acceptFriend, rejectFriend, getMaxFriends, deleteFriend };
 
 export default connect(
   mapStateToProps,

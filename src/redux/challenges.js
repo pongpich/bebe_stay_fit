@@ -59,7 +59,18 @@ export const types = {
   GET_MAX_FRIENDS: "GET_MAX_FRIENDS",
   GET_MAX_FRIENDS_SUCCESS: "GET_MAX_FRIENDS_SUCCESS",
   GET_MAX_FRIENDS_FAIL: "GET_MAX_FRIENDS_FAIL",
+  DELETE_FRIEND: "DELETE_FRIEND",
+  DELETE_FRIEND_SUCCESS: "DELETE_FRIEND_SUCCESS",
+  DELETE_FRIEND_FAIL: "DELETE_FRIEND_FAIL",
 }
+
+export const deleteFriend = (user_id, friend_email) => ({
+  type: types.DELETE_FRIEND,
+  payload: {
+    user_id,
+    friend_email
+  }
+});
 
 export const getMaxFriends = (user_id) => ({
   type: types.GET_MAX_FRIENDS,
@@ -303,6 +314,24 @@ const rejectFriendSagaAsync = async (
     const apiResult = await API.put("bebe", "/rejectFriend", {
       body: {
         log_id
+      }
+    });
+    return apiResult
+  } catch (error) {
+    console.log("error :", error);
+    return { error, messsage: error.message }
+  }
+}
+
+const deleteFriendSagaAsync = async (
+  user_id,
+  friend_email
+) => {
+  try {
+    const apiResult = await API.put("bebe", "/deleteFriend", {
+      body: {
+        user_id,
+        friend_email
       }
     });
     return apiResult
@@ -749,6 +778,31 @@ function* rejectFriendSaga({ payload }) {
   }
 }
 
+function* deleteFriendSaga({ payload }) {
+  const {
+    user_id,
+    friend_email
+  } = payload
+  try {
+    const apiResult = yield call(
+      deleteFriendSagaAsync,
+      user_id,
+      friend_email
+    );
+    if (apiResult.results.message === "success") {
+      yield put({
+        type: types.DELETE_FRIEND_SUCCESS
+      })
+    } else if (apiResult.results.message === "friendless") {
+      yield put({
+        type: types.DELETE_FRIEND_FAIL
+      })
+    }
+  } catch (error) {
+    console.log("error from deleteFriendSaga :", error);
+  }
+}
+
 function* getLogWeightSaga({ payload }) {
   const {
     user_id
@@ -1159,6 +1213,10 @@ export function* watchGetMaxFriends() {
   yield takeEvery(types.GET_MAX_FRIENDS, getMaxFriendsSaga)
 }
 
+export function* watchDeleteFriend() {
+  yield takeEvery(types.DELETE_FRIEND, deleteFriendSaga)
+}
+
 export function* saga() {
   yield all([
     fork(watchGetRank),
@@ -1184,6 +1242,7 @@ export function* saga() {
     fork(watchAcceptFriend),
     fork(watchRejectFriend),
     fork(watchGetMaxFriends),
+    fork(watchDeleteFriend),
   ]);
 }
 
@@ -1220,11 +1279,27 @@ const INIT_STATE = {
   statusAcceptFriend: "default",
   statusRejectFriend: "default",
   statusGetMaxFriends: "default",
-  max_friends: 1
+  max_friends: 1,
+  statusDeleteFriend: "default"
 };
 
 export function reducer(state = INIT_STATE, action) {
   switch (action.type) {
+    case types.DELETE_FRIEND:
+      return {
+        ...state,
+        statusDeleteFriend: "loading"
+      }
+    case types.DELETE_FRIEND_SUCCESS:
+      return {
+        ...state,
+        statusDeleteFriend: "success"
+      }
+    case types.DELETE_FRIEND_FAIL:
+      return {
+        ...state,
+        statusDeleteFriend: "fail"
+      }
     case types.GET_MAX_FRIENDS:
       return {
         ...state,
