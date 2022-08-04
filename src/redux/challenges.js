@@ -50,12 +50,32 @@ export const types = {
   GET_FRIEND_REQUEST: "GET_FRIEND_REQUEST",
   GET_FRIEND_REQUEST_SUCCESS: "GET_FRIEND_REQUEST_SUCCESS",
   GET_FRIEND_REQUEST_FAIL: "GET_FRIEND_REQUEST_FAIL",
+  ACCEPT_FRIEND: "ACCEPT_FRIEND",
+  ACCEPT_FRIEND_SUCCESS: "ACCEPT_FRIEND_SUCCESS",
+  ACCEPT_FRIEND_FAIL: "ACCEPT_FRIEND_FAIL",
+  REJECT_FRIEND: "REJECT_FRIEND",
+  REJECT_FRIEND_SUCCESS: "REJECT_FRIEND_SUCCESS",
+  REJECT_FRIEND_FAIL: "REJECT_FRIEND_FAIL",
 }
 
 export const getFriendRequest = (user_id) => ({
   type: types.GET_FRIEND_REQUEST,
   payload: {
     user_id
+  }
+});
+
+export const acceptFriend = (user_id, sender_id, log_id) => ({
+  type: types.ACCEPT_FRIEND,
+  payload: {
+    user_id, sender_id, log_id
+  }
+});
+
+export const rejectFriend = (log_id) => ({
+  type: types.REJECT_FRIEND,
+  payload: {
+    log_id
   }
 });
 
@@ -221,6 +241,42 @@ const getFriendRequestSagaAsync = async (
     const apiResult = await API.get("bebe", "/getFriendRequest", {
       queryStringParameters: {
         user_id
+      }
+    });
+    return apiResult
+  } catch (error) {
+    console.log("error :", error);
+    return { error, messsage: error.message }
+  }
+}
+
+const acceptFriendSagaAsync = async (
+  user_id,
+  sender_id,
+  log_id
+) => {
+  try {
+    const apiResult = await API.put("bebe", "/acceptFriend", {
+      body: {
+        user_id,
+        sender_id,
+        log_id
+      }
+    });
+    return apiResult
+  } catch (error) {
+    console.log("error :", error);
+    return { error, messsage: error.message }
+  }
+}
+
+const rejectFriendSagaAsync = async (
+  log_id
+) => {
+  try {
+    const apiResult = await API.put("bebe", "/rejectFriend", {
+      body: {
+        log_id
       }
     });
     return apiResult
@@ -558,7 +614,6 @@ function* getFriendListSaga({ payload }) {
       getFriendListSagaAsync,
       user_id
     );
-    console.log("apiResult :", apiResult);
     if (apiResult.results.message === "success") {
       yield put({
         type: types.GET_FRIEND_LIST_SUCCESS,
@@ -584,7 +639,6 @@ function* getFriendRequestSaga({ payload }) {
       getFriendRequestSagaAsync,
       user_id
     );
-    console.log("apiResult :", apiResult);
     if (apiResult.results.message === "success") {
       yield put({
         type: types.GET_FRIEND_REQUEST_SUCCESS,
@@ -598,6 +652,53 @@ function* getFriendRequestSaga({ payload }) {
 
   } catch (error) {
     console.log("error from getFriendRequestSaga :", error);
+  }
+}
+
+function* acceptFriendSaga({ payload }) {
+  const {
+    user_id,
+    sender_id,
+    log_id
+  } = payload
+  try {
+    const apiResult = yield call(
+      acceptFriendSagaAsync,
+      user_id,
+      sender_id,
+      log_id
+    );
+    if (apiResult.results.message === "success") {
+      yield put({
+        type: types.ACCEPT_FRIEND_SUCCESS
+      })
+    } else if (apiResult.results.message === "friend_list_exist") {
+      yield put({
+        type: types.ACCEPT_FRIEND_FAIL
+      })
+    }
+
+  } catch (error) {
+    console.log("error from acceptFriendSaga :", error);
+  }
+}
+
+function* rejectFriendSaga({ payload }) {
+  const {
+    log_id
+  } = payload
+  try {
+    const apiResult = yield call(
+      rejectFriendSagaAsync,
+      log_id
+    );
+    if (apiResult.results.message === "success") {
+      yield put({
+        type: types.REJECT_FRIEND_SUCCESS
+      })
+    }
+  } catch (error) {
+    console.log("error from rejectFriendSaga :", error);
   }
 }
 
@@ -999,6 +1100,14 @@ export function* watchGetFriendRequest() {
   yield takeEvery(types.GET_FRIEND_REQUEST, getFriendRequestSaga)
 }
 
+export function* watchAcceptFriend() {
+  yield takeEvery(types.ACCEPT_FRIEND, acceptFriendSaga)
+}
+
+export function* watchRejectFriend() {
+  yield takeEvery(types.REJECT_FRIEND, rejectFriendSaga)
+}
+
 export function* saga() {
   yield all([
     fork(watchGetRank),
@@ -1021,6 +1130,8 @@ export function* saga() {
     fork(watchGetFriendList),
     fork(watchSendFriendRequest),
     fork(watchGetFriendRequest),
+    fork(watchAcceptFriend),
+    fork(watchRejectFriend),
   ]);
 }
 
@@ -1054,10 +1165,37 @@ const INIT_STATE = {
   statusSendFriendRequest: "default",
   friend_request: [],
   statusGetFriendRequest: "default",
+  statusAcceptFriend: "default",
+  statusRejectFriend: "default"
 };
 
 export function reducer(state = INIT_STATE, action) {
   switch (action.type) {
+    case types.REJECT_FRIEND:
+      return {
+        ...state,
+        statusRejectFriend: "loading"
+      }
+    case types.REJECT_FRIEND_SUCCESS:
+      return {
+        ...state,
+        statusRejectFriend: "success"
+      }
+    case types.ACCEPT_FRIEND:
+      return {
+        ...state,
+        statusAcceptFriend: "loading"
+      }
+    case types.ACCEPT_FRIEND_SUCCESS:
+      return {
+        ...state,
+        statusAcceptFriend: "success"
+      }
+    case types.ACCEPT_FRIEND_FAIL:
+      return {
+        ...state,
+        statusAcceptFriend: "fail"
+      }
     case types.GET_FRIEND_REQUEST:
       return {
         ...state,
