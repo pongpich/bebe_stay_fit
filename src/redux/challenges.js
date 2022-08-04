@@ -56,7 +56,17 @@ export const types = {
   REJECT_FRIEND: "REJECT_FRIEND",
   REJECT_FRIEND_SUCCESS: "REJECT_FRIEND_SUCCESS",
   REJECT_FRIEND_FAIL: "REJECT_FRIEND_FAIL",
+  GET_MAX_FRIENDS: "GET_MAX_FRIENDS",
+  GET_MAX_FRIENDS_SUCCESS: "GET_MAX_FRIENDS_SUCCESS",
+  GET_MAX_FRIENDS_FAIL: "GET_MAX_FRIENDS_FAIL",
 }
+
+export const getMaxFriends = (user_id) => ({
+  type: types.GET_MAX_FRIENDS,
+  payload: {
+    user_id
+  }
+});
 
 export const getFriendRequest = (user_id) => ({
   type: types.GET_FRIEND_REQUEST,
@@ -239,6 +249,22 @@ const getFriendRequestSagaAsync = async (
 ) => {
   try {
     const apiResult = await API.get("bebe", "/getFriendRequest", {
+      queryStringParameters: {
+        user_id
+      }
+    });
+    return apiResult
+  } catch (error) {
+    console.log("error :", error);
+    return { error, messsage: error.message }
+  }
+}
+
+const getMaxFriendsSagaAsync = async (
+  user_id
+) => {
+  try {
+    const apiResult = await API.get("bebe", "/getMaxFriends", {
       queryStringParameters: {
         user_id
       }
@@ -652,6 +678,27 @@ function* getFriendRequestSaga({ payload }) {
 
   } catch (error) {
     console.log("error from getFriendRequestSaga :", error);
+  }
+}
+
+function* getMaxFriendsSaga({ payload }) {
+  const {
+    user_id
+  } = payload
+  try {
+    const apiResult = yield call(
+      getMaxFriendsSagaAsync,
+      user_id
+    );
+    if (apiResult.results.message === "success") {
+      yield put({
+        type: types.GET_MAX_FRIENDS_SUCCESS,
+        payload: apiResult.results.max_friends
+      })
+    }
+
+  } catch (error) {
+    console.log("error from getMaxFriendsSaga :", error);
   }
 }
 
@@ -1108,6 +1155,10 @@ export function* watchRejectFriend() {
   yield takeEvery(types.REJECT_FRIEND, rejectFriendSaga)
 }
 
+export function* watchGetMaxFriends() {
+  yield takeEvery(types.GET_MAX_FRIENDS, getMaxFriendsSaga)
+}
+
 export function* saga() {
   yield all([
     fork(watchGetRank),
@@ -1132,6 +1183,7 @@ export function* saga() {
     fork(watchGetFriendRequest),
     fork(watchAcceptFriend),
     fork(watchRejectFriend),
+    fork(watchGetMaxFriends),
   ]);
 }
 
@@ -1166,11 +1218,24 @@ const INIT_STATE = {
   friend_request: [],
   statusGetFriendRequest: "default",
   statusAcceptFriend: "default",
-  statusRejectFriend: "default"
+  statusRejectFriend: "default",
+  statusGetMaxFriends: "default",
+  max_friends: 1
 };
 
 export function reducer(state = INIT_STATE, action) {
   switch (action.type) {
+    case types.GET_MAX_FRIENDS:
+      return {
+        ...state,
+        statusGetMaxFriends: "loading"
+      }
+    case types.GET_MAX_FRIENDS_SUCCESS:
+      return {
+        ...state,
+        statusGetMaxFriends: "success",
+        max_friends: action.payload
+      }
     case types.REJECT_FRIEND:
       return {
         ...state,
