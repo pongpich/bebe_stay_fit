@@ -1257,7 +1257,7 @@ class Challenge extends Component {
                 <div className="headBox">
                   <p className="textmodel-addfriend">เริ่มต้นสามารถเพิ่มเพื่อนได้ 1 คน</p>
                   <p className="textmodel-addfriend">ในแต่ละสัปดาห์ออกกำลังกายครบ จะเพิ่มจำนวนเพื่อน 2 คน</p>
-                  <p className="textmodel-addfriend">ในแต่ละสัปดาห์เข้าอยู่ในระบบ Bebe Stay Fit ครบ 4 วัน จะเพิ่มจำนวนเพื่อน 2 คน</p>
+                  <p className="textmodel-addfriend">ในแต่ละสัปดาห์เข้าอยู่ในระบบ ครบ 4 วัน จะเพิ่มจำนวนเพื่อน 2 คน</p>
                   <p className="textmodel-addfriend">จำนวนเพื่อนมีสูงสุดได้ 15 คน</p>
                   <button type="button" className="btn bottom-pink-video close" data-bs-dismiss="modal" >ปิด</button>
                 </div>
