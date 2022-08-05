@@ -401,7 +401,7 @@ class Challenge extends Component {
     const { user, statusSendTeamInvite } = this.props;
     return (
       <>
-        <p className="text-addteam"> <img src={vectorinvite} />&nbsp; ชวนเพื่อนเข้าทีม</p>
+        <p className="text-addteam"> <img src={vectorinvite} />&nbsp; ชวนเข้าทีม</p>
         <div className="input-team col-8 col-sm-8 col-md-8 col-lg-8">
           <input
             type=""
@@ -502,7 +502,7 @@ class Challenge extends Component {
           )
         }
         <p className="border-bottom"></p>
-        <p className="rules-out"> <p onClick={(e) => this.clickOutTeamList(true)}>ออกจากทีม</p> <span className="rules-invite" onClick={(e) => this.clickTeam("invite")}>+ ชวนเพื่อนเข้าทีม</span></p>
+        <p className="rules-out"> <p onClick={(e) => this.clickOutTeamList(true)}>ออกจากทีม</p> <span className="rules-invite" onClick={(e) => this.clickTeam("invite")}>+ ชวนเข้าทีม</span></p>
       </>
     )
 
@@ -1314,10 +1314,9 @@ class Challenge extends Component {
               <div class="modal-bodyChallenge">
                 <p className="rules-modal">วิธีการเพิ่มจำนวนเพื่อน</p>
                 <div className="headBox">
-                  <p className="textmodel-addfriend">เริ่มต้นสามารถเพิ่มเพื่อนได้ 1 คน</p>
-                  <p className="textmodel-addfriend">ในแต่ละสัปดาห์ออกกำลังกายครบ จะเพิ่มจำนวนเพื่อน 2 คน</p>
-                  <p className="textmodel-addfriend">ในแต่ละสัปดาห์เข้าอยู่ในระบบ ครบ 4 วัน จะเพิ่มจำนวนเพื่อน 2 คน</p>
-                  <p className="textmodel-addfriend">จำนวนเพื่อนมีสูงสุดได้ 15 คน</p>
+                  <p className="textmodel-addfriend">• เริ่มต้นสามารถ add เพื่อนได้ 1 คน</p>
+                  <p className="textmodel-addfriend">• ทำ 1 active week (ออกกำลังกายครบอย่างน้อย 1 วัน) จะสามารถเพิ่มเพื่อนได้อีก 2 คน</p>
+                  <p className="textmodel-addfriend">• จำนวนเพื่อนมีสูงสุดได้ 15 คน</p>
                   <button type="button" className="btn bottom-pink-video close" data-bs-dismiss="modal" >ปิด</button>
                 </div>
               </div>
