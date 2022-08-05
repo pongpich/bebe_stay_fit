@@ -7,7 +7,7 @@ import newbie from '../../assets/img/newbie.png';
 import ellipse24 from '../../assets/img/ellipse24.png';
 import group23 from '../../assets/img/group23.png';
 import group22 from '../../assets/img/group22.png';
-import { getFriendList, getRank, getLogWeight, getIsReducedWeight, getLogWeightTeam, getDailyTeamWeightBonus, getNumberOfTeamNotFull, assignGroupToMember, clearChallenges, createChallengeGroup, leaveTeam, getMembersAndRank, getGroupName, getScoreOfTeam, getLeaderboard, getChallengePeriod, sendFriendRequest, getFriendRequest, acceptFriend, rejectFriend, getMaxFriends, deleteFriend } from "../../redux/challenges";
+import { getFriendList, getRank, getLogWeight, getIsReducedWeight, getLogWeightTeam, getDailyTeamWeightBonus, getNumberOfTeamNotFull, assignGroupToMember, clearChallenges, createChallengeGroup, leaveTeam, getMembersAndRank, getGroupName, getScoreOfTeam, getLeaderboard, getChallengePeriod, sendFriendRequest, getFriendRequest, acceptFriend, rejectFriend, getMaxFriends, deleteFriend, sendTeamInvite, getTeamInvite, rejectTeamInvite, acceptTeamInvite } from "../../redux/challenges";
 import { getGroupID } from "../../redux/auth";
 import { connect } from "react-redux";
 import moment from "moment"
@@ -33,6 +33,7 @@ class Challenge extends Component {
       statusRandomTeam: "default",
       emailAddFriend: "",
       emailDeleteFriend: "",
+      emailTeamInvite: "",
     }
   }
 
@@ -53,10 +54,34 @@ class Challenge extends Component {
     this.props.getFriendList(this.props.user.user_id);
     this.props.getFriendRequest(this.props.user.user_id);
     this.props.getMaxFriends(this.props.user.user_id);
+    this.props.getTeamInvite(this.props.user.user_id)
   }
 
   componentDidUpdate(prevProps, prevState) {
-    const { user, statusCreateTeam, statusGetNumberOfTeamNotFull, numberOfTeamNotFull, statusLeaveTeam, statusSendFriendRequest, statusGetFriendRequest, friend_request, statusAcceptFriend, statusRejectFriend, statusDeleteFriend } = this.props;
+    const { user, statusCreateTeam, statusGetNumberOfTeamNotFull, numberOfTeamNotFull, statusLeaveTeam, statusSendFriendRequest, statusGetFriendRequest, friend_request, statusAcceptFriend, statusRejectFriend, statusDeleteFriend, statusSendTeamInvite, statusGetTeamInvite, team_invite, statusRejectTeamInvite, statusAcceptTeamInvite } = this.props;
+
+    if ((prevProps.statusRejectTeamInvite !== statusRejectTeamInvite) && (statusRejectTeamInvite === "success")) {
+      document.getElementById("buttonModalTeamInvite") && document.getElementById("buttonModalTeamInvite").click();
+      this.props.getTeamInvite(this.props.user.user_id)
+    }
+
+    if ((prevProps.statusAcceptTeamInvite !== statusAcceptTeamInvite) && (statusAcceptTeamInvite === "success")) {
+      document.getElementById("buttonModalTeamInvite") && document.getElementById("buttonModalTeamInvite").click();
+      this.props.getGroupID(user.user_id);
+      this.props.getTeamInvite(this.props.user.user_id)
+    }
+
+    if ((prevProps.statusGetTeamInvite !== statusGetTeamInvite) && (statusGetTeamInvite === "success")) {
+      if (team_invite && team_invite[0]) { //team_invite[0] คือ คำชวนเข้าทีมที่เก่าที่สุดที่ยังไม่ตอบรับ
+        document.getElementById("buttonModalTeamInvite") && document.getElementById("buttonModalTeamInvite").click();
+      }
+    }
+
+    if ((prevProps.statusSendTeamInvite !== statusSendTeamInvite) && (statusSendTeamInvite === "success")) {
+      this.setState({
+        addteam: null
+      })
+    }
 
     if ((prevProps.statusDeleteFriend !== statusDeleteFriend) && (statusDeleteFriend === "success")) {
       document.getElementById("buttonModalDeleteFriend") && document.getElementById("buttonModalDeleteFriend").click();
@@ -75,7 +100,7 @@ class Challenge extends Component {
     }
 
     if ((prevProps.statusGetFriendRequest !== statusGetFriendRequest) && statusGetFriendRequest === "success") {
-      if (friend_request[0]) { //friend_request[0] คือ คำขอเป็นเพื่อนที่เก่าที่สุดที่ยังไม่ตอบรับ
+      if (friend_request && friend_request[0]) { //friend_request[0] คือ คำขอเป็นเพื่อนที่เก่าที่สุดที่ยังไม่ตอบรับ
         document.getElementById("buttonModalFriendRequest") && document.getElementById("buttonModalFriendRequest").click();
       }
     }
@@ -298,15 +323,15 @@ class Challenge extends Component {
               this.state.addteam === "add" ?
                 this.addTeamList()
                 :
-                this.state.addteam === "invite" ?
-                  this.inviteTeamList()
-                  :
-                  this.indexTeamList()
+                this.indexTeamList()
               :
               this.state.outteam === true ?
                 this.outTeamList()
                 :
-                this.teamYou()
+                this.state.addteam === "invite" ?
+                  this.inviteTeamList()
+                  :
+                  this.teamYou()
           }
 
         </div>
@@ -372,16 +397,28 @@ class Challenge extends Component {
     )
   }
   inviteTeamList() {
+    const { emailTeamInvite } = this.state;
+    const { user, statusSendTeamInvite } = this.props;
     return (
       <>
         <p className="text-addteam"> <img src={vectorinvite} />&nbsp; ชวนเพื่อนเข้าทีม</p>
         <div className="input-team col-8 col-sm-8 col-md-8 col-lg-8">
-          <input type="text" className="form-control" id="exampleFormControlInput1" placeholder="ชื่อทีมต้องมากกว่า 6 ตัวอักษร" />
+          <input
+            type=""
+            className="form-control"
+            placeholder="อีเมลเพื่อนของคุณที่สมัคร Bebe Stayfit"
+            id="emailTeamInvite"
+            value={emailTeamInvite}
+            onChange={(event) => this.handleChange(event)}
+          />
         </div>
         <div className="col-12 col-sm-12 col-md-12 col-lg-12  center2  margin-top-3">
-          <div className="bottom-teamList">
-            <button type="button" className="btn bottom-outlineaddTeam " onClick={(e) => this.clickTeam(null)}>ส่งคำขอ</button>
-          </div>
+          {
+            statusSendTeamInvite !== "loading" &&
+            <div className="bottom-teamList">
+              <button type="button" className="btn bottom-outlineaddTeam " onClick={() => this.props.sendTeamInvite((user && user.user_id), emailTeamInvite)}>ส่งคำเชิญ</button>
+            </div>
+          }
         </div>
       </>
     )
@@ -971,9 +1008,15 @@ class Challenge extends Component {
                   </div>
                 }
               </div>
-              {/*                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalChallenge">
-                                Launch demo modal
-                                </button> */}
+
+              <button
+                style={{ display: 'none' }}
+                id="buttonModalTeamInvite"
+                type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalTeamInvite"
+              >
+                Launch demo modal
+              </button>
+
               <button
                 style={{ display: 'none' }}
                 id="buttonModalFriendRequest"
@@ -1143,7 +1186,7 @@ class Challenge extends Component {
         </div>
 
         {/* <!-- Modal คำชวนเข้าร่วมทีมชาเลนจ์ --> */}
-        <div class="modal fade" id="modalChallenge" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal fade" id="modalTeamInvite" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
           <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
               <div class="modal-header">
@@ -1151,13 +1194,29 @@ class Challenge extends Component {
               </div>
               <div class="modal-bodyChallenge">
                 <p className="rules-modal">คำชวนเข้าร่วมทีมชาเลนจ์</p>
-                <p className="textModel-challenge"><span className="bold">HummingBirth</span> ต้องการชวนคุณเข้าร่วมทีม</p>
+                <p className="textModel-challenge"><span className="bold">{this.props.team_invite && this.props.team_invite[0] && this.props.team_invite[0].email}</span> ต้องการชวนคุณเข้าร่วมทีม</p>
                 <div className="headBox">
 
                   <div className="col-12 col-sm-12 col-md-12 col-lg-12  center2  margin-top-3">
                     <div className="bottom-teamList">
-                      <button type="button" className="btn bottom-outlinebackTeam">ปฎิเสธ</button>
-                      <button type="button" className="btn bottom-outlineoutTeam bottomEditProfileLeft">เข้าร่วมทีม</button>
+                      <button
+                        type="button"
+                        className="btn bottom-outlinebackTeam"
+                        onClick={() => this.props.rejectTeamInvite(this.props.team_invite && this.props.team_invite[0] && this.props.team_invite[0].log_id)}
+                      >
+                        ปฎิเสธ
+                      </button>
+                      <button
+                        type="button"
+                        className="btn bottom-outlineoutTeam bottomEditProfileLeft"
+                        onClick={() => this.props.acceptTeamInvite(
+                          (this.props.user && this.props.user.user_id),
+                          (this.props.team_invite && this.props.team_invite[0] && this.props.team_invite[0].group_id),
+                          (this.props.team_invite && this.props.team_invite[0] && this.props.team_invite[0].log_id),
+                        )}
+                      >
+                        เข้าร่วมทีม
+                      </button>
                     </div>
                   </div>
                 </div>
@@ -1215,7 +1274,7 @@ class Challenge extends Component {
               </div>
               <div class="modal-bodyChallenge">
                 <p className="rules-modal">คำขอเป็นเพื่อน</p>
-                <p className="textModel-challenge"><span className="bold">{this.props.friend_request[0] && this.props.friend_request[0].email}</span> ต้องการเป็นเพื่อนกับคุณ</p>
+                <p className="textModel-challenge"><span className="bold">{this.props.friend_request && this.props.friend_request[0] && this.props.friend_request[0].email}</span> ต้องการเป็นเพื่อนกับคุณ</p>
                 <div className="headBox">
 
                   <div className="col-12 col-sm-12 col-md-12 col-lg-12  center2  margin-top-3">
@@ -1225,14 +1284,14 @@ class Challenge extends Component {
                         <button
                           type="button"
                           className="btn bottom-outlinebackTeam"
-                          onClick={() => this.props.rejectFriend(this.props.friend_request[0] && this.props.friend_request[0].log_id)}
+                          onClick={() => this.props.rejectFriend(this.props.friend_request && this.props.friend_request[0] && this.props.friend_request[0].log_id)}
                         >
                           ปฎิเสธ
                         </button>
                         <button
                           type="button"
                           className="btn bottom-outlineoutTeam bottomEditProfileLeft"
-                          onClick={() => this.props.acceptFriend((this.props.user && this.props.user.user_id), (this.props.friend_request[0] && this.props.friend_request[0].sender_id), (this.props.friend_request[0] && this.props.friend_request[0].log_id))}
+                          onClick={() => this.props.acceptFriend((this.props.user && this.props.user.user_id), (this.props.friend_request && this.props.friend_request[0] && this.props.friend_request[0].sender_id), (this.props.friend_request && this.props.friend_request[0] && this.props.friend_request[0].log_id))}
                         >
                           ยอมรับ
                       </button>
@@ -1273,11 +1332,11 @@ class Challenge extends Component {
 const mapStateToProps = ({ authUser, challenges, exerciseVideos }) => {
   const { user } = authUser;
   const { exerciseVideo, statusVideoList } = exerciseVideos;
-  const { statusCreateTeam, numberOfTeamNotFull, statusGetNumberOfTeamNotFull, statusLeaveTeam, membersOfTeam, group_name, totalScoreOfTeam, rank, teamRank, individualRank, logWeightCount, isReducedWeight, logWeightTeamCount, numberOfMembers, dailyTeamWeightBonusCount, friend_list, statusGetFriendList, statusSendFriendRequest, friend_request, statusGetFriendRequest, statusAcceptFriend, statusRejectFriend, statusGetMaxFriends, max_friends, statusDeleteFriend } = challenges;
-  return { user, statusCreateTeam, numberOfTeamNotFull, statusGetNumberOfTeamNotFull, statusLeaveTeam, membersOfTeam, group_name, totalScoreOfTeam, rank, teamRank, individualRank, logWeightCount, isReducedWeight, logWeightTeamCount, numberOfMembers, dailyTeamWeightBonusCount, exerciseVideo, statusVideoList, friend_list, statusGetFriendList, statusSendFriendRequest, friend_request, statusGetFriendRequest, statusAcceptFriend, statusRejectFriend, statusGetMaxFriends, max_friends, statusDeleteFriend };
+  const { statusCreateTeam, numberOfTeamNotFull, statusGetNumberOfTeamNotFull, statusLeaveTeam, membersOfTeam, group_name, totalScoreOfTeam, rank, teamRank, individualRank, logWeightCount, isReducedWeight, logWeightTeamCount, numberOfMembers, dailyTeamWeightBonusCount, friend_list, statusGetFriendList, statusSendFriendRequest, friend_request, statusGetFriendRequest, statusAcceptFriend, statusRejectFriend, statusGetMaxFriends, max_friends, statusDeleteFriend, statusSendTeamInvite, team_invite, statusGetTeamInvite, statusRejectTeamInvite, statusAcceptTeamInvite } = challenges;
+  return { user, statusCreateTeam, numberOfTeamNotFull, statusGetNumberOfTeamNotFull, statusLeaveTeam, membersOfTeam, group_name, totalScoreOfTeam, rank, teamRank, individualRank, logWeightCount, isReducedWeight, logWeightTeamCount, numberOfMembers, dailyTeamWeightBonusCount, exerciseVideo, statusVideoList, friend_list, statusGetFriendList, statusSendFriendRequest, friend_request, statusGetFriendRequest, statusAcceptFriend, statusRejectFriend, statusGetMaxFriends, max_friends, statusDeleteFriend, statusSendTeamInvite, team_invite, statusGetTeamInvite, statusRejectTeamInvite, statusAcceptTeamInvite };
 };
 
-const mapActionsToProps = { getGroupID, getRank, getLogWeight, getIsReducedWeight, getLogWeightTeam, getDailyTeamWeightBonus, getNumberOfTeamNotFull, assignGroupToMember, clearChallenges, createChallengeGroup, leaveTeam, getMembersAndRank, getGroupName, getScoreOfTeam, getLeaderboard, getChallengePeriod, getFriendList, sendFriendRequest, getFriendRequest, acceptFriend, rejectFriend, getMaxFriends, deleteFriend };
+const mapActionsToProps = { getGroupID, getRank, getLogWeight, getIsReducedWeight, getLogWeightTeam, getDailyTeamWeightBonus, getNumberOfTeamNotFull, assignGroupToMember, clearChallenges, createChallengeGroup, leaveTeam, getMembersAndRank, getGroupName, getScoreOfTeam, getLeaderboard, getChallengePeriod, getFriendList, sendFriendRequest, getFriendRequest, acceptFriend, rejectFriend, getMaxFriends, deleteFriend, sendTeamInvite, getTeamInvite, rejectTeamInvite, acceptTeamInvite };
 
 export default connect(
   mapStateToProps,
