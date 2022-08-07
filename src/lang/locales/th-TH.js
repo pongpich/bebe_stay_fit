@@ -7,6 +7,8 @@ Table of Contents
 03.register
 04.fitto_plant_protein
 05.shipping_address
+06.payment
+07.welcome_new_member
 */
 
 
@@ -42,7 +44,7 @@ module.exports = {
     "programPackage.choosePackage": "กรุณาเลือกแพ็กเกจที่คุณต้องการ",
     "programPackage.beginner": "เซตเริ่มต้นสายฟิต",
     "programPackage.price": "ราคา",
-    "programPackage.baht": "ราคา",
+    "programPackage.baht": "บาท",
     "programPackage.2months": "*ระยะเวลา 2 เดือน และไม่มีการต่ออายุ",
     "programPackage.regular": "ราคาปกติสำหรับโปรแกรม 2 เดือน",
     "programPackage.exercise": "โปรแกรมออกกำลังกาย",
@@ -105,5 +107,41 @@ module.exports = {
      "shipping_address.province": "จังหวัด",
      "shipping_address.postcode": "รหัสไปรษณีย์",
      "shipping_address.taxinvoice": "ขอใบเสร็จรับเงิน/ใบกำกับภาษี",
+     "shipping_address.addressInvoice": "ที่อยู่ใบเสร็จรับเงิน/ใบกำกับภาษี",
+     "shipping_address.individual": "บุคคลธรรมดา",
+     "shipping_address.juristic": "นิติบุคคล",
+     "shipping_address.taxpayer": "ชื่อผู้เสียภาษี",
+     "shipping_address.nameJuristic": "ชื่อนิติบุคคล",
+     "shipping_address.office": "สำนักงานใหญ่/สาขา",
+     "shipping_address.identification": "เลขประจำตัวผู้เสียภาษี",
+     "shipping_address.phoneNumber": "หมายเลขโทรศัพท์",
+     "shipping_address.sameAddress": "ใช้ที่อยู่จัดส่งสินค้า",
+     "shipping_address.cancel": "ยกเลิก",
+     "shipping_address.confirm": "ยืนยัน",
+
+     /* 06.payment */
+     "payment.payment": "การชำระเงิน",
+     "payment.credit": "บัตรเครดิต/เดบิต",
+     "payment.errorBilling": "ระบบเรียกเก็บเงินไม่สำเร็จกรุณาตรวจสอบข้อมูลบัตรให้ถูกต้องอีกครั้ง หรือเปลี่ยนวิธีการชำระเงิน",
+     "payment.qrcode": "ชำระด้วย QR Code",
+     "payment.cardNumber": "16 digit card number",
+     "payment.nameCard": "Name on card",
+     "payment.expirationDate": "Expiration date",
+     "payment.cvv": "CVV Code",
+     "payment.yourPackage": "แพ็กเกจของคุณ",
+     "payment.applyProgram": "สมัครตามระยะเวลาของโปรแกรม",
+     "payment.baht2months": "3750 Baht / 2 months",
+     "payment.collectPayment": "We will collect payment every 2 months.",
+     "payment.pay": "ชำระเงิน",
+     "payment.messagQrcode1": "1. หลังกด “ชำระเงิน” คุณจะได้รับ QR Code เพื่อชำระ",
+     "payment.messagQrcode2": "2. เปิดแอปพลิเคชันธนาคารที่คุณมี",
+     "payment.messagQrcode3": "3. ไปยังเมนู “สแกน” หรือ “สแกนจ่าย”",
+     "payment.messagQrcode4": "4. ตรวจสอบชื่อบัญชีและยอดที่คุณต้องชำระก่อนทำรายการ",
+     
+      /* 07.welcome_new_member */
+    "welcome_new_member.welcome": "ยินดีต้อนรับสมาชิกใหม่ของเรา",
+    "welcome_new_member.thankYou": "ขอบคุณที่มาสมัครเข้าร่วมเป็นสมาชิก Bebe Stay Fit ทางทีมงานได้รับข้อมูลการสมัครเรียบร้อยแล้ว เราขอบคุณที่ท่านให้ความสนใจและเลือกเราเป็นส่วนหนึ่งสู่ความสำเร็จ  มาสร้างวินัย และมีความสุขกับการออกกำลังกายนะคะ",
+    "welcome_new_member.getStart": "เริ่มต้นใช้งาน",
+
   };
   

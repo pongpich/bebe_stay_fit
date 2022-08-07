@@ -334,23 +334,23 @@ class Shipping_Address extends React.Component {
           <div className="modal-dialog ">
             <div className="modal-content padding-leftRight">
               <div className="modal-headerIn margin-headText">
-                <p className="bold font-size5  color-protein" id="exampleModalLabel">ที่อยู่ใบเสร็จรับเงิน/ใบกำกับภาษี</p>
+                <p className="bold font-size5  color-protein" id="exampleModalLabel"><IntlMessages id="shipping_address.addressInvoice"/></p>
                 <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
               <div className="modal-bodyIn">
                 <div className="form-check form-check-inline">
                   <input className="form-check-input" type="radio" name="InvoicePerson" checked={this.state.InvoicePerson === "บุคคลธรรมดา"} onChange={e => this.onChange(e)} id="inlineRadio1" value="บุคคลธรรมดา" />
-                  <label className="form-check-label">บุคคลธรรมดา</label>
+                  <label className="form-check-label"><IntlMessages id="shipping_address.individual"/></label>
                 </div>
                 <div className="form-check form-check-inline">
                   <input className="form-check-input" type="radio" name="InvoicePerson" checked={this.state.InvoicePerson === "นิติบุคคล"} onChange={e => this.onChange(e)} id="inlineRadio2" value="นิติบุคคล" />
-                  <label className="form-check-label">นิติบุคคล</label>
+                  <label className="form-check-label"><IntlMessages id="shipping_address.juristic"/></label>
                 </div>
                 {
                   (this.state.InvoicePerson === "บุคคลธรรมดา") &&
                   <div className=" col-12 col-sm-12  col-md-12 col-lg-12 padding-top2">
                     <div className="mb-3">
-                      <label className="form-label bold">ชื่อผู้เสียภาษี</label>
+                      <label className="form-label bold"><IntlMessages id="shipping_address.taxpayer"/></label>
                       <input type="text" className="form-control" id="exampleFormControlInput1" name="InvoiceTaxpayerName" onChange={e => this.onChange(e)} placeholder="กรอกชื่อ" />
                     </div>
                   </div>
@@ -360,13 +360,13 @@ class Shipping_Address extends React.Component {
                   <div className="row">
                     <div className=" col-12 col-sm-12 col-md-6 col-lg-6">
                       <div className="mb-3">
-                        <label className="form-label bold">ชื่อนิติบุคคล</label>
+                        <label className="form-label bold"><IntlMessages id="shipping_address.nameJuristic"/></label>
                         <input type="text" className="form-control" id="exampleFormControlInput1" name="InvoiceTaxpayerName" onChange={e => this.onChange(e)} placeholder="กรอกชื่อ" />
                       </div>
                     </div>
                     <div className=" col-12 col-sm-12  col-md-6 col-lg-6">
                       <div className="mb-3">
-                        <label className="form-label bold">สำนักงานใหญ่/สาขา</label>
+                        <label className="form-label bold"><IntlMessages id="shipping_address.office"/></label>
                         <input type="text" className="form-control" id="exampleFormControlInput1" name="InvoiceTaxpayerBranchName" onChange={e => this.onChange(e)} placeholder="กรุณาระบุ" />
                       </div>
                     </div>
@@ -375,13 +375,13 @@ class Shipping_Address extends React.Component {
                 <div className="row">
                   <div className=" col-12 col-sm-12 col-md-6 col-lg-6">
                     <div className="mb-3">
-                      <label className="form-label bold">เลขประจำตัวผู้เสียภาษี</label>
+                      <label className="form-label bold"><IntlMessages id="shipping_address.identification"/></label>
                       <input type="text" className="form-control" id="exampleFormControlInput1" name="InvoiceTaxIdentificationNumber" onChange={e => this.onChange(e)} placeholder="กรุณาระบุ" />
                     </div>
                   </div>
                   <div className=" col-12 col-sm-12  col-md-6 col-lg-6">
                     <div className="mb-3">
-                      <label className="form-label bold">หมายเลขโทรศัพท์</label>
+                      <label className="form-label bold"><IntlMessages id="shipping_address.phoneNumber"/></label>
                       <input type="number" className="form-control" id="exampleFormControlInput1" name="InvoiceTelephone" onChange={e => this.onChange(e)} placeholder="กรุณาระบุ" />
                     </div>
                   </div>
@@ -390,7 +390,7 @@ class Shipping_Address extends React.Component {
                   <div className="form-check">
                     <input className="form-check-input" type="checkbox" name="useShippingAddress" onClick={e => this.onChickUseShippingAddress(e)} id="flexCheckDefault" defaultChecked={this.state.useShippingAddress} />
                     <label className="form-check-label">
-                      ใช้ที่อยู่จัดส่งสินค้า
+                      <IntlMessages id="shipping_address.sameAddress"/>
                     </label>
                   </div>
                 </div>
@@ -400,14 +400,14 @@ class Shipping_Address extends React.Component {
                   <div>
                     <div className=" col-12 col-sm-12  col-md-12 col-lg-12 padding-top2">
                       <div className="mb-3">
-                        <label className="form-label bold">ที่อยู่</label>
+                        <label className="form-label bold"><IntlMessages id="shipping_address.address"/></label>
                         <textarea className="form-control" id="exampleFormControlTextarea1" rows="3" name="InvoiceAddressUser" onChange={e => this.onChange(e)} placeholder="กรอกบ้านเลขที่, หมู่, ซอย, อาคาร, ถนน และจัดสุงเกต(ถ้ามี)"></textarea>
                       </div>
                     </div>
                     <div className="row">
                       <div className=" col-12 col-sm-12 col-md-6 col-lg-6">
                         <div className="mb-3 elementStyle">
-                          <label className="form-label bold">แขวง/ตำบล</label>
+                          <label className="form-label bold"><IntlMessages id="shipping_address.subdistrict"/></label>
                           {/* <InputAddress style={{ width: "100%" }}
                             address="subdistrict"
                             value={this.state.InvoiceSubdistrict}
@@ -425,7 +425,7 @@ class Shipping_Address extends React.Component {
                       </div>
                       <div className=" col-12 col-sm-12  col-md-6 col-lg-6">
                         <div className="mb-3 elementStyle">
-                          <label className="form-label bold">เขต/อำเภอ</label>
+                          <label className="form-label bold"><IntlMessages id="shipping_address.district"/></label>
                           {/* <InputAddress style={{ width: "100%" }}
                             address="district"
                             value={this.state.InvoiceDistrict}
@@ -445,7 +445,7 @@ class Shipping_Address extends React.Component {
                     <div className="row">
                       <div className=" col-12 col-sm-12 col-md-6 col-lg-6">
                         <div className="mb-3 elementStyle">
-                          <label className="form-label bold">จังหวัด</label>
+                          <label className="form-label bold"><IntlMessages id="shipping_address.province"/></label>
                           {/* <InputAddress style={{ width: "100%" }}
                             address="province"
                             value={this.state.InvoiceProvince}
@@ -463,7 +463,7 @@ class Shipping_Address extends React.Component {
                       </div>
                       <div className=" col-12 col-sm-12  col-md-6 col-lg-6">
                         <div className="mb-3 elementStyle">
-                          <label className="form-label bold">รหัสไปรษณีย์</label>
+                          <label className="form-label bold"><IntlMessages id="shipping_address.postcode"/></label>
                           {/* <InputAddress style={{ width: "100%" }}
                             address="zipcode"
                             value={this.state.InvoiceZipcode}
@@ -483,12 +483,12 @@ class Shipping_Address extends React.Component {
                   </div>
                 }
                 <div className="col-12 col-sm-12  col-md-12 col-lg-12 center">
-                  <button type="button" className={this.state.pinkModel} onClick={() => this.cancelNeedTaxInvoice()} data-bs-dismiss="modal" >ยกเลิก</button>&nbsp;&nbsp;&nbsp;
+                  <button type="button" className={this.state.pinkModel} onClick={() => this.cancelNeedTaxInvoice()} data-bs-dismiss="modal" ><IntlMessages id="shipping_address.cancel"/></button>&nbsp;&nbsp;&nbsp;
                   {
                     (this.state.InvoiceTaxIdentificationNumber && this.state.InvoiceTelephone) ?
-                      <button type="button" className={this.state.pinkModelFocus} onClick={() => this.setState({ needTaxInvoice: true })} data-bs-dismiss="modal">ยืนยัน</button>
+                      <button type="button" className={this.state.pinkModelFocus} onClick={() => this.setState({ needTaxInvoice: true })} data-bs-dismiss="modal"><IntlMessages id="shipping_address.confirm"/></button>
                       :
-                      <button type="button" className={this.state.pinkModelFocus}>ยืนยัน</button>
+                      <button type="button" className={this.state.pinkModelFocus}><IntlMessages id="shipping_address.confirm"/></button>
                   }
                 </div>
               </div>

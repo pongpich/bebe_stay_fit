@@ -4,8 +4,9 @@ import maskgroup from "../images/maskgroup.png";
 import mask from "../images/mask.png";
 import { Link } from 'react-router-dom';
 import { connect } from "react-redux";
-import { getUserProgram } from "../../redux/exerciseProgram"
-import { loginUser } from "../../redux/auth"
+import { getUserProgram } from "../../redux/exerciseProgram";
+import { loginUser } from "../../redux/auth";
+import IntlMessages from "../../helpers/IntlMessages";;
 
 class Welcome_NewMember extends React.Component {
 
@@ -58,12 +59,9 @@ class Welcome_NewMember extends React.Component {
             <div className="col-12 col-sm-12 col-md-7 col-lg-7 padding-top information-box3">
               <div className="padding-top3 text-center box-welcome">
                 <p className="border-bottom  margin-right"></p>
-                <p className="font-size6  bold">ยินดีต้อนรับสมาชิกใหม่ของเรา</p>
+                <p className="font-size6  bold"><IntlMessages id="welcome_new_member.welcome"/></p>
                 <p className="border-bottom margin-right"></p>
-                <p className="padding-top2"> ขอบคุณที่มาสมัครเข้าร่วมเป็นสมาชิก Bebe Stay Fit</p>
-                <p>ทางทีมงานได้รับข้อมูลการสมัครเรียบร้อยแล้ว</p>
-                <p>เราขอบคุณที่ท่านให้ความสนใจและเลือกเราเป็นส่วนหนึ่งสู่ความสำเร็จ </p>
-                <p>มาสร้างวินัย และมีความสุขกับการออกกำลังกายนะคะ </p>
+                <p className="padding-top2 col-12 col-sm-12 col-md-8 col-lg-8 center2"><IntlMessages id="welcome_new_member.thankYou"/></p>
               </div>
               <div className="mb-3 ">
                 <div className="d-grid gap-2  mx-auto   col-12 col-sm-12  col-md-6 col-lg-6 ">
@@ -73,7 +71,7 @@ class Welcome_NewMember extends React.Component {
                     style={{ opacity: "1" }}
                     onClick={() => this.onUserLogin()}
                   >
-                    เริ่มต้นใช้งาน
+                    <IntlMessages id="welcome_new_member.getStart"/>
                   </button>
                   {
                   this.props.status === "fail" &&

@@ -8,6 +8,8 @@ Table of Contents
 03.register
 04.fitto_plant_protein
 05.shipping_address
+06.payment
+07.welcome_new_member
 */
 
 
@@ -107,4 +109,43 @@ module.exports = {
     "shipping_address.province": "Province",
     "shipping_address.postcode": "Postcode",
     "shipping_address.taxinvoice": "Request a receipt and tax invoice",
+    "shipping_address.addressInvoice": "Address for a receipt and tax invoice",
+    "shipping_address.individual": "Individual",
+    "shipping_address.juristic": "juristic person",
+    "shipping_address.taxpayer": "Taxpayer Name",
+    "shipping_address.nameJuristic": "Name of / juristic persone",
+    "shipping_address.office": "Head Office/Branch",
+    "shipping_address.phoneNumber": "Phone Number",
+    "shipping_address.identification": "Tax Identification Number",
+    "shipping_address.sameAddress": "Same address for shipping",
+    "shipping_address.cancel": "Cancel",
+    "shipping_address.confirm": "Confirm",
+
+    /* 06.payment */
+    "payment.payment": "Payment",
+    "payment.credit": "Credit/Debit",
+    "payment.qrcode": "Pay by QR Code",
+    "payment.cardNumber": "16 digit card number",
+        /**  
+     * ! ยังไม่เเปล */
+    "payment.errorBilling": "ระบบเรียกเก็บเงินไม่สำเร็จกรุณาตรวจสอบข้อมูลบัตรให้ถูกต้องอีกครั้ง หรือเปลี่ยนวิธีการชำระเงิน",
+    "payment.nameCard": "Name on card",
+    "payment.expirationDate": "Expiration date",
+    "payment.cvv": "CVV Code",
+    "payment.yourPackage": "Your package",
+    "payment.applyProgram": "Apply for the duration of the program",
+    "payment.baht2months": "3750 Baht / 2 months",
+    "payment.collectPayment": "We will collect payment every 2 months.",
+    "payment.pay": "Pay",
+        /**  
+     * ! ยังไม่เเปล */
+    "payment.messagQrcode1": "1. หลังกด “ชำระเงิน” คุณจะได้รับ QR Code เพื่อชำระ",
+    "payment.messagQrcode2": "2. เปิดแอปพลิเคชันธนาคารที่คุณมี",
+    "payment.messagQrcode3": "3. ไปยังเมนู “สแกน” หรือ “สแกนจ่าย”",
+    "payment.messagQrcode4": "4. ตรวจสอบชื่อบัญชีและยอดที่คุณต้องชำระก่อนทำรายการ",
+
+    /* 07.welcome_new_member */
+    "welcome_new_member.welcome": "welcome our new member",
+    "welcome_new_member.thankYou": "Thank you for applying to be a member of Bebe Stay Fit. Our team has received the application information already. We thank you for your interest and for choosing us to be a part of high success. Let's create discipline and have fun with exercise.",
+    "welcome_new_member.getStart": "Get start",
   };

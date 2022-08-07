@@ -1,14 +1,12 @@
 import React, { Component } from "react";
-import group21 from "../../assets/img/group21.png";
-import payment1 from "../../assets/img/payment1.png";
-import payment2 from "../../assets/img/payment2.png";
-import payment3 from "../../assets/img/payment3.png";
-import payment4 from "../../assets/img/payment4.png";
-import payment5 from "../../assets/img/payment5.png";
+import ellipse_077 from "../../assets/img/ellipse_077.png";
+import ellipse_078 from "../../assets/img/ellipse_078.png";
+import IntlMessages from "../../helpers/IntlMessages";
 import { Link } from 'react-router-dom';
 import { connect } from "react-redux";
-import { getUserProgram } from "../../redux/exerciseProgram"
-import { insertSubscriptionProducts } from "../../redux/createUser"
+import { getUserProgram } from "../../redux/exerciseProgram";
+import { insertSubscriptionProducts } from "../../redux/createUser";
+import { injectIntl } from 'react-intl';
 
 import axios from 'axios';
 import moment from 'moment';
@@ -213,11 +211,34 @@ class Payment extends React.Component {
 
   render() {
     const programId = this.state.program.program_id;
+    const { messages } = this.props.intl;
     return (
       <>
         <div className="col-12 col-sm-12 col-md-12 col-lg-12 App-headerBackground center2 padding-top2 ">
-          <div className="col-12 col-sm-12 col-md-10 col-lg-10 center2">
-            <img src={group21} alt="vector" className="group19" />
+        <div className="col-10 col-sm-8 col-md-8 col-lg-8 center2">
+           <div className="current-position">
+                <p className="border-line2  col-8 col-sm-6 col-md-6 col-lg-6 "></p>
+                <div className="ellipse-text col-2 col-sm-2 col-md-2 col-lg-2">
+                  <img src={ellipse_078} alt="vector" />
+                  <p className="img-p"> <IntlMessages id="register.chooseYouPackage" /></p>
+                </div>
+                <div className="ellipse-text  col-2 col-sm-2 col-md-2 col-lg-2">
+                  <img src={ellipse_078} alt="vector" />
+                  <p className="img-p"> <IntlMessages id="register.chooseYouAccount" /></p>
+                </div>
+                <div className="ellipse-text  col-3 col-sm-2 col-md-2 col-lg-2">
+                  <img src={ellipse_078} alt="vector" />
+                  <p className="img-p"> <IntlMessages id="register.chooseYouflavor" /></p>
+                </div>
+                <div className="ellipse-text  col-2 col-sm-2 col-md-2 col-lg-2">
+                  <img src={ellipse_078} alt="vector" />
+                  <p className="img-p"> <IntlMessages id="register.deliveryAddress" /></p>
+                </div>
+                <div className="ellipse-text  col-2 col-sm-2 col-md-2 col-lg-2">
+                  <img src={ellipse_077} alt="vector" />
+                  <p className="img-p"> <IntlMessages id="register.payment" /></p>
+                </div>
+              </div>
           </div>
           <div className="col-12 col-sm-12 col-md-6 col-lg-6 center2 margin-head">
             {
@@ -269,26 +290,24 @@ class Payment extends React.Component {
                     <p className="font-size5">
                       {programId === "starter_stay_fit_01" ?
                         <>
-                          <p className="font-size5 bold">แพ็กเกจของคุณ</p>
-                          <p className="section-sizeLeft">สมัครตามระยะเวลาของโปรแกรม</p>
+                          <p className="font-size5 bold"><IntlMessages id="payment.yourPackage" /></p>
+                          <p className="section-sizeLeft"><IntlMessages id="payment.applyProgram"/></p>
                           <p className="font-size5 bold">
-                            {this.state.program.price.toLocaleString('en')}  บาท
+                            {this.state.program.price.toLocaleString('en')}  <IntlMessages id="programPackage.baht" />
                           </p>
                           <p className="font-size4">
-                            *ระยะเวลา 2 เดือน และไม่มีการต่ออายุ
+                            <IntlMessages id="programPackage.2months"/>
                           </p>
                         </>
                         :
                         <>
-                          <p className="font-size5 bold">แพ็กเกจของคุณ</p>
-                          <p className="section-sizeLeft">สมัครตามระยะเวลาของโปรแกรม</p>
+                          <p className="font-size5 bold"><IntlMessages id="payment.yourPackage" /></p>
+                          <p className="section-sizeLeft"><IntlMessages id="payment.applyProgram"/></p>
                           <p className="font-size5 bold">
-                            {this.state.program.price.toLocaleString('en')}  บาท
+                            {this.state.program.price.toLocaleString('en')}  <IntlMessages id="programPackage.baht"/>
                           </p>
                           <p className="font-size4">
-                            *ราคาพิเศษสำหรับ 2 เดือนแรก เมื่อครบกำหนดจะชำระต่อเป็น
-                            รายเดือน(เดือนละ 1,800 บาท) จนกว่าจะครบตามระยะที่โปรแกรมแนะนำ <br />
-                            *สามารถพักการชำระรายเดือนได้ทุกเวลาตามที่ต้องการ
+                            <IntlMessages id="programPackage.specialPrice"/>
                           </p>
 
                         </>
@@ -299,7 +318,7 @@ class Payment extends React.Component {
                   </div>
                   <p className="border-bottom "></p>
                   <div className="padding-top2">
-                    <p className=" bold font-size5 between">ที่อยู่ในการจัดส่งสินค้า <span className="font-size4 light decoration pointer" onClick={() => this.props.history.push('/shipping_address')}>เปลี่ยน</span></p>
+                    <p className=" bold font-size5 between"><IntlMessages id="shipping_address.shippingAddress"/> <span className="font-size4 light decoration pointer" onClick={() => this.props.history.push('/shipping_address')}>เปลี่ยน</span></p>
                     <p>{this.state.username} &nbsp; {this.state.lastname}  </p>
                     <p>{this.state.telephone} </p>
                     <p>{this.state.addressUser} &nbsp;{this.state.subdistrictUser}&nbsp;{this.state.districtUser}</p>
@@ -310,24 +329,24 @@ class Payment extends React.Component {
             </div>
 
             <div className="col-12 col-sm-12 col-md-10 col-lg-10 center2  margin-headText">
-              <p className="font-size6 bold color-protein"> การชำระเงิน</p>
+              <p className="font-size6 bold color-protein"> <IntlMessages id="payment.payment"/></p>
             </div>
             {
               this.state.status_payment === "unsuccess" &&
-              <h6 style={{ color: "red" }}>ระบบเรียกเก็บเงินไม่สำเร็จกรุณาตรวจสอบข้อมูลบัตรให้ถูกต้องอีกครั้ง หรือเปลี่ยนวิธีการชำระเงิน</h6>
+              <h6 style={{ color: "red" }}><IntlMessages id="payment.errorBilling"/></h6>
             }
             <div className="col-12 col-sm-12 col-md-12 col-lg-12 center2">
-              <button type="button" className={this.state.creditCardFocus} onClick={e => this.pinkModelFocus("1")}>บัตรเครดิต/เดบิต</button>&nbsp;&nbsp;&nbsp;
-              <button type="button" className={this.state.qrCodeFocus} onClick={e => this.pinkModelFocus("2")}>ชำระด้วย QR Code</button>
+              <button type="button" className={this.state.creditCardFocus} onClick={e => this.pinkModelFocus("1")}><IntlMessages id="payment.credit"/></button>&nbsp;&nbsp;&nbsp;
+              <button type="button" className={this.state.qrCodeFocus} onClick={e => this.pinkModelFocus("2")}><IntlMessages id="payment.qrcode"/></button>
             </div>
             {
               (this.state.paymentMethod === "qrCode") &&
               <div className="center">
                 <div className="col-11 col-sm-11 col-md-11 col-lg-11 boxText-qrCode" >
-                  <p>1. หลังกด “ชำระเงิน” คุณจะได้รับ QR Code เพื่อชำระ</p>
-                  <p>2. เปิดแอปพลิเคชันธนาคารที่คุณมี</p>
-                  <p>3. ไปยังเมนู “สแกน” หรือ “สแกนจ่าย”</p>
-                  <p>4. ตรวจสอบชื่อบัญชีและยอดที่คุณต้องชำระก่อนทำรายการ</p>
+                  <p><IntlMessages id="payment.messagQrcode1"/></p>
+                  <p><IntlMessages id="payment.messagQrcode2"/></p>
+                  <p><IntlMessages id="payment.messagQrcode3"/></p>
+                  <p><IntlMessages id="payment.messagQrcode4"/></p>
                 </div>
               </div>
             }
@@ -339,7 +358,7 @@ class Payment extends React.Component {
               }
               {
                 (this.state.paymentMethod === "creditCard") &&
-                <input id="cc_button" className="btn bottom-pink col-12 col-sm-12" value="ชำระเงิน" onClick={() => this.props.history.push("cc_token")} />
+                <input id="cc_button" className="btn bottom-pink col-12 col-sm-12" value={messages['payment.pay']} onClick={() => this.props.history.push("cc_token")} />
               }
             </div>
 
@@ -367,7 +386,7 @@ class Payment extends React.Component {
               <input id="qr_programID" type="hidden" name="merchantDefined1" /> */}
               {
                 (this.state.paymentMethod === "qrCode") &&
-                <input id="qr_button" type="submit" className="btn bottom-pink" value="ชำระเงิน" />
+                <input id="qr_button" type="submit" className="btn bottom-pink" value={messages['payment.pay']} />
               }
             </form>
 
@@ -400,4 +419,4 @@ const mapActionsToProps = { getUserProgram, insertSubscriptionProducts };
 export default connect(
   mapStateToProps,
   mapActionsToProps
-)(Payment);
+)(injectIntl(Payment));
