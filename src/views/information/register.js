@@ -1,17 +1,17 @@
 import React, { Component } from "react";
 import p4fbebe97111 from "../../assets/img/group224.png";
 import group18 from "../../assets/img/group18.png";
-import group_1 from "../../assets/img/group_1.png";
-import group_2 from "../../assets/img/group_2.png";
-import group_3 from "../../assets/img/group_3.png";
-import group_4 from "../../assets/img/group_4.png";
-import group_5 from "../../assets/img/group_5.png";
+import ellipse_077 from "../../assets/img/ellipse_077.png";
+import ellipse_078 from "../../assets/img/ellipse_078.png";
+
 import mask1 from ".././images/mask1.png";
 import mask2 from ".././images/mask2.png";
 import { Link } from 'react-router-dom';
 import { connect } from "react-redux";
 import { createUser } from "../../redux/createUser";
 import { register } from "../../redux/auth";
+import IntlMessages from "../../helpers/IntlMessages";
+import { injectIntl } from 'react-intl';
 
 class Register extends React.Component {
   constructor(props) {
@@ -38,7 +38,7 @@ class Register extends React.Component {
     //ทดลองเปลี่ยนเป็นแบบเอาออก ถ้ามีบัคค่อยเอากลับมา
     /* if (statusRegister === "success") { //success แสดงว่าสร้าง email นี้ใน table member แล้ว
       this.props.history.push('/fitto_plant_protein');
-    } */ 
+    } */
     window.scrollTo(0, 0);
   }
 
@@ -91,6 +91,7 @@ class Register extends React.Component {
   render() {
     const { email, password, confirm_password, phone, status_submit, invalidEmail } = this.state;
     const { statusRegister } = this.props;
+    const { messages } = this.props.intl;
     return (
       <>
 
@@ -104,28 +105,46 @@ class Register extends React.Component {
               <img src={p4fbebe97111} alt="vector" className="register-image" />
             </div>
             <div className="col-12 col-sm-12 col-md-7 col-lg-7  information-box2  ">
-              <div className="center2">
+              {/*  <div className="center2">
                 <img src={group18} alt="vector" className="group18" />
-                {/*  <img src={group_1} alt="vector"  className="group18"  />
-                  <img src={group_2} alt="vector"  className="group_2" />
-                  <img src={group_3} alt="vector" className="group_2" />
-                  <img src={group_4} alt="vector"  className="group_2" />
-                  <img src={group_5} alt="vector"  className="group_2" /> */}
+              </div> */}
+              <div className="current-position">
+                <p className="border-line  col-9 col-sm-9 col-md-5 col-lg-5"></p>
+                <div className="ellipse-text col-2 col-sm-2 col-md-2 col-lg-2">
+                  <img src={ellipse_078} alt="vector" />
+                  <p className="img-p"> <IntlMessages id="register.chooseYouPackage" /></p>
+                </div>
+                <div className="ellipse-text  col-2 col-sm-2 col-md-2 col-lg-2">
+                  <img src={ellipse_077} alt="vector" />
+                  <p className="img-p"> <IntlMessages id="register.chooseYouAccount" /></p>
+                </div>
+                <div className="ellipse-text  col-3 col-sm-2 col-md-2 col-lg-2">
+                  <img src={ellipse_078} alt="vector" />
+                  <p className="img-p"> <IntlMessages id="register.chooseYouflavor" /></p>
+                </div>
+                <div className="ellipse-text  col-2 col-sm-2 col-md-2 col-lg-2">
+                  <img src={ellipse_078} alt="vector" />
+                  <p className="img-p"> <IntlMessages id="register.deliveryAddress" /></p>
+                </div>
+                <div className="ellipse-text  col-2 col-sm-2 col-md-2 col-lg-2">
+                  <img src={ellipse_078} alt="vector" />
+                  <p className="img-p"> <IntlMessages id="register.payment" /></p>
+                </div>
               </div>
-              <div className="from-left padding-top2 maigeSm ">
+              <div className="from-left maigeSm ">
                 <div className="account-fit ">
-                  <p className="font-size6  bold ">สร้างบัญชี Bebe Stayfit</p>
-                  <p className="font-size4 margin-top-1 ">บัญชีที่จะเข้าใช้งานในระบบของ <span className="bold"> Bebe Stay Fit</span></p>
+                  <p className="font-size6  bold "><IntlMessages id="register.createAccount" /></p>
+                  <p className="font-size4 margin-top-1 "><IntlMessages id="register.accountCredited"/> <span className="bold"> Bebe Stay Fit</span></p>
                 </div>
                 <div className="mb-3 ">
                   <div className="col-11 col-sm-11 col-lg-11  box-smsStay">
                     <div className="padding-top2">
-                      <label className="form-label bold">อีเมล</label>
+                      <label className="form-label bold"><IntlMessages id="navbarHome.email" /></label>
                       <input
                         type="email"
                         className="form-control"
                         id="email"
-                        placeholder="กรุณากรอก Email (Example@mail.com)"
+                        placeholder={messages['navbarHome.ex_email']}
                         value={email}
                         onChange={(event) => this.handleChange(event)}
                       />
@@ -143,7 +162,7 @@ class Register extends React.Component {
                     }
 
                     <div className="padding-top2">
-                      <label className="form-label bold">รหัสผ่าน</label>
+                      <label className="form-label bold"><IntlMessages id="navbarHome.password" /></label>
                       <input
                         type="password"
                         className="form-control"
@@ -155,37 +174,37 @@ class Register extends React.Component {
                     </div>
                     {
                       (status_submit === "password_too_short") &&
-                      <small id="emailHelp" className="form-text text-muted mb-3"><h6 style={{ color: "red" }}>รหัสผ่านสั้นเกินไป</h6></small>
+                      <small id="emailHelp" className="form-text text-muted mb-3"><h6 style={{ color: "red" }}><IntlMessages id="register.passwordtooShort"/></h6></small>
                     }
                     <div className="padding-top2">
-                      <label className="form-label bold">ยืนยันรหัสผ่าน</label>
+                      <label className="form-label bold"><IntlMessages id="register.confirmPassword"/></label>
                       <input
                         type="password"
                         className="form-control"
                         id="confirm_password"
-                        placeholder="กรุณากรอกรหัสผ่านอีกครั้ง"
+                        placeholder={messages['register.confirmPassword']}
                         value={confirm_password}
                         onChange={(event) => this.handleChange(event)}
                       />
                     </div>
                     {
                       (status_submit === "not_match_password") &&
-                      <small id="emailHelp" className="form-text text-muted mb-3"><h6 style={{ color: "red" }}>รหัสผ่านไม่ตรงกัน กรุณากรอกใหม่</h6></small>
+                      <small id="emailHelp" className="form-text text-muted mb-3"><h6 style={{ color: "red" }}><IntlMessages id="register.passwordsnotMatch"/></h6></small>
                     }
                     <div className="padding-top2">
-                      <label className="form-label bold">เบอร์โทรศัพท์</label>
+                      <label className="form-label bold"><IntlMessages id="register.phoneNumber"/></label>
                       <input
                         type="number"
                         className="form-control"
                         id="phone"
-                        placeholder="ตัวอย่าง 08XXXXXXXX"
+                        placeholder={messages['register.ex.phone']}
                         value={phone}
                         onChange={(event) => this.handleChange(event)}
                       />
                     </div>
                     {
                       (status_submit === "incomplete_information") &&
-                      <small id="emailHelp" className="form-text text-muted mb-3"><h6 style={{ color: "red" }}>กรุณากรอกข้อมูลให้ครบถ้วน</h6></small>
+                      <small id="emailHelp" className="form-text text-muted mb-3"><h6 style={{ color: "red" }}><IntlMessages id="navbarHome.validationInformation"/></h6></small>
                     }
                     {/* <div className="padding-top2">
                       <div className="form-check">
@@ -201,12 +220,10 @@ class Register extends React.Component {
                         </label>
                       </div>
                     </div> */}
-                    <div className="padding-top2">
-                      <div className="d-grid gap-2  mx-auto   col-10 col-sm-10  col-md-10 col-lg-10 distance">
-                        <button className="btn bottom-pink" type="button" onClick={() => this.createUser(email, password, confirm_password, phone)} >
-                          ถัดไป
-                          </button>
-                      </div>
+                    <div className="d-grid gap-2  mx-auto   col-10 col-sm-10  col-md-10 col-lg-10 ">
+                      <button className="btn bottom-pink" type="button" onClick={() => this.createUser(email, password, confirm_password, phone)} >
+                        <IntlMessages id="next"/>
+                      </button>
                     </div>
                   </div>
                 </div>
@@ -231,4 +248,4 @@ const mapActionsToProps = { createUser, register };
 export default connect(
   mapStateToProps,
   mapActionsToProps
-)(Register);
+)(injectIntl(Register));

@@ -2,6 +2,9 @@ import React, { Component } from "react";
 import group20 from "../../assets/img/group20.png";
 import { Link } from 'react-router-dom';
 import InputAddress from 'react-thailand-address-autocomplete';
+import ellipse_077 from "../../assets/img/ellipse_077.png";
+import ellipse_078 from "../../assets/img/ellipse_078.png";
+import IntlMessages from "../../helpers/IntlMessages";
 import { connect } from "react-redux";
 import { shippingAddress, clearSelectDeliveryAddress, selectDeliveryAddress, clearSelectReceiptAddress, selectReceiptAddress } from "../../redux/shippingAddress";
 import { getUserProgram } from "../../redux/exerciseProgram"
@@ -205,35 +208,58 @@ class Shipping_Address extends React.Component {
     return (
       <>
         <div className="col-12 col-sm-12 col-md-12 col-lg-12  App-headerBackground center2 padding-top2 ">
-          <div className="col-12 col-sm-12 col-md-10 col-lg-10 center2">
-            <img src={group20} alt="vector" className="group19" />
+        <div className="col-10 col-sm-8 col-md-8 col-lg-8 center2">
+           {/*  <img src={group19} alt="vector" className="group19" /> */}
+           <div className="current-position">
+                <p className="border-line2  col-8 col-sm-6 col-md-6 col-lg-6 "></p>
+                <div className="ellipse-text col-2 col-sm-2 col-md-2 col-lg-2">
+                  <img src={ellipse_078} alt="vector" />
+                  <p className="img-p"> <IntlMessages id="register.chooseYouPackage" /></p>
+                </div>
+                <div className="ellipse-text  col-2 col-sm-2 col-md-2 col-lg-2">
+                  <img src={ellipse_078} alt="vector" />
+                  <p className="img-p"> <IntlMessages id="register.chooseYouAccount" /></p>
+                </div>
+                <div className="ellipse-text  col-3 col-sm-2 col-md-2 col-lg-2">
+                  <img src={ellipse_078} alt="vector" />
+                  <p className="img-p"> <IntlMessages id="register.chooseYouflavor" /></p>
+                </div>
+                <div className="ellipse-text  col-2 col-sm-2 col-md-2 col-lg-2">
+                  <img src={ellipse_077} alt="vector" />
+                  <p className="img-p"> <IntlMessages id="register.deliveryAddress" /></p>
+                </div>
+                <div className="ellipse-text  col-2 col-sm-2 col-md-2 col-lg-2">
+                  <img src={ellipse_078} alt="vector" />
+                  <p className="img-p"> <IntlMessages id="register.payment" /></p>
+                </div>
+              </div>
           </div>
           <div className="col-12 col-sm-12 col-md-6 col-lg-6 center2 margin-head">
 
             <div className="box-protein">
               <div className="padding-top">
-                <p className="font-size6 bold color-protein"> ที่อยู่ในการจัดส่งสินค้า</p>
+                <p className="font-size6 bold color-protein"><IntlMessages id="shipping_address.shippingAddress"/></p>
                 <div className="box-proteinAddress padding-top">
                   <div className="row">
                     <div className="col-12 col-sm-12 col-md-6 col-lg-6">
-                      <label className="form-label bold font-size4">ชื่อ</label>
+                      <label className="form-label bold font-size4"><IntlMessages id="shipping_address.surname"/></label>
                       <input type="email" className="form-control" id="exampleFormControlInput1" name="username" value={this.state.username} onChange={e => this.onChange(e)} placeholder="" />
                     </div>
                     <div className="col-12 col-sm-12 col-md-6 col-lg-6">
-                      <label className="form-label bold font-size4">นามสกุล</label>
+                      <label className="form-label bold font-size4"><IntlMessages id="shipping_address.name"/></label>
                       <input type="email" className="form-control" id="exampleFormControlInput1" name="lastname" value={this.state.lastname} onChange={e => this.onChange(e)} placeholder="" />
                     </div>
                   </div>
                   <div className="padding-top2">
-                    <label className="form-label bold font-size4">เบอร์โทรศัพท์</label>
+                    <label className="form-label bold font-size4"><IntlMessages id="register.phoneNumber"/></label>
                     <input type="number" className="form-control" id="exampleFormControlInput1" name="telephone" value={this.state.telephone} onChange={e => this.onChange(e)} placeholder="" />
                   </div>
                   <div className="padding-top2">
-                    <label className="form-label bold font-size4">ที่อยู่</label>
+                    <label className="form-label bold font-size4"><IntlMessages id="shipping_address.name"/></label>
                     <textarea className="form-control" rows="3" placeholder="กรอกบ้านเลขที่, หมู่, ซอย, อาคาร, ถนน และจัดสุงเกต(ถ้ามี)" name="addressUser" onChange={e => this.onChange(e)} value={this.state.addressUser}  ></textarea>
                   </div>
                   <div className="padding-top2 elementStyle">
-                    <label className="form-label bold font-size4">แขวง/ตำบล</label>
+                    <label className="form-label bold font-size4"><IntlMessages id="shipping_address.subdistrict"/></label>
                     <InputAddress style={{ width: "100%" }}
                       address="subdistrict"
                       value={this.state.subdistrict}
@@ -242,7 +268,7 @@ class Shipping_Address extends React.Component {
                     />
                   </div>
                   <div className="padding-top2 elementStyle">
-                    <label className="form-label bold font-size4">เขต/อำเภอ</label>
+                    <label className="form-label bold font-size4"><IntlMessages id="shipping_address.district"/></label>
                     <InputAddress style={{ width: "100%" }}
                       address="district"
                       value={this.state.district}
@@ -251,7 +277,7 @@ class Shipping_Address extends React.Component {
                     />
                   </div>
                   <div className="padding-top2 elementStyle">
-                    <label className="form-label bold font-size4">จังหวัด</label>
+                    <label className="form-label bold font-size4"><IntlMessages id="shipping_address.province"/></label>
                     <InputAddress style={{ width: "100%" }}
                       address="province"
                       value={this.state.province}
@@ -260,7 +286,7 @@ class Shipping_Address extends React.Component {
                     />
                   </div>
                   <div className="padding-top2 elementStyle">
-                    <label className="form-label bold font-size4">รหัสไปรษณีย์</label>
+                    <label className="form-label bold font-size4"><IntlMessages id="shipping_address.postcode"/></label>
                     <InputAddress style={{ width: "100%" }}
                       address="zipcode"
                       value={this.state.zipcode}
@@ -276,7 +302,7 @@ class Shipping_Address extends React.Component {
                     <div className="form-check">
                       <input id="checkedTaxInvoice" className="form-check-input" type="checkbox" onClick={e => this.taxInvoice(e)} />
                       <label className="form-check-label">
-                        ขอใบเสร็จรับเงิน/ใบกำกับภาษี
+                      <IntlMessages id="shipping_address.taxinvoice"/>
                                             </label>
                     </div>
                   </div>
@@ -296,7 +322,7 @@ class Shipping_Address extends React.Component {
                   InvoicePerson, InvoiceTaxpayerName, InvoiceTaxpayerBranchName, InvoiceTaxIdentificationNumber, InvoiceTelephone, useShippingAddress,
                   InvoiceAddressUser, InvoiceSubdistrict, InvoiceDistrict, InvoiceProvince, InvoiceZipcode
                 )}  >
-                  ถัดไป
+                  <IntlMessages id="next"/>
                 </button>
               </div>
             </div>

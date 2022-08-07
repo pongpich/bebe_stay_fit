@@ -195,7 +195,18 @@
   .circle-team {
     left: 70% !important;
   }
+  .current-position {
+    margin-left: -10px !important;
+    margin-right: -10px !important;
 
+  }
+  .border-line {
+    margin-left: 10% !important;
+  }
+  .border-line2 {
+
+    width: 70%;
+  }
 }
 /* @media only screen and (max-width: 767px) {
   .emblem-box {
@@ -204,8 +215,8 @@
 
   }
 } */
-@media only screen and (max-width: 760px) {
 
+@media only screen and (max-width: 767px) {
   .information-box2 {
     padding: 30px 20px 0px 20px;
     background-color: inherit !important;
@@ -213,12 +224,33 @@
     box-shadow: inherit !important;
     position: absolute !important;
   }
-
-  .register-image {
-    padding-top: 100px;
-    opacity: 0.7;
-    width: 80%;
+  .box-smsStay {
+    width: 100%;
+    padding-left: 10px;
+    padding-right: 10px;
+    background-color: #ffffff;
+    margin-left: -20px;
+    height: 400px;
   }
+  .register-image {
+    margin-top: 100px !important;
+    opacity: 0.6 !important;
+    width: 80vw;
+  
+  }
+  .mask {
+    opacity: 0.4;
+  }
+  .account-fit {
+    text-align: center !important;
+  }
+  .maigeSm {
+    margin-top: 10px !important;
+  }
+}
+@media only screen and (max-width: 760px) {
+
+
 
   .mask1 {
     opacity: 0.4 !important;
@@ -232,20 +264,10 @@
     height: 200px !important;
   }
 
-
-  .mask {
-    padding-top: 100px;
-    opacity: 0.4;
-  }
-
   .group18 {
     width: 100% !important;
   }
 
-  .maigeSm {
-    margin-top: 140px;
-    height: 500px;
-  }
 
   .information-box3 {
     background-color: inherit !important;
@@ -360,14 +382,7 @@
     padding-right: 10px;
   }
 
-  .box-smsStay {
-    width: 100%;
-    padding-left: 10px;
-    padding-right: 10px;
-    background-color: #ffffff;
-    margin-left: -20px;
-    height: 400px;
-  }
+ 
 
   .information-box2 {
     padding: 0px 0px 0px 0px;
@@ -411,7 +426,7 @@
     padding: 30px 20px 0px 20px;
     background-color: #ffffff;
     z-index: 3 !important;
-    height: 93vh;
+    height: 100vh;
     box-shadow: 2px 17px 13px 6px #bababa;
   }
 
@@ -544,7 +559,7 @@
     background-color: #ffffff;
     z-index: 3 !important;
     box-shadow: 2px 17px 13px 6px #bababa;
-    min-height: 93vh;
+    height: 100vh;
   }
   .box-challengeScore {
     line-height: 2;
@@ -707,6 +722,7 @@
     display: flex;
     text-align: left;
   }
+
 }
 
 @media only screen and (min-width: 992px) {
@@ -715,8 +731,10 @@
     height: 100%;
     background-color: #ffffff;
     box-shadow: -2px 8px 7px 7px #bababa;
-
-
+  }
+  .border-line2 {
+    margin-left: 5% !important;
+    width: 50%;
   }
 
   .navbarHead {
@@ -1106,6 +1124,7 @@ a {
 .text-leftmvp {
   text-align: left !important;
   padding-left: 10px;
+  line-height: 3 !important;
 }
 .text-left {
   text-align: left !important;
@@ -1375,6 +1394,10 @@ a {
   display: flex;
   justify-content: space-between;
 }
+.between-center {
+  display: flex;
+  justify-content: center;
+}
 
 .decoration {
   text-decoration: underline;
@@ -1635,7 +1658,7 @@ a {
 }
 
 .bottom-padding {
-  margin-bottom: 100px;
+  margin-bottom: 10%;
 }
 
 .scroll {
@@ -1913,11 +1936,15 @@ a {
   position: absolute;
   z-index: 1;
   color: #000000 !important;
-  padding-left: 5px;
+  padding-right: 15px;
 }
 
 .text-float4 {
-  margin-left: 25px;
+  position: absolute;
+  z-index: 1;
+  color: #000000 !important;
+  padding-left: 25px;
+ 
 }
 
 
@@ -3563,8 +3590,8 @@ tr:last-child td:last-child {
   box-shadow: 0px 1px 14px 0px #c4c4c4;
   padding: 20px;
   border-radius: 5px;
-
 }
+
 .box-challengeScore {
   padding-left: 10px;
   height: 400px;
@@ -4004,4 +4031,40 @@ margin-top: 10%;
   padding: 10px;
   background-color: #c0c0c02e;
   border-radius: 6px;
+}
+.current-position {
+  margin-left: 5%;
+  margin-right: 5%;
+  display: flex;
+  justify-content: space-between;
+  text-align: center;
+}
+.ellipse-text {
+  position: relative;
+  z-index: 3;
+}
+.img-p {
+  width: "auto";
+
+  padding-top: 10px;
+  margin-left: -10px;
+  padding-left: 1%;
+  padding-left: 1%;
+  font-size: 14px !important;
+}
+.border-line {
+  margin-left: 5%;
+  border: 2px solid #E25E96;
+  position: absolute;
+  z-index: 1;
+  margin-top: 23px;
+
+}
+.border-line2 {
+  margin-left: 5%;
+  border: 2px solid #E25E96;
+  position: absolute;
+  z-index: 1;
+  margin-top: 23px;
+  
 }

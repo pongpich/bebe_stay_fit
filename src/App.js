@@ -307,10 +307,10 @@ class App extends Component {
                     </ul>
                     {this.manuTH_EN()}
                     &nbsp; &nbsp;&nbsp;
-                    <a className="nav-link nav-linkHead2 pointer bold" onClick={() => this.props.history.push("/programPackage")}>ลงทะเบียน</a>
+                    <a className="nav-link nav-linkHead2 pointer bold" onClick={() => this.props.history.push("/programPackage")}><IntlMessages id="navbarHome.register" /></a>
                     &nbsp; &nbsp;&nbsp;
                     <a className="nav-link nav-linkHead2 pointer bold" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                      <img src={user_circle} alt="vector" className="padding-rightIcon" /><IntlMessages id="navbar.login" /></a>
+                      <img src={user_circle} alt="vector" className="padding-rightIcon" /><IntlMessages id="navbarHome.login" /></a>
                     <div class="dropdown">
                     </div>
                   </div>

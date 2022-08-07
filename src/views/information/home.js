@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { getUserProgram } from "../../redux/exerciseProgram";
 import { loginUser, resetStatusSetPassword } from "../../redux/auth";
+import IntlMessages from "../../helpers/IntlMessages";
+import { injectIntl } from 'react-intl';
 import backgroundImag from "../../assets/img/mainbg.jpeg";
 import loginprofile from "../../assets/img/loginprofile.jpg";
 import head from "../../assets/img/home/head.webp";
@@ -222,7 +224,7 @@ class Home extends React.Component {
 
   homeLogin() {
     this.timeout()
-
+    const { messages } = this.props.intl;
     return (
       <>
         <div className="win-541">
@@ -528,23 +530,23 @@ class Home extends React.Component {
                     className="bold font-size8  color-protein"
                     id="exampleModalLabel"
                   >
-                    เข้าสู่ระบบ
+                     <IntlMessages id="navbarHome.login"/>
                   </p>
                 </div>
                 <div className=" col-12 col-sm-12  col-md-12 col-lg-12 padding-top1">
                   <div className="mb-3">
-                    <label className="form-label">อีเมล</label>
+                    <label className="form-label"> <IntlMessages id="navbarHome.email"/></label>
                     <input
                       type="email"
                       className="form-control"
                       id="email"
-                      placeholder="กรุณากรอก Email (Example@mail.com)"
+                      placeholder={messages['navbarHome.ex_email']}
                       value={this.state.email}
                       onChange={(event) => this.handleChange(event)}
                     />
                   </div>
                   <div className="mb-3">
-                    <label className="form-label">รหัสผ่าน</label>
+                    <label className="form-label"> <IntlMessages id="navbarHome.password"/></label>
                     <input
                       type="password"
                       className="form-control"
@@ -554,10 +556,10 @@ class Home extends React.Component {
                     />
                   </div>
                   {this.state.validation === "false" ? (
-                    <h6 style={{ color: "red" }}>กรุณากรอกข้อมูลให้ครบถ้วน</h6>
+                    <h6 style={{ color: "red" }}><IntlMessages id="navbarHome.validationInformation"/></h6>
                   ) : this.state.validationLogin === "fail" ? (
                     <h6 style={{ color: "red" }}>
-                      กรุณา ตรวจสอบ Email เเละ Password ให้ถูกต้อง
+                      <IntlMessages id="navbarHome.validationEmail"/>
                     </h6>
                   ) : null}
                   <div className="d-grid gap-2  mx-auto   col-12 col-sm-12  col-md-12 col-lg-12 distance">
@@ -566,7 +568,7 @@ class Home extends React.Component {
                       type="button"
                       onClick={() => this.onUserLogin()}
                     >
-                      เข้าสู่ระบบ
+                       <IntlMessages id="navbarHome.login"/>
                     </button>
                   </div>
                   <p className="between margin-top-2 font-size4">
@@ -574,15 +576,15 @@ class Home extends React.Component {
                       className="pointer reset"
                       onClick={() => this.resetPassword()}
                     >
-                      ลืมรหัสผ่าน
+                      <IntlMessages id="navbarHome.forgotpassword"/>
                     </span>{" "}
                     <span>
-                      ยังไม่เป็นสมาชิก?{" "}
+                      <IntlMessages id="navbarHome.donAccount"/>{" "}
                       <a
                         className="a_link pointer"
                         onClick={() => this.register("register")}
                       >
-                        ลงทะเบียน
+                        <IntlMessages id="navbarHome.createAccount"/>
                       </a>
                     </span>
                   </p>
@@ -596,6 +598,7 @@ class Home extends React.Component {
   }
 
   login() {
+    const { messages } = this.props.intl;
     return (
       <>
         <div
@@ -622,12 +625,12 @@ class Home extends React.Component {
                         className="bold font-size8  color-protein"
                         id="exampleModalLabel"
                       >
-                        เข้าสู่ระบบ
+                        <IntlMessages id="navbarHome.login"/>
                       </p>
                     </div>
                     <div className=" col-12 col-sm-12  col-md-12 col-lg-12 padding-top1">
                       <div className="mb-3">
-                        <label className="form-label">อีเมล</label>
+                        <label className="form-label"> <IntlMessages id="navbarHome.email"/></label>
                         <input
                           type="email"
                           className="form-control"
@@ -638,7 +641,7 @@ class Home extends React.Component {
                         />
                       </div>
                       <div className="mb-3">
-                        <label className="form-label">รหัสผ่าน</label>
+                        <label className="form-label">  <IntlMessages id="navbarHome.password"/></label>
                         <input
                           type="password"
                           className="form-control"
@@ -649,7 +652,7 @@ class Home extends React.Component {
                       </div>
                       {this.state.validation !== "true" ? (
                         <h6 style={{ color: "red" }}>
-                          กรุณากรอกข้อมูลให้ครบถ้วน
+                          <IntlMessages id="navbarHome.validationInformation"/>
                         </h6>
                       ) : null}
                       <div className="d-grid gap-2  mx-auto   col-12 col-sm-12  col-md-12 col-lg-12 distance">
@@ -718,4 +721,4 @@ const mapStateToProps = ({ authUser, createUser, exerciseProgram }) => {
 
 const mapActionsToProps = { getUserProgram, loginUser, resetStatusSetPassword };
 
-export default connect(mapStateToProps, mapActionsToProps)(Home);
+export default connect(mapStateToProps, mapActionsToProps)(injectIntl(Home));
