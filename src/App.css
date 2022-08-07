@@ -426,7 +426,8 @@
     padding: 30px 20px 0px 20px;
     background-color: #ffffff;
     z-index: 3 !important;
-    height: 100vh;
+    height: 100%;
+    min-height: 100vh;
     box-shadow: 2px 17px 13px 6px #bababa;
   }
 
@@ -559,7 +560,8 @@
     background-color: #ffffff;
     z-index: 3 !important;
     box-shadow: 2px 17px 13px 6px #bababa;
-    height: 100vh;
+    height: 100%;
+    min-height: 100vh;
   }
   .box-challengeScore {
     line-height: 2;
