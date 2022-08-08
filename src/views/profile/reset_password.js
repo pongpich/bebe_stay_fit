@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from "react-redux";
 import { forgotPassword, resetStatusSetPassword } from "../../redux/auth";
 import { getSubscriptionProducts } from "../../redux/get";
+import IntlMessages from "../../helpers/IntlMessages";
 
 
 class Reset_password extends Component {
@@ -59,17 +60,16 @@ class Reset_password extends Component {
     return (
       <>
         <div className="padding-top4 center">
-          <p className="font-size8 bold color-protein"> ลืมรหัสผ่าน </p>
+          <p className="font-size8 bold color-protein"> <IntlMessages id="reset_password.forgetPassword"/> </p>
         </div>
         <div className="col-12 col-sm-12 col-md-12 col-lg-12  center2 ">
           <div className="col-12 col-sm-12 col-md-5 col-lg-5  center2 ">
             <div className="box-protein margin-bottom1 padding-top">
               <div className="padding-leftRight">
-                <p className="section-size2 margin-top-1 ">โปรดกรอก{/* เบอร์โทรศัพท์ หรือ */}อีเมลของคุณ </p>
-                <p className="section-size2 margin-top-1">คุณจะได้รับลิงค์สำหรับสร้างรหัสผ่านใหม่ทางอีเมล</p>
+                <p className="section-size2 margin-top-1 "><IntlMessages id="reset_password.yourEmail"/></p>
               </div>
               <div class="mb-3  col-10 col-sm-10 col-md-10 col-lg-10 center2 text-left2">
-                <label for="exampleFormControlInput1" className="form-label text-left2  size-login">{/* เบอร์โทรศัพท์ หรือ */}อีเมล</label>
+                <label for="exampleFormControlInput1" className="form-label text-left2  size-login"><IntlMessages id="navbarHome.email"/></label>
                 <input
                   type="email"
                   className="form-control"
@@ -77,10 +77,10 @@ class Reset_password extends Component {
                   value={email}
                   onChange={(event) => this.handleChange(event)}
                 />
-                {validationEmail === "fail" ? <h6 style={{ color: "red" }}>กรุณาตรวจสอบสอบ Email: {email} อีกครั้ง</h6> : null}
+                {validationEmail === "fail" ? <h6 style={{ color: "red" }}><IntlMessages id="reset_password.pleasecheck"/> {email}  <IntlMessages id="reset_password.afresh"/></h6> : null}
               </div>
               <div className="col-10 col-sm-10 col-md-10 col-lg-10 center2 padding-bottom padding-top2 ">
-                <button type="button" className="btn bottom-pink-video" onClick={() => this.resetPasswordSucceed(email)}>ยืนยัน</button>
+                <button type="button" className="btn bottom-pink-video" onClick={() => this.resetPasswordSucceed(email)}><IntlMessages id="shipping_address.confirm"/></button>
               </div>
             </div>
           </div>

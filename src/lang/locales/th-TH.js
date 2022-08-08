@@ -9,6 +9,8 @@ Table of Contents
 05.shipping_address
 06.payment
 07.welcome_new_member
+08.reset_password
+09.reset_password_succeed
 */
 
 
@@ -142,6 +144,22 @@ module.exports = {
     "welcome_new_member.welcome": "ยินดีต้อนรับสมาชิกใหม่ของเรา",
     "welcome_new_member.thankYou": "ขอบคุณที่มาสมัครเข้าร่วมเป็นสมาชิก Bebe Stay Fit ทางทีมงานได้รับข้อมูลการสมัครเรียบร้อยแล้ว เราขอบคุณที่ท่านให้ความสนใจและเลือกเราเป็นส่วนหนึ่งสู่ความสำเร็จ  มาสร้างวินัย และมีความสุขกับการออกกำลังกายนะคะ",
     "welcome_new_member.getStart": "เริ่มต้นใช้งาน",
+    "welcome_new_member.incorrectPassword": "รหัสผ่านไม่ถูกต้อง",
+    "welcome_new_member.backtohome": "กลับหน้า Home",
+    "welcome_new_member.clickLogin": "แล้วคลิก 'เข้าสู่ระบบ'",
 
+    /* 08.reset_password */
+    "reset_password.forgetPassword": "ลืมรหัสผ่าน",
+    "reset_password.yourEmail": "โปรดกรอก อีเมลของ คุณจะได้รับลิงค์สำหรับสร้างรหัสผ่านใหม่ทางอีเมล",
+    "reset_password.yourEmail": "โปรดกรอก อีเมลของคุ คุณจะได้รับลิงค์สำหรับสร้างรหัสผ่านใหม่ทางอีเมล",
+    "reset_password.pleasecheck": "กรุณาตรวจสอบสอบ Email: ",
+    "reset_password.afresh": "อีกครั้ง",
+
+    /* 09.reset_password_succeed */
+    "reset_password_succeed.newpassword": "เราได้ส่งลิงค์สำหรับสร้างรหัสผ่านใหม่ ไปทางอีเมลเรียบร้อยแล้วหากไม่พบอีเมลโปรดตรวจสอบที่เมลขยะ",
+     "reset_password_succeed.orcontact": "หรือติดต่อมาหาเราได้ที่ 086-424-5141",
+     "reset_password_succeed.from": "(ตั้งแต่เวลา 6:00-18:00น.)",
+     "reset_password_succeed.backtomain": "กลับสู้หน้าหลัก",
+    
   };
   

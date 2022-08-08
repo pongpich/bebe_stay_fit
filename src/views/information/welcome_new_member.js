@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 import { connect } from "react-redux";
 import { getUserProgram } from "../../redux/exerciseProgram";
 import { loginUser } from "../../redux/auth";
-import IntlMessages from "../../helpers/IntlMessages";;
+import IntlMessages from "../../helpers/IntlMessages";
 
 class Welcome_NewMember extends React.Component {
 
@@ -76,12 +76,12 @@ class Welcome_NewMember extends React.Component {
                   {
                   this.props.status === "fail" &&
                   <h6 style={{ color: "red" }}>
-                    รหัสผ่านไม่ถูกต้อง
+                    <IntlMessages id="welcome_new_member.incorrectPassword"/>
                     <span
                       onClick={() => this.props.history.push("home")}
                       style={{ cursor: "pointer", textDecoration: "underline" }}
-                    > กลับหน้า Home </span>
-                    แล้วคลิก "เข้าสู่ระบบ"
+                    > <IntlMessages id="welcome_new_member.backtohome"/> </span>
+                   <IntlMessages id="welcome_new_member.clickLogin"/>
                   </h6>
                   }
                 </div>

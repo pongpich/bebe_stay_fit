@@ -10,6 +10,8 @@ Table of Contents
 05.shipping_address
 06.payment
 07.welcome_new_member
+08.reset_password
+09.reset_password_succeed
 */
 
 
@@ -148,4 +150,25 @@ module.exports = {
     "welcome_new_member.welcome": "welcome our new member",
     "welcome_new_member.thankYou": "Thank you for applying to be a member of Bebe Stay Fit. Our team has received the application information already. We thank you for your interest and for choosing us to be a part of high success. Let's create discipline and have fun with exercise.",
     "welcome_new_member.getStart": "Get start",
+   /**  
+     * ! ยังไม่เเปล */
+    "welcome_new_member.incorrectPassword": "รหัสผ่านไม่ถูกต้อง",
+    "welcome_new_member.backtohome": "กลับหน้า Home",
+    "welcome_new_member.clickLogin": "แล้วคลิก 'เข้าสู่ระบบ'",
+
+     /* 08.reset_password */
+     "reset_password.forgetPassword": "Forget Password",
+     "reset_password.yourEmail": "Please enter your email, you will receive a link to create a new password via email.",
+     /**  
+     * ! ยังไม่เเปล */
+     "reset_password.pleasecheck": "กรุณาตรวจสอบสอบ Email: ",
+     "reset_password.afresh": "อีกครั้ง",
+
+     /* 09.reset_password_succeed */
+     "reset_password_succeed.newpassword": "We have sent you a link to create a new password via  email. If you can't find the email, please check your spam folder",
+     "reset_password_succeed.orcontact": "or contact us 086 424 5141",
+     "reset_password_succeed.from": "(from 6:00 AM to 6:00 PM.)",
+          /**  
+     * ! ยังไม่เเปล */
+     "reset_password_succeed.backtomain": "กลับสู้หน้าหลัก",
   };
