@@ -1167,7 +1167,7 @@ class videoList extends React.Component {
                 </div>
                 <div className="modal-bodyWeight">
 
-                  <p className="kg-weightText">กรุณากรอกน้ำหนักปัจจุบันของคุณ</p>
+                  <p className="kg-weightText"><IntlMessages id="videoList.currentweight"/></p>
                   <div className="col-10 col-sm-10 col-md-8 col-lg-8 center2">
                     <div class="input-group mb-3">
                       <input
@@ -1186,8 +1186,8 @@ class videoList extends React.Component {
                     {
                       (this.props.statusPostDailyWeighChallenge !== "loading") &&
                       <div className="bottom-Weight">
-                        <button type="button" className="btn bottom-outlinePinkLeft " data-bs-dismiss="modal" aria-label="Close">ปิด</button>
-                        <button type="button" className="btn bottom-outlinePinkRight bottomEditProfileLeft " onClick={() => this.submitDailyWeighChallenge(this.state.weightInDailyWeighChallenge)}>ยืนยัน</button>
+                        <button type="button" className="btn bottom-outlinePinkLeft " data-bs-dismiss="modal" aria-label="Close"><IntlMessages id="videoList.off"/></button>
+                        <button type="button" className="btn bottom-outlinePinkRight bottomEditProfileLeft " onClick={() => this.submitDailyWeighChallenge(this.state.weightInDailyWeighChallenge)}><IntlMessages id="shipping_address.confirm"/></button>
                       </div>
                     }
                   </div>
@@ -2059,14 +2059,14 @@ class videoList extends React.Component {
     return (
       <div className="center">
         <div className="card shadow mb-4 col-lg-6 offset-lg-3 col-md-12 col-12 padding-leftRight margin-left" style={{ borderRadius: "20px" }}>
-          <div className="mb-3 col-lg-12  col-md-12 col-12">
+          <div className="mb-4 col-lg-12  col-md-12 col-12">
             <center>
-              <h5 className="mt-5">กรุณากรอกข้อมูลรายสัปดาห์ เพื่อที่คุณจะได้รับประสบการณ์</h5>
-              <h5>โปรแกรมออกกำลังกายสำหรับคุณโดยเฉพาะ</h5>
+              <h5 className="mt-5"><IntlMessages id="videoList.enterweekly"/></h5>
+              <h5><IntlMessages id="videoList.programjust"/></h5>
             </center>
           </div>
           <div className="col-lg-8 offset-lg-2 col-md-8 offset-md-2 col-12">
-            <p style={{ color: "#F45197" }}>เพศ</p>
+            <p style={{ color: "#F45197" }}><IntlMessages id="basic_information.gender"/></p>
             <div className="form-check" >
               <label className="form-check-label mb-3 mr-4">
                 <input
@@ -2077,12 +2077,9 @@ class videoList extends React.Component {
                   name="sex"
                   checked={this.state.sex === "male"}
                   onChange={this.onChange}
-                /> ชาย
-                <span className="circle">
-                  <span className="check"></span>
-                </span>
+                /> <IntlMessages id="basic_information.male"/>
               </label>
-              <label className="form-check-label" style={{ marginLeft: "30px" }}>
+              <label className="form-check-label" style={{ marginLeft: "60px" }}>
                 <input
                   disabled
                   className="form-check-input"
@@ -2091,17 +2088,14 @@ class videoList extends React.Component {
                   name="sex"
                   checked={this.state.sex === "female"}
                   onChange={this.onChange}
-                /> หญิง
-                <span className="circle">
-                  <span className="check"></span>
-                </span>
+                /> <IntlMessages id="basic_information.female"/>
               </label>
             </div>
           </div>
 
           <div className="col-lg-8 offset-lg-2 col-md-8 offset-md-2 col-12">
             <div className="form-group">
-              <label className="bmd-label-floating" style={{ color: "#F45197" }}>อายุ</label>
+              <label className="bmd-label-floating" style={{ color: "#F45197" }}><IntlMessages id="basic_information.age"/></label>
               <input
                 disabled
                 type="number"
@@ -2115,16 +2109,16 @@ class videoList extends React.Component {
             </div>
             {
               (statusOtherAttributes === "ageNotUseDecimals") &&
-              <small id="emailHelp" className="form-text text-muted mb-3"><h6 style={{ color: "red" }}>อายุ ห้ามเป็นเลขทศนิยม</h6></small>
+              <small id="emailHelp" className="form-text text-muted mb-3"><h6 style={{ color: "red" }}><IntlMessages id="videoList.mustnot"/></h6></small>
             }
             {
               (statusOtherAttributes === "fail" && this.state.age === "") &&
-              <small id="emailHelp" className="form-text text-muted mb-3"><h6 style={{ color: "red" }}>กรุณากรอกข้อมูล</h6></small>
+              <small id="emailHelp" className="form-text text-muted mb-3"><h6 style={{ color: "red" }}><IntlMessages id="videoList.pleasefill"/></h6></small>
             }
           </div>
           <div className="col-lg-8 offset-lg-2 col-md-8 offset-md-2 col-12">
             <div className="form-group">
-              <label className="bmd-label-floating" style={{ color: "#F45197" }}>น้ำหนัก (กก.)</label>
+              <label className="bmd-label-floating" style={{ color: "#F45197" }}><IntlMessages id="videoList.weight"/></label>
               <input
                 type="number"
                 className="form-control"
@@ -2137,12 +2131,12 @@ class videoList extends React.Component {
             </div>
             {
               (statusOtherAttributes === "fail" && this.state.weight === "") &&
-              <small id="emailHelp" className="form-text text-muted mb-3"><h6 style={{ color: "red" }}>กรุณากรอกข้อมูล</h6></small>
+              <small id="emailHelp" className="form-text text-muted mb-3"><h6 style={{ color: "red" }}><IntlMessages id="videoList.pleasefill"/></h6></small>
             }
           </div>
           <div className="col-lg-8 offset-lg-2 col-md-8 offset-md-2 col-12">
             <div className="form-group">
-              <label className="bmd-label-floating" style={{ color: "#F45197" }}>ส่วนสูง (ซม.)</label>
+              <label className="bmd-label-floating" style={{ color: "#F45197" }}><IntlMessages id="videoList.height"/></label>
               <input
                 type="number"
                 className="form-control"
@@ -2155,7 +2149,7 @@ class videoList extends React.Component {
             </div>
             {
               (statusOtherAttributes === "fail" && this.state.height === "") &&
-              <small id="emailHelp" className="form-text text-muted mb-3"><h6 style={{ color: "red" }}>กรุณากรอกข้อมูล</h6></small>
+              <small id="emailHelp" className="form-text text-muted mb-3"><h6 style={{ color: "red" }}><IntlMessages id="videoList.pleasefill"/></h6></small>
             }
           </div>
           <div className="mb-5 mt-4 col-lg-8 offset-lg-2 col-md-8 offset-md-2 col-12">
@@ -2166,7 +2160,7 @@ class videoList extends React.Component {
                 onClick={() => this.onUpdateBasicInfo()}
                 style={{ backgroundColor: "#F45197" }}
               >
-                ถัดไป
+                <IntlMessages id="next" />
               </button>
             </div>
           </div>
@@ -2182,8 +2176,8 @@ class videoList extends React.Component {
         <div className="card shadow mb-4 col-lg-6 offset-lg-3 col-md-12 col-12 padding-leftRight margin-left" style={{ borderRadius: "20px" }}>
           <div className="mt-5 mb-5 col-lg-12  col-md-12 col-12">
             <center>
-              <h5>กรุณาวัดสัดส่วนของคุณ</h5>
-              <h5>โดยใช้รูปตัวอย่างเพื่อเป็นไกด์ในการวัดสัดส่วน</h5>
+              <h5><IntlMessages id="videoList.measureyour"/></h5>
+              <h5><IntlMessages id="videoList.usingsample"/></h5>
             </center>
           </div>
           <div className="row">
@@ -2200,7 +2194,7 @@ class videoList extends React.Component {
 
             <div className="col-md-3">
               <div className="form-group">
-                <label className="bmd-label-floating" style={{ color: "#F45197" }}>รอบอก (นิ้ว)</label>
+                <label className="bmd-label-floating" style={{ color: "#F45197" }}><IntlMessages id="videoList.chest"/></label>
                 <input
                   type="number"
                   className="form-control"
@@ -2212,10 +2206,10 @@ class videoList extends React.Component {
               </div>
               {
                 (statusOtherAttributes === "fail" && this.state.chest === "") &&
-                <small id="emailHelp" className="form-text text-muted mb-3"><h6 style={{ color: "red" }}>กรุณากรอกข้อมูล</h6></small>
+                <small id="emailHelp" className="form-text text-muted mb-3"><h6 style={{ color: "red" }}><IntlMessages id="videoList.pleasefill"/></h6></small>
               }
               <div className="form-group">
-                <label className="bmd-label-floating" style={{ color: "#F45197" }}>รอบเอว (นิ้ว)</label>
+                <label className="bmd-label-floating" style={{ color: "#F45197" }}><IntlMessages id="videoList.waistline"/></label>
                 <input
                   type="number"
                   className="form-control"
@@ -2228,10 +2222,10 @@ class videoList extends React.Component {
               </div>
               {
                 (statusOtherAttributes === "fail" && this.state.waist === "") &&
-                <small id="emailHelp" className="form-text text-muted mb-3"><h6 style={{ color: "red" }}>กรุณากรอกข้อมูล</h6></small>
+                <small id="emailHelp" className="form-text text-muted mb-3"><h6 style={{ color: "red" }}><IntlMessages id="videoList.pleasefill"/></h6></small>
               }
               <div className="form-group">
-                <label className="bmd-label-floating" style={{ color: "#F45197" }}>สะโพก (นิ้ว)</label>
+                <label className="bmd-label-floating" style={{ color: "#F45197" }}><IntlMessages id="videoList.hip"/></label>
                 <input
                   type="number"
                   className="form-control"
@@ -2243,7 +2237,7 @@ class videoList extends React.Component {
               </div>
               {
                 (statusOtherAttributes === "fail" && this.state.hip === "") &&
-                <small id="emailHelp" className="form-text text-muted mb-3"><h6 style={{ color: "red" }}>กรุณากรอกข้อมูล</h6></small>
+                <small id="emailHelp" className="form-text text-muted mb-3"><h6 style={{ color: "red" }}><IntlMessages id="videoList.pleasefill"/></h6></small>
               }
             </div>
           </div>
@@ -2258,7 +2252,7 @@ class videoList extends React.Component {
                     onClick={() => this.setState({ otherAttributesPage: "basicInfo" })}
                     style={{ backgroundColor: "white", color: "#F45197", borderColor: "#F45197" }}
                     type="button"
-                  >ย้อนกลับ</button>
+                  ><IntlMessages id="videoList.goback"/></button>
                 </div>
                 <div className="col-md-5 marginTopMd5">
                   <button
@@ -2266,7 +2260,7 @@ class videoList extends React.Component {
                     onClick={() => this.onUpdateBodyInfo()}
                     style={{ backgroundColor: "#F45197" }}
                     type="button"
-                  >ยืนยัน</button>
+                  ><IntlMessages id="shipping_address.confirm"/></button>
                 </div>
               </div>
             </div>
@@ -2286,19 +2280,19 @@ class videoList extends React.Component {
         <div className="card shadow mb-4 col-lg-8 offset-lg-2 col-md-12 col-12 padding-leftRight margin-left" style={{ borderRadius: "20px" }}>
           <div className="mb-3 col-lg-12  col-md-12 col-12">
             <center>
-              <h2 className="mt-5 mb-4" style={{ color: "#F45197" }}><b>สรุปรายละเอียด</b></h2>
-              <h5>กรุณาตรวจสอบข้อมูลอีกครั้งเพื่อที่คุณจะได้รับประสบการณ์</h5>
-              <h5>โปรแกรมการออกกำลังกายสำหรับคุณโดยเฉพาะ</h5>
+              <h2 className="mt-5 mb-4" style={{ color: "#F45197" }}><b><IntlMessages id="videoList.particulars"/></b></h2>
+              <h5><IntlMessages id="videoList.checkinformation"/></h5>
+              <h5><IntlMessages id="videoList.programjust"/></h5>
             </center>
           </div>
           <div className="centerForm">
             <div className="mb-3 row">
-              <label className="col-sm-6 col-form-label">เพศ</label>
+              <label className="col-sm-6 col-form-label"><IntlMessages id="basic_information.gender"/></label>
               <div className="col-sm-4">
                 <select disabled onClick={(event) => this.renderHr(event)} onChange={(event) => this.handleChange(event)} className="form-control" id="sex" aria-label="Default select example">
                   {
                     sexInfo === "male" ? <option value={sexInfo} selected>{sexInfoTH}</option> :
-                      <option value="female">หญิง</option>
+                      <option value="female"><IntlMessages id="basic_information.female"/></option>
                   }
                   <option value={sexInfoEngฺBack}>{sexInfoTHBack}</option>
 
@@ -2311,7 +2305,7 @@ class videoList extends React.Component {
           <div className={this.state.staticSex}></div>
           <div className="centerForm">
             <div className="mb-3 row">
-              <label className="col-sm-6 col-form-label">อายุ</label>
+              <label className="col-sm-6 col-form-label"><IntlMessages id="basic_information.age"/></label>
               <div className="col-sm-4">
                 <input disabled type="number" id="age" name="age" min="0" value={this.state.age} onClick={(event) => this.renderHr(event)} onChange={(event) => this.handleChange(event)} className="form-control" />
               </div>
@@ -2320,7 +2314,7 @@ class videoList extends React.Component {
           <div className={this.state.staticAge}></div>
           <div className="centerForm">
             <div className="mb-3 row">
-              <label className="col-sm-6 col-form-label">น้ำหนัก(กก.)</label>
+              <label className="col-sm-6 col-form-label"><IntlMessages id="videoList.weight"/></label>
               <div className="col-sm-4">
                 <input type="number" id="weight" name="weight" step=".01" value={this.state.weight} min="0" onChange={(event) => this.handleChange(event)} onClick={(event) => this.renderHr(event)} className="form-control" />
               </div>
@@ -2329,7 +2323,7 @@ class videoList extends React.Component {
           <div className={this.state.staticWeight}></div>
           <div className="centerForm">
             <div className="mb-3 row">
-              <label className="col-sm-6 col-form-label">ส่วนสูง (ซม.)</label>
+              <label className="col-sm-6 col-form-label"><IntlMessages id="videoList.height"/></label>
               <div className="col-sm-4">
 
                 <input type="number" id="height" name="height" step=".01" min="0" value={this.state.height} onChange={(event) => this.handleChange(event)} onClick={(event) => this.renderHr(event)} className="form-control" />
@@ -2339,7 +2333,7 @@ class videoList extends React.Component {
           <div className={this.state.staticHeight}></div>
           <div className="centerForm">
             <div className="mb-3 row">
-              <label className="col-sm-6 col-form-label">รอบอก (นิ้ว)</label>
+              <label className="col-sm-6 col-form-label"><IntlMessages id="videoList.chest"/></label>
               <div className="col-sm-4">
                 <input type="number" step=".01" min="0" name="chest" id="chest" value={this.state.chest} onClick={(event) => this.renderHr(event)} onChange={(event) => this.handleChange(event)} className="form-control" />
               </div>
@@ -2348,7 +2342,7 @@ class videoList extends React.Component {
           <div className={this.state.staticChest}></div>
           <div className="centerForm">
             <div className="mb-3 row">
-              <label className="col-sm-6 col-form-label">รอบเอว (นิ้ว)</label>
+              <label className="col-sm-6 col-form-label"><IntlMessages id="videoList.waistline"/></label>
               <div className="col-sm-4">
                 <input type="number" step=".01" min="0" id="waist" name="waist" value={this.state.waist} onClick={(event) => this.renderHr(event)} onChange={(event) => this.handleChange(event)} className="form-control" />
               </div>
@@ -2357,7 +2351,7 @@ class videoList extends React.Component {
           <div className={this.state.staticWaist}></div>
           <div className="centerForm">
             <div className="mb-3 row">
-              <label className="col-sm-6 col-form-label">สะโพก (นิ้ว)</label>
+              <label className="col-sm-6 col-form-label"><IntlMessages id="videoList.hip"/></label>
               <div className="col-sm-4">
                 <input type="number" step=".01" min="0" id="hip" name="hip" value={this.state.hip} onClick={(event) => this.renderHr(event)} onChange={(event) => this.handleChange(event)} className="form-control" />
               </div>
@@ -2371,7 +2365,7 @@ class videoList extends React.Component {
                 onClick={() => this.onUpdateProfile()}
                 style={{ backgroundColor: "#F45197" }}
                 type="button"
-              >ยืนยัน</button>
+              ><IntlMessages id="shipping_address.confirm"/></button>
             </div>
           </div>
           <br />

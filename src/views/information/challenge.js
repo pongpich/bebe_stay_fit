@@ -945,7 +945,7 @@ class Challenge extends Component {
         <div className="box-challenge">
           <div className="col-12 col-sm-12 col-md-12 col-lg-12 ">
             <ul className="challenge">
-              <li className="video-li  video-liPadding-left">
+              <li className="video-li">
                 <a className={allMissions} name="allMissions" onClick={e => this.challengeBottom(e)}>ภารกิจทั้งหมด</a>
               </li>
               <li className="video-li">
