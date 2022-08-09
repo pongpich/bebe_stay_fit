@@ -43,6 +43,7 @@ import Food_supplement from '../information/food_supplement';
 import challenge from '../information/challenge';
 import Challenge from "../information/challenge";
 import IntlMessages from "../../helpers/IntlMessages";
+import { injectIntl } from 'react-intl';
 
 class videoList extends React.Component {
 
@@ -644,6 +645,7 @@ class videoList extends React.Component {
   }
 
   boxFrom() {
+    const { messages } = this.props.intl;
     return (
       <>
         {/*          <nav className="navbar navbar-expand-lg bg-light information-box">
@@ -721,13 +723,13 @@ class videoList extends React.Component {
           <div className="col-12 col-sm-12 col-md-12 col-lg-12 ">
             <ul className="video-maun">
               <li className="video-li  video-liPadding-left marginLeftRoutine">
-                <a className={this.state.borderBottom1} name="borderBottom1" onClick={e => this.clickBottom(e)}>Workout Routine</a>
+                <a className={this.state.borderBottom1} name="borderBottom1" onClick={e => this.clickBottom(e)}>{messages['videoList.workout']}</a>
               </li>
               <li className="video-li  video-liPadding-left   video-liPadding-left2">
-                <a className={this.state.borderBottom2} name="borderBottom2" onClick={e => this.clickBottom(e)}>asdasdas</a>
+                <a className={this.state.borderBottom2} name="borderBottom2" onClick={e => this.clickBottom(e)}>{messages['videoList.challenge']}</a>
               </li>
               <li className="video-li  video-liPadding-left   video-liPadding-left2">
-                <a className={this.state.borderBottom3} name="borderBottom3" onClick={e => this.clickBottom(e)}>วิธีออกกำลังกายตามโปรแกรม</a>
+                <a className={this.state.borderBottom3} name="borderBottom3" onClick={e => this.clickBottom(e)}>{messages['videoList.exerciseaccording']}</a>
               </li>
               {/*    <li className="video-li  video-liPadding-left   video-liPadding-left2">
                 <a className={this.state.borderBottom2} name="borderBottom2" onClick={e => this.clickBottom(e)}>คลิปออกกำลังกายทั้งหมด</a>
@@ -2408,4 +2410,4 @@ const mapActionsToProps = { videoListForUser, createWeeklyStayfitProgram, update
 export default connect(
   mapStateToProps,
   mapActionsToProps
-)(videoList);
+)(injectIntl(videoList));

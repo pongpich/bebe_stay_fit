@@ -204,6 +204,8 @@ module.exports = {
      "videoList.hip": "สะโพก (นิ้ว)",
      "videoList.goback": "ย้อนกลับ",
      "videoList.particulars": "สรุปรายละเอียด",
+     "videoList.exerciseaccording": "วิธีออกกำลังกายตามโปรแกรม",
+     "videoList.workout": "Workout Routine",
 
      /* 11.profile */
      "profile.editInformation": "Edit information",
