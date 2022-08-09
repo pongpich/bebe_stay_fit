@@ -218,8 +218,6 @@ module.exports = {
      "profile.paymentdate": "payment date",
 
      /* 12.basic_information */
-         /**  
-     * ! ยังไม่เเปล */
      "basic_information.fillinbasic": "Fill in the basic information to get started",
      "basic_information.fillingin": "Filling in information will allow us to design an",
      "basic_information.anexercise": "exercise program that is better suited for you.",

@@ -207,21 +207,22 @@ module.exports = {
       /* 12.basic_information */
       /**  
      * ! ยังไม่เเปล */
-          "basic_information.fillinbasic": "กรอกข้อมูลเบื้องต้นเพื่อเริ่มต้นการใช้งาน",
-          "basic_information.fillingin": "การกรอกข้อมูลจะทำให้เราสามารถออกแบบ",
-          "basic_information.anexercise": "โปรแกรมออกกำลังกายให้เหมาะสมกับคุณได้ดียิ่งขึ้น",
-          "basic_information.gender": "เพศ",
-          "basic_information.male": "ชาย",
-          "basic_information.female": "หญิง",
-          "basic_information.age": "อายุ",
-          "basic_information.weight": "น้ำหนัก",
-          "basic_information.height": "ส่วนสูง",
-          "basic_information.youaresure": "คุณแน่ใจว่าสามารถฝึกท่าฝึกยากๆ เช่นท่า Squat, ท่ากระโดด ได้อย่างถูกต้อง",
-          "basic_information.sure": "แน่ใจ",
-          "basic_information.unsure": "ไม่แน่ใจ",
-          "basic_information.createExercise": "สร้างโปรแกรมออกกำลังกาย",
-          "basic_information.selectunit": "เลือกหน่วย",
-          "basic_information.year": "ปี",
+     "basic_information.fillinbasic": "กรอกข้อมูลเบื้องต้นเพื่อเริ่มต้นการใช้งาน",
+     "basic_information.fillingin": "การกรอกข้อมูลจะทำให้เราสามารถออกแบบ",
+     "basic_information.anexercise": "โปรแกรมออกกำลังกายให้เหมาะสมกับคุณได้ดียิ่งขึ้น",
+     "basic_information.gender": "เพศ",
+     "basic_information.male": "ชาย",
+     "basic_information.female": "หญิง",
+     "basic_information.age": "อายุ",
+     "basic_information.weight": "น้ำหนัก",
+     "basic_information.height": "ส่วนสูง",
+     "basic_information.youaresure": "คุณแน่ใจว่าสามารถฝึกท่าฝึกยากๆ เช่นท่า Squat, ท่ากระโดด ได้อย่างถูกต้อง",
+     "basic_information.sure": "แน่ใจ",
+     "basic_information.unsure": "ไม่แน่ใจ",
+     "basic_information.createExercise": "สร้างโปรแกรมออกกำลังกาย",
+     "basic_information.selectunit": "เลือกหน่วย",
+     "basic_information.year": "ปี",
+
     
   };
   
