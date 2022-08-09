@@ -7,6 +7,7 @@ import { connect } from "react-redux";
 import { getSubscriptionProducts } from "../../redux/get";
 import { putSubscriptionAddress, clearSubscriptionAddress } from "../../redux/updateAddress";
 import InputAddress from 'react-thailand-address-autocomplete';
+import IntlMessages from "../../helpers/IntlMessages";
 
 class EditProfile extends React.Component {
 
@@ -96,7 +97,7 @@ class EditProfile extends React.Component {
     return (
       <>
         <div className="padding-top4 center">
-          <p className="font-size6 bold color-protein"> แก้ไขข้อมูล</p>
+          <p className="font-size6 bold color-protein"> <IntlMessages id="profile.editInformation"/></p>
         </div>
         {/* <div className="col-12 col-sm-12 col-md-12 col-lg-12  center2 ">
           <div className="col-12 col-sm-12 col-md-6 col-lg-6 center2">
@@ -160,28 +161,28 @@ class EditProfile extends React.Component {
           <div className="col-12 col-sm-12 col-md-6 col-lg-5 center2">
             <div className="box-protein margin-bottom1 padding-top2">
               <div className="box-proteinAddress padding-top">
-                <p className="font-size6 bold color-protein "> ที่อยู่ในการจัดส่งสินค้า</p>
+                <p className="font-size6 bold color-protein "> <IntlMessages id="shipping_address.shippingAddress"/></p>
                 <div className="row">
                   <div className="col-12 col-sm-12 col-md-6 col-lg-6">
-                    <label className="form-label bold font-size4">ชื่อ</label>
+                    <label className="form-label bold font-size4"><IntlMessages id="shipping_address.name"/></label>
                     <input type="text" className="form-control" name="firstname" value={firstname} onChange={e => this.onChange(e)} id="exampleFormControlInput1" />
                   </div>
                   <div className="col-12 col-sm-12 col-md-6 col-lg-6">
-                    <label className="form-label bold font-size4">นามสกุล</label>
+                    <label className="form-label bold font-size4"><IntlMessages id="shipping_address.surname"/></label>
                     <input type="text" className="form-control" name="lastname" value={lastname} onChange={e => this.onChange(e)} id="exampleFormControlInput1" />
                   </div>
                 </div>
                 <div className="padding-top2">
-                  <label className="form-label bold font-size4">เบอร์โทรศัพท์</label>
+                  <label className="form-label bold font-size4"><IntlMessages id="register.phoneNumbe"/></label>
                   <input type="text" className="form-control" name="phone" value={phone} onChange={e => this.onChange(e)} id="exampleFormControlInput1" />
                 </div>
                 <div className="padding-top2">
-                  <label className="form-label bold font-size4">ที่อยู่</label>
+                  <label className="form-label bold font-size4"><IntlMessages id="shipping_address.address"/></label>
                   <input type="text" className="form-control" name="address" value={address} onChange={e => this.onChange(e)} id="exampleFormControlInput1" />
                 </div>
                 <div className="elementStyle">
                   <div className="padding-top2">
-                    <label className="form-label bold font-size4">แขวง/ตำบล</label>
+                    <label className="form-label bold font-size4"><IntlMessages id="shipping_address.subdistrict"/></label>
                     <InputAddress style={{ width: "100%" }}
                       address="subdistrict"
                       value={subdistrict}
@@ -190,7 +191,7 @@ class EditProfile extends React.Component {
                     />
                   </div>
                   <div className="col-12 col-sm-12  col-md-12 col-lg-12 padding-top2">
-                    <label className="form-label bold font-size4">เขต/อำเภอ</label>
+                    <label className="form-label bold font-size4"><IntlMessages id="shipping_address.district"/></label>
                     <InputAddress style={{ width: "100%" }}
                       address="district"
                       value={district}
@@ -199,7 +200,7 @@ class EditProfile extends React.Component {
                     />
                   </div>
                   <div className="padding-top2">
-                    <label className="form-label bold font-size4">จังหวัด</label>
+                    <label className="form-label bold font-size4"><IntlMessages id="shipping_address.province"/></label>
                     <InputAddress style={{ width: "100%" }}
                       address="province"
                       value={province}
@@ -208,7 +209,7 @@ class EditProfile extends React.Component {
                     />
                   </div>
                   <div className=" col-12 col-sm-12  col-md-12 col-lg-12 padding-top2">
-                    <label className="form-label bold font-size4">รหัสไปรษณีย์</label>
+                    <label className="form-label bold font-size4"><IntlMessages id="shipping_address.postcode"/></label>
                     <InputAddress style={{ width: "100%" }}
                       address="subdistrict"
                       value={this.state.zipcode}
@@ -237,8 +238,8 @@ class EditProfile extends React.Component {
           <div className="bottomEditProfile">
 
 
-            <button type="button" className="btn bottom-outlinePinkLeft " onClick={() => this.props.history.push('/profile')}>ยกเลิก</button>
-            <button type="button" className="btn bottom-outlinePinkRight bottomEditProfileLeft " onClick={() => this.onSubmit()}>บันทึก</button>
+            <button type="button" className="btn bottom-outlinePinkLeft " onClick={() => this.props.history.push('/profile')}><IntlMessages id="shipping_address.cancel"/></button>
+            <button type="button" className="btn bottom-outlinePinkRight bottomEditProfileLeft " onClick={() => this.onSubmit()}><IntlMessages id="profile.save"/></button>
           </div>
           {/*   <div className="">
             <div className="row">

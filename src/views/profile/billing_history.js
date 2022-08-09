@@ -6,7 +6,7 @@ import group_check from "../../assets/img/group_check.png";
 import { Link } from 'react-router-dom';
 import { connect } from "react-redux";
 import { getRegister_log } from "../../redux/get";
-
+import IntlMessages from "../../helpers/IntlMessages";
 
 class Billing_history extends React.Component {
     componentDidMount() {
@@ -29,7 +29,7 @@ class Billing_history extends React.Component {
             <>
 
                 <div className="padding-top4 center">
-                    <p className="font-size8 bold color-protein"> ประวัติการเรียกเก็บ</p>
+                    <p className="font-size8 bold color-protein"> <IntlMessages id="profile.billinghistory"/></p>
                 </div>
                 <div className="col-12 col-sm-12 col-md-12 col-lg-12  center2 ">
                     <div className="col-12 col-sm-12 col-md-6 col-lg-6 center2">
@@ -38,7 +38,7 @@ class Billing_history extends React.Component {
                                 <h4 className="color1 bold">BEBEStayFit</h4>
                             </div>
                             <div className="padding-top2 margin-leftRight">
-                                <p className="font-size6 text-left2 bold">แพ็กเกจของคุณ </p>
+                                <p className="font-size6 text-left2 bold"><IntlMessages id="payment.yourPackage"/> </p>
                                 {
 
                                     program && program.map((index, i) => {
@@ -54,11 +54,11 @@ class Billing_history extends React.Component {
                                                 <>
                                                     {
                                                      index.program_id === "subscription_stay_fit_01" ?
-                                                        <p className="font-size0 margin-top-1 bold between">ตามระยะเวลาของโปรแกรม <span className="color1 bold font-size0">1,800 บาท / เดือน</span></p>
+                                                        <p className="font-size0 margin-top-1 bold between"><IntlMessages id="fitto_plant_protein.theDuration"/> <span className="color1 bold font-size0">1,800 <IntlMessages id="programPackage.baht"/> / <IntlMessages id="programPackage.months"/></span></p>
                                                      :
-                                                        <p className="font-size0 margin-top-1 bold between">ตามระยะเวลาของโปรแกรม <span className="color1 bold font-size0">3,990 บาท</span></p>
+                                                        <p className="font-size0 margin-top-1 bold between"><IntlMessages id="fitto_plant_protein.theDuration"/> <span className="color1 bold font-size0">3,990 <IntlMessages id="programPackage.baht"/></span></p>
                                                     }
-                                                       <p className=" font-size4 margin-top-1 right">วันตัดรอบบิล {date}</p>
+                                                       <p className=" font-size4 margin-top-1 right"><IntlMessages id="profile.cut-offdate"/> {date}</p>
                                                 </>
                                             )
 
@@ -73,8 +73,8 @@ class Billing_history extends React.Component {
                             </div>
                         </div>
                         <div>
-                            <p>ข้อมูลการชำระเงินจะปรากฎในบัญชี</p>
-                            <p>อาจจะใช้เวลาสองถึงสามวันหลังจากวันที่ตัดรอบบิล</p>
+                            <p><IntlMessages id="profile.informationwill"/></p>
+                            <p><IntlMessages id="profile.maytake"/></p>
                         </div>
                         {
                               program && program.map((index) => {
@@ -98,14 +98,14 @@ class Billing_history extends React.Component {
                                         <div className="padding-top2 margin-leftRight">
                                         {
                                            index.program_id === "subscription_stay_fit_01" ?
-                                           <p className="font-size4 margin-top-1  between">วันที่ชำระ {date_created_at} <span className="color1 bold font-size9">{amount_num} บาท </span></p>
+                                           <p className="font-size4 margin-top-1  between"><IntlMessages id="profile.paymentdate"/> {date_created_at} <span className="color1 bold font-size9">{amount_num} <IntlMessages id="programPackage.baht"/> </span></p>
                                              :
-                                             <p className="font-size4 margin-top-1  between">วันที่ชำระ {date_created_at} <span className="color1 bold font-size9">{amount_num} บาท</span></p>
+                                             <p className="font-size4 margin-top-1  between"><IntlMessages id="profile.paymentdate"/> {date_created_at} <span className="color1 bold font-size9">{amount_num} <IntlMessages id="programPackage.baht"/></span></p>
                                         }
                                         </div>
                                         <p className="border-bottom margin-leftRight"></p>
                                         <div className="padding-top2 margin-leftRight">
-                                            <p className="font-size0 margin-top-1  between">แพ็กเกจของคุณ <span className="bold font-size0">ตามระยะเวลาของโปรแกรม</span></p>
+                                            <p className="font-size0 margin-top-1  between"><IntlMessages id="payment.yourPackage"/> <span className="bold font-size0"><IntlMessages id="fitto_plant_protein.theDuration"/></span></p>
 {/*                                             <p className="font-size0 margin-top-1  between">ชำระผ่าน <span className="bold font-size0">QR code</span></p> */}
                                         </div>
                                     </div>

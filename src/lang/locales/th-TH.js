@@ -11,6 +11,9 @@ Table of Contents
 07.welcome_new_member
 08.reset_password
 09.reset_password_succeed
+10.videoList
+11.profile
+12.basic_information
 */
 
 
@@ -21,6 +24,8 @@ module.exports = {
     /* 01.navbar home */
     "navbarHome.login": "เข้าสู่ระบบ",
     "navbarHome.register": "ลงทะเบียน",
+    "navbarHome.logout": "ออกจากระบบ",
+    "navbarHome.profile": "ข้อมูลส่วนตัว",
     "navbarHome.email": "อีเมล",
     "navbarHome.ex_email": "กรุณากรอก Email (Example@mail.com)",
     "navbarHome.password": "รหัสผ่าน",
@@ -29,6 +34,8 @@ module.exports = {
     "navbarHome.forgotpassword": "ลืมรหัสผ่าน",
     "navbarHome.donAccount": " ยังไม่เป็นสมาชิก",
     "navbarHome.createAccount": "ลงทะเบียน",
+    "navbarHome.exerciseprogram": "โปรแกรมออกกำลังกาย",
+    "navbarHome.foodsupplements": "วิธีการกินอาหารและอาหารเสริม",
     /* 02.programPackage */
     "programPackage.registerBebeStayfit": "ลงทะเบียนเข้าร่วม Bebe Stayfit",
     "programPackage.calculate": "กรอกข้อมูลเพื่อคำนวณระยะเวลา ที่ใช้ในการลดน้ำหนัก",
@@ -160,6 +167,43 @@ module.exports = {
      "reset_password_succeed.orcontact": "หรือติดต่อมาหาเราได้ที่ 086-424-5141",
      "reset_password_succeed.from": "(ตั้งแต่เวลา 6:00-18:00น.)",
      "reset_password_succeed.backtomain": "กลับสู้หน้าหลัก",
+
+    /* 10.videoList */
+    "videoList.challenge": "ชาเลนจ์",
+    "videoList.total": "รวมเวลาฝึกทั้งหมด",
+     "videoList.mins": "นาที",
+     "videoList.autoPlay": "เล่นต่อเนื่องอัตโนมัติ",
+     "videoList.letsStart": "เริ่มกันเลย!",
+     "videoList.succeed": "สำเร็จแล้ว!",
+
+     /* 11.profile */
+     "profile.editInformation": "แก้ไขข้อมูล",
+     "profile.changePassword": "เปลี่ยนรหัสผ่าน",
+     "profile.cut-offdate": "วันตัดรอบบิล",
+     "profile.billinghistory": "ประวัติการเรียกเก็บ",
+     "profile.save": "บันทึก",
+     "profile.informationwill": "ข้อมูลการชำระเงินจะปรากฎในบัญชี",
+     "profile.maytake": "อาจจะใช้เวลาสองถึงสามวันหลังจากวันที่ตัดรอบบิล",
+     "profile.paymentdate": "วันที่ชำระ",
+
+      /* 12.basic_information */
+      /**  
+     * ! ยังไม่เเปล */
+          "basic_information.fillinbasic": "กรอกข้อมูลเบื้องต้นเพื่อเริ่มต้นการใช้งาน",
+          "basic_information.fillingin": "การกรอกข้อมูลจะทำให้เราสามารถออกแบบ",
+          "basic_information.anexercise": "โปรแกรมออกกำลังกายให้เหมาะสมกับคุณได้ดียิ่งขึ้น",
+          "basic_information.gender": "เพศ",
+          "basic_information.male": "ชาย",
+          "basic_information.female": "หญิง",
+          "basic_information.age": "อายุ",
+          "basic_information.weight": "น้ำหนัก",
+          "basic_information.height": "ส่วนสูง",
+          "basic_information.youaresure": "คุณแน่ใจว่าสามารถฝึกท่าฝึกยากๆ เช่นท่า Squat, ท่ากระโดด ได้อย่างถูกต้อง",
+          "basic_information.sure": "แน่ใจ",
+          "basic_information.unsure": "ไม่แน่ใจ",
+          "basic_information.createExercise": "สร้างโปรแกรมออกกำลังกาย",
+          "basic_information.selectunit": "เลือกหน่วย",
+          "basic_information.year": "ปี",
     
   };
   

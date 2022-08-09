@@ -4,6 +4,7 @@ import user_circle from "../../assets/img/user_circle.svg";
 import { Link } from 'react-router-dom';
 import { connect } from "react-redux";
 import { getSubscriptionProducts, getRegister_log } from "../../redux/get";
+import IntlMessages from "../../helpers/IntlMessages";
 
 class Profile extends React.Component {
 
@@ -29,7 +30,7 @@ class Profile extends React.Component {
     return (
       <>
         <div className="padding-top4 center">
-          <p className="font-size6 bold color-protein"> โปรไฟล์</p>
+          <p className="font-size6 bold color-protein"> <IntlMessages id="navbarHome.profile"/></p>
         </div>
         <div className="col-12 col-sm-12 col-md-12 col-lg-12  center2 ">
           <div className="col-12 col-sm-12 col-md-6 col-lg-6 center2">
@@ -50,9 +51,9 @@ class Profile extends React.Component {
                 {/*  <button className="btn bottom-pink" type="button" >
                                     แก้ไขข้อมูล
                                 </button> */}
-                <Link to="/edit_profile" className="btn bottom-pink " type="button">แก้ไขข้อมูล</Link>
+                <Link to="/edit_profile" className="btn bottom-pink " type="button"><IntlMessages id="profile.editInformation"/></Link>
                 <button className="btn bottom-outlinePink margin-top-3 " type="button" onClick={() => this.props.history.push("/reset_password")} >
-                  เปลี่ยนรหัสผ่าน
+                  <IntlMessages id="profile.changePassword"/>
                 </button>
               </div>
             </div>
@@ -82,20 +83,20 @@ class Profile extends React.Component {
                              <h4 className="color1 bold">BEBEStayFit</h4>
                            </div>
                            <div className="padding-top2  margin-leftRight">
-                             <p className="font-size6 text-left2 bold between">แพ็กเกจของคุณ  <span className="pay-user">ชำระเงิน</span></p>
+                             <p className="font-size6 text-left2 bold between"><IntlMessages id="payment.yourPackage"/>  <span className="pay-user"><IntlMessages id="payment.pay"/></span></p>
                              {
                                 index.program_id === "subscription_stay_fit_01" ?
-                                <p className="font-size0 margin-top-1 bold between">ตามระยะเวลาของโปรแกรม <span className="color1 bold font-size0">1,800 บาท / เดือน</span></p>
+                                <p className="font-size0 margin-top-1 bold between"><IntlMessages id="payment.applyProgram"/> <span className="color1 bold font-size0">1,800 <IntlMessages id="programPackage.baht"/> / <IntlMessages id="programPackage.months"/></span></p>
                                 :
-                                <p className="font-size0 margin-top-1 bold between">ตามระยะเวลาของโปรแกรม <span className="color1 bold font-size0">3,990 บาท</span></p>
+                                <p className="font-size0 margin-top-1 bold between"><IntlMessages id="payment.applyProgram"/> <span className="color1 bold font-size0">3,990 <IntlMessages id="programPackage.baht"/></span></p>
                              }
-                    <p className=" font-size4 margin-top-1 right color3">วันตัดรอบบิล  {date}</p> 
+                    <p className=" font-size4 margin-top-1 right color3"><IntlMessages id="profile.cut-offdate"/>  {date}</p> 
        
                            </div>
                            <p className="border-bottom margin-leftRight padding-top2"></p>
                            <div className="d-grid gap-2  mx-auto   col-10 col-sm-10  col-md-8 col-lg-8 margin-top-2 ">
                              <button className="btn bottom-pink " type="button" onClick={() => this.props.history.push('/billing_history')}>
-                               ประวัติการเรียกเก็บ
+                              <IntlMessages id="profile.billinghistory"/>
                              </button>
                         {/*    <button className="btn bottom-outlineGrey margin-top-3" type="button" >
                                ยกเลิกแพ็กเกจ

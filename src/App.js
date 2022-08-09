@@ -250,10 +250,10 @@ class App extends Component {
                       (user && user.other_attributes) &&
                       <>
                         <li className="nav-item">
-                          <a className={this.state.colorVideo} onClick={() => this.onClickNavbar("videoList")} >โปรแกรมออกกำลังกาย</a>
+                          <a className={this.state.colorVideo} onClick={() => this.onClickNavbar("videoList")} ><IntlMessages id="navbarHome.exerciseprogram"/></a>
                         </li>
                         <li className="nav-item">
-                          <a className={this.state.colorFood} onClick={() => this.onClickNavbar("food_supplement")}>วิธีการกินอาหารและอาหารเสริม</a>
+                          <a className={this.state.colorFood} onClick={() => this.onClickNavbar("food_supplement")}><IntlMessages id="navbarHome.foodsupplements"/></a>
                         </li>
                       </>
                     }
@@ -276,12 +276,12 @@ class App extends Component {
                         <ul className="dropdown-menu dropdown-menu-end">
                           <li className="nav-item">
                             <a className="dropdown-item nav-linkHead pointer" onClick={() => this.props.history.push('/profile')}>
-                              Profile
+                            <IntlMessages id="navbarHome.profile"/>
                             </a>
                           </li>
                           <li>
                             <a className="dropdown-item nav-linkHead pointer" onClick={() => this.onUserLogout()}>
-                              ออกจากระบบ
+                              <IntlMessages id="navbarHome.logout"/>
                             </a>
                           </li>
                         </ul>

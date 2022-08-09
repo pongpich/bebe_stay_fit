@@ -42,6 +42,7 @@ import backgroundImag from '../../assets/img/bgintro_lg.d22ae02a.png';
 import Food_supplement from '../information/food_supplement';
 import challenge from '../information/challenge';
 import Challenge from "../information/challenge";
+import IntlMessages from "../../helpers/IntlMessages";
 
 class videoList extends React.Component {
 
@@ -315,7 +316,7 @@ class videoList extends React.Component {
   clickBottom = (e) => {
 
     let name = e.target.name;
-
+    console.log("name",name);
     if (name === 'borderBottom1') {
       console.log("1");
       var clickManu = "manu1"
@@ -723,7 +724,7 @@ class videoList extends React.Component {
                 <a className={this.state.borderBottom1} name="borderBottom1" onClick={e => this.clickBottom(e)}>Workout Routine</a>
               </li>
               <li className="video-li  video-liPadding-left   video-liPadding-left2">
-                <a className={this.state.borderBottom2} name="borderBottom2" onClick={e => this.clickBottom(e)}>ชาเลนจ์</a>
+                <a className={this.state.borderBottom2} name="borderBottom2" onClick={e => this.clickBottom(e)}>asdasdas</a>
               </li>
               <li className="video-li  video-liPadding-left   video-liPadding-left2">
                 <a className={this.state.borderBottom3} name="borderBottom3" onClick={e => this.clickBottom(e)}>วิธีออกกำลังกายตามโปรแกรม</a>
@@ -847,7 +848,7 @@ class videoList extends React.Component {
           <div className="containerli">
             <div className="row">
               <div className="col">
-                รวมเวลาฝึกทั้งหมด {timesExercise} นาที
+                <IntlMessages id="videoList.total"/> {timesExercise} <IntlMessages id="videoList.mins"/>
               </div>
               {/*  <div className="col-md-auto" onClick={() => this.editVDO()} aria-hidden="true" style={{ cursor: "pointer" }}>
                 <img src={edit} className="icon-edit" />
@@ -856,7 +857,7 @@ class videoList extends React.Component {
               <div className="col-4">
                 <div className="form-check form-switch form-check-reverse">
                   <input className="form-check-input" type="checkbox" id="autoPlayCheck" onClick={() => this.autoPlayCheck()} />
-                  <label className="form-check-label" >เล่นต่อเนื่องอัตโนมัติ</label>
+                  <label className="form-check-label" ><IntlMessages id="videoList.autoPlay"/></label>
                 </div>
               </div>
             </div>
@@ -866,7 +867,7 @@ class videoList extends React.Component {
               <div className="col-2 col-sm-2 col-md-2 col-lg-2 ">
                 <div className="iconCenter ">
                   <div className="start-e">
-                    <p className="bold">เริ่มกันเลย!</p>
+                    <p className="bold"><IntlMessages id="videoList.letsStart"/></p>
                   </div>
                   {
                     (this.props.exerciseVideo) &&
@@ -930,7 +931,7 @@ class videoList extends React.Component {
                     }))
                   }
                   <div className="end-e">
-                    <p className="bold color1">สำเร็จแล้ว!</p>
+                    <p className="bold color1"><IntlMessages id="videoList.succeed"/></p>
                   </div>
                 </div>
               </div>
@@ -963,7 +964,7 @@ class videoList extends React.Component {
                           <div className=" col-12  col-sm-12 col-md-6 col-lg-6">
                             <div className="box-paly2">
                               <div className="text-video">
-                                <p className="alarm"> <img src={alarm} className="col-2" /> {minuteLabel}  นาที</p>
+                                <p className="alarm"> <img src={alarm} className="col-2" /> {minuteLabel}  <IntlMessages id="videoList.mins"/></p>
                               </div>
                               <div className="rectangle15"></div>
                               <p className="warmup">{item.category} {">"}</p>
@@ -1195,7 +1196,6 @@ class videoList extends React.Component {
             </div>
           </div>
         }
-        asdasdas
         {/* <!-- Modal  modalSubscription --> */}
         <div class="modal fade" id="modalSubscription-share" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
           <div class="modal-dialog   modal-lg modal-dialog-centered">

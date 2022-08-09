@@ -12,6 +12,9 @@ Table of Contents
 07.welcome_new_member
 08.reset_password
 09.reset_password_succeed
+10.videoList
+11.profile
+12.basic_information
 */
 
 
@@ -21,6 +24,8 @@ module.exports = {
 
     /* 01.General */
     "navbarHome.login": "Login",
+    "navbarHome.logout": "Log out",
+    "navbarHome.profile": "Profile",
     "navbarHome.register": "Register",
     "navbarHome.email": "Email",
     "navbarHome.ex_email": "Email (Example@mail.com)",
@@ -31,6 +36,8 @@ module.exports = {
     "navbarHome.forgotpassword": "forgot password",
     "navbarHome.donAccount": "don't have an account?",
     "navbarHome.createAccount": "create an account",
+    "navbarHome.exerciseprogram": "Exercise Program",
+    "navbarHome.foodsupplements": "วิธีการกินอาหารและอาหารเสริม",
     /* 02.programPackage */
     "programPackage.registerBebeStayfit": "Sign up for Bebe Stayfit",
     "programPackage.calculate": "Please fill in the information to calculate how long it takes to lose weight.",
@@ -171,4 +178,43 @@ module.exports = {
           /**  
      * ! ยังไม่เเปล */
      "reset_password_succeed.backtomain": "กลับสู้หน้าหลัก",
+
+     /* 10.videoList */
+     "videoList.challenge": "Challenge",
+     "videoList.total": "total training period",
+     "videoList.mins": "mins",
+           /**  
+     * ! ยังไม่เเปล */
+     "videoList.autoPlay": "เล่นต่อเนื่องอัตโนมัติ",
+     "videoList.letsStart": "เริ่มกันเลย!",
+     "videoList.succeed": "สำเร็จแล้ว!",
+
+     /* 11.profile */
+     "profile.editInformation": "Edit information",
+     "profile.changePassword": "Change password",
+     "profile.cut-offdate": "Billing cut-off date",
+     "profile.billinghistory": "Billing history",
+     "profile.save": "Save",
+     "profile.informationwill": "Payment information will appear in your accountave",
+     "profile.maytake": "may take a few days after the billing cut-off date.",
+     "profile.paymentdate": "payment date",
+
+     /* 12.basic_information */
+         /**  
+     * ! ยังไม่เเปล */
+     "basic_information.fillinbasic": "Fill in the basic information to get started",
+     "basic_information.fillingin": "Filling in information will allow us to design an",
+     "basic_information.anexercise": "exercise program that is better suited for you.",
+     "basic_information.gender": "Gender",
+     "basic_information.male": "Male",
+     "basic_information.female": "Female",
+     "basic_information.age": "Age",
+     "basic_information.weight": "Weight",
+     "basic_information.height": "Height",
+     "basic_information.youaresure": "You are sure that you can practice difficult exercises correctly such as squatting or Jumping.?",
+     "basic_information.sure": "Sure",
+     "basic_information.unsure": "Not Sure",
+     "basic_information.createExercise": "Create an exercise program",
+     "basic_information.selectunit": "select unit",
+     "basic_information.year": "year",
   };
