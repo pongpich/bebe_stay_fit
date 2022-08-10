@@ -74,6 +74,9 @@ export const types = {
   ACCEPT_TEAM_INVITE: "ACCEPT_TEAM_INVITE",
   ACCEPT_TEAM_INVITE_SUCCESS: "ACCEPT_TEAM_INVITE_SUCCESS",
   ACCEPT_TEAM_INVITE_FAIL: "ACCEPT_TEAM_INVITE_FAIL",
+  GET_FRIENDS_RANK: "GET_FRIENDS_RANK",
+  GET_FRIENDS_RANK_SUCCESS: "GET_FRIENDS_RANK_SUCCESS",
+  GET_FRIENDS_RANK_FAIL: "GET_FRIENDS_RANK_FAIL",
 }
 
 export const deleteFriend = (user_id, friend_email) => ({
@@ -83,6 +86,13 @@ export const deleteFriend = (user_id, friend_email) => ({
     friend_email
   }
 });
+
+export const getFriendsRank = (user_id) => ({
+  type: types.GET_FRIENDS_RANK,
+  payload: {
+    user_id
+  }
+})
 
 export const getMaxFriends = (user_id) => ({
   type: types.GET_MAX_FRIENDS,
@@ -317,6 +327,22 @@ const getTeamInviteSagaAsync = async (
 ) => {
   try {
     const apiResult = await API.get("bebe", "/getTeamInvite", {
+      queryStringParameters: {
+        user_id
+      }
+    });
+    return apiResult
+  } catch (error) {
+    console.log("error :", error);
+    return { error, messsage: error.message }
+  }
+}
+
+const getFriendsRankSagaAsync = async (
+  user_id
+) => {
+  try {
+    const apiResult = await API.get("bebe", "/getFriendsRank", {
       queryStringParameters: {
         user_id
       }
@@ -843,6 +869,31 @@ function* getTeamInviteSaga({ payload }) {
 
   } catch (error) {
     console.log("error from getTeamInviteSaga :", error);
+  }
+}
+
+function* getFriendsRankSaga({ payload }) {
+  const {
+    user_id
+  } = payload
+  try {
+    const apiResult = yield call(
+      getFriendsRankSagaAsync,
+      user_id
+    );
+    if (apiResult.results.message === "success") {
+      yield put({
+        type: types.GET_FRIENDS_RANK_SUCCESS,
+        payload: apiResult.results.friend_list
+      })
+    } else if (apiResult.results.message === "friendless") {
+      yield put({
+        type: types.GET_FRIENDS_RANK_FAIL
+      })
+    }
+
+  } catch (error) {
+    console.log("error from getFriendsRankSaga :", error);
   }
 }
 
@@ -1441,6 +1492,10 @@ export function* watchAcceptTeamInvite() {
   yield takeEvery(types.ACCEPT_TEAM_INVITE, acceptTeamInviteSaga)
 }
 
+export function* watchGetFriendsRank() {
+  yield takeEvery(types.GET_FRIENDS_RANK, getFriendsRankSaga)
+}
+
 export function* saga() {
   yield all([
     fork(watchGetRank),
@@ -1471,6 +1526,7 @@ export function* saga() {
     fork(watchGetTeamInvite),
     fork(watchRejectTeamInvite),
     fork(watchAcceptTeamInvite),
+    fork(watchGetFriendsRank),
   ]);
 }
 
@@ -1496,6 +1552,7 @@ const INIT_STATE = {
   totalScoreOfTeam: 0,
   teamRank: [],
   individualRank: [],
+  friendsRank: [],
   statusCreateTeam: "default",
   challengePeriod: true,
   memberEventLog: [],
@@ -1513,11 +1570,29 @@ const INIT_STATE = {
   team_invite: [],
   statusGetTeamInvite: "default",
   statusRejectTeamInvite: "default",
-  statusAcceptTeamInvite: "default"
+  statusAcceptTeamInvite: "default",
+  statusGetFriendsRank: "default",
 };
 
 export function reducer(state = INIT_STATE, action) {
   switch (action.type) {
+    case types.GET_FRIENDS_RANK:
+      return {
+        ...state,
+        statusGetFriendsRank: "loading"
+      }
+    case types.GET_FRIENDS_RANK_SUCCESS:
+      return {
+        ...state,
+        friendsRank: action.payload,
+        statusGetFriendsRank: "success"
+      }
+    case types.GET_FRIENDS_RANK_FAIL:
+      return {
+        ...state,
+        friendsRank: [],
+        statusGetFriendsRank: "fail"
+      }
     case types.ACCEPT_TEAM_INVITE:
       return {
         ...state,

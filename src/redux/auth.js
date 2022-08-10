@@ -35,7 +35,15 @@ export const types = {
   TEST_POST_SERVICE: "TEST_POST_SERVICE",
   UPDATE_PROFILE: "UPDATE_PROFILE",
   UPDATE_PROFILE_SUCCESS: "UPDATE_PROFILE_SUCCESS",
+  CHECK_UPDATE_MAX_FRIENDS: "CHECK_UPDATE_MAX_FRIENDS",
 }
+
+export const checkUpdateMaxFriends = (user_id) => ({
+  type: types.CHECK_UPDATE_MAX_FRIENDS,
+  payload: {
+    user_id
+  }
+})
 
 export const resetStatusSetPassword = () => ({
   type: types.RESET_STATUS_SET_PASSWORD
@@ -334,6 +342,21 @@ const changeEmailSagaAsync = async (
       body: {
         email,
         new_email
+      }
+    });
+    return apiResult
+  } catch (error) {
+    return { error, messsage: error.message };
+  }
+}
+
+const checkUpdateMaxFriendsSagaAsync = async (
+  user_id
+) => {
+  try {
+    const apiResult = await API.put("bebe", "/checkUpdateMaxFriends", {
+      body: {
+        user_id
       }
     });
     return apiResult
@@ -656,6 +679,21 @@ function* changeEmailSaga({ payload }) {
   }
 }
 
+function* checkUpdateMaxFriendsSaga({ payload }) {
+  const {
+    user_id
+  } = payload
+
+  try {
+    const apiResult = yield call(
+      checkUpdateMaxFriendsSagaAsync,
+      user_id
+    );
+  } catch (error) {
+    console.log("error from checkUpdateMaxFriendsSaga :", error);
+  }
+}
+
 function* resetPasswordSaga({ payload }) {
   const {
     email,
@@ -796,6 +834,10 @@ export function* watchUpdateProfile() {
   yield takeEvery(types.UPDATE_PROFILE, updateProfileSaga)
 }
 
+export function* watchCheckUpdateMaxFriends() {
+  yield takeEvery(types.CHECK_UPDATE_MAX_FRIENDS, checkUpdateMaxFriendsSaga)
+}
+
 export function* saga() {
   yield all([
     fork(watchLoginUser),
@@ -812,6 +854,7 @@ export function* saga() {
     fork(watchChangeEmail),
     fork(watchTestPostService),
     fork(watchUpdateProfile),
+    fork(watchCheckUpdateMaxFriends),
   ]);
 }
 

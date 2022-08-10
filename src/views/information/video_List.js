@@ -34,7 +34,7 @@ import vector4 from "../images/vector4.png";
 import { loadingLogo } from "aws-amplify";
 import { connect } from "react-redux";
 import { videoListForUser, createWeeklyStayfitProgram, updatePlaytime, randomVideo, selectChangeVideo, updatePlaylist, updateBodyInfo } from "../../redux/exerciseVideos"
-import { getExpireDate } from "../../redux/auth"
+import { getExpireDate, checkUpdateMaxFriends } from "../../redux/auth"
 import { getDailyWeighChallenge, postDailyWeighChallenge } from "../../redux/challenges"
 import { convertFormatTime, convertSecondsToMinutes } from "../../helpers/utils"
 import { completeVideoPlayPercentage, minimumVideoPlayPercentage, updateFrequency } from "../../constants/defaultValues";
@@ -126,6 +126,8 @@ class videoList extends React.Component {
       this.props.getExpireDate(user.email);
 
       this.props.getDailyWeighChallenge(user.user_id);
+
+      this.props.checkUpdateMaxFriends(user.user_id);
     }
 
     /*    if (user && statusVideoList === "no_video") {
@@ -317,7 +319,7 @@ class videoList extends React.Component {
   clickBottom = (e) => {
 
     let name = e.target.name;
-    console.log("name",name);
+    console.log("name", name);
     if (name === 'borderBottom1') {
       console.log("1");
       var clickManu = "manu1"
@@ -839,7 +841,7 @@ class videoList extends React.Component {
                   <button style={{ display: 'none' }} id="modalDailyWeighChallengeClick" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalWeight">
                     Launch demo modal
                   </button>
-                  <button  style={{ display: 'none' }} type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalSubscription-share">
+                  <button style={{ display: 'none' }} type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalSubscription-share">
                     modalSubscription
                     </button>
                 </div>
@@ -850,7 +852,7 @@ class videoList extends React.Component {
           <div className="containerli">
             <div className="row">
               <div className="col">
-                <IntlMessages id="videoList.total"/> {timesExercise} <IntlMessages id="videoList.mins"/>
+                <IntlMessages id="videoList.total" /> {timesExercise} <IntlMessages id="videoList.mins" />
               </div>
               {/*  <div className="col-md-auto" onClick={() => this.editVDO()} aria-hidden="true" style={{ cursor: "pointer" }}>
                 <img src={edit} className="icon-edit" />
@@ -859,7 +861,7 @@ class videoList extends React.Component {
               <div className="col-4">
                 <div className="form-check form-switch form-check-reverse">
                   <input className="form-check-input" type="checkbox" id="autoPlayCheck" onClick={() => this.autoPlayCheck()} />
-                  <label className="form-check-label" ><IntlMessages id="videoList.autoPlay"/></label>
+                  <label className="form-check-label" ><IntlMessages id="videoList.autoPlay" /></label>
                 </div>
               </div>
             </div>
@@ -869,7 +871,7 @@ class videoList extends React.Component {
               <div className="col-2 col-sm-2 col-md-2 col-lg-2 ">
                 <div className="iconCenter ">
                   <div className="start-e">
-                    <p className="bold"><IntlMessages id="videoList.letsStart"/></p>
+                    <p className="bold"><IntlMessages id="videoList.letsStart" /></p>
                   </div>
                   {
                     (this.props.exerciseVideo) &&
@@ -933,7 +935,7 @@ class videoList extends React.Component {
                     }))
                   }
                   <div className="end-e">
-                    <p className="bold color1"><IntlMessages id="videoList.succeed"/></p>
+                    <p className="bold color1"><IntlMessages id="videoList.succeed" /></p>
                   </div>
                 </div>
               </div>
@@ -966,7 +968,7 @@ class videoList extends React.Component {
                           <div className=" col-12  col-sm-12 col-md-6 col-lg-6">
                             <div className="box-paly2">
                               <div className="text-video">
-                                <p className="alarm"> <img src={alarm} className="col-2" /> {minuteLabel}  <IntlMessages id="videoList.mins"/></p>
+                                <p className="alarm"> <img src={alarm} className="col-2" /> {minuteLabel}  <IntlMessages id="videoList.mins" /></p>
                               </div>
                               <div className="rectangle15"></div>
                               <p className="warmup">{item.category} {">"}</p>
@@ -1169,7 +1171,7 @@ class videoList extends React.Component {
                 </div>
                 <div className="modal-bodyWeight">
 
-                  <p className="kg-weightText"><IntlMessages id="videoList.currentweight"/></p>
+                  <p className="kg-weightText"><IntlMessages id="videoList.currentweight" /></p>
                   <div className="col-10 col-sm-10 col-md-8 col-lg-8 center2">
                     <div class="input-group mb-3">
                       <input
@@ -1188,8 +1190,8 @@ class videoList extends React.Component {
                     {
                       (this.props.statusPostDailyWeighChallenge !== "loading") &&
                       <div className="bottom-Weight">
-                        <button type="button" className="btn bottom-outlinePinkLeft " data-bs-dismiss="modal" aria-label="Close"><IntlMessages id="videoList.off"/></button>
-                        <button type="button" className="btn bottom-outlinePinkRight bottomEditProfileLeft " onClick={() => this.submitDailyWeighChallenge(this.state.weightInDailyWeighChallenge)}><IntlMessages id="shipping_address.confirm"/></button>
+                        <button type="button" className="btn bottom-outlinePinkLeft " data-bs-dismiss="modal" aria-label="Close"><IntlMessages id="videoList.off" /></button>
+                        <button type="button" className="btn bottom-outlinePinkRight bottomEditProfileLeft " onClick={() => this.submitDailyWeighChallenge(this.state.weightInDailyWeighChallenge)}><IntlMessages id="shipping_address.confirm" /></button>
                       </div>
                     }
                   </div>
@@ -1206,21 +1208,21 @@ class videoList extends React.Component {
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
               <div class="modal-subscription">
-                  {
-                    this.nieyeah()
-                    /* this.staycool() 
-                    this.super()
-                    this.wow()
-                    this.thankYou()
-                    this.goodJob()*/
-                  }
+                {
+                  this.nieyeah()
+                  /* this.staycool() 
+                  this.super()
+                  this.wow()
+                  this.thankYou()
+                  this.goodJob()*/
+                }
               </div>
             </div>
           </div>
         </div>
 
 
-        
+
 
       </>
     )
@@ -1229,178 +1231,178 @@ class videoList extends React.Component {
   nieyeah() {
     return (
       <div class="container text-center">
-      <div class="row justify-content-md-center">
-        <div class="col-12 col-sm-12 col-md-12 col-lg-6">
-         <img src={frame41} className="frame41" />
-         <img src={icon_web} className="icon_web" />
-        </div>
-        <div class="col-12 col-sm-12 col-md-12 col-lg-6  ">
-           <div className="canterMode-box">
-             <p className="modeText-box">วันนี้คุณเล่นสำเร็จแล้ว</p>
-            <p>xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx <br/>xxxxxxxxxxxxxxxx</p>
+        <div class="row justify-content-md-center">
+          <div class="col-12 col-sm-12 col-md-12 col-lg-6">
+            <img src={frame41} className="frame41" />
+            <img src={icon_web} className="icon_web" />
+          </div>
+          <div class="col-12 col-sm-12 col-md-12 col-lg-6  ">
+            <div className="canterMode-box">
+              <p className="modeText-box">วันนี้คุณเล่นสำเร็จแล้ว</p>
+              <p>xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx <br />xxxxxxxxxxxxxxxx</p>
 
-            <p className="share-success">แชร์ความสำเร็จ</p>
-            <div className="box-share">
-            <img src={facebook} className="icon-share" />
-            <img src={twitter} className="icon-share" />
-            <img src={message} className="icon-share" />
-            <img src={line} className="icon-share" />
-            <img src={tiktok} className="icon-share" />
-            <img src={whatsApp} className="icon-share" />
-            <img src={instagram} className="icon-share" />
+              <p className="share-success">แชร์ความสำเร็จ</p>
+              <div className="box-share">
+                <img src={facebook} className="icon-share" />
+                <img src={twitter} className="icon-share" />
+                <img src={message} className="icon-share" />
+                <img src={line} className="icon-share" />
+                <img src={tiktok} className="icon-share" />
+                <img src={whatsApp} className="icon-share" />
+                <img src={instagram} className="icon-share" />
+              </div>
             </div>
-           </div>
+          </div>
         </div>
       </div>
-    </div>
     )
-  } 
+  }
 
   staycool() {
     return (
       <div class="container text-center">
-      <div class="row justify-content-md-center">
-        <div class="col-12 col-sm-12 col-md-12 col-lg-6">
-         <img src={frame40} className="frame40" />
-         <img src={icon_web} className="icon_web" />
-        </div>
-        <div class="col-12 col-sm-12 col-md-12 col-lg-6  ">
-           <div className="canterMode-box">
-             <p className="modeText-box">ทีมอันดับที่ 1 ประจำสัปดาห์</p>
-            <p>xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx <br/>xxxxxxxxxxxxxxxx</p>
+        <div class="row justify-content-md-center">
+          <div class="col-12 col-sm-12 col-md-12 col-lg-6">
+            <img src={frame40} className="frame40" />
+            <img src={icon_web} className="icon_web" />
+          </div>
+          <div class="col-12 col-sm-12 col-md-12 col-lg-6  ">
+            <div className="canterMode-box">
+              <p className="modeText-box">ทีมอันดับที่ 1 ประจำสัปดาห์</p>
+              <p>xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx <br />xxxxxxxxxxxxxxxx</p>
 
-            <p className="share-success">แชร์ความสำเร็จ</p>
-            <div className="box-share">
-            <img src={facebook} className="icon-share" />
-            <img src={twitter} className="icon-share" />
-            <img src={message} className="icon-share" />
-            <img src={line} className="icon-share" />
-            <img src={tiktok} className="icon-share" />
-            <img src={whatsApp} className="icon-share" />
-            <img src={instagram} className="icon-share" />
+              <p className="share-success">แชร์ความสำเร็จ</p>
+              <div className="box-share">
+                <img src={facebook} className="icon-share" />
+                <img src={twitter} className="icon-share" />
+                <img src={message} className="icon-share" />
+                <img src={line} className="icon-share" />
+                <img src={tiktok} className="icon-share" />
+                <img src={whatsApp} className="icon-share" />
+                <img src={instagram} className="icon-share" />
+              </div>
             </div>
-           </div>
+          </div>
         </div>
       </div>
-    </div>
     )
-  } 
+  }
   super() {
     return (
       <div class="container text-center">
-      <div class="row justify-content-md-center">
-        <div class="col-12 col-sm-12 col-md-12 col-lg-6">
-         <img src={frame42} className="frame40" />
-         <img src={icon_web} className="icon_web" />
-        </div>
-        <div class="col-12 col-sm-12 col-md-12 col-lg-6  ">
-           <div className="canterMode-box">
-             <p className="modeText-box">คุณมีเพื่อนในรายชื่อ 10 คน</p>
-            <p>xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx <br/>xxxxxxxxxxxxxxxx</p>
+        <div class="row justify-content-md-center">
+          <div class="col-12 col-sm-12 col-md-12 col-lg-6">
+            <img src={frame42} className="frame40" />
+            <img src={icon_web} className="icon_web" />
+          </div>
+          <div class="col-12 col-sm-12 col-md-12 col-lg-6  ">
+            <div className="canterMode-box">
+              <p className="modeText-box">คุณมีเพื่อนในรายชื่อ 10 คน</p>
+              <p>xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx <br />xxxxxxxxxxxxxxxx</p>
 
-            <p className="share-success">แชร์ความสำเร็จ</p>
-            <div className="box-share">
-            <img src={facebook} className="icon-share" />
-            <img src={twitter} className="icon-share" />
-            <img src={message} className="icon-share" />
-            <img src={line} className="icon-share" />
-            <img src={tiktok} className="icon-share" />
-            <img src={whatsApp} className="icon-share" />
-            <img src={instagram} className="icon-share" />
+              <p className="share-success">แชร์ความสำเร็จ</p>
+              <div className="box-share">
+                <img src={facebook} className="icon-share" />
+                <img src={twitter} className="icon-share" />
+                <img src={message} className="icon-share" />
+                <img src={line} className="icon-share" />
+                <img src={tiktok} className="icon-share" />
+                <img src={whatsApp} className="icon-share" />
+                <img src={instagram} className="icon-share" />
+              </div>
             </div>
-           </div>
+          </div>
         </div>
       </div>
-    </div>
     )
-  } 
+  }
   wow() {
     return (
       <div class="container text-center">
-      <div class="row justify-content-md-center">
-        <div class="col-12 col-sm-12 col-md-12 col-lg-6">
-         <img src={frame43} className="frame40" />
-         <img src={icon_web} className="icon_web" />
-        </div>
-        <div class="col-12 col-sm-12 col-md-12 col-lg-6  ">
-           <div className="canterMode-box">
-             <p className="modeText-box">ทีมอันดับที่ 2 ประจำสัปดาห์</p>
-            <p>xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx <br/>xxxxxxxxxxxxxxxx</p>
+        <div class="row justify-content-md-center">
+          <div class="col-12 col-sm-12 col-md-12 col-lg-6">
+            <img src={frame43} className="frame40" />
+            <img src={icon_web} className="icon_web" />
+          </div>
+          <div class="col-12 col-sm-12 col-md-12 col-lg-6  ">
+            <div className="canterMode-box">
+              <p className="modeText-box">ทีมอันดับที่ 2 ประจำสัปดาห์</p>
+              <p>xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx <br />xxxxxxxxxxxxxxxx</p>
 
-            <p className="share-success">แชร์ความสำเร็จ</p>
-            <div className="box-share">
-            <img src={facebook} className="icon-share" />
-            <img src={twitter} className="icon-share" />
-            <img src={message} className="icon-share" />
-            <img src={line} className="icon-share" />
-            <img src={tiktok} className="icon-share" />
-            <img src={whatsApp} className="icon-share" />
-            <img src={instagram} className="icon-share" />
+              <p className="share-success">แชร์ความสำเร็จ</p>
+              <div className="box-share">
+                <img src={facebook} className="icon-share" />
+                <img src={twitter} className="icon-share" />
+                <img src={message} className="icon-share" />
+                <img src={line} className="icon-share" />
+                <img src={tiktok} className="icon-share" />
+                <img src={whatsApp} className="icon-share" />
+                <img src={instagram} className="icon-share" />
+              </div>
             </div>
-           </div>
+          </div>
         </div>
       </div>
-    </div>
     )
-  } 
+  }
   thankYou() {
     return (
       <div class="container text-center">
-      <div class="row justify-content-md-center">
-        <div class="col-12 col-sm-12 col-md-12 col-lg-6">
-         <img src={frame44} className="frame40" />
-         <img src={icon_web} className="icon_web" />
-        </div>
-        <div class="col-12 col-sm-12 col-md-12 col-lg-6  ">
-           <div className="canterMode-box">
-             <p className="modeText-box">ทีมอันดับที่ 3-10 ประจำสัปดาห์</p>
-            <p>xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx <br/>xxxxxxxxxxxxxxxx</p>
+        <div class="row justify-content-md-center">
+          <div class="col-12 col-sm-12 col-md-12 col-lg-6">
+            <img src={frame44} className="frame40" />
+            <img src={icon_web} className="icon_web" />
+          </div>
+          <div class="col-12 col-sm-12 col-md-12 col-lg-6  ">
+            <div className="canterMode-box">
+              <p className="modeText-box">ทีมอันดับที่ 3-10 ประจำสัปดาห์</p>
+              <p>xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx <br />xxxxxxxxxxxxxxxx</p>
 
-            <p className="share-success">แชร์ความสำเร็จ</p>
-            <div className="box-share">
-            <img src={facebook} className="icon-share" />
-            <img src={twitter} className="icon-share" />
-            <img src={message} className="icon-share" />
-            <img src={line} className="icon-share" />
-            <img src={tiktok} className="icon-share" />
-            <img src={whatsApp} className="icon-share" />
-            <img src={instagram} className="icon-share" />
+              <p className="share-success">แชร์ความสำเร็จ</p>
+              <div className="box-share">
+                <img src={facebook} className="icon-share" />
+                <img src={twitter} className="icon-share" />
+                <img src={message} className="icon-share" />
+                <img src={line} className="icon-share" />
+                <img src={tiktok} className="icon-share" />
+                <img src={whatsApp} className="icon-share" />
+                <img src={instagram} className="icon-share" />
+              </div>
             </div>
-           </div>
+          </div>
         </div>
       </div>
-    </div>
     )
-  } 
+  }
   goodJob() {
     return (
       <div class="container text-center">
-      <div class="row justify-content-md-center">
-        <div class="col-12 col-sm-12 col-md-12 col-lg-6">
-         <img src={frame45} className="frame40" />
-         <img src={icon_web} className="icon_web" />
-        </div>
-        <div class="col-12 col-sm-12 col-md-12 col-lg-6  ">
-           <div className="canterMode-box">
-             <p className="modeText-box">เข้าสู่ระบบทุกวันจนจบฤดูกาล</p>
-            <p>xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx <br/>xxxxxxxxxxxxxxxx</p>
+        <div class="row justify-content-md-center">
+          <div class="col-12 col-sm-12 col-md-12 col-lg-6">
+            <img src={frame45} className="frame40" />
+            <img src={icon_web} className="icon_web" />
+          </div>
+          <div class="col-12 col-sm-12 col-md-12 col-lg-6  ">
+            <div className="canterMode-box">
+              <p className="modeText-box">เข้าสู่ระบบทุกวันจนจบฤดูกาล</p>
+              <p>xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx <br />xxxxxxxxxxxxxxxx</p>
 
-            <p className="share-success">แชร์ความสำเร็จ</p>
-            <div className="box-share">
-            <img src={facebook} className="icon-share" />
-            <img src={twitter} className="icon-share" />
-            <img src={message} className="icon-share" />
-            <img src={line} className="icon-share" />
-            <img src={tiktok} className="icon-share" />
-            <img src={whatsApp} className="icon-share" />
-            <img src={instagram} className="icon-share" />
+              <p className="share-success">แชร์ความสำเร็จ</p>
+              <div className="box-share">
+                <img src={facebook} className="icon-share" />
+                <img src={twitter} className="icon-share" />
+                <img src={message} className="icon-share" />
+                <img src={line} className="icon-share" />
+                <img src={tiktok} className="icon-share" />
+                <img src={whatsApp} className="icon-share" />
+                <img src={instagram} className="icon-share" />
+              </div>
             </div>
-           </div>
+          </div>
         </div>
       </div>
-    </div>
     )
-  } 
+  }
 
 
   renderEditVDO() {
@@ -2063,12 +2065,12 @@ class videoList extends React.Component {
         <div className="card shadow mb-4 col-lg-6 offset-lg-3 col-md-12 col-12 padding-leftRight margin-left" style={{ borderRadius: "20px" }}>
           <div className="mb-4 col-lg-12  col-md-12 col-12">
             <center>
-              <h5 className="mt-5"><IntlMessages id="videoList.enterweekly"/></h5>
-              <h5><IntlMessages id="videoList.programjust"/></h5>
+              <h5 className="mt-5"><IntlMessages id="videoList.enterweekly" /></h5>
+              <h5><IntlMessages id="videoList.programjust" /></h5>
             </center>
           </div>
           <div className="col-lg-8 offset-lg-2 col-md-8 offset-md-2 col-12">
-            <p style={{ color: "#F45197" }}><IntlMessages id="basic_information.gender"/></p>
+            <p style={{ color: "#F45197" }}><IntlMessages id="basic_information.gender" /></p>
             <div className="form-check" >
               <label className="form-check-label mb-3 mr-4">
                 <input
@@ -2079,7 +2081,7 @@ class videoList extends React.Component {
                   name="sex"
                   checked={this.state.sex === "male"}
                   onChange={this.onChange}
-                /> <IntlMessages id="basic_information.male"/>
+                /> <IntlMessages id="basic_information.male" />
               </label>
               <label className="form-check-label" style={{ marginLeft: "60px" }}>
                 <input
@@ -2090,14 +2092,14 @@ class videoList extends React.Component {
                   name="sex"
                   checked={this.state.sex === "female"}
                   onChange={this.onChange}
-                /> <IntlMessages id="basic_information.female"/>
+                /> <IntlMessages id="basic_information.female" />
               </label>
             </div>
           </div>
 
           <div className="col-lg-8 offset-lg-2 col-md-8 offset-md-2 col-12">
             <div className="form-group">
-              <label className="bmd-label-floating" style={{ color: "#F45197" }}><IntlMessages id="basic_information.age"/></label>
+              <label className="bmd-label-floating" style={{ color: "#F45197" }}><IntlMessages id="basic_information.age" /></label>
               <input
                 disabled
                 type="number"
@@ -2111,16 +2113,16 @@ class videoList extends React.Component {
             </div>
             {
               (statusOtherAttributes === "ageNotUseDecimals") &&
-              <small id="emailHelp" className="form-text text-muted mb-3"><h6 style={{ color: "red" }}><IntlMessages id="videoList.mustnot"/></h6></small>
+              <small id="emailHelp" className="form-text text-muted mb-3"><h6 style={{ color: "red" }}><IntlMessages id="videoList.mustnot" /></h6></small>
             }
             {
               (statusOtherAttributes === "fail" && this.state.age === "") &&
-              <small id="emailHelp" className="form-text text-muted mb-3"><h6 style={{ color: "red" }}><IntlMessages id="videoList.pleasefill"/></h6></small>
+              <small id="emailHelp" className="form-text text-muted mb-3"><h6 style={{ color: "red" }}><IntlMessages id="videoList.pleasefill" /></h6></small>
             }
           </div>
           <div className="col-lg-8 offset-lg-2 col-md-8 offset-md-2 col-12">
             <div className="form-group">
-              <label className="bmd-label-floating" style={{ color: "#F45197" }}><IntlMessages id="videoList.weight"/></label>
+              <label className="bmd-label-floating" style={{ color: "#F45197" }}><IntlMessages id="videoList.weight" /></label>
               <input
                 type="number"
                 className="form-control"
@@ -2133,12 +2135,12 @@ class videoList extends React.Component {
             </div>
             {
               (statusOtherAttributes === "fail" && this.state.weight === "") &&
-              <small id="emailHelp" className="form-text text-muted mb-3"><h6 style={{ color: "red" }}><IntlMessages id="videoList.pleasefill"/></h6></small>
+              <small id="emailHelp" className="form-text text-muted mb-3"><h6 style={{ color: "red" }}><IntlMessages id="videoList.pleasefill" /></h6></small>
             }
           </div>
           <div className="col-lg-8 offset-lg-2 col-md-8 offset-md-2 col-12">
             <div className="form-group">
-              <label className="bmd-label-floating" style={{ color: "#F45197" }}><IntlMessages id="videoList.height"/></label>
+              <label className="bmd-label-floating" style={{ color: "#F45197" }}><IntlMessages id="videoList.height" /></label>
               <input
                 type="number"
                 className="form-control"
@@ -2151,7 +2153,7 @@ class videoList extends React.Component {
             </div>
             {
               (statusOtherAttributes === "fail" && this.state.height === "") &&
-              <small id="emailHelp" className="form-text text-muted mb-3"><h6 style={{ color: "red" }}><IntlMessages id="videoList.pleasefill"/></h6></small>
+              <small id="emailHelp" className="form-text text-muted mb-3"><h6 style={{ color: "red" }}><IntlMessages id="videoList.pleasefill" /></h6></small>
             }
           </div>
           <div className="mb-5 mt-4 col-lg-8 offset-lg-2 col-md-8 offset-md-2 col-12">
@@ -2178,8 +2180,8 @@ class videoList extends React.Component {
         <div className="card shadow mb-4 col-lg-6 offset-lg-3 col-md-12 col-12 padding-leftRight margin-left" style={{ borderRadius: "20px" }}>
           <div className="mt-5 mb-5 col-lg-12  col-md-12 col-12">
             <center>
-              <h5><IntlMessages id="videoList.measureyour"/></h5>
-              <h5><IntlMessages id="videoList.usingsample"/></h5>
+              <h5><IntlMessages id="videoList.measureyour" /></h5>
+              <h5><IntlMessages id="videoList.usingsample" /></h5>
             </center>
           </div>
           <div className="row">
@@ -2196,7 +2198,7 @@ class videoList extends React.Component {
 
             <div className="col-md-3">
               <div className="form-group">
-                <label className="bmd-label-floating" style={{ color: "#F45197" }}><IntlMessages id="videoList.chest"/></label>
+                <label className="bmd-label-floating" style={{ color: "#F45197" }}><IntlMessages id="videoList.chest" /></label>
                 <input
                   type="number"
                   className="form-control"
@@ -2208,10 +2210,10 @@ class videoList extends React.Component {
               </div>
               {
                 (statusOtherAttributes === "fail" && this.state.chest === "") &&
-                <small id="emailHelp" className="form-text text-muted mb-3"><h6 style={{ color: "red" }}><IntlMessages id="videoList.pleasefill"/></h6></small>
+                <small id="emailHelp" className="form-text text-muted mb-3"><h6 style={{ color: "red" }}><IntlMessages id="videoList.pleasefill" /></h6></small>
               }
               <div className="form-group">
-                <label className="bmd-label-floating" style={{ color: "#F45197" }}><IntlMessages id="videoList.waistline"/></label>
+                <label className="bmd-label-floating" style={{ color: "#F45197" }}><IntlMessages id="videoList.waistline" /></label>
                 <input
                   type="number"
                   className="form-control"
@@ -2224,10 +2226,10 @@ class videoList extends React.Component {
               </div>
               {
                 (statusOtherAttributes === "fail" && this.state.waist === "") &&
-                <small id="emailHelp" className="form-text text-muted mb-3"><h6 style={{ color: "red" }}><IntlMessages id="videoList.pleasefill"/></h6></small>
+                <small id="emailHelp" className="form-text text-muted mb-3"><h6 style={{ color: "red" }}><IntlMessages id="videoList.pleasefill" /></h6></small>
               }
               <div className="form-group">
-                <label className="bmd-label-floating" style={{ color: "#F45197" }}><IntlMessages id="videoList.hip"/></label>
+                <label className="bmd-label-floating" style={{ color: "#F45197" }}><IntlMessages id="videoList.hip" /></label>
                 <input
                   type="number"
                   className="form-control"
@@ -2239,7 +2241,7 @@ class videoList extends React.Component {
               </div>
               {
                 (statusOtherAttributes === "fail" && this.state.hip === "") &&
-                <small id="emailHelp" className="form-text text-muted mb-3"><h6 style={{ color: "red" }}><IntlMessages id="videoList.pleasefill"/></h6></small>
+                <small id="emailHelp" className="form-text text-muted mb-3"><h6 style={{ color: "red" }}><IntlMessages id="videoList.pleasefill" /></h6></small>
               }
             </div>
           </div>
@@ -2254,7 +2256,7 @@ class videoList extends React.Component {
                     onClick={() => this.setState({ otherAttributesPage: "basicInfo" })}
                     style={{ backgroundColor: "white", color: "#F45197", borderColor: "#F45197" }}
                     type="button"
-                  ><IntlMessages id="videoList.goback"/></button>
+                  ><IntlMessages id="videoList.goback" /></button>
                 </div>
                 <div className="col-md-5 marginTopMd5">
                   <button
@@ -2262,7 +2264,7 @@ class videoList extends React.Component {
                     onClick={() => this.onUpdateBodyInfo()}
                     style={{ backgroundColor: "#F45197" }}
                     type="button"
-                  ><IntlMessages id="shipping_address.confirm"/></button>
+                  ><IntlMessages id="shipping_address.confirm" /></button>
                 </div>
               </div>
             </div>
@@ -2282,19 +2284,19 @@ class videoList extends React.Component {
         <div className="card shadow mb-4 col-lg-8 offset-lg-2 col-md-12 col-12 padding-leftRight margin-left" style={{ borderRadius: "20px" }}>
           <div className="mb-3 col-lg-12  col-md-12 col-12">
             <center>
-              <h2 className="mt-5 mb-4" style={{ color: "#F45197" }}><b><IntlMessages id="videoList.particulars"/></b></h2>
-              <h5><IntlMessages id="videoList.checkinformation"/></h5>
-              <h5><IntlMessages id="videoList.programjust"/></h5>
+              <h2 className="mt-5 mb-4" style={{ color: "#F45197" }}><b><IntlMessages id="videoList.particulars" /></b></h2>
+              <h5><IntlMessages id="videoList.checkinformation" /></h5>
+              <h5><IntlMessages id="videoList.programjust" /></h5>
             </center>
           </div>
           <div className="centerForm">
             <div className="mb-3 row">
-              <label className="col-sm-6 col-form-label"><IntlMessages id="basic_information.gender"/></label>
+              <label className="col-sm-6 col-form-label"><IntlMessages id="basic_information.gender" /></label>
               <div className="col-sm-4">
                 <select disabled onClick={(event) => this.renderHr(event)} onChange={(event) => this.handleChange(event)} className="form-control" id="sex" aria-label="Default select example">
                   {
                     sexInfo === "male" ? <option value={sexInfo} selected>{sexInfoTH}</option> :
-                      <option value="female"><IntlMessages id="basic_information.female"/></option>
+                      <option value="female"><IntlMessages id="basic_information.female" /></option>
                   }
                   <option value={sexInfoEngฺBack}>{sexInfoTHBack}</option>
 
@@ -2307,7 +2309,7 @@ class videoList extends React.Component {
           <div className={this.state.staticSex}></div>
           <div className="centerForm">
             <div className="mb-3 row">
-              <label className="col-sm-6 col-form-label"><IntlMessages id="basic_information.age"/></label>
+              <label className="col-sm-6 col-form-label"><IntlMessages id="basic_information.age" /></label>
               <div className="col-sm-4">
                 <input disabled type="number" id="age" name="age" min="0" value={this.state.age} onClick={(event) => this.renderHr(event)} onChange={(event) => this.handleChange(event)} className="form-control" />
               </div>
@@ -2316,7 +2318,7 @@ class videoList extends React.Component {
           <div className={this.state.staticAge}></div>
           <div className="centerForm">
             <div className="mb-3 row">
-              <label className="col-sm-6 col-form-label"><IntlMessages id="videoList.weight"/></label>
+              <label className="col-sm-6 col-form-label"><IntlMessages id="videoList.weight" /></label>
               <div className="col-sm-4">
                 <input type="number" id="weight" name="weight" step=".01" value={this.state.weight} min="0" onChange={(event) => this.handleChange(event)} onClick={(event) => this.renderHr(event)} className="form-control" />
               </div>
@@ -2325,7 +2327,7 @@ class videoList extends React.Component {
           <div className={this.state.staticWeight}></div>
           <div className="centerForm">
             <div className="mb-3 row">
-              <label className="col-sm-6 col-form-label"><IntlMessages id="videoList.height"/></label>
+              <label className="col-sm-6 col-form-label"><IntlMessages id="videoList.height" /></label>
               <div className="col-sm-4">
 
                 <input type="number" id="height" name="height" step=".01" min="0" value={this.state.height} onChange={(event) => this.handleChange(event)} onClick={(event) => this.renderHr(event)} className="form-control" />
@@ -2335,7 +2337,7 @@ class videoList extends React.Component {
           <div className={this.state.staticHeight}></div>
           <div className="centerForm">
             <div className="mb-3 row">
-              <label className="col-sm-6 col-form-label"><IntlMessages id="videoList.chest"/></label>
+              <label className="col-sm-6 col-form-label"><IntlMessages id="videoList.chest" /></label>
               <div className="col-sm-4">
                 <input type="number" step=".01" min="0" name="chest" id="chest" value={this.state.chest} onClick={(event) => this.renderHr(event)} onChange={(event) => this.handleChange(event)} className="form-control" />
               </div>
@@ -2344,7 +2346,7 @@ class videoList extends React.Component {
           <div className={this.state.staticChest}></div>
           <div className="centerForm">
             <div className="mb-3 row">
-              <label className="col-sm-6 col-form-label"><IntlMessages id="videoList.waistline"/></label>
+              <label className="col-sm-6 col-form-label"><IntlMessages id="videoList.waistline" /></label>
               <div className="col-sm-4">
                 <input type="number" step=".01" min="0" id="waist" name="waist" value={this.state.waist} onClick={(event) => this.renderHr(event)} onChange={(event) => this.handleChange(event)} className="form-control" />
               </div>
@@ -2353,7 +2355,7 @@ class videoList extends React.Component {
           <div className={this.state.staticWaist}></div>
           <div className="centerForm">
             <div className="mb-3 row">
-              <label className="col-sm-6 col-form-label"><IntlMessages id="videoList.hip"/></label>
+              <label className="col-sm-6 col-form-label"><IntlMessages id="videoList.hip" /></label>
               <div className="col-sm-4">
                 <input type="number" step=".01" min="0" id="hip" name="hip" value={this.state.hip} onClick={(event) => this.renderHr(event)} onChange={(event) => this.handleChange(event)} className="form-control" />
               </div>
@@ -2367,7 +2369,7 @@ class videoList extends React.Component {
                 onClick={() => this.onUpdateProfile()}
                 style={{ backgroundColor: "#F45197" }}
                 type="button"
-              ><IntlMessages id="shipping_address.confirm"/></button>
+              ><IntlMessages id="shipping_address.confirm" /></button>
             </div>
           </div>
           <br />
@@ -2405,7 +2407,7 @@ const mapStateToProps = ({ authUser, exerciseVideos, challenges }) => {
   return { user, exerciseVideo, statusVideoList, video, videos, status, dailyWeighChallenge, statusPostDailyWeighChallenge, statusGetDailyWeighChallenge };
 };
 
-const mapActionsToProps = { videoListForUser, createWeeklyStayfitProgram, updatePlaytime, randomVideo, selectChangeVideo, updatePlaylist, updateBodyInfo, getExpireDate, getDailyWeighChallenge, postDailyWeighChallenge };
+const mapActionsToProps = { videoListForUser, createWeeklyStayfitProgram, updatePlaytime, randomVideo, selectChangeVideo, updatePlaylist, updateBodyInfo, getExpireDate, getDailyWeighChallenge, postDailyWeighChallenge, checkUpdateMaxFriends };
 
 export default connect(
   mapStateToProps,
