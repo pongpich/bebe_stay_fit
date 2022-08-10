@@ -1389,7 +1389,7 @@ class Challenge extends Component {
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
               <div class="modal-bodyChallenge">
-                <p className="rules-modal"><IntlMessages id="challenge.confirmdeletio" /></p>
+                <p className="rules-modal"><IntlMessages id="challenge.confirmdeletion" /></p>
                 <p className="textModel-challenge"><IntlMessages id="challenge.remove" /> <span className="bold">{this.state.emailDeleteFriend}</span></p>
                 <p className="textModel-challenge"><IntlMessages id="challenge.fromfriend" /></p>
                 <div className="headBox">
