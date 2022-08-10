@@ -190,7 +190,7 @@ module.exports = {
      "videoList.letsStart": "เริ่มกันเลย!",
      "videoList.succeed": "สำเร็จแล้ว!",
      "videoList.currentweight": "กรุณากรอกน้ำหนักปัจจุบันของคุณ",
-     "videoList.off": "off",
+     "videoList.off": "Off",
      "videoList.enterweekly": "กรุณากรอกข้อมูลรายสัปดาห์ เพื่อที่คุณจะได้รับประสบการณ์",
      "videoList.checkinformation": "กรุณาตรวจสอบข้อมูลอีกครั้งเพื่อที่คุณจะได้รับประสบการณ์",
      "videoList.programjust": "โปรแกรมออกกำลังกายสำหรับคุณโดยเฉพาะ",
