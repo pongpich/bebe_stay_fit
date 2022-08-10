@@ -7,10 +7,13 @@ import newbie from '../../assets/img/newbie.png';
 import ellipse24 from '../../assets/img/ellipse24.png';
 import group23 from '../../assets/img/group23.png';
 import group22 from '../../assets/img/group22.png';
+import icon_x from '../../assets/img/icon_x.png';
 import { getFriendList, getRank, getLogWeight, getIsReducedWeight, getLogWeightTeam, getDailyTeamWeightBonus, getNumberOfTeamNotFull, assignGroupToMember, clearChallenges, createChallengeGroup, leaveTeam, getMembersAndRank, getGroupName, getScoreOfTeam, getLeaderboard, getChallengePeriod, sendFriendRequest, getFriendRequest, acceptFriend, rejectFriend, getMaxFriends, deleteFriend, sendTeamInvite, getTeamInvite, rejectTeamInvite, acceptTeamInvite } from "../../redux/challenges";
 import { getGroupID } from "../../redux/auth";
 import { connect } from "react-redux";
-import moment from "moment"
+import moment from "moment";
+import IntlMessages from "../../helpers/IntlMessages";
+import { injectIntl } from 'react-intl';
 
 class Challenge extends Component {
   constructor(props) {
@@ -304,7 +307,7 @@ class Challenge extends Component {
               <a className="rules" data-bs-toggle="modal" data-bs-target="#exampleModalScore">รายละเอียดคะแนน</a>
             </li>
             <li className="li">
-              <a className="rules" data-bs-toggle="modal" data-bs-target="#exampleModal">กฎและกติกา</a>
+              <a className="rules" data-bs-toggle="modal" data-bs-target="#exampleModal"><IntlMessages id="challenge.rules"/></a>
             </li>
           </ul>
 
@@ -880,7 +883,7 @@ class Challenge extends Component {
                               }
                             </span>
                             <span className="span-challenge"> {item.total_score} คะแนน</span>
-                            <span className="" style={{ color: "gray", cursor: "pointer" }} onClick={() => this.onDeleteFriendModal(item.email)}> X</span>
+                            <span className="" style={{ color: "gray", cursor: "pointer" }} onClick={() => this.onDeleteFriendModal(item.email)}> <img src={icon_x} /></span>
                           </div>
                         </div>
                       </div>
@@ -930,6 +933,7 @@ class Challenge extends Component {
 
 
   render() {
+    /* const { messages } = this.props.intl; */
     const { challenge, allMissions, teamList, scoreboard, friendList } = this.state;
     const { rank, logWeightCount, isReducedWeight, logWeightTeamCount, numberOfMembers, dailyTeamWeightBonusCount, user, totalScoreOfTeam } = this.props;
     const isExerciseCompleted = this.isExerciseCompleted(this.props.exerciseVideo);
@@ -946,16 +950,16 @@ class Challenge extends Component {
           <div className="col-12 col-sm-12 col-md-12 col-lg-12 ">
             <ul className="challenge">
               <li className="video-li">
-                <a className={allMissions} name="allMissions" onClick={e => this.challengeBottom(e)}>ภารกิจทั้งหมด</a>
+                <a className={allMissions} name="allMissions" onClick={e => this.challengeBottom(e)}> {this.props.intl.messages['challenge.allMission']}</a>
               </li>
               <li className="video-li">
-                <a className={teamList} name="teamList" onClick={e => this.challengeBottom(e)}>รายชื่อภายในทีม</a>
+                <a className={teamList} name="teamList" onClick={e => this.challengeBottom(e)}>{this.props.intl.messages['challenge.teamlist']}</a>
               </li>
               <li className="video-li">
-                <a className={scoreboard} name="scoreboard" onClick={e => this.challengeBottom(e)}>กระดานคะแนน</a>
+                <a className={scoreboard} name="scoreboard" onClick={e => this.challengeBottom(e)}>{this.props.intl.messages['challenge.teamscoreboard']}</a>
               </li>
               <li className="video-li">
-                <a className={friendList} name="friendList" onClick={e => this.challengeBottom(e)}>รายชื่อเพื่อน</a>
+                <a className={friendList} name="friendList" onClick={e => this.challengeBottom(e)}>{this.props.intl.messages['challenge.friendlist']}</a>
               </li>
             </ul>
           </div>
@@ -1328,11 +1332,17 @@ class Challenge extends Component {
   }
 }
 
-const mapStateToProps = ({ authUser, challenges, exerciseVideos }) => {
+const mapStateToProps = ({ authUser, challenges, exerciseVideos,settings }) => {
   const { user } = authUser;
   const { exerciseVideo, statusVideoList } = exerciseVideos;
   const { statusCreateTeam, numberOfTeamNotFull, statusGetNumberOfTeamNotFull, statusLeaveTeam, membersOfTeam, group_name, totalScoreOfTeam, rank, teamRank, individualRank, logWeightCount, isReducedWeight, logWeightTeamCount, numberOfMembers, dailyTeamWeightBonusCount, friend_list, statusGetFriendList, statusSendFriendRequest, friend_request, statusGetFriendRequest, statusAcceptFriend, statusRejectFriend, statusGetMaxFriends, max_friends, statusDeleteFriend, statusSendTeamInvite, team_invite, statusGetTeamInvite, statusRejectTeamInvite, statusAcceptTeamInvite } = challenges;
-  return { user, statusCreateTeam, numberOfTeamNotFull, statusGetNumberOfTeamNotFull, statusLeaveTeam, membersOfTeam, group_name, totalScoreOfTeam, rank, teamRank, individualRank, logWeightCount, isReducedWeight, logWeightTeamCount, numberOfMembers, dailyTeamWeightBonusCount, exerciseVideo, statusVideoList, friend_list, statusGetFriendList, statusSendFriendRequest, friend_request, statusGetFriendRequest, statusAcceptFriend, statusRejectFriend, statusGetMaxFriends, max_friends, statusDeleteFriend, statusSendTeamInvite, team_invite, statusGetTeamInvite, statusRejectTeamInvite, statusAcceptTeamInvite };
+  let locale;
+  if (settings) {
+    locale = settings.locale;
+  } else {
+    locale = "th";
+  }
+  return { locale,user, statusCreateTeam, numberOfTeamNotFull, statusGetNumberOfTeamNotFull, statusLeaveTeam, membersOfTeam, group_name, totalScoreOfTeam, rank, teamRank, individualRank, logWeightCount, isReducedWeight, logWeightTeamCount, numberOfMembers, dailyTeamWeightBonusCount, exerciseVideo, statusVideoList, friend_list, statusGetFriendList, statusSendFriendRequest, friend_request, statusGetFriendRequest, statusAcceptFriend, statusRejectFriend, statusGetMaxFriends, max_friends, statusDeleteFriend, statusSendTeamInvite, team_invite, statusGetTeamInvite, statusRejectTeamInvite, statusAcceptTeamInvite };
 };
 
 const mapActionsToProps = { getGroupID, getRank, getLogWeight, getIsReducedWeight, getLogWeightTeam, getDailyTeamWeightBonus, getNumberOfTeamNotFull, assignGroupToMember, clearChallenges, createChallengeGroup, leaveTeam, getMembersAndRank, getGroupName, getScoreOfTeam, getLeaderboard, getChallengePeriod, getFriendList, sendFriendRequest, getFriendRequest, acceptFriend, rejectFriend, getMaxFriends, deleteFriend, sendTeamInvite, getTeamInvite, rejectTeamInvite, acceptTeamInvite };
@@ -1340,4 +1350,4 @@ const mapActionsToProps = { getGroupID, getRank, getLogWeight, getIsReducedWeigh
 export default connect(
   mapStateToProps,
   mapActionsToProps
-)(Challenge);
+)(injectIntl(Challenge));

@@ -15,6 +15,7 @@ Table of Contents
 10.videoList
 11.profile
 12.basic_information
+13.challenge
 */
 
 
@@ -233,4 +234,11 @@ module.exports = {
      "basic_information.createExercise": "Create an exercise program",
      "basic_information.selectunit": "select unit",
      "basic_information.year": "year",
+
+      /* 13.challenge */
+      "challenge.allMission": "All Mission",
+      "challenge.teamlist": "Team list",
+      "challenge.teamscoreboard": "Team scoreboard",
+      "challenge.friendlist": "Friend list",
+      "challenge.rules": "Rules",
   };

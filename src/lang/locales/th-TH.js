@@ -14,6 +14,7 @@ Table of Contents
 10.videoList
 11.profile
 12.basic_information
+13.challenge
 */
 
 
@@ -223,6 +224,12 @@ module.exports = {
      "basic_information.selectunit": "เลือกหน่วย",
      "basic_information.year": "ปี",
 
+     /* 13.challenge */
+     "challenge.allMission": "ภารกิจทั้งหมด",
+     "challenge.teamlist": "รายชื่อภายในทีม",
+     "challenge.teamscoreboard": "กระดานคะแนน",
+     "challenge.friendlist": "รายชื่อเพื่อน",
+     "challenge.rules": "กฎและกติกา",
     
   };
   
