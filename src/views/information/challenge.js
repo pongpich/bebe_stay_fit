@@ -447,9 +447,10 @@ class Challenge extends Component {
   }
   teamYou() {
     const { numberOfMembers, membersOfTeam, group_name, totalScoreOfTeam } = this.props;
+    const { messages } = this.props.intl;
     return (
       <>
-        <p className="headTeam bold"><IntlMessages id="challenge.team" /> : {group_name} <span className="span-challenge headTeamSpan"><IntlMessages id="challenge.number" /> {numberOfMembers}/10 <IntlMessages id="challenge.person" /></span></p>
+        <p className="headTeam bold">{messages['challenge.team']} : {group_name} <span className="span-challenge headTeamSpan"><IntlMessages id="challenge.number" /> {numberOfMembers}/10 <IntlMessages id="challenge.person" /></span></p>
         {
 
 
