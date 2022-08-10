@@ -1126,7 +1126,10 @@ a {
 .text-leftmvp {
   text-align: left !important;
   padding-left: 10px;
-  line-height: 3 !important;
+/*   line-height: 3 !important; */
+}
+.line-height {
+  line-height: 3 !important; 
 }
 .text-left {
   text-align: left !important;

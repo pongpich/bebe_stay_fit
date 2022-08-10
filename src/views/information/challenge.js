@@ -648,7 +648,7 @@ class Challenge extends Component {
                         item.email
                       }`;
                     return (
-                      <div className="card-text">
+                      <div className="card-text line-height">
                         <div class="container text-center">
                           {
                             rankDetail !== user.email ?
@@ -732,7 +732,7 @@ class Challenge extends Component {
                         item.email
                       }`;
                     return (
-                      <div className="card-text">
+                      <div className="card-text line-height">
                         <div class="container text-center">
                           {
                             rankDetail !== user.email ?
@@ -853,7 +853,7 @@ class Challenge extends Component {
             <div>
               {
                 <b className="row mb-4">
-                  <p className="card-text col-12">
+                  <p className="card-text col-12 line-height">
                     <div class="container text-center">
                       <div class="row justify-content-md-center">
                         <div class="col-12 col-sm-12 col-md-8 col-lg-8 text-leftmvp">
@@ -899,7 +899,7 @@ class Challenge extends Component {
             <div>
               {
                 <b className="row mb-4">
-                  <p className="card-text col-12">
+                  <p className="card-text col-12 line-height">
                     <div class="container text-center">
                       <div class="row justify-content-md-center">
                         <div class="col-12 col-sm-12 col-md-8 col-lg-8 text-leftmvp">
