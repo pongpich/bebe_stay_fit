@@ -241,4 +241,23 @@ module.exports = {
       "challenge.teamscoreboard": "Team scoreboard",
       "challenge.friendlist": "Friend list",
       "challenge.rules": "Rules",
+      "challenge.nameyourteam": "Name your team",
+      "challenge.6alphabet": "Name your team more than 6 alphabet",
+     /**
+       * ! ยังไม่เเปล */
+      "challenge.teamsystem": "มีชื่อทีมนี้ในระบบแล้ว",
+      "challenge.confirmationname": "ยืนยันการตั้งชื่อ",
+      "challenge.notNameyourteam": "คุณยังไม่มีทีม",
+      "challenge.allteamsfull": "ทุกทีมในระบบสมาชิกเต็มแล้ว",
+      "challenge.createyourteam": "Create your team",
+      "challenge.randomteam": "Random team",
+      "challenge.invitefriends": "Invite your friends",
+      "challenge.addedfriends": "Added friends",
+      "challenge.sendrequest": "send request",
+      "challenge.notfriendssystem": "ไม่พบผู้ใช้ที่ต้้องการเพิ่มเพื่อนอยู่ในระบบ",
+      "challenge.notfriends": "คุณยังไม่มีเพื่อน",
+      "challenge.howincreasefriends": "วิธีการเพิ่มจำนวนเพื่อน",
+      "challenge.points": "Points",
+      "challenge.singleChallenge": "Single Challenge",
+      "challenge.teamChallenge": "Team Challenge",
   };

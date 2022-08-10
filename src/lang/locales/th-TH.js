@@ -230,6 +230,22 @@ module.exports = {
      "challenge.teamscoreboard": "กระดานคะแนน",
      "challenge.friendlist": "รายชื่อเพื่อน",
      "challenge.rules": "กฎและกติกา",
-    
+     "challenge.nameyourteam": "ตั้งชื่อทีมของคุณ",
+     "challenge.6alphabet": "ชื่อทีมต้องมากกว่า 6 ตัวอักษร",
+     "challenge.teamsystem": "มีชื่อทีมนี้ในระบบแล้ว",
+     "challenge.confirmationname": "ยืนยันการตั้งชื่อ",
+     "challenge.notNameyourteam": "คุณยังไม่มีทีม",
+     "challenge.allteamsfull": "ทุกทีมในระบบสมาชิกเต็มแล้ว",
+     "challenge.createyourteam": "สร้างทีมของคุณ",
+     "challenge.randomteam": "สุ่มเข้าร่วมทีม",
+     "challenge.invitefriends": "ชวนเพื่อนเข้าทีม",
+     "challenge.addedfriends": "เพิ่มเพื่อน",
+     "challenge.sendrequest": "ส่งคำขอ",
+     "challenge.notfriendssystem": "ไม่พบผู้ใช้ที่ต้้องการเพิ่มเพื่อนอยู่ในระบบ",
+     "challenge.notfriends": "คุณยังไม่มีเพื่อน",
+     "challenge.howincreasefriends": "วิธีการเพิ่มจำนวนเพื่อน",
+     "challenge.points": "คะเเนน",
+     "challenge.singleChallenge": "รายการชาเลนจ์แบบเดี่ยว",
+     "challenge.teamChallenge": "รายการชาเลนจ์แบบทีม",
   };
   
