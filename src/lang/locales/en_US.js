@@ -38,7 +38,7 @@ module.exports = {
     "navbarHome.donAccount": "don't have an account?",
     "navbarHome.createAccount": "create an account",
     "navbarHome.exerciseprogram": "Exercise Program",
-    "navbarHome.foodsupplements": "วิธีการกินอาหารและอาหารเสริม",
+    "navbarHome.foodsupplements": "How to eat food and supplements",
     /* 02.programPackage */
     "programPackage.registerBebeStayfit": "Sign up for Bebe Stayfit",
     "programPackage.calculate": "Please fill in the information to calculate how long it takes to lose weight.",
