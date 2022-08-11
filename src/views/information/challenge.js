@@ -47,6 +47,8 @@ class Challenge extends Component {
 
     this.props.checkUpdateMaxFriends(user.user_id);
 
+    this.props.getChallengePeriod();
+
     this.props.getRank(this.props.user.user_id, this.props.user.start_date);
     this.props.getLogWeight(this.props.user.user_id);
     this.props.getLogWeightTeam(this.props.user.group_id);
@@ -293,26 +295,33 @@ class Challenge extends Component {
   }
 
   allMissions() {
-    const { logWeightCount, isReducedWeight, logWeightTeamCount, numberOfMembers, dailyTeamWeightBonusCount } = this.props;
+    const { logWeightCount, isReducedWeight, logWeightTeamCount, numberOfMembers, dailyTeamWeightBonusCount, challengePeriod } = this.props;
     const isExerciseCompleted = this.isExerciseCompleted(this.props.exerciseVideo);
     return (
       <>
         <div className="box-challengeIn">
-          <p className="headChallenge"><IntlMessages id="challenge.teamChallenge" /> <span><IntlMessages id="challenge.singleChallenge" /></span></p>
-          <p className="text-challenge"><IntlMessages id="challenge.completeweighing" /> {numberOfMembers * 2} <IntlMessages id="challenge.time" /> &nbsp; {logWeightTeamCount}/{numberOfMembers * 2} <span className="span-challenge"> <IntlMessages id="challenge.weigh2" /> &nbsp; {logWeightCount}/2</span></p>
-          <p className="text-challenge"><IntlMessages id="challenge.completeweighing7" /> &nbsp; {dailyTeamWeightBonusCount}/7 <span className="span-challenge"> <IntlMessages id="challenge.weightloss" /> &nbsp; {isReducedWeight ? 1 : 0}/1</span></p>
-          <p className="text-challengeRight"><IntlMessages id="challenge.4days" />&nbsp; {(this.props.statusVideoList !== 'no_video') ? isExerciseCompleted : 0}/4</p>
-          <p className="text-comment"><IntlMessages id="challenge.resetSunday" /></p>
-          <p className="text-comment"><IntlMessages id="challenge.scoresSunday" /></p>
-          <p className="border-bottom"></p>
-          <ul className="rules-bottom">
-            <li className="li">
-              <a className="rules" data-bs-toggle="modal" data-bs-target="#exampleModalScore"><IntlMessages id="challenge.pointsdetails" /></a>
-            </li>
-            <li className="li">
-              <a className="rules" data-bs-toggle="modal" data-bs-target="#exampleModal"><IntlMessages id="challenge.rules" /></a>
-            </li>
-          </ul>
+          {
+            challengePeriod ?
+              <>
+                <p className="headChallenge"><IntlMessages id="challenge.teamChallenge" /> <span><IntlMessages id="challenge.singleChallenge" /></span></p>
+                <p className="text-challenge"><IntlMessages id="challenge.completeweighing" /> {numberOfMembers * 2} <IntlMessages id="challenge.time" /> &nbsp; {logWeightTeamCount}/{numberOfMembers * 2} <span className="span-challenge"> <IntlMessages id="challenge.weigh2" /> &nbsp; {logWeightCount}/2</span></p>
+                <p className="text-challenge"><IntlMessages id="challenge.completeweighing7" /> &nbsp; {dailyTeamWeightBonusCount}/7 <span className="span-challenge"> <IntlMessages id="challenge.weightloss" /> &nbsp; {isReducedWeight ? 1 : 0}/1</span></p>
+                <p className="text-challengeRight"><IntlMessages id="challenge.4days" />&nbsp; {(this.props.statusVideoList !== 'no_video') ? isExerciseCompleted : 0}/4</p>
+                <p className="text-comment"><IntlMessages id="challenge.resetSunday" /></p>
+                <p className="text-comment"><IntlMessages id="challenge.scoresSunday" /></p>
+                <p className="border-bottom"></p>
+                <ul className="rules-bottom">
+                  <li className="li">
+                    <a className="rules" data-bs-toggle="modal" data-bs-target="#exampleModalScore"><IntlMessages id="challenge.pointsdetails" /></a>
+                  </li>
+                  <li className="li">
+                    <a className="rules" data-bs-toggle="modal" data-bs-target="#exampleModal"><IntlMessages id="challenge.rules" /></a>
+                  </li>
+                </ul>
+              </>
+              :
+              <h4 style={{ color: "red" }}>ไม่มีภารกิจ เนื่องจากไม่ได้อยู่ในระยะเวลาของชาเลนจ์</h4>
+          }
 
         </div>
       </>
@@ -1487,14 +1496,14 @@ class Challenge extends Component {
 const mapStateToProps = ({ authUser, challenges, exerciseVideos, settings }) => {
   const { user } = authUser;
   const { exerciseVideo, statusVideoList } = exerciseVideos;
-  const { statusCreateTeam, numberOfTeamNotFull, statusGetNumberOfTeamNotFull, statusLeaveTeam, membersOfTeam, group_name, totalScoreOfTeam, rank, teamRank, individualRank, logWeightCount, isReducedWeight, logWeightTeamCount, numberOfMembers, dailyTeamWeightBonusCount, friend_list, statusGetFriendList, statusSendFriendRequest, friend_request, statusGetFriendRequest, statusAcceptFriend, statusRejectFriend, statusGetMaxFriends, max_friends, statusDeleteFriend, statusSendTeamInvite, team_invite, statusGetTeamInvite, statusRejectTeamInvite, statusAcceptTeamInvite, friendsRank, statusGetFriendsRank } = challenges;
+  const { statusCreateTeam, numberOfTeamNotFull, statusGetNumberOfTeamNotFull, statusLeaveTeam, membersOfTeam, group_name, totalScoreOfTeam, rank, teamRank, individualRank, logWeightCount, isReducedWeight, logWeightTeamCount, numberOfMembers, dailyTeamWeightBonusCount, friend_list, statusGetFriendList, statusSendFriendRequest, friend_request, statusGetFriendRequest, statusAcceptFriend, statusRejectFriend, statusGetMaxFriends, max_friends, statusDeleteFriend, statusSendTeamInvite, team_invite, statusGetTeamInvite, statusRejectTeamInvite, statusAcceptTeamInvite, friendsRank, statusGetFriendsRank, challengePeriod } = challenges;
   let locale;
   if (settings) {
     locale = settings.locale;
   } else {
     locale = "th";
   }
-  return { locale, user, statusCreateTeam, numberOfTeamNotFull, statusGetNumberOfTeamNotFull, statusLeaveTeam, membersOfTeam, group_name, totalScoreOfTeam, rank, teamRank, individualRank, logWeightCount, isReducedWeight, logWeightTeamCount, numberOfMembers, dailyTeamWeightBonusCount, exerciseVideo, statusVideoList, friend_list, statusGetFriendList, statusSendFriendRequest, friend_request, statusGetFriendRequest, statusAcceptFriend, statusRejectFriend, statusGetMaxFriends, max_friends, statusDeleteFriend, statusSendTeamInvite, team_invite, statusGetTeamInvite, statusRejectTeamInvite, statusAcceptTeamInvite, friendsRank, statusGetFriendsRank };
+  return { locale, user, statusCreateTeam, numberOfTeamNotFull, statusGetNumberOfTeamNotFull, statusLeaveTeam, membersOfTeam, group_name, totalScoreOfTeam, rank, teamRank, individualRank, logWeightCount, isReducedWeight, logWeightTeamCount, numberOfMembers, dailyTeamWeightBonusCount, exerciseVideo, statusVideoList, friend_list, statusGetFriendList, statusSendFriendRequest, friend_request, statusGetFriendRequest, statusAcceptFriend, statusRejectFriend, statusGetMaxFriends, max_friends, statusDeleteFriend, statusSendTeamInvite, team_invite, statusGetTeamInvite, statusRejectTeamInvite, statusAcceptTeamInvite, friendsRank, statusGetFriendsRank, challengePeriod };
 };
 
 const mapActionsToProps = { getGroupID, getRank, getLogWeight, getIsReducedWeight, getLogWeightTeam, getDailyTeamWeightBonus, getNumberOfTeamNotFull, assignGroupToMember, clearChallenges, createChallengeGroup, leaveTeam, getMembersAndRank, getGroupName, getScoreOfTeam, getLeaderboard, getChallengePeriod, getFriendList, sendFriendRequest, getFriendRequest, acceptFriend, rejectFriend, getMaxFriends, deleteFriend, sendTeamInvite, getTeamInvite, rejectTeamInvite, acceptTeamInvite, checkUpdateMaxFriends, getFriendsRank };
