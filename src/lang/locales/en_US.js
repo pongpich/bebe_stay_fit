@@ -79,6 +79,7 @@ module.exports = {
     "programPackage.greenLemonade": " Green Lemonade  1 pack",
     "programPackage.arabicaLatte": "รส Arabica Latte  1 pack",
     "programPackage.collaC": " 1 pack",
+
     /* 03.register */
     "register.chooseYouPackage": "Choose your package",
     "register.chooseYouAccount": "Choose your account",
@@ -88,14 +89,12 @@ module.exports = {
     "register.confirmPassword": "Confirm your password",
     "register.phoneNumber": "Phone Number",
     "register.createAccount": "Create your account",
-    /**  
-     * ! ยังไม่เเปล */
-    "register.accountCredited": "บัญชีที่จะเข้าใช้งานในระบบของ ",
-    "register.passwordsnotMatch": "รหัสผ่านไม่ตรงกัน กรุณากรอกใหม่ ",
-    "register.passwordtooShort": "รหัสผ่านสั้นเกินไป",
-    "register.numberCharacters": "รหัสผ่านจำนวนต้องมากกว่า 6 ตัวอักษร",
-
-    "register.ex.phone": "example 08XXXXXXXX",
+     "register.accountCredited": "log in as",
+     "register.passwordsnotMatch": "invalid password please try again ",
+     "register.passwordtooShort": "Password is too short",
+     "register.numberCharacters": "Password must be at least 6 characters",
+ 
+     "register.ex.phone": "example 08XXXXXXXX",
     
     /* 04. fitto_plant_protein */
     "fitto_plant_protein.chooseProtein": "Choose the flavor of the supplement of Fitto Plant Protein",
@@ -136,9 +135,7 @@ module.exports = {
     "payment.credit": "Credit/Debit",
     "payment.qrcode": "Pay by QR Code",
     "payment.cardNumber": "16 digit card number",
-        /**  
-     * ! ยังไม่เเปล */
-    "payment.errorBilling": "ระบบเรียกเก็บเงินไม่สำเร็จกรุณาตรวจสอบข้อมูลบัตรให้ถูกต้องอีกครั้ง หรือเปลี่ยนวิธีการชำระเงิน",
+    "payment.errorBilling": "Payment verification failed please verify your card information or change the payment method",
     "payment.nameCard": "Name on card",
     "payment.expirationDate": "Expiration date",
     "payment.cvv": "CVV Code",
@@ -147,65 +144,56 @@ module.exports = {
     "payment.baht2months": "3750 Baht / 2 months",
     "payment.collectPayment": "We will collect payment every 2 months.",
     "payment.pay": "Pay",
-        /**  
-     * ! ยังไม่เเปล */
-    "payment.messagQrcode1": "1. หลังกด “ชำระเงิน” คุณจะได้รับ QR Code เพื่อชำระ",
-    "payment.messagQrcode2": "2. เปิดแอปพลิเคชันธนาคารที่คุณมี",
-    "payment.messagQrcode3": "3. ไปยังเมนู “สแกน” หรือ “สแกนจ่าย”",
-    "payment.messagQrcode4": "4. ตรวจสอบชื่อบัญชีและยอดที่คุณต้องชำระก่อนทำรายการ",
+    "payment.messagQrcode1": "1. After click “Pay” button. You'll receive a QR Code to pay",
+    "payment.messagQrcode2": "2. Please open your bank application",
+    "payment.messagQrcode3": "3. Click on “scan” or “pay”",
+    "payment.messagQrcode4": "4. Please verify the information before making a transaction",
+
 
     /* 07.welcome_new_member */
     "welcome_new_member.welcome": "welcome our new member",
     "welcome_new_member.thankYou": "Thank you for applying to be a member of Bebe Stay Fit. Our team has received the application information already. We thank you for your interest and for choosing us to be a part of high success. Let's create discipline and have fun with exercise.",
     "welcome_new_member.getStart": "Get start",
-   /**  
-     * ! ยังไม่เเปล */
-    "welcome_new_member.incorrectPassword": "รหัสผ่านไม่ถูกต้อง",
-    "welcome_new_member.backtohome": "กลับหน้า Home",
-    "welcome_new_member.clickLogin": "แล้วคลิก 'เข้าสู่ระบบ'",
+    "welcome_new_member.incorrectPassword": "Incorrect Password",
+    "welcome_new_member.backtohome": "Back to Homepage",
+    "welcome_new_member.clickLogin": "Click 'Log in'",
 
-     /* 08.reset_password */
+    /* 08.reset_password */
      "reset_password.forgetPassword": "Forget Password",
      "reset_password.yourEmail": "Please enter your email, you will receive a link to create a new password via email.",
-     /**  
-     * ! ยังไม่เเปล */
-     "reset_password.pleasecheck": "กรุณาตรวจสอบสอบ Email: ",
-     "reset_password.afresh": "อีกครั้ง",
+      "reset_password.pleasecheck": "Please check your Email: ",
+      "reset_password.afresh": "Try again",
 
      /* 09.reset_password_succeed */
      "reset_password_succeed.newpassword": "We have sent you a link to create a new password via  email. If you can't find the email, please check your spam folder",
      "reset_password_succeed.orcontact": "or contact us 086 424 5141",
      "reset_password_succeed.from": "(from 6:00 AM to 6:00 PM.)",
-          /**  
-     * ! ยังไม่เเปล */
-     "reset_password_succeed.backtomain": "กลับสู้หน้าหลัก",
+     "reset_password_succeed.backtomain": "Back to Main Page",
 
      /* 10.videoList */
      "videoList.challenge": "Challenge",
      "videoList.total": "total training period",
      "videoList.mins": "mins",
-           /**  
-     * ! ยังไม่เเปล */
-     "videoList.autoPlay": "เล่นต่อเนื่องอัตโนมัติ",
-     "videoList.letsStart": "เริ่มกันเลย!",
-     "videoList.succeed": "สำเร็จแล้ว!",
-     "videoList.currentweight": "กรุณากรอกน้ำหนักปัจจุบันของคุณ",
+    "videoList.autoPlay": "Auto-play",
+     "videoList.letsStart": "Let's Start!",
+     "videoList.succeed": "Done!",
+     "videoList.currentweight": "Please enter your current weight",
      "videoList.off": "Off",
-     "videoList.enterweekly": "กรุณากรอกข้อมูลรายสัปดาห์ เพื่อที่คุณจะได้รับประสบการณ์",
-     "videoList.checkinformation": "กรุณาตรวจสอบข้อมูลอีกครั้งเพื่อที่คุณจะได้รับประสบการณ์",
-     "videoList.programjust": "โปรแกรมออกกำลังกายสำหรับคุณโดยเฉพาะ",
+     "videoList.enterweekly": "Please enter weekly so that you can be guided correctly",
+     "videoList.checkinformation": "Please verify the information again so that we can provide accurate information",
+     "videoList.programjust": "An exercise program that designed specifically for you",
      "videoList.weight": "weight (kg)",
      "videoList.height": "height (cm.)",
-     "videoList.pleasefill": "กรุณากรอกข้อมูล",
-     "videoList.mustnot": "กรุณากรอกอายุ ห้ามเป็นเลขทศนิยม",
-     "videoList.measureyour": "กรุณาวัดสัดส่วนของคุณ",
-     "videoList.usingsample": "โดยใช้รูปตัวอย่างเพื่อเป็นไกด์ในการวัดสัดส่วน",
-     "videoList.chest": "รอบอก (นิ้ว)",
-     "videoList.waistline": "รอบเอว (นิ้ว)",
-     "videoList.hip": "สะโพก (นิ้ว)",
-     "videoList.goback": "ย้อนกลับ",
-     "videoList.particulars": "สรุปรายละเอียด",
-     "videoList.exerciseaccording": "วิธีออกกำลังกายตามโปรแกรม",
+     "videoList.pleasefill": "Please fill in the required information",
+     "videoList.mustnot": "Please enter your age, Don't use decimal numbers",
+     "videoList.measureyour": "Please measure your sizes",
+     "videoList.usingsample": "By using our sizing guide to help you measure correctly",
+     "videoList.chest": "Chest (Inches)",
+     "videoList.waistline": "Waist (Inches)",
+     "videoList.hip": "Hip (Inches)",
+     "videoList.goback": "Back",
+     "videoList.particulars": "Summarize",
+     "videoList.exerciseaccording": "How to exercise according to the program",
      "videoList.workout": "Workout Routine",
 
      /* 11.profile */
