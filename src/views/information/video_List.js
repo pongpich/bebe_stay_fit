@@ -14,6 +14,8 @@ import frame42 from "../../assets/img/frame42.png";
 import frame43 from "../../assets/img/frame43.png";
 import frame44 from "../../assets/img/frame44.png";
 import frame45 from "../../assets/img/frame45.png";
+import frame46 from "../../assets/img/frame46.png";
+import frame47 from "../../assets/img/frame47.png";
 import e2 from "../images/2.png";
 import icon_web from "../../assets/img/icon-web.png";
 import facebook from "../../assets/img/icon-facebook.png";
@@ -1209,12 +1211,14 @@ class videoList extends React.Component {
               </div>
               <div class="modal-subscription">
                 {
-                  this.nieyeah()
-                  /* this.staycool() 
+                  /*this.nieyeah()
+                  this.staycool() 
                   this.super()
                   this.wow()
                   this.thankYou()
                   this.goodJob()*/
+                  /* this.pop() */
+                  this.bang()
                 }
               </div>
             </div>
@@ -1385,6 +1389,64 @@ class videoList extends React.Component {
           <div class="col-12 col-sm-12 col-md-12 col-lg-6  ">
             <div className="canterMode-box">
               <p className="modeText-box">เข้าสู่ระบบทุกวันจนจบฤดูกาล</p>
+              <p>xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx <br />xxxxxxxxxxxxxxxx</p>
+
+              <p className="share-success">แชร์ความสำเร็จ</p>
+              <div className="box-share">
+                <img src={facebook} className="icon-share" />
+                <img src={twitter} className="icon-share" />
+                <img src={message} className="icon-share" />
+                <img src={line} className="icon-share" />
+                <img src={tiktok} className="icon-share" />
+                <img src={whatsApp} className="icon-share" />
+                <img src={instagram} className="icon-share" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    )
+  }
+  pop() {
+    return (
+      <div class="container text-center">
+        <div class="row justify-content-md-center">
+          <div class="col-12 col-sm-12 col-md-12 col-lg-6">
+            <img src={frame46} className="frame40" />
+            <img src={icon_web} className="icon_web" />
+          </div>
+          <div class="col-12 col-sm-12 col-md-12 col-lg-6  ">
+            <div className="canterMode-box">
+              <p className="modeText-box">มีเพื่อนในรายชื่อครบ 15 คนแล้ว!</p>
+              <p>xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx <br />xxxxxxxxxxxxxxxx</p>
+
+              <p className="share-success">แชร์ความสำเร็จ</p>
+              <div className="box-share">
+                <img src={facebook} className="icon-share" />
+                <img src={twitter} className="icon-share" />
+                <img src={message} className="icon-share" />
+                <img src={line} className="icon-share" />
+                <img src={tiktok} className="icon-share" />
+                <img src={whatsApp} className="icon-share" />
+                <img src={instagram} className="icon-share" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    )
+  }
+  bang() {
+    return (
+      <div class="container text-center">
+        <div class="row justify-content-md-center">
+          <div class="col-12 col-sm-12 col-md-12 col-lg-6">
+            <img src={frame47} className="frame40" />
+            <img src={icon_web} className="icon_web" />
+          </div>
+          <div class="col-12 col-sm-12 col-md-12 col-lg-6  ">
+            <div className="canterMode-box">
+              <p className="modeText-box">ทำคะแนนได้สูงสุดประจำสัปดาห์</p>
               <p>xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx <br />xxxxxxxxxxxxxxxx</p>
 
               <p className="share-success">แชร์ความสำเร็จ</p>
