@@ -237,7 +237,7 @@ module.exports = {
       "challenge.allteamsfull": "All teams are full",
       "challenge.createyourteam": "Create your team",
       "challenge.randomteam": "Random team",
-      "challenge.invitefriends": "Invite your friends",
+      "challenge.invitefriends": "Friend request",
       "challenge.addedfriends": "Added friends",
       "challenge.sendrequest": "send request",
       "challenge.notfriendssystem": "The user not found",
