@@ -238,7 +238,7 @@ module.exports = {
      "challenge.allteamsfull": "ทุกทีมในระบบสมาชิกเต็มแล้ว",
      "challenge.createyourteam": "สร้างทีมของคุณ",
      "challenge.randomteam": "สุ่มเข้าร่วมทีม",
-     "challenge.invitefriends": "ชวนเพื่อนเข้าทีม",
+     "challenge.invitefriends": "ขอเป็นเพื่อน",
      "challenge.addedfriends": "เพิ่มเพื่อน",
      "challenge.sendrequest": "ส่งคำขอ",
      "challenge.notfriendssystem": "ไม่พบผู้ใช้ที่ต้้องการเพิ่มเพื่อนอยู่ในระบบ",
