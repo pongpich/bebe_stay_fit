@@ -235,7 +235,7 @@ module.exports = {
      "challenge.teamsystem": "มีชื่อทีมนี้ในระบบแล้ว",
      "challenge.confirmationname": "ยืนยันการตั้งชื่อ",
      "challenge.notNameyourteam": "คุณยังไม่มีทีม",
-     "challenge.allteamsfull": "ทุกทีมในระบบสมาชิกเต็มแล้ว",
+     "challenge.allteamsfull": "ระบบไม่สามารถสุ่มเข้าทีมให้ได้ เนื่องจากทุกทีมมีสมาชิกครบแล้ว กรุณาสร้างทีมใหม่ด้วยตนเอง หรือรอจนกว่าจะเกิดการสร้างทีมใหม่และลองสุ่มอีกครั้ง",
      "challenge.createyourteam": "สร้างทีมของคุณ",
      "challenge.randomteam": "สุ่มเข้าร่วมทีม",
      "challenge.invitefriends": "ขอเป็นเพื่อน",
