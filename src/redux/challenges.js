@@ -77,7 +77,16 @@ export const types = {
   GET_FRIENDS_RANK: "GET_FRIENDS_RANK",
   GET_FRIENDS_RANK_SUCCESS: "GET_FRIENDS_RANK_SUCCESS",
   GET_FRIENDS_RANK_FAIL: "GET_FRIENDS_RANK_FAIL",
+  SELECT_MEMBER_EVENT_LOG: "SELECT_MEMBER_EVENT_LOG",
+  SELECT_MEMBER_EVENT_LOG_SUCCESS: "SELECT_MEMBER_EVENT_LOG_SUCCESS",
 }
+
+export const selectMemberEventLog = (email) => ({
+  type: types.SELECT_MEMBER_EVENT_LOG,
+  payload: {
+    email
+  }
+});
 
 export const deleteFriend = (user_id, friend_email) => ({
   type: types.DELETE_FRIEND,
@@ -289,6 +298,22 @@ export const getIsReducedWeight = (user_id) => ({
 /* END OF ACTION Section */
 
 /* SAGA Section */
+
+const selectMemberEventLogSagaAsync = async (
+  email
+) => {
+  try {
+    const apiResult = await API.get("bebe", "/selectMemberEventLog", {
+      queryStringParameters: {
+        email
+      }
+    });
+    return apiResult
+  } catch (error) {
+    console.log("error :", error);
+    return { error, messsage: error.message }
+  }
+}
 
 const getFriendListSagaAsync = async (
   user_id
@@ -774,6 +799,24 @@ const getDailyTeamWeightBonusSagaAsync = async (
   } catch (error) {
     console.log("error :", error);
     return { error, messsage: error.message }
+  }
+}
+
+function* selectMemberEventLogSaga({ payload }) {
+  const {
+    email
+  } = payload
+  try {
+    const apiResult = yield call(
+      selectMemberEventLogSagaAsync,
+      email
+    );
+    yield put({
+      type: types.SELECT_MEMBER_EVENT_LOG_SUCCESS,
+      payload: apiResult.results.memberEventLog
+    })
+  } catch (error) {
+    console.log("error from selectMemberEventLogSaga :", error);
   }
 }
 
@@ -1496,6 +1539,10 @@ export function* watchGetFriendsRank() {
   yield takeEvery(types.GET_FRIENDS_RANK, getFriendsRankSaga)
 }
 
+export function* watchSelectMemberEventLog() {
+  yield takeEvery(types.SELECT_MEMBER_EVENT_LOG, selectMemberEventLogSaga)
+}
+
 export function* saga() {
   yield all([
     fork(watchGetRank),
@@ -1527,6 +1574,7 @@ export function* saga() {
     fork(watchRejectTeamInvite),
     fork(watchAcceptTeamInvite),
     fork(watchGetFriendsRank),
+    fork(watchSelectMemberEventLog),
   ]);
 }
 
@@ -1572,10 +1620,16 @@ const INIT_STATE = {
   statusRejectTeamInvite: "default",
   statusAcceptTeamInvite: "default",
   statusGetFriendsRank: "default",
+  memberEventLog: [],
 };
 
 export function reducer(state = INIT_STATE, action) {
   switch (action.type) {
+    case types.SELECT_MEMBER_EVENT_LOG_SUCCESS:
+      return {
+        ...state,
+        memberEventLog: action.payload
+      }
     case types.GET_FRIENDS_RANK:
       return {
         ...state,
