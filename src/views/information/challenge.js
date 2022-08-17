@@ -8,6 +8,7 @@ import ellipse24 from '../../assets/img/ellipse24.png';
 import group23 from '../../assets/img/group23.png';
 import group22 from '../../assets/img/group22.png';
 import icon_x from '../../assets/img/icon_x.png';
+import group425 from '../../assets/img/group425.png';
 import { getFriendList, getRank, getLogWeight, getIsReducedWeight, getLogWeightTeam, getDailyTeamWeightBonus, getNumberOfTeamNotFull, assignGroupToMember, clearChallenges, createChallengeGroup, leaveTeam, getMembersAndRank, getGroupName, getScoreOfTeam, getLeaderboard, getChallengePeriod, sendFriendRequest, getFriendRequest, acceptFriend, rejectFriend, getMaxFriends, deleteFriend, sendTeamInvite, getTeamInvite, rejectTeamInvite, acceptTeamInvite, getFriendsRank } from "../../redux/challenges";
 import { getGroupID, checkUpdateMaxFriends } from "../../redux/auth";
 import { connect } from "react-redux";
@@ -320,7 +321,15 @@ class Challenge extends Component {
                 </ul>
               </>
               :
-              <h4 style={{ color: "red" }}>ไม่มีภารกิจ เนื่องจากไม่ได้อยู่ในระยะเวลาของชาเลนจ์</h4>
+              <div>
+              <div className="col-12 col-sm-12 col-md-12 col-lg-12 ellipse24">
+                <img src={group425} />
+              </div>
+              <p className="text-teamHead"><IntlMessages id="challenge.friendRequest" /></p>
+
+            </div>
+          
+
           }
 
         </div>

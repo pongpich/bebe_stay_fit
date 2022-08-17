@@ -306,4 +306,5 @@ module.exports = {
      "challenge.person": "Person",
      "challenge.team": "Team",
      "challenge.number": "Team Members",
+     "challenge.friendRequest": "Friend request",
     };

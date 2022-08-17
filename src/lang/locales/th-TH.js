@@ -308,7 +308,7 @@ module.exports = {
      "challenge.person": "คน",
      "challenge.team": "ทีม",
      "challenge.number": "จำนวนสมาชิก",
-
+     "challenge.friendRequest": "ไม่มีภารกิจ เนื่องจากไม่ได้อยู่ในระยะเวลาของชาเลนจ์",
 
   };
   
