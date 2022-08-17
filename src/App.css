@@ -1143,6 +1143,11 @@ a {
   text-align: right !important;
 }
 
+.icon_rank {
+  position: relative;
+  margin-top: -20px !important;
+
+}
 .from-left {
   padding-left: 10%;
 }

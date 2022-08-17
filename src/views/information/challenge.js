@@ -514,10 +514,12 @@ class Challenge extends Component {
                   <div class="col-12 col-sm-12 col-md-6 col-lg-6 text-rightmvp">
                     <span>
                       {
+                      
                         item.end_rank ?
-                          item.end_rank.charAt(0).toUpperCase() + item.end_rank.substr(1).toLowerCase()
+                          <img src={`./assets/img/icon_rank/${item.end_rank}.png`} width="100%" className="icon_rank" /> 
                           :
-                          item.start_rank.charAt(0).toUpperCase() + item.start_rank.substr(1).toLowerCase()
+                          <img src={`./assets/img/icon_rank/${item.start_rank}.png`} width="100%" className="icon_rank" /> 
+
                       }
                     </span>
                     <span className="span-challenge"> {item.total_score} <IntlMessages id="challenge.points" /></span>
@@ -1046,10 +1048,10 @@ class Challenge extends Component {
                           <div class="col-12 col-sm-12 col-md-6 col-lg-6 text-rightmvp">
                             <span>
                               {
-                                item.end_rank ?
-                                  item.end_rank.charAt(0).toUpperCase() + item.end_rank.substr(1).toLowerCase()
-                                  :
-                                  item.start_rank.charAt(0).toUpperCase() + item.start_rank.substr(1).toLowerCase()
+                                 item.end_rank ?
+                                 <img src={`./assets/img/icon_rank/${item.end_rank}.png`} width="100%" className="icon_rank" /> 
+                                 :
+                                 <img src={`./assets/img/icon_rank/${item.start_rank}.png`} width="100%" className="icon_rank" /> 
                               }
                             </span>
                             <span className="span-challenge"> {item.total_score} <IntlMessages id="challenge.points" /></span>
