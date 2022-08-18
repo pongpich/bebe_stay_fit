@@ -684,14 +684,13 @@ class videoList extends React.Component {
           </div>
         </nav>  */}
 
-        {
-          /*  (this.state.clickManu === "manu1") ? */
+        {/* {
           <div className="box-videoHeadPlatform" style={{
             backgroundImage: `url(${backgroundImag})`,
             width: '100%'
           }}>
 
-            {(this.state.pleaseVerifyNumberPhone === /* false */true) ?
+            {(this.state.pleaseVerifyNumberPhone === true) ?
               <>
                 <h3 className="center-videoText bold color1">
                   Bebe Stayfit Program
@@ -716,13 +715,7 @@ class videoList extends React.Component {
             }
 
           </div>
-          /*       :
-                <div className="box-videoHead2">
-                  <h3 className="bold">
-                    โปรแกรมออกกำลังกาย
-                  </h3>
-                </div> */
-        }
+        } */}
         <div className="box-videoCenter">
           <div className="col-12 col-sm-12 col-md-12 col-lg-12 ">
             <ul className="video-maun">
