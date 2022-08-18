@@ -81,12 +81,6 @@ export const types = {
   SELECT_MEMBER_EVENT_LOG_SUCCESS: "SELECT_MEMBER_EVENT_LOG_SUCCESS",
 }
 
-export const selectMemberEventLog = (email) => ({
-  type: types.SELECT_MEMBER_EVENT_LOG,
-  payload: {
-    email
-  }
-});
 
 export const deleteFriend = (user_id, friend_email) => ({
   type: types.DELETE_FRIEND,
@@ -295,25 +289,6 @@ export const getIsReducedWeight = (user_id) => ({
   }
 });
 
-/* END OF ACTION Section */
-
-/* SAGA Section */
-
-const selectMemberEventLogSagaAsync = async (
-  email
-) => {
-  try {
-    const apiResult = await API.get("bebe", "/selectMemberEventLog", {
-      queryStringParameters: {
-        email
-      }
-    });
-    return apiResult
-  } catch (error) {
-    console.log("error :", error);
-    return { error, messsage: error.message }
-  }
-}
 
 const getFriendListSagaAsync = async (
   user_id
@@ -802,23 +777,7 @@ const getDailyTeamWeightBonusSagaAsync = async (
   }
 }
 
-function* selectMemberEventLogSaga({ payload }) {
-  const {
-    email
-  } = payload
-  try {
-    const apiResult = yield call(
-      selectMemberEventLogSagaAsync,
-      email
-    );
-    yield put({
-      type: types.SELECT_MEMBER_EVENT_LOG_SUCCESS,
-      payload: apiResult.results.memberEventLog
-    })
-  } catch (error) {
-    console.log("error from selectMemberEventLogSaga :", error);
-  }
-}
+
 
 function* getRankSaga({ payload }) {
   const {
@@ -1487,10 +1446,6 @@ export function* watchGetChallengePeriod() {
   yield takeEvery(types.GET_CHALLENGE_PERIOD, getChallengePeriodSaga)
 }
 
-export function* watchSelectMemberEventLog() {
-  yield takeEvery(types.SELECT_MEMBER_EVENT_LOG, selectMemberEventLogSaga)
-}
-
 export function* watchGetFriendList() {
   yield takeEvery(types.GET_FRIEND_LIST, getFriendListSaga)
 }
@@ -1574,7 +1529,6 @@ export function* saga() {
     fork(watchRejectTeamInvite),
     fork(watchAcceptTeamInvite),
     fork(watchGetFriendsRank),
-    fork(watchSelectMemberEventLog),
   ]);
 }
 
