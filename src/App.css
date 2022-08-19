@@ -4078,3 +4078,12 @@ margin-top: 10%;
   margin-top: 23px;
   
 }
+.boxAdmin {
+  margin-left: 2%;
+  margin-right: 2%;
+  margin-top: 20px;
+}
+.box-changeEmail{
+  background-color: #FFFFFF;
+  padding: 20px;
+}
