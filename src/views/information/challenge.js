@@ -322,13 +322,13 @@ class Challenge extends Component {
               </>
               :
               <div>
-              <div className="col-12 col-sm-12 col-md-12 col-lg-12 ellipse24">
-                <img src={group425} />
-              </div>
-              <p className="text-teamHead"><IntlMessages id="challenge.friendRequest" /></p>
+                <div className="col-12 col-sm-12 col-md-12 col-lg-12 ellipse24">
+                  <img src={group425} />
+                </div>
+                <p className="text-teamHead"><IntlMessages id="challenge.friendRequest" /></p>
 
-            </div>
-          
+              </div>
+
 
           }
 
@@ -514,11 +514,11 @@ class Challenge extends Component {
                   <div class="col-12 col-sm-12 col-md-6 col-lg-6 text-rightmvp">
                     <span>
                       {
-                      
+
                         item.end_rank ?
-                          <img src={`./assets/img/icon_rank/${item.end_rank}.png`} width="100%" className="icon_rank" /> 
+                          <img src={`./assets/img/icon_rank/${item.end_rank}.png`} width="100%" className="icon_rank" />
                           :
-                          <img src={`./assets/img/icon_rank/${item.start_rank}.png`} width="100%" className="icon_rank" /> 
+                          <img src={`./assets/img/icon_rank/${item.start_rank}.png`} width="100%" className="icon_rank" />
 
                       }
                     </span>
@@ -529,6 +529,16 @@ class Challenge extends Component {
 
             </p>
           )
+        }
+        {
+          (membersOfTeam) && (membersOfTeam.length < 4) &&
+          <div className="mt-5" style={{ textAlign: "center" }}>
+            <h6><b>คุณจำเป็นต้องมีเพื่อนร่วมทีมครบ 4 คน</b></h6>
+            <h6><b>ถึงจะสามารถเข้าร่วมภารกิจได้</b></h6>
+            < div >
+              <button type="button" className="btn bottom-outlineaddTeam " onClick={(e) => this.clickTeam("invite")} > <IntlMessages id="challenge.inviteteam" /> </button>
+            </div>
+          </div>
         }
         <p className="border-bottom"></p>
         <p className="rules-out">
@@ -1048,10 +1058,10 @@ class Challenge extends Component {
                           <div class="col-12 col-sm-12 col-md-6 col-lg-6 text-rightmvp">
                             <span>
                               {
-                                 item.end_rank ?
-                                 <img src={`./assets/img/icon_rank/${item.end_rank}.png`} width="100%" className="icon_rank" /> 
-                                 :
-                                 <img src={`./assets/img/icon_rank/${item.start_rank}.png`} width="100%" className="icon_rank" /> 
+                                item.end_rank ?
+                                  <img src={`./assets/img/icon_rank/${item.end_rank}.png`} width="100%" className="icon_rank" />
+                                  :
+                                  <img src={`./assets/img/icon_rank/${item.start_rank}.png`} width="100%" className="icon_rank" />
                               }
                             </span>
                             <span className="span-challenge"> {item.total_score} <IntlMessages id="challenge.points" /></span>
