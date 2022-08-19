@@ -573,6 +573,7 @@ export function* watchSelectMemberInfo() {
   yield takeEvery(types.SELECT_MEMBER_INFO, selectMemberInfoSaga)
 }
 
+
 export function* saga() {
   yield all([
     fork(watchVideoListForUser),
@@ -597,6 +598,7 @@ const INIT_STATE = {
   video: {},
   videos: [],
   status: "default",
+  memberInfo: [],
   statusUpdateBodyInfo: "default",
 };
 
@@ -607,6 +609,11 @@ export function reducer(state = INIT_STATE, action) {
         ...state,
         statusUpdateBodyInfo: "success"
       }
+    case types.SELECT_MEMBER_INFO_SUCCESS:
+      return {
+        ...state,
+        memberInfo: action.payload
+      };
     case types.UPDATE_PLAYLIST_SUCCESS:
       return {
         ...state,

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
-import { selectProgramInWeek, deleteProgramInWeek, selectMemberInfo, selectBodyInfo } from "../../redux/exerciseVideos";
+import { selectMemberInfo } from "../../redux/exerciseVideos";
 import { changeEmail } from "../../redux/auth";
 import { selectMemberEventLog } from "../../redux/challenges";
 
@@ -249,14 +249,19 @@ class Index extends Component {
                             <div className="card-body">
 
                                 <h1 className="mb-5">ข้อมูลผู้ใช้</h1>
-                                <label for="fname">Email: </label>
-                                <input type="text" id="email" name="email" value={this.state.email} onChange={(event) => this.handleChange(event)} />
-                                <button type="button" onClick={() => this.props.selectMemberInfo(
+                                <div className="row g-3  mb-5">
+                                    <div className="col-auto col-lg-5 ">
+                                        <label for="exampleFormControlInput1" className="form-label">Email</label>
+                                        <input type="text" id="email" className="form-control" name="email" value={this.state.email} onChange={(event) => this.handleChange(event)} placeholder="name@example.com"/>
+                                    </div>
+                                    <div className="col-auto mt-5">
+                                        <button type="submit" className="btn btn-primary "  onClick={() => this.props.selectMemberInfo(
                                     this.state.email
                                 )}>ค้นหา</button>
+                                    </div>
+                                </div>
                                 <br></br>
                                 {
-
                                     (this.props.memberInfo && this.props.memberInfo.other_attributes) &&
                                     <div>
                                         <h5>{"Email : " + this.props.memberInfo.email}</h5>
