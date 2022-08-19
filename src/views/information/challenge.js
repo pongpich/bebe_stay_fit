@@ -364,7 +364,7 @@ class Challenge extends Component {
   }
 
   indexTeamList() {
-    const { statusGetNumberOfTeamNotFull } = this.props;
+    const { statusGetNumberOfTeamNotFull, challengePeriod } = this.props;
     const { statusRandomTeam } = this.state;
     return (
       <>
@@ -379,7 +379,7 @@ class Challenge extends Component {
               <h6 style={{ color: "red" }}><IntlMessages id="challenge.allteamsfull" /></h6>
             }
             {
-              (statusGetNumberOfTeamNotFull !== "loading") &&
+              ((statusGetNumberOfTeamNotFull !== "loading") && (challengePeriod)) &&
               <>
                 <button type="button" className="btn bottom-outlineaddTeam " onClick={(e) => this.clickAddTeam("add")}><IntlMessages id="challenge.createyourteam" /></button>
                 <button type="button" className="btn bottom-outlineaddTeam bottomEditProfileLeft" onClick={() => this.props.getNumberOfTeamNotFull()}><IntlMessages id="challenge.randomteam" /></button>
