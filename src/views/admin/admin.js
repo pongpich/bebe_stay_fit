@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
-/* import { selectProgramInWeek, deleteProgramInWeek, selectMemberInfo, selectBodyInfo  } from "../../redux/exerciseVideos"; */
+import { selectProgramInWeek, deleteProgramInWeek, selectMemberInfo, selectBodyInfo } from "../../redux/exerciseVideos";
 import { changeEmail } from "../../redux/auth";
 import { selectMemberEventLog } from "../../redux/challenges";
 
@@ -154,6 +154,14 @@ class Index extends Component {
                     <br></br>
                     <div className="table-responsive">
                         <table>
+                            <tr style={{ border: '4px solid black', backgroundColor: '#EEB2CB', textAlign: 'center' }}>
+                                <td style={{ border: '1px solid black', width: 220 }}><h5><b>{"Log"}</b></h5></td>
+                                <td style={{ border: '1px solid black', width: 100 }}><h5><b>{"Log Value"}</b></h5></td>
+                                <td style={{ border: '1px solid black', width: 120 }}><h5><b>{"Log Type"}</b></h5></td>
+                                <td style={{ border: '1px solid black', width: 80 }}><h5><b>{"Score"}</b></h5></td>
+                                <td style={{ border: '0px solid black', width: "auto" }}><h5><b>{"Created at"}</b></h5></td>
+                                <td style={{ border: '0px solid black' }}><h5></h5></td>
+                            </tr>
                             {
                                 (this.props.memberEventLog) && this.props.memberEventLog.map((item, index) => {
                                     return (
@@ -243,40 +251,40 @@ class Index extends Component {
                                 <h1 className="mb-5">ข้อมูลผู้ใช้</h1>
                                 <label for="fname">Email: </label>
                                 <input type="text" id="email" name="email" value={this.state.email} onChange={(event) => this.handleChange(event)} />
-                              {/*   <button type="button" onClick={() => this.props.selectMemberInfo(
-                                 this.state.email
-                                )}>ค้นหา</button> */}
+                                <button type="button" onClick={() => this.props.selectMemberInfo(
+                                    this.state.email
+                                )}>ค้นหา</button>
                                 <br></br>
                                 {
-                                    console.log("memberInfo", this.props.memberInfo)
-                                    /*  (this.props.memberInfo && this.props.memberInfo.other_attributes) &&
-                                     <div>
-                                         <h5>{"Email : " + this.props.memberInfo.email}</h5>
-                                         <h5>{"Firstname : " + this.props.memberInfo.first_name}</h5>
-                                         <h5>{"Lastname : " + this.props.memberInfo.last_name}</h5>
-                                         <h5>{"Phone : " + this.props.memberInfo.phone}</h5>
-                                         <h5>{"FB Group : " + this.props.memberInfo.fb_group}</h5>
-                                         <h5>{"Facebook : " + this.props.memberInfo.facebook}</h5>
-                                         <h5>
-                                             {
-                                                 "Info : "
-                                                 + " อายุ: " + JSON.parse(this.props.memberInfo.other_attributes).age + ","
-                                                 + " เพศ: " + JSON.parse(this.props.memberInfo.other_attributes).sex + ","
-                                             }
-                                         </h5>
-                                         <h5>
-                                             {
-                                                 "Body Info : "
-                                                 + " น้ำหนัก: " + JSON.parse(this.props.memberInfo.other_attributes).weight + ","
-                                                 + " ส่วนสูง: " + JSON.parse(this.props.memberInfo.other_attributes).height + ","
-                                                 + " อก: " + JSON.parse(this.props.memberInfo.other_attributes).chest + ","
-                                                 + " เอว: " + JSON.parse(this.props.memberInfo.other_attributes).waist + ","
-                                                 + " สะโพก: " + JSON.parse(this.props.memberInfo.other_attributes).hip + ","
-                                             }
-                                         </h5>
-                                         <h5>{"วันเริ่มต้น : " + this.props.memberInfo.start_date}</h5>
-                                         <h5>{"วันสิ้นสุด : " + this.props.memberInfo.expire_date}</h5>
-                                     </div> */
+
+                                    (this.props.memberInfo && this.props.memberInfo.other_attributes) &&
+                                    <div>
+                                        <h5>{"Email : " + this.props.memberInfo.email}</h5>
+                                        <h5>{"Firstname : " + this.props.memberInfo.first_name}</h5>
+                                        <h5>{"Lastname : " + this.props.memberInfo.last_name}</h5>
+                                        <h5>{"Phone : " + this.props.memberInfo.phone}</h5>
+                                        <h5>{"FB Group : " + this.props.memberInfo.fb_group}</h5>
+                                        <h5>{"Facebook : " + this.props.memberInfo.facebook}</h5>
+                                        <h5>
+                                            {
+                                                "Info : "
+                                                + " อายุ: " + JSON.parse(this.props.memberInfo.other_attributes).age + ","
+                                                + " เพศ: " + JSON.parse(this.props.memberInfo.other_attributes).sex + ","
+                                            }
+                                        </h5>
+                                        <h5>
+                                            {
+                                                "Body Info : "
+                                                + " น้ำหนัก: " + JSON.parse(this.props.memberInfo.other_attributes).weight + ","
+                                                + " ส่วนสูง: " + JSON.parse(this.props.memberInfo.other_attributes).height + ","
+                                                + " อก: " + JSON.parse(this.props.memberInfo.other_attributes).chest + ","
+                                                + " เอว: " + JSON.parse(this.props.memberInfo.other_attributes).waist + ","
+                                                + " สะโพก: " + JSON.parse(this.props.memberInfo.other_attributes).hip + ","
+                                            }
+                                        </h5>
+                                        <h5>{"วันเริ่มต้น : " + this.props.memberInfo.start_date}</h5>
+                                        <h5>{"วันสิ้นสุด : " + this.props.memberInfo.expire_date}</h5>
+                                    </div>
                                 }
                             </div>
                         </div>
@@ -315,7 +323,7 @@ class Index extends Component {
 const mapStateToProps = ({ authUser, settings, challenges, exerciseVideos }) => {
     const { user, statusChangeEmail } = authUser;
     const { memberEventLog } = challenges;
-    const {  programInWeek, memberInfo, bodyInfo  } = exerciseVideos;
+    const { programInWeek, memberInfo, bodyInfo } = exerciseVideos;
     let locale;
     if (settings) {
         locale = settings.locale;
@@ -325,7 +333,7 @@ const mapStateToProps = ({ authUser, settings, challenges, exerciseVideos }) => 
     return { locale, user, memberEventLog, statusChangeEmail, memberInfo };
 };
 
-const mapActionsToProps = { selectMemberEventLog, changeEmail };
+const mapActionsToProps = { selectMemberEventLog, changeEmail, selectMemberInfo };
 
 export default connect(
     mapStateToProps,

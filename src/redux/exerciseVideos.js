@@ -20,10 +20,13 @@ export const types = {
   SELECT_CHANGE_VIDEO: "SELECT_CHANGE_VIDEO",
   SELECT_CHANGE_VIDEO_SUCCESS: "SELECT_CHANGE_VIDEO_SUCCESS",
   SELECT_CHANGE_VIDEO_FAIL: "SELECT_CHANGE_VIDEO_FAIL",
+  SELECT_MEMBER_INFO: "SELECT_MEMBER_INFO",
+  SELECT_MEMBER_INFO_SUCCESS: "SELECT_MEMBER_INFO_SUCCESS",
   UPDATE_PLAYLIST: "UPDATE_PLAYLIST",
   UPDATE_PLAYLIST_SUCCESS: "UPDATE_PLAYLIST_SUCCESS",
   UPDATE_BODY_INFO: "UPDATE_BODY_INFO",
   UPDATE_BODY_INFO_SUCCESS: "UPDATE_BODY_INFO_SUCCESS",
+  
 }
 
 export const updateBodyInfo = (user_id, start_date, expire_date, other_attributes) => ({
@@ -108,13 +111,13 @@ export const videoListForUser = (
     }
   });
 
-/*   export const selectMemberInfo = (email) => ({
+  export const selectMemberInfo = (email) => ({
     type: types.SELECT_MEMBER_INFO,
     payload: {
       email
     }
   });
- */
+
 /* END OF ACTION Section */
 
 const updatePlaylistSagaAsync = async (
@@ -268,7 +271,7 @@ const createWeeklyStayfitProgramSagaAsync = async (
   }
 }
 
-/* const selectMemberInfoSagaAsync = async (
+const selectMemberInfoSagaAsync = async (
   email
 ) => {
   try {
@@ -281,7 +284,7 @@ const createWeeklyStayfitProgramSagaAsync = async (
   } catch (error) {
     return { error, messsage: error.message };
   }
-} */
+}
 
 function* updateBodyInfoSaga({ payload }) {
   const {
@@ -515,7 +518,7 @@ function* createWeeklyStayfitProgramSaga({ payload }) {
   }
 }
 
-/* function* selectMemberInfoSaga({ payload }) {
+function* selectMemberInfoSaga({ payload }) {
   const {
     email
   } = payload
@@ -534,7 +537,7 @@ function* createWeeklyStayfitProgramSaga({ payload }) {
   } catch (error) {
     return { error, messsage: error.message };
   }
-} */
+}
 
 /* SAGA Section */
 
@@ -566,9 +569,9 @@ export function* watchUpdatePlaylist() {
 export function* watchUpdateBodyInfo() {
   yield takeEvery(types.UPDATE_BODY_INFO, updateBodyInfoSaga)
 }
-/* export function* watchSelectMemberInfo() {
+export function* watchSelectMemberInfo() {
   yield takeEvery(types.SELECT_MEMBER_INFO, selectMemberInfoSaga)
-} */
+}
 
 export function* saga() {
   yield all([
@@ -579,7 +582,7 @@ export function* saga() {
     fork(watchSelectChangeVideo),
     fork(watchUpdatePlaylist),
     fork(watchUpdateBodyInfo),
-/*     fork(watchSelectMemberInfo), */
+    fork(watchSelectMemberInfo),
   ]);
 }
 
