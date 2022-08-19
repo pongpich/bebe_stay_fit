@@ -25,7 +25,7 @@ import Food_supplement from './views/information/food_supplement';
 import Reset_password from './views/profile/reset_password';
 import Reset_password_succeed from './views/profile/reset_password_succeed';
 import New_password from './views/profile/new_password';
-import Admin from './views/admin/index';
+import Admin from './views/admin/admin';
 import { IntlProvider } from "react-intl";
 import AppLocale from "./lang";
 import IntlMessages from "../src/helpers/IntlMessages";

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
-import { selectProgramInWeek, deleteProgramInWeek, selectMemberInfo, selectBodyInfo  } from "../../redux/exerciseVideos";
+/* import { selectProgramInWeek, deleteProgramInWeek, selectMemberInfo, selectBodyInfo  } from "../../redux/exerciseVideos"; */
 import { changeEmail } from "../../redux/auth";
 import { selectMemberEventLog } from "../../redux/challenges";
 
@@ -243,9 +243,9 @@ class Index extends Component {
                                 <h1 className="mb-5">ข้อมูลผู้ใช้</h1>
                                 <label for="fname">Email: </label>
                                 <input type="text" id="email" name="email" value={this.state.email} onChange={(event) => this.handleChange(event)} />
-                                <button type="button" onClick={() => this.props.selectMemberInfo(
+                              {/*   <button type="button" onClick={() => this.props.selectMemberInfo(
                                  this.state.email
-                                )}>ค้นหา</button>
+                                )}>ค้นหา</button> */}
                                 <br></br>
                                 {
                                     console.log("memberInfo", this.props.memberInfo)
@@ -325,7 +325,7 @@ const mapStateToProps = ({ authUser, settings, challenges, exerciseVideos }) => 
     return { locale, user, memberEventLog, statusChangeEmail, memberInfo };
 };
 
-const mapActionsToProps = { selectMemberEventLog, changeEmail, selectMemberInfo };
+const mapActionsToProps = { selectMemberEventLog, changeEmail };
 
 export default connect(
     mapStateToProps,
