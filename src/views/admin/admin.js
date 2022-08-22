@@ -220,7 +220,7 @@ class Index extends Component {
                                     <div className="col-auto mt-5">
                                         <button type="submit" className="btn btn-primary " onClick={() => this.props.addOrderInZort(
                                             this.state.email
-                                        )}>ค้นหา</button>
+                                        )}>เพิ่ม</button>
                                     </div>
                                     {
                                         /* console.log("statusAddZortOrder",this.state.statusAddZortOrder) */
