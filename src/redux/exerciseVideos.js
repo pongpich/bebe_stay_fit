@@ -26,6 +26,7 @@ export const types = {
   UPDATE_PLAYLIST_SUCCESS: "UPDATE_PLAYLIST_SUCCESS",
   UPDATE_BODY_INFO: "UPDATE_BODY_INFO",
   UPDATE_BODY_INFO_SUCCESS: "UPDATE_BODY_INFO_SUCCESS",
+
   
 }
 
@@ -117,6 +118,7 @@ export const videoListForUser = (
       email
     }
   });
+
 
 /* END OF ACTION Section */
 
@@ -271,6 +273,7 @@ const createWeeklyStayfitProgramSagaAsync = async (
   }
 }
 
+
 const selectMemberInfoSagaAsync = async (
   email
 ) => {
@@ -285,6 +288,7 @@ const selectMemberInfoSagaAsync = async (
     return { error, messsage: error.message };
   }
 }
+
 
 function* updateBodyInfoSaga({ payload }) {
   const {
@@ -518,6 +522,8 @@ function* createWeeklyStayfitProgramSaga({ payload }) {
   }
 }
 
+
+
 function* selectMemberInfoSaga({ payload }) {
   const {
     email
@@ -538,6 +544,7 @@ function* selectMemberInfoSaga({ payload }) {
     return { error, messsage: error.message };
   }
 }
+
 
 /* SAGA Section */
 
@@ -584,6 +591,7 @@ export function* saga() {
     fork(watchUpdatePlaylist),
     fork(watchUpdateBodyInfo),
     fork(watchSelectMemberInfo),
+
   ]);
 }
 
@@ -599,6 +607,7 @@ const INIT_STATE = {
   videos: [],
   status: "default",
   memberInfo: [],
+  
   statusUpdateBodyInfo: "default",
 };
 
@@ -614,6 +623,7 @@ export function reducer(state = INIT_STATE, action) {
         ...state,
         memberInfo: action.payload
       };
+
     case types.UPDATE_PLAYLIST_SUCCESS:
       return {
         ...state,

@@ -239,6 +239,7 @@ class App extends Component {
           </a>
 
           {
+
             (this.props.user !== null) ?
               <>
                 <button className="navbar-toggler" type="button" id="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -251,10 +252,10 @@ class App extends Component {
                       (user && user.other_attributes) &&
                       <>
                         <li className="nav-item">
-                          <a className={this.state.colorVideo} onClick={() => this.onClickNavbar("videoList")} ><IntlMessages id="navbarHome.exerciseprogram"/></a>
+                          <a className={this.state.colorVideo} onClick={() => this.onClickNavbar("videoList")} ><IntlMessages id="navbarHome.exerciseprogram" /></a>
                         </li>
                         <li className="nav-item">
-                          <a className={this.state.colorFood} onClick={() => this.onClickNavbar("food_supplement")}><IntlMessages id="navbarHome.foodsupplements"/></a>
+                          <a className={this.state.colorFood} onClick={() => this.onClickNavbar("food_supplement")}><IntlMessages id="navbarHome.foodsupplements" /></a>
                         </li>
                       </>
                     }
@@ -275,14 +276,26 @@ class App extends Component {
                           {this.props.user.email}
                         </a>
                         <ul className="dropdown-menu dropdown-menu-end">
+                          {
+                            this.props.user.authorization === "admin" ?
+                              <>
+                                <li className="nav-item">
+                                  <a className="dropdown-item nav-linkHead pointer" onClick={() => this.props.history.push('/admin')}>
+                                    <IntlMessages id="navbarHome.admin" />
+                                  </a>
+                                </li>
+                              </>
+                              : null
+                          }
+
                           <li className="nav-item">
                             <a className="dropdown-item nav-linkHead pointer" onClick={() => this.props.history.push('/profile')}>
-                            <IntlMessages id="navbarHome.profile"/>
+                              <IntlMessages id="navbarHome.profile" />
                             </a>
                           </li>
                           <li>
                             <a className="dropdown-item nav-linkHead pointer" onClick={() => this.onUserLogout()}>
-                              <IntlMessages id="navbarHome.logout"/>
+                              <IntlMessages id="navbarHome.logout" />
                             </a>
                           </li>
                         </ul>

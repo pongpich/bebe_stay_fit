@@ -36,6 +36,8 @@ export const types = {
   UPDATE_PROFILE: "UPDATE_PROFILE",
   UPDATE_PROFILE_SUCCESS: "UPDATE_PROFILE_SUCCESS",
   CHECK_UPDATE_MAX_FRIENDS: "CHECK_UPDATE_MAX_FRIENDS",
+  ADD_ORDERIN_ZORT: "ADD_ORDERIN_ZORT",
+  ADD_ORDERIN_ZORT_SUCCESS: "ADD_ORDERIN_ZORT_SUCCESS",
 }
 
 export const checkUpdateMaxFriends = (user_id) => ({
@@ -44,6 +46,12 @@ export const checkUpdateMaxFriends = (user_id) => ({
     user_id
   }
 })
+export const addOrderInZort = (customerEmail) => ({
+  type: types.ADD_ORDERIN_ZORT,
+  payload: {
+    customerEmail
+  }
+});
 
 export const resetStatusSetPassword = () => ({
   type: types.RESET_STATUS_SET_PASSWORD
@@ -185,6 +193,21 @@ export const signupUser = (email, password, firstname, lastname, phone) => ({
 /* END OF ACTION Section */
 
 /* SAGA Section */
+
+const addOrderInZortSagaAsync = async (
+  customerEmail
+) => {
+  try {
+    const apiResult = await API.post("bebe", "/addOrderInZort", {
+      body: {
+        customerEmail
+      }
+    });
+    return apiResult;
+  } catch (error) {
+    return { error, messsage: error.message };
+  }
+}
 
 const updateProfileSagaAsync = async (
   user_id,
@@ -516,6 +539,23 @@ function* updateProfileSaga({ payload }) {
   }
 }
 
+function* addOrderInZortSaga({ payload }) {
+  const {
+    customerEmail
+  } = payload
+  try {
+    const apiResult = yield call(
+      addOrderInZortSagaAsync,
+      customerEmail
+    );
+    yield put({
+      type: types.ADD_ORDERIN_ZORT_SUCCESS
+    });
+  } catch (error) {
+    return { error, messsage: error.message };
+  }
+}
+
 function* setPasswordSaga({ payload }) {
   const {
     email,
@@ -837,6 +877,9 @@ export function* watchUpdateProfile() {
 export function* watchCheckUpdateMaxFriends() {
   yield takeEvery(types.CHECK_UPDATE_MAX_FRIENDS, checkUpdateMaxFriendsSaga)
 }
+export function* watchAddOrderInZortSaga() {
+  yield takeEvery(types.ADD_ORDERIN_ZORT, addOrderInZortSaga)
+}
 
 export function* saga() {
   yield all([
@@ -855,6 +898,7 @@ export function* saga() {
     fork(watchTestPostService),
     fork(watchUpdateProfile),
     fork(watchCheckUpdateMaxFriends),
+    fork(watchAddOrderInZortSaga),
   ]);
 }
 
@@ -870,7 +914,8 @@ const INIT_STATE = {
   statusSetPassword: "default",
   statusChangeEmail: "default",
   createAccount: null,
-  statusForgotPassword: "default"
+  statusForgotPassword: "default",
+  statusAddZortOrder: "default",
 };
 
 export function reducer(state = INIT_STATE, action) {
@@ -880,6 +925,11 @@ export function reducer(state = INIT_STATE, action) {
         ...state,
         statusForgotPassword: "success"
       }
+    case types.ADD_ORDERIN_ZORT_SUCCESS:
+      return {
+        ...state,
+        statusAddZortOrder: "success"
+      };
     case types.FORGOT_PASSWORD_FAIL:
       return {
         ...state,

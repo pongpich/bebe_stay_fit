@@ -22,6 +22,7 @@ const ThLang = {
      "navbarHome.createAccount": "ลงทะเบียน",
      "navbarHome.exerciseprogram": "โปรแกรมออกกำลังกาย",
      "navbarHome.foodsupplements": "วิธีการกินอาหารและอาหารเสริม",
+     "navbarHome.admin": "Admin",
      /* 02.programPackage */
      "programPackage.registerBebeStayfit": "ลงทะเบียนเข้าร่วม Bebe Stayfit",
      "programPackage.calculate": "กรอกข้อมูลเพื่อคำนวณระยะเวลา ที่ใช้ในการลดน้ำหนัก",

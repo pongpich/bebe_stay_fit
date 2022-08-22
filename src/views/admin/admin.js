@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
 import { selectMemberInfo } from "../../redux/exerciseVideos";
-import { changeEmail } from "../../redux/auth";
+import { changeEmail ,addOrderInZort} from "../../redux/auth";
 import { selectMemberEventLog } from "../../redux/challenges";
 
 class Index extends Component {
@@ -15,6 +15,7 @@ class Index extends Component {
             borderBottom4: "video-link",
             email: " ",
             new_email: " ",
+            statusAddZortOrder: "default"
         }
     }
 
@@ -24,6 +25,24 @@ class Index extends Component {
             this.props.history.push('/videoList');
         }
     }
+/*     componentDidUpdate(prevProps, prevState) {
+        const {statusAddZortOrder}  = this.props;
+
+    
+        setTimeout(() => {
+            if (statusAddZortOrder === "success" && this.state.statusAddZortOrder !== "success") {
+                this.setState({
+                    statusAddZortOrder: statusAddZortOrder
+                })
+             
+            console.log("9999");
+            }
+            this.setState({
+                statusAddZortOrder: "default"
+            })
+       }, 3000);
+         
+     } */
 
     clickBottom = (e) => {
 
@@ -188,8 +207,38 @@ class Index extends Component {
         return (
             <>
                 <div className="boxAdmin">
-                    addOrderZort
+                    <div className="row">
+                        <div className="card mt-5 mb-3 col-lg-12">
+                            <div className="card-body">
+
+                                <h1 className="mb-5">เพิ่ม Order Zort</h1>
+                                <div className="row g-3  mb-5">
+                                    <div className="col-auto col-lg-5 ">
+                                        <label for="exampleFormControlInput1" className="form-label">Email</label>
+                                        <input type="text" id="email" className="form-control" name="email" /* value={this.state.email} */ onChange={(event) => this.handleChange(event)} placeholder="name@example.com" />
+                                    </div>
+                                    <div className="col-auto mt-5">
+                                        <button type="submit" className="btn btn-primary " onClick={() => this.props.addOrderInZort(
+                                            this.state.email
+                                        )}>ค้นหา</button>
+                                    </div>
+                                    {
+                                        /* console.log("statusAddZortOrder",this.state.statusAddZortOrder) */
+                                        this.props.statusAddZortOrder === "success" ? 
+                                        <h5 style={{color: "#008000" }}>เพิ่ม Order ใน zortout สำเร็จ</h5>
+                                        :null
+                                    }
+                                   
+                                </div>
+                                
+                            </div>
+                        </div>
+                    </div>
                 </div>
+
+                {
+                    console.log("addOrderZort",this.props.statusAddZortOrder,this.state.statusAddZortOrder)
+                }
             </>
         )
     }
@@ -199,7 +248,8 @@ class Index extends Component {
         var delayInMilliseconds = 1300; //1.3 second
         setTimeout(() => { // หน่วงเวลา แล้วค่อย setState 
             this.setState({
-                statusChangeEmail: this.props.statusChangeEmail
+                statusChangeEmail: this.props.statusChangeEmail,
+             
             })
         }, delayInMilliseconds);
     }
@@ -252,12 +302,12 @@ class Index extends Component {
                                 <div className="row g-3  mb-5">
                                     <div className="col-auto col-lg-5 ">
                                         <label for="exampleFormControlInput1" className="form-label">Email</label>
-                                        <input type="text" id="email" className="form-control" name="email" value={this.state.email} onChange={(event) => this.handleChange(event)} placeholder="name@example.com"/>
+                                        <input type="text" id="email" className="form-control" name="email" value={this.state.email} onChange={(event) => this.handleChange(event)} placeholder="name@example.com" />
                                     </div>
                                     <div className="col-auto mt-5">
-                                        <button type="submit" className="btn btn-primary "  onClick={() => this.props.selectMemberInfo(
-                                    this.state.email
-                                )}>ค้นหา</button>
+                                        <button type="submit" className="btn btn-primary " onClick={() => this.props.selectMemberInfo(
+                                            this.state.email
+                                        )}>ค้นหา</button>
                                     </div>
                                 </div>
                                 <br></br>
@@ -326,7 +376,7 @@ class Index extends Component {
 
 
 const mapStateToProps = ({ authUser, settings, challenges, exerciseVideos }) => {
-    const { user, statusChangeEmail } = authUser;
+    const { user, statusChangeEmail,statusAddZortOrder } = authUser;
     const { memberEventLog } = challenges;
     const { programInWeek, memberInfo, bodyInfo } = exerciseVideos;
     let locale;
@@ -335,10 +385,10 @@ const mapStateToProps = ({ authUser, settings, challenges, exerciseVideos }) => 
     } else {
         locale = "th";
     }
-    return { locale, user, memberEventLog, statusChangeEmail, memberInfo };
+    return { locale, user, memberEventLog, statusChangeEmail, memberInfo,statusAddZortOrder };
 };
 
-const mapActionsToProps = { selectMemberEventLog, changeEmail, selectMemberInfo };
+const mapActionsToProps = { selectMemberEventLog, changeEmail, selectMemberInfo,addOrderInZort };
 
 export default connect(
     mapStateToProps,
