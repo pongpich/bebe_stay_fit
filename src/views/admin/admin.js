@@ -202,6 +202,24 @@ class Index extends Component {
             </>
         )
     }
+    changeOrderZort(email) {
+        this.props.addOrderInZort(email);
+        var delayInMilliseconds = 2000; //1.3 second
+
+        if (this.props.statusAddZortOrder === "success") {
+            this.setState({
+                statusAddZortOrder: "success",
+             
+            })
+            setTimeout(() => { // หน่วงเวลา แล้วค่อย setState 
+                this.setState({
+                    statusAddZortOrder: "default",
+                 
+                })
+            }, delayInMilliseconds);
+        }
+      
+    }
 
     addOrderZort() {
         return (
@@ -218,13 +236,13 @@ class Index extends Component {
                                         <input type="text" id="email" className="form-control" name="email" /* value={this.state.email} */ onChange={(event) => this.handleChange(event)} placeholder="name@example.com" />
                                     </div>
                                     <div className="col-auto mt-5">
-                                        <button type="submit" className="btn btn-primary " onClick={() => this.props.addOrderInZort(
+                                        <button type="submit" className="btn btn-primary " onClick={() => this.changeOrderZort(
                                             this.state.email
                                         )}>เพิ่ม</button>
                                     </div>
                                     {
                                         /* console.log("statusAddZortOrder",this.state.statusAddZortOrder) */
-                                        this.props.statusAddZortOrder === "success" ? 
+                                        this.state.statusAddZortOrder === "success" ? 
                                         <h5 style={{color: "#008000" }}>เพิ่ม Order ใน zortout สำเร็จ</h5>
                                         :null
                                     }
