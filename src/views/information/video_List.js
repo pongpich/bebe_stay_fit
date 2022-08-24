@@ -46,7 +46,7 @@ import challenge from '../information/challenge';
 import Challenge from "../information/challenge";
 import IntlMessages from "../../helpers/IntlMessages";
 import { injectIntl } from 'react-intl';
-import { FacebookShareButton } from "react-share";
+import { FacebookShareButton, TwitterShareButton, FacebookMessengerShareButton, LineShareButton, WhatsappShareButton } from "react-share";
 
 class videoList extends React.Component {
 
@@ -837,7 +837,7 @@ class videoList extends React.Component {
                   <button style={{ display: 'none' }} id="modalDailyWeighChallengeClick" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalWeight">
                     Launch demo modal
                   </button>
-                  <button style={{ display: 'none' }} id="modalSubscription-shareClick" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalSubscription-share">
+                  <button /* style={{ display: 'none' }} */ id="modalSubscription-shareClick" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalSubscription-share">
                     modalSubscription
                     </button>
                 </div>
@@ -1431,6 +1431,7 @@ class videoList extends React.Component {
     )
   }
   bang() {
+    const urlShare = 'https://fit.bebefitroutine.com/achievement/achievement1.html';
     return (
       <div class="container text-center">
         <div class="row justify-content-md-center">
@@ -1445,15 +1446,24 @@ class videoList extends React.Component {
 
               <p className="share-success">แชร์ความสำเร็จ</p>
               <div className="box-share">
-                <FacebookShareButton url='https://fit.bebefitroutine.com/achievement/achievement1.html'>
+                <FacebookShareButton url={urlShare}>
                   <img src={facebook} className="icon-share" />
                 </FacebookShareButton>
-                <img src={twitter} className="icon-share" />
-                <img src={message} className="icon-share" />
-                <img src={line} className="icon-share" />
+                <TwitterShareButton url={urlShare}>
+                  <img src={twitter} className="icon-share" />
+                </TwitterShareButton>
+                {/* appId={} ต้องใช้ appId ถึงจะแชร์ได้  */}
+                {/* <FacebookMessengerShareButton url={urlShare} >
+                  <img src={message} className="icon-share" />
+                </FacebookMessengerShareButton>
+                <LineShareButton>
+                  <img src={line} className="icon-share" />
+                </LineShareButton>
                 <img src={tiktok} className="icon-share" />
-                <img src={whatsApp} className="icon-share" />
-                <img src={instagram} className="icon-share" />
+                <WhatsappShareButton>
+                  <img src={whatsApp} className="icon-share" />
+                </WhatsappShareButton>
+                <img src={instagram} className="icon-share" /> */}
               </div>
             </div>
           </div>
