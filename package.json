@@ -20,6 +20,7 @@
     "react-router-dom": "^5.2.0",
     "react-router-hash-link": "^2.4.3",
     "react-scripts": "^5.0.1",
+    "react-share": "^4.4.0",
     "react-thailand-address-autocomplete": "0.0.6",
     "react-use-scrollspy": "^3.0.2",
     "redux-devtools-extension": "^2.13.9",

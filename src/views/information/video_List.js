@@ -46,6 +46,7 @@ import challenge from '../information/challenge';
 import Challenge from "../information/challenge";
 import IntlMessages from "../../helpers/IntlMessages";
 import { injectIntl } from 'react-intl';
+import { FacebookShareButton } from "react-share";
 
 class videoList extends React.Component {
 
@@ -836,7 +837,7 @@ class videoList extends React.Component {
                   <button style={{ display: 'none' }} id="modalDailyWeighChallengeClick" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalWeight">
                     Launch demo modal
                   </button>
-                  <button style={{ display: 'none' }} type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalSubscription-share">
+                  <button style={{ display: 'none' }} id="modalSubscription-shareClick" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalSubscription-share">
                     modalSubscription
                     </button>
                 </div>
@@ -1444,7 +1445,9 @@ class videoList extends React.Component {
 
               <p className="share-success">แชร์ความสำเร็จ</p>
               <div className="box-share">
-                <img src={facebook} className="icon-share" />
+                <FacebookShareButton url='https://fit.bebefitroutine.com/achievement/achievement1.html'>
+                  <img src={facebook} className="icon-share" />
+                </FacebookShareButton>
                 <img src={twitter} className="icon-share" />
                 <img src={message} className="icon-share" />
                 <img src={line} className="icon-share" />
