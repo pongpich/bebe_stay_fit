@@ -1280,21 +1280,21 @@ class videoList extends React.Component {
                 <FacebookShareButton url={urlShare}>
                   <img src={facebook} className="icon-share" />
                 </FacebookShareButton>
-              {/*   <TwitterShareButton url={urlShare}>
+                <TwitterShareButton url={urlShare}>
                   <img src={twitter} className="icon-share" />
-                </TwitterShareButton> */}
+                </TwitterShareButton>
                 {/* appId={} ต้องใช้ appId ถึงจะแชร์ได้  */}
                 {/* <FacebookMessengerShareButton url={urlShare} >
                   <img src={message} className="icon-share" />
-                </FacebookMessengerShareButton>
-                <LineShareButton>
+                </FacebookMessengerShareButton> */}
+                <LineShareButton url={urlShare}>
                   <img src={line} className="icon-share" />
                 </LineShareButton>
-                <img src={tiktok} className="icon-share" />
-                <WhatsappShareButton>
+                {/* <img src={tiktok} className="icon-share" /> */}
+                <WhatsappShareButton url={urlShare}>
                   <img src={whatsApp} className="icon-share" />
                 </WhatsappShareButton>
-                <img src={instagram} className="icon-share" /> */}
+                {/*  <img src={instagram} className="icon-share" /> */}
               </div>
             </div>
           </div>
