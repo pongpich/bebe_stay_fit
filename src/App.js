@@ -4,8 +4,10 @@ import Home from '../src/views/information/home';
 import Buy_program from '../src/views/information/buy_program';
 import Register from '../src/views/information/register';
 import Fitto_Plant_Protein from '../src/views/information/fitto_plant_protein';
+import EditFitto_Plant_Protein from '../src/views/information/edit_fitto_plant_protein';
 import InformationCalculate from "../src/views/information/information_calculate";
 import Shipping_Address from "../src/views/information/shipping_address";
+import EditShipping_Address from "../src/views/information/edit_shipping_address";
 import Payment from "../src/views/information/payment";
 import SubscriptionPayment from "../src/views/information/subscriptionPayment";
 import Welcome_NewMember from "../src/views/information/welcome_new_member";
@@ -372,7 +374,9 @@ class App extends Component {
                 <Route path='/register' component={Register} />
                 {/* <Route path='/cc_token' component={Cc_token} /> */}
                 <Route path='/fitto_plant_protein' component={Fitto_Plant_Protein} />
+                <Route path='/edit_fitto_plant_protein' component={EditFitto_Plant_Protein} />
                 <Route path='/shipping_address' component={Shipping_Address} />
+                <Route path='/edit_shipping_address' component={EditShipping_Address} />
                 <Route path='/payment' component={Payment} />
                 <Route path='/subscription_payment' component={SubscriptionPayment} />
                 <Route path='/welcome_new_nember' component={Welcome_NewMember} />

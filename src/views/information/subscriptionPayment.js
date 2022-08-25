@@ -5,7 +5,10 @@ import payment2 from "../../assets/img/payment2.png";
 import payment3 from "../../assets/img/payment3.png";
 import payment4 from "../../assets/img/payment4.png";
 import payment5 from "../../assets/img/payment5.png";
+import ellipse_077 from "../../assets/img/ellipse_077.png";
+import ellipse_078 from "../../assets/img/ellipse_078.png";
 import { Link } from 'react-router-dom';
+import IntlMessages from "../../helpers/IntlMessages";
 import { connect } from "react-redux";
 import { getUserProgram } from "../../redux/exerciseProgram"
 import { insertSubscriptionProducts } from "../../redux/createUser"
@@ -207,12 +210,34 @@ class SubscriptionPayment extends React.Component {
     return (
       <>
         <div className="col-12 col-sm-12 col-md-12 col-lg-12 App-headerBackground center2 padding-top2 ">
-          <div className="col-12 col-sm-12 col-md-10 col-lg-10 center2">
-            {/* <img src={group21} alt="vector" className="group19" /> */}
+          <div className="col-10 col-sm-8 col-md-8 col-lg-8 center2">
+          <div className="current-position">
+              <p className="border-line2  col-8 col-sm-6 col-md-6 col-lg-6 "></p>
+              {/* <div className="ellipse-text col-2 col-sm-2 col-md-2 col-lg-2">
+                <img src={ellipse_078} alt="vector" />
+                <p className="img-p"> <IntlMessages id="register.chooseYouPackage" /></p>
+              </div>
+              <div className="ellipse-text  col-2 col-sm-2 col-md-2 col-lg-2">
+                <img src={ellipse_078} alt="vector" />
+                <p className="img-p"> <IntlMessages id="register.chooseYouAccount" /></p>
+              </div> */}
+              <div className="ellipse-text  col-3 col-sm-2 col-md-2 col-lg-2">
+                <img src={ellipse_078} alt="vector" />
+                <p className="img-p"> <IntlMessages id="register.chooseYouflavor" /></p>
+              </div>
+              <div className="ellipse-text  col-2 col-sm-2 col-md-2 col-lg-2">
+                <img src={ellipse_078} alt="vector" />
+                <p className="img-p"> <IntlMessages id="register.deliveryAddress" /></p>
+              </div>
+              <div className="ellipse-text  col-2 col-sm-2 col-md-2 col-lg-2">
+                <img src={ellipse_077} alt="vector" />
+                <p className="img-p"> <IntlMessages id="register.payment" /></p>
+              </div>
+            </div>
           </div>
           <div className="col-12 col-sm-12 col-md-6 col-lg-6 center2 margin-head">
             <div className="col-12 col-sm-12 col-md-10 col-lg-10 center2  margin-headText">
-              <p className="font-size6 bold color-protein"> การชำระเงิน </p>
+              <p className="font-size6 bold color-protein"> การชำระเงิน</p>
             </div>
             {
               ((this.state.status_payment === "unsuccess") && (this.state.paymentMethod === "creditCard")) &&
@@ -298,7 +323,7 @@ class SubscriptionPayment extends React.Component {
                     {/* <p className=" bold font-size5 between">แพ็กเกจของคุณ <span className="font-size4 light decoration pointer" onClick={e => this.onChickprice(e)}>เปลี่ยน</span></p> */}
                     <p className="font-size5">
                       <>
-                        <p className="font-size5 bold">รสชาติของ Fitto Plant Protein</p>
+                        <p className="font-size5 bold between">รสชาติของ Fitto Plant Protein <span className="font-size4 light decoration pointer"  onClick={() => this.props.history.push('/edit_fitto_plant_protein')}>เปลี่ยน</span></p>
                         <p className="font-size4">
                           กล่องที่ 1 - {this.state.product1}
                           <br />
@@ -311,7 +336,7 @@ class SubscriptionPayment extends React.Component {
                   </div>
                   <p className="border-bottom "></p>
                   <div className="padding-top2">
-                    <p className=" bold font-size5 between">ที่อยู่ในการจัดส่งสินค้า {/* <span className="font-size4 light decoration pointer" onClick={() => this.props.history.push('/shipping_address')}>เปลี่ยน</span> */}</p>
+                    <p className=" bold font-size5 between">ที่อยู่ในการจัดส่งสินค้า  <span className="font-size4 light decoration pointer" onClick={() => this.props.history.push('/edit_shipping_address')}>เปลี่ยน</span></p>
                     <p>{this.state.username} &nbsp; {this.state.lastname}  </p>
                     <p>{this.state.telephone} </p>
                     <p>{this.state.addressUser} &nbsp;{this.state.subdistrictUser}&nbsp;{this.state.districtUser}</p>
