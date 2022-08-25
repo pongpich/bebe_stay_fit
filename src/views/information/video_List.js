@@ -430,6 +430,18 @@ class videoList extends React.Component {
         })
       }
     }
+
+    var numbExeciseComplete = 0;
+    for (let exIndex = 0; exIndex < todayExercise.length; exIndex++) {
+      const exercise = todayExercise[exIndex];
+      if (parseFloat(exercise.play_time) / parseFloat(exercise.duration) >= 0.9) {
+        numbExeciseComplete = numbExeciseComplete + 1;
+      }
+    }
+
+    if (!nextVDO && (numbExeciseComplete >= todayExercise.length - 1)) { //!nextVDO = ไม่มีวีดีถัดไป(คือเป็นวีดีโอสุดท้ายของวันนั้น) และ numbExeciseComplete เช็คจำนวนคลิปที่ดูสำเร็จป้องกันดุคลิปสุดท้ายอันเดียว
+      document.getElementById("modalAchievement2Btn") && document.getElementById("modalAchievement2Btn").click();
+    }
   }
 
   onVideoTimeUpdate(compName = "video") {
@@ -837,9 +849,17 @@ class videoList extends React.Component {
                   <button style={{ display: 'none' }} id="modalDailyWeighChallengeClick" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalWeight">
                     Launch demo modal
                   </button>
-                  <button style={{ display: 'none' }} id="modalSubscription-shareClick" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalSubscription-share">
-                    modalSubscription
+                  {
+                    (this.props.user && this.props.user.email === "akkewach.yodsomboon@gmail.com") &&
+                    <button /* style={{ display: 'none' }} */ id="modalSubscription-shareClick" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalSubscription-share">
+                      modalSubscription
+                  </button>
+                  }
+                  {
+                    <button style={{ display: 'none' }} id="modalAchievement2Btn" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalAchievement2">
+                      modalAchievement2
                     </button>
+                  }
                 </div>
               </nav>
               <div className="rectangle14"></div>
@@ -1205,14 +1225,29 @@ class videoList extends React.Component {
               </div>
               <div class="modal-subscription">
                 {
-                  /*this.nieyeah()
-                  this.staycool() 
-                  this.super()
-                  this.wow()
-                  this.thankYou()
-                  this.goodJob()*/
-                  /* this.pop() */
-                  this.bang()
+                  this.nieyeah()
+                  //this.staycool() 
+                  //this.super()
+                  //this.wow()
+                  //this.thankYou()
+                  //this.goodJob()
+                  // this.pop()
+                  //this.bang()
+                }
+              </div>
+            </div>
+          </div>
+        </div>
+        {/* <!-- Modal  achievement2 --> */}
+        <div class="modal fade" id="modalAchievement2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog   modal-lg modal-dialog-centered">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-subscription">
+                {
+                  this.nieyeah()
                 }
               </div>
             </div>
@@ -1227,6 +1262,7 @@ class videoList extends React.Component {
   }
   /* เเชร์  */
   nieyeah() {
+    const urlShare = 'https://fit.bebefitroutine.com/achievement/achievement2.html';
     return (
       <div class="container text-center">
         <div class="row justify-content-md-center">
@@ -1236,18 +1272,29 @@ class videoList extends React.Component {
           </div>
           <div class="col-12 col-sm-12 col-md-12 col-lg-6  ">
             <div className="canterMode-box">
-              <p className="modeText-box">วันนี้คุณเล่นสำเร็จแล้ว</p>
-              <p>xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx <br />xxxxxxxxxxxxxxxx</p>
+              <p className="modeText-box">วันนี้คุณออกกำลังกายครบแล้ว</p>
+              <p>{/* xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx */} <br />{/* xxxxxxxxxxxxxxxx */}</p>
 
               <p className="share-success">แชร์ความสำเร็จ</p>
               <div className="box-share">
-                <img src={facebook} className="icon-share" />
-                <img src={twitter} className="icon-share" />
-                <img src={message} className="icon-share" />
-                <img src={line} className="icon-share" />
+                <FacebookShareButton url={urlShare}>
+                  <img src={facebook} className="icon-share" />
+                </FacebookShareButton>
+              {/*   <TwitterShareButton url={urlShare}>
+                  <img src={twitter} className="icon-share" />
+                </TwitterShareButton> */}
+                {/* appId={} ต้องใช้ appId ถึงจะแชร์ได้  */}
+                {/* <FacebookMessengerShareButton url={urlShare} >
+                  <img src={message} className="icon-share" />
+                </FacebookMessengerShareButton>
+                <LineShareButton>
+                  <img src={line} className="icon-share" />
+                </LineShareButton>
                 <img src={tiktok} className="icon-share" />
-                <img src={whatsApp} className="icon-share" />
-                <img src={instagram} className="icon-share" />
+                <WhatsappShareButton>
+                  <img src={whatsApp} className="icon-share" />
+                </WhatsappShareButton>
+                <img src={instagram} className="icon-share" /> */}
               </div>
             </div>
           </div>
