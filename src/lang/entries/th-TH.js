@@ -35,7 +35,7 @@ const ThLang = {
      "programPackage.kilogram": "กิโลกรัม",
      "programPackage.manyKilograms": "คุณต้องการลดน้ำหนักกี่กิโลกรัม",
      "programPackage.ableLose": "คุณจะสามารถลดน้ำหนัก",
-     "programPackage.kgIn": " กิโลกรัม ภายใน",
+     "programPackage.kgIn": "ภายใน",
      "programPackage.months": "เดือน",
      "programPackage.choosePackage": "กรุณาเลือกแพ็กเกจที่คุณต้องการ",
      "programPackage.beginner": "เซตเริ่มต้นสายฟิต",

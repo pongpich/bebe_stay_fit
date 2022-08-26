@@ -36,7 +36,7 @@ const EnLang = {
     "programPackage.kilogram": "Kilogram",
     "programPackage.manyKilograms": "How many kilograms do you want to lose weight?",
     "programPackage.ableLose": "You will be able to lose",
-    "programPackage.kgIn": "kg in",
+    "programPackage.kgIn": "in",
     "programPackage.months": "months",
     "programPackage.choosePackage": "Please choose your package",
     "programPackage.beginner": "Beginner gets fit",
