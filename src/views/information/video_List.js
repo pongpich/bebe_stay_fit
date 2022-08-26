@@ -1225,9 +1225,9 @@ class videoList extends React.Component {
               </div>
               <div class="modal-subscription">
                 {
-                  this.nieyeah()
+                  //this.nieyeah()
                   //this.staycool() 
-                  //this.super()
+                  this.super()
                   //this.wow()
                   //this.thankYou()
                   //this.goodJob()
