@@ -323,12 +323,12 @@ class Shipping_Address extends React.Component {
                     <small id="emailHelp" className="form-text text-muted mb-3"><h6 style={{ color: "red" }}>กรุณากรอกข้อมูลให้ครบถ้วน</h6></small>
                   }
                   <div className="padding-top2">
-                    <div className="form-check">
+                    {/* <div className="form-check">
                       <input id="checkedTaxInvoice" className="form-check-input" type="checkbox" onClick={e => this.taxInvoice(e)} />
                       <label className="form-check-label">
                       <IntlMessages id="shipping_address.taxinvoice"/>
                                             </label>
-                    </div>
+                    </div> */}
                   </div>
                 </div>
               </div>
