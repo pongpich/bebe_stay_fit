@@ -10,6 +10,8 @@ import group22 from '../../assets/img/group22.png';
 import icon_x from '../../assets/img/icon_x.png';
 import group425 from '../../assets/img/group425.png';
 import frame42 from "../../assets/img/frame42.png";
+import frame43 from "../../assets/img/frame43.png";
+import frame44 from "../../assets/img/frame44.png";
 import icon_web from "../../assets/img/icon-web.png";
 import facebook from "../../assets/img/icon-facebook.png";
 import twitter from "../../assets/img/icon-Twitter.png";
@@ -85,9 +87,14 @@ class Challenge extends Component {
       this.setState({ myTeamRank: myTeamRankIndex + 1 });
 
       if (myTeamRankIndex + 1 === 1) {
-       //document.getElementById("modalAchievement3Btn") && document.getElementById("modalAchievement3Btn").click();
+        document.getElementById("modalAchievement3Btn") && document.getElementById("modalAchievement3Btn").click();
       }
-
+      if (myTeamRankIndex + 1 === 2) {
+        document.getElementById("modalAchievement4Btn") && document.getElementById("modalAchievement4Btn").click();
+      }
+      if ((myTeamRankIndex + 1 >= 3) && (myTeamRankIndex + 1 <= 10)) {
+        document.getElementById("modalAchievement5Btn") && document.getElementById("modalAchievement5Btn").click();
+      }
     }
 
     if ((prevProps.statusRejectTeamInvite !== statusRejectTeamInvite) && (statusRejectTeamInvite === "success")) {
@@ -1175,6 +1182,89 @@ class Challenge extends Component {
     )
   }
 
+  wow() {
+    const urlShare = 'https://fit.bebefitroutine.com/achievement/achievement4.html';
+    return (
+      <div class="container text-center">
+        <div class="row justify-content-md-center">
+          <div class="col-12 col-sm-12 col-md-12 col-lg-6">
+            <img src={frame43} className="frame40" />
+            <img src={icon_web} className="icon_web" />
+          </div>
+          <div class="col-12 col-sm-12 col-md-12 col-lg-6  ">
+            <div className="canterMode-box">
+              <p className="modeText-box">ทีมอันดับที่ 2 ประจำสัปดาห์</p>
+              <p>{/* xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx  */}<br />{/* xxxxxxxxxxxxxxxx */}</p>
+
+              <p className="share-success">แชร์ความสำเร็จ</p>
+              <div className="box-share">
+                <FacebookShareButton url={urlShare}>
+                  <img src={facebook} className="icon-share" />
+                </FacebookShareButton>
+                {/* <TwitterShareButton url={urlShare}>
+                  <img src={twitter} className="icon-share" />
+                </TwitterShareButton> */}
+                {/* appId={} ต้องใช้ appId ถึงจะแชร์ได้  */}
+                {/* <FacebookMessengerShareButton url={urlShare} >
+                  <img src={message} className="icon-share" />
+                </FacebookMessengerShareButton> */}
+                {/*       <LineShareButton url={urlShare}>
+                  <img src={line} className="icon-share" />
+                </LineShareButton> */}
+                {/* <img src={tiktok} className="icon-share" /> */}
+                {/*    <WhatsappShareButton url={urlShare}>
+                  <img src={whatsApp} className="icon-share" />
+                </WhatsappShareButton> */}
+                {/*  <img src={instagram} className="icon-share" /> */}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    )
+  }
+
+  thankYou() {
+    const urlShare = 'https://fit.bebefitroutine.com/achievement/achievement5.html';
+    return (
+      <div class="container text-center">
+        <div class="row justify-content-md-center">
+          <div class="col-12 col-sm-12 col-md-12 col-lg-6">
+            <img src={frame44} className="frame40" />
+            <img src={icon_web} className="icon_web" />
+          </div>
+          <div class="col-12 col-sm-12 col-md-12 col-lg-6  ">
+            <div className="canterMode-box">
+              <p className="modeText-box">ทีมอันดับ Top 10 ประจำสัปดาห์</p>
+              <p>{/* xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx */} <br />{/* xxxxxxxxxxxxxxxx */}</p>
+
+              <p className="share-success">แชร์ความสำเร็จ</p>
+              <div className="box-share">
+                <FacebookShareButton url={urlShare}>
+                  <img src={facebook} className="icon-share" />
+                </FacebookShareButton>
+                {/* <TwitterShareButton url={urlShare}>
+                  <img src={twitter} className="icon-share" />
+                </TwitterShareButton> */}
+                {/* appId={} ต้องใช้ appId ถึงจะแชร์ได้  */}
+                {/* <FacebookMessengerShareButton url={urlShare} >
+                  <img src={message} className="icon-share" />
+                </FacebookMessengerShareButton> */}
+                {/*       <LineShareButton url={urlShare}>
+                  <img src={line} className="icon-share" />
+                </LineShareButton> */}
+                {/* <img src={tiktok} className="icon-share" /> */}
+                {/*    <WhatsappShareButton url={urlShare}>
+                  <img src={whatsApp} className="icon-share" />
+                </WhatsappShareButton> */}
+                {/*  <img src={instagram} className="icon-share" /> */}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    )
+  }
 
   render() {
     /* const { messages } = this.props.intl; */
@@ -1290,6 +1380,24 @@ class Challenge extends Component {
                   modalAchievement3
                 </button>
               }
+              {
+                <button
+                  style={{ display: 'none' }}
+                  id="modalAchievement4Btn"
+                  type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalAchievement4"
+                >
+                  modalAchievement4
+                </button>
+              }
+              {
+                <button
+                  style={{ display: 'none' }}
+                  id="modalAchievement5Btn"
+                  type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalAchievement5"
+                >
+                  modalAchievement5
+                </button>
+              }
 
               {/* <p className="circle-VideoAll">คลิปแบบซื้อ <span className="color1"> ดูทั้งหมด {'>'}</span></p> */}
               {/* <div className="box-VideoChallenge">
@@ -1384,6 +1492,36 @@ class Challenge extends Component {
               <div class="modal-subscription">
                 {
                   this.super()
+                }
+              </div>
+            </div>
+          </div>
+        </div>
+        {/* <!-- Modal  achievement4 --> */}
+        <div class="modal fade" id="modalAchievement4" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog   modal-lg modal-dialog-centered">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-subscription">
+                {
+                  this.wow()
+                }
+              </div>
+            </div>
+          </div>
+        </div>
+        {/* <!-- Modal  achievement5 --> */}
+        <div class="modal fade" id="modalAchievement5" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog   modal-lg modal-dialog-centered">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-subscription">
+                {
+                  this.thankYou()
                 }
               </div>
             </div>
