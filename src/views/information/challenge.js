@@ -38,6 +38,7 @@ class Challenge extends Component {
       emailAddFriend: "",
       emailDeleteFriend: "",
       emailTeamInvite: "",
+      myTeamRank: 0,
     }
   }
 
@@ -67,7 +68,12 @@ class Challenge extends Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    const { user, statusCreateTeam, statusGetNumberOfTeamNotFull, numberOfTeamNotFull, statusLeaveTeam, statusSendFriendRequest, statusGetFriendRequest, friend_request, statusAcceptFriend, statusRejectFriend, statusDeleteFriend, statusSendTeamInvite, statusGetTeamInvite, team_invite, statusRejectTeamInvite, statusAcceptTeamInvite } = this.props;
+    const { user, statusCreateTeam, statusGetNumberOfTeamNotFull, numberOfTeamNotFull, statusLeaveTeam, statusSendFriendRequest, statusGetFriendRequest, friend_request, statusAcceptFriend, statusRejectFriend, statusDeleteFriend, statusSendTeamInvite, statusGetTeamInvite, team_invite, statusRejectTeamInvite, statusAcceptTeamInvite, statusGetLeaderBoard, teamRank } = this.props;
+
+    if ((prevProps.statusGetLeaderBoard !== statusGetLeaderBoard) && statusGetLeaderBoard === "success") {
+      const myTeamRankIndex = teamRank.findIndex(item => item.group_id === parseInt(this.props.user.group_id));
+      this.setState({ myTeamRank: myTeamRankIndex + 1 });
+    }
 
     if ((prevProps.statusRejectTeamInvite !== statusRejectTeamInvite) && (statusRejectTeamInvite === "success")) {
       document.getElementById("buttonModalTeamInvite") && document.getElementById("buttonModalTeamInvite").click();
@@ -1116,7 +1122,7 @@ class Challenge extends Component {
 
   render() {
     /* const { messages } = this.props.intl; */
-    const { challenge, allMissions, teamList, scoreboard, friendList } = this.state;
+    const { challenge, allMissions, teamList, scoreboard, friendList, myTeamRank } = this.state;
     const { rank, logWeightCount, isReducedWeight, logWeightTeamCount, numberOfMembers, dailyTeamWeightBonusCount, user, totalScoreOfTeam } = this.props;
     const isExerciseCompleted = this.isExerciseCompleted(this.props.exerciseVideo);
     var { scoreInWeek } = this.state;
@@ -1517,14 +1523,14 @@ class Challenge extends Component {
 const mapStateToProps = ({ authUser, challenges, exerciseVideos, settings }) => {
   const { user } = authUser;
   const { exerciseVideo, statusVideoList } = exerciseVideos;
-  const { statusCreateTeam, numberOfTeamNotFull, statusGetNumberOfTeamNotFull, statusLeaveTeam, membersOfTeam, group_name, totalScoreOfTeam, rank, teamRank, individualRank, logWeightCount, isReducedWeight, logWeightTeamCount, numberOfMembers, dailyTeamWeightBonusCount, friend_list, statusGetFriendList, statusSendFriendRequest, friend_request, statusGetFriendRequest, statusAcceptFriend, statusRejectFriend, statusGetMaxFriends, max_friends, statusDeleteFriend, statusSendTeamInvite, team_invite, statusGetTeamInvite, statusRejectTeamInvite, statusAcceptTeamInvite, friendsRank, statusGetFriendsRank, challengePeriod } = challenges;
+  const { statusCreateTeam, numberOfTeamNotFull, statusGetNumberOfTeamNotFull, statusLeaveTeam, membersOfTeam, group_name, totalScoreOfTeam, rank, teamRank, individualRank, logWeightCount, isReducedWeight, logWeightTeamCount, numberOfMembers, dailyTeamWeightBonusCount, friend_list, statusGetFriendList, statusSendFriendRequest, friend_request, statusGetFriendRequest, statusAcceptFriend, statusRejectFriend, statusGetMaxFriends, max_friends, statusDeleteFriend, statusSendTeamInvite, team_invite, statusGetTeamInvite, statusRejectTeamInvite, statusAcceptTeamInvite, friendsRank, statusGetFriendsRank, challengePeriod, statusGetLeaderBoard } = challenges;
   let locale;
   if (settings) {
     locale = settings.locale;
   } else {
     locale = "th";
   }
-  return { locale, user, statusCreateTeam, numberOfTeamNotFull, statusGetNumberOfTeamNotFull, statusLeaveTeam, membersOfTeam, group_name, totalScoreOfTeam, rank, teamRank, individualRank, logWeightCount, isReducedWeight, logWeightTeamCount, numberOfMembers, dailyTeamWeightBonusCount, exerciseVideo, statusVideoList, friend_list, statusGetFriendList, statusSendFriendRequest, friend_request, statusGetFriendRequest, statusAcceptFriend, statusRejectFriend, statusGetMaxFriends, max_friends, statusDeleteFriend, statusSendTeamInvite, team_invite, statusGetTeamInvite, statusRejectTeamInvite, statusAcceptTeamInvite, friendsRank, statusGetFriendsRank, challengePeriod };
+  return { locale, user, statusCreateTeam, numberOfTeamNotFull, statusGetNumberOfTeamNotFull, statusLeaveTeam, membersOfTeam, group_name, totalScoreOfTeam, rank, teamRank, individualRank, logWeightCount, isReducedWeight, logWeightTeamCount, numberOfMembers, dailyTeamWeightBonusCount, exerciseVideo, statusVideoList, friend_list, statusGetFriendList, statusSendFriendRequest, friend_request, statusGetFriendRequest, statusAcceptFriend, statusRejectFriend, statusGetMaxFriends, max_friends, statusDeleteFriend, statusSendTeamInvite, team_invite, statusGetTeamInvite, statusRejectTeamInvite, statusAcceptTeamInvite, friendsRank, statusGetFriendsRank, challengePeriod, statusGetLeaderBoard };
 };
 
 const mapActionsToProps = { getGroupID, getRank, getLogWeight, getIsReducedWeight, getLogWeightTeam, getDailyTeamWeightBonus, getNumberOfTeamNotFull, assignGroupToMember, clearChallenges, createChallengeGroup, leaveTeam, getMembersAndRank, getGroupName, getScoreOfTeam, getLeaderboard, getChallengePeriod, getFriendList, sendFriendRequest, getFriendRequest, acceptFriend, rejectFriend, getMaxFriends, deleteFriend, sendTeamInvite, getTeamInvite, rejectTeamInvite, acceptTeamInvite, checkUpdateMaxFriends, getFriendsRank };
