@@ -12,6 +12,7 @@ import group425 from '../../assets/img/group425.png';
 import frame42 from "../../assets/img/frame42.png";
 import frame43 from "../../assets/img/frame43.png";
 import frame44 from "../../assets/img/frame44.png";
+import frame47 from "../../assets/img/frame47.png";
 import icon_web from "../../assets/img/icon-web.png";
 import facebook from "../../assets/img/icon-facebook.png";
 import twitter from "../../assets/img/icon-Twitter.png";
@@ -51,6 +52,7 @@ class Challenge extends Component {
       emailDeleteFriend: "",
       emailTeamInvite: "",
       myTeamRank: 0,
+      myIndividualRank: 0
     }
   }
 
@@ -80,12 +82,19 @@ class Challenge extends Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    const { user, statusCreateTeam, statusGetNumberOfTeamNotFull, numberOfTeamNotFull, statusLeaveTeam, statusSendFriendRequest, statusGetFriendRequest, friend_request, statusAcceptFriend, statusRejectFriend, statusDeleteFriend, statusSendTeamInvite, statusGetTeamInvite, team_invite, statusRejectTeamInvite, statusAcceptTeamInvite, statusGetLeaderBoard, teamRank } = this.props;
+    const { user, statusCreateTeam, statusGetNumberOfTeamNotFull, numberOfTeamNotFull, statusLeaveTeam, statusSendFriendRequest, statusGetFriendRequest, friend_request, statusAcceptFriend, statusRejectFriend, statusDeleteFriend, statusSendTeamInvite, statusGetTeamInvite, team_invite, statusRejectTeamInvite, statusAcceptTeamInvite, statusGetLeaderBoard, teamRank, individualRank } = this.props;
 
     if ((prevProps.statusGetLeaderBoard !== statusGetLeaderBoard) && statusGetLeaderBoard === "success") {
       const myTeamRankIndex = teamRank.findIndex(item => item.group_id === parseInt(this.props.user.group_id));
-      this.setState({ myTeamRank: myTeamRankIndex + 1 });
+      const myIndividualRankIndex = individualRank.findIndex(item => item.user_id === this.props.user.user_id);
+      this.setState({
+        myTeamRank: myTeamRankIndex + 1,
+        myIndividualRank: myIndividualRankIndex + 1
+      });
 
+      if (myIndividualRankIndex + 1 === 1) {
+        document.getElementById("modalAchievement1Btn") && document.getElementById("modalAchievement1Btn").click();
+      }
       if (myTeamRankIndex + 1 === 1) {
         document.getElementById("modalAchievement3Btn") && document.getElementById("modalAchievement3Btn").click();
       }
@@ -1266,6 +1275,48 @@ class Challenge extends Component {
     )
   }
 
+  bang() {
+    const urlShare = 'https://fit.bebefitroutine.com/achievement/achievement1.html';
+    return (
+      <div class="container text-center">
+        <div class="row justify-content-md-center">
+          <div class="col-12 col-sm-12 col-md-12 col-lg-6">
+            <img src={frame47} className="frame40" />
+            <img src={icon_web} className="icon_web" />
+          </div>
+          <div class="col-12 col-sm-12 col-md-12 col-lg-6  ">
+            <div className="canterMode-box">
+              <p className="modeText-box">ทำคะแนนได้สูงสุดประจำสัปดาห์</p>
+              <p>{/* xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx */} <br />{/* xxxxxxxxxxxxxxxx */}</p>
+
+              <p className="share-success">แชร์ความสำเร็จ</p>
+              <div className="box-share">
+                <FacebookShareButton url={urlShare}>
+                  <img src={facebook} className="icon-share" />
+                </FacebookShareButton>
+                {/* <TwitterShareButton url={urlShare}>
+                  <img src={twitter} className="icon-share" />
+                </TwitterShareButton> */}
+                {/* appId={} ต้องใช้ appId ถึงจะแชร์ได้  */}
+                {/* <FacebookMessengerShareButton url={urlShare} >
+                  <img src={message} className="icon-share" />
+                </FacebookMessengerShareButton> */}
+                {/*       <LineShareButton url={urlShare}>
+                  <img src={line} className="icon-share" />
+                </LineShareButton> */}
+                {/* <img src={tiktok} className="icon-share" /> */}
+                {/*    <WhatsappShareButton url={urlShare}>
+                  <img src={whatsApp} className="icon-share" />
+                </WhatsappShareButton> */}
+                {/*  <img src={instagram} className="icon-share" /> */}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    )
+  }
+
   render() {
     /* const { messages } = this.props.intl; */
     const { challenge, allMissions, teamList, scoreboard, friendList, myTeamRank } = this.state;
@@ -1398,6 +1449,15 @@ class Challenge extends Component {
                   modalAchievement5
                 </button>
               }
+              {
+                <button
+                  style={{ display: 'none' }}
+                  id="modalAchievement1Btn"
+                  type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalAchievement1"
+                >
+                  modalAchievement1
+                </button>
+              }
 
               {/* <p className="circle-VideoAll">คลิปแบบซื้อ <span className="color1"> ดูทั้งหมด {'>'}</span></p> */}
               {/* <div className="box-VideoChallenge">
@@ -1522,6 +1582,21 @@ class Challenge extends Component {
               <div class="modal-subscription">
                 {
                   this.thankYou()
+                }
+              </div>
+            </div>
+          </div>
+        </div>
+        {/* <!-- Modal  achievement1 --> */}
+        <div class="modal fade" id="modalAchievement1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog   modal-lg modal-dialog-centered">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-subscription">
+                {
+                  this.bang()
                 }
               </div>
             </div>

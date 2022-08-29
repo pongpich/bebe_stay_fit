@@ -1229,10 +1229,10 @@ class videoList extends React.Component {
                   //this.staycool() 
                   //this.super()
                   //this.wow()
-                  this.thankYou()
+                  //this.thankYou()
                   //this.goodJob()
                   // this.pop()
-                  //this.bang()
+                  this.bang()
                 }
               </div>
             </div>
@@ -1513,28 +1513,28 @@ class videoList extends React.Component {
           <div class="col-12 col-sm-12 col-md-12 col-lg-6  ">
             <div className="canterMode-box">
               <p className="modeText-box">ทำคะแนนได้สูงสุดประจำสัปดาห์</p>
-              <p>xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx <br />xxxxxxxxxxxxxxxx</p>
+              <p>{/* xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx */} <br />{/* xxxxxxxxxxxxxxxx */}</p>
 
               <p className="share-success">แชร์ความสำเร็จ</p>
               <div className="box-share">
                 <FacebookShareButton url={urlShare}>
                   <img src={facebook} className="icon-share" />
                 </FacebookShareButton>
-                <TwitterShareButton url={urlShare}>
+                {/* <TwitterShareButton url={urlShare}>
                   <img src={twitter} className="icon-share" />
-                </TwitterShareButton>
+                </TwitterShareButton> */}
                 {/* appId={} ต้องใช้ appId ถึงจะแชร์ได้  */}
                 {/* <FacebookMessengerShareButton url={urlShare} >
                   <img src={message} className="icon-share" />
-                </FacebookMessengerShareButton>
-                <LineShareButton>
+                </FacebookMessengerShareButton> */}
+                {/*       <LineShareButton url={urlShare}>
                   <img src={line} className="icon-share" />
-                </LineShareButton>
-                <img src={tiktok} className="icon-share" />
-                <WhatsappShareButton>
+                </LineShareButton> */}
+                {/* <img src={tiktok} className="icon-share" /> */}
+                {/*    <WhatsappShareButton url={urlShare}>
                   <img src={whatsApp} className="icon-share" />
-                </WhatsappShareButton>
-                <img src={instagram} className="icon-share" /> */}
+                </WhatsappShareButton> */}
+                {/*  <img src={instagram} className="icon-share" /> */}
               </div>
             </div>
           </div>
