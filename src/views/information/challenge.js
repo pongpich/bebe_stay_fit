@@ -9,9 +9,11 @@ import group23 from '../../assets/img/group23.png';
 import group22 from '../../assets/img/group22.png';
 import icon_x from '../../assets/img/icon_x.png';
 import group425 from '../../assets/img/group425.png';
+import frame40 from "../../assets/img/frame40.png";
 import frame42 from "../../assets/img/frame42.png";
 import frame43 from "../../assets/img/frame43.png";
 import frame44 from "../../assets/img/frame44.png";
+import frame46 from "../../assets/img/frame46.png";
 import frame47 from "../../assets/img/frame47.png";
 import icon_web from "../../assets/img/icon-web.png";
 import facebook from "../../assets/img/icon-facebook.png";
@@ -52,7 +54,8 @@ class Challenge extends Component {
       emailDeleteFriend: "",
       emailTeamInvite: "",
       myTeamRank: 0,
-      myIndividualRank: 0
+      myIndividualRank: 0,
+      numbOfFriends: 0
     }
   }
 
@@ -82,7 +85,23 @@ class Challenge extends Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    const { user, statusCreateTeam, statusGetNumberOfTeamNotFull, numberOfTeamNotFull, statusLeaveTeam, statusSendFriendRequest, statusGetFriendRequest, friend_request, statusAcceptFriend, statusRejectFriend, statusDeleteFriend, statusSendTeamInvite, statusGetTeamInvite, team_invite, statusRejectTeamInvite, statusAcceptTeamInvite, statusGetLeaderBoard, teamRank, individualRank } = this.props;
+    const { user, statusCreateTeam, statusGetNumberOfTeamNotFull, numberOfTeamNotFull, statusLeaveTeam, statusSendFriendRequest, statusGetFriendRequest, friend_request, statusAcceptFriend, statusRejectFriend, statusDeleteFriend, statusSendTeamInvite, statusGetTeamInvite, team_invite, statusRejectTeamInvite, statusAcceptTeamInvite, statusGetLeaderBoard, teamRank, individualRank, statusGetFriendList, friend_list } = this.props;
+
+    if ((prevProps.statusGetFriendList !== statusGetFriendList) && statusGetFriendList === "success") {
+      console.log("friend_list.length :", friend_list.length);
+      this.setState({
+        numbOfFriends: friend_list.length
+      })
+
+      if (friend_list.length === 10) {
+        //มีเพื่อนในรายชื่อ 10 คนแล้ว
+        document.getElementById("modalAchievement6Btn") && document.getElementById("modalAchievement6Btn").click();
+      }
+      if (friend_list.length === 15) {
+        //มีเพื่อนในรายชื่อ 15 คนแล้ว
+        document.getElementById("modalAchievement7Btn") && document.getElementById("modalAchievement7Btn").click();
+      }
+    }
 
     if ((prevProps.statusGetLeaderBoard !== statusGetLeaderBoard) && statusGetLeaderBoard === "success") {
       const myTeamRankIndex = teamRank.findIndex(item => item.group_id === parseInt(this.props.user.group_id));
@@ -1316,6 +1335,88 @@ class Challenge extends Component {
       </div>
     )
   }
+  staycool() {
+    const urlShare = 'https://fit.bebefitroutine.com/achievement/achievement6.html';
+    return (
+      <div class="container text-center">
+        <div class="row justify-content-md-center">
+          <div class="col-12 col-sm-12 col-md-12 col-lg-6">
+            <img src={frame40} className="frame40" />
+            <img src={icon_web} className="icon_web" />
+          </div>
+          <div class="col-12 col-sm-12 col-md-12 col-lg-6  ">
+            <div className="canterMode-box">
+              <p className="modeText-box">คุณมีเพื่อนในรายชื่อ 10 คนแล้ว!</p>
+              <p>{/* xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx */} <br />{/* xxxxxxxxxxxxxxxx */}</p>
+
+              <p className="share-success">แชร์ความสำเร็จ</p>
+              <div className="box-share">
+                <FacebookShareButton url={urlShare}>
+                  <img src={facebook} className="icon-share" />
+                </FacebookShareButton>
+                {/* <TwitterShareButton url={urlShare}>
+                  <img src={twitter} className="icon-share" />
+                </TwitterShareButton> */}
+                {/* appId={} ต้องใช้ appId ถึงจะแชร์ได้  */}
+                {/* <FacebookMessengerShareButton url={urlShare} >
+                  <img src={message} className="icon-share" />
+                </FacebookMessengerShareButton> */}
+                {/*       <LineShareButton url={urlShare}>
+                  <img src={line} className="icon-share" />
+                </LineShareButton> */}
+                {/* <img src={tiktok} className="icon-share" /> */}
+                {/*    <WhatsappShareButton url={urlShare}>
+                  <img src={whatsApp} className="icon-share" />
+                </WhatsappShareButton> */}
+                {/*  <img src={instagram} className="icon-share" /> */}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    )
+  }
+  pop() {
+    const urlShare = 'https://fit.bebefitroutine.com/achievement/achievement7.html';
+    return (
+      <div class="container text-center">
+        <div class="row justify-content-md-center">
+          <div class="col-12 col-sm-12 col-md-12 col-lg-6">
+            <img src={frame46} className="frame40" />
+            <img src={icon_web} className="icon_web" />
+          </div>
+          <div class="col-12 col-sm-12 col-md-12 col-lg-6  ">
+            <div className="canterMode-box">
+              <p className="modeText-box">คุณมีเพื่อนในรายชื่อครบ 15 คนแล้ว!</p>
+              <p>{/* xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx */} <br />{/* xxxxxxxxxxxxxxxx */}</p>
+
+              <p className="share-success">แชร์ความสำเร็จ</p>
+              <div className="box-share">
+                <FacebookShareButton url={urlShare}>
+                  <img src={facebook} className="icon-share" />
+                </FacebookShareButton>
+                {/* <TwitterShareButton url={urlShare}>
+                  <img src={twitter} className="icon-share" />
+                </TwitterShareButton> */}
+                {/* appId={} ต้องใช้ appId ถึงจะแชร์ได้  */}
+                {/* <FacebookMessengerShareButton url={urlShare} >
+                  <img src={message} className="icon-share" />
+                </FacebookMessengerShareButton> */}
+                {/*       <LineShareButton url={urlShare}>
+                  <img src={line} className="icon-share" />
+                </LineShareButton> */}
+                {/* <img src={tiktok} className="icon-share" /> */}
+                {/*    <WhatsappShareButton url={urlShare}>
+                  <img src={whatsApp} className="icon-share" />
+                </WhatsappShareButton> */}
+                {/*  <img src={instagram} className="icon-share" /> */}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    )
+  }
 
   render() {
     /* const { messages } = this.props.intl; */
@@ -1452,6 +1553,24 @@ class Challenge extends Component {
               {
                 <button
                   style={{ display: 'none' }}
+                  id="modalAchievement6Btn"
+                  type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalAchievement6"
+                >
+                  achievement6
+                </button>
+              }
+              {
+                <button
+                  style={{ display: 'none' }}
+                  id="modalAchievement7Btn"
+                  type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalAchievement7"
+                >
+                  achievement7
+                </button>
+              }
+              {
+                <button
+                  style={{ display: 'none' }}
                   id="modalAchievement1Btn"
                   type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalAchievement1"
                 >
@@ -1582,6 +1701,36 @@ class Challenge extends Component {
               <div class="modal-subscription">
                 {
                   this.thankYou()
+                }
+              </div>
+            </div>
+          </div>
+        </div>
+        {/* <!-- Modal  achievement6 --> */}
+        <div class="modal fade" id="modalAchievement6" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog   modal-lg modal-dialog-centered">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-subscription">
+                {
+                  this.staycool()
+                }
+              </div>
+            </div>
+          </div>
+        </div>
+        {/* <!-- Modal  achievement7 --> */}
+        <div class="modal fade" id="modalAchievement7" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog   modal-lg modal-dialog-centered">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-subscription">
+                {
+                  this.pop()
                 }
               </div>
             </div>

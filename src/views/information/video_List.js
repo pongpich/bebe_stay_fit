@@ -1226,13 +1226,13 @@ class videoList extends React.Component {
               <div class="modal-subscription">
                 {
                   //this.nieyeah()
-                  //this.staycool() 
+                  //this.staycool()
                   //this.super()
                   //this.wow()
                   //this.thankYou()
                   //this.goodJob()
-                  // this.pop()
-                  this.bang()
+                  this.pop()
+                  //this.bang()
                 }
               </div>
             </div>
@@ -1304,6 +1304,7 @@ class videoList extends React.Component {
   }
 
   staycool() {
+    const urlShare = 'https://fit.bebefitroutine.com/achievement/achievement6.html';
     return (
       <div class="container text-center">
         <div class="row justify-content-md-center">
@@ -1313,18 +1314,29 @@ class videoList extends React.Component {
           </div>
           <div class="col-12 col-sm-12 col-md-12 col-lg-6  ">
             <div className="canterMode-box">
-              <p className="modeText-box">ทีมอันดับที่ 1 ประจำสัปดาห์</p>
-              <p>xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx <br />xxxxxxxxxxxxxxxx</p>
+              <p className="modeText-box">คุณมีเพื่อนในรายชื่อ 10 คนแล้ว!</p>
+              <p>{/* xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx */} <br />{/* xxxxxxxxxxxxxxxx */}</p>
 
               <p className="share-success">แชร์ความสำเร็จ</p>
               <div className="box-share">
-                <img src={facebook} className="icon-share" />
-                <img src={twitter} className="icon-share" />
-                <img src={message} className="icon-share" />
-                <img src={line} className="icon-share" />
-                <img src={tiktok} className="icon-share" />
-                <img src={whatsApp} className="icon-share" />
-                <img src={instagram} className="icon-share" />
+                <FacebookShareButton url={urlShare}>
+                  <img src={facebook} className="icon-share" />
+                </FacebookShareButton>
+                {/* <TwitterShareButton url={urlShare}>
+                  <img src={twitter} className="icon-share" />
+                </TwitterShareButton> */}
+                {/* appId={} ต้องใช้ appId ถึงจะแชร์ได้  */}
+                {/* <FacebookMessengerShareButton url={urlShare} >
+                  <img src={message} className="icon-share" />
+                </FacebookMessengerShareButton> */}
+                {/*       <LineShareButton url={urlShare}>
+                  <img src={line} className="icon-share" />
+                </LineShareButton> */}
+                {/* <img src={tiktok} className="icon-share" /> */}
+                {/*    <WhatsappShareButton url={urlShare}>
+                  <img src={whatsApp} className="icon-share" />
+                </WhatsappShareButton> */}
+                {/*  <img src={instagram} className="icon-share" /> */}
               </div>
             </div>
           </div>
@@ -1473,6 +1485,7 @@ class videoList extends React.Component {
     )
   }
   pop() {
+    const urlShare = 'https://fit.bebefitroutine.com/achievement/achievement7.html';
     return (
       <div class="container text-center">
         <div class="row justify-content-md-center">
@@ -1482,18 +1495,29 @@ class videoList extends React.Component {
           </div>
           <div class="col-12 col-sm-12 col-md-12 col-lg-6  ">
             <div className="canterMode-box">
-              <p className="modeText-box">มีเพื่อนในรายชื่อครบ 15 คนแล้ว!</p>
-              <p>xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx <br />xxxxxxxxxxxxxxxx</p>
+              <p className="modeText-box">คุณมีเพื่อนในรายชื่อครบ 15 คนแล้ว!</p>
+              <p>{/* xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx */} <br />{/* xxxxxxxxxxxxxxxx */}</p>
 
               <p className="share-success">แชร์ความสำเร็จ</p>
               <div className="box-share">
-                <img src={facebook} className="icon-share" />
-                <img src={twitter} className="icon-share" />
-                <img src={message} className="icon-share" />
-                <img src={line} className="icon-share" />
-                <img src={tiktok} className="icon-share" />
-                <img src={whatsApp} className="icon-share" />
-                <img src={instagram} className="icon-share" />
+                <FacebookShareButton url={urlShare}>
+                  <img src={facebook} className="icon-share" />
+                </FacebookShareButton>
+                {/* <TwitterShareButton url={urlShare}>
+                  <img src={twitter} className="icon-share" />
+                </TwitterShareButton> */}
+                {/* appId={} ต้องใช้ appId ถึงจะแชร์ได้  */}
+                {/* <FacebookMessengerShareButton url={urlShare} >
+                  <img src={message} className="icon-share" />
+                </FacebookMessengerShareButton> */}
+                {/*       <LineShareButton url={urlShare}>
+                  <img src={line} className="icon-share" />
+                </LineShareButton> */}
+                {/* <img src={tiktok} className="icon-share" /> */}
+                {/*    <WhatsappShareButton url={urlShare}>
+                  <img src={whatsApp} className="icon-share" />
+                </WhatsappShareButton> */}
+                {/*  <img src={instagram} className="icon-share" /> */}
               </div>
             </div>
           </div>
