@@ -40,6 +40,7 @@ class Challenge extends Component {
       teamList: "challenge-link",
       scoreboard: "challenge-link",
       friendList: "challenge-link chalLeft",
+      achievement: "challenge-link",
       team: null,
       addteam: null,
       outteam: false, // ออกจากทีม
@@ -278,7 +279,7 @@ class Challenge extends Component {
       var teamList = "challenge-link"
       var scoreboard = "challenge-link"
       var friendList = "challenge-link chalLeft"
-
+      var achievement = "challenge-link"
     } else if (name === 'teamList') {
       console.log("2");
       var challenge = "challenge2"
@@ -286,19 +287,29 @@ class Challenge extends Component {
       var teamList = "challenge-link color1"
       var scoreboard = "challenge-link"
       var friendList = "challenge-link chalLeft"
+      var achievement = "challenge-link"
     } else if (name === 'scoreboard') {
       var challenge = "challenge3"
       var allMissions = "challenge-link1"
       var teamList = "challenge-link"
       var scoreboard = "challenge-link color1"
       var friendList = "challenge-link chalLeft"
-    } else {
+      var achievement = "challenge-link"
+    } else if (name === 'friendList') {
       var challenge = "challenge4"
       var allMissions = "challenge-link1  "
       var teamList = "challenge-link"
       var scoreboard = "challenge-link"
       var friendList = "challenge-link chalLeft color1"
+      var achievement = "challenge-link"
       this.clickaddfriend(false)
+    } else if (name === 'achievement') {
+      var challenge = "challenge5"
+      var allMissions = "challenge-link1  "
+      var teamList = "challenge-link"
+      var scoreboard = "challenge-link"
+      var friendList = "challenge-link chalLeft"
+      var achievement = "challenge-link color1"
     }
     this.setState({
       challenge: challenge,
@@ -306,6 +317,7 @@ class Challenge extends Component {
       teamList: teamList,
       scoreboard: scoreboard,
       friendList: friendList,
+      achievement: achievement,
       addteam: null,
     });
 
@@ -1168,6 +1180,111 @@ class Challenge extends Component {
     )
   }
 
+  renderAchievement() {
+    const { myIndividualRank, myTeamRank, numbOfFriends } = this.state;
+
+    return (
+      <>
+        {
+          <>
+            <div className="box-challengeIn">
+              <p className="text-challenge">
+                <div class="container">
+
+                  {
+                    /* (false) && */
+                    <div class="row">
+                      <div class="col-12 col-sm-12 col-md-12 col-lg-12 mt-2">
+                        <span>
+                          <img src={`./assets/img/icon_achievement/finisher.png`} width="80" height="80" className="icon_rank" />
+                        </span>
+                        <span className="span-challenge">Finisher </span>
+                        <span className="span-challenge">เข้าสู่ระบบทุกวันจนจบฤดูกาลของ challenge</span>
+                      </div>
+                    </div>
+                  }
+                  {
+                    /* (myIndividualRank === 1) && */
+                    <div class="row">
+                      <div class="col-12 col-sm-12 col-md-12 col-lg-12 mt-2">
+                        <span>
+                          <img src={`./assets/img/icon_achievement/ace.png`} width="80" height="80" className="icon_rank" />
+                        </span>
+                        <span className="span-challenge">Ace </span>
+                        <span className="span-challenge">ได้อันดับคะแนนสูงสุดประจำสัปดาห์</span>
+                      </div>
+                    </div>
+                  }
+                  {
+                    /* (myTeamRank === 1) && */
+                    <div class="row">
+                      <div class="col-12 col-sm-12 col-md-12 col-lg-12 mt-2">
+                        <span>
+                          <img src={`./assets/img/icon_achievement/1st.png`} width="80" height="80" className="icon_rank" />
+                        </span>
+                        <span className="span-challenge">1st </span>
+                        <span className="span-challenge">ได้ทีมอันดับที่ 1 ประจำสัปดาห์</span>
+                      </div>
+                    </div>
+                  }
+                  {
+                    /* (myTeamRank === 2) && */
+                    <div class="row">
+                      <div class="col-12 col-sm-12 col-md-12 col-lg-12 mt-2">
+                        <span>
+                          <img src={`./assets/img/icon_achievement/2nd.png`} width="80" height="80" className="icon_rank" />
+                        </span>
+                        <span className="span-challenge">2nd </span>
+                        <span className="span-challenge">ได้ทีมอันดับที่ 2 ประจำสัปดาห์</span>
+                      </div>
+                    </div>
+                  }
+                  {
+                    /* ((myTeamRank >= 3) && (myTeamRank <= 10)) && */
+                    <div class="row">
+                      <div class="col-12 col-sm-12 col-md-12 col-lg-12 mt-2">
+                        <span>
+                          <img src={`./assets/img/icon_achievement/top10.png`} width="80" height="80" className="icon_rank" />
+                        </span>
+                        <span className="span-challenge">top 10 </span>
+                        <span className="span-challenge">ได้ทีมอันดับที่ 3-10 ประจำสัปดาห์</span>
+                      </div>
+                    </div>
+                  }
+                  {
+                    /* (numbOfFriends >= 10) && */
+                    <div class="row">
+                      <div class="col-12 col-sm-12 col-md-12 col-lg-12 mt-2">
+                        <span>
+                          <img src={`./assets/img/icon_achievement/social_star.png`} width="80" height="80" className="icon_rank" />
+                        </span>
+                        <span className="span-challenge">Social star </span>
+                        <span className="span-challenge">มีเพื่อนในรายชื่อ 10 คน</span>
+                      </div>
+                    </div>
+                  }
+                  {
+                    /* (numbOfFriends >= 15) && */
+                    <div class="row">
+                      <div class="col-12 col-sm-12 col-md-12 col-lg-12 mt-2">
+                        <span>
+                          <img src={`./assets/img/icon_achievement/social_star_plus.png`} width="80" height="80" className="icon_rank" />
+                        </span>
+                        <span className="span-challenge">Social star+ </span>
+                        <span className="span-challenge">มีเพื่อนในรายชื่อ 15 คน</span>
+                      </div>
+                    </div>
+                  }
+                </div>
+              </p>
+            </div>
+          </>
+        }
+
+      </>
+    )
+  }
+
   super() {
     const urlShare = 'https://fit.bebefitroutine.com/achievement/achievement3.html';
     return (
@@ -1420,7 +1537,7 @@ class Challenge extends Component {
 
   render() {
     /* const { messages } = this.props.intl; */
-    const { challenge, allMissions, teamList, scoreboard, friendList, myTeamRank } = this.state;
+    const { challenge, allMissions, teamList, scoreboard, friendList, myTeamRank, achievement } = this.state;
     const { rank, logWeightCount, isReducedWeight, logWeightTeamCount, numberOfMembers, dailyTeamWeightBonusCount, user, totalScoreOfTeam } = this.props;
     const isExerciseCompleted = this.isExerciseCompleted(this.props.exerciseVideo);
     var { scoreInWeek } = this.state;
@@ -1448,6 +1565,9 @@ class Challenge extends Component {
               <li className="video-li">
                 <a className={friendList} name="friendList" onClick={e => this.challengeBottom(e)}>{messages['challenge.friendlist']}</a>
               </li>
+              <li className="video-li">
+                <a className={achievement} name="achievement" onClick={e => this.challengeBottom(e)}>ความสำเร็จ</a>
+              </li>
             </ul>
           </div>
           <div className="box-challengeManu">
@@ -1463,8 +1583,10 @@ class Challenge extends Component {
                       challenge === "challenge3" ?
                         this.scoreboard()
                         :
-                        this.friendList()
-
+                        challenge === "challenge4" ?
+                          this.friendList()
+                          :
+                          this.renderAchievement()
                   }
                 </div>
                 <div class="col-12 col-sm-12 col-md-12 col-lg-3">
