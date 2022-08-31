@@ -207,6 +207,12 @@
 
     width: 70%;
   }
+  .share-achievement {
+/*     margin-top: 10px;
+    margin-bottom: 10px; */
+    float: left !important;
+    position: relative;
+ }
 }
 /* @media only screen and (max-width: 767px) {
   .emblem-box {
@@ -1150,7 +1156,7 @@ a {
 }
 .icon_rank-img {
   position: relative;
-  margin-top: -20px !important;
+  margin-top: -10px !important;
   margin-bottom: 20px;
 }
 .finisher-text{
@@ -4095,4 +4101,39 @@ margin-top: 10%;
 .box-changeEmail{
   background-color: #FFFFFF;
   padding: 20px;
+}
+.share-achievement {
+   float: right;
+   position: relative;
+}
+
+.btn-achievement {
+  background-color: #F45197;
+  width: 80px;
+  height: 40px;
+  color: #FFFF;
+  border-color: #e25e96;
+  border-radius: 50px;
+  font-weight: bold;
+  font-size:  18px;
+}
+.btn-achievement:hover {
+  background-color: #F45197;
+  width: 80px;
+  height: 40px;
+  color: #FFFF;
+  border-color: #e25e96;
+  border-radius: 50px;
+  font-weight: bold;
+  font-size:  18px;
+}
+.btn-achievement:focus {
+  background-color: #F45197;
+  width: 80px;
+  height: 40px;
+  color: #FFFF;
+  border-color: #e25e96;
+  border-radius: 50px;
+  font-weight: bold;
+  font-size:  18px;
 }

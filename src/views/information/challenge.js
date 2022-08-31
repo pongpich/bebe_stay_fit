@@ -1192,107 +1192,295 @@ class Challenge extends Component {
                 <div class="container">
 
                   {
-                    (false) &&
-                    <div class="row">
-                      <div class="col-12 col-sm-12 col-md-12 col-lg-12 mt-2">
-                        <div class="container">
-                          <div class="row">
-                            <div class="col-4 col-sm-3 col-md-2 col-lg-3 col-xl-2"> <img src={`./assets/img/icon_achievement/finisher.png`} width="80" height="80" className="icon_rank-img" /></div>
-                            <div class="col-8 col-sm-9 col-md-10 col-lg-9 col-xl-10"><p><span className="bold">Finisher</span><br /> เข้าสู่ระบบทุกวันจนจบฤดูกาลของ challenge</p></div>
+
+                    false === false ?
+                      <>
+                        <div class="row">
+                          <div class="col-12 col-sm-12 col-md-12 col-lg-12 mt-2">
+                            <div class="container">
+                              <div class="row">
+                                <div class="col-4 col-sm-3 col-md-2 col-lg-3 col-xl-2">
+                                  <img src={`./assets/img/icon_achievement/finisher_grey.png`} width="70" height="70" className="icon_rank-img" />
+                                </div>
+                                <div class="col-8 col-sm-9 col-md-10 col-lg-9 col-xl-10">
+                                  <p className="share-text"><span className="bold">Finisher</span><br /> เข้าสู่ระบบทุกวันจนจบฤดูกาลของ challenge</p></div>
+                              </div>
+                            </div>
                           </div>
                         </div>
-                      </div>
-                    </div>
+                      </>
+                      :
+                      <>
+                        <div class="row">
+                          <div class="col-12 col-sm-12 col-md-12 col-lg-12 mt-2">
+                            <div class="container">
+                              <div class="row">
+                                <div class="col-4 col-sm-3 col-md-2 col-lg-3 col-xl-2">
+                                  <img src={`./assets/img/icon_achievement/finisher.png`} width="70" height="70" className="icon_rank-img" />
+                                </div>
+                                <div class="col-8 col-sm-9 col-md-10 col-lg-9 col-xl-10">
+                                  <div class="container">
+                                    <div class="row">
+                                      <div class="col-12 col-sm-12  col-md-10">
+                                        <p><span className="bold">Finisher</span><br /> เข้าสู่ระบบทุกวันจนจบฤดูกาลของ challenge
+                                        </p>
+                                      </div>
+                                      <div class="col-12 col-sm-12 col-md-2">
+                                        <button type="button" class="btn btn-achievement ">แชร์</button>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </>
                   }
                   {
-                    (myIndividualRank === 1) &&
-                    <div class="row">
-                      <div class="col-12 col-sm-12 col-md-12 col-lg-12 mt-2">
-                        <div class="container">
-                          <div class="row">
-                            <div class="col-4 col-sm-3 col-md-2 col-lg-3 col-xl-2">
-                              <img src={`./assets/img/icon_achievement/ace.png`} width="80" height="80" className="icon_rank-img" />
+                    myIndividualRank === 1 ?
+                      <div class="row">
+                        <div class="col-12 col-sm-12 col-md-12 col-lg-12 mt-2">
+                          <div class="container">
+                            <div class="row">
+                              <div class="col-4 col-sm-3 col-md-2 col-lg-3 col-xl-2">
+                                <img src={`./assets/img/icon_achievement/ace.png`} width="70" height="70" className="icon_rank-img" />
+                              </div>
+                              <div class="col-8 col-sm-9 col-md-10 col-lg-9 col-xl-10">
+                                <div class="container">
+                                  <div class="row">
+                                    <div class="col-12 col-sm-12  col-md-10">
+                                    <p><span className="bold">Ace</span><br />ได้อันดับคะแนนสูงสุดประจำสัปดาห์</p> 
+                                    </div>
+                                    <div class="col-12 col-sm-12 col-md-2">
+                                    <button type="button" class="btn btn-achievement ">แชร์</button>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
                             </div>
-                            <div class="col-8 col-sm-9 col-md-10 col-lg-9 col-xl-10"><p><span className="bold">Ace</span><br /> ได้อันดับคะแนนสูงสุดประจำสัปดาห์</p></div>
                           </div>
                         </div>
                       </div>
-                    </div>
+                      :
+                      <div class="row">
+                        <div class="col-12 col-sm-12 col-md-12 col-lg-12 mt-2">
+                          <div class="container">
+                            <div class="row">
+                              <div class="col-4 col-sm-3 col-md-2 col-lg-3 col-xl-2">
+                                <img src={`./assets/img/icon_achievement/ace_grey.png`} width="70" height="70" className="icon_rank-img" />
+                              </div>
+                              <div class="col-8 col-sm-9 col-md-10 col-lg-9 col-xl-10">
+                                <p><span className="bold">Ace</span><br />
+                                  ได้อันดับคะแนนสูงสุดประจำสัปดาห์
+                                </p>
+
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
                   }
                   {
-                    (myTeamRank === 1) &&
-                    <div class="row">
-                      <div class="col-12 col-sm-12 col-md-12 col-lg-12 mt-2">
-                        <div class="container">
-                          <div class="row">
-                            <div class="col-4 col-sm-3 col-md-2 col-lg-3 col-xl-2">
-                              <img src={`./assets/img/icon_achievement/1st.png`} width="80" height="80" className="icon_rank-img" />
+                    myTeamRank === 1 ?
+                      <div class="row">
+                        <div class="col-12 col-sm-12 col-md-12 col-lg-12 mt-2">
+                          <div class="container">
+                            <div class="row">
+                              <div class="col-4 col-sm-3 col-md-2 col-lg-3 col-xl-2">
+                                <img src={`./assets/img/icon_achievement/1st.png`} width="70" height="70" className="icon_rank-img" />
+                              </div>
+                              <div class="col-8 col-sm-9 col-md-10 col-lg-9 col-xl-10">
+                                <div class="container">
+                                  <div class="row">
+                                    <div class="col-12 col-sm-12  col-md-10">
+                                    <p><span className="bold">1st</span><br /> ได้ทีมอันดับที่ 1 ประจำสัปดาห์  </p>
+                                    </div>
+                                    <div class="col-12 col-sm-12 col-md-2">
+                                      <button type="button" class="btn btn-achievement ">แชร์</button>
+                                    </div>
+                                  </div>
+                                </div>
+                                </div>
                             </div>
-                            <div class="col-8 col-sm-9 col-md-10 col-lg-9 col-xl-10"><p><span className="bold">1st</span><br /> ได้ทีมอันดับที่ 1 ประจำสัปดาห์</p></div>
                           </div>
                         </div>
                       </div>
-                    </div>
+                      :
+                      <div class="row">
+                        <div class="col-12 col-sm-12 col-md-12 col-lg-12 mt-2">
+                          <div class="container">
+                            <div class="row">
+                              <div class="col-4 col-sm-3 col-md-2 col-lg-3 col-xl-2">
+                                <img src={`./assets/img/icon_achievement/1st_grey.png`} width="70" height="70" className="icon_rank-img" />
+                              </div>
+                              <div class="col-8 col-sm-9 col-md-10 col-lg-9 col-xl-10">
+                                <p><span className="bold">1st</span><br /> ได้ทีมอันดับที่ 1 ประจำสัปดาห์</p></div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
                   }
                   {
-                    (myTeamRank === 2) &&
-                    <div class="row">
-                      <div class="col-12 col-sm-12 col-md-12 col-lg-12 mt-2">
-                        <div class="container">
-                          <div class="row">
-                            <div class="col-4 col-sm-3 col-md-2 col-lg-3 col-xl-2">
-                              <img src={`./assets/img/icon_achievement/2nd.png`} width="80" height="80" className="icon_rank-img" />
+                    myTeamRank === 2 ?
+                      <div class="row">
+                        <div class="col-12 col-sm-12 col-md-12 col-lg-12 mt-2">
+                          <div class="container">
+                            <div class="row">
+                              <div class="col-4 col-sm-3 col-md-2 col-lg-3 col-xl-2">
+                                <img src={`./assets/img/icon_achievement/2nd.png`} width="80" height="80" className="icon_rank-img" />
+                              </div>
+                              <div class="col-8 col-sm-9 col-md-10 col-lg-9 col-xl-10">
+                                <div class="container">
+                                  <div class="row">
+                                    <div class="col-12 col-sm-12  col-md-10">
+                                    <p><span className="bold">2nd</span><br /> ได้ทีมอันดับที่ 2 ประจำสัปดาห์</p>
+                                    </div>
+                                    <div class="col-12 col-sm-12 col-md-2">
+                                      <button type="button" class="btn btn-achievement ">แชร์</button>
+                                    </div>
+                                  </div>
+                                </div>
+                                </div>
                             </div>
-                            <div class="col-8 col-sm-9 col-md-10 col-lg-9 col-xl-10"><p><span className="bold">2nd</span><br /> ได้ทีมอันดับที่ 2 ประจำสัปดาห์</p></div>
                           </div>
                         </div>
                       </div>
-                    </div>
+                      :
+                      <div class="row">
+                        <div class="col-12 col-sm-12 col-md-12 col-lg-12 mt-2">
+                          <div class="container">
+                            <div class="row">
+                              <div class="col-4 col-sm-3 col-md-2 col-lg-3 col-xl-2">
+                                <img src={`./assets/img/icon_achievement/2nd_grey.png`} width="80" height="80" className="icon_rank-img" />
+                              </div>
+                              <div class="col-8 col-sm-9 col-md-10 col-lg-9 col-xl-10"><p><span className="bold">2nd</span><br /> ได้ทีมอันดับที่ 2 ประจำสัปดาห์
+                              </p></div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
                   }
                   {
-                    ((myTeamRank >= 3) && (myTeamRank <= 10)) &&
-                    <div class="row">
-                      <div class="col-12 col-sm-12 col-md-12 col-lg-12 mt-2">
-                        <div class="container">
-                          <div class="row">
-                            <div class="col-4 col-sm-3 col-md-2 col-lg-3 col-xl-2">
-                              <img src={`./assets/img/icon_achievement/top10.png`} width="80" height="80" className="icon_rank-img" />
+                    ((myTeamRank >= 3) && (myTeamRank <= 10)) ?
+                      <div class="row">
+                        <div class="col-12 col-sm-12 col-md-12 col-lg-12 mt-2">
+                          <div class="container">
+                            <div class="row">
+                              <div class="col-4 col-sm-3 col-md-2 col-lg-3 col-xl-2">
+                                <img src={`./assets/img/icon_achievement/top10.png`} width="70" height="70" className="icon_rank-img" />
+                              </div>
+                              <div class="col-8 col-sm-9 col-md-10 col-lg-9 col-xl-10">
+                              <div class="container">
+                                  <div class="row">
+                                    <div class="col-12 col-sm-12  col-md-10">
+                                    <p><span className="bold">top10</span><br /> ได้ทีมอันดับที่ 3-10 ประจำสัปดาห์ </p>
+                                    </div>
+                                    <div class="col-12 col-sm-12 col-md-2">
+                                      <button type="button" class="btn btn-achievement ">แชร์</button>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
                             </div>
-                            <div class="col-8 col-sm-9 col-md-10 col-lg-9 col-xl-10"><p><span className="bold">top10</span><br /> ได้ทีมอันดับที่ 3-10 ประจำสัปดาห์</p></div>
                           </div>
                         </div>
                       </div>
-                    </div>
+                      :
+                      <div class="row">
+                        <div class="col-12 col-sm-12 col-md-12 col-lg-12 mt-2">
+                          <div class="container">
+                            <div class="row">
+                              <div class="col-4 col-sm-3 col-md-2 col-lg-3 col-xl-2">
+                                <img src={`./assets/img/icon_achievement/top10_grey.png`} width="70" height="70" className="icon_rank-img" />
+                              </div>
+                              <div class="col-8 col-sm-9 col-md-10 col-lg-9 col-xl-10"><p><span className="bold">top10</span><br /> ได้ทีมอันดับที่ 3-10 ประจำสัปดาห์
+                              </p></div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
                   }
                   {
-                    (numbOfFriends >= 10) &&
-                    <div class="row">
-                      <div class="col-12 col-sm-12 col-md-12 col-lg-12 mt-2">
-                        <div class="container">
-                          <div class="row">
-                            <div class="col-4 col-sm-3 col-md-2 col-lg-3 col-xl-2">
-                              <img src={`./assets/img/icon_achievement/social_star.png`} width="80" height="80" className="icon_rank-img" />
+                    numbOfFriends >= 10 ?
+                      <div class="row">
+                        <div class="col-12 col-sm-12 col-md-12 col-lg-12 mt-2">
+                          <div class="container">
+                            <div class="row">
+                              <div class="col-4 col-sm-3 col-md-2 col-lg-3 col-xl-2">
+                                <img src={`./assets/img/icon_achievement/social_star.png`} width="70" height="70" className="icon_rank-img" />
+                              </div>
+                              <div class="col-8 col-sm-9 col-md-10 col-lg-9 col-xl-10">
+                                  <div class="container">
+                                  <div class="row">
+                                    <div class="col-12 col-sm-12  col-md-10">
+                                    <p><span className="bold">Social star</span><br /> มีเพื่อนในรายชื่อ 10 คน </p>
+                                    </div>
+                                    <div class="col-12 col-sm-12 col-md-2">
+                                      <button type="button" class="btn btn-achievement ">แชร์</button>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
                             </div>
-                            <div class="col-8 col-sm-9 col-md-10 col-lg-9 col-xl-10"><p><span className="bold">Social star</span><br /> มีเพื่อนในรายชื่อ 10 คน</p></div>
                           </div>
                         </div>
                       </div>
-                    </div>
+                      :
+                      <div class="row">
+                        <div class="col-12 col-sm-12 col-md-12 col-lg-12 mt-2">
+                          <div class="container">
+                            <div class="row">
+                              <div class="col-4 col-sm-3 col-md-2 col-lg-3 col-xl-2">
+                                <img src={`./assets/img/icon_achievement/social_star_grey.png`} width="70" height="70" className="icon_rank-img" />
+                              </div>
+                              <div class="col-8 col-sm-9 col-md-10 col-lg-9 col-xl-10"><p><span className="bold">Social star</span><br /> มีเพื่อนในรายชื่อ 10 คน
+                              </p></div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
                   }
                   {
-                    (numbOfFriends >= 15) &&
-                    <div class="row">
-                      <div class="col-12 col-sm-12 col-md-12 col-lg-12 mt-2">
-                        <div class="container">
-                          <div class="row">
-                            <div class="col-4 col-sm-3 col-md-2 col-lg-3 col-xl-2">
-                              <img src={`./assets/img/icon_achievement/social_star_plus.png`} width="80" height="80" className="icon_rank-img" />
+                    numbOfFriends >= 15 ?
+                      <div class="row">
+                        <div class="col-12 col-sm-12 col-md-12 col-lg-12 mt-2">
+                          <div class="container">
+                            <div class="row">
+                              <div class="col-4 col-sm-3 col-md-2 col-lg-3 col-xl-2">
+                                <img src={`./assets/img/icon_achievement/social_star_plus.png`} width="70" height="70" className="icon_rank-img" />
+                              </div>
+                              <div class="col-8 col-sm-9 col-md-10 col-lg-9 col-xl-10">
+                                 <div class="container">
+                                  <div class="row">
+                                    <div class="col-12 col-sm-12  col-md-10">
+                                    <p><span className="bold">Social star+</span><br />  มีเพื่อนในรายชื่อ 15 คน</p>
+                                    </div>
+                                    <div class="col-12 col-sm-12 col-md-2">
+                                      <button type="button" class="btn btn-achievement ">แชร์</button>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
                             </div>
-                            <div class="col-8 col-sm-9 col-md-10 col-lg-9 col-xl-10"><p><span className="bold">Social star+</span><br />  มีเพื่อนในรายชื่อ 15 คน</p></div>
                           </div>
                         </div>
                       </div>
-                    </div>
+                      :
+                      <div class="row">
+                        <div class="col-12 col-sm-12 col-md-12 col-lg-12 mt-2">
+                          <div class="container">
+                            <div class="row">
+                              <div class="col-4 col-sm-3 col-md-2 col-lg-3 col-xl-2">
+                                <img src={`./assets/img/icon_achievement/social_star_plus_grey.png`} width="70" height="70" className="icon_rank-img" />
+                              </div>
+                              <div class="col-8 col-sm-9 col-md-10 col-lg-9 col-xl-10"><p><span className="bold">Social star+</span><br />  มีเพื่อนในรายชื่อ 15 คน
+                              </p></div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
                   }
                 </div>
               </p>
