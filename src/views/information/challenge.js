@@ -1250,10 +1250,10 @@ class Challenge extends Component {
                                 <div class="container">
                                   <div class="row">
                                     <div class="col-12 col-sm-12  col-md-10">
-                                    <p><span className="bold">Ace</span><br />ได้อันดับคะแนนสูงสุดประจำสัปดาห์</p> 
+                                      <p><span className="bold">Ace</span><br />ได้อันดับคะแนนสูงสุดประจำสัปดาห์</p>
                                     </div>
-                                    <div class="col-12 col-sm-12 col-md-2">
-                                    <button type="button" class="btn btn-achievement ">แชร์</button>
+                                    <div class="col-12 col-sm-12 col-md-2" onClick={() => document.getElementById("modalAchievement1Btn") && document.getElementById("modalAchievement1Btn").click()}>
+                                      <button type="button" class="btn btn-achievement ">แชร์</button>
                                     </div>
                                   </div>
                                 </div>
@@ -1294,14 +1294,14 @@ class Challenge extends Component {
                                 <div class="container">
                                   <div class="row">
                                     <div class="col-12 col-sm-12  col-md-10">
-                                    <p><span className="bold">1st</span><br /> ได้ทีมอันดับที่ 1 ประจำสัปดาห์  </p>
+                                      <p><span className="bold">1st</span><br /> ได้ทีมอันดับที่ 1 ประจำสัปดาห์  </p>
                                     </div>
-                                    <div class="col-12 col-sm-12 col-md-2">
+                                    <div class="col-12 col-sm-12 col-md-2" onClick={() => document.getElementById("modalAchievement3Btn") && document.getElementById("modalAchievement3Btn").click()}>
                                       <button type="button" class="btn btn-achievement ">แชร์</button>
                                     </div>
                                   </div>
                                 </div>
-                                </div>
+                              </div>
                             </div>
                           </div>
                         </div>
@@ -1335,14 +1335,14 @@ class Challenge extends Component {
                                 <div class="container">
                                   <div class="row">
                                     <div class="col-12 col-sm-12  col-md-10">
-                                    <p><span className="bold">2nd</span><br /> ได้ทีมอันดับที่ 2 ประจำสัปดาห์</p>
+                                      <p><span className="bold">2nd</span><br /> ได้ทีมอันดับที่ 2 ประจำสัปดาห์</p>
                                     </div>
-                                    <div class="col-12 col-sm-12 col-md-2">
+                                    <div class="col-12 col-sm-12 col-md-2" onClick={() => document.getElementById("modalAchievement4Btn") && document.getElementById("modalAchievement4Btn").click()}>
                                       <button type="button" class="btn btn-achievement ">แชร์</button>
                                     </div>
                                   </div>
                                 </div>
-                                </div>
+                              </div>
                             </div>
                           </div>
                         </div>
@@ -1372,12 +1372,12 @@ class Challenge extends Component {
                                 <img src={`./assets/img/icon_achievement/top10.png`} width="70" height="70" className="icon_rank-img" />
                               </div>
                               <div class="col-8 col-sm-9 col-md-10 col-lg-9 col-xl-10">
-                              <div class="container">
+                                <div class="container">
                                   <div class="row">
                                     <div class="col-12 col-sm-12  col-md-10">
-                                    <p><span className="bold">top10</span><br /> ได้ทีมอันดับที่ 3-10 ประจำสัปดาห์ </p>
+                                      <p><span className="bold">top10</span><br /> ได้ทีมอันดับที่ 3-10 ประจำสัปดาห์ </p>
                                     </div>
-                                    <div class="col-12 col-sm-12 col-md-2">
+                                    <div class="col-12 col-sm-12 col-md-2" onClick={() => document.getElementById("modalAchievement5Btn") && document.getElementById("modalAchievement5Btn").click()}>
                                       <button type="button" class="btn btn-achievement ">แชร์</button>
                                     </div>
                                   </div>
@@ -1412,12 +1412,12 @@ class Challenge extends Component {
                                 <img src={`./assets/img/icon_achievement/social_star.png`} width="70" height="70" className="icon_rank-img" />
                               </div>
                               <div class="col-8 col-sm-9 col-md-10 col-lg-9 col-xl-10">
-                                  <div class="container">
+                                <div class="container">
                                   <div class="row">
                                     <div class="col-12 col-sm-12  col-md-10">
-                                    <p><span className="bold">Social star</span><br /> มีเพื่อนในรายชื่อ 10 คน </p>
+                                      <p><span className="bold">Social star</span><br /> มีเพื่อนในรายชื่อ 10 คน </p>
                                     </div>
-                                    <div class="col-12 col-sm-12 col-md-2">
+                                    <div class="col-12 col-sm-12 col-md-2" onClick={() => document.getElementById("modalAchievement6Btn") && document.getElementById("modalAchievement6Btn").click()}>
                                       <button type="button" class="btn btn-achievement ">แชร์</button>
                                     </div>
                                   </div>
@@ -1452,12 +1452,12 @@ class Challenge extends Component {
                                 <img src={`./assets/img/icon_achievement/social_star_plus.png`} width="70" height="70" className="icon_rank-img" />
                               </div>
                               <div class="col-8 col-sm-9 col-md-10 col-lg-9 col-xl-10">
-                                 <div class="container">
+                                <div class="container">
                                   <div class="row">
                                     <div class="col-12 col-sm-12  col-md-10">
-                                    <p><span className="bold">Social star+</span><br />  มีเพื่อนในรายชื่อ 15 คน</p>
+                                      <p><span className="bold">Social star+</span><br />  มีเพื่อนในรายชื่อ 15 คน</p>
                                     </div>
-                                    <div class="col-12 col-sm-12 col-md-2">
+                                    <div class="col-12 col-sm-12 col-md-2" onClick={() => document.getElementById("modalAchievement7Btn") && document.getElementById("modalAchievement7Btn").click()}>
                                       <button type="button" class="btn btn-achievement ">แชร์</button>
                                     </div>
                                   </div>
