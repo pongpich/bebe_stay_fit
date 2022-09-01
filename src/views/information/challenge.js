@@ -13,6 +13,7 @@ import frame40 from "../../assets/img/frame40.png";
 import frame42 from "../../assets/img/frame42.png";
 import frame43 from "../../assets/img/frame43.png";
 import frame44 from "../../assets/img/frame44.png";
+import frame45 from "../../assets/img/frame45.png";
 import frame46 from "../../assets/img/frame46.png";
 import frame47 from "../../assets/img/frame47.png";
 import icon_web from "../../assets/img/icon-web.png";
@@ -23,7 +24,7 @@ import line from "../../assets/img/icon-line.png";
 import tiktok from "../../assets/img/icon-tiktok.png";
 import whatsApp from "../../assets/img/icon-WhatsApp.png";
 import instagram from "../../assets/img/icon-instagram.png";
-import { getFriendList, getRank, getLogWeight, getIsReducedWeight, getLogWeightTeam, getDailyTeamWeightBonus, getNumberOfTeamNotFull, assignGroupToMember, clearChallenges, createChallengeGroup, leaveTeam, getMembersAndRank, getGroupName, getScoreOfTeam, getLeaderboard, getChallengePeriod, sendFriendRequest, getFriendRequest, acceptFriend, rejectFriend, getMaxFriends, deleteFriend, sendTeamInvite, getTeamInvite, rejectTeamInvite, acceptTeamInvite, getFriendsRank, getAchievementLog } from "../../redux/challenges";
+import { getFriendList, getRank, getLogWeight, getIsReducedWeight, getLogWeightTeam, getDailyTeamWeightBonus, getNumberOfTeamNotFull, assignGroupToMember, clearChallenges, createChallengeGroup, leaveTeam, getMembersAndRank, getGroupName, getScoreOfTeam, getLeaderboard, getChallengePeriod, sendFriendRequest, getFriendRequest, acceptFriend, rejectFriend, getMaxFriends, deleteFriend, sendTeamInvite, getTeamInvite, rejectTeamInvite, acceptTeamInvite, getFriendsRank, getAchievementLog, updateAchievementLog, checkAllMissionComplete } from "../../redux/challenges";
 import { getGroupID, checkUpdateMaxFriends } from "../../redux/auth";
 import { connect } from "react-redux";
 import moment from "moment";
@@ -82,12 +83,18 @@ class Challenge extends Component {
     this.props.getFriendRequest(this.props.user.user_id);
     this.props.getMaxFriends(this.props.user.user_id);
     this.props.getAchievementLog(this.props.user.user_id);
+    this.props.checkAllMissionComplete(this.props.user.user_id);
     this.props.getTeamInvite(this.props.user.user_id)
     this.props.getFriendsRank(this.props.user.user_id)
   }
 
   componentDidUpdate(prevProps, prevState) {
-    const { user, statusCreateTeam, statusGetNumberOfTeamNotFull, numberOfTeamNotFull, statusLeaveTeam, statusSendFriendRequest, statusGetFriendRequest, friend_request, statusAcceptFriend, statusRejectFriend, statusDeleteFriend, statusSendTeamInvite, statusGetTeamInvite, team_invite, statusRejectTeamInvite, statusAcceptTeamInvite, statusGetLeaderBoard, teamRank, individualRank, statusGetFriendList, friend_list } = this.props;
+    const { user, statusCreateTeam, statusGetNumberOfTeamNotFull, numberOfTeamNotFull, statusLeaveTeam, statusSendFriendRequest, statusGetFriendRequest, friend_request, statusAcceptFriend, statusRejectFriend, statusDeleteFriend, statusSendTeamInvite, statusGetTeamInvite, team_invite, statusRejectTeamInvite, statusAcceptTeamInvite, statusGetLeaderBoard, teamRank, individualRank, statusGetFriendList, friend_list, statusCheckAllMissionComplete } = this.props;
+
+    if ((prevProps.statusCheckAllMissionComplete !== statusCheckAllMissionComplete) && statusCheckAllMissionComplete === "success") {
+      //สั่งให้โชว์ popup 
+      document.getElementById("modalAchievement8Btn") && document.getElementById("modalAchievement8Btn").click();
+    }
 
     if ((prevProps.statusGetFriendList !== statusGetFriendList) && statusGetFriendList === "success") {
       console.log("friend_list.length :", friend_list.length);
@@ -1216,7 +1223,7 @@ class Challenge extends Component {
                                         <p><span className="bold">Finisher</span><br /> ทำภารกิจครบทุกสัปดาห์จนจบฤดูกาล
                                         </p>
                                       </div>
-                                      <div class="col-12 col-sm-12 col-md-2">
+                                      <div class="col-12 col-sm-12 col-md-2" onClick={() => document.getElementById("modalAchievement8Btn") && document.getElementById("modalAchievement8Btn").click()}>
                                         <button type="button" class="btn btn-achievement ">แชร์</button>
                                       </div>
                                     </div>
@@ -1749,6 +1756,48 @@ class Challenge extends Component {
     )
   }
 
+  goodJob() {
+    const urlShare = 'https://fit.bebefitroutine.com/achievement/achievement8.html';
+    return (
+      <div class="container text-center">
+        <div class="row justify-content-md-center">
+          <div class="col-12 col-sm-12 col-md-12 col-lg-6">
+            <img src={frame45} className="frame40" />
+            <img src={icon_web} className="icon_web" />
+          </div>
+          <div class="col-12 col-sm-12 col-md-12 col-lg-6  ">
+            <div className="canterMode-box">
+              <p className="modeText-box">ทำภารกิจครบทุกสัปดาห์จนจบฤดูกาล</p>
+              <p>{/* xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx */} <br />{/* xxxxxxxxxxxxxxxx */}</p>
+
+              <p className="share-success">แชร์ความสำเร็จ</p>
+              <div className="box-share">
+                <FacebookShareButton url={urlShare}>
+                  <img src={facebook} className="icon-share" />
+                </FacebookShareButton>
+                {/* <TwitterShareButton url={urlShare}>
+                  <img src={twitter} className="icon-share" />
+                </TwitterShareButton> */}
+                {/* appId={} ต้องใช้ appId ถึงจะแชร์ได้  */}
+                {/* <FacebookMessengerShareButton url={urlShare} >
+                  <img src={message} className="icon-share" />
+                </FacebookMessengerShareButton> */}
+                <LineShareButton url={urlShare}>
+                  <img src={line} className="icon-share" />
+                </LineShareButton>
+                {/* <img src={tiktok} className="icon-share" /> */}
+                <WhatsappShareButton url={urlShare}>
+                  <img src={whatsApp} className="icon-share" />
+                </WhatsappShareButton>
+                {/*  <img src={instagram} className="icon-share" /> */}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    )
+  }
+
   render() {
     /* const { messages } = this.props.intl; */
     const { challenge, allMissions, teamList, scoreboard, friendList, myTeamRank, achievement } = this.state;
@@ -1900,6 +1949,15 @@ class Challenge extends Component {
                   style={{ display: 'none' }}
                   id="modalAchievement7Btn"
                   type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalAchievement7"
+                >
+                  achievement7
+                </button>
+              }
+              {
+                <button
+                  style={{ display: 'none' }}
+                  id="modalAchievement8Btn"
+                  type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalAchievement8"
                 >
                   achievement7
                 </button>
@@ -2067,6 +2125,21 @@ class Challenge extends Component {
               <div class="modal-subscription">
                 {
                   this.pop()
+                }
+              </div>
+            </div>
+          </div>
+        </div>
+        {/* <!-- Modal  achievement8 --> */}
+        <div class="modal fade" id="modalAchievement8" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog   modal-lg modal-dialog-centered">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-subscription">
+                {
+                  this.goodJob()
                 }
               </div>
             </div>
@@ -2302,17 +2375,17 @@ class Challenge extends Component {
 const mapStateToProps = ({ authUser, challenges, exerciseVideos, settings }) => {
   const { user } = authUser;
   const { exerciseVideo, statusVideoList } = exerciseVideos;
-  const { statusCreateTeam, numberOfTeamNotFull, statusGetNumberOfTeamNotFull, statusLeaveTeam, membersOfTeam, group_name, totalScoreOfTeam, rank, teamRank, individualRank, logWeightCount, isReducedWeight, logWeightTeamCount, numberOfMembers, dailyTeamWeightBonusCount, friend_list, statusGetFriendList, statusSendFriendRequest, friend_request, statusGetFriendRequest, statusAcceptFriend, statusRejectFriend, statusGetMaxFriends, max_friends, statusDeleteFriend, statusSendTeamInvite, team_invite, statusGetTeamInvite, statusRejectTeamInvite, statusAcceptTeamInvite, friendsRank, statusGetFriendsRank, challengePeriod, statusGetLeaderBoard, statusGetAchievement, achievementLog } = challenges;
+  const { statusCreateTeam, numberOfTeamNotFull, statusGetNumberOfTeamNotFull, statusLeaveTeam, membersOfTeam, group_name, totalScoreOfTeam, rank, teamRank, individualRank, logWeightCount, isReducedWeight, logWeightTeamCount, numberOfMembers, dailyTeamWeightBonusCount, friend_list, statusGetFriendList, statusSendFriendRequest, friend_request, statusGetFriendRequest, statusAcceptFriend, statusRejectFriend, statusGetMaxFriends, max_friends, statusDeleteFriend, statusSendTeamInvite, team_invite, statusGetTeamInvite, statusRejectTeamInvite, statusAcceptTeamInvite, friendsRank, statusGetFriendsRank, challengePeriod, statusGetLeaderBoard, statusGetAchievement, achievementLog, statusUpdateAchievement, statusCheckAllMissionComplete } = challenges;
   let locale;
   if (settings) {
     locale = settings.locale;
   } else {
     locale = "th";
   }
-  return { locale, user, statusCreateTeam, numberOfTeamNotFull, statusGetNumberOfTeamNotFull, statusLeaveTeam, membersOfTeam, group_name, totalScoreOfTeam, rank, teamRank, individualRank, logWeightCount, isReducedWeight, logWeightTeamCount, numberOfMembers, dailyTeamWeightBonusCount, exerciseVideo, statusVideoList, friend_list, statusGetFriendList, statusSendFriendRequest, friend_request, statusGetFriendRequest, statusAcceptFriend, statusRejectFriend, statusGetMaxFriends, max_friends, statusDeleteFriend, statusSendTeamInvite, team_invite, statusGetTeamInvite, statusRejectTeamInvite, statusAcceptTeamInvite, friendsRank, statusGetFriendsRank, challengePeriod, statusGetLeaderBoard, statusGetAchievement, achievementLog };
+  return { locale, user, statusCreateTeam, numberOfTeamNotFull, statusGetNumberOfTeamNotFull, statusLeaveTeam, membersOfTeam, group_name, totalScoreOfTeam, rank, teamRank, individualRank, logWeightCount, isReducedWeight, logWeightTeamCount, numberOfMembers, dailyTeamWeightBonusCount, exerciseVideo, statusVideoList, friend_list, statusGetFriendList, statusSendFriendRequest, friend_request, statusGetFriendRequest, statusAcceptFriend, statusRejectFriend, statusGetMaxFriends, max_friends, statusDeleteFriend, statusSendTeamInvite, team_invite, statusGetTeamInvite, statusRejectTeamInvite, statusAcceptTeamInvite, friendsRank, statusGetFriendsRank, challengePeriod, statusGetLeaderBoard, statusGetAchievement, achievementLog, statusUpdateAchievement, statusCheckAllMissionComplete };
 };
 
-const mapActionsToProps = { getGroupID, getRank, getLogWeight, getIsReducedWeight, getLogWeightTeam, getDailyTeamWeightBonus, getNumberOfTeamNotFull, assignGroupToMember, clearChallenges, createChallengeGroup, leaveTeam, getMembersAndRank, getGroupName, getScoreOfTeam, getLeaderboard, getChallengePeriod, getFriendList, sendFriendRequest, getFriendRequest, acceptFriend, rejectFriend, getMaxFriends, deleteFriend, sendTeamInvite, getTeamInvite, rejectTeamInvite, acceptTeamInvite, checkUpdateMaxFriends, getFriendsRank, getAchievementLog };
+const mapActionsToProps = { getGroupID, getRank, getLogWeight, getIsReducedWeight, getLogWeightTeam, getDailyTeamWeightBonus, getNumberOfTeamNotFull, assignGroupToMember, clearChallenges, createChallengeGroup, leaveTeam, getMembersAndRank, getGroupName, getScoreOfTeam, getLeaderboard, getChallengePeriod, getFriendList, sendFriendRequest, getFriendRequest, acceptFriend, rejectFriend, getMaxFriends, deleteFriend, sendTeamInvite, getTeamInvite, rejectTeamInvite, acceptTeamInvite, checkUpdateMaxFriends, getFriendsRank, getAchievementLog, updateAchievementLog, checkAllMissionComplete };
 
 export default connect(
   mapStateToProps,

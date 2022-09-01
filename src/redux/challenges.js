@@ -82,6 +82,12 @@ export const types = {
   GET_ACHIEVEMENT_LOG: "GET_ACHIEVEMENT_LOG",
   GET_ACHIEVEMENT_LOG_SUCCESS: "GET_ACHIEVEMENT_LOG_SUCCESS",
   GET_ACHIEVEMENT_LOG_FAIL: "GET_ACHIEVEMENT_LOG_FAIL",
+  UPDATE_ACHIEVEMENT_LOG: "UPDATE_ACHIEVEMENT_LOG",
+  UPDATE_ACHIEVEMENT_LOG_SUCCESS: "UPDATE_ACHIEVEMENT_LOG_SUCCESS",
+  UPDATE_ACHIEVEMENT_LOG_FAIL: "UPDATE_ACHIEVEMENT_LOG_FAIL",
+  CHECK_ALL_MISSION_COMPLETE: "CHECK_ALL_MISSION_COMPLETE",
+  CHECK_ALL_MISSION_COMPLETE_SUCCESS: "CHECK_ALL_MISSION_COMPLETE_SUCCESS",
+  CHECK_ALL_MISSION_COMPLETE_FAIL: "CHECK_ALL_MISSION_COMPLETE_FAIL",
 }
 
 export const getAchievementLog = (user_id) => ({
@@ -122,6 +128,26 @@ export const getFriendRequest = (user_id) => ({
 
 export const getTeamInvite = (user_id) => ({
   type: types.GET_TEAM_INVITE,
+  payload: {
+    user_id
+  }
+});
+
+export const updateAchievementLog = (
+  user_id,
+  achievement_name
+) => ({
+  type: types.UPDATE_ACHIEVEMENT_LOG,
+  payload: {
+    user_id,
+    achievement_name
+  }
+});
+
+export const checkAllMissionComplete = (
+  user_id
+) => ({
+  type: types.CHECK_ALL_MISSION_COMPLETE,
   payload: {
     user_id
   }
@@ -385,6 +411,40 @@ const getAchievementLogSagaAsync = async (
   try {
     const apiResult = await API.get("bebe", "/getAchievementLog", {
       queryStringParameters: {
+        user_id
+      }
+    });
+    return apiResult
+  } catch (error) {
+    console.log("error :", error);
+    return { error, messsage: error.message }
+  }
+}
+
+const updateAchievementLogSagaAsync = async (
+  user_id,
+  achievement_name
+) => {
+  try {
+    const apiResult = await API.post("bebe", "/updateAchievementLog", {
+      body: {
+        user_id,
+        achievement_name
+      }
+    });
+    return apiResult
+  } catch (error) {
+    console.log("error :", error);
+    return { error, messsage: error.message }
+  }
+}
+
+const checkAllMissionCompleteSagaAsync = async (
+  user_id
+) => {
+  try {
+    const apiResult = await API.post("bebe", "/checkAllMissionCompelete", {
+      body: {
         user_id
       }
     });
@@ -970,6 +1030,56 @@ function* getAchievementLogSaga({ payload }) {
   }
 }
 
+function* updateAchievementLogSaga({ payload }) {
+  const {
+    user_id,
+    achievement_name
+  } = payload
+  try {
+    const apiResult = yield call(
+      updateAchievementLogSagaAsync,
+      user_id,
+      achievement_name
+    );
+    if (apiResult.results.message === "success") {
+      yield put({
+        type: types.UPDATE_ACHIEVEMENT_LOG_SUCCESS
+      })
+    } else {
+      yield put({
+        type: types.UPDATE_ACHIEVEMENT_LOG_FAIL
+      })
+    }
+
+  } catch (error) {
+    console.log("error from acceptFriendSaga :", error);
+  }
+}
+
+function* checkAllMissionCompleteSaga({ payload }) {
+  const {
+    user_id
+  } = payload
+  try {
+    const apiResult = yield call(
+      checkAllMissionCompleteSagaAsync,
+      user_id
+    );
+    if (apiResult.results.message === "success") {
+      yield put({
+        type: types.CHECK_ALL_MISSION_COMPLETE_SUCCESS
+      })
+    } else {
+      yield put({
+        type: types.CHECK_ALL_MISSION_COMPLETE_FAIL
+      })
+    }
+
+  } catch (error) {
+    console.log("error from acceptFriendSaga :", error);
+  }
+}
+
 function* acceptFriendSaga({ payload }) {
   const {
     user_id,
@@ -1552,6 +1662,14 @@ export function* watchSelectMemberEventLog() {
   yield takeEvery(types.SELECT_MEMBER_EVENT_LOG, selectMemberEventLogSaga)
 }
 
+export function* watchUpdateAchievementLog() {
+  yield takeEvery(types.UPDATE_ACHIEVEMENT_LOG, updateAchievementLogSaga)
+}
+
+export function* watchCheckAllMissionComplete() {
+  yield takeEvery(types.CHECK_ALL_MISSION_COMPLETE, checkAllMissionCompleteSaga)
+}
+
 export function* saga() {
   yield all([
     fork(watchGetRank),
@@ -1584,6 +1702,8 @@ export function* saga() {
     fork(watchAcceptTeamInvite),
     fork(watchGetFriendsRank),
     fork(watchGetAchievementLog),
+    fork(watchUpdateAchievementLog),
+    fork(watchCheckAllMissionComplete),
   ]);
 }
 
@@ -1633,10 +1753,42 @@ const INIT_STATE = {
   statusGetLeaderBoard: "default",
   statusGetAchievement: "default",
   achievementLog: [],
+  statusUpdateAchievement: "default",
+  statusCheckAllMissionComplete: "default",
 };
 
 export function reducer(state = INIT_STATE, action) {
   switch (action.type) {
+    case types.CHECK_ALL_MISSION_COMPLETE:
+      return {
+        ...state,
+        statusCheckAllMissionComplete: "loading"
+      }
+    case types.CHECK_ALL_MISSION_COMPLETE_SUCCESS:
+      return {
+        ...state,
+        statusCheckAllMissionComplete: "success"
+      }
+    case types.CHECK_ALL_MISSION_COMPLETE_FAIL:
+      return {
+        ...state,
+        statusCheckAllMissionComplete: "fail"
+      }
+    case types.UPDATE_ACHIEVEMENT_LOG:
+      return {
+        ...state,
+        statusUpdateAchievement: "loading"
+      }
+    case types.UPDATE_ACHIEVEMENT_LOG_SUCCESS:
+      return {
+        ...state,
+        statusUpdateAchievement: "success"
+      }
+    case types.UPDATE_ACHIEVEMENT_LOG_FAIL:
+      return {
+        ...state,
+        statusUpdateAchievement: "fail"
+      }
     case types.GET_ACHIEVEMENT_LOG:
       return {
         ...state,
