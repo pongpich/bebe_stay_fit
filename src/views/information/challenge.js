@@ -89,11 +89,23 @@ class Challenge extends Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    const { user, statusCreateTeam, statusGetNumberOfTeamNotFull, numberOfTeamNotFull, statusLeaveTeam, statusSendFriendRequest, statusGetFriendRequest, friend_request, statusAcceptFriend, statusRejectFriend, statusDeleteFriend, statusSendTeamInvite, statusGetTeamInvite, team_invite, statusRejectTeamInvite, statusAcceptTeamInvite, statusGetLeaderBoard, teamRank, individualRank, statusGetFriendList, friend_list, statusCheckAllMissionComplete } = this.props;
+    const { user, statusCreateTeam, statusGetNumberOfTeamNotFull, numberOfTeamNotFull, statusLeaveTeam, statusSendFriendRequest, statusGetFriendRequest, friend_request, statusAcceptFriend, statusRejectFriend, statusDeleteFriend, statusSendTeamInvite, statusGetTeamInvite, team_invite, statusRejectTeamInvite, statusAcceptTeamInvite, statusGetLeaderBoard, teamRank, individualRank, statusGetFriendList, friend_list, statusCheckAllMissionComplete, achievementLog, statusUpdateAchievement } = this.props;
+    const achievementFinisher = ((achievementLog.filter(item => item.achievement === 'Finisher')).length > 0) ? true : false;
+    const achievementAce = ((achievementLog.filter(item => item.achievement === 'Ace')).length > 0) ? true : false;
+    const achievement1st = ((achievementLog.filter(item => item.achievement === '1st')).length > 0) ? true : false;
+    const achievement2nd = ((achievementLog.filter(item => item.achievement === '2nd')).length > 0) ? true : false;
+    const achievementTop10 = ((achievementLog.filter(item => item.achievement === 'Top 10')).length > 0) ? true : false;
+    const achievementSocialStar = ((achievementLog.filter(item => item.achievement === 'Social star')).length > 0) ? true : false;
+    const achievementSocialStarPlus = ((achievementLog.filter(item => item.achievement === 'Social star+')).length > 0) ? true : false;
+
+    if ((prevProps.statusUpdateAchievement !== statusUpdateAchievement) && statusUpdateAchievement === "success") {
+      this.props.getAchievementLog(user.user_id);
+    }
 
     if ((prevProps.statusCheckAllMissionComplete !== statusCheckAllMissionComplete) && statusCheckAllMissionComplete === "success") {
       //สั่งให้โชว์ popup 
       document.getElementById("modalAchievement8Btn") && document.getElementById("modalAchievement8Btn").click();
+      this.props.getAchievementLog(user.user_id);
     }
 
     if ((prevProps.statusGetFriendList !== statusGetFriendList) && statusGetFriendList === "success") {
@@ -102,13 +114,15 @@ class Challenge extends Component {
         numbOfFriends: friend_list.length
       })
 
-      if (friend_list.length === 10) {
+      if (friend_list.length >= 10 && !achievementSocialStar) {
         //มีเพื่อนในรายชื่อ 10 คนแล้ว
         document.getElementById("modalAchievement6Btn") && document.getElementById("modalAchievement6Btn").click();
+        this.props.updateAchievementLog(user.user_id, 'Social star');
       }
-      if (friend_list.length === 15) {
+      if (friend_list.length >= 15 && !achievementSocialStarPlus) {
         //มีเพื่อนในรายชื่อ 15 คนแล้ว
         document.getElementById("modalAchievement7Btn") && document.getElementById("modalAchievement7Btn").click();
+        this.props.updateAchievementLog(user.user_id, 'Social star+');
       }
     }
 
@@ -120,17 +134,21 @@ class Challenge extends Component {
         myIndividualRank: myIndividualRankIndex + 1
       });
 
-      if (myIndividualRankIndex + 1 === 1) {
+      if ((myIndividualRankIndex + 1 === 1) && !achievementAce) {
         document.getElementById("modalAchievement1Btn") && document.getElementById("modalAchievement1Btn").click();
+        this.props.updateAchievementLog(user.user_id, 'Ace');
       }
-      if (myTeamRankIndex + 1 === 1) {
+      if ((myTeamRankIndex + 1 === 1) && !achievement1st) {
         document.getElementById("modalAchievement3Btn") && document.getElementById("modalAchievement3Btn").click();
+        this.props.updateAchievementLog(user.user_id, '1st');
       }
-      if (myTeamRankIndex + 1 === 2) {
+      if ((myTeamRankIndex + 1 === 2) && !achievement2nd) {
         document.getElementById("modalAchievement4Btn") && document.getElementById("modalAchievement4Btn").click();
+        this.props.updateAchievementLog(user.user_id, '2nd');
       }
-      if ((myTeamRankIndex + 1 >= 3) && (myTeamRankIndex + 1 <= 10)) {
+      if ((myTeamRankIndex + 1 >= 3) && (myTeamRankIndex + 1 <= 10) && !achievementTop10) {
         document.getElementById("modalAchievement5Btn") && document.getElementById("modalAchievement5Btn").click();
+        this.props.updateAchievementLog(user.user_id, 'Top 10');
       }
     }
 
