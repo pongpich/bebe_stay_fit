@@ -79,8 +79,17 @@ export const types = {
   GET_FRIENDS_RANK_FAIL: "GET_FRIENDS_RANK_FAIL",
   SELECT_MEMBER_EVENT_LOG: "SELECT_MEMBER_EVENT_LOG",
   SELECT_MEMBER_EVENT_LOG_SUCCESS: "SELECT_MEMBER_EVENT_LOG_SUCCESS",
+  GET_ACHIEVEMENT_LOG: "GET_ACHIEVEMENT_LOG",
+  GET_ACHIEVEMENT_LOG_SUCCESS: "GET_ACHIEVEMENT_LOG_SUCCESS",
+  GET_ACHIEVEMENT_LOG_FAIL: "GET_ACHIEVEMENT_LOG_FAIL",
 }
 
+export const getAchievementLog = (user_id) => ({
+  type: types.GET_ACHIEVEMENT_LOG,
+  payload: {
+    user_id
+  }
+})
 
 export const deleteFriend = (user_id, friend_email) => ({
   type: types.DELETE_FRIEND,
@@ -359,6 +368,22 @@ const getMaxFriendsSagaAsync = async (
 ) => {
   try {
     const apiResult = await API.get("bebe", "/getMaxFriends", {
+      queryStringParameters: {
+        user_id
+      }
+    });
+    return apiResult
+  } catch (error) {
+    console.log("error :", error);
+    return { error, messsage: error.message }
+  }
+}
+
+const getAchievementLogSagaAsync = async (
+  user_id
+) => {
+  try {
+    const apiResult = await API.get("bebe", "/getAchievementLog", {
       queryStringParameters: {
         user_id
       }
@@ -920,6 +945,31 @@ function* getMaxFriendsSaga({ payload }) {
   }
 }
 
+function* getAchievementLogSaga({ payload }) {
+  const {
+    user_id
+  } = payload
+  try {
+    const apiResult = yield call(
+      getAchievementLogSagaAsync,
+      user_id
+    );
+    if (apiResult.results.message === "success") {
+      yield put({
+        type: types.GET_ACHIEVEMENT_LOG_SUCCESS,
+        payload: apiResult.results.achievementLog
+      })
+    } else {
+      yield put({
+        type: types.GET_ACHIEVEMENT_LOG_FAIL
+      })
+    }
+
+  } catch (error) {
+    console.log("error from getAchievementLogSaga :", error);
+  }
+}
+
 function* acceptFriendSaga({ payload }) {
   const {
     user_id,
@@ -1470,6 +1520,10 @@ export function* watchGetMaxFriends() {
   yield takeEvery(types.GET_MAX_FRIENDS, getMaxFriendsSaga)
 }
 
+export function* watchGetAchievementLog() {
+  yield takeEvery(types.GET_ACHIEVEMENT_LOG, getAchievementLogSaga)
+}
+
 export function* watchDeleteFriend() {
   yield takeEvery(types.DELETE_FRIEND, deleteFriendSaga)
 }
@@ -1529,6 +1583,7 @@ export function* saga() {
     fork(watchRejectTeamInvite),
     fork(watchAcceptTeamInvite),
     fork(watchGetFriendsRank),
+    fork(watchGetAchievementLog),
   ]);
 }
 
@@ -1575,11 +1630,30 @@ const INIT_STATE = {
   statusAcceptTeamInvite: "default",
   statusGetFriendsRank: "default",
   memberEventLog: [],
-  statusGetLeaderBoard: "default"
+  statusGetLeaderBoard: "default",
+  statusGetAchievement: "default",
+  achievementLog: [],
 };
 
 export function reducer(state = INIT_STATE, action) {
   switch (action.type) {
+    case types.GET_ACHIEVEMENT_LOG:
+      return {
+        ...state,
+        statusGetAchievement: "loading"
+      }
+    case types.GET_ACHIEVEMENT_LOG_SUCCESS:
+      return {
+        ...state,
+        statusGetAchievement: "success",
+        achievementLog: action.payload
+      }
+    case types.GET_ACHIEVEMENT_LOG_FAIL:
+      return {
+        ...state,
+        statusGetAchievement: "fail",
+        achievementLog: []
+      }
     case types.SELECT_MEMBER_EVENT_LOG_SUCCESS:
       return {
         ...state,

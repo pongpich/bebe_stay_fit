@@ -23,7 +23,7 @@ import line from "../../assets/img/icon-line.png";
 import tiktok from "../../assets/img/icon-tiktok.png";
 import whatsApp from "../../assets/img/icon-WhatsApp.png";
 import instagram from "../../assets/img/icon-instagram.png";
-import { getFriendList, getRank, getLogWeight, getIsReducedWeight, getLogWeightTeam, getDailyTeamWeightBonus, getNumberOfTeamNotFull, assignGroupToMember, clearChallenges, createChallengeGroup, leaveTeam, getMembersAndRank, getGroupName, getScoreOfTeam, getLeaderboard, getChallengePeriod, sendFriendRequest, getFriendRequest, acceptFriend, rejectFriend, getMaxFriends, deleteFriend, sendTeamInvite, getTeamInvite, rejectTeamInvite, acceptTeamInvite, getFriendsRank } from "../../redux/challenges";
+import { getFriendList, getRank, getLogWeight, getIsReducedWeight, getLogWeightTeam, getDailyTeamWeightBonus, getNumberOfTeamNotFull, assignGroupToMember, clearChallenges, createChallengeGroup, leaveTeam, getMembersAndRank, getGroupName, getScoreOfTeam, getLeaderboard, getChallengePeriod, sendFriendRequest, getFriendRequest, acceptFriend, rejectFriend, getMaxFriends, deleteFriend, sendTeamInvite, getTeamInvite, rejectTeamInvite, acceptTeamInvite, getFriendsRank, getAchievementLog } from "../../redux/challenges";
 import { getGroupID, checkUpdateMaxFriends } from "../../redux/auth";
 import { connect } from "react-redux";
 import moment from "moment";
@@ -81,6 +81,7 @@ class Challenge extends Component {
     this.props.getFriendList(this.props.user.user_id);
     this.props.getFriendRequest(this.props.user.user_id);
     this.props.getMaxFriends(this.props.user.user_id);
+    this.props.getAchievementLog(this.props.user.user_id);
     this.props.getTeamInvite(this.props.user.user_id)
     this.props.getFriendsRank(this.props.user.user_id)
   }
@@ -1181,7 +1182,14 @@ class Challenge extends Component {
   }
 
   renderAchievement() {
-    const { myIndividualRank, myTeamRank, numbOfFriends } = this.state;
+    const { achievementLog } = this.props;
+    const achievementFinisher = ((achievementLog.filter(item => item.achievement === 'Finisher')).length > 0) ? true : false;
+    const achievementAce = ((achievementLog.filter(item => item.achievement === 'Ace')).length > 0) ? true : false;
+    const achievement1st = ((achievementLog.filter(item => item.achievement === '1st')).length > 0) ? true : false;
+    const achievement2nd = ((achievementLog.filter(item => item.achievement === '2nd')).length > 0) ? true : false;
+    const achievementTop10 = ((achievementLog.filter(item => item.achievement === 'Top 10')).length > 0) ? true : false;
+    const achievementSocialStar = ((achievementLog.filter(item => item.achievement === 'Social star')).length > 0) ? true : false;
+    const achievementSocialStarPlus = ((achievementLog.filter(item => item.achievement === 'Social star+')).length > 0) ? true : false;
 
     return (
       <>
@@ -1192,24 +1200,7 @@ class Challenge extends Component {
                 <div class="container">
 
                   {
-
-                    false === false ?
-                      <>
-                        <div class="row">
-                          <div class="col-12 col-sm-12 col-md-12 col-lg-12 mt-2">
-                            <div class="container">
-                              <div class="row">
-                                <div class="col-4 col-sm-3 col-md-2 col-lg-3 col-xl-2">
-                                  <img src={`./assets/img/icon_achievement/finisher_grey.png`} width="70" height="70" className="icon_rank-img" />
-                                </div>
-                                <div class="col-8 col-sm-9 col-md-10 col-lg-9 col-xl-10">
-                                  <p className="share-text"><span className="bold">Finisher</span><br /> เข้าสู่ระบบทุกวันจนจบฤดูกาลของ challenge</p></div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </>
-                      :
+                    achievementFinisher ?
                       <>
                         <div class="row">
                           <div class="col-12 col-sm-12 col-md-12 col-lg-12 mt-2">
@@ -1222,7 +1213,7 @@ class Challenge extends Component {
                                   <div class="container">
                                     <div class="row">
                                       <div class="col-12 col-sm-12  col-md-10">
-                                        <p><span className="bold">Finisher</span><br /> เข้าสู่ระบบทุกวันจนจบฤดูกาลของ challenge
+                                        <p><span className="bold">Finisher</span><br /> ทำภารกิจครบทุกสัปดาห์จนจบฤดูกาล
                                         </p>
                                       </div>
                                       <div class="col-12 col-sm-12 col-md-2">
@@ -1236,9 +1227,25 @@ class Challenge extends Component {
                           </div>
                         </div>
                       </>
+                      :
+                      <>
+                        <div class="row">
+                          <div class="col-12 col-sm-12 col-md-12 col-lg-12 mt-2">
+                            <div class="container">
+                              <div class="row">
+                                <div class="col-4 col-sm-3 col-md-2 col-lg-3 col-xl-2">
+                                  <img src={`./assets/img/icon_achievement/finisher_grey.png`} width="70" height="70" className="icon_rank-img" />
+                                </div>
+                                <div class="col-8 col-sm-9 col-md-10 col-lg-9 col-xl-10">
+                                  <p className="share-text"><span className="bold">Finisher</span><br /> ทำภารกิจครบทุกสัปดาห์จนจบฤดูกาล</p></div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </>
                   }
                   {
-                    myIndividualRank === 1 ?
+                    achievementAce ?
                       <div class="row">
                         <div class="col-12 col-sm-12 col-md-12 col-lg-12 mt-2">
                           <div class="container">
@@ -1282,7 +1289,7 @@ class Challenge extends Component {
                       </div>
                   }
                   {
-                    myTeamRank === 1 ?
+                    achievement1st ?
                       <div class="row">
                         <div class="col-12 col-sm-12 col-md-12 col-lg-12 mt-2">
                           <div class="container">
@@ -1323,7 +1330,7 @@ class Challenge extends Component {
 
                   }
                   {
-                    myTeamRank === 2 ?
+                    achievement2nd ?
                       <div class="row">
                         <div class="col-12 col-sm-12 col-md-12 col-lg-12 mt-2">
                           <div class="container">
@@ -1363,7 +1370,7 @@ class Challenge extends Component {
                       </div>
                   }
                   {
-                    ((myTeamRank >= 3) && (myTeamRank <= 10)) ?
+                    achievementTop10 ?
                       <div class="row">
                         <div class="col-12 col-sm-12 col-md-12 col-lg-12 mt-2">
                           <div class="container">
@@ -1375,7 +1382,7 @@ class Challenge extends Component {
                                 <div class="container">
                                   <div class="row">
                                     <div class="col-12 col-sm-12  col-md-10">
-                                      <p><span className="bold">top10</span><br /> ได้ทีมอันดับที่ 3-10 ประจำสัปดาห์ </p>
+                                      <p><span className="bold">Top 10</span><br /> ได้ทีมอันดับที่ 3-10 ประจำสัปดาห์ </p>
                                     </div>
                                     <div class="col-12 col-sm-12 col-md-2" onClick={() => document.getElementById("modalAchievement5Btn") && document.getElementById("modalAchievement5Btn").click()}>
                                       <button type="button" class="btn btn-achievement ">แชร์</button>
@@ -1403,7 +1410,7 @@ class Challenge extends Component {
                       </div>
                   }
                   {
-                    numbOfFriends >= 10 ?
+                    achievementSocialStar ?
                       <div class="row">
                         <div class="col-12 col-sm-12 col-md-12 col-lg-12 mt-2">
                           <div class="container">
@@ -1443,7 +1450,7 @@ class Challenge extends Component {
                       </div>
                   }
                   {
-                    numbOfFriends >= 15 ?
+                    achievementSocialStarPlus ?
                       <div class="row">
                         <div class="col-12 col-sm-12 col-md-12 col-lg-12 mt-2">
                           <div class="container">
@@ -2295,17 +2302,17 @@ class Challenge extends Component {
 const mapStateToProps = ({ authUser, challenges, exerciseVideos, settings }) => {
   const { user } = authUser;
   const { exerciseVideo, statusVideoList } = exerciseVideos;
-  const { statusCreateTeam, numberOfTeamNotFull, statusGetNumberOfTeamNotFull, statusLeaveTeam, membersOfTeam, group_name, totalScoreOfTeam, rank, teamRank, individualRank, logWeightCount, isReducedWeight, logWeightTeamCount, numberOfMembers, dailyTeamWeightBonusCount, friend_list, statusGetFriendList, statusSendFriendRequest, friend_request, statusGetFriendRequest, statusAcceptFriend, statusRejectFriend, statusGetMaxFriends, max_friends, statusDeleteFriend, statusSendTeamInvite, team_invite, statusGetTeamInvite, statusRejectTeamInvite, statusAcceptTeamInvite, friendsRank, statusGetFriendsRank, challengePeriod, statusGetLeaderBoard } = challenges;
+  const { statusCreateTeam, numberOfTeamNotFull, statusGetNumberOfTeamNotFull, statusLeaveTeam, membersOfTeam, group_name, totalScoreOfTeam, rank, teamRank, individualRank, logWeightCount, isReducedWeight, logWeightTeamCount, numberOfMembers, dailyTeamWeightBonusCount, friend_list, statusGetFriendList, statusSendFriendRequest, friend_request, statusGetFriendRequest, statusAcceptFriend, statusRejectFriend, statusGetMaxFriends, max_friends, statusDeleteFriend, statusSendTeamInvite, team_invite, statusGetTeamInvite, statusRejectTeamInvite, statusAcceptTeamInvite, friendsRank, statusGetFriendsRank, challengePeriod, statusGetLeaderBoard, statusGetAchievement, achievementLog } = challenges;
   let locale;
   if (settings) {
     locale = settings.locale;
   } else {
     locale = "th";
   }
-  return { locale, user, statusCreateTeam, numberOfTeamNotFull, statusGetNumberOfTeamNotFull, statusLeaveTeam, membersOfTeam, group_name, totalScoreOfTeam, rank, teamRank, individualRank, logWeightCount, isReducedWeight, logWeightTeamCount, numberOfMembers, dailyTeamWeightBonusCount, exerciseVideo, statusVideoList, friend_list, statusGetFriendList, statusSendFriendRequest, friend_request, statusGetFriendRequest, statusAcceptFriend, statusRejectFriend, statusGetMaxFriends, max_friends, statusDeleteFriend, statusSendTeamInvite, team_invite, statusGetTeamInvite, statusRejectTeamInvite, statusAcceptTeamInvite, friendsRank, statusGetFriendsRank, challengePeriod, statusGetLeaderBoard };
+  return { locale, user, statusCreateTeam, numberOfTeamNotFull, statusGetNumberOfTeamNotFull, statusLeaveTeam, membersOfTeam, group_name, totalScoreOfTeam, rank, teamRank, individualRank, logWeightCount, isReducedWeight, logWeightTeamCount, numberOfMembers, dailyTeamWeightBonusCount, exerciseVideo, statusVideoList, friend_list, statusGetFriendList, statusSendFriendRequest, friend_request, statusGetFriendRequest, statusAcceptFriend, statusRejectFriend, statusGetMaxFriends, max_friends, statusDeleteFriend, statusSendTeamInvite, team_invite, statusGetTeamInvite, statusRejectTeamInvite, statusAcceptTeamInvite, friendsRank, statusGetFriendsRank, challengePeriod, statusGetLeaderBoard, statusGetAchievement, achievementLog };
 };
 
-const mapActionsToProps = { getGroupID, getRank, getLogWeight, getIsReducedWeight, getLogWeightTeam, getDailyTeamWeightBonus, getNumberOfTeamNotFull, assignGroupToMember, clearChallenges, createChallengeGroup, leaveTeam, getMembersAndRank, getGroupName, getScoreOfTeam, getLeaderboard, getChallengePeriod, getFriendList, sendFriendRequest, getFriendRequest, acceptFriend, rejectFriend, getMaxFriends, deleteFriend, sendTeamInvite, getTeamInvite, rejectTeamInvite, acceptTeamInvite, checkUpdateMaxFriends, getFriendsRank };
+const mapActionsToProps = { getGroupID, getRank, getLogWeight, getIsReducedWeight, getLogWeightTeam, getDailyTeamWeightBonus, getNumberOfTeamNotFull, assignGroupToMember, clearChallenges, createChallengeGroup, leaveTeam, getMembersAndRank, getGroupName, getScoreOfTeam, getLeaderboard, getChallengePeriod, getFriendList, sendFriendRequest, getFriendRequest, acceptFriend, rejectFriend, getMaxFriends, deleteFriend, sendTeamInvite, getTeamInvite, rejectTeamInvite, acceptTeamInvite, checkUpdateMaxFriends, getFriendsRank, getAchievementLog };
 
 export default connect(
   mapStateToProps,
