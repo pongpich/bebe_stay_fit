@@ -90,13 +90,13 @@ class Challenge extends Component {
 
   componentDidUpdate(prevProps, prevState) {
     const { user, statusCreateTeam, statusGetNumberOfTeamNotFull, numberOfTeamNotFull, statusLeaveTeam, statusSendFriendRequest, statusGetFriendRequest, friend_request, statusAcceptFriend, statusRejectFriend, statusDeleteFriend, statusSendTeamInvite, statusGetTeamInvite, team_invite, statusRejectTeamInvite, statusAcceptTeamInvite, statusGetLeaderBoard, teamRank, individualRank, statusGetFriendList, friend_list, statusCheckAllMissionComplete, achievementLog, statusUpdateAchievement } = this.props;
-    const achievementFinisher = ((achievementLog.filter(item => item.achievement === 'Finisher')).length > 0) ? true : false;
-    const achievementAce = ((achievementLog.filter(item => item.achievement === 'Ace')).length > 0) ? true : false;
-    const achievement1st = ((achievementLog.filter(item => item.achievement === '1st')).length > 0) ? true : false;
-    const achievement2nd = ((achievementLog.filter(item => item.achievement === '2nd')).length > 0) ? true : false;
-    const achievementTop10 = ((achievementLog.filter(item => item.achievement === 'Top 10')).length > 0) ? true : false;
-    const achievementSocialStar = ((achievementLog.filter(item => item.achievement === 'Social star')).length > 0) ? true : false;
-    const achievementSocialStarPlus = ((achievementLog.filter(item => item.achievement === 'Social star+')).length > 0) ? true : false;
+    const achievementFinisher = (achievementLog && (achievementLog.filter(item => item.achievement === 'Finisher')).length > 0) ? true : false;
+    const achievementAce = (achievementLog && (achievementLog.filter(item => item.achievement === 'Ace')).length > 0) ? true : false;
+    const achievement1st = (achievementLog && (achievementLog.filter(item => item.achievement === '1st')).length > 0) ? true : false;
+    const achievement2nd = (achievementLog && (achievementLog.filter(item => item.achievement === '2nd')).length > 0) ? true : false;
+    const achievementTop10 = (achievementLog && (achievementLog.filter(item => item.achievement === 'Top 10')).length > 0) ? true : false;
+    const achievementSocialStar = (achievementLog && (achievementLog.filter(item => item.achievement === 'Social star')).length > 0) ? true : false;
+    const achievementSocialStarPlus = (achievementLog && (achievementLog.filter(item => item.achievement === 'Social star+')).length > 0) ? true : false;
 
     if ((prevProps.statusUpdateAchievement !== statusUpdateAchievement) && statusUpdateAchievement === "success") {
       this.props.getAchievementLog(user.user_id);
@@ -1208,13 +1208,13 @@ class Challenge extends Component {
 
   renderAchievement() {
     const { achievementLog } = this.props;
-    const achievementFinisher = ((achievementLog.filter(item => item.achievement === 'Finisher')).length > 0) ? true : false;
-    const achievementAce = ((achievementLog.filter(item => item.achievement === 'Ace')).length > 0) ? true : false;
-    const achievement1st = ((achievementLog.filter(item => item.achievement === '1st')).length > 0) ? true : false;
-    const achievement2nd = ((achievementLog.filter(item => item.achievement === '2nd')).length > 0) ? true : false;
-    const achievementTop10 = ((achievementLog.filter(item => item.achievement === 'Top 10')).length > 0) ? true : false;
-    const achievementSocialStar = ((achievementLog.filter(item => item.achievement === 'Social star')).length > 0) ? true : false;
-    const achievementSocialStarPlus = ((achievementLog.filter(item => item.achievement === 'Social star+')).length > 0) ? true : false;
+    const achievementFinisher = (achievementLog && (achievementLog.filter(item => item.achievement === 'Finisher')).length > 0) ? true : false;
+    const achievementAce = (achievementLog && (achievementLog.filter(item => item.achievement === 'Ace')).length > 0) ? true : false;
+    const achievement1st = (achievementLog && (achievementLog.filter(item => item.achievement === '1st')).length > 0) ? true : false;
+    const achievement2nd = (achievementLog && (achievementLog.filter(item => item.achievement === '2nd')).length > 0) ? true : false;
+    const achievementTop10 = (achievementLog && (achievementLog.filter(item => item.achievement === 'Top 10')).length > 0) ? true : false;
+    const achievementSocialStar = (achievementLog && (achievementLog.filter(item => item.achievement === 'Social star')).length > 0) ? true : false;
+    const achievementSocialStarPlus = (achievementLog && (achievementLog.filter(item => item.achievement === 'Social star+')).length > 0) ? true : false;
 
     return (
       <>
