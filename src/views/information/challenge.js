@@ -1427,7 +1427,7 @@ class Challenge extends Component {
                               <div class="col-4 col-sm-3 col-md-2 col-lg-3 col-xl-2">
                                 <img src={`./assets/img/icon_achievement/top10_grey.png`} width="70" height="70" className="icon_rank-img" />
                               </div>
-                              <div class="col-8 col-sm-9 col-md-10 col-lg-9 col-xl-10"><p><span className="bold">top10</span><br /> ได้ทีมอันดับที่ 3-10 ประจำสัปดาห์
+                              <div class="col-8 col-sm-9 col-md-10 col-lg-9 col-xl-10"><p><span className="bold">Top 10</span><br /> ได้ทีมอันดับที่ 3-10 ประจำสัปดาห์
                               </p></div>
                             </div>
                           </div>
