@@ -67,7 +67,7 @@ class Home extends React.Component {
   };
 
   componentDidMount() {
-    const { user_program_id, create_user_email, user, statusSetPassword } =
+    const { user_program_id, create_user_email, user, statusSetPassword, history } =
       this.props;
 
     this.props.getUserProgram(create_user_email);
@@ -75,6 +75,47 @@ class Home extends React.Component {
     /*   if (user_program_id) { //ถ้ามี user_program_id แสดงว่าชำระเงินสำเร็จแล้ว
       this.props.history.push('/welcome_new_nember');
     } */
+
+    // <!-- Add Pixel Events to the button's click handler -->
+    const ReactPixel = require('react-facebook-pixel');
+    ReactPixel.default.init('2089309924624680');
+    var pageUrl = window.location.href;
+    var contactExpertBtn = document.getElementById("contact_expert_btn");
+    var registerBtn = document.getElementById("register_btn");
+    contactExpertBtn.addEventListener(
+      "click",
+      async function () {
+        await ReactPixel.default.trackCustom('contact-expert');
+        /*  setTimeout(() => {
+           history.push("/complete")
+         }, 3000); */
+        if (pageUrl.includes("localhost") || pageUrl.includes("127.0.0.1")) {
+          //สำหรับเทส
+          window.open("http://localhost:3000/complete.html");
+        } else {
+          //สำหรับใช้จริง
+          window.open("https://fit.bebefitroutine.com/complete.html");
+        }
+      },
+      false
+    );
+    registerBtn.addEventListener(
+      "click",
+      async function () {
+        await ReactPixel.default.trackCustom('Register');
+        /*   setTimeout(() => {
+            history.push("/programPackage")
+          }, 3000); */
+        if (pageUrl.includes("localhost") || pageUrl.includes("127.0.0.1")) {
+          //สำหรับเทส
+          window.open("http://localhost:3000/#/programPackage");
+        } else {
+          //สำหรับใช้จริง
+          window.open("https://fit.bebefitroutine.com/#/programPackage");
+        }
+      },
+      false
+    );
 
     if (user !== null) {
       this.props.history.push("/basic_information");
@@ -233,6 +274,7 @@ class Home extends React.Component {
   homeLogin() {
     this.timeout()
     const { messages } = this.props.intl;
+
     return (
       <>
         <div className="win-541">
@@ -242,17 +284,19 @@ class Home extends React.Component {
               <p className="textHome bold">สนใจสมัคร</p>
               <div className="d-grid gap-2  mx-auto   col-12 col-sm-12  col-md-12 col-lg-12 center ">
                 <a
+                  id='contact_expert_btn'
                   className="btn bottom-pinkLogin1 bold"
                   type="button"
-                  //href="https://fittowhey.com/8week/complete"
-                  onClick={() => this.props.history.push("/complete")}
+                //href="https://fittowhey.com/8week/complete"
+                //onClick={() => this.props.history.push("/complete")}
                 >
                   ปรึกษาผู้เชี่ยวชาญ
                 </a>
                 <button
+                  id='register_btn'
                   className="btn bottom-pinkLogin3 bold"
                   type="button"
-                  onClick={() => this.props.history.push("/programPackage")}
+                //onClick={() => this.props.history.push("/programPackage")}
                 >
                   ลงทะเบียน
                 </button>
