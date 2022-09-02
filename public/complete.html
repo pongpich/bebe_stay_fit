@@ -46,7 +46,7 @@
       "https://connect.facebook.net/en_US/fbevents.js"
     );
     fbq("init", "2089309924624680");
-    fbq('trackCustom', 'View-fittowhey_8week');
+    fbq('trackCustom', 'View-fittowhey_4week');
   </script>
   <title>Bebe Stay Fit</title>
   <meta property="og:title" content="Bebe Stay Fit" />
@@ -99,6 +99,14 @@
   <!-- Form Script -->
   <script type="text/javascript">
     document.getElementById("postData").addEventListener("submit", postData);
+    var submitButton = document.getElementById("btn_submit");
+    submitButton.addEventListener(
+      "click",
+      function () {
+        fbq("trackCustom", "RegisterExpert-fittowhey_4week");
+      },
+      false
+    );
 
     function postData(event) {
       event.preventDefault();
