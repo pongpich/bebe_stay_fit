@@ -97,6 +97,7 @@
 
 
   <!-- Form Script -->
+  <script src="./js/axios.min.js"></script>
   <script type="text/javascript">
     document.getElementById("postData").addEventListener("submit", postData);
     var submitButton = document.getElementById("btn_submit");
@@ -116,27 +117,49 @@
       document.getElementById("btn_submit").appendChild(div);
       //fbq("trackCustom", "apply-digitalasset101");
       var url =
-        "https://script.google.com/a/planforfit.com/macros/s/AKfycbz3vjaDR4ewiMKrKrk8nO05d1HOCtnym_VBKjwFee7Vy_xvdMcyyOM_ECEGEn_qcupY/exec?path=/contact";
+        "https://script.google.com/a/planforfit.com/macros/s/AKfycbw6svRdsRxZl6raH7wH8JzVnGD49StiOhSD-EAJwGtoSNp0AWPIQteprkATOI17hSF0/exec?path=/contact";
 
-      var body = JSON.stringify({
+      var body = {
         full_name: document.getElementById("fullName").value,
         email: document.getElementById("email").value,
         phone: document.getElementById("phone").value,
         target: document.getElementById("target").value,
         created_time: formatDate(new Date())
-      });
+      };
 
 
-      fetch(url, {
-        method: "POST",
-        headers: new Headers(),
-        body: body
+      /*     fetch(url, {
+            method: "POST",
+            headers: new Headers(),
+            body: body
+          })
+            .then(response => response.json())
+            .then(data => {
+              window.location.href = "./complete_thankyou.html";
+            })
+            .catch(err => console.log(err)); */
+
+
+      var authText = "Basic ZThGbDJvVnU2aTVzUTk2WGFsQnZRV2JiQkJGWnNyenQ6";
+      const bodyFormData = {
+        email: 'asdasdfdasfdas',
+        fb: 'fdsafsdaf'
+      };
+      axios({
+        method: 'post',
+        url: 'https://sheet.best/api/sheets/3b1f8334-65ae-4a09-b0c2-dbcc1a9f5752',
+        data: body,
+        headers: { 'Authorization': authText }
+      }).then(function (response) {
+        //handle success
+        console.log(response.data);
+        window.location.href = "./complete_thankyou.html";
       })
-        .then(response => response.json())
-        .then(data => {
-          window.location.href = "./complete_thankyou.html";
-        })
-        .catch(err => console.log(err));
+        .catch(function (response) {
+          //handle error
+          console.log(response);
+        });
+
     }
 
     function formatDate(date) {
