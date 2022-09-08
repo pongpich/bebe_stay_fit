@@ -523,6 +523,9 @@
 
 }
 @media only screen and (max-width: 991px) {
+  .display-btn {
+    display: none;
+  }
   .emblem-box {
     width:  100% !important;
     margin-top: 50px !important;
@@ -552,13 +555,16 @@
   }
   .icon_web {
     margin-left: -96.4% !important;
-    margin-top: 3px !important;
+    margin-top: 2px !important;
     border-bottom-left-radius: 0px !important;
     border-bottom-right-radius: 10px;
     border-top-left-radius: 10px;
     padding-left: 1px;
   }
  
+  .canterMode-box {
+    margin-top: 50px !important;
+  }
 }
 @media only screen and (min-width: 960px) {
   .information-box2 {
@@ -688,7 +694,7 @@
 
 /* หน้าหน้าจอของ หน้า food_supplement  ให้เปิด เปิดตามขนาดหน้าจอ */
 @media only screen and (max-width: 992px) {
-  
+ 
   .navbarLeft {
     visibility: hidden !important;
     height: 0px;
@@ -734,6 +740,12 @@
 }
 
 @media only screen and (min-width: 992px) {
+  .line-hr {
+    display: none;
+  }
+  .bottom-shareBox {
+    display: none;
+  }
   .navbarLeft {
     padding-top: 20px;
     height: 100%;
@@ -3027,7 +3039,32 @@ tr:last-child td:last-child {
   color: #e25e96;
   margin-bottom: 50px;
   border-radius: 25px;
-
+}
+.bottom-share {
+  margin-top: 20px;
+  font-size: 18px;
+  background-color: #e25e96;
+  height: 40px;
+  border-color: #e25e96;
+  color: #ffffff;
+  margin-bottom: 50px;
+  border-radius: 25px;
+  width: 160px;
+  font-weight: bold;
+}
+.bottom-share:hover {
+  background-color: #ffffff;
+  border-color: #e25e96;
+  color: #e25e96;
+  margin-bottom: 50px;
+  border-radius: 25px;
+}
+.bottom-share:focus {
+  background-color: #ffffff;
+  border-color: #e25e96;
+  color: #e25e96;
+  margin-bottom: 50px;
+  border-radius: 25px;
 }
 
 .bottom-outlineoutTeam {
@@ -3993,12 +4030,12 @@ font-family: BdCondHe;
 .icon_web {
   position: absolute;
   z-index: 1;
-  margin-left: -51px;
+  margin-left:-60px;
   margin-top: 2px;
   border-bottom-left-radius: 10px;
 }
 .canterMode-box {
-  margin-top: 50px;
+  margin-top: 100px;
   text-align: center;
   display: inline-block;
 }
@@ -4010,24 +4047,41 @@ font-family: BdCondHe;
 }
 .share-success {
   font-size: 20px;
-  color: #F45197;
+  color: #000000;
   font-weight: bold;
  font-family: BdCondHe;
+}
+.share-to {
+  color: #E25E96;
+  font-size: 16px;
+  font-weight: bold;
+/*   margin-left: 40%; */
 }
 .box-share {
   position: relative;
   border: 1px solid #E25E96;
-  width: 100%;
+  width: 200px;
   padding-top: 15px;
-  padding-left: 10px;
-  padding-right: 10px;
   height: 70px;
   margin-bottom: 40px;
   border-radius: 100px;
 }
+.box-shareMobile {
+  margin-top: -10px;
+  position: relative;
+  border: 1px solid #E25E96;
+  width: 200px;
+  padding-top: 13px;
+  padding-left: 20px;
+ /*  padding-right: 20px; */
+  height: 65px;
+  margin-bottom: 40px;
+  border-radius: 100px;
+}
+
 .icon-share {
-  padding-left: 4px;
-  padding-right: 4px;
+  padding-left: 8px;
+  padding-right: 8px;
   cursor: pointer;
 }
 .frame40 {
@@ -4136,4 +4190,14 @@ margin-top: 10%;
   border-radius: 50px;
   font-weight: bold;
   font-size:  18px;
+}
+.copy-link {
+  margin-top: -20px;
+}
+.button-copyLink {
+  background-color: #FFFFFF;
+  border-color: #D9D9D9;
+}
+.line-hr {
+  margin-top: 0px;
 }

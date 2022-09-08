@@ -24,6 +24,7 @@ import line from "../../assets/img/icon-line.png";
 import tiktok from "../../assets/img/icon-tiktok.png";
 import whatsApp from "../../assets/img/icon-WhatsApp.png";
 import instagram from "../../assets/img/icon-instagram.png";
+import copyLink from "../../assets/img/copy-link.png";
 import { getFriendList, getRank, getLogWeight, getIsReducedWeight, getLogWeightTeam, getDailyTeamWeightBonus, getNumberOfTeamNotFull, assignGroupToMember, clearChallenges, createChallengeGroup, leaveTeam, getMembersAndRank, getGroupName, getScoreOfTeam, getLeaderboard, getChallengePeriod, sendFriendRequest, getFriendRequest, acceptFriend, rejectFriend, getMaxFriends, deleteFriend, sendTeamInvite, getTeamInvite, rejectTeamInvite, acceptTeamInvite, getFriendsRank, getAchievementLog, updateAchievementLog, checkAllMissionComplete } from "../../redux/challenges";
 import { getGroupID, checkUpdateMaxFriends } from "../../redux/auth";
 import { connect } from "react-redux";
@@ -244,6 +245,22 @@ class Challenge extends Component {
       this.props.getScoreOfTeam(this.props.user.group_id);
       this.props.getLeaderboard();
     }
+
+  }
+
+  autoClick(e) {
+    document.getElementById(e).click()
+  }
+  copyLink() {
+    // Get the text field
+    var copyText = document.getElementById("copyLink");
+
+    // Select the text field
+    copyText.select();
+    copyText.setSelectionRange(0, 99999); // For mobile devices
+
+    // Copy the text inside the text field
+    navigator.clipboard.writeText(copyText.value);
 
   }
 
@@ -1222,46 +1239,66 @@ class Challenge extends Component {
           <>
             <div className="box-challengeIn">
               <p className="text-challenge">
-                <div class="container">
+                <div className="container">
 
                   {
-                    achievementFinisher ?
+                    !achievementFinisher ?
                       <>
-                        <div class="row">
-                          <div class="col-12 col-sm-12 col-md-12 col-lg-12 mt-2">
-                            <div class="container">
-                              <div class="row">
-                                <div class="col-4 col-sm-3 col-md-2 col-lg-3 col-xl-2">
+                        <div className="row">
+                          <div className="col-12 col-sm-12 col-md-12 col-lg-12 mt-2" >
+                            {/* จอมือถือ */}
+                            <div className="container line-hr" data-bs-toggle="modal" id="achievement8" data-bs-target="#modalAchievement8">
+                              <div className="row">
+                                <div className="col-4 col-sm-3 col-md-2 col-lg-3 col-xl-2">
                                   <img src={`./assets/img/icon_achievement/finisher.png`} width="70" height="70" className="icon_rank-img" />
                                 </div>
-                                <div class="col-8 col-sm-9 col-md-10 col-lg-9 col-xl-10">
-                                  <div class="container">
-                                    <div class="row">
-                                      <div class="col-12 col-sm-12  col-md-10">
+                                <div className="col-8 col-sm-9 col-md-10 col-lg-9 col-xl-10">
+                                  <div className="container">
+                                    <div className="row">
+                                      <div className="col-12 col-sm-12  col-md-10">
                                         <p><span className="bold">Finisher</span><br /> ทำภารกิจครบทุกสัปดาห์จนจบฤดูกาล
                                         </p>
-                                      </div>
-                                      <div class="col-12 col-sm-12 col-md-2" onClick={() => document.getElementById("modalAchievement8Btn") && document.getElementById("modalAchievement8Btn").click()}>
-                                        <button type="button" class="btn btn-achievement ">แชร์</button>
                                       </div>
                                     </div>
                                   </div>
                                 </div>
                               </div>
                             </div>
+                            {/* จอคอม */}
+                            <div className="container display-btn">
+                              <div className="row">
+                                <div className="col-4 col-sm-3 col-md-2 col-lg-3 col-xl-2">
+                                  <img src={`./assets/img/icon_achievement/finisher.png`} width="70" height="70" className="icon_rank-img" />
+                                </div>
+                                <div className="col-8 col-sm-9 col-md-10 col-lg-9 col-xl-10">
+                                  <div className="container">
+                                    <div className="row">
+                                      <div className="col-12 col-sm-12  col-md-10">
+                                        <p><span className="bold">Finisher</span><br /> ทำภารกิจครบทุกสัปดาห์จนจบฤดูกาล
+                                        </p>
+                                      </div>
+                                      <div class="col-12 col-sm-12 col-md-2" onClick={() => document.getElementById("modalAchievement8Btn") && document.getElementById("modalAchievement8Btn").click()}>
+                                        <button type="button" className="btn btn-achievement ">แชร์</button>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+
                           </div>
                         </div>
                       </>
                       :
                       <>
-                        <div class="row">
-                          <div class="col-12 col-sm-12 col-md-12 col-lg-12 mt-2">
-                            <div class="container">
-                              <div class="row">
-                                <div class="col-4 col-sm-3 col-md-2 col-lg-3 col-xl-2">
+                        <div className="row">
+                          <div className="col-12 col-sm-12 col-md-12 col-lg-12 mt-2" >
+                            <div className="container">
+                              <div className="row">
+                                <div className="col-4 col-sm-3 col-md-2 col-lg-3 col-xl-2">
                                   <img src={`./assets/img/icon_achievement/finisher_grey.png`} width="70" height="70" className="icon_rank-img" />
                                 </div>
-                                <div class="col-8 col-sm-9 col-md-10 col-lg-9 col-xl-10">
+                                <div className="col-8 col-sm-9 col-md-10 col-lg-9 col-xl-10">
                                   <p className="share-text"><span className="bold">Finisher</span><br /> ทำภารกิจครบทุกสัปดาห์จนจบฤดูกาล</p></div>
                               </div>
                             </div>
@@ -1269,23 +1306,42 @@ class Challenge extends Component {
                         </div>
                       </>
                   }
+                  <hr className="line-hr"/>
                   {
-                    achievementAce ?
-                      <div class="row">
-                        <div class="col-12 col-sm-12 col-md-12 col-lg-12 mt-2">
-                          <div class="container">
-                            <div class="row">
-                              <div class="col-4 col-sm-3 col-md-2 col-lg-3 col-xl-2">
+                    !achievementAce ?
+                      <div className="row">
+                        <div className="col-12 col-sm-12 col-md-12 col-lg-12 mt-2">
+                          {/* จอมือถือ */}
+                          <div className="container line-hr"  data-bs-toggle="modal" id="achievement1" data-bs-target="#modalAchievement1">
+                            <div className="row">
+                              <div className="col-4 col-sm-3 col-md-2 col-lg-3 col-xl-2">
+                                <img src={`./assets/img/icon_achievement/ace.png`} width="70" height="70" className="icon_rank-img" />
+                              </div>
+                              <div className="col-8 col-sm-9 col-md-10 col-lg-9 col-xl-10">
+                                <div className="container">
+                                  <div className="row">
+                                    <div className="col-12 col-sm-12  col-md-10">
+                                      <p><span className="bold">Ace</span><br />ได้อันดับคะแนนสูงสุดประจำสัปดาห์</p>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        {/* จอคอม */}
+                          <div className="container display-btn">
+                            <div className="row">
+                              <div className="col-4 col-sm-3 col-md-2 col-lg-3 col-xl-2">
                                 <img src={`./assets/img/icon_achievement/ace.png`} width="70" height="70" className="icon_rank-img" />
                               </div>
                               <div class="col-8 col-sm-9 col-md-10 col-lg-9 col-xl-10">
-                                <div class="container">
-                                  <div class="row">
-                                    <div class="col-12 col-sm-12  col-md-10">
+                                <div className="container">
+                                  <div className="row">
+                                    <div className="col-12 col-sm-12  col-md-10">
                                       <p><span className="bold">Ace</span><br />ได้อันดับคะแนนสูงสุดประจำสัปดาห์</p>
                                     </div>
-                                    <div class="col-12 col-sm-12 col-md-2" onClick={() => document.getElementById("modalAchievement1Btn") && document.getElementById("modalAchievement1Btn").click()}>
-                                      <button type="button" class="btn btn-achievement ">แชร์</button>
+                                    <div className="col-12 col-sm-12 col-md-2" onClick={() => document.getElementById("modalAchievement1Btn") && document.getElementById("modalAchievement1Btn").click()}>
+                                      <button type="button" className="btn btn-achievement ">แชร์</button>
                                     </div>
                                   </div>
                                 </div>
@@ -1295,14 +1351,14 @@ class Challenge extends Component {
                         </div>
                       </div>
                       :
-                      <div class="row">
-                        <div class="col-12 col-sm-12 col-md-12 col-lg-12 mt-2">
-                          <div class="container">
-                            <div class="row">
-                              <div class="col-4 col-sm-3 col-md-2 col-lg-3 col-xl-2">
+                      <div className="row">
+                        <div className="col-12 col-sm-12 col-md-12 col-lg-12 mt-2">
+                          <div className="container">
+                            <div className="row">
+                              <div className="col-4 col-sm-3 col-md-2 col-lg-3 col-xl-2">
                                 <img src={`./assets/img/icon_achievement/ace_grey.png`} width="70" height="70" className="icon_rank-img" />
                               </div>
-                              <div class="col-8 col-sm-9 col-md-10 col-lg-9 col-xl-10">
+                              <div className="col-8 col-sm-9 col-md-10 col-lg-9 col-xl-10">
                                 <p><span className="bold">Ace</span><br />
                                   ได้อันดับคะแนนสูงสุดประจำสัปดาห์
                                 </p>
@@ -1313,23 +1369,42 @@ class Challenge extends Component {
                         </div>
                       </div>
                   }
+                  <hr className="line-hr"/>
                   {
-                    achievement1st ?
-                      <div class="row">
-                        <div class="col-12 col-sm-12 col-md-12 col-lg-12 mt-2">
-                          <div class="container">
-                            <div class="row">
-                              <div class="col-4 col-sm-3 col-md-2 col-lg-3 col-xl-2">
+                    !achievement1st ?
+                      <div className="row">
+                        <div className="col-12 col-sm-12 col-md-12 col-lg-12 mt-2">
+                          {/* จอมือถือ */}
+                          <div className="container line-hr" data-bs-toggle="modal" id="achievement3" data-bs-target="#modalAchievement3">
+                            <div className="row">
+                              <div className="col-4 col-sm-3 col-md-2 col-lg-3 col-xl-2">
                                 <img src={`./assets/img/icon_achievement/1st.png`} width="70" height="70" className="icon_rank-img" />
                               </div>
-                              <div class="col-8 col-sm-9 col-md-10 col-lg-9 col-xl-10">
-                                <div class="container">
-                                  <div class="row">
-                                    <div class="col-12 col-sm-12  col-md-10">
+                              <div className="col-8 col-sm-9 col-md-10 col-lg-9 col-xl-10">
+                                <div className="container">
+                                  <div className="row">
+                                    <div className="col-12 col-sm-12  col-md-10">
                                       <p><span className="bold">1st</span><br /> ได้ทีมอันดับที่ 1 ประจำสัปดาห์  </p>
                                     </div>
-                                    <div class="col-12 col-sm-12 col-md-2" onClick={() => document.getElementById("modalAchievement3Btn") && document.getElementById("modalAchievement3Btn").click()}>
-                                      <button type="button" class="btn btn-achievement ">แชร์</button>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          {/* จอคอม */}
+                          <div className="container  display-btn">
+                            <div className="row">
+                              <div className="col-4 col-sm-3 col-md-2 col-lg-3 col-xl-2">
+                                <img src={`./assets/img/icon_achievement/1st.png`} width="70" height="70" className="icon_rank-img" />
+                              </div>
+                              <div className="col-8 col-sm-9 col-md-10 col-lg-9 col-xl-10">
+                                <div className="container">
+                                  <div className="row">
+                                    <div className="col-12 col-sm-12  col-md-10">
+                                      <p><span className="bold">1st</span><br /> ได้ทีมอันดับที่ 1 ประจำสัปดาห์  </p>
+                                    </div>
+                                    <div className="col-12 col-sm-12 col-md-2" onClick={() => document.getElementById("modalAchievement3Btn") && document.getElementById("modalAchievement3Btn").click()}>
+                                      <button type="button" className="btn btn-achievement ">แชร์</button>
                                     </div>
                                   </div>
                                 </div>
@@ -1339,14 +1414,14 @@ class Challenge extends Component {
                         </div>
                       </div>
                       :
-                      <div class="row">
-                        <div class="col-12 col-sm-12 col-md-12 col-lg-12 mt-2">
-                          <div class="container">
-                            <div class="row">
-                              <div class="col-4 col-sm-3 col-md-2 col-lg-3 col-xl-2">
+                      <div className="row">
+                        <div className="col-12 col-sm-12 col-md-12 col-lg-12 mt-2">
+                          <div className="container">
+                            <div className="row">
+                              <div className="col-4 col-sm-3 col-md-2 col-lg-3 col-xl-2">
                                 <img src={`./assets/img/icon_achievement/1st_grey.png`} width="70" height="70" className="icon_rank-img" />
                               </div>
-                              <div class="col-8 col-sm-9 col-md-10 col-lg-9 col-xl-10">
+                              <div className="col-8 col-sm-9 col-md-10 col-lg-9 col-xl-10">
                                 <p><span className="bold">1st</span><br /> ได้ทีมอันดับที่ 1 ประจำสัปดาห์</p></div>
                             </div>
                           </div>
@@ -1354,23 +1429,42 @@ class Challenge extends Component {
                       </div>
 
                   }
+                  <hr className="line-hr"/>
                   {
-                    achievement2nd ?
-                      <div class="row">
-                        <div class="col-12 col-sm-12 col-md-12 col-lg-12 mt-2">
-                          <div class="container">
-                            <div class="row">
-                              <div class="col-4 col-sm-3 col-md-2 col-lg-3 col-xl-2">
+                    !achievement2nd ?
+                      <div className="row">
+                        <div className="col-12 col-sm-12 col-md-12 col-lg-12 mt-2">
+                          {/* จอมือถือ */}
+                          <div className="container line-hr" data-bs-toggle="modal" id="achievement4" data-bs-target="#modalAchievement4">
+                            <div className="row">
+                              <div className="col-4 col-sm-3 col-md-2 col-lg-3 col-xl-2">
                                 <img src={`./assets/img/icon_achievement/2nd.png`} width="80" height="80" className="icon_rank-img" />
                               </div>
-                              <div class="col-8 col-sm-9 col-md-10 col-lg-9 col-xl-10">
-                                <div class="container">
-                                  <div class="row">
-                                    <div class="col-12 col-sm-12  col-md-10">
+                              <div className="col-8 col-sm-9 col-md-10 col-lg-9 col-xl-10">
+                                <div className="container">
+                                  <div className="row">
+                                    <div className="col-12 col-sm-12  col-md-10">
                                       <p><span className="bold">2nd</span><br /> ได้ทีมอันดับที่ 2 ประจำสัปดาห์</p>
                                     </div>
-                                    <div class="col-12 col-sm-12 col-md-2" onClick={() => document.getElementById("modalAchievement4Btn") && document.getElementById("modalAchievement4Btn").click()}>
-                                      <button type="button" class="btn btn-achievement ">แชร์</button>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          {/* จอคอม */}
+                          <div className="container display-btn">
+                            <div className="row">
+                              <div className="col-4 col-sm-3 col-md-2 col-lg-3 col-xl-2">
+                                <img src={`./assets/img/icon_achievement/2nd.png`} width="80" height="80" className="icon_rank-img" />
+                              </div>
+                              <div className="col-8 col-sm-9 col-md-10 col-lg-9 col-xl-10">
+                                <div className="container">
+                                  <div className="row">
+                                    <div className="col-12 col-sm-12  col-md-10">
+                                      <p><span className="bold">2nd</span><br /> ได้ทีมอันดับที่ 2 ประจำสัปดาห์</p>
+                                    </div>
+                                    <div className="col-12 col-sm-12 col-md-2" onClick={() => document.getElementById("modalAchievement4Btn") && document.getElementById("modalAchievement4Btn").click()}>
+                                      <button type="button" className="btn btn-achievement ">แชร์</button>
                                     </div>
                                   </div>
                                 </div>
@@ -1380,25 +1474,44 @@ class Challenge extends Component {
                         </div>
                       </div>
                       :
-                      <div class="row">
-                        <div class="col-12 col-sm-12 col-md-12 col-lg-12 mt-2">
-                          <div class="container">
-                            <div class="row">
-                              <div class="col-4 col-sm-3 col-md-2 col-lg-3 col-xl-2">
+                      <div className="row">
+                        <div className="col-12 col-sm-12 col-md-12 col-lg-12 mt-2">
+                          <div className="container">
+                            <div className="row">
+                              <div className="col-4 col-sm-3 col-md-2 col-lg-3 col-xl-2">
                                 <img src={`./assets/img/icon_achievement/2nd_grey.png`} width="80" height="80" className="icon_rank-img" />
                               </div>
-                              <div class="col-8 col-sm-9 col-md-10 col-lg-9 col-xl-10"><p><span className="bold">2nd</span><br /> ได้ทีมอันดับที่ 2 ประจำสัปดาห์
+                              <div className="col-8 col-sm-9 col-md-10 col-lg-9 col-xl-10"><p><span className="bold">2nd</span><br /> ได้ทีมอันดับที่ 2 ประจำสัปดาห์
                               </p></div>
                             </div>
                           </div>
                         </div>
                       </div>
                   }
+                  <hr className="line-hr"/>
                   {
-                    achievementTop10 ?
-                      <div class="row">
-                        <div class="col-12 col-sm-12 col-md-12 col-lg-12 mt-2">
-                          <div class="container">
+                    !achievementTop10 ?
+                      <div className="row">
+                        <div className="col-12 col-sm-12 col-md-12 col-lg-12 mt-2">
+                          {/* จอมอืถือ */}
+                          <div className="container line-hr" data-bs-toggle="modal" id="achievement5" data-bs-target="#modalAchievement5">
+                            <div class="row">
+                              <div class="col-4 col-sm-3 col-md-2 col-lg-3 col-xl-2">
+                                <img src={`./assets/img/icon_achievement/top10.png`} width="70" height="70" className="icon_rank-img" />
+                              </div>
+                              <div class="col-8 col-sm-9 col-md-10 col-lg-9 col-xl-10">
+                                <div class="container">
+                                  <div class="row">
+                                    <div class="col-12 col-sm-12  col-md-10">
+                                      <p><span className="bold">Top 10</span><br /> ได้ทีมอันดับที่ 3-10 ประจำสัปดาห์ </p>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          {/* จอคอม */}
+                          <div className="container display-btn">
                             <div class="row">
                               <div class="col-4 col-sm-3 col-md-2 col-lg-3 col-xl-2">
                                 <img src={`./assets/img/icon_achievement/top10.png`} width="70" height="70" className="icon_rank-img" />
@@ -1410,93 +1523,134 @@ class Challenge extends Component {
                                       <p><span className="bold">Top 10</span><br /> ได้ทีมอันดับที่ 3-10 ประจำสัปดาห์ </p>
                                     </div>
                                     <div class="col-12 col-sm-12 col-md-2" onClick={() => document.getElementById("modalAchievement5Btn") && document.getElementById("modalAchievement5Btn").click()}>
-                                      <button type="button" class="btn btn-achievement ">แชร์</button>
+                                      <button type="button" className="btn btn-achievement ">แชร์</button>
                                     </div>
                                   </div>
                                 </div>
                               </div>
                             </div>
                           </div>
+                          
                         </div>
                       </div>
                       :
-                      <div class="row">
-                        <div class="col-12 col-sm-12 col-md-12 col-lg-12 mt-2">
-                          <div class="container">
-                            <div class="row">
-                              <div class="col-4 col-sm-3 col-md-2 col-lg-3 col-xl-2">
+                      <div className="row">
+                        <div className="col-12 col-sm-12 col-md-12 col-lg-12 mt-2">
+                          <div className="container">
+                            <div className="row">
+                              <div className="col-4 col-sm-3 col-md-2 col-lg-3 col-xl-2">
                                 <img src={`./assets/img/icon_achievement/top10_grey.png`} width="70" height="70" className="icon_rank-img" />
                               </div>
-                              <div class="col-8 col-sm-9 col-md-10 col-lg-9 col-xl-10"><p><span className="bold">Top 10</span><br /> ได้ทีมอันดับที่ 3-10 ประจำสัปดาห์
+                              <div className="col-8 col-sm-9 col-md-10 col-lg-9 col-xl-10"><p><span className="bold">Top 10</span><br /> ได้ทีมอันดับที่ 3-10 ประจำสัปดาห์
                               </p></div>
                             </div>
                           </div>
                         </div>
                       </div>
                   }
+                  <hr className="line-hr"/>
                   {
-                    achievementSocialStar ?
-                      <div class="row">
-                        <div class="col-12 col-sm-12 col-md-12 col-lg-12 mt-2">
-                          <div class="container">
-                            <div class="row">
-                              <div class="col-4 col-sm-3 col-md-2 col-lg-3 col-xl-2">
+                    !achievementSocialStar ?
+                      <div className="row">
+                        <div className="col-12 col-sm-12 col-md-12 col-lg-12 mt-2">
+                        {/* จอมือถือ */}
+                          <div className="container line-hr" data-bs-toggle="modal" id="achievement6" data-bs-target="#modalAchievement6">
+                            <div className="row">
+                              <div className="col-4 col-sm-3 col-md-2 col-lg-3 col-xl-2">
                                 <img src={`./assets/img/icon_achievement/social_star.png`} width="70" height="70" className="icon_rank-img" />
                               </div>
-                              <div class="col-8 col-sm-9 col-md-10 col-lg-9 col-xl-10">
-                                <div class="container">
-                                  <div class="row">
-                                    <div class="col-12 col-sm-12  col-md-10">
+                              <div className="col-8 col-sm-9 col-md-10 col-lg-9 col-xl-10">
+                                <div className="container">
+                                  <div className="row">
+                                    <div className="col-12 col-sm-12  col-md-10">
+                                      <p><span className="bold">Social star</span><br /> มีเพื่อนในรายชื่อ 10 คน </p>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          {/* จอคอม */}
+                          <div className="container display-btn">
+                            <div className="row">
+                              <div className="col-4 col-sm-3 col-md-2 col-lg-3 col-xl-2">
+                                <img src={`./assets/img/icon_achievement/social_star.png`} width="70" height="70" className="icon_rank-img" />
+                              </div>
+                              <div className="col-8 col-sm-9 col-md-10 col-lg-9 col-xl-10">
+                                <div className="container">
+                                  <div className="row">
+                                    <div className="col-12 col-sm-12  col-md-10">
                                       <p><span className="bold">Social star</span><br /> มีเพื่อนในรายชื่อ 10 คน </p>
                                     </div>
                                     <div class="col-12 col-sm-12 col-md-2" onClick={() => document.getElementById("modalAchievement6Btn") && document.getElementById("modalAchievement6Btn").click()}>
-                                      <button type="button" class="btn btn-achievement ">แชร์</button>
+                                      <button type="button" className="btn btn-achievement ">แชร์</button>
                                     </div>
                                   </div>
                                 </div>
                               </div>
                             </div>
                           </div>
+
                         </div>
                       </div>
                       :
-                      <div class="row">
-                        <div class="col-12 col-sm-12 col-md-12 col-lg-12 mt-2">
-                          <div class="container">
-                            <div class="row">
-                              <div class="col-4 col-sm-3 col-md-2 col-lg-3 col-xl-2">
+                      <div className="row">
+                        <div className="col-12 col-sm-12 col-md-12 col-lg-12 mt-2">
+                          <div className="container">
+                            <div className="row">
+                              <div className="col-4 col-sm-3 col-md-2 col-lg-3 col-xl-2">
                                 <img src={`./assets/img/icon_achievement/social_star_grey.png`} width="70" height="70" className="icon_rank-img" />
                               </div>
-                              <div class="col-8 col-sm-9 col-md-10 col-lg-9 col-xl-10"><p><span className="bold">Social star</span><br /> มีเพื่อนในรายชื่อ 10 คน
+                              <div className="col-8 col-sm-9 col-md-10 col-lg-9 col-xl-10"><p><span className="bold">Social star</span><br /> มีเพื่อนในรายชื่อ 10 คน
                               </p></div>
                             </div>
                           </div>
                         </div>
                       </div>
                   }
+                  <hr className="line-hr"/>
                   {
-                    achievementSocialStarPlus ?
-                      <div class="row">
-                        <div class="col-12 col-sm-12 col-md-12 col-lg-12 mt-2">
-                          <div class="container">
-                            <div class="row">
-                              <div class="col-4 col-sm-3 col-md-2 col-lg-3 col-xl-2">
+                    !achievementSocialStarPlus ?
+                      <div className="row">
+                        <div className="col-12 col-sm-12 col-md-12 col-lg-12 mt-2">
+                          {/* จอมือถือ */}
+                          <div className="container line-hr" data-bs-toggle="modal" id="achievement7" data-bs-target="#modalAchievement7">
+                            <div className="row">
+                              <div className="col-4 col-sm-3 col-md-2 col-lg-3 col-xl-2">
                                 <img src={`./assets/img/icon_achievement/social_star_plus.png`} width="70" height="70" className="icon_rank-img" />
                               </div>
-                              <div class="col-8 col-sm-9 col-md-10 col-lg-9 col-xl-10">
-                                <div class="container">
-                                  <div class="row">
-                                    <div class="col-12 col-sm-12  col-md-10">
+                              <div className="col-8 col-sm-9 col-md-10 col-lg-9 col-xl-10">
+                                <div className="container">
+                                  <div className="row">
+                                    <div className="col-12 col-sm-12  col-md-10">
                                       <p><span className="bold">Social star+</span><br />  มีเพื่อนในรายชื่อ 15 คน</p>
-                                    </div>
-                                    <div class="col-12 col-sm-12 col-md-2" onClick={() => document.getElementById("modalAchievement7Btn") && document.getElementById("modalAchievement7Btn").click()}>
-                                      <button type="button" class="btn btn-achievement ">แชร์</button>
                                     </div>
                                   </div>
                                 </div>
                               </div>
                             </div>
                           </div>
+                          {/* จอคอม */}
+                          <div className="container display-btn">
+                            <div className="row">
+                              <div className="col-4 col-sm-3 col-md-2 col-lg-3 col-xl-2">
+                                <img src={`./assets/img/icon_achievement/social_star_plus.png`} width="70" height="70" className="icon_rank-img" />
+                              </div>
+                              <div className="col-8 col-sm-9 col-md-10 col-lg-9 col-xl-10">
+                                <div className="container">
+                                  <div className="row">
+                                    <div className="col-12 col-sm-12  col-md-10">
+                                      <p><span className="bold">Social star+</span><br />  มีเพื่อนในรายชื่อ 15 คน</p>
+                                    </div>
+                                    <div className="col-12 col-sm-12 col-md-2" onClick={() => document.getElementById("modalAchievement7Btn") && document.getElementById("modalAchievement7Btn").click()}>
+                                      <button type="button" className="btn btn-achievement ">แชร์</button>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+
                         </div>
                       </div>
                       :
@@ -1524,6 +1678,7 @@ class Challenge extends Component {
     )
   }
 
+
   super() {
     const urlShare = 'https://fit.bebefitroutine.com/achievement/achievement3.html';
     return (
@@ -1536,28 +1691,32 @@ class Challenge extends Component {
           <div class="col-12 col-sm-12 col-md-12 col-lg-6  ">
             <div className="canterMode-box">
               <p className="modeText-box">ทีมอันดับที่ 1 ประจำสัปดาห์</p>
-              <p>{/* xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx */} <br />{/* xxxxxxxxxxxxxxxx */}</p>
-
-              <p className="share-success">แชร์ความสำเร็จ</p>
-              <div className="box-share">
-                <FacebookShareButton url={urlShare}>
-                  <img src={facebook} className="icon-share" />
-                </FacebookShareButton>
-                {/* <TwitterShareButton url={urlShare}>
+              <div className="bottom-shareBox">
+                <button type="button" className="btn bottom-share" id="bottom-share3" onClick={(e) => this.autoClick("closeAchievement3")} data-bs-toggle="offcanvas" data-bs-target="#offcanvasBottom3" aria-controls="offcanvasBottom"> แชร์ความสำเร็จ </button>
+              </div>
+              <div className="display-btn">
+                <hr />
+                <p className="share-success">แชร์ความสำเร็จ</p>
+                <div className="box-share center2">
+                  <FacebookShareButton url={urlShare}>
+                    <img src={facebook} className="icon-share" />
+                  </FacebookShareButton>
+                  {/* <TwitterShareButton url={urlShare}>
                   <img src={twitter} className="icon-share" />
                 </TwitterShareButton> */}
-                {/* appId={} ต้องใช้ appId ถึงจะแชร์ได้  */}
-                {/* <FacebookMessengerShareButton url={urlShare} >
+                  {/* appId={} ต้องใช้ appId ถึงจะแชร์ได้  */}
+                  {/* <FacebookMessengerShareButton url={urlShare} >
                   <img src={message} className="icon-share" />
                 </FacebookMessengerShareButton> */}
-                <LineShareButton url={urlShare}>
-                  <img src={line} className="icon-share" />
-                </LineShareButton>
-                {/* <img src={tiktok} className="icon-share" /> */}
-                <WhatsappShareButton url={urlShare}>
-                  <img src={whatsApp} className="icon-share" />
-                </WhatsappShareButton>
-                {/*  <img src={instagram} className="icon-share" /> */}
+                  <LineShareButton url={urlShare}>
+                    <img src={line} className="icon-share" />
+                  </LineShareButton>
+                  {/* <img src={tiktok} className="icon-share" /> */}
+                  <WhatsappShareButton url={urlShare}>
+                    <img src={whatsApp} className="icon-share" />
+                  </WhatsappShareButton>
+                  {/*  <img src={instagram} className="icon-share" /> */}
+                </div>
               </div>
             </div>
           </div>
@@ -1578,28 +1737,32 @@ class Challenge extends Component {
           <div class="col-12 col-sm-12 col-md-12 col-lg-6  ">
             <div className="canterMode-box">
               <p className="modeText-box">ทีมอันดับที่ 2 ประจำสัปดาห์</p>
-              <p>{/* xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx  */}<br />{/* xxxxxxxxxxxxxxxx */}</p>
-
-              <p className="share-success">แชร์ความสำเร็จ</p>
-              <div className="box-share">
-                <FacebookShareButton url={urlShare}>
-                  <img src={facebook} className="icon-share" />
-                </FacebookShareButton>
-                {/* <TwitterShareButton url={urlShare}>
+              <div className="bottom-shareBox">
+                <button type="button" className="btn bottom-share" id="bottom-share4" onClick={(e) => this.autoClick("closeAchievement4")} data-bs-toggle="offcanvas" data-bs-target="#offcanvasBottom4" aria-controls="offcanvasBottom"> แชร์ความสำเร็จ </button>
+              </div>
+              <div className="display-btn">
+                <hr />
+                <p className="share-success">แชร์ความสำเร็จ</p>
+                <div className="box-share center2">
+                  <FacebookShareButton url={urlShare}>
+                    <img src={facebook} className="icon-share" />
+                  </FacebookShareButton>
+                  {/* <TwitterShareButton url={urlShare}>
                   <img src={twitter} className="icon-share" />
                 </TwitterShareButton> */}
-                {/* appId={} ต้องใช้ appId ถึงจะแชร์ได้  */}
-                {/* <FacebookMessengerShareButton url={urlShare} >
+                  {/* appId={} ต้องใช้ appId ถึงจะแชร์ได้  */}
+                  {/* <FacebookMessengerShareButton url={urlShare} >
                   <img src={message} className="icon-share" />
                 </FacebookMessengerShareButton> */}
-                <LineShareButton url={urlShare}>
-                  <img src={line} className="icon-share" />
-                </LineShareButton>
-                {/* <img src={tiktok} className="icon-share" /> */}
-                <WhatsappShareButton url={urlShare}>
-                  <img src={whatsApp} className="icon-share" />
-                </WhatsappShareButton>
-                {/*  <img src={instagram} className="icon-share" /> */}
+                  <LineShareButton url={urlShare}>
+                    <img src={line} className="icon-share" />
+                  </LineShareButton>
+                  {/* <img src={tiktok} className="icon-share" /> */}
+                  <WhatsappShareButton url={urlShare}>
+                    <img src={whatsApp} className="icon-share" />
+                  </WhatsappShareButton>
+                  {/*  <img src={instagram} className="icon-share" /> */}
+                </div>
               </div>
             </div>
           </div>
@@ -1620,28 +1783,32 @@ class Challenge extends Component {
           <div class="col-12 col-sm-12 col-md-12 col-lg-6  ">
             <div className="canterMode-box">
               <p className="modeText-box">ทีมอันดับ Top 10 ประจำสัปดาห์</p>
-              <p>{/* xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx */} <br />{/* xxxxxxxxxxxxxxxx */}</p>
-
-              <p className="share-success">แชร์ความสำเร็จ</p>
-              <div className="box-share">
-                <FacebookShareButton url={urlShare}>
-                  <img src={facebook} className="icon-share" />
-                </FacebookShareButton>
-                {/* <TwitterShareButton url={urlShare}>
+              <div className="bottom-shareBox">
+                <button type="button" className="btn bottom-share" id="bottom-share5" onClick={(e) => this.autoClick("closeAchievement5")} data-bs-toggle="offcanvas" data-bs-target="#offcanvasBottom5" aria-controls="offcanvasBottom"> แชร์ความสำเร็จ </button>
+              </div>
+              <div className="display-btn">
+                <hr />
+                <p className="share-success">แชร์ความสำเร็จ</p>
+                <div className="box-share center2">
+                  <FacebookShareButton url={urlShare}>
+                    <img src={facebook} className="icon-share" />
+                  </FacebookShareButton>
+                  {/* <TwitterShareButton url={urlShare}>
                   <img src={twitter} className="icon-share" />
                 </TwitterShareButton> */}
-                {/* appId={} ต้องใช้ appId ถึงจะแชร์ได้  */}
-                {/* <FacebookMessengerShareButton url={urlShare} >
+                  {/* appId={} ต้องใช้ appId ถึงจะแชร์ได้  */}
+                  {/* <FacebookMessengerShareButton url={urlShare} >
                   <img src={message} className="icon-share" />
                 </FacebookMessengerShareButton> */}
-                <LineShareButton url={urlShare}>
-                  <img src={line} className="icon-share" />
-                </LineShareButton>
-                {/* <img src={tiktok} className="icon-share" /> */}
-                <WhatsappShareButton url={urlShare}>
-                  <img src={whatsApp} className="icon-share" />
-                </WhatsappShareButton>
-                {/*  <img src={instagram} className="icon-share" /> */}
+                  <LineShareButton url={urlShare}>
+                    <img src={line} className="icon-share" />
+                  </LineShareButton>
+                  {/* <img src={tiktok} className="icon-share" /> */}
+                  <WhatsappShareButton url={urlShare}>
+                    <img src={whatsApp} className="icon-share" />
+                  </WhatsappShareButton>
+                  {/*  <img src={instagram} className="icon-share" /> */}
+                </div>
               </div>
             </div>
           </div>
@@ -1662,28 +1829,32 @@ class Challenge extends Component {
           <div class="col-12 col-sm-12 col-md-12 col-lg-6  ">
             <div className="canterMode-box">
               <p className="modeText-box">ทำคะแนนได้สูงสุดประจำสัปดาห์</p>
-              <p>{/* xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx */} <br />{/* xxxxxxxxxxxxxxxx */}</p>
-
-              <p className="share-success">แชร์ความสำเร็จ</p>
-              <div className="box-share">
-                <FacebookShareButton url={urlShare}>
-                  <img src={facebook} className="icon-share" />
-                </FacebookShareButton>
-                {/* <TwitterShareButton url={urlShare}>
+              <div className="bottom-shareBox">
+                <button type="button" className="btn bottom-share" id="bottom-share1" onClick={(e) => this.autoClick("closeAchievement1")} data-bs-toggle="offcanvas" data-bs-target="#offcanvasBottom1" aria-controls="offcanvasBottom"> แชร์ความสำเร็จ </button>
+              </div>
+              <div className="display-btn">
+                <hr />
+                <p className="share-success">แชร์ความสำเร็จ</p>
+                <div className="box-share center2">
+                  <FacebookShareButton url={urlShare}>
+                    <img src={facebook} className="icon-share" />
+                  </FacebookShareButton>
+                  {/* <TwitterShareButton url={urlShare}>
                   <img src={twitter} className="icon-share" />
                 </TwitterShareButton> */}
-                {/* appId={} ต้องใช้ appId ถึงจะแชร์ได้  */}
-                {/* <FacebookMessengerShareButton url={urlShare} >
+                  {/* appId={} ต้องใช้ appId ถึงจะแชร์ได้  */}
+                  {/* <FacebookMessengerShareButton url={urlShare} >
                   <img src={message} className="icon-share" />
                 </FacebookMessengerShareButton> */}
-                <LineShareButton url={urlShare}>
-                  <img src={line} className="icon-share" />
-                </LineShareButton>
-                {/* <img src={tiktok} className="icon-share" /> */}
-                <WhatsappShareButton url={urlShare}>
-                  <img src={whatsApp} className="icon-share" />
-                </WhatsappShareButton>
-                {/*  <img src={instagram} className="icon-share" /> */}
+                  <LineShareButton url={urlShare}>
+                    <img src={line} className="icon-share" />
+                  </LineShareButton>
+                  {/* <img src={tiktok} className="icon-share" /> */}
+                  <WhatsappShareButton url={urlShare}>
+                    <img src={whatsApp} className="icon-share" />
+                  </WhatsappShareButton>
+                  {/*  <img src={instagram} className="icon-share" /> */}
+                </div>
               </div>
             </div>
           </div>
@@ -1703,28 +1874,32 @@ class Challenge extends Component {
           <div class="col-12 col-sm-12 col-md-12 col-lg-6  ">
             <div className="canterMode-box">
               <p className="modeText-box">คุณมีเพื่อนในรายชื่อ 10 คนแล้ว!</p>
-              <p>{/* xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx */} <br />{/* xxxxxxxxxxxxxxxx */}</p>
-
-              <p className="share-success">แชร์ความสำเร็จ</p>
-              <div className="box-share">
-                <FacebookShareButton url={urlShare}>
-                  <img src={facebook} className="icon-share" />
-                </FacebookShareButton>
-                {/* <TwitterShareButton url={urlShare}>
+              <div className="bottom-shareBox">
+                <button type="button" className="btn bottom-share" id="bottom-share6" onClick={(e) => this.autoClick("closeAchievement6")} data-bs-toggle="offcanvas" data-bs-target="#offcanvasBottom6" aria-controls="offcanvasBottom"> แชร์ความสำเร็จ </button>
+              </div>
+              <div className="display-btn">
+                <hr />
+                <p className="share-success">แชร์ความสำเร็จ</p>
+                <div className="box-share center2">
+                  <FacebookShareButton url={urlShare}>
+                    <img src={facebook} className="icon-share" />
+                  </FacebookShareButton>
+                  {/* <TwitterShareButton url={urlShare}>
                   <img src={twitter} className="icon-share" />
                 </TwitterShareButton> */}
-                {/* appId={} ต้องใช้ appId ถึงจะแชร์ได้  */}
-                {/* <FacebookMessengerShareButton url={urlShare} >
+                  {/* appId={} ต้องใช้ appId ถึงจะแชร์ได้  */}
+                  {/* <FacebookMessengerShareButton url={urlShare} >
                   <img src={message} className="icon-share" />
                 </FacebookMessengerShareButton> */}
-                <LineShareButton url={urlShare}>
-                  <img src={line} className="icon-share" />
-                </LineShareButton>
-                {/* <img src={tiktok} className="icon-share" /> */}
-                <WhatsappShareButton url={urlShare}>
-                  <img src={whatsApp} className="icon-share" />
-                </WhatsappShareButton>
-                {/*  <img src={instagram} className="icon-share" /> */}
+                  <LineShareButton url={urlShare}>
+                    <img src={line} className="icon-share" />
+                  </LineShareButton>
+                  {/* <img src={tiktok} className="icon-share" /> */}
+                  <WhatsappShareButton url={urlShare}>
+                    <img src={whatsApp} className="icon-share" />
+                  </WhatsappShareButton>
+                  {/*  <img src={instagram} className="icon-share" /> */}
+                </div>
               </div>
             </div>
           </div>
@@ -1744,28 +1919,32 @@ class Challenge extends Component {
           <div class="col-12 col-sm-12 col-md-12 col-lg-6  ">
             <div className="canterMode-box">
               <p className="modeText-box">คุณมีเพื่อนในรายชื่อครบ 15 คนแล้ว!</p>
-              <p>{/* xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx */} <br />{/* xxxxxxxxxxxxxxxx */}</p>
-
-              <p className="share-success">แชร์ความสำเร็จ</p>
-              <div className="box-share">
-                <FacebookShareButton url={urlShare}>
-                  <img src={facebook} className="icon-share" />
-                </FacebookShareButton>
-                {/* <TwitterShareButton url={urlShare}>
+              <div className="bottom-shareBox">
+                <button type="button" className="btn bottom-share" id="bottom-share7" onClick={(e) => this.autoClick("closeAchievement7")} data-bs-toggle="offcanvas" data-bs-target="#offcanvasBottom7" aria-controls="offcanvasBottom"> แชร์ความสำเร็จ </button>
+              </div>
+              <div className="display-btn">
+                <hr />
+                <p className="share-success">แชร์ความสำเร็จ</p>
+                <div className="box-share center2">
+                  <FacebookShareButton url={urlShare}>
+                    <img src={facebook} className="icon-share" />
+                  </FacebookShareButton>
+                  {/* <TwitterShareButton url={urlShare}>
                   <img src={twitter} className="icon-share" />
                 </TwitterShareButton> */}
-                {/* appId={} ต้องใช้ appId ถึงจะแชร์ได้  */}
-                {/* <FacebookMessengerShareButton url={urlShare} >
+                  {/* appId={} ต้องใช้ appId ถึงจะแชร์ได้  */}
+                  {/* <FacebookMessengerShareButton url={urlShare} >
                   <img src={message} className="icon-share" />
                 </FacebookMessengerShareButton> */}
-                <LineShareButton url={urlShare}>
-                  <img src={line} className="icon-share" />
-                </LineShareButton>
-                {/* <img src={tiktok} className="icon-share" /> */}
-                <WhatsappShareButton url={urlShare}>
-                  <img src={whatsApp} className="icon-share" />
-                </WhatsappShareButton>
-                {/*  <img src={instagram} className="icon-share" /> */}
+                  <LineShareButton url={urlShare}>
+                    <img src={line} className="icon-share" />
+                  </LineShareButton>
+                  {/* <img src={tiktok} className="icon-share" /> */}
+                  <WhatsappShareButton url={urlShare}>
+                    <img src={whatsApp} className="icon-share" />
+                  </WhatsappShareButton>
+                  {/*  <img src={instagram} className="icon-share" /> */}
+                </div>
               </div>
             </div>
           </div>
@@ -1786,28 +1965,32 @@ class Challenge extends Component {
           <div class="col-12 col-sm-12 col-md-12 col-lg-6  ">
             <div className="canterMode-box">
               <p className="modeText-box">ทำภารกิจครบทุกสัปดาห์จนจบฤดูกาล</p>
-              <p>{/* xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx */} <br />{/* xxxxxxxxxxxxxxxx */}</p>
-
-              <p className="share-success">แชร์ความสำเร็จ</p>
-              <div className="box-share">
-                <FacebookShareButton url={urlShare}>
-                  <img src={facebook} className="icon-share" />
-                </FacebookShareButton>
-                {/* <TwitterShareButton url={urlShare}>
+              <div className="bottom-shareBox">
+                <button type="button" className="btn bottom-share" id="bottom-share8" onClick={(e) => this.autoClick("closeAchievement8")} data-bs-toggle="offcanvas" data-bs-target="#offcanvasBottom8" aria-controls="offcanvasBottom"> แชร์ความสำเร็จ </button>
+              </div>
+              <div className="display-btn">
+                <hr />
+                <p className="share-success">แชร์ความสำเร็จ</p>
+                <div className="box-share center2">
+                  <FacebookShareButton url={urlShare}>
+                    <img src={facebook} className="icon-share" />
+                  </FacebookShareButton>
+                  {/* <TwitterShareButton url={urlShare}>
                   <img src={twitter} className="icon-share" />
                 </TwitterShareButton> */}
-                {/* appId={} ต้องใช้ appId ถึงจะแชร์ได้  */}
-                {/* <FacebookMessengerShareButton url={urlShare} >
+                  {/* appId={} ต้องใช้ appId ถึงจะแชร์ได้  */}
+                  {/* <FacebookMessengerShareButton url={urlShare} >
                   <img src={message} className="icon-share" />
                 </FacebookMessengerShareButton> */}
-                <LineShareButton url={urlShare}>
-                  <img src={line} className="icon-share" />
-                </LineShareButton>
-                {/* <img src={tiktok} className="icon-share" /> */}
-                <WhatsappShareButton url={urlShare}>
-                  <img src={whatsApp} className="icon-share" />
-                </WhatsappShareButton>
-                {/*  <img src={instagram} className="icon-share" /> */}
+                  <LineShareButton url={urlShare}>
+                    <img src={line} className="icon-share" />
+                  </LineShareButton>
+                  {/* <img src={tiktok} className="icon-share" /> */}
+                  <WhatsappShareButton url={urlShare}>
+                    <img src={whatsApp} className="icon-share" />
+                  </WhatsappShareButton>
+                  {/*  <img src={instagram} className="icon-share" /> */}
+                </div>
               </div>
             </div>
           </div>
@@ -1829,6 +2012,13 @@ class Challenge extends Component {
     if (dailyTeamWeightBonusCount > 0) { scoreInWeek += dailyTeamWeightBonusCount * 10 }; //ในแต่ละวันมีสมาชิกชั่งน้ำหนัก
     if (scoreInWeek > 41) { scoreInWeek = 41 }; //เพื่อไม่ให้เกินหลอด
     const { messages } = this.props.intl;
+    const urlShare1 = 'https://fit.bebefitroutine.com/achievement/achievement1.html';
+    const urlShare3 = 'https://fit.bebefitroutine.com/achievement/achievement3.html';
+    const urlShare4 = 'https://fit.bebefitroutine.com/achievement/achievement4.html';
+    const urlShare5 = 'https://fit.bebefitroutine.com/achievement/achievement5.html';
+    const urlShare6 = 'https://fit.bebefitroutine.com/achievement/achievement6.html';
+    const urlShare7 = 'https://fit.bebefitroutine.com/achievement/achievement7.html';
+    const urlShare8 = 'https://fit.bebefitroutine.com/achievement/achievement8.html';
     return (
       <>
         <div className="box-challenge">
@@ -2074,11 +2264,11 @@ class Challenge extends Component {
         </div>
 
         {/* <!-- Modal  achievement3 --> */}
-        <div class="modal fade" id="modalAchievement3" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal fade z-index" id="modalAchievement3" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
           <div class="modal-dialog   modal-lg modal-dialog-centered">
             <div class="modal-content">
               <div class="modal-header">
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" id="closeAchievement3" aria-label="Close"></button>
               </div>
               <div class="modal-subscription">
                 {
@@ -2093,7 +2283,7 @@ class Challenge extends Component {
           <div class="modal-dialog   modal-lg modal-dialog-centered">
             <div class="modal-content">
               <div class="modal-header">
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" id="closeAchievement4" aria-label="Close"></button>
               </div>
               <div class="modal-subscription">
                 {
@@ -2108,7 +2298,7 @@ class Challenge extends Component {
           <div class="modal-dialog   modal-lg modal-dialog-centered">
             <div class="modal-content">
               <div class="modal-header">
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" id="closeAchievement5" aria-label="Close"></button>
               </div>
               <div class="modal-subscription">
                 {
@@ -2123,7 +2313,7 @@ class Challenge extends Component {
           <div class="modal-dialog   modal-lg modal-dialog-centered">
             <div class="modal-content">
               <div class="modal-header">
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" id="closeAchievement6" aria-label="Close"></button>
               </div>
               <div class="modal-subscription">
                 {
@@ -2138,7 +2328,7 @@ class Challenge extends Component {
           <div class="modal-dialog   modal-lg modal-dialog-centered">
             <div class="modal-content">
               <div class="modal-header">
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" id="closeAchievement7" aria-label="Close"></button>
               </div>
               <div class="modal-subscription">
                 {
@@ -2153,7 +2343,7 @@ class Challenge extends Component {
           <div class="modal-dialog   modal-lg modal-dialog-centered">
             <div class="modal-content">
               <div class="modal-header">
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" id="closeAchievement8" aria-label="Close"></button>
               </div>
               <div class="modal-subscription">
                 {
@@ -2168,7 +2358,7 @@ class Challenge extends Component {
           <div class="modal-dialog   modal-lg modal-dialog-centered">
             <div class="modal-content">
               <div class="modal-header">
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" id="closeAchievement1" aria-label="Close"></button>
               </div>
               <div class="modal-subscription">
                 {
@@ -2385,6 +2575,281 @@ class Challenge extends Component {
             </div>
           </div>
         </div>
+
+      {/*    offcanvas */}
+        <div class="offcanvas offcanvas-bottom" tabindex="-1" id="offcanvasBottom1" aria-labelledby="offcanvasBottomLabel">
+          <div class="offcanvas-header">
+            <p class="offcanvas-title share-to" id="offcanvasBottomLabel">แชร์ไปที่</p>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body small offcanvas-index ">
+            <div className="row ">
+              <div className="center">
+                <div className="box-shareMobile">
+                  <FacebookShareButton url={ urlShare1 }>
+                    <img src={facebook} className="icon-share" />
+                  </FacebookShareButton>
+                  {/* <TwitterShareButton url={urlShare}>
+                    <img src={twitter} className="icon-share" />
+                  </TwitterShareButton> */}
+                  {/* appId={} ต้องใช้ appId ถึงจะแชร์ได้  */}
+                  {/* <FacebookMessengerShareButton url={urlShare} >
+                    <img src={message} className="icon-share" />
+                  </FacebookMessengerShareButton> */}
+                  <LineShareButton url={urlShare1}>
+                    <img src={line} className="icon-share" />
+                  </LineShareButton>
+                  {/* <img src={tiktok} className="icon-share" /> */}
+                  <WhatsappShareButton url={urlShare1}>
+                    <img src={whatsApp} className="icon-share" />
+                  </WhatsappShareButton>
+                  {/*  <img src={instagram} className="icon-share" /> */}
+                </div>
+              </div>
+              <div className="copy-link">
+                <div class="input-group mb-3">
+                  <input type="text" class="form-control" id="copyLink" placeholder="Copy" value={urlShare1} disabled />
+                  <button className="button-copyLink" id="button-copyLink" onClick={(e) => this.copyLink()}><img src={copyLink} /></button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="offcanvas offcanvas-bottom" tabindex="-1" id="offcanvasBottom3" aria-labelledby="offcanvasBottomLabel">
+          <div class="offcanvas-header">
+            <p class="offcanvas-title share-to" id="offcanvasBottomLabel">แชร์ไปที่</p>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body small offcanvas-index ">
+            <div className="row ">
+              <div className="center">
+                <div className="box-shareMobile">
+                  <FacebookShareButton url={ urlShare3 }>
+                    <img src={facebook} className="icon-share" />
+                  </FacebookShareButton>
+                  {/* <TwitterShareButton url={urlShare}>
+                    <img src={twitter} className="icon-share" />
+                  </TwitterShareButton> */}
+                  {/* appId={} ต้องใช้ appId ถึงจะแชร์ได้  */}
+                  {/* <FacebookMessengerShareButton url={urlShare} >
+                    <img src={message} className="icon-share" />
+                  </FacebookMessengerShareButton> */}
+                  <LineShareButton url={urlShare3}>
+                    <img src={line} className="icon-share" />
+                  </LineShareButton>
+                  {/* <img src={tiktok} className="icon-share" /> */}
+                  <WhatsappShareButton url={urlShare3}>
+                    <img src={whatsApp} className="icon-share" />
+                  </WhatsappShareButton>
+                  {/*  <img src={instagram} className="icon-share" /> */}
+                </div>
+              </div>
+              <div className="copy-link">
+                <div class="input-group mb-3">
+                  <input type="text" class="form-control" id="copyLink" placeholder="Copy" value={urlShare3} disabled />
+                  <button className="button-copyLink" id="button-copyLink" onClick={(e) => this.copyLink()}><img src={copyLink} /></button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="offcanvas offcanvas-bottom" tabindex="-1" id="offcanvasBottom4" aria-labelledby="offcanvasBottomLabel">
+          <div class="offcanvas-header">
+            <p class="offcanvas-title share-to" id="offcanvasBottomLabel">แชร์ไปที่</p>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body small offcanvas-index ">
+            <div className="row ">
+              <div className="center">
+                <div className="box-shareMobile">
+                  <FacebookShareButton url={ urlShare4 }>
+                    <img src={facebook} className="icon-share" />
+                  </FacebookShareButton>
+                  {/* <TwitterShareButton url={urlShare}>
+                    <img src={twitter} className="icon-share" />
+                  </TwitterShareButton> */}
+                  {/* appId={} ต้องใช้ appId ถึงจะแชร์ได้  */}
+                  {/* <FacebookMessengerShareButton url={urlShare} >
+                    <img src={message} className="icon-share" />
+                  </FacebookMessengerShareButton> */}
+                  <LineShareButton url={urlShare4}>
+                    <img src={line} className="icon-share" />
+                  </LineShareButton>
+                  {/* <img src={tiktok} className="icon-share" /> */}
+                  <WhatsappShareButton url={urlShare4}>
+                    <img src={whatsApp} className="icon-share" />
+                  </WhatsappShareButton>
+                  {/*  <img src={instagram} className="icon-share" /> */}
+                </div>
+              </div>
+              <div className="copy-link">
+                <div class="input-group mb-3">
+                  <input type="text" class="form-control" id="copyLink" placeholder="Copy" value={urlShare4} disabled />
+                  <button className="button-copyLink" id="button-copyLink" onClick={(e) => this.copyLink()}><img src={copyLink} /></button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="offcanvas offcanvas-bottom" tabindex="-1" id="offcanvasBottom5" aria-labelledby="offcanvasBottomLabel">
+          <div class="offcanvas-header">
+            <p class="offcanvas-title share-to" id="offcanvasBottomLabel">แชร์ไปที่</p>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body small offcanvas-index ">
+            <div className="row ">
+              <div className="center">
+                <div className="box-shareMobile">
+                  <FacebookShareButton url={ urlShare5 }>
+                    <img src={facebook} className="icon-share" />
+                  </FacebookShareButton>
+                  {/* <TwitterShareButton url={urlShare}>
+                    <img src={twitter} className="icon-share" />
+                  </TwitterShareButton> */}
+                  {/* appId={} ต้องใช้ appId ถึงจะแชร์ได้  */}
+                  {/* <FacebookMessengerShareButton url={urlShare} >
+                    <img src={message} className="icon-share" />
+                  </FacebookMessengerShareButton> */}
+                  <LineShareButton url={urlShare5}>
+                    <img src={line} className="icon-share" />
+                  </LineShareButton>
+                  {/* <img src={tiktok} className="icon-share" /> */}
+                  <WhatsappShareButton url={urlShare5}>
+                    <img src={whatsApp} className="icon-share" />
+                  </WhatsappShareButton>
+                  {/*  <img src={instagram} className="icon-share" /> */}
+                </div>
+              </div>
+              <div className="copy-link">
+                <div class="input-group mb-3">
+                  <input type="text" class="form-control" id="copyLink" placeholder="Copy" value={urlShare5} disabled />
+                  <button className="button-copyLink" id="button-copyLink" onClick={(e) => this.copyLink()}><img src={copyLink} /></button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="offcanvas offcanvas-bottom" tabindex="-1" id="offcanvasBottom6" aria-labelledby="offcanvasBottomLabel">
+          <div class="offcanvas-header">
+            <p class="offcanvas-title share-to" id="offcanvasBottomLabel">แชร์ไปที่</p>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body small offcanvas-index ">
+            <div className="row ">
+              <div className="center">
+                <div className="box-shareMobile">
+                  <FacebookShareButton url={ urlShare6 }>
+                    <img src={facebook} className="icon-share" />
+                  </FacebookShareButton>
+                  {/* <TwitterShareButton url={urlShare}>
+                    <img src={twitter} className="icon-share" />
+                  </TwitterShareButton> */}
+                  {/* appId={} ต้องใช้ appId ถึงจะแชร์ได้  */}
+                  {/* <FacebookMessengerShareButton url={urlShare} >
+                    <img src={message} className="icon-share" />
+                  </FacebookMessengerShareButton> */}
+                  <LineShareButton url={urlShare6}>
+                    <img src={line} className="icon-share" />
+                  </LineShareButton>
+                  {/* <img src={tiktok} className="icon-share" /> */}
+                  <WhatsappShareButton url={urlShare6}>
+                    <img src={whatsApp} className="icon-share" />
+                  </WhatsappShareButton>
+                  {/*  <img src={instagram} className="icon-share" /> */}
+                </div>
+              </div>
+              <div className="copy-link">
+                <div class="input-group mb-3">
+                  <input type="text" class="form-control" id="copyLink" placeholder="Copy" value={urlShare6} disabled />
+                  <button className="button-copyLink" id="button-copyLink" onClick={(e) => this.copyLink()}><img src={copyLink} /></button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="offcanvas offcanvas-bottom" tabindex="-1" id="offcanvasBottom7" aria-labelledby="offcanvasBottomLabel">
+          <div class="offcanvas-header">
+            <p class="offcanvas-title share-to" id="offcanvasBottomLabel">แชร์ไปที่</p>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body small offcanvas-index ">
+            <div className="row ">
+              <div className="center">
+                <div className="box-shareMobile">
+                  <FacebookShareButton url={ urlShare7 }>
+                    <img src={facebook} className="icon-share" />
+                  </FacebookShareButton>
+                  {/* <TwitterShareButton url={urlShare}>
+                    <img src={twitter} className="icon-share" />
+                  </TwitterShareButton> */}
+                  {/* appId={} ต้องใช้ appId ถึงจะแชร์ได้  */}
+                  {/* <FacebookMessengerShareButton url={urlShare} >
+                    <img src={message} className="icon-share" />
+                  </FacebookMessengerShareButton> */}
+                  <LineShareButton url={urlShare7}>
+                    <img src={line} className="icon-share" />
+                  </LineShareButton>
+                  {/* <img src={tiktok} className="icon-share" /> */}
+                  <WhatsappShareButton url={urlShare7}>
+                    <img src={whatsApp} className="icon-share" />
+                  </WhatsappShareButton>
+                  {/*  <img src={instagram} className="icon-share" /> */}
+                </div>
+              </div>
+              <div className="copy-link">
+                <div class="input-group mb-3">
+                  <input type="text" class="form-control" id="copyLink" placeholder="Copy" value={urlShare7} disabled />
+                  <button className="button-copyLink" id="button-copyLink" onClick={(e) => this.copyLink()}><img src={copyLink} /></button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="offcanvas offcanvas-bottom" tabindex="-1" id="offcanvasBottom8" aria-labelledby="offcanvasBottomLabel">
+          <div class="offcanvas-header">
+            <p class="offcanvas-title share-to" id="offcanvasBottomLabel">แชร์ไปที่</p>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body small offcanvas-index ">
+            <div className="row ">
+              <div className="center">
+                <div className="box-shareMobile">
+                  <FacebookShareButton url={ urlShare8 }>
+                    <img src={facebook} className="icon-share" />
+                  </FacebookShareButton>
+                  {/* <TwitterShareButton url={urlShare}>
+                    <img src={twitter} className="icon-share" />
+                  </TwitterShareButton> */}
+                  {/* appId={} ต้องใช้ appId ถึงจะแชร์ได้  */}
+                  {/* <FacebookMessengerShareButton url={urlShare} >
+                    <img src={message} className="icon-share" />
+                  </FacebookMessengerShareButton> */}
+                  <LineShareButton url={urlShare8}>
+                    <img src={line} className="icon-share" />
+                  </LineShareButton>
+                  {/* <img src={tiktok} className="icon-share" /> */}
+                  <WhatsappShareButton url={urlShare8}>
+                    <img src={whatsApp} className="icon-share" />
+                  </WhatsappShareButton>
+                  {/*  <img src={instagram} className="icon-share" /> */}
+                </div>
+              </div>
+              <div className="copy-link">
+                <div class="input-group mb-3">
+                  <input type="text" class="form-control" id="copyLink" placeholder="Copy" value={urlShare8} disabled />
+                  <button className="button-copyLink" id="button-copyLink" onClick={(e) => this.copyLink()}><img src={copyLink} /></button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
       </>
     )
   }
