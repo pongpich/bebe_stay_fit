@@ -1242,7 +1242,7 @@ class Challenge extends Component {
                 <div className="container">
 
                   {
-                    !achievementFinisher ?
+                    achievementFinisher ?
                       <>
                         <div className="row">
                           <div className="col-12 col-sm-12 col-md-12 col-lg-12 mt-2" >
@@ -1308,7 +1308,7 @@ class Challenge extends Component {
                   }
                   <hr className="line-hr"/>
                   {
-                    !achievementAce ?
+                    achievementAce ?
                       <div className="row">
                         <div className="col-12 col-sm-12 col-md-12 col-lg-12 mt-2">
                           {/* จอมือถือ */}
@@ -1371,7 +1371,7 @@ class Challenge extends Component {
                   }
                   <hr className="line-hr"/>
                   {
-                    !achievement1st ?
+                    achievement1st ?
                       <div className="row">
                         <div className="col-12 col-sm-12 col-md-12 col-lg-12 mt-2">
                           {/* จอมือถือ */}
@@ -1431,7 +1431,7 @@ class Challenge extends Component {
                   }
                   <hr className="line-hr"/>
                   {
-                    !achievement2nd ?
+                    achievement2nd ?
                       <div className="row">
                         <div className="col-12 col-sm-12 col-md-12 col-lg-12 mt-2">
                           {/* จอมือถือ */}
@@ -1490,7 +1490,7 @@ class Challenge extends Component {
                   }
                   <hr className="line-hr"/>
                   {
-                    !achievementTop10 ?
+                    achievementTop10 ?
                       <div className="row">
                         <div className="col-12 col-sm-12 col-md-12 col-lg-12 mt-2">
                           {/* จอมอืถือ */}
@@ -1550,7 +1550,7 @@ class Challenge extends Component {
                   }
                   <hr className="line-hr"/>
                   {
-                    !achievementSocialStar ?
+                    achievementSocialStar ?
                       <div className="row">
                         <div className="col-12 col-sm-12 col-md-12 col-lg-12 mt-2">
                         {/* จอมือถือ */}
@@ -1610,7 +1610,7 @@ class Challenge extends Component {
                   }
                   <hr className="line-hr"/>
                   {
-                    !achievementSocialStarPlus ?
+                    achievementSocialStarPlus ?
                       <div className="row">
                         <div className="col-12 col-sm-12 col-md-12 col-lg-12 mt-2">
                           {/* จอมือถือ */}
