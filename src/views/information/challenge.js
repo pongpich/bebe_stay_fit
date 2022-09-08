@@ -1682,9 +1682,9 @@ class Challenge extends Component {
   super() {
     const urlShare = 'https://fit.bebefitroutine.com/achievement/achievement3.html';
     return (
-      <div class="container text-center">
-        <div class="row justify-content-md-center">
-          <div class="col-12 col-sm-12 col-md-12 col-lg-6">
+      <div className="container text-center">
+        <div className="row justify-content-md-center">
+          <div className="col-12 col-sm-12 col-md-12 col-lg-6">
             <img src={frame42} className="frame40" />
             <img src={icon_web} className="icon_web" />
           </div>
@@ -1728,9 +1728,9 @@ class Challenge extends Component {
   wow() {
     const urlShare = 'https://fit.bebefitroutine.com/achievement/achievement4.html';
     return (
-      <div class="container text-center">
-        <div class="row justify-content-md-center">
-          <div class="col-12 col-sm-12 col-md-12 col-lg-6">
+      <div className="container text-center">
+        <div className="row justify-content-md-center">
+          <div className="col-12 col-sm-12 col-md-12 col-lg-6">
             <img src={frame43} className="frame40" />
             <img src={icon_web} className="icon_web" />
           </div>
@@ -1774,9 +1774,9 @@ class Challenge extends Component {
   thankYou() {
     const urlShare = 'https://fit.bebefitroutine.com/achievement/achievement5.html';
     return (
-      <div class="container text-center">
-        <div class="row justify-content-md-center">
-          <div class="col-12 col-sm-12 col-md-12 col-lg-6">
+      <div className="container text-center">
+        <div className="row justify-content-md-center">
+          <div className="col-12 col-sm-12 col-md-12 col-lg-6">
             <img src={frame44} className="frame40" />
             <img src={icon_web} className="icon_web" />
           </div>
@@ -1820,9 +1820,9 @@ class Challenge extends Component {
   bang() {
     const urlShare = 'https://fit.bebefitroutine.com/achievement/achievement1.html';
     return (
-      <div class="container text-center">
-        <div class="row justify-content-md-center">
-          <div class="col-12 col-sm-12 col-md-12 col-lg-6">
+      <div className="container text-center">
+        <div clclassNameass="row justify-content-md-center">
+          <div className="col-12 col-sm-12 col-md-12 col-lg-6">
             <img src={frame47} className="frame40" />
             <img src={icon_web} className="icon_web" />
           </div>
@@ -1865,9 +1865,9 @@ class Challenge extends Component {
   staycool() {
     const urlShare = 'https://fit.bebefitroutine.com/achievement/achievement6.html';
     return (
-      <div class="container text-center">
-        <div class="row justify-content-md-center">
-          <div class="col-12 col-sm-12 col-md-12 col-lg-6">
+      <div className="container text-center">
+        <div className="row justify-content-md-center">
+          <div className="col-12 col-sm-12 col-md-12 col-lg-6">
             <img src={frame40} className="frame40" />
             <img src={icon_web} className="icon_web" />
           </div>
@@ -1910,9 +1910,9 @@ class Challenge extends Component {
   pop() {
     const urlShare = 'https://fit.bebefitroutine.com/achievement/achievement7.html';
     return (
-      <div class="container text-center">
-        <div class="row justify-content-md-center">
-          <div class="col-12 col-sm-12 col-md-12 col-lg-6">
+      <div className="container text-center">
+        <div className="row justify-content-md-center">
+          <div className="col-12 col-sm-12 col-md-12 col-lg-6">
             <img src={frame46} className="frame40" />
             <img src={icon_web} className="icon_web" />
           </div>
@@ -1956,9 +1956,9 @@ class Challenge extends Component {
   goodJob() {
     const urlShare = 'https://fit.bebefitroutine.com/achievement/achievement8.html';
     return (
-      <div class="container text-center">
-        <div class="row justify-content-md-center">
-          <div class="col-12 col-sm-12 col-md-12 col-lg-6">
+      <div className="container text-center">
+        <div className="row justify-content-md-center">
+          <div className="col-12 col-sm-12 col-md-12 col-lg-6">
             <img src={frame45} className="frame40" />
             <img src={icon_web} className="icon_web" />
           </div>
