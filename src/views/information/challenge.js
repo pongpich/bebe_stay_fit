@@ -1348,6 +1348,7 @@ class Challenge extends Component {
                               </div>
                             </div>
                           </div>
+
                         </div>
                       </div>
                       :
@@ -1438,7 +1439,7 @@ class Challenge extends Component {
                           <div className="container line-hr" data-bs-toggle="modal" id="achievement4" data-bs-target="#modalAchievement4">
                             <div className="row">
                               <div className="col-4 col-sm-3 col-md-2 col-lg-3 col-xl-2">
-                                <img src={`./assets/img/icon_achievement/2nd.png`} width="80" height="80" className="icon_rank-img" />
+                                <img src={`./assets/img/icon_achievement/2nd.png`} width="70" height="70" className="icon_rank-img" />
                               </div>
                               <div className="col-8 col-sm-9 col-md-10 col-lg-9 col-xl-10">
                                 <div className="container">
@@ -1455,7 +1456,7 @@ class Challenge extends Component {
                           <div className="container display-btn">
                             <div className="row">
                               <div className="col-4 col-sm-3 col-md-2 col-lg-3 col-xl-2">
-                                <img src={`./assets/img/icon_achievement/2nd.png`} width="80" height="80" className="icon_rank-img" />
+                                <img src={`./assets/img/icon_achievement/2nd.png`} width="70" height="70" className="icon_rank-img" />
                               </div>
                               <div className="col-8 col-sm-9 col-md-10 col-lg-9 col-xl-10">
                                 <div className="container">
@@ -1479,7 +1480,7 @@ class Challenge extends Component {
                           <div className="container">
                             <div className="row">
                               <div className="col-4 col-sm-3 col-md-2 col-lg-3 col-xl-2">
-                                <img src={`./assets/img/icon_achievement/2nd_grey.png`} width="80" height="80" className="icon_rank-img" />
+                                <img src={`./assets/img/icon_achievement/2nd_grey.png`} width="70" height="70" className="icon_rank-img" />
                               </div>
                               <div className="col-8 col-sm-9 col-md-10 col-lg-9 col-xl-10"><p><span className="bold">2nd</span><br /> ได้ทีมอันดับที่ 2 ประจำสัปดาห์
                               </p></div>
@@ -2579,11 +2580,12 @@ class Challenge extends Component {
       {/*    offcanvas */}
         <div class="offcanvas offcanvas-bottom" tabindex="-1" id="offcanvasBottom1" aria-labelledby="offcanvasBottomLabel">
           <div class="offcanvas-header">
-            <p class="offcanvas-title share-to" id="offcanvasBottomLabel">แชร์ไปที่</p>
+            <p class="offcanvas-title" id="offcanvasBottomLabel"></p>
             <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
           </div>
           <div class="offcanvas-body small offcanvas-index ">
-            <div className="row ">
+            <div className="row">
+            <p class="offcanvas-title share-to" id="offcanvasBottomLabel">แชร์ไปที่</p>
               <div className="center">
                 <div className="box-shareMobile">
                   <FacebookShareButton url={ urlShare1 }>
@@ -2618,11 +2620,12 @@ class Challenge extends Component {
 
         <div class="offcanvas offcanvas-bottom" tabindex="-1" id="offcanvasBottom3" aria-labelledby="offcanvasBottomLabel">
           <div class="offcanvas-header">
-            <p class="offcanvas-title share-to" id="offcanvasBottomLabel">แชร์ไปที่</p>
+            <p class="offcanvas-title" id="offcanvasBottomLabel"></p>
             <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
           </div>
           <div class="offcanvas-body small offcanvas-index ">
-            <div className="row ">
+            <div className="row">
+            <p class="offcanvas-title share-to" id="offcanvasBottomLabel">แชร์ไปที่</p>
               <div className="center">
                 <div className="box-shareMobile">
                   <FacebookShareButton url={ urlShare3 }>
@@ -2657,11 +2660,12 @@ class Challenge extends Component {
 
         <div class="offcanvas offcanvas-bottom" tabindex="-1" id="offcanvasBottom4" aria-labelledby="offcanvasBottomLabel">
           <div class="offcanvas-header">
-            <p class="offcanvas-title share-to" id="offcanvasBottomLabel">แชร์ไปที่</p>
+            <p class="offcanvas-title" id="offcanvasBottomLabel"></p>
             <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
           </div>
           <div class="offcanvas-body small offcanvas-index ">
-            <div className="row ">
+            <div className="row">
+            <p class="offcanvas-title share-to" id="offcanvasBottomLabel">แชร์ไปที่</p>
               <div className="center">
                 <div className="box-shareMobile">
                   <FacebookShareButton url={ urlShare4 }>
@@ -2696,11 +2700,12 @@ class Challenge extends Component {
 
         <div class="offcanvas offcanvas-bottom" tabindex="-1" id="offcanvasBottom5" aria-labelledby="offcanvasBottomLabel">
           <div class="offcanvas-header">
-            <p class="offcanvas-title share-to" id="offcanvasBottomLabel">แชร์ไปที่</p>
+            <p class="offcanvas-title" id="offcanvasBottomLabel"></p>
             <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
           </div>
           <div class="offcanvas-body small offcanvas-index ">
-            <div className="row ">
+            <div className="row">
+            <p class="offcanvas-title share-to" id="offcanvasBottomLabel">แชร์ไปที่</p>
               <div className="center">
                 <div className="box-shareMobile">
                   <FacebookShareButton url={ urlShare5 }>
@@ -2735,11 +2740,12 @@ class Challenge extends Component {
 
         <div class="offcanvas offcanvas-bottom" tabindex="-1" id="offcanvasBottom6" aria-labelledby="offcanvasBottomLabel">
           <div class="offcanvas-header">
-            <p class="offcanvas-title share-to" id="offcanvasBottomLabel">แชร์ไปที่</p>
+            <p class="offcanvas-title" id="offcanvasBottomLabel"></p>
             <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
           </div>
           <div class="offcanvas-body small offcanvas-index ">
-            <div className="row ">
+            <div className="row">
+            <p class="offcanvas-title share-to" id="offcanvasBottomLabel">แชร์ไปที่</p>
               <div className="center">
                 <div className="box-shareMobile">
                   <FacebookShareButton url={ urlShare6 }>
@@ -2774,11 +2780,12 @@ class Challenge extends Component {
 
         <div class="offcanvas offcanvas-bottom" tabindex="-1" id="offcanvasBottom7" aria-labelledby="offcanvasBottomLabel">
           <div class="offcanvas-header">
-            <p class="offcanvas-title share-to" id="offcanvasBottomLabel">แชร์ไปที่</p>
+            <p class="offcanvas-title" id="offcanvasBottomLabel"></p>
             <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
           </div>
           <div class="offcanvas-body small offcanvas-index ">
-            <div className="row ">
+            <div className="row">
+            <p class="offcanvas-title share-to" id="offcanvasBottomLabel">แชร์ไปที่</p>
               <div className="center">
                 <div className="box-shareMobile">
                   <FacebookShareButton url={ urlShare7 }>
@@ -2813,11 +2820,12 @@ class Challenge extends Component {
 
         <div class="offcanvas offcanvas-bottom" tabindex="-1" id="offcanvasBottom8" aria-labelledby="offcanvasBottomLabel">
           <div class="offcanvas-header">
-            <p class="offcanvas-title share-to" id="offcanvasBottomLabel">แชร์ไปที่</p>
+            <p class="offcanvas-title" id="offcanvasBottomLabel"></p>
             <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
           </div>
           <div class="offcanvas-body small offcanvas-index ">
-            <div className="row ">
+            <div className="row">
+            <p class="offcanvas-title share-to" id="offcanvasBottomLabel">แชร์ไปที่</p>
               <div className="center">
                 <div className="box-shareMobile">
                   <FacebookShareButton url={ urlShare8 }>
@@ -2843,7 +2851,7 @@ class Challenge extends Component {
               <div className="copy-link">
                 <div class="input-group mb-3">
                   <input type="text" class="form-control" id="copyLink" placeholder="Copy" value={urlShare8} disabled />
-                  <button className="button-copyLink" id="button-copyLink" onClick={(e) => this.copyLink()}><img src={copyLink} /></button>
+                  <button className="button-copyLink" id="button-copyLink" onClick={(e) => this.copyLink()}><img  src={copyLink} /></button>
                 </div>
               </div>
             </div>
