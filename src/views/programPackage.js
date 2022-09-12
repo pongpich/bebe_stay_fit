@@ -250,7 +250,7 @@ class ProgramPackage extends React.Component {
               
               <div className="row center">
                   <div className="center">
-                  <p className="register-to-join"> <IntlMessages id="programPackage.choosePackage"/></p>
+                    <p className="register-to-join join-top"> <IntlMessages id="programPackage.choosePackage"/></p>
                 </div>
                 <div className="col-10 col-sm-10 col-md-4 col-lg-4 margin-boxLeft">
                   <div className="box-starter_set text-center">

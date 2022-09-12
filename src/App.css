@@ -4487,6 +4487,7 @@ tr:last-child td:last-child {
 .ellipse-center {
   margin-left: 10% ;
 }
+
 .eye-pass {
   margin-top: -35px;
   float: right;
@@ -4494,4 +4495,11 @@ tr:last-child td:last-child {
   font-size: 22px;
   cursor: pointer;
   z-index: 2 !important;
+}
+.information-box2 {
+  padding-top: 5%;
+}
+.join-top {
+  margin-top: 40px;
+  margin-bottom: -20px;
 }
