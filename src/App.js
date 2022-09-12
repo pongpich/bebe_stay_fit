@@ -231,6 +231,29 @@ class App extends Component {
       
     )
   }
+  manuTH_EN2() {
+    const { thEn } = this.state;
+    return (
+      <div className="btn-group">
+        <div className="dropdown">
+      <a className="nav-link nav-linkHead2 pointer bold dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+        {thEn}
+      </a>
+      <ul className="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuLink">
+        {localeOptions.map((l) => {
+          return (
+            <li><a className="dropdown-item"
+              onClick={() => this.handleChangeLocale(l.id)}
+              key={l.id}
+            >{l.name}</a></li>
+          );
+        })}
+      </ul>
+    </div>
+      </div>
+      
+    )
+  }
 
   renderNavbar() {
     const pagePath = this.props.location.pathname;
@@ -337,7 +360,7 @@ class App extends Component {
                 </>
                 :
                 <>
-                  {this.manuTH_EN()}
+                 {this.manuTH_EN2()}
                 </>
 
           }
