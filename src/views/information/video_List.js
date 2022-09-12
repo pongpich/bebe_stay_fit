@@ -731,20 +731,19 @@ class videoList extends React.Component {
         } */}
         <div className="box-videoCenter">
           <div className="col-12 col-sm-12 col-md-12 col-lg-12 ">
-            <ul className="video-maun">
-              <li className="video-li  video-liPadding-left marginLeftRoutine">
-                <a className={this.state.borderBottom1} name="borderBottom1" onClick={e => this.clickBottom(e)}>{messages['videoList.workout']}</a>
-              </li>
-              <li className="video-li  video-liPadding-left   video-liPadding-left2">
-                <a className={this.state.borderBottom2} name="borderBottom2" onClick={e => this.clickBottom(e)}>{messages['videoList.challenge']}</a>
-              </li>
-              <li className="video-li  video-liPadding-left   video-liPadding-left2">
-                <a className={this.state.borderBottom3} name="borderBottom3" onClick={e => this.clickBottom(e)}>{messages['videoList.exerciseaccording']}</a>
-              </li>
-              {/*    <li className="video-li  video-liPadding-left   video-liPadding-left2">
-                <a className={this.state.borderBottom2} name="borderBottom2" onClick={e => this.clickBottom(e)}>คลิปออกกำลังกายทั้งหมด</a>
-              </li> */}
-            </ul>
+          <div  className="video-wh">
+              <ul className="video-maun">
+                <li className="video-li  video-liPadding-left marginLeftRoutine">
+                  <a className={this.state.borderBottom1} name="borderBottom1" onClick={e => this.clickBottom(e)}>{messages['videoList.workout']}</a>
+                </li>
+                <li className="video-li  video-liPadding-left   video-liPadding-left2">
+                  <a className={this.state.borderBottom2} name="borderBottom2" onClick={e => this.clickBottom(e)}>{messages['videoList.challenge']}</a>
+                </li>
+                <li className="video-li  video-liPadding-left   video-liPadding-left2">
+                  <a className={this.state.borderBottom3} name="borderBottom3" onClick={e => this.clickBottom(e)}>{messages['videoList.exerciseaccording']}</a>
+                </li>
+              </ul>
+            </div>
           </div>
 
           {
@@ -2036,7 +2035,7 @@ class videoList extends React.Component {
         <div>
           <div className="col-12 col-sm-12 col-md-12 col-lg-12">
             <div className="padding-leftRight2">
-              <p className="font-size8 color1 bold">วิธีออกกำลังกายตามโปรแกรม</p>
+              <p className="font-size8-2 color1 bold">วิธีออกกำลังกายตามโปรแกรม</p>
               <p className="font-size9 bold">โปรแกรมออกกำลังกาย Bebe StayFit</p>
               <p className="exercise-size">
                 สมาชิกแต่ละบุคคลจะได้รับโปรแกรมที่แตกต่างกัน ขึ้นอยู่กับเกณฑ์น้ำหนักของตนเอง

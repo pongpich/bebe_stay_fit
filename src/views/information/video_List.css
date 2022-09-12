@@ -125,3 +125,32 @@
     height: 490px;
   }
 }
+.video-wh {
+/*   background-color: lightblue; */
+  width: 90vw;
+  height:  60px;
+  overflow-x: scroll;
+  overflow-y: hidden;
+  white-space: nowrap;
+}
+.video-wh2 {
+/*   background-color: lightblue; */
+  width: 90vw;
+  height:  80px;
+  overflow-x: scroll;
+  overflow-y: hidden;
+  white-space: nowrap;
+}
+.video-wh3 {
+    /* background-color: lightblue; */
+    width: 80vw;
+    height:  40px;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    white-space: nowrap;
+  }
+.wh-bu {
+  margin-top: -40px;
+  padding-top: 50px;
+  margin-bottom: 50px;
+}

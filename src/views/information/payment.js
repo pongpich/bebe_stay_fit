@@ -74,13 +74,13 @@ class Payment extends React.Component {
 
     this.props.getUserProgram(email);
 
-    if (user_program_id) { //ถ้ามี user_program_id แสดงว่าชำระเงินสำเร็จแล้ว
+/*     if (user_program_id) { //ถ้ามี user_program_id แสดงว่าชำระเงินสำเร็จแล้ว
       this.props.history.push('/welcome_new_nember');
     }
 
     if (!delivery_address) {
       this.props.history.push('/shipping_address');
-    }
+    } */
     window.scrollTo(0, 0);
   }
 
@@ -215,27 +215,32 @@ class Payment extends React.Component {
     return (
       <>
         <div className="col-12 col-sm-12 col-md-12 col-lg-12 App-headerBackground center2 padding-top2 ">
-        <div className="col-10 col-sm-8 col-md-8 col-lg-8 center2">
-           <div className="current-position">
+        <div className="col-10 col-sm-10 col-md-8 col-lg-8 center2">
+           <div className="current-position2">
                 <p className="border-line2  col-8 col-sm-6 col-md-6 col-lg-6 "></p>
                 <div className="ellipse-text col-2 col-sm-2 col-md-2 col-lg-2">
-                  <img src={ellipse_078} alt="vector" />
+                  {/* <img src={ellipse_078} alt="vector" /> */}
+                  <div className="border-circleWhite"></div>
                   <p className="img-p"> <IntlMessages id="register.chooseYouPackage" /></p>
                 </div>
                 <div className="ellipse-text  col-2 col-sm-2 col-md-2 col-lg-2">
-                  <img src={ellipse_078} alt="vector" />
+                  {/* <img src={ellipse_078} alt="vector" /> */}
+                  <div className="border-circleWhite"></div>
                   <p className="img-p"> <IntlMessages id="register.chooseYouAccount" /></p>
                 </div>
-                <div className="ellipse-text  col-3 col-sm-2 col-md-2 col-lg-2">
-                  <img src={ellipse_078} alt="vector" />
+                <div className="ellipse-text  col-2 col-sm-2 col-md-2 col-lg-2">
+                  {/* <img src={ellipse_078} alt="vector" /> */}
+                  <div className="border-circleWhite"></div>
                   <p className="img-p"> <IntlMessages id="register.chooseYouflavor" /></p>
                 </div>
                 <div className="ellipse-text  col-2 col-sm-2 col-md-2 col-lg-2">
-                  <img src={ellipse_078} alt="vector" />
+                 {/*  <img src={ellipse_078} alt="vector" /> */}
+                 <div className="border-circleWhite"></div>
                   <p className="img-p"> <IntlMessages id="register.deliveryAddress" /></p>
                 </div>
                 <div className="ellipse-text  col-2 col-sm-2 col-md-2 col-lg-2">
-                  <img src={ellipse_077} alt="vector" />
+                  {/* <img src={ellipse_077} alt="vector" /> */}
+                  <div className="border-circle"></div>
                   <p className="img-p"> <IntlMessages id="register.payment" /></p>
                 </div>
               </div>
@@ -281,10 +286,10 @@ class Payment extends React.Component {
               </div> */
             }
 
-            <div className="box-protein  margin-head">
-              <div className="padding-top">
+            <div className="box-protein">
+              <div className="">
                 <div className="box-proteinAddress padding-top">
-                  <div className="padding-top2">
+                  <div>
                     {/* <p className=" bold font-size5 between">แพ็กเกจของคุณ <span className="font-size4 light decoration pointer" onClick={e => this.onChickprice(e)}>เปลี่ยน</span></p> */}
 
                     <p className="font-size5">
@@ -335,9 +340,11 @@ class Payment extends React.Component {
               this.state.status_payment === "unsuccess" &&
               <h6 style={{ color: "red" }}><IntlMessages id="payment.errorBilling"/></h6>
             }
-            <div className="col-12 col-sm-12 col-md-12 col-lg-12 center2">
-              <button type="button" className={this.state.creditCardFocus} onClick={e => this.pinkModelFocus("1")}><IntlMessages id="payment.credit"/></button>&nbsp;&nbsp;&nbsp;
-              <button type="button" className={this.state.qrCodeFocus} onClick={e => this.pinkModelFocus("2")}><IntlMessages id="payment.qrcode"/></button>
+            <div className="col-12 col-sm-12 col-md-12 col-lg-12">
+              <div className="button-mg">
+                <button type="button" className={this.state.creditCardFocus} onClick={e => this.pinkModelFocus("1")}><IntlMessages id="payment.credit"/></button>&nbsp;&nbsp;
+                <button type="button" className={this.state.qrCodeFocus} onClick={e => this.pinkModelFocus("2")}><IntlMessages id="payment.qrcode"/></button>
+              </div>
             </div>
             {
               (this.state.paymentMethod === "qrCode") &&
@@ -370,11 +377,12 @@ class Payment extends React.Component {
                 (this.state.pageUrl.includes("localhost") || this.state.pageUrl.includes("127.0.0.1")) ?
                   "http://localhost:3000/#/qr_checkout"
                   :
-                  "https://fit.bebefitroutine.com/#/qr_checkout"
+                  "http://localhost:3000/#/qr_checkout"
+                 /*  "https://fit.bebefitroutine.com/#/qr_checkout" */
               }
               //action={"https://api.gbprimepay.com/gbp/gateway/qrcode"}
               //method="POST"
-              className="d-grid gap-2 col-10 ol-sm-10  mx-auto   col-md-10 col-lg-10 distance">
+              className="d-grid gap-2 col-10 col-sm-10  mx-auto   col-md-10 col-lg-10 distance">
               {/* <input id="qr_token" type="hidden" name="token" />
               <input id="qr_refNo" type="hidden" name="referenceNo" />
               <input id="qr_bgUrl" type="hidden" name="backgroundUrl" />
@@ -386,7 +394,7 @@ class Payment extends React.Component {
               <input id="qr_programID" type="hidden" name="merchantDefined1" /> */}
               {
                 (this.state.paymentMethod === "qrCode") &&
-                <input id="qr_button" type="submit" className="btn bottom-pink" value={messages['payment.pay']} />
+                <input id="qr_button" type="submit" className="btn bottom-pink  col-12 col-sm-12" value={messages['payment.pay']} />
               }
             </form>
 

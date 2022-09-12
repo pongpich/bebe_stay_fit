@@ -211,21 +211,24 @@ class App extends Component {
   manuTH_EN() {
     const { thEn } = this.state;
     return (
-      <div class="dropdown">
-        <a class="nav-link nav-linkHead2 pointer bold dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-          {thEn}
-        </a>
-        <ul class="dropdown-menu dropdown-menu-end">
-          {localeOptions.map((l) => {
-            return (
-              <li><a class="dropdown-item"
-                onClick={() => this.handleChangeLocale(l.id)}
-                key={l.id}
-              >{l.name}</a></li>
-            );
-          })}
-        </ul>
+      <div className="btn-group">
+        <div className="dropdown">
+      <a className="nav-link nav-linkHead2 pointer bold dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+        {thEn}
+      </a>
+      <ul className="dropdown-menu dropdown-menu-col-end dropdown-menu-lg-start" aria-labelledby="dropdownMenuLink">
+        {localeOptions.map((l) => {
+          return (
+            <li><a className="dropdown-item"
+              onClick={() => this.handleChangeLocale(l.id)}
+              key={l.id}
+            >{l.name}</a></li>
+          );
+        })}
+      </ul>
+    </div>
       </div>
+      
     )
   }
 
@@ -313,7 +316,7 @@ class App extends Component {
                     <span className="navbar-toggler-icon"></span>
                   </button>
                   <div className="collapse navbar-collapse padding-left3" id="navbarSupportedContent">
-                    <ul className="navbar-nav me-auto mb-2 mb-lg-0 font-size5 bold">
+                  <ul className="navbar-nav me-auto mb-2 mb-lg-0 font-size5 bold">
                       <li className="nav-item">
                         {/*  <a className="nav-link pointer"  >ราคา</a> */}
                       </li>

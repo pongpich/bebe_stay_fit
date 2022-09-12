@@ -561,7 +561,7 @@ class Home extends React.Component {
           aria-labelledby="exampleModalLabel"
           aria-hidden="true"
         >
-          <div className="modal-dialog">
+          <div className="modal-dialog  modal-dialog-centered">
             <div className="modal-content padding-leftRight">
               <div className="modal-headerIn margin-headText">
                 <p
@@ -631,7 +631,8 @@ class Home extends React.Component {
                       <IntlMessages id="navbarHome.forgotpassword" />
                     </span>{" "}
                     <span>
-                      <IntlMessages id="navbarHome.donAccount" />{" "}
+                      <IntlMessages id="navbarHome.donAccount" />
+                      <br />
                       <a
                         className="a_link pointer"
                         onClick={() => this.register("register")}

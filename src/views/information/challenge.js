@@ -415,21 +415,50 @@ class Challenge extends Component {
           {
             challengePeriod ?
               <>
-                <p className="headChallenge"><IntlMessages id="challenge.teamChallenge" /> <span><IntlMessages id="challenge.singleChallenge" /></span></p>
-                <p className="text-challenge"><IntlMessages id="challenge.completeweighing" /> {numberOfMembers * 2} <IntlMessages id="challenge.time" /> &nbsp; {logWeightTeamCount}/{numberOfMembers * 2} <span className="span-challenge"> <IntlMessages id="challenge.weigh2" /> &nbsp; {logWeightCount}/2</span></p>
-                <p className="text-challenge"><IntlMessages id="challenge.completeweighing7" /> &nbsp; {dailyTeamWeightBonusCount}/7 <span className="span-challenge"> <IntlMessages id="challenge.weightloss" /> &nbsp; {isReducedWeight ? 1 : 0}/1</span></p>
-                <p className="text-challengeRight"><IntlMessages id="challenge.4days" />&nbsp; {(this.props.statusVideoList !== 'no_video') ? isExerciseCompleted : 0}/4</p>
-                <p className="text-comment"><IntlMessages id="challenge.resetSunday" /></p>
-                <p className="text-comment"><IntlMessages id="challenge.scoresSunday" /></p>
-                <p className="border-bottom"></p>
-                <ul className="rules-bottom">
-                  <li className="li">
-                    <a className="rules" data-bs-toggle="modal" data-bs-target="#exampleModalScore"><IntlMessages id="challenge.pointsdetails" /></a>
-                  </li>
-                  <li className="li">
-                    <a className="rules" data-bs-toggle="modal" data-bs-target="#exampleModal"><IntlMessages id="challenge.rules" /></a>
-                  </li>
-                </ul>
+              <nav>
+              <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true"><IntlMessages id="challenge.teamChallenge" /></button>
+                <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false"><IntlMessages id="challenge.singleChallenge" /></button>
+              </div>
+            </nav>
+            <div class="tab-content" id="nav-tabContent">
+              <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab" tabindex="0">
+                <div className="behavior">
+                  <p className="text-challenge"><IntlMessages id="challenge.completeweighing" /> <span>{numberOfMembers * 2} &nbsp;<IntlMessages id="challenge.time" /></span> </p>
+                  <p className="text-challenge"><IntlMessages id="challenge.completeweighing7" /> <span className="span-challenge">{dailyTeamWeightBonusCount}/7&nbsp;</span></p>
+                  <p className="text-comment"><IntlMessages id="challenge.resetSunday" /></p>
+                  <p className="text-comment"><IntlMessages id="challenge.scoresSunday" /></p>
+                  <p className="border-bottom"></p>
+                  <ul className="rules-bottom">
+                    <li className="li">
+                      <a className="rules" data-bs-toggle="modal" data-bs-target="#exampleModalScore"><IntlMessages id="challenge.pointsdetails" /></a>
+                    </li>
+                    <li className="li">
+                      <a className="rules" data-bs-toggle="modal" data-bs-target="#exampleModal"><IntlMessages id="challenge.rules" /></a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab" tabindex="0">
+              <div className="behavior">
+                  <p className="text-challenge"> <IntlMessages id="challenge.weigh2" /> <span className="span-challenge"> &nbsp; {logWeightCount}/2</span></p>
+                  <p className="text-challenge"> <IntlMessages id="challenge.weightloss" /> <span className="span-challenge"> &nbsp; {isReducedWeight ? 1 : 0}/1</span></p>
+                  <p className="text-challenge"><IntlMessages id="challenge.4days" />&nbsp; {(this.props.statusVideoList !== 'no_video') ? isExerciseCompleted : 0}/4</p>
+                  <p className="text-comment"><IntlMessages id="challenge.resetSunday" /></p>
+                  <p className="text-comment"><IntlMessages id="challenge.scoresSunday" /></p>
+                  <p className="border-bottom"></p>
+                  <ul className="rules-bottom">
+                    <li className="li">
+                      <a className="rules" data-bs-toggle="modal" data-bs-target="#exampleModalScore"><IntlMessages id="challenge.pointsdetails" /></a>
+                    </li>
+                    <li className="li">
+                      <a className="rules" data-bs-toggle="modal" data-bs-target="#exampleModal"><IntlMessages id="challenge.rules" /></a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+               
               </>
               :
               <div>
@@ -681,26 +710,28 @@ class Challenge extends Component {
     return (
       <>
         <div className="box-challengeInScore">
-          <ul className="">
-            <li
-              className="leader-board-li bold"
-              style={{ color: `${selectedScoreBoard === "team" ? "#F45197" : "grey"}`, cursor: "pointer", marginRight: 15 }}
-              onClick={() => this.setState({ selectedScoreBoard: "team" })}
-            ><IntlMessages id="challenge.teampoint" /></li>
-            <li
-              className="leader-board-li bold"
-              style={{ color: `${selectedScoreBoard === "individual" ? "#F45197" : "grey"}`, cursor: "pointer", marginRight: 15 }}
-              onClick={() => this.setState({ selectedScoreBoard: "individual" })}
-            ><IntlMessages id="challenge.teamsingle" /></li>
-            {
-              (friendsRank && (friendsRank.length > 0)) &&
-              < li
+          <div className="video-wh3">
+            <ul className="">
+              <li
                 className="leader-board-li bold"
-                style={{ color: `${selectedScoreBoard === "friendsRank" ? "#F45197" : "grey"}`, cursor: "pointer" }}
-                onClick={() => this.setState({ selectedScoreBoard: "friendsRank" })}
-              ><IntlMessages id="challenge.pointfriend" /></li>
-            }
-          </ul>
+                style={{ color: `${selectedScoreBoard === "team" ? "#F45197" : "grey"}`, cursor: "pointer", marginRight: 15 }}
+                onClick={() => this.setState({ selectedScoreBoard: "team" })}
+              ><IntlMessages id="challenge.teampoint" /></li>
+              <li
+                className="leader-board-li bold"
+                style={{ color: `${selectedScoreBoard === "individual" ? "#F45197" : "grey"}`, cursor: "pointer", marginRight: 15 }}
+                onClick={() => this.setState({ selectedScoreBoard: "individual" })}
+              ><IntlMessages id="challenge.teamsingle" /></li>
+              {
+                (friendsRank && (friendsRank.length > 0)) &&
+                < li
+                  className="leader-board-li bold"
+                  style={{ color: `${selectedScoreBoard === "friendsRank" ? "#F45197" : "grey"}`, cursor: "pointer" }}
+                  onClick={() => this.setState({ selectedScoreBoard: "friendsRank" })}
+                ><IntlMessages id="challenge.pointfriend" /></li>
+              }
+            </ul>
+          </div>
           <hr className="w-100"></hr>
           <div className="box-challengeScore">
 
@@ -2024,23 +2055,25 @@ class Challenge extends Component {
       <>
         <div className="box-challenge">
           <div className="col-12 col-sm-12 col-md-12 col-lg-12 ">
-            <ul className="challenge">
-              <li className="video-li">
-                <a className={allMissions} name="allMissions" onClick={e => this.challengeBottom(e)}> {messages['challenge.allMission']}</a>
-              </li>
-              <li className="video-li">
-                <a className={teamList} name="teamList" onClick={e => this.challengeBottom(e)}>{messages['challenge.teamlist']}</a>
-              </li>
-              <li className="video-li">
-                <a className={scoreboard} name="scoreboard" onClick={e => this.challengeBottom(e)}>{messages['challenge.teamscoreboard']}</a>
-              </li>
-              <li className="video-li">
-                <a className={friendList} name="friendList" onClick={e => this.challengeBottom(e)}>{messages['challenge.friendlist']}</a>
-              </li>
-              <li className="video-li">
-                <a className={achievement} name="achievement" onClick={e => this.challengeBottom(e)}>ความสำเร็จ</a>
-              </li>
-            </ul>
+            <div className="video-wh2 wh-bu">
+              <ul className="challenge">
+                <li className="video-li">
+                  <a className={allMissions} name="allMissions" onClick={e => this.challengeBottom(e)}> {messages['challenge.allMission']}</a>
+                </li>
+                <li className="video-li">
+                  <a className={teamList} name="teamList" onClick={e => this.challengeBottom(e)}>{messages['challenge.teamlist']}</a>
+                </li>
+                <li className="video-li">
+                  <a className={scoreboard} name="scoreboard" onClick={e => this.challengeBottom(e)}>{messages['challenge.teamscoreboard']}</a>
+                </li>
+                <li className="video-li">
+                  <a className={friendList} name="friendList" onClick={e => this.challengeBottom(e)}>{messages['challenge.friendlist']}</a>
+                </li>
+                <li className="video-li">
+                  <a className={achievement} name="achievement" onClick={e => this.challengeBottom(e)}>ความสำเร็จ</a>
+                </li>
+              </ul>
+            </div>
           </div>
           <div className="box-challengeManu">
             <div class="container">
@@ -2418,13 +2451,13 @@ class Challenge extends Component {
                   <p className="headTextBox color1"><li><IntlMessages id="challenge.teamChallenge" /> </li></p>
                   <p className="textBoxchallenge bold"><IntlMessages id="challenge.allmembers" />  <span className="normal"> <IntlMessages id="challenge.teamreceive" /> 10  <IntlMessages id="challenge.points" /> </span></p>
                   <p className="textBoxchallenge bold"><IntlMessages id="challenge.eachDay" /></p>
-                  <p className="textBoxchallenge"><span className="bold"><IntlMessages id="challenge.7day" /></span>  <IntlMessages id="challenge.teamreceive" /> 70  <IntlMessages id="challenge.points" /></p>
-                  <p className="textBoxchallenge"><span className="bold"><IntlMessages id="challenge.6day" /></span>  <IntlMessages id="challenge.teamreceive" /> 60  <IntlMessages id="challenge.points" /></p>
-                  <p className="textBoxchallenge"><span className="bold"><IntlMessages id="challenge.5day" /></span>  <IntlMessages id="challenge.teamreceive" /> 50  <IntlMessages id="challenge.points" /></p>
-                  <p className="textBoxchallenge"><span className="bold"><IntlMessages id="challenge.4day" /></span>  <IntlMessages id="challenge.teamreceive" /> 40  <IntlMessages id="challenge.points" /></p>
-                  <p className="textBoxchallenge"><span className="bold"><IntlMessages id="challenge.3day" /></span>  <IntlMessages id="challenge.teamreceive" /> 30  <IntlMessages id="challenge.points" /></p>
-                  <p className="textBoxchallenge"><span className="bold"><IntlMessages id="challenge.2day" /></span>  <IntlMessages id="challenge.teamreceive" /> 20  <IntlMessages id="challenge.points" /></p>
-                  <p className="textBoxchallenge"><span className="bold"><IntlMessages id="challenge.1day" /></span>  <IntlMessages id="challenge.teamreceive" /> 10  <IntlMessages id="challenge.points" /></p>
+                  <p className="textBoxchallenge"><span className="bold"><IntlMessages id="challenge.7day" /></span>  <IntlMessages id="challenge.teamreceive" /> 70  <IntlMessages id="challenge.points2" /></p>
+                  <p className="textBoxchallenge"><span className="bold"><IntlMessages id="challenge.6day" /></span>  <IntlMessages id="challenge.teamreceive" /> 60  <IntlMessages id="challenge.points2" /></p>
+                  <p className="textBoxchallenge"><span className="bold"><IntlMessages id="challenge.5day" /></span>  <IntlMessages id="challenge.teamreceive" /> 50  <IntlMessages id="challenge.points2" /></p>
+                  <p className="textBoxchallenge"><span className="bold"><IntlMessages id="challenge.4day" /></span>  <IntlMessages id="challenge.teamreceive" /> 40  <IntlMessages id="challenge.points2" /></p>
+                  <p className="textBoxchallenge"><span className="bold"><IntlMessages id="challenge.3day" /></span>  <IntlMessages id="challenge.teamreceive" /> 30  <IntlMessages id="challenge.points2" /></p>
+                  <p className="textBoxchallenge"><span className="bold"><IntlMessages id="challenge.2day" /></span>  <IntlMessages id="challenge.teamreceive" /> 20  <IntlMessages id="challenge.points2" /></p>
+                  <p className="textBoxchallenge"><span className="bold"><IntlMessages id="challenge.1day" /></span>  <IntlMessages id="challenge.teamreceive" /> 10  <IntlMessages id="challenge.points2" /></p>
                   <br />
                   <p className="headTextBox"><li>Bonus Rank </li></p>
                   <p className="textBoxchallenge"><span className="bold"><IntlMessages id="challenge.thatweek" /> Rank "Gold"</span> <IntlMessages id="challenge.extrapoints" /> 5  <IntlMessages id="challenge.points" /></p>

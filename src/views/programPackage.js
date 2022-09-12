@@ -194,7 +194,10 @@ class ProgramPackage extends React.Component {
                         <label className="onoffswitch-label" htmlFor="myonoffswitch">
                           <span className="onoffswitch-inner">
                             <div className="between-center">
-                              <p className="text-float3"><IntlMessages id="programPackage.kilogram"/> <span className="text-float4"><IntlMessages id="programPackage.pound"/></span></p>
+                              <p className="text-float3 between">
+                                <IntlMessages id="programPackage.kilogram"/>
+                                 <span className="text-float4">
+                                   <IntlMessages id="programPackage.pound"/> </span></p>
                             </div>
                           </span>
                           <span className="onoffswitch-switch"></span>
@@ -237,11 +240,14 @@ class ProgramPackage extends React.Component {
         <div className="col-12 col-sm-12 col-md-12 col-lg-12 App-headerBackground">
           <div className="container center ">
             <div className="box2">
-              <div className="center  head-box grad1 sticky-top">
+              <div className="sticky">
+                <div className="center  head-box grad1">
                 <div className="head-width">
                   <p className="text-headWidth"><IntlMessages id="programPackage.ableLose"/> {weightLossGoals} {pound_kg}  <span className="bold text-headWidth1"><IntlMessages id="programPackage.kgIn"/> {durationWeightLoss} <IntlMessages id="programPackage.months"/></span></p>
                 </div>
               </div>
+              </div>
+              
               <div className="row center">
                   <div className="center">
                   <p className="register-to-join"> <IntlMessages id="programPackage.choosePackage"/></p>
@@ -275,8 +281,11 @@ class ProgramPackage extends React.Component {
                         <p className="bold save-more2 center"><IntlMessages id="programPackage.applyProgram"/></p>
                       </div>
                       <div className="scroll">
+                        <br />
                         <div>
-                          <p className="font-size5   margin-headText">  <IntlMessages id="programPackage.price"/> <span className="font-size6 color-price bold">{priceSubscription[0].price.toLocaleString('en')}</span> <IntlMessages id="programPackage.baht"/></p>
+                          <p className="font-size5   margin-headText"> 
+                           <IntlMessages id="programPackage.price"/>
+                            <span className="font-size6 color-price bold">  {priceSubscription[0].price.toLocaleString('en')}</span>  <IntlMessages id="programPackage.baht"/></p>
                         </div>
                         <p className="special-price">
                        <IntlMessages id="programPackage.specialPrice"/>
@@ -288,7 +297,7 @@ class ProgramPackage extends React.Component {
                           <li> <IntlMessages id="programPackage.exercise"/></li>
                           <li> <IntlMessages id="programPackage.dietary"/></li>
                           <li> <IntlMessages id="programPackage.foodSupplement"/></li>
-                          <li><IntlMessages id="programPackage.6boxes/2Month"/>  <br /><span className="span-package"> (<IntlMessages id="programPackage.1month3boxes"/>)</span></li>
+                          <li><IntlMessages id="programPackage.6boxes/2Month"/><span> (<IntlMessages id="programPackage.1month3boxes"/>)</span></li>
                         </div>
                         <br />
                         <div>

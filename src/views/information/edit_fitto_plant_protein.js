@@ -148,20 +148,23 @@ console.log("user",this.props.fittoPlant);
     return (
       <>
         <div className="col-12 col-sm-12 col-md-12 col-lg-12 App-headerBackground center2 padding-top2 ">
-          <div className="col-10 col-sm-8 col-md-8 col-lg-8 center2">
+          <div className="col-10 col-sm-10 col-md-8 col-lg-8 center2">
             {/*  <img src={group19} alt="vector" className="group19" /> */}
-            <div className="current-position">
+            <div className="current-position2">
               <p className="border-line2  col-8 col-sm-6 col-md-6 col-lg-6 "></p>
               <div className="ellipse-text  col-3 col-sm-2 col-md-2 col-lg-2">
-                <img src={ellipse_077} alt="vector" />
+                {/* <img src={ellipse_077} alt="vector" /> */}
+                <div className="border-circle"></div>
                 <p className="img-p"> <IntlMessages id="register.chooseYouflavor" /></p>
               </div>
               <div className="ellipse-text  col-2 col-sm-2 col-md-2 col-lg-2">
-                <img src={ellipse_078} alt="vector" />
+               {/*  <img src={ellipse_078} alt="vector" /> */}
+               <div className="border-circleWhite"></div>
                 <p className="img-p"> <IntlMessages id="register.deliveryAddress" /></p>
               </div>
               <div className="ellipse-text  col-2 col-sm-2 col-md-2 col-lg-2">
-                <img src={ellipse_078} alt="vector" />
+                {/* <img src={ellipse_078} alt="vector" /> */}
+                <div className="border-circleWhite"></div>
                 <p className="img-p"> <IntlMessages id="register.payment" /></p>
               </div>
             </div>

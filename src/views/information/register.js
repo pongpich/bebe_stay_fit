@@ -22,7 +22,9 @@ class Register extends React.Component {
       confirm_password: null,
       phone: null,
       status_submit: "default",
-      invalidEmail: "default"
+      invalidEmail: "default",
+      eye: false,
+      eye1: false,
     };
   }
 
@@ -56,7 +58,18 @@ class Register extends React.Component {
     }
 
   }
-
+  clickEye(y,e) {
+    if (y === "eye") {
+      this.setState({
+        eye: e,
+      })
+    }else {
+      this.setState({
+        eye1: e,
+      })
+    }
+   
+  }
   createUser(email, password, confirm_password, phone) {
     const { statusRegister } = this.props;
     this.setState({
@@ -108,26 +121,31 @@ class Register extends React.Component {
               {/*  <div className="center2">
                 <img src={group18} alt="vector" className="group18" />
               </div> */}
-              <div className="current-position">
-                <p className="border-line  col-9 col-sm-9 col-md-5 col-lg-5"></p>
+              <div className="current-position ellipse-center">
+                <p className="border-line  col-9 col-sm-8 col-md-5 col-lg-5"></p>
                 <div className="ellipse-text col-2 col-sm-2 col-md-2 col-lg-2">
-                  <img src={ellipse_078} alt="vector" />
+                  {/* <img src={ellipse_078} alt="vector" /> */}
+                  <div className="border-circleWhite"></div>
                   <p className="img-p"> <IntlMessages id="register.chooseYouPackage" /></p>
                 </div>
                 <div className="ellipse-text  col-2 col-sm-2 col-md-2 col-lg-2">
-                  <img src={ellipse_077} alt="vector" />
+                  {/* <img src={ellipse_077} alt="vector" /> */}
+                  <div className="border-circle"></div>
                   <p className="img-p"> <IntlMessages id="register.chooseYouAccount" /></p>
                 </div>
-                <div className="ellipse-text  col-3 col-sm-2 col-md-2 col-lg-2">
-                  <img src={ellipse_078} alt="vector" />
+                <div className="ellipse-text  col-2 col-sm-2 col-md-2 col-lg-2">
+                  {/* <img src={ellipse_078} alt="vector" /> */}
+                  <div className="border-circleWhite"></div>
                   <p className="img-p"> <IntlMessages id="register.chooseYouflavor" /></p>
                 </div>
                 <div className="ellipse-text  col-2 col-sm-2 col-md-2 col-lg-2">
-                  <img src={ellipse_078} alt="vector" />
+                  {/* <img src={ellipse_078} alt="vector" /> */}
+                  <div className="border-circleWhite"></div>
                   <p className="img-p"> <IntlMessages id="register.deliveryAddress" /></p>
                 </div>
                 <div className="ellipse-text  col-2 col-sm-2 col-md-2 col-lg-2">
-                  <img src={ellipse_078} alt="vector" />
+                {/*   <img src={ellipse_078} alt="vector" /> */}
+                <div className="border-circleWhite"></div>
                   <p className="img-p"> <IntlMessages id="register.payment" /></p>
                 </div>
               </div>
@@ -164,13 +182,23 @@ class Register extends React.Component {
                     <div className="padding-top2">
                       <label className="form-label bold"><IntlMessages id="navbarHome.password" /></label>
                       <input
-                        type="password"
+                        type={
+                          this.state.eye === true ? "text": "password"
+                        }
                         className="form-control"
                         id="password"
-                        placeholder="รหัสผ่านจำนวนต้องมากกว่า 6 ตัวอักษร"
+                        placeholder={messages['register.numberCharacters']}
                         value={password}
                         onChange={(event) => this.handleChange(event)}
                       />
+                            <div className="eye-pass">
+                          {
+                            this.state.eye === true ? 
+                            <i class="fa fa-eye"  onClick={() => this.clickEye("eye",false)}></i>
+                            :
+                            <i class="fa fa-eye-slash" onClick={() => this.clickEye("eye",true)}></i>
+                          }
+                      </div>
                     </div>
                     {
                       (status_submit === "password_too_short") &&
@@ -179,13 +207,24 @@ class Register extends React.Component {
                     <div className="padding-top2">
                       <label className="form-label bold"><IntlMessages id="register.confirmPassword"/></label>
                       <input
-                        type="password"
+                       type={
+                        this.state.eye1 === true ? "text": "password"
+                      }
                         className="form-control"
                         id="confirm_password"
                         placeholder={messages['register.confirmPassword']}
                         value={confirm_password}
                         onChange={(event) => this.handleChange(event)}
                       />
+                      <div className="eye-pass">
+                          {
+                            this.state.eye1 === true ? 
+                            <i class="fa fa-eye"  onClick={() => this.clickEye("confirm_eye",false)}></i>
+                            :
+                            <i class="fa fa-eye-slash"  onClick={() => this.clickEye("confirm_eye",true)}></i>
+                          }
+                      </div>
+                     
                     </div>
                     {
                       (status_submit === "not_match_password") &&
@@ -220,8 +259,8 @@ class Register extends React.Component {
                         </label>
                       </div>
                     </div> */}
-                    <div className="d-grid gap-2  mx-auto   col-10 col-sm-10  col-md-10 col-lg-10 ">
-                      <button className="btn bottom-pink" type="button" onClick={() => this.createUser(email, password, confirm_password, phone)} >
+                    <div className="mg-top d-grid gap-2  mx-auto   col-10 col-sm-10  col-md-10 col-lg-10 ">
+                      <button className="btn bottom-pink " type="button" onClick={() => this.createUser(email, password, confirm_password, phone)} >
                         <IntlMessages id="next"/>
                       </button>
                     </div>

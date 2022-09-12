@@ -246,6 +246,7 @@ module.exports = {
               "challenge.notfriends": "You don’t have friends",
               "challenge.howincreasefriends": "How to add friends",
               "challenge.points": "Points",
+              "challenge.points2": "Points per Person",
               "challenge.singleChallenge": "Single Challenge",
               "challenge.teamChallenge": "Team Challenge",
               "challenge.inviteteam": "Invite friends to join your team",

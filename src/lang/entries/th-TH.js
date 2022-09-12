@@ -231,6 +231,7 @@ const ThLang = {
       "challenge.notfriends": "คุณยังไม่มีเพื่อน",
       "challenge.howincreasefriends": "วิธีการเพิ่มจำนวนเพื่อน",
       "challenge.points": "คะเเนน",
+      "challenge.points2": "คะเเนน",
       "challenge.singleChallenge": "รายการชาเลนจ์แบบเดี่ยว",
       "challenge.teamChallenge": "รายการชาเลนจ์แบบทีม",
       "challenge.inviteteam": "ชวนเข้าทีม",

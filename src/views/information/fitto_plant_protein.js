@@ -89,9 +89,9 @@ class Fitto_Plant_Protein extends React.Component {
 
     this.props.clearSelectProducts()
 
-    if (user_program_id) { //ถ้ามี user_program_id แสดงว่าชำระเงินสำเร็จแล้ว
+ /*    if (user_program_id) { //ถ้ามี user_program_id แสดงว่าชำระเงินสำเร็จแล้ว
       this.props.history.push('/welcome_new_nember');
-    }
+    } */
     if (locale === "th") {
       this.th_EnProtein()
     } else {
@@ -140,28 +140,33 @@ class Fitto_Plant_Protein extends React.Component {
     return (
       <>
         <div className="col-12 col-sm-12 col-md-12 col-lg-12 App-headerBackground center2 padding-top2 ">
-          <div className="col-10 col-sm-8 col-md-8 col-lg-8 center2">
+          <div className="col-10 col-sm-10 col-md-8 col-lg-8 center2">
             {/*  <img src={group19} alt="vector" className="group19" /> */}
-            <div className="current-position">
+            <div className="current-position2">
               <p className="border-line2  col-8 col-sm-6 col-md-6 col-lg-6 "></p>
               <div className="ellipse-text col-2 col-sm-2 col-md-2 col-lg-2">
-                <img src={ellipse_078} alt="vector" />
+             {/*    <img src={ellipse_078} alt="vector" /> */}
+              <div className="border-circleWhite"></div>
                 <p className="img-p"> <IntlMessages id="register.chooseYouPackage" /></p>
               </div>
               <div className="ellipse-text  col-2 col-sm-2 col-md-2 col-lg-2">
-                <img src={ellipse_078} alt="vector" />
+              {/*   <img src={ellipse_078} alt="vector" /> */}
+              <div className="border-circleWhite"></div>
                 <p className="img-p"> <IntlMessages id="register.chooseYouAccount" /></p>
               </div>
-              <div className="ellipse-text  col-3 col-sm-2 col-md-2 col-lg-2">
-                <img src={ellipse_077} alt="vector" />
+              <div className="ellipse-text  col-2 col-sm-2 col-md-2 col-lg-2">
+                {/* <img src={ellipse_077} alt="vector" /> */}
+                <div className="border-circle"></div>
                 <p className="img-p"> <IntlMessages id="register.chooseYouflavor" /></p>
               </div>
               <div className="ellipse-text  col-2 col-sm-2 col-md-2 col-lg-2">
-                <img src={ellipse_078} alt="vector" />
+                {/* <img src={ellipse_078} alt="vector" /> */}
+                <div className="border-circleWhite"></div>
                 <p className="img-p"> <IntlMessages id="register.deliveryAddress" /></p>
               </div>
               <div className="ellipse-text  col-2 col-sm-2 col-md-2 col-lg-2">
-                <img src={ellipse_078} alt="vector" />
+                {/* <img src={ellipse_078} alt="vector" /> */}
+                <div className="border-circleWhite"></div>
                 <p className="img-p"> <IntlMessages id="register.payment" /></p>
               </div>
             </div>
@@ -169,12 +174,13 @@ class Fitto_Plant_Protein extends React.Component {
           <div className="col-12 col-sm-12 col-md-6 col-lg-6 center2 margin-head">
             <div className="box-protein">
               <div className="padding-top">
-                <p className="font-size6 bold color-protein"> <IntlMessages id="fitto_plant_protein.chooseProtein" /> </p>
-                <p className="font-size4"><IntlMessages id="fitto_plant_protein.youAreApplying" /><span className="bold">  <IntlMessages id="fitto_plant_protein.theDuration" /></span>< br /><IntlMessages id="fitto_plant_protein.willBe" /></p>
+                <p className="font-size6-2 color-protein"> <IntlMessages id="fitto_plant_protein.chooseProtein" /> </p>
+                <p className="font-size4-2"><IntlMessages id="fitto_plant_protein.youAreApplying" /><span className="bold">  <IntlMessages id="fitto_plant_protein.theDuration" /></span>< br /><IntlMessages id="fitto_plant_protein.willBe" /></p>
                 <div className="box-proteinIn padding-top">
-                  <div className="center">
+    {/*               <div className="center">
                     <p className="font-size5 bold text-center"> <IntlMessages id="fitto_plant_protein.chooseProtein" /></p>
-                  </div>
+                  </div> */}
+                  <br />
                   <div>
                     <label className="form-label bold font-size4"><IntlMessages id="fitto_plant_protein.box1" /></label>
                     <select className="form-select" onChange={this.boxFitto} name="box1" aria-label="Default select example">
