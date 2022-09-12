@@ -4493,4 +4493,5 @@ tr:last-child td:last-child {
   padding-right: 10px;
   font-size: 22px;
   cursor: pointer;
+  z-index: 2 !important;
 }
