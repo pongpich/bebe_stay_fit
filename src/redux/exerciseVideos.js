@@ -10,6 +10,10 @@ export const types = {
   VIDEO_LIST_FOR_USER_SUCCESS: "VIDEO_LIST_FOR_USER_SUCCESS",
   VIDEO_LIST_FOR_USER_FAIL: "VIDEO_LIST_FOR_USER_FAIL",
   GET_WEEK: "GET_WEEK",
+  VIDEO_LIST_FOR_USER_LASTWEEK: "VIDEO_LIST_FOR_USER_LASTWEEK",
+  VIDEO_LIST_FOR_USER_LASTWEEK_SUCCESS: "VIDEO_LIST_FOR_USER_LASTWEEK_SUCCESS",
+  VIDEO_LIST_FOR_USER_LASTWEEK_FAIL: "VIDEO_LIST_FOR_USER_LASTWEEK_FAIL",
+  GET_LASTWEEK: "GET_LASTWEEK",
   CREATE_WEEKLY_STAYFIT_PROGRAM: "CREATE_WEEKLY_STAYFIT_PROGRAM",
   CREATE_WEEKLY_STAYFIT_PROGRAM_SUCCESS: "CREATE_WEEKLY_STAYFIT_PROGRAM_SUCCESS",
   UPDATE_PLAYTIME: "UPDATE_PLAYTIME",
@@ -27,7 +31,7 @@ export const types = {
   UPDATE_BODY_INFO: "UPDATE_BODY_INFO",
   UPDATE_BODY_INFO_SUCCESS: "UPDATE_BODY_INFO_SUCCESS",
 
-  
+
 }
 
 export const updateBodyInfo = (user_id, start_date, expire_date, other_attributes) => ({
@@ -112,15 +116,55 @@ export const videoListForUser = (
     }
   });
 
-  export const selectMemberInfo = (email) => ({
-    type: types.SELECT_MEMBER_INFO,
+export const videoListForUserLastWeek = (
+  user_id,
+  weight,
+  start_date,
+  expire_date,
+  offset) => ({
+    type: types.VIDEO_LIST_FOR_USER_LASTWEEK,
     payload: {
-      email
+      user_id,
+      weight,
+      start_date,
+      expire_date,
+      offset
     }
   });
 
+export const selectMemberInfo = (email) => ({
+  type: types.SELECT_MEMBER_INFO,
+  payload: {
+    email
+  }
+});
+
 
 /* END OF ACTION Section */
+
+const videoListForUserLastWeekSagaAsync = async (
+  user_id,
+  weight,
+  start_date,
+  expire_date,
+  offset
+) => {
+  try {
+    const apiResult = await API.get("bebe", "/videoListForUserLastWeek", {
+      queryStringParameters: {
+        user_id,
+        weight,
+        start_date,
+        expire_date,
+        offset
+      }
+    });
+    return apiResult
+  } catch (error) {
+    console.log("error :", error);
+    return { error, messsage: error.message }
+  }
+}
 
 const updatePlaylistSagaAsync = async (
   user_id,
@@ -339,6 +383,47 @@ function* randomVideoSaga({ payload }) {
     }
   } catch (error) {
     return { error, messsage: error.message };
+  }
+}
+
+function* videoListForUserLastWeekSaga({ payload }) {
+  const {
+    user_id,
+    weight,
+    start_date,
+    expire_date,
+    offset
+  } = payload
+  try {
+    const apiResult = yield call(
+      videoListForUserLastWeekSagaAsync,
+      user_id,
+      weight,
+      start_date,
+      expire_date,
+      offset
+    );
+    if (apiResult.results.length > 0) {
+      const activities = JSON.parse(apiResult.results[0].activities);
+      const lastweek = JSON.parse(apiResult.results[0].week_in_program);
+      if (lastweek > 0) { // lastweek > 0 คือ ไม่ใช่สัปดาห์ที่ 1
+        yield put({
+          type: types.VIDEO_LIST_FOR_USER_LASTWEEK_SUCCESS,
+          payload: activities
+        })
+        yield put({
+          type: types.GET_LASTWEEK,
+          payload: lastweek
+        })
+
+      } else {
+        yield put({ // lastweek <= 0 กำหนด isFirstWeek = true
+          type: types.VIDEO_LIST_FOR_USER_LASTWEEK_FAIL
+        })
+      }
+    }
+  } catch (error) {
+    console.log("error form videoListForUserSaga", error);
   }
 }
 
@@ -580,6 +665,9 @@ export function* watchSelectMemberInfo() {
   yield takeEvery(types.SELECT_MEMBER_INFO, selectMemberInfoSaga)
 }
 
+export function* watchVideoListForUserLastWeek() {
+  yield takeEvery(types.VIDEO_LIST_FOR_USER_LASTWEEK, videoListForUserLastWeekSaga)
+}
 
 export function* saga() {
   yield all([
@@ -591,7 +679,7 @@ export function* saga() {
     fork(watchUpdatePlaylist),
     fork(watchUpdateBodyInfo),
     fork(watchSelectMemberInfo),
-
+    fork(watchVideoListForUserLastWeek),
   ]);
 }
 
@@ -601,13 +689,16 @@ export function* saga() {
 
 const INIT_STATE = {
   exerciseVideo: [[], [], [], []],
+  exerciseVideoLastWeek: [[], [], [], []],
   week: 0,
+  lastweek: 0,
+  isFirstWeek: false,
   statusVideoList: "default",
   video: {},
   videos: [],
   status: "default",
   memberInfo: [],
-  
+
   statusUpdateBodyInfo: "default",
 };
 
@@ -651,6 +742,21 @@ export function reducer(state = INIT_STATE, action) {
         statusVideoList: "default",
         statusUpdateBodyInfo: "default"
       }
+    case types.VIDEO_LIST_FOR_USER_LASTWEEK_SUCCESS:
+      return {
+        ...state,
+        exerciseVideoLastWeek: action.payload
+      };
+    case types.VIDEO_LIST_FOR_USER_LASTWEEK_FAIL:
+      return {
+        ...state,
+        isFirstWeek: true
+      }
+    case types.GET_LASTWEEK:
+      return {
+        ...state,
+        lastweek: action.payload
+      };
     case types.VIDEO_LIST_FOR_USER_SUCCESS:
       return {
         ...state,
