@@ -134,16 +134,17 @@
   white-space: nowrap;
 }
 .video-wh2 {
-/*   background-color: lightblue; */
+ /*  background-color: lightblue; */
   width: 90vw;
   height:  80px;
   overflow-x: scroll;
   overflow-y: hidden;
   white-space: nowrap;
+  padding-bottom: 100px;
 }
 .video-wh3 {
     /* background-color: lightblue; */
-    width: 80vw;
+    /* width: 80vw; */
     height:  40px;
     overflow-x: scroll;
     overflow-y: hidden;
