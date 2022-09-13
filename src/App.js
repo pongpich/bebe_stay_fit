@@ -279,10 +279,10 @@ class App extends Component {
                     {
                       (user && user.other_attributes) &&
                       <>
-                        <li className="nav-item">
+                        <li id="videolist_btn" className="nav-item">
                           <a className={this.state.colorVideo} onClick={() => this.onClickNavbar("videoList")} ><IntlMessages id="navbarHome.exerciseprogram" /></a>
                         </li>
-                        <li className="nav-item">
+                        <li id="food-supplement_btn" className="nav-item">
                           <a className={this.state.colorFood} onClick={() => this.onClickNavbar("food_supplement")}><IntlMessages id="navbarHome.foodsupplements" /></a>
                         </li>
                       </>

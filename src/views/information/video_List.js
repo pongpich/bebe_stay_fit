@@ -731,15 +731,15 @@ class videoList extends React.Component {
         } */}
         <div className="box-videoCenter">
           <div className="col-12 col-sm-12 col-md-12 col-lg-12 ">
-          <div  className="video-wh">
+            <div className="video-wh">
               <ul className="video-maun">
-                <li className="video-li  video-liPadding-left marginLeftRoutine">
+                <li id="workout_label" className="video-li  video-liPadding-left marginLeftRoutine">
                   <a className={this.state.borderBottom1} name="borderBottom1" onClick={e => this.clickBottom(e)}>{messages['videoList.workout']}</a>
                 </li>
-                <li className="video-li  video-liPadding-left   video-liPadding-left2">
+                <li id="challenge_label" className="video-li  video-liPadding-left   video-liPadding-left2">
                   <a className={this.state.borderBottom2} name="borderBottom2" onClick={e => this.clickBottom(e)}>{messages['videoList.challenge']}</a>
                 </li>
-                <li className="video-li  video-liPadding-left   video-liPadding-left2">
+                <li id="howto_label" className="video-li  video-liPadding-left   video-liPadding-left2">
                   <a className={this.state.borderBottom3} name="borderBottom3" onClick={e => this.clickBottom(e)}>{messages['videoList.exerciseaccording']}</a>
                 </li>
               </ul>
@@ -803,7 +803,7 @@ class videoList extends React.Component {
               <nav className="navbar marginLeftRoutine">
                 <div className="container-fluid">
                   <ul>
-                    <li className="video-li2 ">
+                    <li id="day1_btn" className="video-li2 ">
                       <a
                         className="video-link2"
                         style={{ color: `${this.state.focusDay === 0 ? "#E25E96" : "#C4C4C4"}` }}
@@ -812,7 +812,7 @@ class videoList extends React.Component {
                         DAY 1
                       </a>
                     </li>
-                    <li className="video-li2 video-liPadding-left2">
+                    <li id="day2_btn" className="video-li2 video-liPadding-left2">
                       <a
                         className="video-link2"
                         style={{ color: `${this.state.focusDay === 1 ? "#E25E96" : "#C4C4C4"}` }}
@@ -821,7 +821,7 @@ class videoList extends React.Component {
                         DAY 2
                       </a>
                     </li>
-                    <li className="video-li2  video-liPadding-left2">
+                    <li id="day3_btn" className="video-li2  video-liPadding-left2">
                       <a
                         className="video-link2"
                         style={{ color: `${this.state.focusDay === 2 ? "#E25E96" : "#C4C4C4"}` }}
@@ -830,7 +830,7 @@ class videoList extends React.Component {
                         DAY 3
                       </a>
                     </li>
-                    <li className="video-li2  video-liPadding-left2">
+                    <li id="day4_btn" className="video-li2  video-liPadding-left2">
                       <a
                         className="video-link2"
                         style={{ color: `${this.state.focusDay === 3 ? "#E25E96" : "#C4C4C4"}` }}
@@ -875,7 +875,7 @@ class videoList extends React.Component {
               </div> */}
               <div className="col-4">
                 <div className="form-check form-switch form-check-reverse">
-                  <input className="form-check-input" type="checkbox" id="autoPlayCheck" onClick={() => this.autoPlayCheck()} />
+                  <input id="auto-play_btn" className="form-check-input" type="checkbox" id="autoPlayCheck" onClick={() => this.autoPlayCheck()} />
                   <label className="form-check-label" ><IntlMessages id="videoList.autoPlay" /></label>
                 </div>
               </div>
@@ -968,13 +968,13 @@ class videoList extends React.Component {
                                 this.state.autoPlayCheck ?
                                   <div className=" background-icon-play">
                                     <div className="icon-play-video">
-                                      <img src={play_circle_filled} name={item.url} className="pointer" onClick={() => this.toggleList(index)} data-bs-toggle="modal" data-bs-target="#exampleModal" />
+                                      <img id={`${item.name.split(" ").join("")}_day${focusDay + 1}-video`} src={play_circle_filled} name={item.url} className="pointer" onClick={() => this.toggleList(index)} data-bs-toggle="modal" data-bs-target="#exampleModal" />
                                     </div>
                                   </div>
                                   :
                                   <div className=" background-icon-play">
                                     <div className="icon-play-video">
-                                      <img src={play_circle_filled} name={item.url} className="pointer" onClick={() => this.toggle(item)} data-bs-toggle="modal" data-bs-target="#exampleModal" />
+                                      <img id={`${item.name.split(" ").join("")}_day${focusDay + 1}-video`} src={play_circle_filled} name={item.url} className="pointer" onClick={() => this.toggle(item)} data-bs-toggle="modal" data-bs-target="#exampleModal" />
                                     </div>
                                   </div>
                               }
