@@ -1,3 +1,9 @@
+@media only screen and (max-width: 540px) {
+  .wh-bu {
+    margin-bottom: -40px !important;
+    
+  }
+}
 .popup .overlay {
   position:fixed;
   top:0px;
@@ -141,6 +147,7 @@
   overflow-y: hidden;
   white-space: nowrap;
   padding-bottom: 100px;
+  z-index: -1;
 }
 .video-wh3 {
     /* background-color: lightblue; */
@@ -150,8 +157,16 @@
     overflow-y: hidden;
     white-space: nowrap;
   }
+.video-wh4 {
+    /* background-color: lightblue; */
+    width: 80vw;
+    /* height:  40px; */
+    overflow-x: scroll;
+    overflow-y: hidden;
+    white-space: nowrap;
+  }
 .wh-bu {
   margin-top: -40px;
   padding-top: 50px;
-  margin-bottom: 50px;
+  margin-bottom: 60px;
 }
