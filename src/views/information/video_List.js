@@ -968,13 +968,29 @@ class videoList extends React.Component {
                                 this.state.autoPlayCheck ?
                                   <div className=" background-icon-play">
                                     <div className="icon-play-video">
-                                      <img id={`video${index + 1}_day${focusDay + 1}-video`} src={play_circle_filled} name={item.url} className="pointer" onClick={() => this.toggleList(index)} data-bs-toggle="modal" data-bs-target="#exampleModal" />
+                                      <img
+                                        id={`video${index + 1}_day${focusDay + 1}-video`}
+                                        src={play_circle_filled}
+                                        name={item.url}
+                                        className={`${item.name.split(" ").join("")}_day${focusDay + 1}`}
+                                        onClick={() => this.toggleList(index)}
+                                        data-bs-toggle="modal" data-bs-target="#exampleModal"
+                                        style={{ cursor: "pointer" }}
+                                      />
                                     </div>
                                   </div>
                                   :
                                   <div className=" background-icon-play">
                                     <div className="icon-play-video">
-                                      <img id={`video${index + 1}_day${focusDay + 1}-video`} src={play_circle_filled} name={item.url} className="pointer" onClick={() => this.toggle(item)} data-bs-toggle="modal" data-bs-target="#exampleModal" />
+                                      <img
+                                        id={`video${index + 1}_day${focusDay + 1}-video`}
+                                        src={play_circle_filled}
+                                        name={item.url}
+                                        className={`${item.name.split(" ").join("")}_day${focusDay + 1}`}
+                                        onClick={() => this.toggle(item)}
+                                        data-bs-toggle="modal" data-bs-target="#exampleModal"
+                                        style={{ cursor: "pointer" }}
+                                      />
                                     </div>
                                   </div>
                               }
