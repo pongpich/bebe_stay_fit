@@ -960,7 +960,7 @@ class videoList extends React.Component {
                   (todayExercise.map((item, index) => {
                     const minuteLabel = (item.duration < 20) ? convertFormatTime(item.duration) : convertSecondsToMinutes(item.duration);
                     return (
-                      <div className=" box-playVdieo">
+                      <div id={`video${index + 1}_day${focusDay + 1}_root`} className=" box-playVdieo">
                         <div className="row">
                           <div className="col-12  col-sm-12 col-md-6 col-lg-6">
                             <div className="box-paly1" style={{ background: `url('./assets/img/thumb/${item.category.toLowerCase().split(" ").join("")}_g3.jpg') no-repeat`, backgroundSize: "100%" }}>
@@ -968,13 +968,13 @@ class videoList extends React.Component {
                                 this.state.autoPlayCheck ?
                                   <div className=" background-icon-play">
                                     <div className="icon-play-video">
-                                      <img id={`${item.name.split(" ").join("")}_day${focusDay + 1}-video`} src={play_circle_filled} name={item.url} className="pointer" onClick={() => this.toggleList(index)} data-bs-toggle="modal" data-bs-target="#exampleModal" />
+                                      <img id={`video${index + 1}_day${focusDay + 1}-video`} src={play_circle_filled} name={item.url} className="pointer" onClick={() => this.toggleList(index)} data-bs-toggle="modal" data-bs-target="#exampleModal" />
                                     </div>
                                   </div>
                                   :
                                   <div className=" background-icon-play">
                                     <div className="icon-play-video">
-                                      <img id={`${item.name.split(" ").join("")}_day${focusDay + 1}-video`} src={play_circle_filled} name={item.url} className="pointer" onClick={() => this.toggle(item)} data-bs-toggle="modal" data-bs-target="#exampleModal" />
+                                      <img id={`video${index + 1}_day${focusDay + 1}-video`} src={play_circle_filled} name={item.url} className="pointer" onClick={() => this.toggle(item)} data-bs-toggle="modal" data-bs-target="#exampleModal" />
                                     </div>
                                   </div>
                               }
