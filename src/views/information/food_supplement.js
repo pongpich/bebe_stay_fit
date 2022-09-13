@@ -127,9 +127,11 @@ const Food_supplement = () => {
                         </HashLink>
                       </div>
                     </div>
+                    <div className="vegetarianFood">
                     <HashLink smooth to='#vegetarianFood' id="#vegetarianFood" className={articleMain === 7 ? "manuFood-Active" : "manuFood"}>
                       สำหรับทานอาหารมังสวิรัติ
                     </HashLink>
+                    </div>
                     <div className="small-box">
                       <div>
                         <HashLink to='#vegetarianFood'  className={article === 7 ? "maun-small-Active" : "maun-small"}>

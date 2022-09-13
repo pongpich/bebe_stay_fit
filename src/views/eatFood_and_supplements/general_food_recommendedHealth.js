@@ -6,11 +6,11 @@ const general_food_recommendedHealth = function () {
   return (
     <>
       <p className="nutritionHead2">รูปแบบการกินเพื่อสุขภาพที่แนะนำ</p>
-
+      <br />
       <div className="centerImage ImageTop">
         <img src={frame} alt="vector" className="col-12 col-sm-12  col-md-8 col-lg-8" />
-       
       </div>
+      <br />
       <p className="border-bottom3 margin-leftRight"></p>
     </>
   );

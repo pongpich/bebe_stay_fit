@@ -16,10 +16,12 @@ const general_food_simpleHealth = function () {
         <li>ดื่มน้ำเปล่าอย่างน้อยวันละ 2 ลิตร เพื่อป้องกันการกระหายน้ำ และช่วยลดเครื่องดื่มหวาน ๆ ลงได้</li>
         <li>หากอยากดื่มน้ำหวาน ให้เลือกเครื่องดื่มที่ใช้น้ำตาลเทียม หรือสารให้ความหวานทดแทนน้ำตาล</li>
       </p>
+      <br />
       <div className="centerImage">
         <img src={simple_health_1}  className="col-12 col-sm-12 col-md-6 col-lg-6" />
         <img src={simple_health_2}  className="col-12 col-sm-12  col-md-6 col-lg-6" />
       </div>
+      <br />
       <p className="nutritionText2 ImageTop">
         <li>ลดอาหารไขมันสูง เช่น เนื้อสัตว์ติดมันหรือหนัง อาหารทอด อาหารผัดน้ำมันท่วม ๆ </li>
         <li>เลือกไขมันไม่อิ่มตัวแทน เช่น ถั่วต่าง ๆ เมล็ดพืช งา อะโวคาโด</li>
@@ -29,13 +31,16 @@ const general_food_simpleHealth = function () {
         <img src={simple_health_3} alt="vector" className="col-12 col-sm-12  col-md-6 col-lg-6" />
         <img src={simple_health_4} alt="vector" className="col-12 col-sm-12  col-md-6 col-lg-6" />
       </div>
+      <br />
       <p className="nutritionText2 ImageTop">
         <li>เลี่ยงการกินอาหารรสจัด เพราะจะกระตุ้นให้กินมากเกินไป ลดการใช้เครื่องปรุงต่าง ๆ และใช้พวกเครื่องเทศหรือสมุนไพรในการปรุงอาหารแทน</li>
       </p>
+      <br />
       <div className="centerImage">
         <img src={simple_health_5} alt="vector" className="col-12 col-sm-12  col-md-6 col-lg-6" />
         <img src={simple_health_6} alt="vector" className="col-12 col-sm-12  col-md-6 col-lg-6" />
       </div>
+      <br />
     </>
   );
 };

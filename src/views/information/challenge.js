@@ -419,7 +419,7 @@ class Challenge extends Component {
               <nav>
                   <div className="nav nav-tabs" id="nav-tab" role="tablist">
                     <button className="nav-link active col-6" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true"><IntlMessages id="challenge.teamChallenge" /></button>
-                    <button className="nav-link  col-6" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false"><IntlMessages id="challenge.singleChallenge" /></button>
+                    <button className="nav-link col-6" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false"><IntlMessages id="challenge.singleChallenge" /></button>
                   </div>
             </nav>
             <div class="tab-content" id="nav-tabContent">
