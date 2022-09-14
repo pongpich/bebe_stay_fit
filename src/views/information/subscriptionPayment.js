@@ -112,7 +112,6 @@ class SubscriptionPayment extends React.Component {
       this.setState({ paymentMethod: "qrCode" })
       console.log("QR code");
     }
-    console.log("e :", e);
   }
 
   onChickprice = (e) => {
@@ -155,9 +154,10 @@ class SubscriptionPayment extends React.Component {
           const recurringData = {
             processType: "I",
             referenceNo,
-            recurringAmount: price * 24,
+            /* recurringAmount: price * 12, */
+            recurringAmount: 3 * 12,
             recurringInterval: "M",
-            recurringCount: 24,
+            recurringCount: 12,
             recurringPeriod: "01",
             allowAccumulate: "Y",
             cardToken: card.token,
@@ -211,7 +211,7 @@ class SubscriptionPayment extends React.Component {
       <>
         <div className="col-12 col-sm-12 col-md-12 col-lg-12 App-headerBackground center2 padding-top2 ">
           <div className="col-10 col-sm-10 col-md-8 col-lg-8 center2">
-          <div className="current-position2">
+            <div className="current-position2">
               <p className="border-line2  col-8 col-sm-6 col-md-6 col-lg-6 "></p>
               {/* <div className="ellipse-text col-2 col-sm-2 col-md-2 col-lg-2">
                 <img src={ellipse_078} alt="vector" />
@@ -232,8 +232,8 @@ class SubscriptionPayment extends React.Component {
                 <p className="img-p"> <IntlMessages id="register.deliveryAddress" /></p>
               </div>
               <div className="ellipse-text  col-2 col-sm-2 col-md-2 col-lg-2">
-               {/*  <img src={ellipse_077} alt="vector" /> */}
-               <div className="border-circle"></div>
+                {/*  <img src={ellipse_077} alt="vector" /> */}
+                <div className="border-circle"></div>
                 <p className="img-p"> <IntlMessages id="register.payment" /></p>
               </div>
             </div>
@@ -247,7 +247,12 @@ class SubscriptionPayment extends React.Component {
               <h6 style={{ color: "red" }}>ระบบเรียกเก็บเงินไม่สำเร็จกรุณาตรวจสอบข้อมูลบัตรให้ถูกต้องอีกครั้ง หรือเปลี่ยนวิธีการชำระเงิน</h6>
             }
             <div className="col-12 col-sm-12 col-md-12 col-lg-12 center2 mb-4">
-              {/* <button type="button" className={(this.state.paymentMethod === "creditCard") ? this.state.onFocus : this.state.notFocus} onClick={e => this.pinkModelFocus("1")}>บัตรเครดิต/เดบิต</button>&nbsp;&nbsp;&nbsp; */}
+              {
+                (this.props.user && this.props.user.email === "akkewach.yodsomboon@gmail.com") &&
+                <div>
+                  <button type="button" className={(this.state.paymentMethod === "creditCard") ? this.state.onFocus : this.state.notFocus} onClick={e => this.pinkModelFocus("1")}>บัตรเครดิต/เดบิต</button>&nbsp;&nbsp;&nbsp;
+                </div>
+              }
               <button type="button" className={(this.state.paymentMethod === "qrCode") ? this.state.onFocus : this.state.notFocus} onClick={e => this.pinkModelFocus("2")}>ชำระด้วย QR Code</button>
             </div>
             {
@@ -326,7 +331,7 @@ class SubscriptionPayment extends React.Component {
                     {/* <p className=" bold font-size5 between">แพ็กเกจของคุณ <span className="font-size4 light decoration pointer" onClick={e => this.onChickprice(e)}>เปลี่ยน</span></p> */}
                     <p className="font-size5">
                       <>
-                        <p className="font-size5 bold between">รสชาติของ Fitto Plant Protein <span className="font-size4 light decoration pointer"  onClick={() => this.props.history.push('/edit_fitto_plant_protein')}>เปลี่ยน</span></p>
+                        <p className="font-size5 bold between">รสชาติของ Fitto Plant Protein <span className="font-size4 light decoration pointer" onClick={() => this.props.history.push('/edit_fitto_plant_protein')}>เปลี่ยน</span></p>
                         <p className="font-size4">
                           กล่องที่ 1 - {this.state.product1}
                           <br />
