@@ -13,7 +13,7 @@ class Cancel_package_new extends Component {
             no_reason_choose: false,
             program: null,
             product: null,
-            start_cancel: "price_reason"
+            start_cancel: "choose_reason"
         };
     }
 
