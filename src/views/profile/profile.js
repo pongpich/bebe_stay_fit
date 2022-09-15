@@ -78,7 +78,7 @@ class Profile extends React.Component {
               const name = (
                 <>
                   {
-                    item.round > 1 ? //เพิ่มเช็ค payment_type ด้วย
+                    (item.round > 1) && (item.payment_type === 'credit_card') ? //เช็คว่า round ล่าสุดมากกว่า 1 และ payment_type เป็นบัตรเครดิต
                       <>
                         <div className="col-12 col-sm-12 col-md-12 col-lg-12  center2 ">
                           <div className="col-12 col-sm-8 col-md-6 col-lg-4 center2">
