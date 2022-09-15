@@ -10,7 +10,7 @@ class CancelPackage extends React.Component {
                     <div className="container">
                         <div className="row row-cols-2">
                             <div className="col-2 col-sm-2 col-md-12 col-lg-12">
-                                <h4 className="color1">BEBEStayFit</h4>
+                                <h4 className="color1 bold">BEBEStayFit</h4>
                             </div>
                             <div className="col-10 col-sm-10 col-md-12 col-lg-12">
                                 <h6 className="right"><img src={user_circle} alt="vector" className="padding-right" />บพิตร์ เตชะวัฒนานันท์</h6>
@@ -38,7 +38,7 @@ class CancelPackage extends React.Component {
                                 <p className="margin-top-1 font-size4">XXXXXXXX</p>
                             </div>
                             <div className="d-grid gap-2  mx-auto   col-10 col-sm-10  col-md-10 col-lg-10 margin-top-2 ">
-                                <button className="btn bottom-pink" type="button" >
+                                <button className="btn bottom-pink" type="button"  onClick={() => this.props.history.push('/cancel_package_succeed')}>
                                     ยืนยัน
                                 </button>
                             </div>

@@ -93,7 +93,7 @@ function* getRegister_logSaga({ payload }) {
     })
     console.log("apiResult :", apiResult);
   } catch (error) {
-    console.log("error from getSubscriptionProductsSaga :", error);
+    console.log("error from getRegister_logSaga :", error);
   }
 }
 
