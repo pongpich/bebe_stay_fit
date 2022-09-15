@@ -23,7 +23,7 @@ class CancelPackageSucceed extends React.Component {
                                 <p className="margin-top-1 font-size4">XXXXXXXXXXXXXXXXXXXXXXXX</p>
                                 <p className="margin-top-1 font-size4">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</p>
                             </div>
-                            <div className="d-grid gap-2  mx-auto   col-10 col-sm-10  col-md-10 col-lg-10 margin-top-2 ">
+                            <div className="d-grid gap-2  mx-auto   col-8 col-sm-  col-md-8 col-lg-8 margin-top-2 ">
                                 <button className="btn bottom-pink" type="button" onClick={() => this.props.history.push('/profile')}>
                                     กลับหน้าโปรไฟล์
                                 </button>

@@ -10,7 +10,7 @@ class Profile extends React.Component {
 
   componentDidMount() {
     const { user } = this.props;
-    console.log("user.user_id",user.user_id);
+    console.log("user.user_id", user.user_id);
     this.props.getSubscriptionProducts(user.user_id);
     this.props.getRegister_log(user.user_id);
   }
@@ -19,7 +19,7 @@ class Profile extends React.Component {
     const address = JSON.parse(this.props.delivery_address);
     const program = this.props.register_log;
 
-    console.log("program",program);
+    console.log("program", program);
     /*   const program_id =  this.props.register_log.program_id;
       const round =  this.props.register_log.round;
       const expire_date =  new Date(this.props.register_log.expire_date);
@@ -61,12 +61,12 @@ class Profile extends React.Component {
             </div>
           </div>
         </div>
-          
+
         {
-          
+
 
           program && program.map((index, i) => {
-            console.log("index",index);
+            console.log("index", index);
             const il = program.length - 1;
             if (il === i) {
               const expire_date = new Date(index.expire_date);
@@ -101,9 +101,12 @@ class Profile extends React.Component {
                                 <button className="btn bottom-pink " type="button" onClick={() => this.props.history.push('/billing_history')}>
                                   <IntlMessages id="profile.billinghistory" />
                                 </button>
-                                   <button className="btn bottom-outlineGrey margin-top-3" type="button"   onClick={() => this.props.history.push('/cancel_package')}>
-                               ยกเลิกแพ็กเกจ
-                             </button> 
+                                <button className="btn bottom-outlineGrey margin-top-3" type="button" onClick={() => this.props.history.push('/cancel_package')}>
+                                  ยกเลิกแพ็กเกจ
+                                </button>
+                                {/*      <button className="btn bottom-outlineGrey margin-top-3" type="button"   onClick={() => this.props.history.push('/cancel_package_new')}>
+                               ยกเลิกแพ็กเกจ New
+                             </button>  */}
                               </div>
                             </div>
                           </div>
@@ -120,40 +123,40 @@ class Profile extends React.Component {
 
           })
 
-        /*   round > 1 ?
-            <>
-              <div className="col-12 col-sm-12 col-md-12 col-lg-12  center2 ">
-                <div className="col-12 col-sm-12 col-md-6 col-lg-6 center2">
-                  <div className="box-protein margin-bottom1 padding-top2">
-                    <div className="padding-top">
-                      <h4 className="color1 bold">BEBEStayFit</h4>
-                    </div>
-                    <div className="padding-top2  margin-leftRight">
-                      <p className="font-size6 text-left2 bold between">แพ็กเกจของคุณ  <span className="pay-user">ชำระเงิน</span></p>
-                      {
-                         program_id === "subscription_stay_fit_01" ?
-                         <p className="font-size0 margin-top-1 bold between">ตามระยะเวลาของโปรแกรม <span className="color1 bold font-size0">1,800 บาท / เดือน</span></p>
-                         :
-                         <p className="font-size0 margin-top-1 bold between">ตามระยะเวลาของโปรแกรม <span className="color1 bold font-size0">3,990 บาท</span></p>
-                      }
-                      <p className=" font-size4 margin-top-1 right color3">วันตัดรอบบิล  {date}</p>
-
-                    </div>
-                    <p className="border-bottom margin-leftRight padding-top2"></p>
-                    <div className="d-grid gap-2  mx-auto   col-10 col-sm-10  col-md-8 col-lg-8 margin-top-2 ">
-                      <button className="btn bottom-pink " type="button" onClick={() => this.props.history.push('/billing_history')}>
-                        ประวัติการเรียกเก็บ
-                      </button>
-                    <button className="btn bottom-outlineGrey margin-top-3" type="button" >
-                        ยกเลิกแพ็กเกจ
-                      </button> 
+          /*   round > 1 ?
+              <>
+                <div className="col-12 col-sm-12 col-md-12 col-lg-12  center2 ">
+                  <div className="col-12 col-sm-12 col-md-6 col-lg-6 center2">
+                    <div className="box-protein margin-bottom1 padding-top2">
+                      <div className="padding-top">
+                        <h4 className="color1 bold">BEBEStayFit</h4>
+                      </div>
+                      <div className="padding-top2  margin-leftRight">
+                        <p className="font-size6 text-left2 bold between">แพ็กเกจของคุณ  <span className="pay-user">ชำระเงิน</span></p>
+                        {
+                           program_id === "subscription_stay_fit_01" ?
+                           <p className="font-size0 margin-top-1 bold between">ตามระยะเวลาของโปรแกรม <span className="color1 bold font-size0">1,800 บาท / เดือน</span></p>
+                           :
+                           <p className="font-size0 margin-top-1 bold between">ตามระยะเวลาของโปรแกรม <span className="color1 bold font-size0">3,990 บาท</span></p>
+                        }
+                        <p className=" font-size4 margin-top-1 right color3">วันตัดรอบบิล  {date}</p>
+  
+                      </div>
+                      <p className="border-bottom margin-leftRight padding-top2"></p>
+                      <div className="d-grid gap-2  mx-auto   col-10 col-sm-10  col-md-8 col-lg-8 margin-top-2 ">
+                        <button className="btn bottom-pink " type="button" onClick={() => this.props.history.push('/billing_history')}>
+                          ประวัติการเรียกเก็บ
+                        </button>
+                      <button className="btn bottom-outlineGrey margin-top-3" type="button" >
+                          ยกเลิกแพ็กเกจ
+                        </button> 
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
-            </>
-            :
-            null */
+              </>
+              :
+              null */
         }
 
 

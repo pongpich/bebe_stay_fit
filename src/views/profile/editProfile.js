@@ -236,8 +236,6 @@ class EditProfile extends React.Component {
         </div> */}
         <div className="col-12 col-sm-12 col-md-12 col-lg-12  center2  margin-top-3">
           <div className="bottomEditProfile">
-
-
             <button type="button" className="btn bottom-outlinePinkLeft " onClick={() => this.props.history.push('/profile')}><IntlMessages id="shipping_address.cancel"/></button>
             <button type="button" className="btn bottom-outlinePinkRight bottomEditProfileLeft " onClick={() => this.onSubmit()}><IntlMessages id="profile.save"/></button>
           </div>

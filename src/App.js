@@ -17,6 +17,7 @@ import Cc_token from "../src/views/information/cc_token";
 import Profile from "./views/profile/profile";
 import EditProfile from "./views/profile/editProfile";
 import Cancel_Package from "./views/profile/cancel_package";
+import Cancel_Package_New from "./views/profile/cancel_package_new";
 import Cancel_Package_Succeed from "./views/profile/cancel_packag_succeed";
 import ProgramPackage from "./views/programPackage";
 import videoList from "./views/information/video_List";
@@ -411,6 +412,7 @@ class App extends Component {
                 <Route path='/profile' component={Profile} />
                 <Route path='/edit_profile' component={EditProfile} />
                 <Route path='/cancel_package' component={Cancel_Package} />
+                <Route path='/cancel_package_new' component={Cancel_Package_New} />
                 <Route path='/cancel_package_succeed' component={Cancel_Package_Succeed} />
                 <Route path='/programPackage' component={ProgramPackage} />
                 <Route path='/videoList' component={videoList} />
