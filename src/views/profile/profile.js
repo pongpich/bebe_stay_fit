@@ -65,11 +65,11 @@ class Profile extends React.Component {
         {
 
 
-          program && program.map((index, i) => {
-            console.log("index", index);
+          program && program.map((item, i) => {
+            console.log("item", item);
             const il = program.length - 1;
             if (il === i) {
-              const expire_date = new Date(index.expire_date);
+              const expire_date = new Date(item.expire_date);
               const date = expire_date.toLocaleString("th-TH", {
                 year: 'numeric',
                 month: 'long',
@@ -78,7 +78,7 @@ class Profile extends React.Component {
               const name = (
                 <>
                   {
-                    index.round > 1 ?
+                    item.round > 1 ? //เพิ่มเช็ค payment_type ด้วย
                       <>
                         <div className="col-12 col-sm-12 col-md-12 col-lg-12  center2 ">
                           <div className="col-12 col-sm-8 col-md-6 col-lg-4 center2">
@@ -89,7 +89,7 @@ class Profile extends React.Component {
                               <div className="padding-top2  margin-leftRight">
                                 <p className="font-size6 text-left2 bold between"><IntlMessages id="payment.yourPackage" />  <span className="pay-user"><IntlMessages id="payment.pay" /></span></p>
                                 {
-                                  index.program_id === "subscription_stay_fit_01" ?
+                                  item.program_id === "subscription_stay_fit_01" ?
                                     <p className="font-size0 margin-top-1 bold between"><IntlMessages id="payment.applyProgram" /> <span className="color1 bold font-size0">1,800 <IntlMessages id="programPackage.baht" /> / <IntlMessages id="programPackage.months" /></span></p>
                                     :
                                     <p className="font-size0 margin-top-1 bold between"><IntlMessages id="payment.applyProgram" /> <span className="color1 bold font-size0">3,990 <IntlMessages id="programPackage.baht" /></span></p>

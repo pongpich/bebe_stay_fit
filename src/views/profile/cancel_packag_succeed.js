@@ -17,11 +17,11 @@ class CancelPackageSucceed extends React.Component {
                     <div className="col-12 col-sm-12 col-md-6 col-lg-6 center2 box-imgGrouo38">
                         <div className="box-protein margin-bottom1 padding-top2">
                             <div className="margin-top-5 padding-top5 padding-leftRight">
-                                <p>XXXXXXXXXXXXXXXX</p>
+                              {/*   <p>XXXXXXXXXXXXXXXX</p>
                                 <p className="margin-top-1">XXXXXXXXXXXXXXXXXXXXXXXXXXXX</p>
                                 <p className="font-size4">XXXXXXXXXXXXXXXXXXXXXXXXXX</p>
                                 <p className="margin-top-1 font-size4">XXXXXXXXXXXXXXXXXXXXXXXX</p>
-                                <p className="margin-top-1 font-size4">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</p>
+                                <p className="margin-top-1 font-size4">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</p> */}
                             </div>
                             <div className="d-grid gap-2  mx-auto   col-8 col-sm-  col-md-8 col-lg-8 margin-top-2 ">
                                 <button className="btn bottom-pink" type="button" onClick={() => this.props.history.push('/profile')}>

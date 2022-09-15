@@ -38,7 +38,15 @@ export const types = {
   CHECK_UPDATE_MAX_FRIENDS: "CHECK_UPDATE_MAX_FRIENDS",
   ADD_ORDERIN_ZORT: "ADD_ORDERIN_ZORT",
   ADD_ORDERIN_ZORT_SUCCESS: "ADD_ORDERIN_ZORT_SUCCESS",
+  CANCEL_RECURRING: "CANCEL_RECURRING"
 }
+
+export const cancelRecurring = (user_id) => ({
+  type: types.CANCEL_RECURRING,
+  payload: {
+    user_id
+  }
+})
 
 export const checkUpdateMaxFriends = (user_id) => ({
   type: types.CHECK_UPDATE_MAX_FRIENDS,
@@ -378,6 +386,21 @@ const checkUpdateMaxFriendsSagaAsync = async (
 ) => {
   try {
     const apiResult = await API.put("bebe", "/checkUpdateMaxFriends", {
+      body: {
+        user_id
+      }
+    });
+    return apiResult
+  } catch (error) {
+    return { error, messsage: error.message };
+  }
+}
+
+const cancelRecurringSagaAsync = async (
+  user_id
+) => {
+  try {
+    const apiResult = await API.post("bebe", "/cancelRecurring", {
       body: {
         user_id
       }
@@ -734,6 +757,21 @@ function* checkUpdateMaxFriendsSaga({ payload }) {
   }
 }
 
+function* cancelRecurringSaga({ payload }) {
+  const {
+    user_id
+  } = payload
+
+  try {
+    const apiResult = yield call(
+      cancelRecurringSagaAsync,
+      user_id
+    );
+  } catch (error) {
+    console.log("error from cancelRecurringSaga :", error);
+  }
+}
+
 function* resetPasswordSaga({ payload }) {
   const {
     email,
@@ -877,6 +915,11 @@ export function* watchUpdateProfile() {
 export function* watchCheckUpdateMaxFriends() {
   yield takeEvery(types.CHECK_UPDATE_MAX_FRIENDS, checkUpdateMaxFriendsSaga)
 }
+
+export function* watchCancelRecurringSaga() {
+  yield takeEvery(types.CANCEL_RECURRING, cancelRecurringSaga)
+}
+
 export function* watchAddOrderInZortSaga() {
   yield takeEvery(types.ADD_ORDERIN_ZORT, addOrderInZortSaga)
 }
@@ -899,6 +942,7 @@ export function* saga() {
     fork(watchUpdateProfile),
     fork(watchCheckUpdateMaxFriends),
     fork(watchAddOrderInZortSaga),
+    fork(watchCancelRecurringSaga),
   ]);
 }
 
