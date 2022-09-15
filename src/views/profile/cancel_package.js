@@ -6,10 +6,17 @@ import { cancelRecurring } from "../../redux/auth";
 
 class CancelPackage extends React.Component {
 
+  componentDidUpdate(prevProps, prevState) {
+    const { statusCancelRecurring } = this.props;
+
+    if ((prevProps.statusCancelRecurring !== statusCancelRecurring) && (statusCancelRecurring === 'success')) {
+      this.props.history.push('/cancel_package_succeed');
+    }
+  }
+
   onSubmit() {
     if (this.props.user) {
       this.props.cancelRecurring(this.props.user.user_id);
-      this.props.history.push('/cancel_package_succeed');
     }
   }
 
@@ -51,8 +58,8 @@ class CancelPackage extends React.Component {
 
 const mapStateToProps = ({ get, authUser }) => {
   const { register_log } = get;
-  const { user } = authUser;
-  return { user, register_log };
+  const { user, statusCancelRecurring } = authUser;
+  return { user, register_log, statusCancelRecurring };
 };
 
 const mapActionsToProps = { cancelRecurring };

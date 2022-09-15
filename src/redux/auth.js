@@ -38,7 +38,9 @@ export const types = {
   CHECK_UPDATE_MAX_FRIENDS: "CHECK_UPDATE_MAX_FRIENDS",
   ADD_ORDERIN_ZORT: "ADD_ORDERIN_ZORT",
   ADD_ORDERIN_ZORT_SUCCESS: "ADD_ORDERIN_ZORT_SUCCESS",
-  CANCEL_RECURRING: "CANCEL_RECURRING"
+  CANCEL_RECURRING: "CANCEL_RECURRING",
+  CANCEL_RECURRING_SUCCESS: "CANCEL_RECURRING_SUCCESS",
+  CANCEL_RECURRING_FAIL: "CANCEL_RECURRING_FAIL",
 }
 
 export const cancelRecurring = (user_id) => ({
@@ -767,6 +769,15 @@ function* cancelRecurringSaga({ payload }) {
       cancelRecurringSagaAsync,
       user_id
     );
+    if (apiResult && apiResult.results && apiResult.results.message === "success") {
+      yield put({
+        type: types.CANCEL_RECURRING_SUCCESS
+      })
+    } else {
+      yield put({
+        type: types.CANCEL_RECURRING_FAIL
+      })
+    }
   } catch (error) {
     console.log("error from cancelRecurringSaga :", error);
   }
@@ -960,10 +971,26 @@ const INIT_STATE = {
   createAccount: null,
   statusForgotPassword: "default",
   statusAddZortOrder: "default",
+  statusCancelRecurring: "default",
 };
 
 export function reducer(state = INIT_STATE, action) {
   switch (action.type) {
+    case types.CANCEL_RECURRING:
+      return {
+        ...state,
+        statusCancelRecurring: "loading"
+      }
+    case types.CANCEL_RECURRING_SUCCESS:
+      return {
+        ...state,
+        statusCancelRecurring: "success"
+      }
+    case types.CANCEL_RECURRING_FAIL:
+      return {
+        ...state,
+        statusCancelRecurring: "fail"
+      }
     case types.FORGOT_PASSWORD_SUCCESS:
       return {
         ...state,
