@@ -6,18 +6,6 @@ class CancelPackage extends React.Component {
     render() {
         return (
             <>
-                <div className="col-12 col-sm-12 col-md-12 col-lg-12  padding-top2 information-box ">
-                    <div className="container">
-                        <div className="row row-cols-2">
-                            <div className="col-2 col-sm-2 col-md-12 col-lg-12">
-                                <h4 className="color1 bold">BEBEStayFit</h4>
-                            </div>
-                            <div className="col-10 col-sm-10 col-md-12 col-lg-12">
-                                <h6 className="right"><img src={user_circle} alt="vector" className="padding-right" />บพิตร์ เตชะวัฒนานันท์</h6>
-                            </div>
-                        </div>
-                    </div>
-                </div>
                 <div className="padding-top4 center">
                     <p className="font-size6 bold color-protein"> ยกเลิก Bebe Stay Fit</p>
                 </div>
