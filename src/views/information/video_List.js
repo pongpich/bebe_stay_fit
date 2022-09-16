@@ -852,8 +852,7 @@ class videoList extends React.Component {
                     Launch demo modal
                   </button>
                   {
-                    (this.props.user && this.props.user.email === "akkewach.yodsomboon@gmail.com") &&
-                    <button /* style={{ display: 'none' }} */ id="modalSubscription-shareClick" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalSubscription-share">
+                  <button style={{ display: 'none' }} id="modalSubscription-shareClick" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalSubscription-share">
                       modalSubscription
                   </button>
                   }
