@@ -76,6 +76,7 @@ class App extends Component {
       colorFood: "nav-link pointer",
       colorVideo: "nav-link pointer color1",
       thEn: null,
+      inBeforeXdays: 7
     }
   }
 
@@ -135,6 +136,7 @@ class App extends Component {
     if ((prevProps.statusGetExpireDate !== statusGetExpireDate) && (statusGetExpireDate === "success") && (this.props.location.pathname === "/videoList")) {
       var expired = false;
       var inBefore7days = false;
+      var inBefore3days = false;
       if (user && user.expire_date) {
         const currentDate = new Date().getTime();
         const expireDate = new Date(user.expire_date).getTime();
@@ -147,12 +149,26 @@ class App extends Component {
         before7days.setHours(23, 59, 59);
         const before7daysEnd = new Date(before7days).getTime();
         inBefore7days = ((currentDate >= before7daysStart) && (currentDate <= before7daysEnd)); //เช็คว่าอยู่ในช่วงวันที่7 ก่อนที่จะหมดอายุ
+
+        var before3days = new Date(user.expire_date);
+        before3days.setDate(before3days.getDate() - 3);
+        before3days.setHours(0, 0, 0);
+        const before3daysStart = new Date(before3days).getTime();
+        before3days.setHours(23, 59, 59);
+        const before3daysEnd = new Date(before3days).getTime();
+        inBefore3days = ((currentDate >= before3daysStart) && (currentDate <= before3daysEnd)); //เช็คว่าอยู่ในช่วงวันที่3 ก่อนที่จะหมดอายุ
+        console.log("inBefore3days :", inBefore3days);
       }
       if (expired) {
         document.getElementById("modalExpireClick").click();
       }
       if (inBefore7days) {
-        document.getElementById("modalBefore7daysClick").click();
+        this.setState({ inBeforeXdays: 7 })
+        document.getElementById("modalBeforeXdaysClick").click();
+      }
+      if (inBefore3days) {
+        this.setState({ inBeforeXdays: 3 })
+        document.getElementById("modalBeforeXdaysClick").click();
       }
     }
   }
@@ -200,19 +216,19 @@ class App extends Component {
       </>
     )
   }
-  renderBefore7days() {
+  renderBeforeXdays() {
+    const { inBeforeXdays } = this.state;
     const { register_log } = this.props;
     const currRound = register_log && register_log[register_log.length - 1];
-    console.log("currRound: ",);
 
     return (
       <>
         <div style={{ display: 'none' }}>
-          <button type="button" className="btn btn-primary" id="modalBefore7daysClick" data-bs-toggle="modal" data-bs-target="#modalBefore7days">
+          <button type="button" className="btn btn-primary" id="modalBeforeXdaysClick" data-bs-toggle="modal" data-bs-target="#modalBeforeXdays">
             Launch demo modal
           </button>
         </div>
-        <div className="modal fade" id="modalBefore7days" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div className="modal fade" id="modalBeforeXdays" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
           <div className="modal-dialog modal-dialog-centered">
             <div className="modal-content">
               <div className="modal-header">
@@ -221,7 +237,7 @@ class App extends Component {
               <div className="modal-bodyExpire">
                 <p className="headText-expire bold">
                   สิทธิ์การใช้งาน BebeStayFit
-                  <br />จะหมดอายุในอีก 7 วัน
+                  <br />จะหมดอายุในอีก {inBeforeXdays} วัน
                 </p>
                 {
                   (currRound && (currRound.round > 1) && (currRound.payment_type === 'credit_card')) ?
@@ -244,7 +260,7 @@ class App extends Component {
                         type="button"
                         class="btn  bottom-pinkLogin font-size6 col-10 col-sm-10 col-md-10 col-lg-10"
                         data-bs-dismiss="modal"
-                        onClick={() => document.getElementById("modalBefore7daysClick").click()}
+                        onClick={() => document.getElementById("modalBeforeXdaysClick").click()}
                       >
                         ปิด
                       </button>
@@ -450,7 +466,7 @@ class App extends Component {
           <div className="App">
             {this.renderNavbar()}
             {this.renderExpired()}
-            {this.renderBefore7days()}
+            {this.renderBeforeXdays()}
 
             <header className="App-header ">
               <Switch>
