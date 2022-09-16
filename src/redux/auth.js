@@ -972,6 +972,7 @@ const INIT_STATE = {
   statusForgotPassword: "default",
   statusAddZortOrder: "default",
   statusCancelRecurring: "default",
+  statusGetExpireDate: "default"
 };
 
 export function reducer(state = INIT_STATE, action) {
@@ -1014,13 +1015,23 @@ export function reducer(state = INIT_STATE, action) {
           other_attributes: action.payload
         }
       }
+    case types.GET_EXPIRE_DATE:
+      return {
+        ...state,
+        user: {
+          ...state.user,
+          expire_date: action.payload
+        },
+        statusGetExpireDate: "loading"
+      }
     case types.GET_EXPIRE_DATE_SUCCESS:
       return {
         ...state,
         user: {
           ...state.user,
           expire_date: action.payload
-        }
+        },
+        statusGetExpireDate: "success"
       }
     case types.GET_GROUP_ID_SUCCESS:
       return {

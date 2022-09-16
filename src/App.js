@@ -141,8 +141,8 @@ class App extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    const { user } = this.props;
-    if ((prevProps.location.pathname !== this.props.location.pathname) && (this.props.location.pathname === "/videoList")) {
+    const { user, statusGetExpireDate } = this.props;
+    if ((prevProps.statusGetExpireDate !== statusGetExpireDate) && (statusGetExpireDate === "success") && (this.props.location.pathname === "/videoList")) {
       var expired = false;
       if (user && user.expire_date) {
         const currentDate = new Date().getTime();
@@ -150,18 +150,6 @@ class App extends Component {
         expired = (currentDate > expireDate);
       }
       if (expired) {
-        document.getElementById("modalExpireClick").click();
-      }
-    }
-
-    if (user && prevProps.user && (prevProps.user.expire_date !== user.expire_date) && (this.props.location.pathname === "/videoList")) {
-      var expired = false;
-      if (user && user.expire_date) {
-        const currentDate = new Date().getTime();
-        const expireDate = new Date(user.expire_date).getTime();
-        expired = (currentDate > expireDate);
-      }
-      if (!expired) {
         document.getElementById("modalExpireClick").click();
       }
     }
@@ -215,22 +203,22 @@ class App extends Component {
     return (
       <div className="btn-group">
         <div className="dropdown">
-      <a className="nav-link nav-linkHead2 pointer bold dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-        {thEn}
-      </a>
-      <ul className="dropdown-menu dropdown-menu-col-end dropdown-menu-lg-start" aria-labelledby="dropdownMenuLink">
-        {localeOptions.map((l) => {
-          return (
-            <li><a className="dropdown-item"
-              onClick={() => this.handleChangeLocale(l.id)}
-              key={l.id}
-            >{l.name}</a></li>
-          );
-        })}
-      </ul>
-    </div>
+          <a className="nav-link nav-linkHead2 pointer bold dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+            {thEn}
+          </a>
+          <ul className="dropdown-menu dropdown-menu-col-end dropdown-menu-lg-start" aria-labelledby="dropdownMenuLink">
+            {localeOptions.map((l) => {
+              return (
+                <li><a className="dropdown-item"
+                  onClick={() => this.handleChangeLocale(l.id)}
+                  key={l.id}
+                >{l.name}</a></li>
+              );
+            })}
+          </ul>
+        </div>
       </div>
-      
+
     )
   }
   manuTH_EN2() {
@@ -238,22 +226,22 @@ class App extends Component {
     return (
       <div className="btn-group">
         <div className="dropdown">
-      <a className="nav-link nav-linkHead2 pointer bold dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-        {thEn}
-      </a>
-      <ul className="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuLink">
-        {localeOptions.map((l) => {
-          return (
-            <li><a className="dropdown-item"
-              onClick={() => this.handleChangeLocale(l.id)}
-              key={l.id}
-            >{l.name}</a></li>
-          );
-        })}
-      </ul>
-    </div>
+          <a className="nav-link nav-linkHead2 pointer bold dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+            {thEn}
+          </a>
+          <ul className="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuLink">
+            {localeOptions.map((l) => {
+              return (
+                <li><a className="dropdown-item"
+                  onClick={() => this.handleChangeLocale(l.id)}
+                  key={l.id}
+                >{l.name}</a></li>
+              );
+            })}
+          </ul>
+        </div>
       </div>
-      
+
     )
   }
 
@@ -341,7 +329,7 @@ class App extends Component {
                     <span className="navbar-toggler-icon"></span>
                   </button>
                   <div className="collapse navbar-collapse padding-left3" id="navbarSupportedContent">
-                  <ul className="navbar-nav me-auto mb-2 mb-lg-0 font-size5 bold">
+                    <ul className="navbar-nav me-auto mb-2 mb-lg-0 font-size5 bold">
                       <li className="nav-item">
                         {/*  <a className="nav-link pointer"  >ราคา</a> */}
                       </li>
@@ -362,7 +350,7 @@ class App extends Component {
                 </>
                 :
                 <>
-                 {this.manuTH_EN2()}
+                  {this.manuTH_EN2()}
                 </>
 
           }
@@ -456,14 +444,14 @@ class App extends Component {
 }
 
 const mapStateToProps = ({ authUser, settings }) => {
-  const { user } = authUser;
+  const { user, statusGetExpireDate } = authUser;
   let locale;
   if (settings) {
     locale = settings.locale;
   } else {
     locale = "th";
   }
-  return { user, locale };
+  return { user, statusGetExpireDate, locale };
 };
 
 const mapActionsToProps = {
