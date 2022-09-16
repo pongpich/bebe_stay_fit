@@ -45,6 +45,7 @@ import { connect } from "react-redux";
 import { logoutUser } from "./redux/auth";
 import { clearCreateUser } from "./redux/createUser";
 import { clearProgram } from "./redux/exerciseProgram";
+import { getRegister_log } from "./redux/get";
 
 import moment from 'moment';
 
@@ -117,17 +118,6 @@ class App extends Component {
   componentDidMount() {
 
     const { user, locale } = this.props;
-    var expired = false;
-    if (this.props.location.pathname === "/videoList") {
-      if (user && user.expire_date) {
-        const currentDate = new Date().getTime();
-        const expireDate = new Date(user.expire_date).getTime();
-        expired = (currentDate > expireDate);
-      }
-      if (expired === true) {
-        document.getElementById("modalExpireClick").click();
-      }
-    }
 
     if (locale === "th") {
       this.setState({
@@ -144,13 +134,25 @@ class App extends Component {
     const { user, statusGetExpireDate } = this.props;
     if ((prevProps.statusGetExpireDate !== statusGetExpireDate) && (statusGetExpireDate === "success") && (this.props.location.pathname === "/videoList")) {
       var expired = false;
+      var inBefore7days = false;
       if (user && user.expire_date) {
         const currentDate = new Date().getTime();
         const expireDate = new Date(user.expire_date).getTime();
-        expired = (currentDate > expireDate);
+        expired = (currentDate > expireDate); //เช็คว่าหมดอายุหรือยัง
+
+        var before7days = new Date(user.expire_date);
+        before7days.setDate(before7days.getDate() - 7);
+        before7days.setHours(0, 0, 0);
+        const before7daysStart = new Date(before7days).getTime();
+        before7days.setHours(23, 59, 59);
+        const before7daysEnd = new Date(before7days).getTime();
+        inBefore7days = ((currentDate >= before7daysStart) && (currentDate <= before7daysEnd)); //เช็คว่าอยู่ในช่วงวันที่7 ก่อนที่จะหมดอายุ
       }
       if (expired) {
         document.getElementById("modalExpireClick").click();
+      }
+      if (inBefore7days) {
+        document.getElementById("modalBefore7daysClick").click();
       }
     }
   }
@@ -190,6 +192,76 @@ class App extends Component {
                     ชำระเงิน
                   </button>
                 </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </>
+    )
+  }
+  renderBefore7days() {
+    const { register_log } = this.props;
+    const currRound = register_log && register_log[register_log.length - 1];
+    console.log("currRound: ",);
+
+    return (
+      <>
+        <div style={{ display: 'none' }}>
+          <button type="button" className="btn btn-primary" id="modalBefore7daysClick" data-bs-toggle="modal" data-bs-target="#modalBefore7days">
+            Launch demo modal
+          </button>
+        </div>
+        <div className="modal fade" id="modalBefore7days" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div className="modal-dialog modal-dialog-centered">
+            <div className="modal-content">
+              <div className="modal-header">
+                <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div className="modal-bodyExpire">
+                <p className="headText-expire bold">
+                  สิทธิ์การใช้งาน BebeStayFit
+                  <br />จะหมดอายุในอีก 7 วัน
+                </p>
+                {
+                  (currRound && (currRound.round > 1) && (currRound.payment_type === 'credit_card')) ?
+                    <p className="boxText-expire">
+                      หลังสิทธิ์การใช้งาน Bebe stay fit หมดอายุ <br />
+                      จะมีการเรียกเก็บเงินตามช่องทางที่คุณได้เลือกไว้
+                    </p>
+                    :
+                    <p className="boxText-expire">
+                      หากคุณต้องการต้องการเข้าร่วมโปรแกรม <br />
+                      Bebe Stay Fit ต่อ <br />
+                      กรุณาคลิกชำระเงินด้านล่าง
+                    </p>
+                }
+
+                {
+                  (currRound && (currRound.round > 1) && (currRound.payment_type === 'credit_card')) ?
+                    <div className="btn-expire">
+                      <button
+                        type="button"
+                        class="btn  bottom-pinkLogin font-size6 col-10 col-sm-10 col-md-10 col-lg-10"
+                        data-bs-dismiss="modal"
+                        onClick={() => document.getElementById("modalBefore7daysClick").click()}
+                      >
+                        ปิด
+                      </button>
+                    </div>
+                    :
+                    <div className="btn-expire">
+                      <button
+                        type="button"
+                        class="btn  bottom-pinkLogin font-size6 col-10 col-sm-10 col-md-10 col-lg-10"
+                        data-bs-dismiss="modal"
+                        onClick={() => this.props.history.push('/subscription_payment')}
+                      >
+                        ชำระเงิน
+                      </button>
+                    </div>
+                }
+
               </div>
             </div>
           </div>
@@ -378,6 +450,7 @@ class App extends Component {
           <div className="App">
             {this.renderNavbar()}
             {this.renderExpired()}
+            {this.renderBefore7days()}
 
             <header className="App-header ">
               <Switch>
@@ -443,7 +516,8 @@ class App extends Component {
   }
 }
 
-const mapStateToProps = ({ authUser, settings }) => {
+const mapStateToProps = ({ authUser, get, settings }) => {
+  const { register_log } = get;
   const { user, statusGetExpireDate } = authUser;
   let locale;
   if (settings) {
@@ -451,14 +525,15 @@ const mapStateToProps = ({ authUser, settings }) => {
   } else {
     locale = "th";
   }
-  return { user, statusGetExpireDate, locale };
+  return { user, statusGetExpireDate, register_log, locale };
 };
 
 const mapActionsToProps = {
   logoutUser,
   clearCreateUser,
   clearProgram,
-  changeLocale
+  changeLocale,
+  getRegister_log
 };
 
 

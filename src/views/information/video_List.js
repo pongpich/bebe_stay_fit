@@ -37,6 +37,7 @@ import { loadingLogo } from "aws-amplify";
 import { connect } from "react-redux";
 import { videoListForUser, createWeeklyStayfitProgram, updatePlaytime, randomVideo, selectChangeVideo, updatePlaylist, updateBodyInfo } from "../../redux/exerciseVideos"
 import { getExpireDate, checkUpdateMaxFriends } from "../../redux/auth"
+import { getRegister_log } from "../../redux/get"
 import { getDailyWeighChallenge, postDailyWeighChallenge } from "../../redux/challenges"
 import { convertFormatTime, convertSecondsToMinutes } from "../../helpers/utils"
 import { completeVideoPlayPercentage, minimumVideoPlayPercentage, updateFrequency } from "../../constants/defaultValues";
@@ -127,6 +128,8 @@ class videoList extends React.Component {
       }
 
       this.props.getExpireDate(user.email);
+
+      this.props.getRegister_log(user.user_id);
 
       this.props.getDailyWeighChallenge(user.user_id);
 
@@ -2590,14 +2593,15 @@ class videoList extends React.Component {
   }
 }
 
-const mapStateToProps = ({ authUser, exerciseVideos, challenges }) => {
+const mapStateToProps = ({ authUser, get, exerciseVideos, challenges }) => {
+  const { register_log } = get;
   const { user } = authUser;
   const { dailyWeighChallenge, statusPostDailyWeighChallenge, statusGetDailyWeighChallenge } = challenges;
   const { exerciseVideo, statusVideoList, video, videos, status } = exerciseVideos;
-  return { user, exerciseVideo, statusVideoList, video, videos, status, dailyWeighChallenge, statusPostDailyWeighChallenge, statusGetDailyWeighChallenge };
+  return { register_log, user, exerciseVideo, statusVideoList, video, videos, status, dailyWeighChallenge, statusPostDailyWeighChallenge, statusGetDailyWeighChallenge };
 };
 
-const mapActionsToProps = { videoListForUser, createWeeklyStayfitProgram, updatePlaytime, randomVideo, selectChangeVideo, updatePlaylist, updateBodyInfo, getExpireDate, getDailyWeighChallenge, postDailyWeighChallenge, checkUpdateMaxFriends };
+const mapActionsToProps = { videoListForUser, createWeeklyStayfitProgram, updatePlaytime, randomVideo, selectChangeVideo, updatePlaylist, updateBodyInfo, getExpireDate, getDailyWeighChallenge, postDailyWeighChallenge, checkUpdateMaxFriends, getRegister_log };
 
 export default connect(
   mapStateToProps,
