@@ -24,7 +24,7 @@ class SubscriptionPayment extends React.Component {
     this.state = {
       onFocus: "btn btn-outline-pinkFocus",
       notFocus: "btn btn-outline-pink",
-      paymentMethod: "qrCode",
+      paymentMethod: "creditCard",
       price: (this.props.user.program_id === "test") ? 1 : 1800, // 1บาท สำหรับเทส / 1800บาท สำหรับใช้จริง
       productName: "bebe stay fit",
       name: this.props.delivery_address && `${JSON.parse(this.props.delivery_address).firstname} ${JSON.parse(this.props.delivery_address).lastname}`,
@@ -120,7 +120,7 @@ class SubscriptionPayment extends React.Component {
 
   onPay() {
     const { price, name, cardNumber, expirationMonth, expirationYear, securityCode, status_payment, pageUrl } = this.state;
-    const { create_user_email, create_user_phone, program, history, products_list, delivery_address, receipt_address } = this.props;
+    const { create_user_email, create_user_phone, program, history, products_list, delivery_address, receipt_address, user } = this.props;
 
     const baseURL = "https://api.gbprimepay.com";
     const tokenURL = `${baseURL}/v2/tokens`; // Test URL: https://api.globalprimepay.com/v2/tokens , Production URL: https://api.gbprimepay.com/v2/tokens
@@ -129,6 +129,13 @@ class SubscriptionPayment extends React.Component {
     const publicToken = "Basic " + btoa(publicKey + ":");
     const secretKey = "e8Fl2oVu6i5sQ96XalBvQWbbBBFZsrzt";
     const secretToken = "Basic " + btoa(secretKey + ":")
+
+    var ccButton = document.getElementById("cc_button");
+    ccButton.style.display = "none";
+    setTimeout(() => {
+      ccButton.style.display = "block";
+    }, 3000);
+
     let config = {
       headers: {
         Authorization: publicToken,
@@ -144,6 +151,7 @@ class SubscriptionPayment extends React.Component {
         securityCode: securityCode
       }
     };
+
     axios
       .post(tokenURL, tokenData, config)
       .then(function (response) {
@@ -154,8 +162,7 @@ class SubscriptionPayment extends React.Component {
           const recurringData = {
             processType: "I",
             referenceNo,
-            /* recurringAmount: price * 12, */
-            recurringAmount: 3 * 12,
+            recurringAmount: price * 12,
             recurringInterval: "M",
             recurringCount: 12,
             recurringPeriod: "01",
@@ -163,8 +170,8 @@ class SubscriptionPayment extends React.Component {
             cardToken: card.token,
             backgroundUrl: "https://api.planforfit.com/bebefit/recurring", // for staging: https://api.planforfit.com/bebedev/recurring
             customerName: name,
-            customerEmail: create_user_email,
-            customerTelephone: create_user_phone,
+            customerEmail: user && user.email,
+            customerTelephone: user && user.phone,
           }
 
           const recurringConfig = {
@@ -247,12 +254,7 @@ class SubscriptionPayment extends React.Component {
               <h6 style={{ color: "red" }}>ระบบเรียกเก็บเงินไม่สำเร็จกรุณาตรวจสอบข้อมูลบัตรให้ถูกต้องอีกครั้ง หรือเปลี่ยนวิธีการชำระเงิน</h6>
             }
             <div className="col-12 col-sm-12 col-md-12 col-lg-12 center2 mb-4">
-              {
-                (this.props.user && this.props.user.email === "akkewach.yodsomboon@gmail.com") &&
-                <div>
-                  <button type="button" className={(this.state.paymentMethod === "creditCard") ? this.state.onFocus : this.state.notFocus} onClick={e => this.pinkModelFocus("1")}>บัตรเครดิต/เดบิต</button>&nbsp;&nbsp;&nbsp;
-                </div>
-              }
+              <button type="button" className={(this.state.paymentMethod === "creditCard") ? this.state.onFocus : this.state.notFocus} onClick={e => this.pinkModelFocus("1")}>บัตรเครดิต/เดบิต</button>&nbsp;&nbsp;&nbsp;
               <button type="button" className={(this.state.paymentMethod === "qrCode") ? this.state.onFocus : this.state.notFocus} onClick={e => this.pinkModelFocus("2")}>ชำระด้วย QR Code</button>
             </div>
             {
