@@ -72,9 +72,9 @@
     var pageUrl = window.location.href;
     var thankyouPageUrl;
     if (pageUrl.includes("localhost") || pageUrl.includes("127.0.0.1")) {
-      thankyouPageUrl = 'http://localhost:3000/#/videoList' //สำหรับเทส
+      thankyouPageUrl = 'http://localhost:3000/#/subscription_success' //สำหรับเทส
     } else {
-      thankyouPageUrl = 'https://fit.bebefitroutine.com/#/videoList' //สำหรับใช้จริง
+      thankyouPageUrl = 'https://fit.bebefitroutine.com/#/subscription_success' //สำหรับใช้จริง
     }
 
     document.getElementById('dummyframe').style.display = "block";

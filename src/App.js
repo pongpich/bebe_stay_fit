@@ -19,6 +19,7 @@ import EditProfile from "./views/profile/editProfile";
 import Cancel_Package from "./views/profile/cancel_package";
 import Cancel_Package_New from "./views/profile/cancel_package_new";
 import Cancel_Package_Succeed from "./views/profile/cancel_packag_succeed";
+import Subscription_Success from "./views/information/subscription_success";
 import ProgramPackage from "./views/programPackage";
 import videoList from "./views/information/video_List";
 import group49 from "./views/images/group49.png";
@@ -414,6 +415,7 @@ class App extends Component {
                 <Route path='/cancel_package' component={Cancel_Package} />
                 <Route path='/cancel_package_new' component={Cancel_Package_New} />
                 <Route path='/cancel_package_succeed' component={Cancel_Package_Succeed} />
+                <Route path='/subscription_success' component={Subscription_Success} />
                 <Route path='/programPackage' component={ProgramPackage} />
                 <Route path='/videoList' component={videoList} />
                 <Route path='/qr_checkout' render={() => { window.location.href = "qr_checkout.html" }} />

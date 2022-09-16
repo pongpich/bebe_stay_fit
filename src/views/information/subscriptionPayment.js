@@ -186,7 +186,7 @@ class SubscriptionPayment extends React.Component {
               const { resultCode } = recurring_resp.data;
               console.log("Response from recurring service: ", recurring_resp, resultCode);
               if (resultCode === "00") {
-                history.push('/videoList');
+                history.push('/subscription_success');
               } else {
                 if (pageUrl.includes("localhost") || pageUrl.includes("127.0.0.1")) {
                   window.location.href = "http://localhost:3000/#/subscription_payment?status=unsuccess";
