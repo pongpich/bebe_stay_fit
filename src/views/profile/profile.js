@@ -104,9 +104,9 @@ class Profile extends React.Component {
                                 <button className="btn bottom-outlineGrey margin-top-3" type="button" onClick={() => this.props.history.push('/cancel_package')}>
                                   ยกเลิกแพ็กเกจ
                                 </button>
-                                     <button className="btn bottom-outlineGrey margin-top-3" type="button"   onClick={() => this.props.history.push('/cancel_package_new')}>
-                               ยกเลิกแพ็กเกจ New
-                             </button> 
+                                {/* <button className="btn bottom-outlineGrey margin-top-3" type="button"   onClick={() => this.props.history.push('/cancel_package_new')}>
+                                  ยกเลิกแพ็กเกจ New
+                                </button>  */}
                               </div>
                             </div>
                           </div>
