@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import rectangle472 from "../../assets/img/rectangle472.png";
+import rectangle473 from "../../assets/img/rectangle473.png";
 
 const reason = ["โปรดเลือกเหตุผล", "ได้น้ำหนักหรือรูปร่างตามเป้าหมายแล้ว", "เหตุผลด้านราคา", "ไม่ค่อยได้ใช้บริการนี้", "ไม่พอใจกับโปรแกรมออกกำลังกาย",
     "ไม่พอใจกับผลิตภัณฑ์", "ไม่พอใจกับผลลัพธ์ที่ได้", "เจอโปรแกรมที่ดีกว่า", "เจอผลิตภัณฑ์ที่ดีกว่า"
@@ -13,7 +14,7 @@ class Cancel_package_new extends Component {
             no_reason_choose: false,
             program: null,
             product: null,
-            start_cancel: "choose_reason"
+            start_cancel: "price_reason"
         };
     }
 
@@ -124,19 +125,22 @@ class Cancel_package_new extends Component {
         return (
             <>
                 <div className="centerx-y">
-                    <div className="col-12 col-sm-12 col-md-12 col-lg-8">
+                    <div className="col-12 col-sm-10 col-md-12 col-lg-9">
                         <div className="box-reason">
                             <div class="">
                                 <div class="row justify-content-md-center">
-                                    <div class="col-12 col-sm-12 col-md-5 col-lg-5">
+                                    <div class="col-12 col-sm-12 col-md-6 col-lg-5">
                                         <img src={rectangle472} alt="vector" className="rectangle472" />
                                     </div>
-                                    <div class="col-12 col-sm-12 col-md-7 col-lg-7">
+                                    <div class="col-12 col-sm-12 col-md-6 col-lg-7">
                                         <div className="box-reason2">
                                             <p className="font-reason">ยกเลิกบริการ Bebe Stay Fit สำเร็จ</p>
-                                            <p className="font-reason2">ออกกำลังกายและคุมอาหารอย่างสม่ำเสมอ <br /> เพื่อหุ่นและสุขภาพที่ดีอย่างยั่งยืนกันนะคะ</p>
+                                            <p className="font-reason2">หุ่นในฝันไม่ไกลเกินเอื้อม คุณทำได้</p>
+                                            <p className="font-reason3">โปรแกรมของเราอาจจะเหนื่อย และยากในช่วงแรก<br />
+                                                แต่อย่าเพิ่งท้อนะคะ เพราะคุณจะแข็งแรง <br />
+                                                และทำได้ดีขึ้นอย่างแน่นอน หุ่นในฝันไม่ไกลเกินเอื้อม <br /> เบเบ้เป็นกำลังใจให้ค่ะ :)</p>
                                             <div className="d-grid gap-2  mx-auto   col-10 col-sm-10  col-md-10 col-lg-10">
-                                                <button className="btn bottom-pink bold-reason" type="button" onClick={() => this.props.history.push('/profile')}>
+                                                <button className="btn bottom-pink2 bold-reason" type="button" onClick={() => this.props.history.push('/profile')}>
                                                     กลับหน้าโปรไฟล์
                                                 </button>
                                             </div>
@@ -160,12 +164,12 @@ class Cancel_package_new extends Component {
                         <div className="box-reason">
                             <div class="row justify-content-md-center">
                                 <div class="col-12 col-sm-12 col-md-5 col-lg-5 ">
-                                    <img src={rectangle472} alt="vector" className="rectangle472 center2" />
+                                    <img src={rectangle473} alt="vector" className="rectangle472 center2" />
                                 </div>
                                 <div class="col-12 col-sm-12 col-md-7 col-lg-7">
                                     <div className="box-reason2">
                                         <p className="font-reason">สมัครต่ออายุบริการวันนี้ ลดทันที 5%</p>
-                                        <p className="font-reason2">โปรโมชั่นพิเศษเฉพาะคุณ! <br />สมัครต่ออายุบริการวันนี้ ลดทันที 5%</p>
+                                        <p className="font-reason2">โปรโมชั่นพิเศษเฉพาะคุณ! </p>
                                         <div className="col-12 col-sm-12 col-md-12 col-lg-12">
                                             <div className="center reason-top">
                                                 <button type="button" className="btn bottom-reasonLeft bold-reason" data-bs-toggle="modal" data-bs-target="#exampleModal" >รับข้อเสนอ</button>
@@ -190,18 +194,18 @@ class Cancel_package_new extends Component {
                                     <div className="text-center">
                                         <p className="font-reason">ติดต่อเจ้าหน้าที่</p>
                                         <p className="font-reason2">โดยแจ้งเจ้าหน้าที่ว่า <br />“ขอรับบริการเฉพาะโปรแกรมออกกำลังกาย”</p>
-                                       <div className="center2">
-                                        <p className="font-reason2 pad_lR">Line : <span className="pad_R">xxxxxxx</span></p>
-                                        <p className="font-reason2 pad_lR">Facebook : <span  className="pad_R">xxxxxxxx</span></p>
-                                        <p className="font-reason2 pad_lR">โทร : <span  className="pad_R">028216146</span></p>
-                                       </div>
+                                        <div className="center2">
+                                            <p className="font-reason2 pad_lR">Line : <span className="pad_R">xxxxxxx</span></p>
+                                            <p className="font-reason2 pad_lR">Facebook : <span className="pad_R">xxxxxxxx</span></p>
+                                            <p className="font-reason2 pad_lR">โทร : <span className="pad_R">028216146</span></p>
+                                        </div>
                                     </div>
                                 </div>
                                 <div className="d-grid gap-2  mx-auto   col-10 col-sm-10  col-md-10 col-lg-10 margin-top-2 ">
-                                <button className="btn bottom-pink" type="button"  data-bs-dismiss="modal" aria-label="Close" >
-                                    ปิด
-                                </button>
-                            </div>
+                                    <button className="btn bottom-pink" type="button" data-bs-dismiss="modal" aria-label="Close" >
+                                        ปิด
+                                    </button>
+                                </div>
                             </div>
                         </div>
                     </div>
