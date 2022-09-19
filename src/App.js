@@ -357,11 +357,11 @@ class App extends Component {
                     {
                       (user && user.other_attributes) &&
                       <>
-                        <li id="videolist_btn" className="nav-item">
-                          <a className={this.state.colorVideo} onClick={() => this.onClickNavbar("videoList")} ><IntlMessages id="navbarHome.exerciseprogram" /></a>
+                        <li className="nav-item">
+                          <a id="videolist_btn" className={this.state.colorVideo} onClick={() => this.onClickNavbar("videoList")} ><IntlMessages id="navbarHome.exerciseprogram" /></a>
                         </li>
-                        <li id="food-supplement_btn" className="nav-item">
-                          <a className={this.state.colorFood} onClick={() => this.onClickNavbar("food_supplement")}><IntlMessages id="navbarHome.foodsupplements" /></a>
+                        <li className="nav-item">
+                          <a id="food-supplement_btn" className={this.state.colorFood} onClick={() => this.onClickNavbar("food_supplement")}><IntlMessages id="navbarHome.foodsupplements" /></a>
                         </li>
                       </>
                     }
