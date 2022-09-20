@@ -13,6 +13,7 @@ import { connect } from "react-redux";
 import { getUserProgram } from "../../redux/exerciseProgram"
 import { insertSubscriptionProducts } from "../../redux/createUser"
 import { getSubscriptionProducts } from "../../redux/get"
+import { cancelRecurring } from "../../redux/auth";
 
 import axios from 'axios';
 import moment from 'moment';
@@ -58,6 +59,8 @@ class subscriptionDiscount extends React.Component {
     const { user } = this.props;
     if (user === null) {
       this.props.history.push('/home');
+    } else {
+      this.props.cancelRecurring(this.props.user.user_id);
     }
     this.props.getSubscriptionProducts(user.user_id);
 
@@ -406,7 +409,7 @@ const mapStateToProps = ({ authUser, createUser, exerciseProgram, get }) => {
 };
 
 
-const mapActionsToProps = { getUserProgram, insertSubscriptionProducts, getSubscriptionProducts };
+const mapActionsToProps = { getUserProgram, insertSubscriptionProducts, getSubscriptionProducts, cancelRecurring };
 
 export default connect(
   mapStateToProps,
