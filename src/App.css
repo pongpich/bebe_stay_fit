@@ -4581,10 +4581,20 @@ tr:last-child td:last-child {
   padding-right: 20px;
 }
 .pad_lR {
-  padding-left: 30px;
-  padding-right: 30px;
+  padding-left: 70px;
+  padding-right: 70px;
   display: flex;
-  justify-content: start;
+  justify-content: space-between;
+}
+.pad_R {
+  color: #007CFF;
+}
+.time-open {
+  padding-left: 70px;
+  padding-right: 70px;
+  text-align: left;
+  margin-top: -20px;
+  font-size: 14px;
 }
 
 .bottom-reasonLeft {

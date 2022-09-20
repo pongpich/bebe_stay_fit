@@ -14,7 +14,7 @@ class Cancel_package_new extends Component {
             no_reason_choose: false,
             program: null,
             product: null,
-            start_cancel: "price_reason"
+            start_cancel: "choose_reason"
         };
     }
 
@@ -193,12 +193,13 @@ class Cancel_package_new extends Component {
                                 <div className="modal-bodyChallenge">
                                     <div className="text-center">
                                         <p className="font-reason">ติดต่อเจ้าหน้าที่</p>
-                                        <p className="font-reason2">โดยแจ้งเจ้าหน้าที่ว่า <br />“ขอรับบริการเฉพาะโปรแกรมออกกำลังกาย”</p>
-                                        <div className="center2">
-                                            <p className="font-reason2 pad_lR">Line : <span className="pad_R">xxxxxxx</span></p>
-                                            <p className="font-reason2 pad_lR">Facebook : <span className="pad_R">xxxxxxxx</span></p>
+                                        <p className="font-reason2">เพื่อรับส่วนลด 5%  <br />สำหรับการต่ออายุคอร์ส Bebe Stay Fit</p>
+                                            <p className="font-reason2 pad_lR">Line :<span className="pad_R">@fitto (มีแอด)</span></p>
+                                            <p className="time-open">ทุกวัน 8:00 - 00:00</p>
+                                            <p className="font-reason2 pad_lR">Facebook : <span className="pad_R">m.me/fittothai</span></p>
+                                            <p className="time-open">ทุกวัน 8:00 - 00:00</p>
                                             <p className="font-reason2 pad_lR">โทร : <span className="pad_R">028216146</span></p>
-                                        </div>
+                                            <p className="time-open">ทุกวัน 8:00 - 00:00</p>
                                     </div>
                                 </div>
                                 <div className="d-grid gap-2  mx-auto   col-10 col-sm-10  col-md-10 col-lg-10 margin-top-2 ">
