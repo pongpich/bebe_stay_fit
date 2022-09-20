@@ -73,6 +73,11 @@
     height: 85% !important;
 
   }
+  .information-box4 {
+
+    height: 85% !important;
+
+  }
 
   .marginTopMd5 {
     margin-top: 10px;
@@ -351,6 +356,9 @@
   .information-box3 {
     background-color: inherit !important;
   }
+  .information-box4 {
+    background-color: inherit !important;
+  }
 
 
   .studio-mask {
@@ -514,6 +522,12 @@
   }
 
   .information-box3 {
+    padding: 30px 20px 0px 20px;
+    background-color: #ffffff;
+    z-index: 3 !important;
+    min-height: 95vh;
+  }
+  .information-box4 {
     padding: 30px 20px 0px 20px;
     background-color: #ffffff;
     z-index: 3 !important;
@@ -699,6 +713,13 @@
     z-index: 3 !important;
     min-height: 95vh;
     box-shadow: 2px 17px 13px 6px #bababa;
+  }
+  .information-box4 {
+    padding: 30px 20px 0px 20px;
+    background-color: #ffffff !important;
+    z-index: 3 !important;
+    min-height: 95vh;
+   /*  box-shadow: 2px 17px 13px 6px #bababa; */
   }
 
   .padding-left3 {

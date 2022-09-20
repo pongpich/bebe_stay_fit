@@ -39,7 +39,7 @@ class CancelPackageSucceed extends React.Component {
                 <img src={Rectangle28} alt="vector" className="studio-session" />
               </div>
             </div>
-            <div className="col-12 col-sm-12 col-md-7 col-lg-7 padding-top information-box3">
+            <div className="col-12 col-sm-12 col-md-7 col-lg-7 padding-top information-box4">
               <div className="padding-top3 text-center box-welcome">
                 <p className="border-bottom "></p>
                 <p className="font-size8  bold color1">ต่ออายุ Bebe Stay Fit สำเร็จ</p>
