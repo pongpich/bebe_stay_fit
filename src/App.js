@@ -10,6 +10,7 @@ import Shipping_Address from "../src/views/information/shipping_address";
 import EditShipping_Address from "../src/views/information/edit_shipping_address";
 import Payment from "../src/views/information/payment";
 import SubscriptionPayment from "../src/views/information/subscriptionPayment";
+import subscriptionDiscount from "../src/views/information/subscriptionDiscount";
 import Welcome_NewMember from "../src/views/information/welcome_new_member";
 import Basic_Information from "../src/views/information/basic_information";
 import Your_Program from "../src/views/information/your_program";
@@ -484,6 +485,7 @@ class App extends Component {
                 <Route path='/edit_shipping_address' component={EditShipping_Address} />
                 <Route path='/payment' component={Payment} />
                 <Route path='/subscription_payment' component={SubscriptionPayment} />
+                <Route path='/subscription_discount' component={subscriptionDiscount} />
                 <Route path='/welcome_new_nember' component={Welcome_NewMember} />
                 <Route path='/basic_information' component={Basic_Information} />
                 <Route path='/your_program' component={Your_Program} />
