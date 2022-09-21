@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 import { connect } from "react-redux";
 import { getUserProgram } from "../../redux/exerciseProgram";
 /* import { selectProducts, clearSelectProducts } from "../../redux/shippingAddress" */
- import {updateFittoPlant } from "../../redux/update" ;
+import { updateFittoPlant } from "../../redux/update";
 
 
 class Fitto_Plant_Protein extends React.Component {
@@ -29,6 +29,7 @@ class Fitto_Plant_Protein extends React.Component {
         "สตรอว์เบอร์รี่ ครัช"
       ],
       fittoPlant: "default",
+      discount: false,
     };
   }
   th_EnProtein() {
@@ -66,12 +67,11 @@ class Fitto_Plant_Protein extends React.Component {
     }
   }
   componentDidMount() {
-    const { user_program_id, create_user_email, locale ,products_list} = this.props;
-
+    const { user_program_id, create_user_email, locale, products_list } = this.props;
 
     this.props.getUserProgram(create_user_email);
- /*  this.props.clearSelectProducts() */
-     const products = JSON.parse(products_list);
+    /*  this.props.clearSelectProducts() */
+    const products = JSON.parse(products_list);
 
     if (user_program_id) { //ถ้ามี user_program_id แสดงว่าชำระเงินสำเร็จแล้ว
       this.props.history.push('/welcome_new_nember');
@@ -93,7 +93,7 @@ class Fitto_Plant_Protein extends React.Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    const { user_program_id, products_list, locale,fittoPlant } = this.props;
+    const { user_program_id, products_list, locale, fittoPlant } = this.props;
     if (prevProps.user_program_id !== user_program_id) {
       this.props.history.push('/welcome_new_nember');
     }
@@ -106,24 +106,29 @@ class Fitto_Plant_Protein extends React.Component {
   }
 
   onNextPage() {
-    const {user} = this.props
+    const { user } = this.props
     const { valuebox1, valuebox2, valuebox3 } = this.state;
-    const products_list = { "product1": valuebox1, "product2": valuebox2, "product3": valuebox3}
+    const products_list = { "product1": valuebox1, "product2": valuebox2, "product3": valuebox3 }
     console.log("products_list :", products_list)
-    this.props.updateFittoPlant(user.user_id,products_list);
+    this.props.updateFittoPlant(user.user_id, products_list);
     var delayInMilliseconds = 2000; //1.3 second
 
     if (this.props.fittoPlant === "success") {
+      this.setState({
+        fittoPlant: "success",
+      })
+      const discount = localStorage.getItem('discount');
+      if (discount === 'true') {
+        this.props.history.push('/subscription_discount');
+      } else {
+        this.props.history.push('/subscription_payment');
+      }
+      setTimeout(() => { // หน่วงเวลา แล้วค่อย setState 
         this.setState({
-          fittoPlant: "success",
+          fittoPlant: "default",
+
         })
-        this.props.history.push('/subscription_payment'); 
-        setTimeout(() => { // หน่วงเวลา แล้วค่อย setState 
-            this.setState({
-              fittoPlant: "default",
-             
-            })
-        }, delayInMilliseconds);
+      }, delayInMilliseconds);
     }
 
   }
@@ -143,8 +148,8 @@ class Fitto_Plant_Protein extends React.Component {
 
 
   render() {
-    const { fitto,valuebox1,valuebox2,valuebox3 } = this.state;
-console.log("user",this.props.fittoPlant);
+    const { fitto, valuebox1, valuebox2, valuebox3 } = this.state;
+    console.log("user", this.props.fittoPlant);
     return (
       <>
         <div className="col-12 col-sm-12 col-md-12 col-lg-12 App-headerBackground center2 padding-top2 ">
@@ -158,8 +163,8 @@ console.log("user",this.props.fittoPlant);
                 <p className="img-p"> <IntlMessages id="register.chooseYouflavor" /></p>
               </div>
               <div className="ellipse-text  col-2 col-sm-2 col-md-2 col-lg-2">
-               {/*  <img src={ellipse_078} alt="vector" /> */}
-               <div className="border-circleWhite"></div>
+                {/*  <img src={ellipse_078} alt="vector" /> */}
+                <div className="border-circleWhite"></div>
                 <p className="img-p"> <IntlMessages id="register.deliveryAddress" /></p>
               </div>
               <div className="ellipse-text  col-2 col-sm-2 col-md-2 col-lg-2">
@@ -181,11 +186,11 @@ console.log("user",this.props.fittoPlant);
                   <div>
                     <label className="form-label bold font-size4"><IntlMessages id="fitto_plant_protein.box1" /></label>
                     <select className="form-select" onChange={this.boxFitto} name="box1" aria-label="Default select example">
-                       <option  value={valuebox1}>{valuebox1}</option>
-                      {fitto.map((fitto, i) =>(
-                        valuebox1 !==  fitto ?
-                        <option key={i} value={fitto}>{fitto}</option>
-                         : null
+                      <option value={valuebox1}>{valuebox1}</option>
+                      {fitto.map((fitto, i) => (
+                        valuebox1 !== fitto ?
+                          <option key={i} value={fitto}>{fitto}</option>
+                          : null
                       )
                       )}
                     </select>
@@ -193,11 +198,11 @@ console.log("user",this.props.fittoPlant);
                   <div className="padding-top2">
                     <label className="form-label bold font-size4"><IntlMessages id="fitto_plant_protein.box2" /></label>
                     <select className="form-select" onFocus={this.boxFitto} onChange={this.boxFitto} name="box2" aria-label="Default select example">
-                    <option  value={valuebox2}>{valuebox2}</option>
-                      {fitto.map((fitto, i) =>(
-                        valuebox2 !==  fitto ?
-                        <option key={i} value={fitto}>{fitto}</option>
-                         : null
+                      <option value={valuebox2}>{valuebox2}</option>
+                      {fitto.map((fitto, i) => (
+                        valuebox2 !== fitto ?
+                          <option key={i} value={fitto}>{fitto}</option>
+                          : null
                       )
                       )}
                     </select>
@@ -205,11 +210,11 @@ console.log("user",this.props.fittoPlant);
                   <div className="padding-top2">
                     <label className="form-label bold font-size4"><IntlMessages id="fitto_plant_protein.box3" /></label>
                     <select className="form-select" onChange={this.boxFitto} name="box3" aria-label="Default select example">
-                    <option  value={valuebox3}>{valuebox3}</option>
-                      {fitto.map((fitto, i) =>(
-                        valuebox3 !==  fitto ?
-                        <option key={i} value={fitto}>{fitto}</option>
-                         : null
+                      <option value={valuebox3}>{valuebox3}</option>
+                      {fitto.map((fitto, i) => (
+                        valuebox3 !== fitto ?
+                          <option key={i} value={fitto}>{fitto}</option>
+                          : null
                       )
                       )}
                     </select>
@@ -234,11 +239,11 @@ console.log("user",this.props.fittoPlant);
   }
 }
 
-const mapStateToProps = ({ createUser, exerciseProgram, shippingAddress, settings,get ,authUser,update}) => {
+const mapStateToProps = ({ createUser, exerciseProgram, shippingAddress, settings, get, authUser, update }) => {
   const { create_user_email } = createUser;
   const { user_program_id } = exerciseProgram;
-/*   const { products_list } = shippingAddress; */
-  const { fittoPlant } = update; 
+  /*   const { products_list } = shippingAddress; */
+  const { fittoPlant } = update;
   let locale;
   if (settings) {
     locale = settings.locale;
@@ -247,7 +252,7 @@ const mapStateToProps = ({ createUser, exerciseProgram, shippingAddress, setting
   }
   const { user } = authUser;
   const { delivery_address, products_list } = get;
-  return { create_user_email, user_program_id, products_list, locale ,user,fittoPlant};
+  return { create_user_email, user_program_id, products_list, locale, user, fittoPlant };
 };
 
 const mapActionsToProps = { getUserProgram, updateFittoPlant };

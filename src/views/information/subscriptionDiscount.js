@@ -76,6 +76,7 @@ class subscriptionDiscount extends React.Component {
     window.localStorage.setItem('name', name);
     window.localStorage.setItem('email', email);
     window.localStorage.setItem('phone', phone);
+    window.localStorage.setItem('discount', true);
     window.scrollTo(0, 0);
   }
 

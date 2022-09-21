@@ -70,6 +70,7 @@ class SubscriptionPayment extends React.Component {
     window.localStorage.setItem('name', name);
     window.localStorage.setItem('email', email);
     window.localStorage.setItem('phone', phone);
+    window.localStorage.setItem('discount', false);
     window.scrollTo(0, 0);
   }
 
