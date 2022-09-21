@@ -21,12 +21,20 @@ class Cancel_package_new extends Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    const { statusCancelRecurring } = this.props;
+    const { statusCancelRecurring, user } = this.props;
 
     if ((prevProps.statusCancelRecurring !== statusCancelRecurring) && (statusCancelRecurring === 'success')) {
       this.setState({
         start_cancel: "succeed"
       })
+    }
+    //เพิ่มมาสำหรับ akkewach.yodsomboon@gmail.com ใช้ Demo
+    if ((prevProps.statusCancelRecurring !== statusCancelRecurring) && (statusCancelRecurring === 'fail')) {
+      if (user && (user.email === "akkewach.yodsomboon@gmail.com")) {
+        this.setState({
+          start_cancel: "succeed"
+        })
+      }
     }
   }
 
