@@ -30,6 +30,7 @@ import Food_supplement from './views/information/food_supplement';
 import Reset_password from './views/profile/reset_password';
 import Reset_password_succeed from './views/profile/reset_password_succeed';
 import New_password from './views/profile/new_password';
+import Dashboard from './views/information/dashboard';
 import Admin from './views/admin/admin';
 import { IntlProvider } from "react-intl";
 import AppLocale from "./lang";
@@ -510,6 +511,7 @@ class App extends Component {
                 <Route path='/reset_password_succeed' component={Reset_password_succeed} />
                 <Route path='/new_password' component={New_password} />
                 <Route path='/admin' component={Admin} />
+                <Route path='/dashboard' component={Dashboard} />
 
                 {/* เเก้การที่เว็บ กด F5 เเล้ว มันเปลี่ยน Url  scrollspy*/}
                 <Route path='/generalFood' component={Food_supplement} />
