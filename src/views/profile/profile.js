@@ -85,7 +85,7 @@ class Profile extends React.Component {
                               <div className="padding-top">
                                 <h4 className="color1 bold">BEBEStayFit</h4>
                               </div>
-                              <div className="padding-top2  margin-leftRight">
+                              <div className="padding-top2 left-text">
                                 <p className="font-size6 text-left2 bold between"><IntlMessages id="payment.yourPackage" />  <span className="pay-user"><IntlMessages id="payment.pay" /></span></p>
                                 {
                                   item.program_id === "subscription_stay_fit_01" ?
@@ -104,11 +104,11 @@ class Profile extends React.Component {
                                   ยกเลิกแพ็กเกจ
                                 </button> */}
                                 {
-                                 /*  (item.payment_type !== 'credit_card')  ? */
+                                  (item.payment_type !== 'credit_card')  ?
                                   <button className="btn bottom-outlineGrey margin-top-3" type="button" onClick={() => this.props.history.push('/cancel_package_new')}>
                                   ยกเลิกแพ็กเกจ
                                 </button>
-                                /*  :null */
+                                 :null
                                 }
                                 
                               </div>
