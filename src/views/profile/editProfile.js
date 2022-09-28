@@ -97,7 +97,7 @@ class EditProfile extends React.Component {
     return (
       <>
         <div className="padding-top4 center">
-          <p className="font-size6 bold color-protein"> <IntlMessages id="profile.editInformation"/></p>
+          <p className="font-size8-2 bold color-protein"> <IntlMessages id="profile.editInformation"/></p>
         </div>
         {/* <div className="col-12 col-sm-12 col-md-12 col-lg-12  center2 ">
           <div className="col-12 col-sm-12 col-md-6 col-lg-6 center2">

@@ -37,8 +37,9 @@ class Billing_history extends React.Component {
                             <div className="padding-top">
                                 <h4 className="color1 bold">BEBEStayFit</h4>
                             </div>
-                            <div className="padding-top2 margin-leftRight">
+                            <div className="padding-top2">
                                 <p className="font-size6 text-left2 bold"><IntlMessages id="payment.yourPackage"/> </p>
+                                <div className="left-text">
                                 {
 
                                     program && program.map((index, i) => {
@@ -58,18 +59,15 @@ class Billing_history extends React.Component {
                                                      :
                                                         <p className="font-size0 margin-top-1 bold between"><IntlMessages id="fitto_plant_protein.theDuration"/> <span className="color1 bold font-size0">3,990 <IntlMessages id="programPackage.baht"/></span></p>
                                                     }
-                                                       <p className=" font-size4 margin-top-1 right"><IntlMessages id="profile.cut-offdate"/> {date}</p>
+                                                       <p className=" font-size4 margin-top-1 right color3"><IntlMessages id="profile.cut-offdate"/> {date}</p>
                                                 </>
                                             )
 
                                             return name;
                                         }
                                     })
-
-
                                 }
-
-
+                                </div>
                             </div>
                         </div>
                         <div>

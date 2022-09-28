@@ -195,9 +195,8 @@ class App extends Component {
                   <br />หมดอายุแล้ว
                 </p>
                 <p className="boxText-expire">
-                  หากคุณต้องการต้องการเข้าร่วมโปรแกรม <br />
-                  Bebe Stay Fit ต่อ <br />
-                  กรุณาคลิกชำระเงินด้านล่าง
+                  หากคุณต้องการต้องการเข้าร่วมโปรแกรม
+                  Bebe Stay Fit ต่อ <br /> กรุณาคลิกชำระเงินด้านล่าง
                 </p>
                 <div className="btn-expire">
                   <button
