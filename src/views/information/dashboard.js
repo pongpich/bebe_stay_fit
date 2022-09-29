@@ -33,11 +33,11 @@ class Dashboard extends Component {
   render() {
     return (
       <div>
-        <ChallengesDashboard1 />
+       {/*  <ChallengesDashboard1 />
         <ChallengesDashboard2 />
         <ChallengesDashboard3 />
         <ChallengesDashboard4 />
-        <ChallengesDashboard5 />
+        <ChallengesDashboard5 /> */}
       </div>
     );
   }
