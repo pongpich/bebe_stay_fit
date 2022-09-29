@@ -79,7 +79,7 @@ class ChallengesDashboard5 extends Component {
                 <h5>รายชื่อผู้สมัครคอร์สออนไลน์</h5>
                 <div className="dropdownCh-Dashboard5">
                   <Dropdown isOpen={dropdownOpen} toggle={() => this.toggle()}>
-                    <DropdownToggle style={{ backgroundColor: "white", color: "black" }} caret>{season}</DropdownToggle>
+                    <DropdownToggle style={{ backgroundColor: "white", color: "black" }} className="DropdownToggle" caret>{season}</DropdownToggle>
                     <DropdownMenu>
                       {
                         challengeEvent && challengeEvent.map((item, index) => (

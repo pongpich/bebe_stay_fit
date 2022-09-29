@@ -77,7 +77,7 @@ class ChallengesDashboard1 extends Component {
               <div className="box-background">
                 <div className="dropdown">
                   <Dropdown isOpen={dropdownOpen} toggle={() => this.toggle()}>
-                    <DropdownToggle style={{ backgroundColor: "white", color: "black" }} caret>{season}</DropdownToggle>
+                    <DropdownToggle style={{ backgroundColor: "white", color: "black" }} className="DropdownToggle" caret>{season}</DropdownToggle>
                     <DropdownMenu>
                       {
                         challengeEvent && challengeEvent.map((item, index) => (
@@ -100,9 +100,9 @@ class ChallengesDashboard1 extends Component {
                 </div>
                 <br />
                 <p className="text-progress">บันทึกน้ำหนักครบ 2 ครั้ง <span className="text-progressRight"> สำเร็จ {percentCompleteOfWeightResult}% </span></p>
-                <div class="progress">
-                  <div class="progress-bar" role="progressbar" style={{ "width": `${percentCompleteOfWeightResult}%` }} aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                </div>
+                  <div class="progress">
+                    <div class="progress-bar" role="progressbar" style={{ "width": `${percentCompleteOfWeightResult}%` }} aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                  </div>
                 <br />
                 <p className="text-progress">ออกกำลังกายครบ 4 วันต่อสัปดาห์ <span className="text-progressRight"> สำเร็จ {percentCompleteOfExerciseComplete}% </span></p>
                 <div class="progress">

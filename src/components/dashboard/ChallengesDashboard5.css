@@ -6,6 +6,7 @@
     border-radius: 20px;
     margin-bottom: 25px;
     padding-bottom: 30px;
+    padding-left: 20px;
 }
 .background {
     background-color: #D8D6DF;
@@ -108,4 +109,12 @@
   padding-top: 5px;
   float: right;
   margin-bottom: 20px;
+}
+.DropdownToggle {
+    border-radius: 10px !important; 
+    border-color: #DBD3D3 !important; 
+}
+.DropdownToggle:focus {
+    box-shadow: 0 0 0 0.25rem hsl(0, 10%, 84%,0.25);
+/*     box-shadow: 0 0 0 0.25rem hsl(335, 69%, 63%, 0.25); */
 }
