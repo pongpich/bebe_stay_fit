@@ -124,16 +124,16 @@ class ChallengesDashboard1 extends Component {
                   <div class="progress-bar" role="progressbar" style={{ "width": `${percentCompleteOfReducedWeight}%` }} aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                 </div>
               </div>
-              <div class="container">
+              <div class="container ">
                 <div class="row">
                   <div class="col-md-6">
-                    <div className="gamification">
+                    <div className="gamification boxshadow ">
                       <p>จำนวนคนที่เล่น Gamification ใน season นี้</p>
                       <p className="people"> {numberOfMembersInSeason} คน</p>
                     </div>
                   </div>
                   <div class="col-6 col-md-6">
-                    <div className="active-season">
+                    <div className="active-season boxshadow">
                       <p>จำนวนคนที่ Active อยู่ในทีมมากกว่า 1 อาทิตย์</p>
                       <p className="people"> {numberOfMembersActiveMoreThan1Week} คน</p>
                     </div>
@@ -142,10 +142,10 @@ class ChallengesDashboard1 extends Component {
               </div>
             </div>
             <div class="col-6 col-md-4">
-              <div className="box-number-people">
+              <div className="box-number-people boxshadow">
                 <p>จำนวนคนที่อยู่ในทีมจนจบ season</p>
                 <p className="people"> {numberOfMembersInEndSeason} คน</p>
-                <hr />
+                <hr className="hr" />
                 <br />
                 <p>จำนวนคนที่ไม่มีทีมจนจบ season</p>
                 <p className="people"> {numberOfMembersNotInGamification} คน</p>
