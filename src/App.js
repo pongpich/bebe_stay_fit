@@ -391,6 +391,11 @@ class App extends Component {
                                     <IntlMessages id="navbarHome.admin" />
                                   </a>
                                 </li>
+                                <li className="nav-item">
+                                  <a className="dropdown-item nav-linkHead pointer" onClick={() => this.props.history.push('/dashboard')}>
+                                    Dashboard
+                                  </a>
+                                </li>
                               </>
                               : null
                           }

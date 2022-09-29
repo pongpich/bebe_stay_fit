@@ -19,10 +19,10 @@ class Dashboard extends Component {
     const { user } = this.props;
     if (user) { // เช็คว่า login ยัง
       if (user !== null && user.password !== null && user.authorization === "member") { // ถ้าเป็น member ธรรมดาจะถูกไม่สามารถเข้าหน้านี้ได้ (จะถูกส่งไปหน้า login)
-        this.props.history.push('/login');
+        this.props.history.push('/home');
       }
     } else {
-      this.props.history.push('/login');
+      this.props.history.push('/home');
     }
   }
 
@@ -33,11 +33,11 @@ class Dashboard extends Component {
   render() {
     return (
       <div>
-       {/*  <ChallengesDashboard1 />
+        <ChallengesDashboard1 />
         <ChallengesDashboard2 />
         <ChallengesDashboard3 />
         <ChallengesDashboard4 />
-        <ChallengesDashboard5 /> */}
+        <ChallengesDashboard5 />
       </div>
     );
   }
