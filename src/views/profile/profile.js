@@ -65,10 +65,12 @@ class Profile extends React.Component {
           program && program.map((item, i) => {
             const il = program.length - 1;
             if (il === i) {
-              console.log("item.created_at :", item.created_at);
-              const created_at = new Date(item.created_at);
-              console.log("created_at :", created_at);
-              const date = created_at.toLocaleString("th-TH", {
+              const splitCA = item.created_at.split("-"); //นำ created_at มา split
+              const billingCutOffDate = (Number(splitCA[1]) !== 12) ? //เช็คว่าไม่ใช่เดือนที่ 12
+                new Date(Number(splitCA[0]), Number(splitCA[1]), 1) //กำหนดวันตัดรอบบิล เป็นวันที่1 ของเดือนถัดไป โดยดูจาก created_at
+                :
+                new Date(Number(splitCA[0]) + 1, 0, 1); //กรณีเป็นเดือนที่12 วันตัดรอบบิลถัดไปต้อง​ +1ปี และเดือนกำหนดเป็นเดือนที่1(index: 0)
+              const date = billingCutOffDate.toLocaleString("th-TH", {
                 year: 'numeric',
                 month: 'long',
                 day: 'numeric',
