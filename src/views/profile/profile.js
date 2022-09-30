@@ -90,7 +90,7 @@ class Profile extends React.Component {
                                 <p className="font-size6 text-left2 bold between"><IntlMessages id="payment.yourPackage" />  <span className="pay-user"><IntlMessages id="payment.pay" /></span></p>
                                 <p className="font-size0 margin-top-1 bold between"><IntlMessages id="payment.applyProgram" /> <span className="color1 bold font-size0">1,800 <IntlMessages id="programPackage.baht" /> / <IntlMessages id="programPackage.months" /></span></p>
                                 {
-                                  (item.payment_type === 'credit_card') ?
+                                  (item.payment_type === 'credit_card') && (item.status_recurring !== 'canceled')?
                                     <p className=" font-size4 margin-top-1 right color3"><IntlMessages id="profile.cut-offdate" />  {date}</p>
                                     :
                                     null
@@ -105,7 +105,7 @@ class Profile extends React.Component {
                                   ยกเลิกแพ็กเกจ
                                 </button> */}
                                 {
-                                  (item.payment_type === 'credit_card') ?
+                                  (item.payment_type === 'credit_card') && (item.status_recurring !== 'canceled')?
                                     <button className="btn bottom-outlineGrey margin-top-3" type="button" onClick={() => this.props.history.push('/cancel_package_new')}>
                                       ยกเลิกแพ็กเกจ
                                     </button>
