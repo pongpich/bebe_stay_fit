@@ -3911,8 +3911,13 @@ tr:last-child td:last-child {
   width: auto;
   height: 100%;
   background-color: #ffffff;
-
-
+}
+.box-challenge2 {
+  margin-top: 0px;
+  padding-top: 20px;
+  width: auto;
+  height: 100%;
+  background-color: #da3e3e;
 }
 
 .box-challengeIn {

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import "./video_List.css";
 import vectorinvite from '../../assets/img/vectorinvite.png';
 import mvp_gold from '../../assets/img/mvp_gold.png';
 import mvp_copper from '../../assets/img/mvp_copper.png';
@@ -58,7 +59,10 @@ class Challenge extends Component {
       emailTeamInvite: "",
       myTeamRank: 0,
       myIndividualRank: 0,
-      numbOfFriends: 0
+      numbOfFriends: 0,
+      borderBottom1: "video-link",
+      borderBottom2: "video-link rectangle13 color1",
+      borderBottom3: "video-link",
     }
   }
 
@@ -416,50 +420,51 @@ class Challenge extends Component {
             challengePeriod ?
               <>
 
-              <nav>
+                <nav>
                   <div className="nav nav-tabs" id="nav-tab" role="tablist">
                     <button className="nav-link active col-6" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true"><IntlMessages id="challenge.teamChallenge" /></button>
                     <button className="nav-link col-6" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false"><IntlMessages id="challenge.singleChallenge" /></button>
                   </div>
-            </nav>
-            <div class="tab-content" id="nav-tabContent">
-              <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab" tabindex="0">
-                <div className="behavior">
-                  <p className="text-challenge"><IntlMessages id="challenge.completeweighing" /> <span>{numberOfMembers * 2} &nbsp;<IntlMessages id="challenge.time" /></span> </p>
-                  <p className="text-challenge"><IntlMessages id="challenge.completeweighing7" /> <span className="span-challenge">{dailyTeamWeightBonusCount}/7&nbsp;</span></p>
-                  <p className="text-comment"><IntlMessages id="challenge.resetSunday" /></p>
-                  <p className="text-comment"><IntlMessages id="challenge.scoresSunday" /></p>
-                  <p className="border-bottom"></p>
-                  <ul className="rules-bottom">
-                    <li className="li">
-                      <a className="rules" data-bs-toggle="modal" data-bs-target="#exampleModalScore"><IntlMessages id="challenge.pointsdetails" /></a>
-                    </li>
-                    <li className="li">
-                      <a className="rules" data-bs-toggle="modal" data-bs-target="#exampleModal"><IntlMessages id="challenge.rules" /></a>
-                    </li>
-                  </ul>
+                </nav>
+                <div class="tab-content" id="nav-tabContent">
+
+                  <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab" tabindex="0">
+                    <div className="behavior">
+                      <p className="text-challenge"><IntlMessages id="challenge.completeweighing" /> <span>{numberOfMembers * 2} &nbsp;<IntlMessages id="challenge.time" /></span> </p>
+                      <p className="text-challenge"><IntlMessages id="challenge.completeweighing7" /> <span className="span-challenge">{dailyTeamWeightBonusCount}/7&nbsp;</span></p>
+                      <p className="text-comment"><IntlMessages id="challenge.resetSunday" /></p>
+                      <p className="text-comment"><IntlMessages id="challenge.scoresSunday" /></p>
+                      <p className="border-bottom"></p>
+                      <ul className="rules-bottom">
+                        <li className="li">
+                          <a className="rules" data-bs-toggle="modal" data-bs-target="#exampleModalScore"><IntlMessages id="challenge.pointsdetails" /></a>
+                        </li>
+                        <li className="li">
+                          <a className="rules" data-bs-toggle="modal" data-bs-target="#exampleModal"><IntlMessages id="challenge.rules" /></a>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                  <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab" tabindex="0">
+                    <div className="behavior">
+                      <p className="text-challenge"> <IntlMessages id="challenge.weigh2" /> <span className="span-challenge"> &nbsp; {logWeightCount}/2</span></p>
+                      <p className="text-challenge"> <IntlMessages id="challenge.weightloss" /> <span className="span-challenge"> &nbsp; {isReducedWeight ? 1 : 0}/1</span></p>
+                      <p className="text-challenge"><IntlMessages id="challenge.4days" />&nbsp; {(this.props.statusVideoList !== 'no_video') ? isExerciseCompleted : 0}/4</p>
+                      <p className="text-comment"><IntlMessages id="challenge.resetSunday" /></p>
+                      <p className="text-comment"><IntlMessages id="challenge.scoresSunday" /></p>
+                      <p className="border-bottom"></p>
+                      <ul className="rules-bottom">
+                        <li className="li">
+                          <a className="rules" data-bs-toggle="modal" data-bs-target="#exampleModalScore"><IntlMessages id="challenge.pointsdetails" /></a>
+                        </li>
+                        <li className="li">
+                          <a className="rules" data-bs-toggle="modal" data-bs-target="#exampleModal"><IntlMessages id="challenge.rules" /></a>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
                 </div>
-              </div>
-              <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab" tabindex="0">
-              <div className="behavior">
-                  <p className="text-challenge"> <IntlMessages id="challenge.weigh2" /> <span className="span-challenge"> &nbsp; {logWeightCount}/2</span></p>
-                  <p className="text-challenge"> <IntlMessages id="challenge.weightloss" /> <span className="span-challenge"> &nbsp; {isReducedWeight ? 1 : 0}/1</span></p>
-                  <p className="text-challenge"><IntlMessages id="challenge.4days" />&nbsp; {(this.props.statusVideoList !== 'no_video') ? isExerciseCompleted : 0}/4</p>
-                  <p className="text-comment"><IntlMessages id="challenge.resetSunday" /></p>
-                  <p className="text-comment"><IntlMessages id="challenge.scoresSunday" /></p>
-                  <p className="border-bottom"></p>
-                  <ul className="rules-bottom">
-                    <li className="li">
-                      <a className="rules" data-bs-toggle="modal" data-bs-target="#exampleModalScore"><IntlMessages id="challenge.pointsdetails" /></a>
-                    </li>
-                    <li className="li">
-                      <a className="rules" data-bs-toggle="modal" data-bs-target="#exampleModal"><IntlMessages id="challenge.rules" /></a>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-               
+
               </>
               :
               <div>
@@ -1338,13 +1343,13 @@ class Challenge extends Component {
                         </div>
                       </>
                   }
-                  <hr className="line-hr"/>
+                  <hr className="line-hr" />
                   {
                     achievementAce ?
                       <div className="row">
                         <div className="col-12 col-sm-12 col-md-12 col-lg-12 mt-2">
                           {/* จอมือถือ */}
-                          <div className="container line-hr"  data-bs-toggle="modal" id="achievement1" data-bs-target="#modalAchievement1">
+                          <div className="container line-hr" data-bs-toggle="modal" id="achievement1" data-bs-target="#modalAchievement1">
                             <div className="row">
                               <div className="col-4 col-sm-3 col-md-2 col-lg-3 col-xl-2">
                                 <img src={`./assets/img/icon_achievement/ace.png`} width="70" height="70" className="icon_rank-img" />
@@ -1360,7 +1365,7 @@ class Challenge extends Component {
                               </div>
                             </div>
                           </div>
-                        {/* จอคอม */}
+                          {/* จอคอม */}
                           <div className="container display-btn">
                             <div className="row">
                               <div className="col-4 col-sm-3 col-md-2 col-lg-3 col-xl-2">
@@ -1402,7 +1407,7 @@ class Challenge extends Component {
                         </div>
                       </div>
                   }
-                  <hr className="line-hr"/>
+                  <hr className="line-hr" />
                   {
                     achievement1st ?
                       <div className="row">
@@ -1462,7 +1467,7 @@ class Challenge extends Component {
                       </div>
 
                   }
-                  <hr className="line-hr"/>
+                  <hr className="line-hr" />
                   {
                     achievement2nd ?
                       <div className="row">
@@ -1521,7 +1526,7 @@ class Challenge extends Component {
                         </div>
                       </div>
                   }
-                  <hr className="line-hr"/>
+                  <hr className="line-hr" />
                   {
                     achievementTop10 ?
                       <div className="row">
@@ -1563,7 +1568,7 @@ class Challenge extends Component {
                               </div>
                             </div>
                           </div>
-                          
+
                         </div>
                       </div>
                       :
@@ -1581,12 +1586,12 @@ class Challenge extends Component {
                         </div>
                       </div>
                   }
-                  <hr className="line-hr"/>
+                  <hr className="line-hr" />
                   {
                     achievementSocialStar ?
                       <div className="row">
                         <div className="col-12 col-sm-12 col-md-12 col-lg-12 mt-2">
-                        {/* จอมือถือ */}
+                          {/* จอมือถือ */}
                           <div className="container line-hr" data-bs-toggle="modal" id="achievement6" data-bs-target="#modalAchievement6">
                             <div className="row">
                               <div className="col-4 col-sm-3 col-md-2 col-lg-3 col-xl-2">
@@ -1641,7 +1646,7 @@ class Challenge extends Component {
                         </div>
                       </div>
                   }
-                  <hr className="line-hr"/>
+                  <hr className="line-hr" />
                   {
                     achievementSocialStarPlus ?
                       <div className="row">
@@ -2054,8 +2059,21 @@ class Challenge extends Component {
     const urlShare8 = 'https://fit.bebefitroutine.com/achievement/achievement8.html';
     return (
       <>
-        <div className="box-challenge">
+        <div className="box-videoCenter">
           <div className="col-12 col-sm-12 col-md-12 col-lg-12 ">
+            <div className="video-wh">
+              <ul className="video-maun">
+                <li className="video-li  video-liPadding-left marginLeftRoutine">
+                  <a id="workout_label" className={this.state.borderBottom1} name="borderBottom1" onClick={e => this.props.history.push('../videoList')}>{messages['videoList.workout']}</a>
+                </li>
+                <li className="video-li  video-liPadding-left   video-liPadding-left2">
+                  <a id="challenge_label" className={this.state.borderBottom2} name="borderBottom2" onClick={e => this.props.history.push('/challenge')}>{messages['videoList.challenge']}</a>
+                </li>
+                <li className="video-li  video-liPadding-left   video-liPadding-left2">
+                  <a id="howto_label" className={this.state.borderBottom3} name="borderBottom3" onClick={e => this.props.history.push('/exercise_method')}>{messages['videoList.exerciseaccording']}</a>
+                </li>
+              </ul>
+            </div>
             <div className="video-wh2 wh-bu">
               <ul className="challenge">
                 <li className="video-li">
@@ -2611,7 +2629,7 @@ class Challenge extends Component {
           </div>
         </div>
 
-      {/*    offcanvas */}
+        {/*    offcanvas */}
         <div class="offcanvas offcanvas-bottom" tabindex="-1" id="offcanvasBottom1" aria-labelledby="offcanvasBottomLabel">
           <div class="offcanvas-header">
             <p class="offcanvas-title" id="offcanvasBottomLabel"></p>
@@ -2619,10 +2637,10 @@ class Challenge extends Component {
           </div>
           <div class="offcanvas-body small offcanvas-index ">
             <div className="row">
-            <p class="offcanvas-title share-to" id="offcanvasBottomLabel">แชร์ไปที่</p>
+              <p class="offcanvas-title share-to" id="offcanvasBottomLabel">แชร์ไปที่</p>
               <div className="center">
                 <div className="box-shareMobile">
-                  <FacebookShareButton url={ urlShare1 }>
+                  <FacebookShareButton url={urlShare1}>
                     <img src={facebook} className="icon-share" />
                   </FacebookShareButton>
                   {/* <TwitterShareButton url={urlShare}>
@@ -2659,10 +2677,10 @@ class Challenge extends Component {
           </div>
           <div class="offcanvas-body small offcanvas-index ">
             <div className="row">
-            <p class="offcanvas-title share-to" id="offcanvasBottomLabel">แชร์ไปที่</p>
+              <p class="offcanvas-title share-to" id="offcanvasBottomLabel">แชร์ไปที่</p>
               <div className="center">
                 <div className="box-shareMobile">
-                  <FacebookShareButton url={ urlShare3 }>
+                  <FacebookShareButton url={urlShare3}>
                     <img src={facebook} className="icon-share" />
                   </FacebookShareButton>
                   {/* <TwitterShareButton url={urlShare}>
@@ -2699,10 +2717,10 @@ class Challenge extends Component {
           </div>
           <div class="offcanvas-body small offcanvas-index ">
             <div className="row">
-            <p class="offcanvas-title share-to" id="offcanvasBottomLabel">แชร์ไปที่</p>
+              <p class="offcanvas-title share-to" id="offcanvasBottomLabel">แชร์ไปที่</p>
               <div className="center">
                 <div className="box-shareMobile">
-                  <FacebookShareButton url={ urlShare4 }>
+                  <FacebookShareButton url={urlShare4}>
                     <img src={facebook} className="icon-share" />
                   </FacebookShareButton>
                   {/* <TwitterShareButton url={urlShare}>
@@ -2739,10 +2757,10 @@ class Challenge extends Component {
           </div>
           <div class="offcanvas-body small offcanvas-index ">
             <div className="row">
-            <p class="offcanvas-title share-to" id="offcanvasBottomLabel">แชร์ไปที่</p>
+              <p class="offcanvas-title share-to" id="offcanvasBottomLabel">แชร์ไปที่</p>
               <div className="center">
                 <div className="box-shareMobile">
-                  <FacebookShareButton url={ urlShare5 }>
+                  <FacebookShareButton url={urlShare5}>
                     <img src={facebook} className="icon-share" />
                   </FacebookShareButton>
                   {/* <TwitterShareButton url={urlShare}>
@@ -2779,10 +2797,10 @@ class Challenge extends Component {
           </div>
           <div class="offcanvas-body small offcanvas-index ">
             <div className="row">
-            <p class="offcanvas-title share-to" id="offcanvasBottomLabel">แชร์ไปที่</p>
+              <p class="offcanvas-title share-to" id="offcanvasBottomLabel">แชร์ไปที่</p>
               <div className="center">
                 <div className="box-shareMobile">
-                  <FacebookShareButton url={ urlShare6 }>
+                  <FacebookShareButton url={urlShare6}>
                     <img src={facebook} className="icon-share" />
                   </FacebookShareButton>
                   {/* <TwitterShareButton url={urlShare}>
@@ -2819,10 +2837,10 @@ class Challenge extends Component {
           </div>
           <div class="offcanvas-body small offcanvas-index ">
             <div className="row">
-            <p class="offcanvas-title share-to" id="offcanvasBottomLabel">แชร์ไปที่</p>
+              <p class="offcanvas-title share-to" id="offcanvasBottomLabel">แชร์ไปที่</p>
               <div className="center">
                 <div className="box-shareMobile">
-                  <FacebookShareButton url={ urlShare7 }>
+                  <FacebookShareButton url={urlShare7}>
                     <img src={facebook} className="icon-share" />
                   </FacebookShareButton>
                   {/* <TwitterShareButton url={urlShare}>
@@ -2859,10 +2877,10 @@ class Challenge extends Component {
           </div>
           <div class="offcanvas-body small offcanvas-index ">
             <div className="row">
-            <p class="offcanvas-title share-to" id="offcanvasBottomLabel">แชร์ไปที่</p>
+              <p class="offcanvas-title share-to" id="offcanvasBottomLabel">แชร์ไปที่</p>
               <div className="center">
                 <div className="box-shareMobile">
-                  <FacebookShareButton url={ urlShare8 }>
+                  <FacebookShareButton url={urlShare8}>
                     <img src={facebook} className="icon-share" />
                   </FacebookShareButton>
                   {/* <TwitterShareButton url={urlShare}>
@@ -2885,7 +2903,7 @@ class Challenge extends Component {
               <div className="copy-link">
                 <div class="input-group mb-3">
                   <input type="text" class="form-control" id="copyLink" placeholder="Copy" value={urlShare8} disabled />
-                  <button className="button-copyLink" id="button-copyLink" onClick={(e) => this.copyLink()}><img  src={copyLink} /></button>
+                  <button className="button-copyLink" id="button-copyLink" onClick={(e) => this.copyLink()}><img src={copyLink} /></button>
                 </div>
               </div>
             </div>
