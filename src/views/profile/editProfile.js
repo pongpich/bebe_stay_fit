@@ -22,9 +22,9 @@ class EditProfile extends React.Component {
       district: null,
       province: null,
       zipcode: null,
-      displayname:null,
-      validation_displayname:false,
-      displayname_length:false
+      displayname: null,
+      validation_displayname: false,
+      displayname_length: false
     };
   }
 
@@ -93,37 +93,35 @@ class EditProfile extends React.Component {
     }
     this.props.putSubscriptionAddress(user_id, data);
   }
-  onCheckBasix = (e) => {
+
+  onCheckDisplayName = (e) => {
     const name = e.target.name;
     if (name === "displayname") {
-     const elem =  e.target.value;
+      const elem = e.target.value;
 
-      if (/^([0-9A-Zก-ฮ])+$/i.test(elem)){
+      this.setState({
+        [e.target.name]: e.target.value,
+      })
+
+      if (/^([0-9A-Zก-ฮ])+$/i.test(elem)) {
         this.setState({
-          validation_displayname: false,
-          [e.target.name]: e.target.value,
+          validation_displayname: false
         })
-      }else{
+      } else {
         this.setState({
           validation_displayname: true,
         })
       }
-    }else{
-      this.setState({
-        [e.target.name]: e.target.value,
-      })
     }
-
-
-
   }
+
   render() {
-    const {displayname_length,validation_displayname,firstname, lastname, phone, address, subdistrict, district, province, zipcode } = this.state;
+    const { displayname_length, validation_displayname, displayname, firstname, lastname, phone, address, subdistrict, district, province, zipcode } = this.state;
     console.log("AA", this.props.user.email);
     return (
       <>
         <div className="padding-top4 center">
-          <p className="font-size8-2 bold color-protein"> <IntlMessages id="profile.editInformation"/></p>
+          <p className="font-size8-2 bold color-protein"> <IntlMessages id="profile.editInformation" /></p>
         </div>
         {/* <div className="col-12 col-sm-12 col-md-12 col-lg-12  center2 ">
           <div className="col-12 col-sm-12 col-md-6 col-lg-6 center2">
@@ -152,24 +150,26 @@ class EditProfile extends React.Component {
               <div className="box-proteinAddress padding-top">
                 <p className="font-size6 bold color-protein "> ข้อมูลส่วนตัว</p>
                 <div>
-                  <label className="form-label bold font-size4"> <IntlMessages id="register.displayname"/></label>
-                  <input type="text"  name="displayname" className="form-control" id="exampleFormControlInput1"  onChange={e => this.onCheckBasix(e)} placeholder="บพิตร์ เตชะวัฒนานันท์" />
+                  <label className="form-label bold font-size4"> <IntlMessages id="register.displayname" /></label>
+                  <input type="text" name="displayname" value={displayname} className="form-control" id="exampleFormControlInput1" onChange={e => this.onCheckDisplayName(e)} placeholder="ชื่อที่ใช้แสดงในระบบ" />
                   {
-                      validation_displayname === true ?
-                      <p style={{color: "red"}}>อนุญาติ ให้ใส่ 0-9A-Zก-ฮ เท่านั้น</p>
-                      : null
-                    }
-                    {
-                      displayname_length === true ?
-                      <p style={{color: "red"}}>กรุณาตัวอักษร มากกว่า 4 อักษร</p>
-                      : null
-                    }
+                    (validation_displayname) ?
+                      <p style={{ color: "red" }}>อนุญาติ ให้ใส่ 0-9, A-Z, ก-ฮ เท่านั้น</p>
+                      :
+                      null
+                  }
+                  {
+                    (displayname && displayname.length < 4) ?
+                      <p style={{ color: "red" }}>กรุณากรอกตัวอักษร 4 ตัว ขึ้นไป</p>
+                      :
+                      null
+                  }
                 </div>
-                <div className="padding-top2">
+                {/*  <div className="padding-top2">
                   <label className="form-label bold font-size4">วัน/เดือน/ปี เกิด</label>
                   <input type="email" className="form-control" id="exampleFormControlInput1" placeholder="5 มกราคม 2536" />
-                </div>
-                <div className="padding-top2">
+                </div> */}
+                {/* <div className="padding-top2">
                   <p className="font-weight">เพศ</p>
                   <div className="form-check form-check-inline">
                     <input className="form-check-input" type="radio" name="sex" id="inlineRadio1" value="ชาย" />
@@ -179,14 +179,14 @@ class EditProfile extends React.Component {
                     <input className="form-check-input" type="radio" name="sex" id="inlineRadio2" value="หญิง" />
                     <label className="form-check-label" > หญิง  </label>
                   </div>
-                </div>
+                </div> */}
                 <div className="padding-top2">
                   <label className="form-label bold font-size4">อีเมล</label>
                   <input type="email" className="form-control" id="exampleFormControlInput1" value={this.props.user.email} disabled />
                 </div>
                 <div className="padding-top2">
-                  <label className="form-label bold font-size4 between">เบอร์โทรศัพท์ <span className="font-size4 normal"> ใช้ในการยืนยันตัวตนเข้าบัญชี</span></label>
-                  <input type="email" className="form-control" id="exampleFormControlInput1"  value={phone}/* placeholder="******9595" */ disabled />
+                  <label className="form-label bold font-size4 between">เบอร์โทรศัพท์ {/* <span className="font-size4 normal"> ใช้ในการยืนยันตัวตนเข้าบัญชี</span> */}</label>
+                  <input type="email" className="form-control" id="exampleFormControlInput1" value={phone}/* placeholder="******9595" */ disabled />
                 </div>
               </div>
             </div>
@@ -197,28 +197,28 @@ class EditProfile extends React.Component {
           <div className="col-12 col-sm-12 col-md-6 col-lg-5 center2">
             <div className="box-protein margin-bottom1 padding-top2">
               <div className="box-proteinAddress padding-top">
-                <p className="font-size6 bold color-protein "> <IntlMessages id="shipping_address.shippingAddress"/></p>
+                <p className="font-size6 bold color-protein "> <IntlMessages id="shipping_address.shippingAddress" /></p>
                 <div className="row">
                   <div className="col-12 col-sm-12 col-md-6 col-lg-6">
-                    <label className="form-label bold font-size4"><IntlMessages id="shipping_address.name"/></label>
+                    <label className="form-label bold font-size4"><IntlMessages id="shipping_address.name" /></label>
                     <input type="text" className="form-control" name="firstname" value={firstname} onChange={e => this.onChange(e)} id="exampleFormControlInput1" />
                   </div>
                   <div className="col-12 col-sm-12 col-md-6 col-lg-6">
-                    <label className="form-label bold font-size4"><IntlMessages id="shipping_address.surname"/></label>
+                    <label className="form-label bold font-size4"><IntlMessages id="shipping_address.surname" /></label>
                     <input type="text" className="form-control" name="lastname" value={lastname} onChange={e => this.onChange(e)} id="exampleFormControlInput1" />
                   </div>
                 </div>
                 <div className="padding-top2">
-                  <label className="form-label bold font-size4"><IntlMessages id="register.phoneNumber"/></label>
+                  <label className="form-label bold font-size4"><IntlMessages id="register.phoneNumber" /></label>
                   <input type="text" className="form-control" name="phone" value={phone} onChange={e => this.onChange(e)} id="exampleFormControlInput1" />
                 </div>
                 <div className="padding-top2">
-                  <label className="form-label bold font-size4"><IntlMessages id="shipping_address.address"/></label>
+                  <label className="form-label bold font-size4"><IntlMessages id="shipping_address.address" /></label>
                   <input type="text" className="form-control" name="address" value={address} onChange={e => this.onChange(e)} id="exampleFormControlInput1" />
                 </div>
                 <div className="elementStyle">
                   <div className="padding-top2">
-                    <label className="form-label bold font-size4"><IntlMessages id="shipping_address.subdistrict"/></label>
+                    <label className="form-label bold font-size4"><IntlMessages id="shipping_address.subdistrict" /></label>
                     <InputAddress style={{ width: "100%" }}
                       address="subdistrict"
                       value={subdistrict}
@@ -227,7 +227,7 @@ class EditProfile extends React.Component {
                     />
                   </div>
                   <div className="col-12 col-sm-12  col-md-12 col-lg-12 padding-top2">
-                    <label className="form-label bold font-size4"><IntlMessages id="shipping_address.district"/></label>
+                    <label className="form-label bold font-size4"><IntlMessages id="shipping_address.district" /></label>
                     <InputAddress style={{ width: "100%" }}
                       address="district"
                       value={district}
@@ -236,7 +236,7 @@ class EditProfile extends React.Component {
                     />
                   </div>
                   <div className="padding-top2">
-                    <label className="form-label bold font-size4"><IntlMessages id="shipping_address.province"/></label>
+                    <label className="form-label bold font-size4"><IntlMessages id="shipping_address.province" /></label>
                     <InputAddress style={{ width: "100%" }}
                       address="province"
                       value={province}
@@ -245,7 +245,7 @@ class EditProfile extends React.Component {
                     />
                   </div>
                   <div className=" col-12 col-sm-12  col-md-12 col-lg-12 padding-top2">
-                    <label className="form-label bold font-size4"><IntlMessages id="shipping_address.postcode"/></label>
+                    <label className="form-label bold font-size4"><IntlMessages id="shipping_address.postcode" /></label>
                     <InputAddress style={{ width: "100%" }}
                       address="subdistrict"
                       value={this.state.zipcode}
@@ -272,8 +272,8 @@ class EditProfile extends React.Component {
         </div> */}
         <div className="col-12 col-sm-12 col-md-12 col-lg-12  center2  margin-top-3">
           <div className="bottomEditProfile">
-            <button type="button" className="btn bottom-outlinePinkLeft " onClick={() => this.props.history.push('/profile')}><IntlMessages id="shipping_address.cancel"/></button>
-            <button type="button" className="btn bottom-outlinePinkRight bottomEditProfileLeft " onClick={() => this.onSubmit()}><IntlMessages id="profile.save"/></button>
+            <button type="button" className="btn bottom-outlinePinkLeft " onClick={() => this.props.history.push('/profile')}><IntlMessages id="shipping_address.cancel" /></button>
+            <button type="button" className="btn bottom-outlinePinkRight bottomEditProfileLeft " onClick={() => this.onSubmit()}><IntlMessages id="profile.save" /></button>
           </div>
           {/*   <div className="">
             <div className="row">
