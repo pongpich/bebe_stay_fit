@@ -6,6 +6,7 @@ import user_circle from "../../assets/img/user_circle.svg";
 import { connect } from "react-redux";
 import { getSubscriptionProducts } from "../../redux/get";
 import { putSubscriptionAddress, clearSubscriptionAddress } from "../../redux/updateAddress";
+import { updateDisplayName } from "../../redux/update";
 import InputAddress from 'react-thailand-address-autocomplete';
 import IntlMessages from "../../helpers/IntlMessages";
 
@@ -24,6 +25,7 @@ class EditProfile extends React.Component {
       zipcode: null,
       displayname: null,
       validation_displayname: false,
+      validation_displayname2: false,
       displayname_length: false
     };
   }
@@ -37,9 +39,15 @@ class EditProfile extends React.Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    const { status_update_address } = this.props;
-    if ((prevProps.status_update_address !== status_update_address) && (status_update_address === "success")) {
+    const { status_update_address, statusUpdateDisplayName } = this.props;
+    if ((prevProps.statusUpdateDisplayName !== statusUpdateDisplayName) && (statusUpdateDisplayName === "success")) {
       this.props.history.push('/profile');
+    }
+    if ((prevProps.statusUpdateDisplayName !== statusUpdateDisplayName) && (statusUpdateDisplayName === "fail")) {
+      //ให้ฟ้องว่ามี DisplayName นี้อยู่แล้วในระบบ
+      this.setState({
+        validation_displayname2: true
+      })
     }
   }
 
@@ -80,7 +88,7 @@ class EditProfile extends React.Component {
 
   onSubmit() {
     const user_id = this.props.user.user_id;
-    const { firstname, lastname, phone, address, subdistrict, district, province, zipcode } = this.state;
+    const { firstname, lastname, phone, address, subdistrict, district, province, zipcode, displayname } = this.state;
     const data = {
       firstname,
       lastname,
@@ -91,6 +99,7 @@ class EditProfile extends React.Component {
       province,
       zipcode
     }
+    this.props.updateDisplayName(user_id, displayname);
     this.props.putSubscriptionAddress(user_id, data);
   }
 
@@ -116,7 +125,7 @@ class EditProfile extends React.Component {
   }
 
   render() {
-    const { displayname_length, validation_displayname, displayname, firstname, lastname, phone, address, subdistrict, district, province, zipcode } = this.state;
+    const { displayname_length, validation_displayname, validation_displayname2, displayname, firstname, lastname, phone, address, subdistrict, district, province, zipcode } = this.state;
     console.log("AA", this.props.user.email);
     return (
       <>
@@ -154,7 +163,13 @@ class EditProfile extends React.Component {
                   <input type="text" name="displayname" value={displayname} className="form-control" id="exampleFormControlInput1" onChange={e => this.onCheckDisplayName(e)} placeholder="ชื่อที่ใช้แสดงในระบบ" />
                   {
                     (validation_displayname) ?
-                      <p style={{ color: "red" }}>อนุญาติ ให้ใส่ 0-9, A-Z, ก-ฮ เท่านั้น</p>
+                      <p style={{ color: "red" }}>อนุญาติให้ใส่ 0-9, A-Z, ก-ฮ เท่านั้น</p>
+                      :
+                      null
+                  }
+                  {
+                    (validation_displayname2) ?
+                      <p style={{ color: "red" }}>มีผู้ใช้ชื่อ {displayname} อยู่แล้วในระบบ</p>
                       :
                       null
                   }
@@ -256,6 +271,12 @@ class EditProfile extends React.Component {
                 </div>
               </div>
             </div>
+            {
+              (validation_displayname2) ?
+                <p style={{ color: "red" }}>มีผู้ใช้ชื่อ {displayname} อยู่แล้วในระบบ</p>
+                :
+                null
+            }
           </div>
         </div>
         {/* <div className="col-12 col-sm-12 col-md-12 col-lg-12  center margin-top-2 ">
@@ -292,14 +313,15 @@ class EditProfile extends React.Component {
 
 
 
-const mapStateToProps = ({ get, authUser, updateAddress }) => {
+const mapStateToProps = ({ get, authUser, updateAddress, update }) => {
   const { delivery_address } = get;
   const { user } = authUser;
   const { status_update_address } = updateAddress;
-  return { delivery_address, user, status_update_address };
+  const { statusUpdateDisplayName } = update;
+  return { delivery_address, user, status_update_address, statusUpdateDisplayName };
 };
 
-const mapActionsToProps = { getSubscriptionProducts, putSubscriptionAddress, clearSubscriptionAddress };
+const mapActionsToProps = { getSubscriptionProducts, putSubscriptionAddress, clearSubscriptionAddress, updateDisplayName };
 
 export default connect(
   mapStateToProps,

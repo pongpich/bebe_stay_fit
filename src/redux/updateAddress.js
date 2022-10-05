@@ -55,7 +55,6 @@ export const putSubscriptionAddress = (user_id,data) => ({
       yield put({
         type: types.POST_SUBSCRIPTION_ADDRESS_SUCCESS
       })
-      console.log("apiResult :", apiResult);
     } catch (error) {
       console.log("error from putSubscriptionAddressSaga :", error);
     }
@@ -77,6 +76,11 @@ export const putSubscriptionAddress = (user_id,data) => ({
   
   export function reducer(state = INIT_STATE, action) {
     switch (action.type) {
+      case types.POST_SUBSCRIPTION_ADDRESS:
+        return {
+          ...state,
+          status_update_address: "loading"
+        }
       case types.POST_SUBSCRIPTION_ADDRESS_SUCCESS:
         return {
           ...state,
