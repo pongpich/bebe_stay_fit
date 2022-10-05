@@ -44,6 +44,7 @@ class Challenge extends Component {
       scoreboard: "challenge-link",
       friendList: "challenge-link chalLeft",
       achievement: "challenge-link",
+      all_users: "challenge-link",
       team: null,
       addteam: null,
       outteam: false, // ออกจากทีม
@@ -327,6 +328,7 @@ class Challenge extends Component {
       var scoreboard = "challenge-link"
       var friendList = "challenge-link chalLeft"
       var achievement = "challenge-link"
+      var all_users = "challenge-link"
     } else if (name === 'teamList') {
       console.log("2");
       var challenge = "challenge2"
@@ -335,6 +337,7 @@ class Challenge extends Component {
       var scoreboard = "challenge-link"
       var friendList = "challenge-link chalLeft"
       var achievement = "challenge-link"
+      var all_users = "challenge-link"
     } else if (name === 'scoreboard') {
       var challenge = "challenge3"
       var allMissions = "challenge-link1"
@@ -342,6 +345,7 @@ class Challenge extends Component {
       var scoreboard = "challenge-link color1"
       var friendList = "challenge-link chalLeft"
       var achievement = "challenge-link"
+      var all_users = "challenge-link"
     } else if (name === 'friendList') {
       var challenge = "challenge4"
       var allMissions = "challenge-link1  "
@@ -349,6 +353,7 @@ class Challenge extends Component {
       var scoreboard = "challenge-link"
       var friendList = "challenge-link chalLeft color1"
       var achievement = "challenge-link"
+      var all_users = "challenge-link"
       this.clickaddfriend(false)
     } else if (name === 'achievement') {
       var challenge = "challenge5"
@@ -357,6 +362,15 @@ class Challenge extends Component {
       var scoreboard = "challenge-link"
       var friendList = "challenge-link chalLeft"
       var achievement = "challenge-link color1"
+      var all_users = "challenge-link"
+    }else if (name === 'all_users') {
+      var challenge = "challenge6"
+      var allMissions = "challenge-link1  "
+      var teamList = "challenge-link"
+      var scoreboard = "challenge-link"
+      var friendList = "challenge-link"
+      var achievement = "challenge-link"
+      var all_users = "challenge-link chalLeft color1"
     }
     this.setState({
       challenge: challenge,
@@ -365,6 +379,7 @@ class Challenge extends Component {
       scoreboard: scoreboard,
       friendList: friendList,
       achievement: achievement,
+      all_users: all_users,
       addteam: null,
     });
 
@@ -1260,6 +1275,17 @@ class Challenge extends Component {
     )
   }
 
+  all_users() {
+    return (
+      <div className="box-challengeIn">
+        <p>ผู้ใช้งานทั้งหมดในระบบ <span><input type="email" className="form-control2 cd-col-12 col-sm-12 col-md-6 col-lg-6" id="exampleFormControlInput1" placeholder="name@example.com" /></span></p>
+        
+      </div>
+    )
+  }
+
+
+
   renderAchievement() {
     const { achievementLog } = this.props;
     const achievementFinisher = (achievementLog && (achievementLog.filter(item => item.achievement === 'Finisher')).length > 0) ? true : false;
@@ -2039,7 +2065,7 @@ class Challenge extends Component {
 
   render() {
     /* const { messages } = this.props.intl; */
-    const { challenge, allMissions, teamList, scoreboard, friendList, myTeamRank, achievement } = this.state;
+    const { challenge, allMissions, teamList, scoreboard, friendList, myTeamRank, achievement,all_users } = this.state;
     const { rank, logWeightCount, isReducedWeight, logWeightTeamCount, numberOfMembers, dailyTeamWeightBonusCount, user, totalScoreOfTeam } = this.props;
     const isExerciseCompleted = this.isExerciseCompleted(this.props.exerciseVideo);
     var { scoreInWeek } = this.state;
@@ -2091,6 +2117,9 @@ class Challenge extends Component {
                 <li className="video-li">
                   <a className={achievement} name="achievement" onClick={e => this.challengeBottom(e)}>ความสำเร็จ</a>
                 </li>
+                <li className="video-li">
+                  <a className={all_users} name="all_users" onClick={e => this.challengeBottom(e)}>ผู้ใช้งานทั้งหมดในระบบ</a>
+                </li>
               </ul>
             </div>
           </div>
@@ -2110,7 +2139,10 @@ class Challenge extends Component {
                         challenge === "challenge4" ?
                           this.friendList()
                           :
-                          this.renderAchievement()
+                          challenge === "challenge6" ?
+                            this.all_users()
+                            :
+                            this.renderAchievement()
                   }
                 </div>
                 <div class="col-12 col-sm-12 col-md-12 col-lg-3">
