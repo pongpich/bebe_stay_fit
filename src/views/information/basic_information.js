@@ -22,7 +22,10 @@ class Basic_Information extends React.Component {
       arePregnant: null,
       lb_ft: "ปอนด์/ฟ.",
       kg_cm: "กก/ซม",
-      statusSubmit: "default"
+      statusSubmit: "default",
+      displayname:null,
+      validation_displayname:false,
+      displayname_length:false
     }
   }
 
@@ -56,12 +59,13 @@ class Basic_Information extends React.Component {
 
 
 
-  basicInFormation(basicSex, basicAge, typeHei_Wig, basicHeight, basicWeight, practiceDifficultExercises, injury, arePregnant) {
+  basicInFormation(displayname,basicSex, basicAge, typeHei_Wig, basicHeight, basicWeight, practiceDifficultExercises, injury, arePregnant) {
     this.setState({
       statusSubmit: "default"
     })
-    if (basicSex && basicAge && typeHei_Wig && basicHeight && basicWeight && practiceDifficultExercises) {
-      this.props.basicInFormation(
+    if (basicSex && basicAge && typeHei_Wig && basicHeight && basicWeight && practiceDifficultExercises && displayname && displayname.length >= 4) {
+ 
+       this.props.basicInFormation(
         basicSex, basicAge, typeHei_Wig, basicHeight, basicWeight, practiceDifficultExercises, injury, arePregnant
       );
 
@@ -83,8 +87,10 @@ class Basic_Information extends React.Component {
         (practiceDifficultExercises === "sure") ? false : true // false = ไม่ใช่ is_beginner, true = เป็น is_beginner
       );
     } else {
+      console.log("11");
       this.setState({
-        statusSubmit: "fail"
+        statusSubmit: "fail",
+        displayname_length:true
       })
     }
   }
@@ -173,9 +179,28 @@ class Basic_Information extends React.Component {
 }
 
   onCheckBasix = (e) => {
-    this.setState({
-      [e.target.name]: e.target.value,
-    })
+    const name = e.target.name;
+    if (name === "displayname") {
+     const elem =  e.target.value;
+
+      if (/^([0-9A-Zก-ฮ])+$/i.test(elem)){
+        this.setState({
+          validation_displayname: false,
+          [e.target.name]: e.target.value,
+        })
+      }else{
+        this.setState({
+          validation_displayname: true,
+        })
+      }
+    }else{
+      this.setState({
+        [e.target.name]: e.target.value,
+      })
+    }
+
+
+
   }
 
 
@@ -184,7 +209,7 @@ class Basic_Information extends React.Component {
   render() {
 
     const { messages } = this.props.intl;
-    const { basicSex, basicAge, typeHei_Wig,lb_ft,kg_cm, basicHeight, basicWeight, practiceDifficultExercises, injury, arePregnant, statusSubmit } = this.state;
+    const {displayname,validation_displayname,displayname_length, basicSex, basicAge, typeHei_Wig,lb_ft,kg_cm, basicHeight, basicWeight, practiceDifficultExercises, injury, arePregnant, statusSubmit } = this.state;
     return (
       <>
         <div className="col-12 col-sm-12 col-md-12 col-lg-12  App-headerBackground center2 padding-top2 ">
@@ -194,6 +219,20 @@ class Basic_Information extends React.Component {
                 <p className="font-size6 bold color-protein"> <IntlMessages id="basic_information.fillinbasic"/></p>
                 <p><IntlMessages id="basic_information.fillingin"/><br /><IntlMessages id="basic_information.anexercise"/></p>
                 <div className="box-proteinAddress padding-top">
+                <div className="padding-top2">
+                    <label className="form-label bold font-size4"><IntlMessages id="basic_information.displayname"/></label>
+                    <input type="text" className="form-control right2" id="exampleFormControlInput1" name="displayname" onChange={e => this.onCheckBasix(e)} /* placeholder={messages['basic_information.year']} */ />
+                    {
+                      validation_displayname === true ?
+                      <p style={{color: "red"}}>อนุญาติ ให้ใส่ 0-9A-Zก-ฮ เท่านั้น</p>
+                      : null
+                    }
+                    {
+                      displayname_length === true ?
+                      <p style={{color: "red"}}>กรุณาตัวอักษร มากกว่า 4 อักษร</p>
+                      : null
+                    }
+                  </div>
                   <div className="padding-top2">
                     <p className="form-label bold font-size4"><IntlMessages id="basic_information.gender"/></p>
                     <div className="form-check form-check-inline">
@@ -274,7 +313,7 @@ class Basic_Information extends React.Component {
                 <h6 style={{ color: "red" }}><IntlMessages id="navbarHome.validationInformation"/></h6>
               }
               <div className="d-grid gap-2  mx-auto   col-10 col-sm-10  col-md-10 col-lg-10 distance">
-                <button className="btn bottom-pink" type="button" onClick={() => this.basicInFormation(basicSex, basicAge, typeHei_Wig, basicHeight, basicWeight, practiceDifficultExercises, injury, arePregnant)}  >
+                <button className="btn bottom-pink" type="button" onClick={() => this.basicInFormation(displayname,basicSex, basicAge, typeHei_Wig, basicHeight, basicWeight, practiceDifficultExercises, injury, arePregnant)}  >
                   <IntlMessages id="basic_information.createExercise"/>
                                 </button>
                 {/*    <Link to="/your_program" className="btn bottom-pink" type="button">สร้างโปรแกรมออกกำลังกาย</Link> */}

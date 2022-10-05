@@ -195,6 +195,7 @@ const ThLang = {
        /**  
       * ! ยังไม่เเปล */
       "basic_information.fillinbasic": "กรอกข้อมูลเบื้องต้นเพื่อเริ่มต้นการใช้งาน",
+      "basic_information.displayname": "ชื่อที่ใช้แสดงในระบบ",
       "basic_information.fillingin": "การกรอกข้อมูลจะทำให้เราสามารถออกแบบ",
       "basic_information.anexercise": "โปรแกรมออกกำลังกายให้เหมาะสมกับคุณได้ดียิ่งขึ้น",
       "basic_information.gender": "เพศ",

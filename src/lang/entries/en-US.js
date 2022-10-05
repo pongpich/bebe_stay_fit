@@ -193,6 +193,7 @@ const EnLang = {
 
      /* 12.basic_information */
      "basic_information.fillinbasic": "Fill in the basic information to get started",
+     "basic_information.displayname": "ชื่อที่ใช้แสดงในระบบ",
      "basic_information.fillingin": "Filling in information will allow us to design an",
      "basic_information.anexercise": "exercise program that is better suited for you.",
      "basic_information.gender": "Gender",

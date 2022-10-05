@@ -282,7 +282,7 @@
 
 @media only screen and (max-width: 767px) {
   .rectangle472 {
-    border-top-right-radius: 10px;
+    border-top-right-radius: 7px;
   }
 
   .border-line2 {
@@ -1356,7 +1356,6 @@ a {
   margin-bottom: 50px;
   border-radius: 30px;
   padding-top: 5px;
-  font-size: 20px;
 
 }
 
@@ -1368,7 +1367,7 @@ a {
   margin-bottom: 50px;
   border-radius: 30px;
   padding-top: 5px;
-  font-size: 20px;
+
   /* box-shadow: 0 0 0 0.25rem hsl(335, 69%, 63%, 0.25); */
 }
 .bottom-pink2 {
@@ -1497,7 +1496,7 @@ a {
   margin-bottom: 50px;
   border-radius: 30px;
   padding-top: 5px;
-  font-size: 20px;
+/*   font-size: 20px; */
   box-shadow: 0 0 0 0.25rem hsl(335, 69%, 63%, 0.25);
 }
 
@@ -4611,7 +4610,7 @@ tr:last-child td:last-child {
   margin-left: 10px;
   margin-right: 10px;
   background-color: #ffffff !important;
-  border-radius: 10px;
+  border-radius: 7px;
   box-shadow: 1px 1px 8px 4px #cccccc;
 }
 .rectangle472 {
@@ -4621,6 +4620,7 @@ tr:last-child td:last-child {
   
 }
 .box-reason2 {
+  margin-top: 60px !important;
   position: relative;
   padding-top: 100px;
   text-align: center;

@@ -23,7 +23,7 @@ class Cancel_package_new extends Component {
       no_reason_choose: false,
       program: null,
       product: null,
-      start_cancel: "choose_reason"
+      start_cancel: "price_reason"/* "choose_reason" */
     };
   }
 
@@ -223,7 +223,7 @@ class Cancel_package_new extends Component {
                   <img src={rectangle471} alt="vector" className="rectangle472" />
                 </div>
                 <div class="col-12 col-sm-12 col-md-6 col-lg-7">
-                  <div className="box-reason2 ">
+                  <div className="box-reason2">
                     <p className="font-reason">ยกเลิกบริการ Bebe Stay Fit สำเร็จ</p>
                     <p className="font-reason2">ออกกำลังกายและคุมอาหารอย่างสม่ำเสมอ <br className="br" /> เพื่อหุ่นและสุขภาพที่ดีอย่างยั่งยืนกันนะคะ</p>
                     <div className="d-grid gap-2  mx-auto margin-top-4   col-10 col-sm-10  col-md-8 col-lg-8">
