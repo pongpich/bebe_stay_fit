@@ -251,20 +251,28 @@ class Cancel_package_new extends Component {
       <>
         <div className="centerx-y">
           <div className="col-12 col-sm-8 col-md-10 col-lg-8">
-            <div className="box-reason">
+            <div className="box-reason0">
               <div class="row justify-content-md-center">
                 <div class="col-12 col-sm-12 col-md-5 col-lg-5 ">
                   <img src={rectangle473} alt="vector" className="rectangle472 center2" />
                 </div>
                 <div class="col-12 col-sm-12 col-md-7 col-lg-7">
-                  <div className="box-reason2">
+                  <div className="box-reason3">
                     <p className="font-reason">สมัครต่ออายุบริการวันนี้ <br className="line-hr"/> ลดทันที 5%</p>
-                    <p className="font-reason2">โปรโมชั่นพิเศษเฉพาะคุณ! </p>
-                    <div className="col-12 col-sm-12 col-md-12 col-lg-12">
-                      <div className="center reason-top">
-                        <button type="button" className="btn bottom-reasonLeft bold-reason" data-bs-toggle="modal" data-bs-target="#exampleModal" >รับข้อเสนอ</button>
-                        <button type="button" className="btn bottom-reasonRight bold-reason " onClick={() => this.props.cancelRecurring(this.props.user && this.props.user.user_id)}>ยกเลิกบริการ</button>
-                      </div>
+                    <p className="font-reason4">โปรโมชั่นพิเศษเฉพาะคุณ! </p>
+                      <div className="center reason-top2">
+                        <button type="button" className="btn bottom-reasonLeft2 bold-reason" data-bs-toggle="modal" data-bs-target="#exampleModal" >รับข้อเสนอ</button>
+                        <button type="button" className="btn bottom-reasonRight2 bold-reason " onClick={() => this.props.cancelRecurring(this.props.user && this.props.user.user_id)}>ยกเลิกบริการ</button>
+                    </div>
+                    <hr className="br2  center2 col-md-10 col-lg-10 "/> 
+                    <div className="box-Line">
+                    <p className="font-reason">หรือติดต่อเจ้าหน้าที่</p>
+                    <p className="font-reason4 pad_lR">Line :<span className="pad_R">@fitto (มีแอด)</span></p>
+                    <p className="time-open">ทุกวัน 8:00 - 00:00</p>
+                    <p className="font-reason4 pad_lR">Facebook : <span className="pad_R">m.me/fittothai</span></p>
+                    <p className="time-open">ทุกวัน 8:00 - 00:00</p>
+                    <p className="font-reason4 pad_lR">โทร : <span className="pad_R">028216146</span></p>
+                    <p className="time-open">ทุกวัน 8:00 - 00:00</p>
                     </div>
                   </div>
                 </div>
