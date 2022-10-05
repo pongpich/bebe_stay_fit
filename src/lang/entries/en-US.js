@@ -73,6 +73,7 @@ const EnLang = {
     "register.payment": "Payment",
     "register.confirmPassword": "Confirm your password",
     "register.phoneNumber": "Phone Number",
+    "register.displayname": "ชื่อที่ใช้แสดงในระบบ",
     "register.createAccount": "Create your account",
      "register.accountCredited": "An account for",
      "register.passwordsnotMatch": "invalid password please try again ",

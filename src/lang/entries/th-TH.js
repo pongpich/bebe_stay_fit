@@ -74,6 +74,7 @@ const ThLang = {
      "register.payment": "ชำระเงิน",
      "register.confirmPassword": "ยืนยันรหัสผ่าน",
      "register.phoneNumber": "เบอร์โทรศัพท์",
+     "register.displayname": "ชื่อที่ใช้แสดงในระบบ",
      "register.createAccount": "สร้างบัญชี Bebe Stayfit",
      "register.accountCredited": "บัญชีที่จะเข้าใช้งานในระบบของ ",
      "register.passwordsnotMatch": "รหัสผ่านไม่ตรงกัน กรุณากรอกใหม่ ",

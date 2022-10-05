@@ -21,7 +21,10 @@ class EditProfile extends React.Component {
       subdistrict: null,
       district: null,
       province: null,
-      zipcode: null
+      zipcode: null,
+      displayname:null,
+      validation_displayname:false,
+      displayname_length:false
     };
   }
 
@@ -90,10 +93,33 @@ class EditProfile extends React.Component {
     }
     this.props.putSubscriptionAddress(user_id, data);
   }
+  onCheckBasix = (e) => {
+    const name = e.target.name;
+    if (name === "displayname") {
+     const elem =  e.target.value;
 
+      if (/^([0-9A-Zก-ฮ])+$/i.test(elem)){
+        this.setState({
+          validation_displayname: false,
+          [e.target.name]: e.target.value,
+        })
+      }else{
+        this.setState({
+          validation_displayname: true,
+        })
+      }
+    }else{
+      this.setState({
+        [e.target.name]: e.target.value,
+      })
+    }
+
+
+
+  }
   render() {
-    const { firstname, lastname, phone, address, subdistrict, district, province, zipcode } = this.state;
-    console.log("AA", this.props.user);
+    const {displayname_length,validation_displayname,firstname, lastname, phone, address, subdistrict, district, province, zipcode } = this.state;
+    console.log("AA", this.props.user.email);
     return (
       <>
         <div className="padding-top4 center">
@@ -120,14 +146,24 @@ class EditProfile extends React.Component {
             </div>
           </div>
         </div> */}
-        {/* <div className="col-12 col-sm-12 col-md-12 col-lg-12  center2 ">
-          <div className="col-12 col-sm-12 col-md-6 col-lg-6 center2">
+        <div className="col-12 col-sm-12 col-md-12 col-lg-12  center2 ">
+          <div className="col-12 col-sm-12 col-md-6 col-lg-5 center2">
             <div className="box-protein margin-bottom1 padding-top2">
               <div className="box-proteinAddress padding-top">
                 <p className="font-size6 bold color-protein "> ข้อมูลส่วนตัว</p>
                 <div>
-                  <label className="form-label bold font-size4">ชื่อแฝง</label>
-                  <input type="email" className="form-control" id="exampleFormControlInput1" placeholder="บพิตร์ เตชะวัฒนานันท์" />
+                  <label className="form-label bold font-size4"> <IntlMessages id="register.displayname"/></label>
+                  <input type="text"  name="displayname" className="form-control" id="exampleFormControlInput1"  onChange={e => this.onCheckBasix(e)} placeholder="บพิตร์ เตชะวัฒนานันท์" />
+                  {
+                      validation_displayname === true ?
+                      <p style={{color: "red"}}>อนุญาติ ให้ใส่ 0-9A-Zก-ฮ เท่านั้น</p>
+                      : null
+                    }
+                    {
+                      displayname_length === true ?
+                      <p style={{color: "red"}}>กรุณาตัวอักษร มากกว่า 4 อักษร</p>
+                      : null
+                    }
                 </div>
                 <div className="padding-top2">
                   <label className="form-label bold font-size4">วัน/เดือน/ปี เกิด</label>
@@ -146,16 +182,16 @@ class EditProfile extends React.Component {
                 </div>
                 <div className="padding-top2">
                   <label className="form-label bold font-size4">อีเมล</label>
-                  <input type="email" className="form-control" id="exampleFormControlInput1" placeholder="borpit.techa@gmail.com" disabled />
+                  <input type="email" className="form-control" id="exampleFormControlInput1" value={this.props.user.email} disabled />
                 </div>
                 <div className="padding-top2">
                   <label className="form-label bold font-size4 between">เบอร์โทรศัพท์ <span className="font-size4 normal"> ใช้ในการยืนยันตัวตนเข้าบัญชี</span></label>
-                  <input type="email" className="form-control" id="exampleFormControlInput1" placeholder="******9595" disabled />
+                  <input type="email" className="form-control" id="exampleFormControlInput1"  value={phone}/* placeholder="******9595" */ disabled />
                 </div>
               </div>
             </div>
           </div>
-        </div> */}
+        </div>
 
         <div className="col-12 col-sm-12 col-md-12 col-lg-12  center2 ">
           <div className="col-12 col-sm-12 col-md-6 col-lg-5 center2">
@@ -173,7 +209,7 @@ class EditProfile extends React.Component {
                   </div>
                 </div>
                 <div className="padding-top2">
-                  <label className="form-label bold font-size4"><IntlMessages id="register.phoneNumbe"/></label>
+                  <label className="form-label bold font-size4"><IntlMessages id="register.phoneNumber"/></label>
                   <input type="text" className="form-control" name="phone" value={phone} onChange={e => this.onChange(e)} id="exampleFormControlInput1" />
                 </div>
                 <div className="padding-top2">
