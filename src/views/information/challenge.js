@@ -65,6 +65,7 @@ class Challenge extends Component {
       borderBottom1: "video-link",
       borderBottom2: "video-link rectangle13 color1",
       borderBottom3: "video-link",
+      emailOrDisplayName: "",
     }
   }
 
@@ -1277,17 +1278,59 @@ class Challenge extends Component {
     )
   }
 
+  filterSearch() {
+    const { emailOrDisplayName } = this.state;
+
+    // Declare variables
+    var filter, ul, li, a, i, txtValue;
+    filter = emailOrDisplayName && emailOrDisplayName.toUpperCase();
+    ul = document.getElementById("myUL");
+    li = ul && ul.getElementsByTagName('li');
+
+    // Loop through all list items, and hide those who don't match the search query
+    if (li) {
+      for (i = 0; i < li.length; i++) {
+        a = li[i].getElementsByTagName("h5")[0];
+        txtValue = a && (a.textContent || a.innerText);
+        if (txtValue && (txtValue.toUpperCase().indexOf(filter) > -1)) {
+          li[i].style.display = "";
+        } else {
+          li[i].style.display = "none";
+        }
+      }
+    }
+  }
+
   all_users() {
     const { allMemberStayFit } = this.props;
+    const { emailOrDisplayName } = this.state;
     return (
       <div className="box-challengeIn">
-        <p>ผู้ใช้งานทั้งหมดในระบบ <span><input type="email" className="form-control2 cd-col-12 col-sm-12 col-md-6 col-lg-6" id="exampleFormControlInput1" placeholder="name@example.com" /></span></p>
-        {
-          allMemberStayFit &&
-          allMemberStayFit.map((item, i) =>
-            <h5 key={i}>{item.email}</h5>
-          )
-        }
+        <p>ผู้ใช้งานทั้งหมดในระบบ
+          <span>
+            <input
+              type="text"
+              id="emailOrDisplayName"
+              value={emailOrDisplayName}
+              onChange={(event) => this.handleChange(event)}
+              onKeyUp={this.filterSearch()}
+              placeholder="Search for names.."
+            />
+          </span>
+        </p>
+        <ul id="myUL">
+          {
+            allMemberStayFit &&
+            allMemberStayFit.map((item, i) =>
+              <li key={i}>
+                <h5 href="#">
+                  {item.display_name ? item.display_name : item.email}
+                  <span style={{ display: "none" }}>{item.email}</span>
+                </h5>
+              </li>
+            )
+          }
+        </ul>
       </div>
     )
   }
