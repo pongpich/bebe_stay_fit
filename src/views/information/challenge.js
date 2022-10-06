@@ -26,7 +26,7 @@ import tiktok from "../../assets/img/icon-tiktok.png";
 import whatsApp from "../../assets/img/icon-WhatsApp.png";
 import instagram from "../../assets/img/icon-instagram.png";
 import copyLink from "../../assets/img/copy-link.png";
-import { getFriendList, getRank, getLogWeight, getIsReducedWeight, getLogWeightTeam, getDailyTeamWeightBonus, getNumberOfTeamNotFull, assignGroupToMember, clearChallenges, createChallengeGroup, leaveTeam, getMembersAndRank, getGroupName, getScoreOfTeam, getLeaderboard, getChallengePeriod, sendFriendRequest, getFriendRequest, acceptFriend, rejectFriend, getMaxFriends, deleteFriend, sendTeamInvite, getTeamInvite, rejectTeamInvite, acceptTeamInvite, getFriendsRank, getAchievementLog, updateAchievementLog, checkAllMissionComplete, getFriendRequestSent } from "../../redux/challenges";
+import { getFriendList, getRank, getLogWeight, getIsReducedWeight, getLogWeightTeam, getDailyTeamWeightBonus, getNumberOfTeamNotFull, assignGroupToMember, clearChallenges, createChallengeGroup, leaveTeam, getMembersAndRank, getGroupName, getScoreOfTeam, getLeaderboard, getChallengePeriod, sendFriendRequest, getFriendRequest, acceptFriend, rejectFriend, getMaxFriends, deleteFriend, sendTeamInvite, getTeamInvite, rejectTeamInvite, acceptTeamInvite, getFriendsRank, getAchievementLog, updateAchievementLog, checkAllMissionComplete, getFriendRequestSent, cancelFriendRequest } from "../../redux/challenges";
 import { getGroupID, checkUpdateMaxFriends } from "../../redux/auth";
 import { getAllMemberStayFit } from "../../redux/get";
 import { connect } from "react-redux";
@@ -97,7 +97,7 @@ class Challenge extends Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    const { user, statusCreateTeam, statusGetNumberOfTeamNotFull, numberOfTeamNotFull, statusLeaveTeam, statusSendFriendRequest, statusGetFriendRequest, friend_request, statusAcceptFriend, statusRejectFriend, statusDeleteFriend, statusSendTeamInvite, statusGetTeamInvite, team_invite, statusRejectTeamInvite, statusAcceptTeamInvite, statusGetLeaderBoard, teamRank, individualRank, statusGetFriendList, friend_list, statusCheckAllMissionComplete, achievementLog, statusUpdateAchievement } = this.props;
+    const { user, statusCreateTeam, statusGetNumberOfTeamNotFull, numberOfTeamNotFull, statusLeaveTeam, statusSendFriendRequest, statusGetFriendRequest, friend_request, statusAcceptFriend, statusRejectFriend, statusDeleteFriend, statusSendTeamInvite, statusGetTeamInvite, team_invite, statusRejectTeamInvite, statusAcceptTeamInvite, statusGetLeaderBoard, teamRank, individualRank, statusGetFriendList, friend_list, statusCheckAllMissionComplete, achievementLog, statusUpdateAchievement, statusCancelFriendRequest } = this.props;
     const achievementFinisher = (achievementLog && (achievementLog.filter(item => item.achievement === 'Finisher')).length > 0) ? true : false;
     const achievementAce = (achievementLog && (achievementLog.filter(item => item.achievement === 'Ace')).length > 0) ? true : false;
     const achievement1st = (achievementLog && (achievementLog.filter(item => item.achievement === '1st')).length > 0) ? true : false;
@@ -105,6 +105,10 @@ class Challenge extends Component {
     const achievementTop10 = (achievementLog && (achievementLog.filter(item => item.achievement === 'Top 10')).length > 0) ? true : false;
     const achievementSocialStar = (achievementLog && (achievementLog.filter(item => item.achievement === 'Social star')).length > 0) ? true : false;
     const achievementSocialStarPlus = (achievementLog && (achievementLog.filter(item => item.achievement === 'Social star+')).length > 0) ? true : false;
+
+    if ((prevProps.statusCancelFriendRequest !== statusCancelFriendRequest) && statusCancelFriendRequest === "success") {
+      this.props.getFriendRequestSent(this.props.user && this.props.user.user_id);
+    }
 
     if ((prevProps.statusUpdateAchievement !== statusUpdateAchievement) && statusUpdateAchievement === "success") {
       this.props.getAchievementLog(user.user_id);
@@ -1331,7 +1335,7 @@ class Challenge extends Component {
   }
 
   all_users() {
-    const { allMemberStayFit, user, statusSendFriendRequest } = this.props;
+    const { allMemberStayFit, user, statusSendFriendRequest, statusCancelFriendRequest } = this.props;
     const { emailOrDisplayName } = this.state;
 
     return (
@@ -1363,10 +1367,18 @@ class Challenge extends Component {
                       (this.checkFriendRequestStatus(item.user_id)) ? //เช็คว่าเคยส่งคำขอเพื่อนไปหาคนนี้หรือยัง
                         <>
                           <span style={{ color: "orange" }}> รอการยืนยัน </span>
-                          <span style={{ cursor: "pointer", color: "red" }}> ยกเลิกคำขอ </span>
+                          {
+                            (statusCancelFriendRequest !== "loading") && //เช็คเพื่อซ่อนปุ่มในจังหวะ loading ป้องกันการกดยกเลิกรัวๆ
+                            <span
+                              style={{ cursor: "pointer", color: "red" }}
+                              onClick={() => this.props.cancelFriendRequest(user.user_id, item.user_id)}
+                            >
+                              ยกเลิกคำขอ
+                          </span>
+                          }
                         </>
                         :
-                        (statusSendFriendRequest !== "loading") && //เช็คเพื่อซ่อนปุ่มในจังหวะ loading ป้องกันการกดแอดเพื่อนรัว
+                        (statusSendFriendRequest !== "loading") && //เช็คเพื่อซ่อนปุ่มในจังหวะ loading ป้องกันการกดเพิ่มเพื่อนรัวๆ
                         <span
                           style={{ cursor: "pointer", color: "green" }}
                           onClick={() => this.props.sendFriendRequest(user.user_id, item.email)}
@@ -3050,17 +3062,17 @@ const mapStateToProps = ({ authUser, challenges, exerciseVideos, settings, get }
   const { user } = authUser;
   const { exerciseVideo, statusVideoList } = exerciseVideos;
   const { allMemberStayFit } = get;
-  const { statusCreateTeam, numberOfTeamNotFull, statusGetNumberOfTeamNotFull, statusLeaveTeam, membersOfTeam, group_name, totalScoreOfTeam, rank, teamRank, individualRank, logWeightCount, isReducedWeight, logWeightTeamCount, numberOfMembers, dailyTeamWeightBonusCount, friend_list, statusGetFriendList, statusSendFriendRequest, friend_request, statusGetFriendRequest, statusAcceptFriend, statusRejectFriend, statusGetMaxFriends, max_friends, statusDeleteFriend, statusSendTeamInvite, team_invite, statusGetTeamInvite, statusRejectTeamInvite, statusAcceptTeamInvite, friendsRank, statusGetFriendsRank, challengePeriod, statusGetLeaderBoard, statusGetAchievement, achievementLog, statusUpdateAchievement, statusCheckAllMissionComplete, statusGetFriendRequestSent, friend_request_sent } = challenges;
+  const { statusCreateTeam, numberOfTeamNotFull, statusGetNumberOfTeamNotFull, statusLeaveTeam, membersOfTeam, group_name, totalScoreOfTeam, rank, teamRank, individualRank, logWeightCount, isReducedWeight, logWeightTeamCount, numberOfMembers, dailyTeamWeightBonusCount, friend_list, statusGetFriendList, statusSendFriendRequest, friend_request, statusGetFriendRequest, statusAcceptFriend, statusRejectFriend, statusGetMaxFriends, max_friends, statusDeleteFriend, statusSendTeamInvite, team_invite, statusGetTeamInvite, statusRejectTeamInvite, statusAcceptTeamInvite, friendsRank, statusGetFriendsRank, challengePeriod, statusGetLeaderBoard, statusGetAchievement, achievementLog, statusUpdateAchievement, statusCheckAllMissionComplete, statusGetFriendRequestSent, friend_request_sent, statusCancelFriendRequest } = challenges;
   let locale;
   if (settings) {
     locale = settings.locale;
   } else {
     locale = "th";
   }
-  return { locale, user, statusCreateTeam, numberOfTeamNotFull, statusGetNumberOfTeamNotFull, statusLeaveTeam, membersOfTeam, group_name, totalScoreOfTeam, rank, teamRank, individualRank, logWeightCount, isReducedWeight, logWeightTeamCount, numberOfMembers, dailyTeamWeightBonusCount, exerciseVideo, statusVideoList, friend_list, statusGetFriendList, statusSendFriendRequest, friend_request, statusGetFriendRequest, statusAcceptFriend, statusRejectFriend, statusGetMaxFriends, max_friends, statusDeleteFriend, statusSendTeamInvite, team_invite, statusGetTeamInvite, statusRejectTeamInvite, statusAcceptTeamInvite, friendsRank, statusGetFriendsRank, challengePeriod, statusGetLeaderBoard, statusGetAchievement, achievementLog, statusUpdateAchievement, statusCheckAllMissionComplete, allMemberStayFit, statusGetFriendRequestSent, friend_request_sent };
+  return { locale, user, statusCreateTeam, numberOfTeamNotFull, statusGetNumberOfTeamNotFull, statusLeaveTeam, membersOfTeam, group_name, totalScoreOfTeam, rank, teamRank, individualRank, logWeightCount, isReducedWeight, logWeightTeamCount, numberOfMembers, dailyTeamWeightBonusCount, exerciseVideo, statusVideoList, friend_list, statusGetFriendList, statusSendFriendRequest, friend_request, statusGetFriendRequest, statusAcceptFriend, statusRejectFriend, statusGetMaxFriends, max_friends, statusDeleteFriend, statusSendTeamInvite, team_invite, statusGetTeamInvite, statusRejectTeamInvite, statusAcceptTeamInvite, friendsRank, statusGetFriendsRank, challengePeriod, statusGetLeaderBoard, statusGetAchievement, achievementLog, statusUpdateAchievement, statusCheckAllMissionComplete, allMemberStayFit, statusGetFriendRequestSent, friend_request_sent, statusCancelFriendRequest };
 };
 
-const mapActionsToProps = { getGroupID, getRank, getLogWeight, getIsReducedWeight, getLogWeightTeam, getDailyTeamWeightBonus, getNumberOfTeamNotFull, assignGroupToMember, clearChallenges, createChallengeGroup, leaveTeam, getMembersAndRank, getGroupName, getScoreOfTeam, getLeaderboard, getChallengePeriod, getFriendList, sendFriendRequest, getFriendRequest, acceptFriend, rejectFriend, getMaxFriends, deleteFriend, sendTeamInvite, getTeamInvite, rejectTeamInvite, acceptTeamInvite, checkUpdateMaxFriends, getFriendsRank, getAchievementLog, updateAchievementLog, checkAllMissionComplete, getAllMemberStayFit, getFriendRequestSent };
+const mapActionsToProps = { getGroupID, getRank, getLogWeight, getIsReducedWeight, getLogWeightTeam, getDailyTeamWeightBonus, getNumberOfTeamNotFull, assignGroupToMember, clearChallenges, createChallengeGroup, leaveTeam, getMembersAndRank, getGroupName, getScoreOfTeam, getLeaderboard, getChallengePeriod, getFriendList, sendFriendRequest, getFriendRequest, acceptFriend, rejectFriend, getMaxFriends, deleteFriend, sendTeamInvite, getTeamInvite, rejectTeamInvite, acceptTeamInvite, checkUpdateMaxFriends, getFriendsRank, getAchievementLog, updateAchievementLog, checkAllMissionComplete, getAllMemberStayFit, getFriendRequestSent, cancelFriendRequest };
 
 export default connect(
   mapStateToProps,

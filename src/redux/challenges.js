@@ -91,7 +91,20 @@ export const types = {
   CHECK_ALL_MISSION_COMPLETE: "CHECK_ALL_MISSION_COMPLETE",
   CHECK_ALL_MISSION_COMPLETE_SUCCESS: "CHECK_ALL_MISSION_COMPLETE_SUCCESS",
   CHECK_ALL_MISSION_COMPLETE_FAIL: "CHECK_ALL_MISSION_COMPLETE_FAIL",
+  CANCEL_FRIEND_REQUEST: "CANCEL_FRIEND_REQUEST",
+  CANCEL_FRIEND_REQUEST_SUCCESS: "CANCEL_FRIEND_REQUEST_SUCCESS",
 }
+
+export const cancelFriendRequest = (
+  sender_id,
+  receiver_id
+) => ({
+  type: types.CANCEL_FRIEND_REQUEST,
+  payload: {
+    sender_id,
+    receiver_id
+  }
+})
 
 export const getAchievementLog = (user_id) => ({
   type: types.GET_ACHIEVEMENT_LOG,
@@ -806,6 +819,24 @@ const sendTeamInviteSagaAsync = async (
   }
 }
 
+const cancelFriendRequestSagaAsync = async (
+  sender_id,
+  receiver_id
+) => {
+  try {
+    const apiResult = await API.put("bebe", "/cancelFriendRequest", {
+      body: {
+        sender_id,
+        receiver_id
+      }
+    });
+    return apiResult
+  } catch (error) {
+    console.log("error :", error);
+    return { error, messsage: error.message }
+  }
+}
+
 const leaveTeamSagaAsync = async (
   user_id
 ) => {
@@ -1501,6 +1532,27 @@ function* sendTeamInviteSaga({ payload }) {
   }
 }
 
+function* cancelFriendRequestSaga({ payload }) {
+  const {
+    sender_id,
+    receiver_id
+  } = payload
+  try {
+    const apiResult = yield call(
+      cancelFriendRequestSagaAsync,
+      sender_id,
+      receiver_id
+    );
+
+    yield put({
+      type: types.CANCEL_FRIEND_REQUEST_SUCCESS
+    })
+
+  } catch (error) {
+    console.log("error from cancelFriendRequestSaga :", error);
+  }
+}
+
 function* leaveTeamSaga({ payload }) {
   const {
     user_id
@@ -1725,6 +1777,10 @@ export function* watchCheckAllMissionComplete() {
   yield takeEvery(types.CHECK_ALL_MISSION_COMPLETE, checkAllMissionCompleteSaga)
 }
 
+export function* watchCancelFriendRequest() {
+  yield takeEvery(types.CANCEL_FRIEND_REQUEST, cancelFriendRequestSaga)
+}
+
 export function* saga() {
   yield all([
     fork(watchGetRank),
@@ -1760,6 +1816,7 @@ export function* saga() {
     fork(watchUpdateAchievementLog),
     fork(watchCheckAllMissionComplete),
     fork(watchGetFriendRequestSent),
+    fork(watchCancelFriendRequest),
   ]);
 }
 
@@ -1813,10 +1870,21 @@ const INIT_STATE = {
   achievementLog: [],
   statusUpdateAchievement: "default",
   statusCheckAllMissionComplete: "default",
+  statusCancelFriendRequest: "default",
 };
 
 export function reducer(state = INIT_STATE, action) {
   switch (action.type) {
+    case types.CANCEL_FRIEND_REQUEST:
+      return {
+        ...state,
+        statusCancelFriendRequest: "loading"
+      }
+    case types.CANCEL_FRIEND_REQUEST_SUCCESS:
+      return {
+        ...state,
+        statusCancelFriendRequest: "success"
+      }
     case types.CHECK_ALL_MISSION_COMPLETE:
       return {
         ...state,
@@ -2023,6 +2091,7 @@ export function reducer(state = INIT_STATE, action) {
     case types.GET_FRIEND_REQUEST_SENT_FAIL:
       return {
         ...state,
+        friend_request_sent: [],
         statusGetFriendRequestSent: "fail"
       }
     case types.SEND_FRIEND_REQUEST:
