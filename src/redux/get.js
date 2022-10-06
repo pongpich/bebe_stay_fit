@@ -8,7 +8,13 @@ export const types = {
   GET_SUBSCRIPTION_PRODUCTS_SUCCESS: "GET_SUBSCRIPTION_PRODUCTS_SUCCESS",
   GET_REGISTER_LOG: "GET_REGISTER_LOG",
   GET_REGISTER_LOG_SUCCESS: "GET_REGISTER_LOG_SUCCESS",
+  GET_ALL_MEMBER_STAY_FIT: "GET_ALL_MEMBER_STAY_FIT",
+  GET_ALL_MEMBER_STAY_FIT_SUCCESS: "GET_ALL_MEMBER_STAY_FIT_SUCCESS",
 }
+
+export const getAllMemberStayFit = () => ({
+  type: types.GET_ALL_MEMBER_STAY_FIT
+})
 
 export const getSubscriptionProducts = (user_id) => ({
   type: types.GET_SUBSCRIPTION_PRODUCTS,
@@ -48,6 +54,20 @@ const getRegister_logSagaAsync = async (
     const apiResult = await API.get("bebe", "/getRegister_log", {
       queryStringParameters: {
         user_id
+      }
+    });
+    return apiResult
+  } catch (error) {
+    return { error, messsage: error.message };
+  }
+}
+const getAllMemberStayFitSagaAsync = async (
+  
+) => {
+  try {
+    const apiResult = await API.get("bebe", "/getAllMemberStayFit", {
+      queryStringParameters: {
+        
       }
     });
     return apiResult
@@ -96,6 +116,20 @@ function* getRegister_logSaga({ payload }) {
     console.log("error from getRegister_logSaga :", error);
   }
 }
+function* getAllMemberStayFitSaga({  }) {
+
+  try {
+    const apiResult = yield call(
+      getAllMemberStayFitSagaAsync
+    );
+    yield put({
+      type: types.GET_ALL_MEMBER_STAY_FIT_SUCCESS,
+      payload: apiResult.results
+    })
+  } catch (error) {
+    console.log("error from getAllMemberStayFitSaga :", error);
+  }
+}
 
 export function* watchGetSubscriptionProducts() {
   yield takeEvery(types.GET_SUBSCRIPTION_PRODUCTS, getSubscriptionProductsSaga)
@@ -103,11 +137,15 @@ export function* watchGetSubscriptionProducts() {
 export function* watchGetRegister_logSaga() {
   yield takeEvery(types.GET_REGISTER_LOG, getRegister_logSaga)
 }
+export function* watchGetAllMemberStayFitSaga() {
+  yield takeEvery(types.GET_ALL_MEMBER_STAY_FIT, getAllMemberStayFitSaga)
+}
 
 export function* saga() {
   yield all([
     fork(watchGetSubscriptionProducts),
     fork(watchGetRegister_logSaga),
+    fork(watchGetAllMemberStayFitSaga),
   ]);
 }
 
@@ -118,11 +156,17 @@ export function* saga() {
 const INIT_STATE = {
   delivery_address: null,
   products_list: null,
-  register_log: null
+  register_log: null,
+  allMemberStayFit: null
 };
 
 export function reducer(state = INIT_STATE, action) {
   switch (action.type) {
+    case types.GET_ALL_MEMBER_STAY_FIT_SUCCESS:
+      return {
+        ...state,
+        allMemberStayFit: action.payload.allMemberStayFit
+      }
     case types.GET_SUBSCRIPTION_PRODUCTS_SUCCESS:
       return {
         ...state,
