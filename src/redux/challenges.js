@@ -50,6 +50,9 @@ export const types = {
   GET_FRIEND_REQUEST: "GET_FRIEND_REQUEST",
   GET_FRIEND_REQUEST_SUCCESS: "GET_FRIEND_REQUEST_SUCCESS",
   GET_FRIEND_REQUEST_FAIL: "GET_FRIEND_REQUEST_FAIL",
+  GET_FRIEND_REQUEST_SENT: "GET_FRIEND_REQUEST_SENT",
+  GET_FRIEND_REQUEST_SENT_SUCCESS: "GET_FRIEND_REQUEST_SENT_SUCCESS",
+  GET_FRIEND_REQUEST_SENT_FAIL: "GET_FRIEND_REQUEST_SENT_FAIL",
   ACCEPT_FRIEND: "ACCEPT_FRIEND",
   ACCEPT_FRIEND_SUCCESS: "ACCEPT_FRIEND_SUCCESS",
   ACCEPT_FRIEND_FAIL: "ACCEPT_FRIEND_FAIL",
@@ -121,6 +124,13 @@ export const getMaxFriends = (user_id) => ({
 
 export const getFriendRequest = (user_id) => ({
   type: types.GET_FRIEND_REQUEST,
+  payload: {
+    user_id
+  }
+});
+
+export const getFriendRequestSent = (user_id) => ({
+  type: types.GET_FRIEND_REQUEST_SENT,
   payload: {
     user_id
   }
@@ -346,6 +356,22 @@ const getFriendRequestSagaAsync = async (
 ) => {
   try {
     const apiResult = await API.get("bebe", "/getFriendRequest", {
+      queryStringParameters: {
+        user_id
+      }
+    });
+    return apiResult
+  } catch (error) {
+    console.log("error :", error);
+    return { error, messsage: error.message }
+  }
+}
+
+const getFriendRequestSentSagaAsync = async (
+  user_id
+) => {
+  try {
+    const apiResult = await API.get("bebe", "/getFriendRequestSent", {
       queryStringParameters: {
         user_id
       }
@@ -931,6 +957,31 @@ function* getFriendRequestSaga({ payload }) {
 
   } catch (error) {
     console.log("error from getFriendRequestSaga :", error);
+  }
+}
+
+function* getFriendRequestSentSaga({ payload }) {
+  const {
+    user_id
+  } = payload
+  try {
+    const apiResult = yield call(
+      getFriendRequestSentSagaAsync,
+      user_id
+    );
+    if (apiResult.results.message === "success") {
+      yield put({
+        type: types.GET_FRIEND_REQUEST_SENT_SUCCESS,
+        payload: apiResult.results.friend_request
+      })
+    } else if (apiResult.results.message === "no_friend_request") {
+      yield put({
+        type: types.GET_FRIEND_REQUEST_SENT_FAIL
+      })
+    }
+
+  } catch (error) {
+    console.log("error from getFriendRequestSentSaga :", error);
   }
 }
 
@@ -1618,6 +1669,10 @@ export function* watchGetFriendRequest() {
   yield takeEvery(types.GET_FRIEND_REQUEST, getFriendRequestSaga)
 }
 
+export function* watchGetFriendRequestSent() {
+  yield takeEvery(types.GET_FRIEND_REQUEST_SENT, getFriendRequestSentSaga)
+}
+
 export function* watchAcceptFriend() {
   yield takeEvery(types.ACCEPT_FRIEND, acceptFriendSaga)
 }
@@ -1704,6 +1759,7 @@ export function* saga() {
     fork(watchGetAchievementLog),
     fork(watchUpdateAchievementLog),
     fork(watchCheckAllMissionComplete),
+    fork(watchGetFriendRequestSent),
   ]);
 }
 
@@ -1737,7 +1793,9 @@ const INIT_STATE = {
   statusGetFriendList: "default",
   statusSendFriendRequest: "default",
   friend_request: [],
+  friend_request_sent: [],
   statusGetFriendRequest: "default",
+  statusGetFriendRequestSent: "default",
   statusAcceptFriend: "default",
   statusRejectFriend: "default",
   statusGetMaxFriends: "default",
@@ -1950,6 +2008,22 @@ export function reducer(state = INIT_STATE, action) {
       return {
         ...state,
         statusGetFriendRequest: "fail"
+      }
+    case types.GET_FRIEND_REQUEST_SENT:
+      return {
+        ...state,
+        statusGetFriendRequestSent: "loading"
+      }
+    case types.GET_FRIEND_REQUEST_SENT_SUCCESS:
+      return {
+        ...state,
+        friend_request_sent: action.payload,
+        statusGetFriendRequestSent: "success"
+      }
+    case types.GET_FRIEND_REQUEST_SENT_FAIL:
+      return {
+        ...state,
+        statusGetFriendRequestSent: "fail"
       }
     case types.SEND_FRIEND_REQUEST:
       return {
