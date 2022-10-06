@@ -70,6 +70,7 @@ export const resetStatusSetPassword = () => ({
 export const updateProfile = (
   user_id,
   other_attributes,
+  display_name,
   start_date,
   program_id,
   is_beginner
@@ -78,6 +79,7 @@ export const updateProfile = (
   payload: {
     user_id,
     other_attributes,
+    display_name,
     start_date,
     program_id,
     is_beginner
@@ -222,6 +224,7 @@ const addOrderInZortSagaAsync = async (
 const updateProfileSagaAsync = async (
   user_id,
   other_attributes,
+  display_name,
   start_date,
   program_id,
   is_beginner
@@ -231,6 +234,7 @@ const updateProfileSagaAsync = async (
       body: {
         user_id,
         other_attributes,
+        display_name,
         start_date,
         program_id,
         is_beginner
@@ -541,6 +545,7 @@ function* updateProfileSaga({ payload }) {
   const {
     user_id,
     other_attributes,
+    display_name,
     start_date,
     program_id,
     is_beginner
@@ -551,6 +556,7 @@ function* updateProfileSaga({ payload }) {
       updateProfileSagaAsync,
       user_id,
       other_attributes,
+      display_name,
       start_date,
       program_id,
       is_beginner

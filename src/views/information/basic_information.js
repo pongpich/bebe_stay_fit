@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { connect } from "react-redux";
 import { basicInFormation } from "../../redux/basicInFormation";
 import { updateProfile } from "../../redux/auth";
+import { getCheckDisplayName } from "../../redux/get";
 import IntlMessages from "../../helpers/IntlMessages";
 import { injectIntl } from 'react-intl';
 class Basic_Information extends React.Component {
@@ -25,12 +26,14 @@ class Basic_Information extends React.Component {
       statusSubmit: "default",
       displayname: null,
       validation_displayname: false,
-      displayname_length: false
+      displayname_length: false,
+      checkDisplayName: false
     }
   }
 
   componentDidMount() {
     const { user, locale } = this.props;
+
 
     if (user === null) {
       this.props.history.push('/welcome_new_nember');
@@ -44,7 +47,7 @@ class Basic_Information extends React.Component {
   }
 
   componentDidUpdate(prevProps) {
-    const { user, locale } = this.props;
+    const { user, locale,statusDisplayName } = this.props;
     if (user && (prevProps.user.other_attributes !== user.other_attributes)) {
       if (user && user.other_attributes) {
         this.props.history.push('/videoList');
@@ -53,17 +56,32 @@ class Basic_Information extends React.Component {
     if (prevProps.locale !== locale) {
       this.kg_po(locale)
     }
+    if (prevProps.statusDisplayName !== statusDisplayName) {
+      if (statusDisplayName === "success") {
+        this.setState({
+       /*    validation_displayname: false, */
+          checkDisplayName: "success",
+        }) 
+        console.log("statusDisplayName",statusDisplayName);
+      }else if (statusDisplayName === "fail") {
+        this.setState({
+/*           validation_displayname: true, */
+          checkDisplayName: "fail",
+        }) 
+        console.log("statusDisplayName",statusDisplayName);
+      }
+    }
 
   }
 
 
 
 
-  basicInFormation(displayname, basicSex, basicAge, typeHei_Wig, basicHeight, basicWeight, practiceDifficultExercises, injury, arePregnant) {
+  basicInFormation( basicSex, basicAge, typeHei_Wig, basicHeight, basicWeight, practiceDifficultExercises, injury, arePregnant,displayname) {
     this.setState({
       statusSubmit: "default"
     })
-    if (basicSex && basicAge && typeHei_Wig && basicHeight && basicWeight && practiceDifficultExercises && displayname && displayname.length >= 4) {
+    if (basicSex && basicAge && typeHei_Wig && basicHeight && basicWeight && practiceDifficultExercises && displayname) {
 
       this.props.basicInFormation(
         basicSex, basicAge, typeHei_Wig, basicHeight, basicWeight, practiceDifficultExercises, injury, arePregnant
@@ -78,10 +96,11 @@ class Basic_Information extends React.Component {
         unitHeight: this.state.typeHeight,
         doDifficultPosture: (practiceDifficultExercises === "sure") ? 'yes' : 'no'
       }
-
+      const display_name = this.state.displayname;
       this.props.updateProfile(
         this.props.user.user_id,
         other_attributes,
+        display_name,
         this.props.user.start_date,
         this.props.user.program_id,
         (practiceDifficultExercises === "sure") ? false : true // false = ไม่ใช่ is_beginner, true = เป็น is_beginner
@@ -179,24 +198,43 @@ class Basic_Information extends React.Component {
   }
 
   onCheckBasix = (e) => {
+/*     this.setState({
+      validation_displayname: false,
+      displayname_length: false,
+      checkDisplayName: false
+    }) */
     const name = e.target.name;
     if (name === "displayname") {
       const elem = e.target.value;
+      if (elem.length >= 4 ) {
 
-      if (/^([0-9A-Zก-ฮ])+$/i.test(elem)) {
         this.setState({
-          validation_displayname: false,
-          [e.target.name]: e.target.value,
-        })
-      } else {
+          displayname_length: false,
+        }) 
+        const elem = e.target.value;
+  
+        if (/^([0-9a-zA-Zก-ฮัะาเแอำไใโอิอีอึอือุอูอ่อ้อ๊อ๋อ็อ์])+$/i.test(elem)) {
+          this.props.getCheckDisplayName(elem);
+          this.setState({
+            validation_displayname: false,
+            displayname: elem,
+          }) 
+        } else {
+          this.setState({
+            validation_displayname: true,
+            displayname: null,
+          }) 
+        }
+
+      }else{
         this.setState({
-          validation_displayname: true,
-        })
-      }
+          displayname_length: true,
+        }) 
+      } 
     } else {
       this.setState({
         [e.target.name]: e.target.value,
-      })
+      }) 
     }
 
 
@@ -209,7 +247,9 @@ class Basic_Information extends React.Component {
   render() {
 
     const { messages } = this.props.intl;
-    const { displayname, validation_displayname, displayname_length, basicSex, basicAge, typeHei_Wig, lb_ft, kg_cm, basicHeight, basicWeight, practiceDifficultExercises, injury, arePregnant, statusSubmit } = this.state;
+    const { checkDisplayName,displayname, validation_displayname, displayname_length, basicSex, basicAge, typeHei_Wig, lb_ft, kg_cm, basicHeight, basicWeight, practiceDifficultExercises, injury, arePregnant, statusSubmit } = this.state;
+   
+   console.log("displayname",displayname);
     return (
       <>
         <div className="col-12 col-sm-12 col-md-12 col-lg-12  App-headerBackground center2 padding-top2 ">
@@ -230,6 +270,11 @@ class Basic_Information extends React.Component {
                     {
                       displayname_length === true ?
                         <p style={{ color: "red" }}>กรุณาตัวอักษร มากกว่า 4 อักษร</p>
+                        : null
+                    }
+                    {
+                      checkDisplayName === "fail" ?
+                        <p style={{ color: "red" }}>มีผู้ใช้ชื่อ {displayname} อยู่แล้วในระบบ</p>
                         : null
                     }
                   </div>
@@ -313,7 +358,7 @@ class Basic_Information extends React.Component {
                 <h6 style={{ color: "red" }}><IntlMessages id="navbarHome.validationInformation" /></h6>
               }
               <div className="d-grid gap-2  mx-auto   col-10 col-sm-10  col-md-10 col-lg-10 distance">
-                <button className="btn bottom-pink" type="button" onClick={() => this.basicInFormation(displayname, basicSex, basicAge, typeHei_Wig, basicHeight, basicWeight, practiceDifficultExercises, injury, arePregnant)}  >
+                <button className="btn bottom-pink" type="button" onClick={() => this.basicInFormation( basicSex, basicAge, typeHei_Wig, basicHeight, basicWeight, practiceDifficultExercises, injury, arePregnant,displayname)}  >
                   <IntlMessages id="basic_information.createExercise" />
                 </button>
                 {/*    <Link to="/your_program" className="btn bottom-pink" type="button">สร้างโปรแกรมออกกำลังกาย</Link> */}
@@ -328,19 +373,20 @@ class Basic_Information extends React.Component {
   }
 }
 
-const mapStateToProps = ({ createUser, authUser, settings }) => {
+const mapStateToProps = ({ createUser, authUser, settings,get }) => {
   const { user } = authUser;
   const { create_user_email } = createUser;
+  const { statusDisplayName } = get;
   let locale;
   if (settings) {
     locale = settings.locale;
   } else {
     locale = "th";
   }
-  return { create_user_email, user, locale };
+  return { create_user_email, user, locale,statusDisplayName };
 };
 
-const mapActionsToProps = { basicInFormation, updateProfile };
+const mapActionsToProps = { basicInFormation, updateProfile,getCheckDisplayName };
 
 export default connect(
   mapStateToProps,

@@ -10,6 +10,9 @@ export const types = {
   GET_REGISTER_LOG_SUCCESS: "GET_REGISTER_LOG_SUCCESS",
   GET_ALL_MEMBER_STAY_FIT: "GET_ALL_MEMBER_STAY_FIT",
   GET_ALL_MEMBER_STAY_FIT_SUCCESS: "GET_ALL_MEMBER_STAY_FIT_SUCCESS",
+  GET_CHECK_DISPAY_NAME: "GET_CHECK_DISPAY_NAME",
+  GET_CHECK_DISPAY_NAME_FALE: "GET_CHECK_DISPAY_NAME_FALE",
+  GET_CHECK_DISPAY_NAME_SUCCESS: "GET_CHECK_DISPAY_NAME_SUCCESS",
 }
 
 export const getAllMemberStayFit = () => ({
@@ -22,10 +25,17 @@ export const getSubscriptionProducts = (user_id) => ({
     user_id
   }
 })
+
 export const getRegister_log = (user_id) => ({
   type: types.GET_REGISTER_LOG,
   payload: {
     user_id
+  }
+})
+export const getCheckDisplayName = (display_name) => ({
+  type: types.GET_CHECK_DISPAY_NAME,
+  payload: {
+    display_name
   }
 })
 
@@ -61,6 +71,22 @@ const getRegister_logSagaAsync = async (
     return { error, messsage: error.message };
   }
 }
+
+const getCheckDisplayNameSagaAsync = async (
+  display_name
+) => {
+  try {
+    const apiResult = await API.get("bebe", "/checkDisplayName", {
+      queryStringParameters: {
+        display_name
+      }
+    });
+    return apiResult
+  } catch (error) {
+    return { error, messsage: error.message };
+  }
+}
+
 const getAllMemberStayFitSagaAsync = async (
   
 ) => {
@@ -116,6 +142,34 @@ function* getRegister_logSaga({ payload }) {
     console.log("error from getRegister_logSaga :", error);
   }
 }
+
+function* getCheckDisplayNameSaga({ payload }) {
+  const {
+    display_name
+  } = payload
+
+  try {
+    const apiResult = yield call(
+      getCheckDisplayNameSagaAsync,
+      display_name
+    );
+
+    if (apiResult.results.message === "new") {
+      yield put({
+        type: types.GET_CHECK_DISPAY_NAME_SUCCESS
+      })
+    }
+    if (apiResult.results.message === "exist") {
+      yield put({
+        type: types.GET_CHECK_DISPAY_NAME_FALE
+      })
+    }
+  } catch (error) {
+    console.log("error from updateDisplayNameSaga :", error);
+  }
+}
+
+
 function* getAllMemberStayFitSaga({  }) {
 
   try {
@@ -140,12 +194,16 @@ export function* watchGetRegister_logSaga() {
 export function* watchGetAllMemberStayFitSaga() {
   yield takeEvery(types.GET_ALL_MEMBER_STAY_FIT, getAllMemberStayFitSaga)
 }
+export function* watchGetCheckDisplayNameSaga() {
+  yield takeEvery(types.GET_CHECK_DISPAY_NAME, getCheckDisplayNameSaga)
+}
 
 export function* saga() {
   yield all([
     fork(watchGetSubscriptionProducts),
     fork(watchGetRegister_logSaga),
     fork(watchGetAllMemberStayFitSaga),
+    fork(watchGetCheckDisplayNameSaga),
   ]);
 }
 
@@ -157,11 +215,27 @@ const INIT_STATE = {
   delivery_address: null,
   products_list: null,
   register_log: null,
-  allMemberStayFit: null
+  allMemberStayFit: null,
+  statusDisplayName: "default"
 };
 
 export function reducer(state = INIT_STATE, action) {
   switch (action.type) {
+    case types.GET_CHECK_DISPAY_NAME:
+      return {
+        ...state,
+        statusDisplayName: "loading"
+      }
+    case types.GET_CHECK_DISPAY_NAME_SUCCESS:
+      return {
+        ...state,
+        statusDisplayName: "success"
+      }
+    case types.GET_CHECK_DISPAY_NAME_FALE:
+      return {
+        ...state,
+        statusDisplayName: "fail"
+      }
     case types.GET_ALL_MEMBER_STAY_FIT_SUCCESS:
       return {
         ...state,

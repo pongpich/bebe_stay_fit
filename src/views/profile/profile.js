@@ -18,6 +18,7 @@ class Profile extends React.Component {
     const address = JSON.parse(this.props.delivery_address);
     const program = this.props.register_log;
 
+    console.log("address",address);
     /*   const program_id =  this.props.register_log.program_id;
       const round =  this.props.register_log.round;
       const expire_date =  new Date(this.props.register_log.expire_date);
