@@ -28,6 +28,7 @@ import instagram from "../../assets/img/icon-instagram.png";
 import copyLink from "../../assets/img/copy-link.png";
 import { getFriendList, getRank, getLogWeight, getIsReducedWeight, getLogWeightTeam, getDailyTeamWeightBonus, getNumberOfTeamNotFull, assignGroupToMember, clearChallenges, createChallengeGroup, leaveTeam, getMembersAndRank, getGroupName, getScoreOfTeam, getLeaderboard, getChallengePeriod, sendFriendRequest, getFriendRequest, acceptFriend, rejectFriend, getMaxFriends, deleteFriend, sendTeamInvite, getTeamInvite, rejectTeamInvite, acceptTeamInvite, getFriendsRank, getAchievementLog, updateAchievementLog, checkAllMissionComplete } from "../../redux/challenges";
 import { getGroupID, checkUpdateMaxFriends } from "../../redux/auth";
+import { getAllMemberStayFit } from "../../redux/get";
 import { connect } from "react-redux";
 import moment from "moment";
 import { FacebookShareButton, TwitterShareButton, FacebookMessengerShareButton, LineShareButton, WhatsappShareButton } from "react-share";
@@ -363,7 +364,7 @@ class Challenge extends Component {
       var friendList = "challenge-link chalLeft"
       var achievement = "challenge-link color1"
       var all_users = "challenge-link"
-    }else if (name === 'all_users') {
+    } else if (name === 'all_users') {
       var challenge = "challenge6"
       var allMissions = "challenge-link1  "
       var teamList = "challenge-link"
@@ -371,6 +372,7 @@ class Challenge extends Component {
       var friendList = "challenge-link"
       var achievement = "challenge-link"
       var all_users = "challenge-link chalLeft color1"
+      this.props.getAllMemberStayFit();
     }
     this.setState({
       challenge: challenge,
@@ -1276,10 +1278,16 @@ class Challenge extends Component {
   }
 
   all_users() {
+    const { allMemberStayFit } = this.props;
     return (
       <div className="box-challengeIn">
         <p>ผู้ใช้งานทั้งหมดในระบบ <span><input type="email" className="form-control2 cd-col-12 col-sm-12 col-md-6 col-lg-6" id="exampleFormControlInput1" placeholder="name@example.com" /></span></p>
-        
+        {
+          allMemberStayFit &&
+          allMemberStayFit.map((item, i) =>
+            <h5 key={i}>{item.email}</h5>
+          )
+        }
       </div>
     )
   }
@@ -2065,7 +2073,7 @@ class Challenge extends Component {
 
   render() {
     /* const { messages } = this.props.intl; */
-    const { challenge, allMissions, teamList, scoreboard, friendList, myTeamRank, achievement,all_users } = this.state;
+    const { challenge, allMissions, teamList, scoreboard, friendList, myTeamRank, achievement, all_users } = this.state;
     const { rank, logWeightCount, isReducedWeight, logWeightTeamCount, numberOfMembers, dailyTeamWeightBonusCount, user, totalScoreOfTeam } = this.props;
     const isExerciseCompleted = this.isExerciseCompleted(this.props.exerciseVideo);
     var { scoreInWeek } = this.state;
@@ -2947,9 +2955,10 @@ class Challenge extends Component {
   }
 }
 
-const mapStateToProps = ({ authUser, challenges, exerciseVideos, settings }) => {
+const mapStateToProps = ({ authUser, challenges, exerciseVideos, settings, get }) => {
   const { user } = authUser;
   const { exerciseVideo, statusVideoList } = exerciseVideos;
+  const { allMemberStayFit } = get;
   const { statusCreateTeam, numberOfTeamNotFull, statusGetNumberOfTeamNotFull, statusLeaveTeam, membersOfTeam, group_name, totalScoreOfTeam, rank, teamRank, individualRank, logWeightCount, isReducedWeight, logWeightTeamCount, numberOfMembers, dailyTeamWeightBonusCount, friend_list, statusGetFriendList, statusSendFriendRequest, friend_request, statusGetFriendRequest, statusAcceptFriend, statusRejectFriend, statusGetMaxFriends, max_friends, statusDeleteFriend, statusSendTeamInvite, team_invite, statusGetTeamInvite, statusRejectTeamInvite, statusAcceptTeamInvite, friendsRank, statusGetFriendsRank, challengePeriod, statusGetLeaderBoard, statusGetAchievement, achievementLog, statusUpdateAchievement, statusCheckAllMissionComplete } = challenges;
   let locale;
   if (settings) {
@@ -2957,10 +2966,10 @@ const mapStateToProps = ({ authUser, challenges, exerciseVideos, settings }) => 
   } else {
     locale = "th";
   }
-  return { locale, user, statusCreateTeam, numberOfTeamNotFull, statusGetNumberOfTeamNotFull, statusLeaveTeam, membersOfTeam, group_name, totalScoreOfTeam, rank, teamRank, individualRank, logWeightCount, isReducedWeight, logWeightTeamCount, numberOfMembers, dailyTeamWeightBonusCount, exerciseVideo, statusVideoList, friend_list, statusGetFriendList, statusSendFriendRequest, friend_request, statusGetFriendRequest, statusAcceptFriend, statusRejectFriend, statusGetMaxFriends, max_friends, statusDeleteFriend, statusSendTeamInvite, team_invite, statusGetTeamInvite, statusRejectTeamInvite, statusAcceptTeamInvite, friendsRank, statusGetFriendsRank, challengePeriod, statusGetLeaderBoard, statusGetAchievement, achievementLog, statusUpdateAchievement, statusCheckAllMissionComplete };
+  return { locale, user, statusCreateTeam, numberOfTeamNotFull, statusGetNumberOfTeamNotFull, statusLeaveTeam, membersOfTeam, group_name, totalScoreOfTeam, rank, teamRank, individualRank, logWeightCount, isReducedWeight, logWeightTeamCount, numberOfMembers, dailyTeamWeightBonusCount, exerciseVideo, statusVideoList, friend_list, statusGetFriendList, statusSendFriendRequest, friend_request, statusGetFriendRequest, statusAcceptFriend, statusRejectFriend, statusGetMaxFriends, max_friends, statusDeleteFriend, statusSendTeamInvite, team_invite, statusGetTeamInvite, statusRejectTeamInvite, statusAcceptTeamInvite, friendsRank, statusGetFriendsRank, challengePeriod, statusGetLeaderBoard, statusGetAchievement, achievementLog, statusUpdateAchievement, statusCheckAllMissionComplete, allMemberStayFit };
 };
 
-const mapActionsToProps = { getGroupID, getRank, getLogWeight, getIsReducedWeight, getLogWeightTeam, getDailyTeamWeightBonus, getNumberOfTeamNotFull, assignGroupToMember, clearChallenges, createChallengeGroup, leaveTeam, getMembersAndRank, getGroupName, getScoreOfTeam, getLeaderboard, getChallengePeriod, getFriendList, sendFriendRequest, getFriendRequest, acceptFriend, rejectFriend, getMaxFriends, deleteFriend, sendTeamInvite, getTeamInvite, rejectTeamInvite, acceptTeamInvite, checkUpdateMaxFriends, getFriendsRank, getAchievementLog, updateAchievementLog, checkAllMissionComplete };
+const mapActionsToProps = { getGroupID, getRank, getLogWeight, getIsReducedWeight, getLogWeightTeam, getDailyTeamWeightBonus, getNumberOfTeamNotFull, assignGroupToMember, clearChallenges, createChallengeGroup, leaveTeam, getMembersAndRank, getGroupName, getScoreOfTeam, getLeaderboard, getChallengePeriod, getFriendList, sendFriendRequest, getFriendRequest, acceptFriend, rejectFriend, getMaxFriends, deleteFriend, sendTeamInvite, getTeamInvite, rejectTeamInvite, acceptTeamInvite, checkUpdateMaxFriends, getFriendsRank, getAchievementLog, updateAchievementLog, checkAllMissionComplete, getAllMemberStayFit };
 
 export default connect(
   mapStateToProps,
