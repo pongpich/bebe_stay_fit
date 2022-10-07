@@ -25,6 +25,7 @@ class Basic_Information extends React.Component {
       kg_cm: "กก/ซม",
       statusSubmit: "default",
       displayname: null,
+      displayname2: null,
       validation_displayname: false,
       displayname_length: false,
       checkDisplayName: false
@@ -65,7 +66,7 @@ class Basic_Information extends React.Component {
         console.log("statusDisplayName",statusDisplayName);
       }else if (statusDisplayName === "fail") {
         this.setState({
-/*           validation_displayname: true, */
+          displayname: null,
           checkDisplayName: "fail",
         }) 
         console.log("statusDisplayName",statusDisplayName);
@@ -218,11 +219,13 @@ class Basic_Information extends React.Component {
           this.setState({
             validation_displayname: false,
             displayname: elem,
+            displayname2: elem,
           }) 
         } else {
           this.setState({
             validation_displayname: true,
             displayname: null,
+            displayname2: null,
           }) 
         }
 
@@ -247,7 +250,7 @@ class Basic_Information extends React.Component {
   render() {
 
     const { messages } = this.props.intl;
-    const { checkDisplayName,displayname, validation_displayname, displayname_length, basicSex, basicAge, typeHei_Wig, lb_ft, kg_cm, basicHeight, basicWeight, practiceDifficultExercises, injury, arePregnant, statusSubmit } = this.state;
+    const { checkDisplayName,displayname,displayname2, validation_displayname, displayname_length, basicSex, basicAge, typeHei_Wig, lb_ft, kg_cm, basicHeight, basicWeight, practiceDifficultExercises, injury, arePregnant, statusSubmit } = this.state;
    
    console.log("displayname",displayname);
     return (
@@ -274,7 +277,7 @@ class Basic_Information extends React.Component {
                     }
                     {
                       checkDisplayName === "fail" ?
-                        <p style={{ color: "red" }}>มีผู้ใช้ชื่อ {displayname} อยู่แล้วในระบบ</p>
+                        <p style={{ color: "red" }}>มีผู้ใช้ชื่อ {displayname2} อยู่แล้วในระบบ</p>
                         : null
                     }
                   </div>

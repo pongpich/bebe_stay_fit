@@ -145,7 +145,10 @@ function* updateDisplayNameSaga({ payload }) {
       user_id,
       display_name
     );
-    if (apiResult.results.message === "new") {
+    yield put({
+      type: types.UPDATE_DISPLAY_NAME_SUCCESS
+    })
+   /*  if (apiResult.results.message === "new") {
       yield put({
         type: types.UPDATE_DISPLAY_NAME_SUCCESS
       })
@@ -154,7 +157,7 @@ function* updateDisplayNameSaga({ payload }) {
       yield put({
         type: types.UPDATE_DISPLAY_NAME_FAIL
       })
-    }
+    } */
   } catch (error) {
     console.log("error from updateDisplayNameSaga :", error);
   }

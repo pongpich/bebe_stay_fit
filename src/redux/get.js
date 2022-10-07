@@ -13,6 +13,8 @@ export const types = {
   GET_CHECK_DISPAY_NAME: "GET_CHECK_DISPAY_NAME",
   GET_CHECK_DISPAY_NAME_FALE: "GET_CHECK_DISPAY_NAME_FALE",
   GET_CHECK_DISPAY_NAME_SUCCESS: "GET_CHECK_DISPAY_NAME_SUCCESS",
+  GET_MEMBER_INFO: "GET_MEMBER_INFO",
+  GET_MEMBER_INFO_SUCCESS: "GET_MEMBER_INFO_SUCCESS",
 }
 
 export const getAllMemberStayFit = () => ({
@@ -21,6 +23,12 @@ export const getAllMemberStayFit = () => ({
 
 export const getSubscriptionProducts = (user_id) => ({
   type: types.GET_SUBSCRIPTION_PRODUCTS,
+  payload: {
+    user_id
+  }
+})
+export const getMemberInfo = (user_id) => ({
+  type: types.GET_MEMBER_INFO,
   payload: {
     user_id
   }
@@ -57,6 +65,22 @@ const getSubscriptionProductsSagaAsync = async (
     return { error, messsage: error.message };
   }
 }
+const getMemberInfoSagaAsync = async (
+  user_id
+) => {
+  try {
+    const apiResult = await API.get("bebe", "/getMemberInfo", {
+      queryStringParameters: {
+        user_id
+      }
+    });
+    return apiResult
+  } catch (error) {
+    return { error, messsage: error.message };
+  }
+}
+
+
 const getRegister_logSagaAsync = async (
   user_id
 ) => {
@@ -121,6 +145,26 @@ function* getSubscriptionProductsSaga({ payload }) {
   } catch (error) {
     console.log("error from getSubscriptionProductsSaga :", error);
   }
+}
+function* getMemberInfoSagaAsyncSaga({ payload }) {
+  const {
+    user_id
+  } = payload
+
+ try {
+    const apiResult = yield call(
+      getMemberInfoSagaAsync,
+      user_id
+    );
+
+     yield put({
+      type: types.GET_MEMBER_INFO_SUCCESS,
+      payload: apiResult.results
+    })
+     } catch (error) {
+    console.log("error from getMemberInfoSagaAsyncSaga :", error);
+  }
+
 }
 
 function* getRegister_logSaga({ payload }) {
@@ -197,6 +241,9 @@ export function* watchGetAllMemberStayFitSaga() {
 export function* watchGetCheckDisplayNameSaga() {
   yield takeEvery(types.GET_CHECK_DISPAY_NAME, getCheckDisplayNameSaga)
 }
+export function* watchGetMemberInfoSagaAsyncSaga() {
+  yield takeEvery(types.GET_MEMBER_INFO, getMemberInfoSagaAsyncSaga)
+}
 
 export function* saga() {
   yield all([
@@ -204,6 +251,7 @@ export function* saga() {
     fork(watchGetRegister_logSaga),
     fork(watchGetAllMemberStayFitSaga),
     fork(watchGetCheckDisplayNameSaga),
+    fork(watchGetMemberInfoSagaAsyncSaga),
   ]);
 }
 
@@ -216,7 +264,8 @@ const INIT_STATE = {
   products_list: null,
   register_log: null,
   allMemberStayFit: null,
-  statusDisplayName: "default"
+  statusDisplayName: "default",
+  member_info:null
 };
 
 export function reducer(state = INIT_STATE, action) {
@@ -240,6 +289,11 @@ export function reducer(state = INIT_STATE, action) {
       return {
         ...state,
         allMemberStayFit: action.payload.allMemberStayFit
+      }
+    case types.GET_MEMBER_INFO_SUCCESS:
+      return {
+        ...state,
+        member_info: action.payload.member_info
       }
     case types.GET_SUBSCRIPTION_PRODUCTS_SUCCESS:
       return {

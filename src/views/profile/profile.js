@@ -3,7 +3,7 @@ import ellipse17 from "../../assets/img/ellipse17_2.png";
 import user_circle from "../../assets/img/user_circle.svg";
 import { Link } from 'react-router-dom';
 import { connect } from "react-redux";
-import { getSubscriptionProducts, getRegister_log } from "../../redux/get";
+import { getSubscriptionProducts, getRegister_log,getMemberInfo } from "../../redux/get";
 import IntlMessages from "../../helpers/IntlMessages";
 
 class Profile extends React.Component {
@@ -12,13 +12,13 @@ class Profile extends React.Component {
     const { user } = this.props;
     this.props.getSubscriptionProducts(user.user_id);
     this.props.getRegister_log(user.user_id);
+    this.props.getMemberInfo(user.user_id);
   }
 
   render() {
     const address = JSON.parse(this.props.delivery_address);
+    const memberInfo = this.props.member_info;
     const program = this.props.register_log;
-
-    console.log("address",address);
     /*   const program_id =  this.props.register_log.program_id;
       const round =  this.props.register_log.round;
       const expire_date =  new Date(this.props.register_log.expire_date);
@@ -40,6 +40,7 @@ class Profile extends React.Component {
                 <img src={ellipse17} alt="vector" />
               </div> */}
               <div className="padding-top2">
+                <p className="section-size">{memberInfo && memberInfo.display_name}</p>
                 <p className="section-size">{address && address.firstname} {address && address.lastname}</p>
                 <p className="margin-top-1 bold">  {this.props.user.email}</p>
                 <p className="margin-top-1 section-size">{address && address.address} {address && address.subdistrict} {address && address.district} </p>
@@ -174,12 +175,12 @@ class Profile extends React.Component {
 }
 
 const mapStateToProps = ({ get, authUser }) => {
-  const { delivery_address, register_log } = get;
+  const { delivery_address, register_log ,member_info} = get;
   const { user } = authUser;
-  return { delivery_address, user, register_log };
+  return { delivery_address, user, register_log,member_info };
 };
 
-const mapActionsToProps = { getSubscriptionProducts, getRegister_log };
+const mapActionsToProps = { getSubscriptionProducts, getRegister_log ,getMemberInfo};
 
 export default connect(
   mapStateToProps,

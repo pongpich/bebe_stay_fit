@@ -4,7 +4,7 @@ import ellipse17_2 from "../../assets/img/ellipse17_2.png";
 
 import user_circle from "../../assets/img/user_circle.svg";
 import { connect } from "react-redux";
-import { getSubscriptionProducts } from "../../redux/get";
+import { getSubscriptionProducts,getCheckDisplayName } from "../../redux/get";
 import { putSubscriptionAddress, clearSubscriptionAddress } from "../../redux/updateAddress";
 import { updateDisplayName } from "../../redux/update";
 import InputAddress from 'react-thailand-address-autocomplete';
@@ -24,9 +24,13 @@ class EditProfile extends React.Component {
       province: null,
       zipcode: null,
       displayname: null,
+      displayname2: null,
+      displayname3: null,
       validation_displayname: false,
       validation_displayname2: false,
-      displayname_length: false
+      displayname_length: false,
+      checkDisplayName:null,
+      statusSubmit: null
     };
   }
 
@@ -36,10 +40,16 @@ class EditProfile extends React.Component {
     this.setAddress(address);
 
     this.props.clearSubscriptionAddress();
+
+    const memberInfo = this.props.member_info;
+    this.setState({
+      displayname: memberInfo.display_name,
+      displayname3: memberInfo.display_name
+    })
   }
 
   componentDidUpdate(prevProps, prevState) {
-    const { status_update_address, statusUpdateDisplayName } = this.props;
+    const { status_update_address, statusUpdateDisplayName ,statusDisplayName} = this.props;
     if ((prevProps.statusUpdateDisplayName !== statusUpdateDisplayName) && (statusUpdateDisplayName === "success")) {
       this.props.history.push('/profile');
     }
@@ -49,10 +59,32 @@ class EditProfile extends React.Component {
         validation_displayname2: true
       })
     }
+    console.log("statusDisplayName",statusDisplayName);
+    if (prevProps.statusDisplayName !== statusDisplayName) {
+      if (statusDisplayName === "success") {
+        this.setState({
+       /*    validation_displayname: false, */
+          checkDisplayName: "success",
+        }) 
+        console.log("statusDisplayName",statusDisplayName);
+      }else if (statusDisplayName === "fail") {
+
+        if (this.state.displayname === this.state.displayname3) {
+          this.setState({
+            displayname: this.state.displayname,
+          }) 
+        }else{
+          this.setState({
+            displayname: null,
+            checkDisplayName: "fail",
+          }) 
+        }
+        console.log("statusDisplayName",statusDisplayName);
+      }
+    }
   }
 
   onChange(e) {
-    console.log("AA", e.target.value, e.target.name);
     this.setState({
       [e.target.name]: e.target.value,
     })
@@ -99,8 +131,16 @@ class EditProfile extends React.Component {
       province,
       zipcode
     }
-    this.props.updateDisplayName(user_id, displayname);
+    if (displayname) {
+      this.props.updateDisplayName(user_id, displayname);
+    }else {
+      this.setState({
+        statusSubmit: "fail"
+      })
+    }
+    /* this.props.updateDisplayName(user_id, displayname); */
     this.props.putSubscriptionAddress(user_id, data);
+   
   }
 
   onCheckDisplayName = (e) => {
@@ -112,21 +152,25 @@ class EditProfile extends React.Component {
         [e.target.name]: e.target.value,
       })
 
-      if (/^([0-9A-Zก-ฮ])+$/i.test(elem)) {
+      if (/^([0-9a-zA-Zก-ฮัะาเแอำไใโอิอีอึอือุอูอ่อ้อ๊อ๋อ็อ์])+$/i.test(elem)) {
+        this.props.getCheckDisplayName(elem);
         this.setState({
-          validation_displayname: false
+          validation_displayname: false,
+          displayname2: elem
         })
       } else {
         this.setState({
           validation_displayname: true,
+          displayname: null,
+          displayname2: null
         })
       }
     }
   }
 
   render() {
-    const { displayname_length, validation_displayname, validation_displayname2, displayname, firstname, lastname, phone, address, subdistrict, district, province, zipcode } = this.state;
-    console.log("AA", this.props.user.email);
+    const { statusSubmit,checkDisplayName, validation_displayname, validation_displayname2, displayname,displayname2, firstname, lastname, phone, address, subdistrict, district, province, zipcode } = this.state;
+    console.log("AAฟฟ", displayname);
     return (
       <>
         <div className="padding-top4 center">
@@ -168,10 +212,9 @@ class EditProfile extends React.Component {
                       null
                   }
                   {
-                    (validation_displayname2) ?
-                      <p style={{ color: "red" }}>มีผู้ใช้ชื่อ {displayname} อยู่แล้วในระบบ</p>
-                      :
-                      null
+                     checkDisplayName === "fail" ?
+                     <p style={{ color: "red" }}>มีผู้ใช้ชื่อ {displayname2} อยู่แล้วในระบบ</p>
+                     : null
                   }
                   {
                     (displayname && displayname.length < 4) ?
@@ -270,13 +313,16 @@ class EditProfile extends React.Component {
                   </div>
                 </div>
               </div>
-            </div>
-            {
-              (validation_displayname2) ?
-                <p style={{ color: "red" }}>มีผู้ใช้ชื่อ {displayname} อยู่แล้วในระบบ</p>
-                :
-                null
+              {
+             checkDisplayName === "fail" ?
+             <p style={{ color: "red" }}>มีผู้ใช้ชื่อ {displayname2} อยู่แล้วในระบบ</p>
+             : null
             }
+            {
+            (statusSubmit === "fail") &&
+            <h6 style={{ color: "red" }}><IntlMessages id="navbarHome.validationInformation" /></h6>
+            }
+            </div>
           </div>
         </div>
         {/* <div className="col-12 col-sm-12 col-md-12 col-lg-12  center margin-top-2 ">
@@ -291,6 +337,7 @@ class EditProfile extends React.Component {
             </div>
           </div>
         </div> */}
+          
         <div className="col-12 col-sm-12 col-md-12 col-lg-12  center2  margin-top-3">
           <div className="bottomEditProfile">
             <button type="button" className="btn bottom-outlinePinkLeft " onClick={() => this.props.history.push('/profile')}><IntlMessages id="shipping_address.cancel" /></button>
@@ -314,14 +361,14 @@ class EditProfile extends React.Component {
 
 
 const mapStateToProps = ({ get, authUser, updateAddress, update }) => {
-  const { delivery_address } = get;
+  const { delivery_address,member_info,statusDisplayName } = get;
   const { user } = authUser;
   const { status_update_address } = updateAddress;
   const { statusUpdateDisplayName } = update;
-  return { delivery_address, user, status_update_address, statusUpdateDisplayName };
+  return { delivery_address, user, status_update_address, statusUpdateDisplayName,member_info,statusDisplayName };
 };
 
-const mapActionsToProps = { getSubscriptionProducts, putSubscriptionAddress, clearSubscriptionAddress, updateDisplayName };
+const mapActionsToProps = { getSubscriptionProducts, putSubscriptionAddress, clearSubscriptionAddress, updateDisplayName ,getCheckDisplayName};
 
 export default connect(
   mapStateToProps,
