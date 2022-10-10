@@ -26,6 +26,7 @@ import tiktok from "../../assets/img/icon-tiktok.png";
 import whatsApp from "../../assets/img/icon-WhatsApp.png";
 import instagram from "../../assets/img/icon-instagram.png";
 import copyLink from "../../assets/img/copy-link.png";
+import cancel from "../../assets/img/cancel.png";
 import { getFriendList, getRank, getLogWeight, getIsReducedWeight, getLogWeightTeam, getDailyTeamWeightBonus, getNumberOfTeamNotFull, assignGroupToMember, clearChallenges, createChallengeGroup, leaveTeam, getMembersAndRank, getGroupName, getScoreOfTeam, getLeaderboard, getChallengePeriod, sendFriendRequest, getFriendRequest, acceptFriend, rejectFriend, getMaxFriends, deleteFriend, sendTeamInvite, getTeamInvite, rejectTeamInvite, acceptTeamInvite, getFriendsRank, getAchievementLog, updateAchievementLog, checkAllMissionComplete, getFriendRequestSent, cancelFriendRequest } from "../../redux/challenges";
 import { getGroupID, checkUpdateMaxFriends } from "../../redux/auth";
 import { getAllMemberStayFit } from "../../redux/get";
@@ -66,6 +67,8 @@ class Challenge extends Component {
       borderBottom2: "video-link rectangle13 color1",
       borderBottom3: "video-link",
       emailOrDisplayName: "",
+      acceptFriendStatus: "default",
+      rejectFriendStatus: "default"
     }
   }
 
@@ -193,14 +196,28 @@ class Challenge extends Component {
     }
 
     if ((prevProps.statusRejectFriend !== statusRejectFriend) && (statusRejectFriend === "success")) {
-      document.getElementById("buttonModalFriendRequest") && document.getElementById("buttonModalFriendRequest").click();
+
+      // เเก้ตอน ยอมรับละเด่ง
+      if (this.state.rejectFriendStatus !== "loading") {
+        document.getElementById("buttonModalFriendRequest") && document.getElementById("buttonModalFriendRequest").click();
+      }
       this.props.getFriendRequest(this.props.user.user_id);
+      this.setState({
+        rejectFriendStatus: "default"
+      })
     }
 
     if ((prevProps.statusAcceptFriend !== statusAcceptFriend) && (statusAcceptFriend === "success" || statusAcceptFriend === "fail")) {
-      document.getElementById("buttonModalFriendRequest") && document.getElementById("buttonModalFriendRequest").click();
+      // เเก้ตอน ยกเลิกละเด่ง
+      if (this.state.acceptFriendStatus !== "loading") {
+        document.getElementById("buttonModalFriendRequest") && document.getElementById("buttonModalFriendRequest").click();
+      }
+
       this.props.getFriendList(this.props.user.user_id);
       this.props.getFriendRequest(this.props.user.user_id);
+      this.setState({
+        acceptFriendStatus: "default"
+      })
     }
 
     if ((prevProps.statusGetFriendRequest !== statusGetFriendRequest) && statusGetFriendRequest === "success") {
@@ -1189,16 +1206,79 @@ class Challenge extends Component {
     )
   }
 
+  onAcceptFriend(receiver_id, sender_id, log_id) {
+    this.props.acceptFriend(receiver_id, sender_id, log_id)
+    this.setState({
+      acceptFriendStatus: "loading"
+    })
+  }
+  onRejectFriend(log_id) {
+    this.props.rejectFriend(log_id)
+    this.setState({
+      rejectFriendStatus: "loading"
+    })
+  }
+
+  request_friend() {
+    const { friend_list, max_friends, friend_request } = this.props;
+    return (
+      <>
+
+        <div className="friend-request">
+          <p className="headTeam bold">คำขอเป็นเพื่อน</p>
+          {
+            (friend_request && friend_request) &&
+            friend_request.map((item, index) =>
+
+              <div class="row justify-content-md-center">
+                <div class="col-12 col-sm-12 col-md-6 col-lg-6">
+                  <p>{item.email}</p>
+                </div>
+                <div class="col-12 col-sm-12 col-md-6 col-lg-6 text-center">
+                  {
+                    ((this.props.statusAcceptFriend !== "loading" && this.props.statusRejectFriend !== "loading")) &&
+                    <>
+                      <button
+                        type="button"
+                        className="btn bottom-outlineoutTeam2"
+                        onClick={() => this.onAcceptFriend(item.receiver_id, item.sender_id, item.log_id)}>
+                        <IntlMessages id="challenge.accept" />
+                      </button>&nbsp;&nbsp;
+                      <button
+                        type="button"
+                        className="btn bottom-outlinebackTeam2"
+                        onClick={() => this.onRejectFriend(item.log_id)}
+                      >
+                        <IntlMessages id="challenge.refuse" />
+                      </button>
+                    </>
+                  }
+
+                </div>
+              </div>
+            )
+          }
+        </div>
+
+      </>
+    )
+  }
 
   friendList() {
     const { friend, addfriend } = this.state;
-    const { friend_list, max_friends } = this.props;
+    const { friend_list, max_friends, friend_request } = this.props;
+    console.log("this.props.friend_request", this.props.friend_request);
     return (
       <>
+
         {addfriend === false ?
           (friend_list && friend_list.length > 0) ?
             <>
               <div className="box-challengeIn">
+                {
+                  this.request_friend()
+                }
+
                 <p className="headTeam bold"><IntlMessages id="challenge.friendlist" /> <span className="span-challenge headTeamSpan"><IntlMessages id="challenge.friend" /> {friend_list.length}/{max_friends} <IntlMessages id="challenge.person" /></span></p>
                 {
                   (friend_list) &&
@@ -1264,6 +1344,9 @@ class Challenge extends Component {
             :
             <>
               <div className="box-challengeIn">
+                {
+                  this.request_friend()
+                }
                 <div className="col-12 col-sm-12 col-md-12 col-lg-12 ellipse24">
                   <img src={group22} />
                 </div>
@@ -1337,61 +1420,84 @@ class Challenge extends Component {
   all_users() {
     const { allMemberStayFit, user, statusSendFriendRequest, statusCancelFriendRequest } = this.props;
     const { emailOrDisplayName } = this.state;
-
+    var allMemberStayFitFilter = allMemberStayFit;
     return (
-      <div className="box-challengeIn">
-        <p>ผู้ใช้งานทั้งหมดในระบบ
-          <span>
-            <input
-              type="text"
-              id="emailOrDisplayName"
-              value={emailOrDisplayName}
-              onChange={(event) => this.handleChange(event)}
-              onKeyUp={this.filterSearch()}
-              placeholder="Search for names.."
-            />
-          </span>
-        </p>
-        <ul id="myUL">
-          {
-            allMemberStayFit &&
-            allMemberStayFit.map((item, i) =>
-              <li key={i}>
-                <h5 href="#">
-                  {item.display_name ? item.display_name : item.email}
-                  <span style={{ display: "none" }}> {item.email}</span>
-                  {
-                    (this.checkFriendStatus(item.user_id)) ? //เช็คว่ามีคนนี้เป็นเพื่อนแล้วหรือยัง
-                      <span style={{ color: "blue" }}> เพื่อนของคุณ </span>
-                      :
-                      (this.checkFriendRequestStatus(item.user_id)) ? //เช็คว่าเคยส่งคำขอเพื่อนไปหาคนนี้หรือยัง
-                        <>
-                          <span style={{ color: "orange" }}> รอการยืนยัน </span>
+      <>
+        <div className="box-challengeIn">
+          <div className="display_name">
+            <div className="row justify-content-md-center">
+              <p className="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6 user_all">ผู้ใช้งานทั้งหมดในระบบ</p>
+              <p className="col-12 col-sm-12 col-md-12 col-lg-auto col-xl-auto text-center">
+                <input
+                  type="text"
+                  id="emailOrDisplayName"
+                  value={emailOrDisplayName}
+                  onChange={(event) => this.handleChange(event)}
+                  onKeyUp={this.filterSearch()}
+                  placeholder="Search for names.."
+                />
+                <span>
+                  <button className="btn bottom-search " type="button">ค้นหา</button>
+                </span>
+              </p>
+            </div>
+
+
+            <ul id="myUL" className='myUL'>
+              <div class="container">
+
+                {
+                  allMemberStayFit &&
+                  allMemberStayFit.map((item, i) =>
+                    <li key={i} className="li">
+                      <div class="row">
+                        <div class="col-12 col-md-auto col-lg-5 col-xl-5  text-left">
+                          <h5>
+                            {item.display_name ? item.display_name : item.email}
+                            <span style={{ display: "none" }}> {item.email}</span>
+                          </h5>
+                        </div>
+                        <div class="col-12 col-lg-2 col-xl-2 text-center">
+                          <span> {item.rank}</span>
+                        </div>
+                        <div class="col-12 col-lg-auto col-xl-auto  text-center">
                           {
-                            (statusCancelFriendRequest !== "loading") && //เช็คเพื่อซ่อนปุ่มในจังหวะ loading ป้องกันการกดยกเลิกรัวๆ
-                            <span
-                              style={{ cursor: "pointer", color: "red" }}
-                              onClick={() => this.props.cancelFriendRequest(user.user_id, item.user_id)}
-                            >
-                              ยกเลิกคำขอ
-                          </span>
+                            (this.checkFriendStatus(item.user_id)) ? //เช็คว่ามีคนนี้เป็นเพื่อนแล้วหรือยัง
+                              <span style={{ color: "#000000" }} > เพื่อนของคุณ </span>
+                              :
+                              (this.checkFriendRequestStatus(item.user_id)) ? //เช็คว่าเคยส่งคำขอเพื่อนไปหาคนนี้หรือยัง
+                                <div>
+                                  <span style={{ color: "#D30769" }}> รอการยืนยัน </span>
+                                  {
+                                    (statusCancelFriendRequest !== "loading") && //เช็คเพื่อซ่อนปุ่มในจังหวะ loading ป้องกันการกดยกเลิกรัวๆ
+                                    <span
+                                      style={{ cursor: "pointer" }} className="btn bottom-cancel"
+                                      onClick={() => this.props.cancelFriendRequest(user.user_id, item.user_id)}
+                                    >
+                                      <img src={cancel} className="cancel-H" />
+                                      ยกเลิกคำขอ
+                                    </span>
+                                  }
+                                </div>
+                                :
+                                (statusSendFriendRequest !== "loading") && //เช็คเพื่อซ่อนปุ่มในจังหวะ loading ป้องกันการกดเพิ่มเพื่อนรัวๆ
+                                <span className="btn bottom-add"
+                                  style={{ cursor: "pointer" }}
+                                  onClick={() => this.props.sendFriendRequest(user.user_id, item.email)}
+                                >
+                                  {`เพิ่มเพื่อน`}
+                                </span>
                           }
-                        </>
-                        :
-                        (statusSendFriendRequest !== "loading") && //เช็คเพื่อซ่อนปุ่มในจังหวะ loading ป้องกันการกดเพิ่มเพื่อนรัวๆ
-                        <span
-                          style={{ cursor: "pointer", color: "green" }}
-                          onClick={() => this.props.sendFriendRequest(user.user_id, item.email)}
-                        >
-                          {` +เพิ่มเพื่อน`}
-                        </span>
-                  }
-                </h5>
-              </li>
-            )
-          }
-        </ul>
-      </div>
+                        </div>
+                      </div>
+                    </li>
+                  )
+                }
+              </div>
+            </ul>
+          </div>
+        </div>
+      </>
     )
   }
 
@@ -2237,7 +2343,7 @@ class Challenge extends Component {
           <div className="box-challengeManu">
             <div class="container">
               <div class="row justify-content-md-center">
-                <div class="col-12 col-sm-12 col-md-12 col-lg-6">
+                <div class="col-12 col-sm-12 col-md-12 col-lg-8">
                   {challenge === "challenge1" ?
                     this.allMissions()
                     :

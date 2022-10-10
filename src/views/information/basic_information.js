@@ -35,14 +35,14 @@ class Basic_Information extends React.Component {
   componentDidMount() {
     const { user, locale } = this.props;
 
-
+/* 
     if (user === null) {
       this.props.history.push('/welcome_new_nember');
     }
 
     if (user && user.other_attributes) {
       this.props.history.push('/videoList');
-    }
+    } */
     this.kg_po(locale)
     window.scrollTo(0, 0);
   }

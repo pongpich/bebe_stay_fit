@@ -2075,6 +2075,7 @@ export function reducer(state = INIT_STATE, action) {
     case types.GET_FRIEND_REQUEST_FAIL:
       return {
         ...state,
+        friend_request: [],
         statusGetFriendRequest: "fail"
       }
     case types.GET_FRIEND_REQUEST_SENT:
