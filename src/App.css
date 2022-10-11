@@ -1552,31 +1552,25 @@ a {
   border-color: #E25E96;
   color: #FFFFFF;
   border-radius: 25px;
-  font-size: 18px !important;
+  font-size: 16px !important;
   /* width: "100%"; */
 }
 .bottom-add:hover {
   margin-left: 10px;
   background-color: #E25E96;
   height: 40px;
-  padding-left: 15px;
-  padding-right: 15px;
   border-color: #E25E96;
   color: #FFFFFF;
   border-radius: 25px;
-  font-size: 18px !important;
   box-shadow: 0 0 0 0.25rem hsl(335, 69%, 63%, 0.25);
 }
 .bottom-add:focus {
   margin-left: 10px;
   background-color: #E25E96;
   height: 40px;
-  padding-left: 15px;
-  padding-right: 15px;
   border-color: #E25E96;
   color: #FFFFFF;
   border-radius: 25px;
-  font-size: 18px !important;
   box-shadow: 0 0 0 0.25rem hsl(335, 69%, 63%, 0.25);
 }
 .bottom-cancel {
@@ -1588,7 +1582,7 @@ a {
   border-color: #ED0876;
   color: #FFFFFF;
   border-radius: 25px;
-  font-size: 18px !important;
+  font-size: 16px !important;
  /*  width: 80px; */
 }
 .bottom-cancel:hover {
@@ -1600,7 +1594,6 @@ a {
   border-color: #ED0876;
   color: #FFFFFF;
   border-radius: 25px;
-  font-size: 18px !important;
   box-shadow: 0 0 0 0.25rem hsl(335, 69%, 63%, 0.25);
 }
 .bottom-cancel:focus {
@@ -1612,7 +1605,6 @@ a {
   border-color: #ED0876;
   color: #FFFFFF;
   border-radius: 25px;
-  font-size: 18px !important;
   box-shadow: 0 0 0 0.25rem hsl(335, 69%, 63%, 0.25);
 }
 
@@ -3491,7 +3483,7 @@ tr:last-child td:last-child {
   color: #ffffff;
   margin-bottom: 50px;
   border-radius: 25px;
-/*   width: 160px; */
+  box-shadow: 0 0 0 0.25rem rgba(247, 137, 137, 0.25);
 }
 
 .bottom-outlineoutTeam2:focus {
@@ -3501,7 +3493,7 @@ tr:last-child td:last-child {
   color: #ffffff;
   margin-bottom: 50px;
   border-radius: 25px;
-/*   width: 160px; */
+  box-shadow: 0 0 0 0.25rem rgba(247, 137, 137, 0.25);
 }
 
 

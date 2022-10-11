@@ -1499,7 +1499,7 @@ class Challenge extends Component {
                                         style={{ cursor: "pointer" }} className="btn bottom-cancel"
                                         onClick={() => this.props.cancelFriendRequest(user.user_id, item.user_id)}
                                       >
-                                        <img src={cancel} className="cancel-H" style={{ fontSize: "16px" }} />
+                                        <img src={cancel} className="cancel-H"/>
                                         ยกเลิกคำขอ
                                       </span>
                                     }
@@ -1507,7 +1507,7 @@ class Challenge extends Component {
                                   :
                                   (statusSendFriendRequest !== "loading" && (item.user_id !== user.user_id)) && //เช็คเพื่อซ่อนปุ่มในจังหวะ loading ป้องกันการกดเพิ่มเพื่อนรัวๆ
                                   <span className="btn bottom-add"
-                                    style={{ cursor: "pointer",fontSize: "16px" }}
+                                    style={{ cursor: "pointer" }}
                                     onClick={() => this.props.sendFriendRequest(user.user_id, item.email)}
                                   >
                                     {`เพิ่มเพื่อน`}
