@@ -457,7 +457,7 @@ class Challenge extends Component {
     const isExerciseCompleted = this.isExerciseCompleted(this.props.exerciseVideo);
     return (
       <>
-        <div class="col-12 col-sm-12 col-md-12 col-lg-8">
+        <div class="col-12 col-sm-12 col-md-12 col-lg-6">
           <div className="box-challengeIn">
             {
               challengePeriod ?
@@ -822,7 +822,7 @@ class Challenge extends Component {
     var myRankIndexOfFriendList = friendsRank.findIndex(item => item.user_id === this.props.user.user_id);
     return (
       <>
-        <div class="col-12 col-sm-12 col-md-12 col-lg-8">
+        <div class="col-12 col-sm-12 col-md-12 col-lg-6">
           <div className="box-challengeInScore">
             <div className="video-wh3">
               <ul className="">
@@ -1343,7 +1343,7 @@ class Challenge extends Component {
     console.log("this.props.friend_request", this.props.friend_request);
     return (
       <>
-        <div class="col-12 col-sm-12 col-md-12 col-lg-8">
+        <div class="col-12 col-sm-12 col-md-12 col-lg-6">
           {addfriend === false ?
             (friend_list && friend_list.length > 0) ?
               <>
@@ -1631,7 +1631,7 @@ class Challenge extends Component {
       <>
         {
           <>
-            <div class="col-12 col-sm-12 col-md-12 col-lg-8">
+            <div class="col-12 col-sm-12 col-md-12 col-lg-6">
               <div className="box-challengeIn">
                 <p className="text-challenge">
                   <div className="container">
