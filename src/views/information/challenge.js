@@ -1233,6 +1233,7 @@ class Challenge extends Component {
               <div class="row justify-content-md-center">
                 <div class="col-12 col-sm-12 col-md-6 col-lg-6">
                   <p>{item.email}</p>
+                  <p>{item.rank}</p>
                 </div>
                 <div class="col-12 col-sm-12 col-md-6 col-lg-6 text-center">
                   {
@@ -1446,7 +1447,7 @@ class Challenge extends Component {
                   value={emailOrDisplayName}
                   onChange={(event) => this.handleChange(event)}
                   onKeyUp={this.filterSearch()}
-                  placeholder="Search for names.."
+                  placeholder="ชื่อ หรืออีเมลเพื่อนของคุณที่สมัคร Bebe Stay Fit"
                 />
                 <span>
                   <button className="btn bottom-search " type="button">ค้นหา</button>
