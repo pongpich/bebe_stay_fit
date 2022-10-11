@@ -672,13 +672,10 @@ class Challenge extends Component {
                         {
                           <span className="color2">
                             {
-                              item.facebook ?
-                                item.facebook
+                              item.display_name ?
+                                item.display_name
                                 :
-                                item.first_name ?
-                                  `${item.first_name} ${item.last_name}`
-                                  :
-                                  item.email
+                                item.email
                             }
                           </span>
 
@@ -1471,7 +1468,7 @@ class Challenge extends Component {
               <div class="container">
 
                 {
-                  (allMemberStayFitFilter.length > 0) ?
+                  (allMemberStayFitFilter && allMemberStayFitFilter.length > 0) ?
                     allMemberStayFit &&
                     allMemberStayFit.map((item, i) =>
                       <li key={i} className="li">
@@ -1488,18 +1485,18 @@ class Challenge extends Component {
                           <div class="col-12 col-lg-auto col-xl-auto  text-center">
                             {
                               (this.checkFriendStatus(item.user_id)) ? //เช็คว่ามีคนนี้เป็นเพื่อนแล้วหรือยัง
-                                <span style={{ color: "#000000",fontSize: "16px" }} > เพื่อนของคุณ </span>
+                                <span style={{ color: "#000000", fontSize: "16px" }} > เพื่อนของคุณ </span>
                                 :
                                 (this.checkFriendRequestStatus(item.user_id)) ? //เช็คว่าเคยส่งคำขอเพื่อนไปหาคนนี้หรือยัง
                                   <div>
-                                    <span style={{ color: "#D30769",fontSize: "16px" }}> รอการยืนยัน </span>
+                                    <span style={{ color: "#D30769", fontSize: "16px" }}> รอการยืนยัน </span>
                                     {
                                       (statusCancelFriendRequest !== "loading") && //เช็คเพื่อซ่อนปุ่มในจังหวะ loading ป้องกันการกดยกเลิกรัวๆ
                                       <span
                                         style={{ cursor: "pointer" }} className="btn bottom-cancel"
                                         onClick={() => this.props.cancelFriendRequest(user.user_id, item.user_id)}
                                       >
-                                        <img src={cancel} className="cancel-H"/>
+                                        <img src={cancel} className="cancel-H" />
                                         ยกเลิกคำขอ
                                       </span>
                                     }
