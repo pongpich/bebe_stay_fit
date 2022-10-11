@@ -945,13 +945,10 @@ class Challenge extends Component {
                   (friendsRank && (friendsRank.length > 0)) &&
                   friendsRank.map((item, index) => {
                     const fullName = `${item.first_name} ${item.last_name}`;
-                    const rankDetail = `${item.facebook ?
-                      item.facebook
+                    const rankDetail = `${item.display_name ?
+                      item.display_name
                       :
-                      item.first_name ?
-                        fullName
-                        :
-                        item.email
+                      item.email
                       }`;
                     return (
                       <div className="card-text line-height">
@@ -1082,13 +1079,10 @@ class Challenge extends Component {
                           <span className={(myRankIndex + 1 === 1) ? "color-mvp1" : (myRankIndex + 1 === 2) ? "color-mvp2" : (myRankIndex + 1 === 3) ? "color-mvp3" : ""}>
                             {myRankIndex + 1}. </span>
                           {
-                            myRank[0].facebook ?
-                              myRank[0].facebook
+                            myRank[0].display_name ?
+                              myRank[0].display_name
                               :
-                              myRank[0].first_name ?
-                                `${myRank[0].first_name} ${myRank[0].last_name}`
-                                :
-                                myRank[0].email
+                              myRank[0].email
                           }
                           {
                             (myRankIndex + 1 === 1) &&
