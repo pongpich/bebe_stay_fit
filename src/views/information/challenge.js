@@ -1213,12 +1213,12 @@ class Challenge extends Component {
     return (
       <>
 
-        <div className="friend-request">
-          <p className="headTeam bold">คำขอเป็นเพื่อน</p>
-          {
-            (friend_request && friend_request) &&
-            friend_request.map((item, index) =>
 
+        {
+          (friend_request && friend_request) &&
+          friend_request.map((item, index) =>
+            <div className="friend-request">
+              <p className="headTeam bold">คำขอเป็นเพื่อน</p>
               <div class="row justify-content-md-center">
                 <div class="col-12 col-sm-12 col-md-7 col-lg-7">
                   <div className="row  justify-content-md-center">
@@ -1252,9 +1252,11 @@ class Challenge extends Component {
 
                 </div>
               </div>
-            )
-          }
-        </div>
+            </div>
+          )
+
+        }
+
 
       </>
     )
@@ -2368,7 +2370,7 @@ class Challenge extends Component {
           <div className="box-challengeManu">
             <div class="container">
               <div class="row justify-content-md-center">
-                <div class="col-12 col-sm-12 col-md-12 col-lg-8">
+                <div class="col-12 col-sm-12 col-md-12 col-lg-6">
                   {challenge === "challenge1" ?
                     this.allMissions()
                     :
