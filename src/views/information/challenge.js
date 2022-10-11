@@ -864,13 +864,10 @@ class Challenge extends Component {
                   (individualRankFilter) &&
                   individualRankFilter.map((item, index) => {
                     const fullName = `${item.first_name} ${item.last_name}`;
-                    const rankDetail = `${item.facebook ?
-                      item.facebook
+                    const rankDetail = `${item.display_name ?
+                      item.display_name
                       :
-                      item.first_name ?
-                        fullName
-                        :
-                        item.email
+                      item.email
                       }`;
                     return (
                       <div className="card-text line-height">
