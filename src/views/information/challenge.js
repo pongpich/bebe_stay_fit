@@ -1480,7 +1480,7 @@ class Challenge extends Component {
                                   }
                                 </div>
                                 :
-                                (statusSendFriendRequest !== "loading") && //เช็คเพื่อซ่อนปุ่มในจังหวะ loading ป้องกันการกดเพิ่มเพื่อนรัวๆ
+                                (statusSendFriendRequest !== "loading" && (item.user_id !== user.user_id)) && //เช็คเพื่อซ่อนปุ่มในจังหวะ loading ป้องกันการกดเพิ่มเพื่อนรัวๆ
                                 <span className="btn bottom-add"
                                   style={{ cursor: "pointer" }}
                                   onClick={() => this.props.sendFriendRequest(user.user_id, item.email)}
