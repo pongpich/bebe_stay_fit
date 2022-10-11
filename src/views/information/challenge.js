@@ -457,70 +457,128 @@ class Challenge extends Component {
     const isExerciseCompleted = this.isExerciseCompleted(this.props.exerciseVideo);
     return (
       <>
-        <div className="box-challengeIn">
-          {
-            challengePeriod ?
-              <>
+        <div class="col-12 col-sm-12 col-md-12 col-lg-8">
+          <div className="box-challengeIn">
+            {
+              challengePeriod ?
+                <>
 
-                <nav>
-                  <div className="nav nav-tabs" id="nav-tab" role="tablist">
-                    <button className="nav-link active col-6" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true"><IntlMessages id="challenge.teamChallenge" /></button>
-                    <button className="nav-link col-6" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false"><IntlMessages id="challenge.singleChallenge" /></button>
-                  </div>
-                </nav>
-                <div class="tab-content" id="nav-tabContent">
+                  <nav>
+                    <div className="nav nav-tabs" id="nav-tab" role="tablist">
+                      <button className="nav-link active col-6" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true"><IntlMessages id="challenge.teamChallenge" /></button>
+                      <button className="nav-link col-6" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false"><IntlMessages id="challenge.singleChallenge" /></button>
+                    </div>
+                  </nav>
+                  <div class="tab-content" id="nav-tabContent">
 
-                  <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab" tabindex="0">
-                    <div className="behavior">
-                      <p className="text-challenge"><IntlMessages id="challenge.completeweighing" /> <span>{numberOfMembers * 2} &nbsp;<IntlMessages id="challenge.time" /></span> </p>
-                      <p className="text-challenge"><IntlMessages id="challenge.completeweighing7" /> <span className="span-challenge">{dailyTeamWeightBonusCount}/7&nbsp;</span></p>
-                      <p className="text-comment"><IntlMessages id="challenge.resetSunday" /></p>
-                      <p className="text-comment"><IntlMessages id="challenge.scoresSunday" /></p>
-                      <p className="border-bottom"></p>
-                      <ul className="rules-bottom">
-                        <li className="li">
-                          <a className="rules" data-bs-toggle="modal" data-bs-target="#exampleModalScore"><IntlMessages id="challenge.pointsdetails" /></a>
-                        </li>
-                        <li className="li">
-                          <a className="rules" data-bs-toggle="modal" data-bs-target="#exampleModal"><IntlMessages id="challenge.rules" /></a>
-                        </li>
-                      </ul>
+                    <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab" tabindex="0">
+                      <div className="behavior">
+                        <p className="text-challenge"><IntlMessages id="challenge.completeweighing" /> <span>{numberOfMembers * 2} &nbsp;<IntlMessages id="challenge.time" /></span> </p>
+                        <p className="text-challenge"><IntlMessages id="challenge.completeweighing7" /> <span className="span-challenge">{dailyTeamWeightBonusCount}/7&nbsp;</span></p>
+                        <p className="text-comment"><IntlMessages id="challenge.resetSunday" /></p>
+                        <p className="text-comment"><IntlMessages id="challenge.scoresSunday" /></p>
+                        <p className="border-bottom"></p>
+                        <ul className="rules-bottom">
+                          <li className="li">
+                            <a className="rules" data-bs-toggle="modal" data-bs-target="#exampleModalScore"><IntlMessages id="challenge.pointsdetails" /></a>
+                          </li>
+                          <li className="li">
+                            <a className="rules" data-bs-toggle="modal" data-bs-target="#exampleModal"><IntlMessages id="challenge.rules" /></a>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                    <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab" tabindex="0">
+                      <div className="behavior">
+                        <p className="text-challenge"> <IntlMessages id="challenge.weigh2" /> <span className="span-challenge"> &nbsp; {logWeightCount}/2</span></p>
+                        <p className="text-challenge"> <IntlMessages id="challenge.weightloss" /> <span className="span-challenge"> &nbsp; {isReducedWeight ? 1 : 0}/1</span></p>
+                        <p className="text-challenge"><IntlMessages id="challenge.4days" />&nbsp; {(this.props.statusVideoList !== 'no_video') ? isExerciseCompleted : 0}/4</p>
+                        <p className="text-comment"><IntlMessages id="challenge.resetSunday" /></p>
+                        <p className="text-comment"><IntlMessages id="challenge.scoresSunday" /></p>
+                        <p className="border-bottom"></p>
+                        <ul className="rules-bottom">
+                          <li className="li">
+                            <a className="rules" data-bs-toggle="modal" data-bs-target="#exampleModalScore"><IntlMessages id="challenge.pointsdetails" /></a>
+                          </li>
+                          <li className="li">
+                            <a className="rules" data-bs-toggle="modal" data-bs-target="#exampleModal"><IntlMessages id="challenge.rules" /></a>
+                          </li>
+                        </ul>
+                      </div>
                     </div>
                   </div>
-                  <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab" tabindex="0">
-                    <div className="behavior">
-                      <p className="text-challenge"> <IntlMessages id="challenge.weigh2" /> <span className="span-challenge"> &nbsp; {logWeightCount}/2</span></p>
-                      <p className="text-challenge"> <IntlMessages id="challenge.weightloss" /> <span className="span-challenge"> &nbsp; {isReducedWeight ? 1 : 0}/1</span></p>
-                      <p className="text-challenge"><IntlMessages id="challenge.4days" />&nbsp; {(this.props.statusVideoList !== 'no_video') ? isExerciseCompleted : 0}/4</p>
-                      <p className="text-comment"><IntlMessages id="challenge.resetSunday" /></p>
-                      <p className="text-comment"><IntlMessages id="challenge.scoresSunday" /></p>
-                      <p className="border-bottom"></p>
-                      <ul className="rules-bottom">
-                        <li className="li">
-                          <a className="rules" data-bs-toggle="modal" data-bs-target="#exampleModalScore"><IntlMessages id="challenge.pointsdetails" /></a>
-                        </li>
-                        <li className="li">
-                          <a className="rules" data-bs-toggle="modal" data-bs-target="#exampleModal"><IntlMessages id="challenge.rules" /></a>
-                        </li>
-                      </ul>
-                    </div>
+
+                </>
+                :
+                <div>
+                  <div className="col-12 col-sm-12 col-md-12 col-lg-12 ellipse24">
+                    <img src={group425} />
                   </div>
+                  <p className="text-teamHead"><IntlMessages id="challenge.friendRequest" /></p>
+
                 </div>
 
-              </>
-              :
-              <div>
-                <div className="col-12 col-sm-12 col-md-12 col-lg-12 ellipse24">
-                  <img src={group425} />
-                </div>
-                <p className="text-teamHead"><IntlMessages id="challenge.friendRequest" /></p>
 
-              </div>
+            }
 
-
-          }
-
+          </div>
         </div>
+        <div class="col-12 col-sm-12 col-md-12 col-lg-4">
+          {this.pointYou()}
+        </div>
+      </>
+    )
+  }
+
+  pointYou() {
+    const { rank, logWeightCount, isReducedWeight, logWeightTeamCount, numberOfMembers, dailyTeamWeightBonusCount, user, totalScoreOfTeam } = this.props;
+    const isExerciseCompleted = this.isExerciseCompleted(this.props.exerciseVideo);
+    var { scoreInWeek } = this.state;
+    if (logWeightCount >= 2) { scoreInWeek += 10 }; //ชั่งน้ำหนักครบ 2 ครั้ง
+    if (isReducedWeight) { scoreInWeek += 10 }; //น้ำหนักลดลงจากสัปดาห์ก่อน
+    if (isExerciseCompleted === 4) { scoreInWeek += 10 }; //ออกกำลังกายครบทั้งสัปดาห์
+    if ((logWeightTeamCount > 0) && logWeightTeamCount >= numberOfMembers * 2) { scoreInWeek += 10 }; //ทีมชั่งน้ำหนักครบ คนละ2ครั้ง
+    if (dailyTeamWeightBonusCount > 0) { scoreInWeek += dailyTeamWeightBonusCount * 10 }; //ในแต่ละวันมีสมาชิกชั่งน้ำหนัก
+    if (scoreInWeek > 41) { scoreInWeek = 41 }; //เพื่อไม่ให้เกินหลอด
+    const { messages } = this.props.intl;
+    return (
+      <>
+
+        <div className="emblem-box">
+          <img src={`./assets/img/rank/${rank}.png`} width="200" height="200" />
+          <p className="circleTextHead color1">
+            {
+              rank ?
+                rank.charAt(0).toUpperCase() + rank.substr(1).toLowerCase()
+                :
+                ""
+            }
+          </p>
+          {/* <div className="circle-progress"></div> */}
+          <div className="progress-barChallenge">
+            <div className="progressChallenge">
+              <div className="progress-doneChallenge" id="progress-doneChallenge" style={{ width: `${(scoreInWeek / 41) * 100}%` }}></div>
+            </div>
+          </div>
+
+          <p className="circleTextHead">{scoreInWeek}/41 Point</p>
+        </div>
+      </>
+    )
+  }
+  teamScore() {
+    const { user, totalScoreOfTeam } = this.props;
+    return (
+      <>
+        {
+          user.group_id &&
+          <div class="col-12 col-sm-12 col-md-12 col-lg-3">
+            <div className="emblem-box2">
+              <p className="point-user"> <IntlMessages id="challenge.teampoint" /> </p>
+              <h3 className=""> {totalScoreOfTeam} Point </h3>
+            </div>
+          </div>
+        }
       </>
     )
   }
@@ -529,24 +587,34 @@ class Challenge extends Component {
     const { user } = this.props;
     return (
       <>
-        <div className="box-challengeIn">
-          {
-            (!user.group_id) ?
-              this.state.addteam === "add" ?
-                this.addTeamList()
-                :
-                this.indexTeamList()
-              :
-              this.state.outteam === true ?
-                this.outTeamList()
-                :
-                this.state.addteam === "invite" ?
-                  this.inviteTeamList()
+        <div class="col-12 col-sm-12 col-md-12 col-lg-6">
+          <div className="box-challengeIn">
+            {
+              (!user.group_id) ?
+                this.state.addteam === "add" ?
+                  this.addTeamList()
                   :
-                  this.teamYou()
-          }
-
+                  this.indexTeamList()
+                :
+                this.state.outteam === true ?
+                  this.outTeamList()
+                  :
+                  this.state.addteam === "invite" ?
+                    this.inviteTeamList()
+                    :
+                    this.teamYou()
+            }
+          </div>
         </div>
+        <div class="col-12 col-sm-12 col-md-12 col-lg-3">
+          {
+            this.pointYou()
+          }
+        </div>
+        {
+
+          this.teamScore()
+        }
       </>
     )
   }
@@ -754,32 +822,274 @@ class Challenge extends Component {
     var myRankIndexOfFriendList = friendsRank.findIndex(item => item.user_id === this.props.user.user_id);
     return (
       <>
-        <div className="box-challengeInScore">
-          <div className="video-wh3">
-            <ul className="">
-              <li
-                className="leader-board-li bold"
-                style={{ color: `${selectedScoreBoard === "team" ? "#F45197" : "grey"}`, cursor: "pointer", marginRight: 15 }}
-                onClick={() => this.setState({ selectedScoreBoard: "team" })}
-              ><IntlMessages id="challenge.teampoint" /></li>
-              <li
-                className="leader-board-li bold"
-                style={{ color: `${selectedScoreBoard === "individual" ? "#F45197" : "grey"}`, cursor: "pointer", marginRight: 15 }}
-                onClick={() => this.setState({ selectedScoreBoard: "individual" })}
-              ><IntlMessages id="challenge.teamsingle" /></li>
-              {
-                (friendsRank && (friendsRank.length > 0)) &&
-                < li
+        <div class="col-12 col-sm-12 col-md-12 col-lg-8">
+          <div className="box-challengeInScore">
+            <div className="video-wh3">
+              <ul className="">
+                <li
                   className="leader-board-li bold"
-                  style={{ color: `${selectedScoreBoard === "friendsRank" ? "#F45197" : "grey"}`, cursor: "pointer" }}
-                  onClick={() => this.setState({ selectedScoreBoard: "friendsRank" })}
-                ><IntlMessages id="challenge.pointfriend" /></li>
-              }
-            </ul>
-          </div>
-          <hr className="w-100"></hr>
-          <div className="box-challengeScore">
+                  style={{ color: `${selectedScoreBoard === "team" ? "#F45197" : "grey"}`, cursor: "pointer", marginRight: 15 }}
+                  onClick={() => this.setState({ selectedScoreBoard: "team" })}
+                ><IntlMessages id="challenge.teampoint" /></li>
+                <li
+                  className="leader-board-li bold"
+                  style={{ color: `${selectedScoreBoard === "individual" ? "#F45197" : "grey"}`, cursor: "pointer", marginRight: 15 }}
+                  onClick={() => this.setState({ selectedScoreBoard: "individual" })}
+                ><IntlMessages id="challenge.teamsingle" /></li>
+                {
+                  (friendsRank && (friendsRank.length > 0)) &&
+                  < li
+                    className="leader-board-li bold"
+                    style={{ color: `${selectedScoreBoard === "friendsRank" ? "#F45197" : "grey"}`, cursor: "pointer" }}
+                    onClick={() => this.setState({ selectedScoreBoard: "friendsRank" })}
+                  ><IntlMessages id="challenge.pointfriend" /></li>
+                }
+              </ul>
+            </div>
+            <hr className="w-100"></hr>
+            <div className="box-challengeScore">
 
+              {
+                (teamRank && (selectedScoreBoard === "team")) &&
+                teamRank.map((item, index) =>
+
+                  <p className="text-challenge">
+                    <div class="container text-center">
+                      {
+
+                        item.group_id != user.group_id ?
+                          <>
+                            <div class="row justify-content-md-center">
+                              <div class="col-12 col-sm-12 col-md-8 col-lg-8">
+                                <p className="text-leftmvp">
+                                  <span className={(index + 1 === 1) ? "color-mvp1" : (index + 1 === 2) ? "color-mvp2" : (index + 1 === 3) ? "color-mvp3" : ""}>{index + 1}. </span>
+                                  {
+                                    item.group_name ?
+                                      `${item.group_name} `
+                                      :
+                                      ""
+                                  }
+                                  {
+                                    (index + 1 === 1) &&
+                                    <img src={mvp_gold} className="image-mvp2" />
+                                  }
+                                  {
+                                    (index + 1 === 2) &&
+                                    <img src={mvp_money} className="image-mvp2" />
+                                  }
+                                  {
+                                    (index + 1 === 3) &&
+                                    <img src={mvp_copper} className="image-mvp2" />
+                                  }
+                                </p>
+                              </div>
+                              <div class="col-12 col-sm-12 col-md-4 col-lg-4" >
+                                <span className="span-mvp2"> {item.totalScoreOfTeam ? item.totalScoreOfTeam : 0} <IntlMessages id="challenge.points" /></span>
+                              </div>
+                            </div>
+                          </>
+                          :
+                          <>
+                            <div class="row justify-content-md-center backg-you">
+                              <div class="col-12 col-sm-12 col-md-8 col-lg-8">
+                                <p className="text-leftmvp">
+                                  <span className={(index + 1 === 1) ? "color-mvp1" : (index + 1 === 2) ? "color-mvp2" : (index + 1 === 3) ? "color-mvp3" : ""}>{index + 1}. </span>
+                                  {
+                                    item.group_name ?
+                                      `${item.group_name} `
+                                      :
+                                      ""
+                                  }
+                                  {
+                                    (index + 1 === 1) &&
+                                    <img src={mvp_gold} className="image-mvp2" />
+                                  }
+                                  {
+                                    (index + 1 === 2) &&
+                                    <img src={mvp_money} className="image-mvp2" />
+                                  }
+                                  {
+                                    (index + 1 === 3) &&
+                                    <img src={mvp_copper} className="image-mvp2" />
+                                  }
+                                </p>
+                              </div>
+                              <div class="col-12 col-sm-12 col-md-4 col-lg-4" >
+                                <span className="span-mvp2"> {item.totalScoreOfTeam ? item.totalScoreOfTeam : 0} <IntlMessages id="challenge.points" /></span>
+                              </div>
+                            </div>
+                          </>
+                      }
+
+
+                    </div>
+                  </p>
+                )
+              }
+              {
+                (selectedScoreBoard === "individual") &&
+                <div>
+                  {
+                    (individualRankFilter) &&
+                    individualRankFilter.map((item, index) => {
+                      const fullName = `${item.first_name} ${item.last_name}`;
+                      const rankDetail = `${item.display_name ?
+                        item.display_name
+                        :
+                        item.email
+                        }`;
+                      return (
+                        <div className="card-text line-height">
+                          <div class="container text-center">
+                            {
+                              rankDetail !== user.email ?
+                                <>
+                                  <div class="row justify-content-md-center">
+                                    <div class="col-12 col-sm-12 col-md-8 col-lg-8 text-leftmvp">
+                                      <span className={(index + 1 === 1) ? "color-mvp1" : (index + 1 === 2) ? "color-mvp2" : (index + 1 === 3) ? "color-mvp3" : ""}
+                                      >{index + 1}. </span>
+                                      {rankDetail}
+                                      {
+                                        (index + 1 === 1) &&
+                                        <img src={mvp_gold} className="image-mvp" />
+                                      }
+                                      {
+                                        (index + 1 === 2) &&
+                                        <img src={mvp_money} className="image-mvp" />
+                                      }
+                                      {
+                                        (index + 1 === 3) &&
+                                        <img src={mvp_copper} className="image-mvp" />
+                                      }
+                                    </div>
+                                    <div class="col-12 col-sm-12 col-md-4 col-lg-4" >
+                                      <span style={{ float: "right" }}>
+                                        {item.total_score ? item.total_score : 0} <IntlMessages id="challenge.points" />
+                                      </span>
+                                    </div>
+                                  </div>
+                                </>
+                                :
+                                <>
+                                  <div class="row justify-content-md-center backg-you">
+                                    <div class="col-12 col-sm-12 col-md-8 col-lg-8 text-leftmvp">
+                                      <span className={(index + 1 === 1) ? "color-mvp1" : (index + 1 === 2) ? "color-mvp2" : (index + 1 === 3) ? "color-mvp3" : ""}
+                                      >{index + 1}. </span>
+                                      {rankDetail}
+                                      {
+                                        (index + 1 === 1) &&
+                                        <img src={mvp_gold} className="image-mvp" />
+                                      }
+                                      {
+                                        (index + 1 === 2) &&
+                                        <img src={mvp_money} className="image-mvp" />
+                                      }
+                                      {
+                                        (index + 1 === 3) &&
+                                        <img src={mvp_copper} className="image-mvp" />
+                                      }
+                                    </div>
+                                    <div class="col-12 col-sm-12 col-md-4 col-lg-4" >
+                                      <span style={{ float: "right" }}>
+                                        {item.total_score ? item.total_score : 0} <IntlMessages id="challenge.points" />
+                                      </span>
+                                    </div>
+                                  </div>
+                                </>
+                            }
+
+
+                          </div>
+                        </div>
+
+                      )
+                    })
+                  }
+                </div>
+              }
+              {
+                (selectedScoreBoard === "friendsRank") &&
+                <div>
+                  {
+                    (friendsRank && (friendsRank.length > 0)) &&
+                    friendsRank.map((item, index) => {
+                      const fullName = `${item.first_name} ${item.last_name}`;
+                      const rankDetail = `${item.display_name ?
+                        item.display_name
+                        :
+                        item.email
+                        }`;
+                      return (
+                        <div className="card-text line-height">
+                          <div class="container text-center">
+                            {
+                              rankDetail !== user.email ?
+                                <>
+                                  <div class="row justify-content-md-center">
+                                    <div class="col-12 col-sm-12 col-md-8 col-lg-8 text-leftmvp">
+                                      <span className={(index + 1 === 1) ? "color-mvp1" : (index + 1 === 2) ? "color-mvp2" : (index + 1 === 3) ? "color-mvp3" : ""}
+                                      >{index + 1}. </span>
+                                      {rankDetail}
+                                      {
+                                        (index + 1 === 1) &&
+                                        <img src={mvp_gold} className="image-mvp" />
+                                      }
+                                      {
+                                        (index + 1 === 2) &&
+                                        <img src={mvp_money} className="image-mvp" />
+                                      }
+                                      {
+                                        (index + 1 === 3) &&
+                                        <img src={mvp_copper} className="image-mvp" />
+                                      }
+                                    </div>
+                                    <div class="col-12 col-sm-12 col-md-4 col-lg-4" >
+                                      <span style={{ float: "right" }}>
+                                        {item.total_score ? item.total_score : 0} <IntlMessages id="challenge.points" />
+                                      </span>
+                                    </div>
+                                  </div>
+                                </>
+                                :
+                                <>
+                                  <div class="row justify-content-md-center backg-you">
+                                    <div class="col-12 col-sm-12 col-md-8 col-lg-8 text-leftmvp">
+                                      <span className={(index + 1 === 1) ? "color-mvp1" : (index + 1 === 2) ? "color-mvp2" : (index + 1 === 3) ? "color-mvp3" : ""}
+                                      >{index + 1}. </span>
+                                      {rankDetail}
+                                      {
+                                        (index + 1 === 1) &&
+                                        <img src={mvp_gold} className="image-mvp" />
+                                      }
+                                      {
+                                        (index + 1 === 2) &&
+                                        <img src={mvp_money} className="image-mvp" />
+                                      }
+                                      {
+                                        (index + 1 === 3) &&
+                                        <img src={mvp_copper} className="image-mvp" />
+                                      }
+                                    </div>
+                                    <div class="col-12 col-sm-12 col-md-4 col-lg-4" >
+                                      <span style={{ float: "right" }}>
+                                        {item.total_score ? item.total_score : 0} <IntlMessages id="challenge.points" />
+                                      </span>
+                                    </div>
+                                  </div>
+                                </>
+                            }
+
+
+                          </div>
+                        </div>
+
+                      )
+                    })
+                  }
+                </div>
+              }
+            </div>
+            <hr className="w-100"></hr>
             {
               (teamRank && (selectedScoreBoard === "team")) &&
               teamRank.map((item, index) =>
@@ -788,7 +1098,7 @@ class Challenge extends Component {
                   <div class="container text-center">
                     {
 
-                      item.group_id != user.group_id ?
+                      item.group_id == user.group_id ?
                         <>
                           <div class="row justify-content-md-center">
                             <div class="col-12 col-sm-12 col-md-8 col-lg-8">
@@ -820,39 +1130,8 @@ class Challenge extends Component {
                           </div>
                         </>
                         :
-                        <>
-                          <div class="row justify-content-md-center backg-you">
-                            <div class="col-12 col-sm-12 col-md-8 col-lg-8">
-                              <p className="text-leftmvp">
-                                <span className={(index + 1 === 1) ? "color-mvp1" : (index + 1 === 2) ? "color-mvp2" : (index + 1 === 3) ? "color-mvp3" : ""}>{index + 1}. </span>
-                                {
-                                  item.group_name ?
-                                    `${item.group_name} `
-                                    :
-                                    ""
-                                }
-                                {
-                                  (index + 1 === 1) &&
-                                  <img src={mvp_gold} className="image-mvp2" />
-                                }
-                                {
-                                  (index + 1 === 2) &&
-                                  <img src={mvp_money} className="image-mvp2" />
-                                }
-                                {
-                                  (index + 1 === 3) &&
-                                  <img src={mvp_copper} className="image-mvp2" />
-                                }
-                              </p>
-                            </div>
-                            <div class="col-12 col-sm-12 col-md-4 col-lg-4" >
-                              <span className="span-mvp2"> {item.totalScoreOfTeam ? item.totalScoreOfTeam : 0} <IntlMessages id="challenge.points" /></span>
-                            </div>
-                          </div>
-                        </>
+                        null
                     }
-
-
                   </div>
                 </p>
               )
@@ -861,302 +1140,98 @@ class Challenge extends Component {
               (selectedScoreBoard === "individual") &&
               <div>
                 {
-                  (individualRankFilter) &&
-                  individualRankFilter.map((item, index) => {
-                    const fullName = `${item.first_name} ${item.last_name}`;
-                    const rankDetail = `${item.display_name ?
-                      item.display_name
-                      :
-                      item.email
-                      }`;
-                    return (
-                      <div className="card-text line-height">
-                        <div class="container text-center">
-                          {
-                            rankDetail !== user.email ?
-                              <>
-                                <div class="row justify-content-md-center">
-                                  <div class="col-12 col-sm-12 col-md-8 col-lg-8 text-leftmvp">
-                                    <span className={(index + 1 === 1) ? "color-mvp1" : (index + 1 === 2) ? "color-mvp2" : (index + 1 === 3) ? "color-mvp3" : ""}
-                                    >{index + 1}. </span>
-                                    {rankDetail}
-                                    {
-                                      (index + 1 === 1) &&
-                                      <img src={mvp_gold} className="image-mvp" />
-                                    }
-                                    {
-                                      (index + 1 === 2) &&
-                                      <img src={mvp_money} className="image-mvp" />
-                                    }
-                                    {
-                                      (index + 1 === 3) &&
-                                      <img src={mvp_copper} className="image-mvp" />
-                                    }
-                                  </div>
-                                  <div class="col-12 col-sm-12 col-md-4 col-lg-4" >
-                                    <span style={{ float: "right" }}>
-                                      {item.total_score ? item.total_score : 0} <IntlMessages id="challenge.points" />
-                                    </span>
-                                  </div>
-                                </div>
-                              </>
-                              :
-                              <>
-                                <div class="row justify-content-md-center backg-you">
-                                  <div class="col-12 col-sm-12 col-md-8 col-lg-8 text-leftmvp">
-                                    <span className={(index + 1 === 1) ? "color-mvp1" : (index + 1 === 2) ? "color-mvp2" : (index + 1 === 3) ? "color-mvp3" : ""}
-                                    >{index + 1}. </span>
-                                    {rankDetail}
-                                    {
-                                      (index + 1 === 1) &&
-                                      <img src={mvp_gold} className="image-mvp" />
-                                    }
-                                    {
-                                      (index + 1 === 2) &&
-                                      <img src={mvp_money} className="image-mvp" />
-                                    }
-                                    {
-                                      (index + 1 === 3) &&
-                                      <img src={mvp_copper} className="image-mvp" />
-                                    }
-                                  </div>
-                                  <div class="col-12 col-sm-12 col-md-4 col-lg-4" >
-                                    <span style={{ float: "right" }}>
-                                      {item.total_score ? item.total_score : 0} <IntlMessages id="challenge.points" />
-                                    </span>
-                                  </div>
-                                </div>
-                              </>
-                          }
-
-
+                  <b className="row mb-4">
+                    <p className="card-text col-12 line-height">
+                      <div class="container text-center">
+                        <div class="row justify-content-md-center">
+                          <div class="col-12 col-sm-12 col-md-8 col-lg-8 text-leftmvp">
+                            <span className={(myRankIndex + 1 === 1) ? "color-mvp1" : (myRankIndex + 1 === 2) ? "color-mvp2" : (myRankIndex + 1 === 3) ? "color-mvp3" : ""}>
+                              {myRankIndex + 1}. </span>
+                            {
+                              myRank[0].display_name ?
+                                myRank[0].display_name
+                                :
+                                myRank[0].email
+                            }
+                            {
+                              (myRankIndex + 1 === 1) &&
+                              <img src={mvp_gold} className="image-mvp" />
+                            }
+                            {
+                              (myRankIndex + 1 === 2) &&
+                              <img src={mvp_money} className="image-mvp" />
+                            }
+                            {
+                              (myRankIndex + 1 === 3) &&
+                              <img src={mvp_copper} className="image-mvp" />
+                            }
+                          </div>
+                          <div class="col-12 col-sm-12 col-md-4 col-lg-4" >
+                            <span style={{ float: "right" }}>
+                              {myRank[0].total_score ? myRank[0].total_score : 0} <IntlMessages id="challenge.points" />
+                            </span>
+                          </div>
                         </div>
                       </div>
-
-                    )
-                  })
+                    </p>
+                  </b>
                 }
+
               </div>
             }
             {
               (selectedScoreBoard === "friendsRank") &&
               <div>
                 {
-                  (friendsRank && (friendsRank.length > 0)) &&
-                  friendsRank.map((item, index) => {
-                    const fullName = `${item.first_name} ${item.last_name}`;
-                    const rankDetail = `${item.display_name ?
-                      item.display_name
-                      :
-                      item.email
-                      }`;
-                    return (
-                      <div className="card-text line-height">
-                        <div class="container text-center">
-                          {
-                            rankDetail !== user.email ?
-                              <>
-                                <div class="row justify-content-md-center">
-                                  <div class="col-12 col-sm-12 col-md-8 col-lg-8 text-leftmvp">
-                                    <span className={(index + 1 === 1) ? "color-mvp1" : (index + 1 === 2) ? "color-mvp2" : (index + 1 === 3) ? "color-mvp3" : ""}
-                                    >{index + 1}. </span>
-                                    {rankDetail}
-                                    {
-                                      (index + 1 === 1) &&
-                                      <img src={mvp_gold} className="image-mvp" />
-                                    }
-                                    {
-                                      (index + 1 === 2) &&
-                                      <img src={mvp_money} className="image-mvp" />
-                                    }
-                                    {
-                                      (index + 1 === 3) &&
-                                      <img src={mvp_copper} className="image-mvp" />
-                                    }
-                                  </div>
-                                  <div class="col-12 col-sm-12 col-md-4 col-lg-4" >
-                                    <span style={{ float: "right" }}>
-                                      {item.total_score ? item.total_score : 0} <IntlMessages id="challenge.points" />
-                                    </span>
-                                  </div>
-                                </div>
-                              </>
-                              :
-                              <>
-                                <div class="row justify-content-md-center backg-you">
-                                  <div class="col-12 col-sm-12 col-md-8 col-lg-8 text-leftmvp">
-                                    <span className={(index + 1 === 1) ? "color-mvp1" : (index + 1 === 2) ? "color-mvp2" : (index + 1 === 3) ? "color-mvp3" : ""}
-                                    >{index + 1}. </span>
-                                    {rankDetail}
-                                    {
-                                      (index + 1 === 1) &&
-                                      <img src={mvp_gold} className="image-mvp" />
-                                    }
-                                    {
-                                      (index + 1 === 2) &&
-                                      <img src={mvp_money} className="image-mvp" />
-                                    }
-                                    {
-                                      (index + 1 === 3) &&
-                                      <img src={mvp_copper} className="image-mvp" />
-                                    }
-                                  </div>
-                                  <div class="col-12 col-sm-12 col-md-4 col-lg-4" >
-                                    <span style={{ float: "right" }}>
-                                      {item.total_score ? item.total_score : 0} <IntlMessages id="challenge.points" />
-                                    </span>
-                                  </div>
-                                </div>
-                              </>
-                          }
-
-
-                        </div>
-                      </div>
-
-                    )
-                  })
-                }
-              </div>
-            }
-          </div>
-          <hr className="w-100"></hr>
-          {
-            (teamRank && (selectedScoreBoard === "team")) &&
-            teamRank.map((item, index) =>
-
-              <p className="text-challenge">
-                <div class="container text-center">
-                  {
-
-                    item.group_id == user.group_id ?
-                      <>
+                  <b className="row mb-4">
+                    <p className="card-text col-12 line-height">
+                      <div class="container text-center">
                         <div class="row justify-content-md-center">
-                          <div class="col-12 col-sm-12 col-md-8 col-lg-8">
-                            <p className="text-leftmvp">
-                              <span className={(index + 1 === 1) ? "color-mvp1" : (index + 1 === 2) ? "color-mvp2" : (index + 1 === 3) ? "color-mvp3" : ""}>{index + 1}. </span>
-                              {
-                                item.group_name ?
-                                  `${item.group_name} `
+                          <div class="col-12 col-sm-12 col-md-8 col-lg-8 text-leftmvp">
+                            <span className={(myRankIndexOfFriendList + 1 === 1) ? "color-mvp1" : (myRankIndexOfFriendList + 1 === 2) ? "color-mvp2" : (myRankIndexOfFriendList + 1 === 3) ? "color-mvp3" : ""}>
+                              {myRankIndexOfFriendList + 1}. </span>
+                            {
+                              myRank[0].facebook ?
+                                myRank[0].facebook
+                                :
+                                myRank[0].first_name ?
+                                  `${myRank[0].first_name} ${myRank[0].last_name}`
                                   :
-                                  ""
-                              }
-                              {
-                                (index + 1 === 1) &&
-                                <img src={mvp_gold} className="image-mvp2" />
-                              }
-                              {
-                                (index + 1 === 2) &&
-                                <img src={mvp_money} className="image-mvp2" />
-                              }
-                              {
-                                (index + 1 === 3) &&
-                                <img src={mvp_copper} className="image-mvp2" />
-                              }
-                            </p>
+                                  myRank[0].email
+                            }
+                            {
+                              (myRankIndexOfFriendList + 1 === 1) &&
+                              <img src={mvp_gold} className="image-mvp" />
+                            }
+                            {
+                              (myRankIndexOfFriendList + 1 === 2) &&
+                              <img src={mvp_money} className="image-mvp" />
+                            }
+                            {
+                              (myRankIndexOfFriendList + 1 === 3) &&
+                              <img src={mvp_copper} className="image-mvp" />
+                            }
                           </div>
                           <div class="col-12 col-sm-12 col-md-4 col-lg-4" >
-                            <span className="span-mvp2"> {item.totalScoreOfTeam ? item.totalScoreOfTeam : 0} <IntlMessages id="challenge.points" /></span>
+                            <span style={{ float: "right" }}>
+                              {myRank[0].total_score ? myRank[0].total_score : 0} <IntlMessages id="challenge.points" />
+                            </span>
                           </div>
                         </div>
-                      </>
-                      :
-                      null
-                  }
-                </div>
-              </p>
-            )
-          }
-          {
-            (selectedScoreBoard === "individual") &&
-            <div>
-              {
-                <b className="row mb-4">
-                  <p className="card-text col-12 line-height">
-                    <div class="container text-center">
-                      <div class="row justify-content-md-center">
-                        <div class="col-12 col-sm-12 col-md-8 col-lg-8 text-leftmvp">
-                          <span className={(myRankIndex + 1 === 1) ? "color-mvp1" : (myRankIndex + 1 === 2) ? "color-mvp2" : (myRankIndex + 1 === 3) ? "color-mvp3" : ""}>
-                            {myRankIndex + 1}. </span>
-                          {
-                            myRank[0].display_name ?
-                              myRank[0].display_name
-                              :
-                              myRank[0].email
-                          }
-                          {
-                            (myRankIndex + 1 === 1) &&
-                            <img src={mvp_gold} className="image-mvp" />
-                          }
-                          {
-                            (myRankIndex + 1 === 2) &&
-                            <img src={mvp_money} className="image-mvp" />
-                          }
-                          {
-                            (myRankIndex + 1 === 3) &&
-                            <img src={mvp_copper} className="image-mvp" />
-                          }
-                        </div>
-                        <div class="col-12 col-sm-12 col-md-4 col-lg-4" >
-                          <span style={{ float: "right" }}>
-                            {myRank[0].total_score ? myRank[0].total_score : 0} <IntlMessages id="challenge.points" />
-                          </span>
-                        </div>
                       </div>
-                    </div>
-                  </p>
-                </b>
-              }
+                    </p>
+                  </b>
+                }
 
-            </div>
-          }
+              </div>
+            }
+            {/* ฟหกฟหก */}
+          </div>
+        </div>
+        <div class="col-12 col-sm-12 col-md-12 col-lg-4">
           {
-            (selectedScoreBoard === "friendsRank") &&
-            <div>
-              {
-                <b className="row mb-4">
-                  <p className="card-text col-12 line-height">
-                    <div class="container text-center">
-                      <div class="row justify-content-md-center">
-                        <div class="col-12 col-sm-12 col-md-8 col-lg-8 text-leftmvp">
-                          <span className={(myRankIndexOfFriendList + 1 === 1) ? "color-mvp1" : (myRankIndexOfFriendList + 1 === 2) ? "color-mvp2" : (myRankIndexOfFriendList + 1 === 3) ? "color-mvp3" : ""}>
-                            {myRankIndexOfFriendList + 1}. </span>
-                          {
-                            myRank[0].facebook ?
-                              myRank[0].facebook
-                              :
-                              myRank[0].first_name ?
-                                `${myRank[0].first_name} ${myRank[0].last_name}`
-                                :
-                                myRank[0].email
-                          }
-                          {
-                            (myRankIndexOfFriendList + 1 === 1) &&
-                            <img src={mvp_gold} className="image-mvp" />
-                          }
-                          {
-                            (myRankIndexOfFriendList + 1 === 2) &&
-                            <img src={mvp_money} className="image-mvp" />
-                          }
-                          {
-                            (myRankIndexOfFriendList + 1 === 3) &&
-                            <img src={mvp_copper} className="image-mvp" />
-                          }
-                        </div>
-                        <div class="col-12 col-sm-12 col-md-4 col-lg-4" >
-                          <span style={{ float: "right" }}>
-                            {myRank[0].total_score ? myRank[0].total_score : 0} <IntlMessages id="challenge.points" />
-                          </span>
-                        </div>
-                      </div>
-                    </div>
-                  </p>
-                </b>
-              }
-
-            </div>
+            this.pointYou()
           }
-          {/* ฟหกฟหก */}
         </div>
       </>
     )
@@ -1268,99 +1343,104 @@ class Challenge extends Component {
     console.log("this.props.friend_request", this.props.friend_request);
     return (
       <>
+        <div class="col-12 col-sm-12 col-md-12 col-lg-8">
+          {addfriend === false ?
+            (friend_list && friend_list.length > 0) ?
+              <>
+                <div className="box-challengeIn">
+                  {
+                    this.request_friend()
+                  }
 
-        {addfriend === false ?
-          (friend_list && friend_list.length > 0) ?
-            <>
-              <div className="box-challengeIn">
-                {
-                  this.request_friend()
-                }
-
-                <p className="headTeam bold"><IntlMessages id="challenge.friendlist" /> <span className="span-challenge headTeamSpan"><IntlMessages id="challenge.friend" /> {friend_list.length}/{max_friends} <IntlMessages id="challenge.person" /></span></p>
-                {
-                  (friend_list) &&
-                  friend_list.map((item, index) =>
-                    <p className="text-challenge">
-                      <div class="container text-center">
-                        <div class="row justify-content-md-center">
-                          <div class="col-12 col-sm-12 col-md-6 col-lg-6">
-                            <p className="text-leftmvp">
-                              <span>{index + 1}.
-                                {
-                                  <span className="color2">
-                                    {
-                                      item.facebook ?
-                                        item.facebook
-                                        :
-                                        item.first_name ?
-                                          `${item.first_name} ${item.last_name}`
+                  <p className="headTeam bold"><IntlMessages id="challenge.friendlist" /> <span className="span-challenge headTeamSpan"><IntlMessages id="challenge.friend" /> {friend_list.length}/{max_friends} <IntlMessages id="challenge.person" /></span></p>
+                  {
+                    (friend_list) &&
+                    friend_list.map((item, index) =>
+                      <p className="text-challenge">
+                        <div class="container text-center">
+                          <div class="row justify-content-md-center">
+                            <div class="col-12 col-sm-12 col-md-6 col-lg-6">
+                              <p className="text-leftmvp">
+                                <span>{index + 1}.
+                                  {
+                                    <span className="color2">
+                                      {
+                                        item.facebook ?
+                                          item.facebook
                                           :
-                                          item.email
-                                    }
-                                  </span>
+                                          item.first_name ?
+                                            `${item.first_name} ${item.last_name}`
+                                            :
+                                            item.email
+                                      }
+                                    </span>
 
+                                  }
+                                  &nbsp;
+                                </span>
+                              </p>
+                            </div>
+                            <div class="col-12 col-sm-12 col-md-6 col-lg-6 text-rightmvp">
+                              <span>
+                                {
+                                  item.end_rank ?
+                                    <img src={`./assets/img/icon_rank/${item.end_rank}.png`} width="100%" className="icon_rank" />
+                                    :
+                                    <img src={`./assets/img/icon_rank/${item.start_rank}.png`} width="100%" className="icon_rank" />
                                 }
-                                &nbsp;
                               </span>
-                            </p>
-                          </div>
-                          <div class="col-12 col-sm-12 col-md-6 col-lg-6 text-rightmvp">
-                            <span>
-                              {
-                                item.end_rank ?
-                                  <img src={`./assets/img/icon_rank/${item.end_rank}.png`} width="100%" className="icon_rank" />
-                                  :
-                                  <img src={`./assets/img/icon_rank/${item.start_rank}.png`} width="100%" className="icon_rank" />
-                              }
-                            </span>
-                            <span className="span-challenge"> {item.total_score} <IntlMessages id="challenge.points" /></span>
-                            <span className="" style={{ color: "gray", cursor: "pointer" }} onClick={() => this.onDeleteFriendModal(item.email)}> <img src={icon_x} /></span>
+                              <span className="span-challenge"> {item.total_score} <IntlMessages id="challenge.points" /></span>
+                              <span className="" style={{ color: "gray", cursor: "pointer" }} onClick={() => this.onDeleteFriendModal(item.email)}> <img src={icon_x} /></span>
+                            </div>
                           </div>
                         </div>
-                      </div>
 
-                    </p>
-                  )
-                }
-                <p className="border-bottom"></p>
-                <p className="rules-add">
-                  <p data-bs-toggle="modal" data-bs-target="#modalAddfriendList" >
-                    <IntlMessages id="challenge.howincreasefriends" />
-                  </p>
-                  {
-                    (friend_list.length < max_friends) &&
-                    <span className="rules-invite" onClick={(e) => this.clickaddfriend(true)}>
-                      + <IntlMessages id="challenge.addedfriends" />
-                    </span>
+                      </p>
+                    )
                   }
-                </p>
+                  <p className="border-bottom"></p>
+                  <p className="rules-add">
+                    <p data-bs-toggle="modal" data-bs-target="#modalAddfriendList" >
+                      <IntlMessages id="challenge.howincreasefriends" />
+                    </p>
+                    {
+                      (friend_list.length < max_friends) &&
+                      <span className="rules-invite" onClick={(e) => this.clickaddfriend(true)}>
+                        + <IntlMessages id="challenge.addedfriends" />
+                      </span>
+                    }
+                  </p>
 
 
-              </div>
-            </>
-            :
-            <>
-              <div className="box-challengeIn">
-                {
-                  this.request_friend()
-                }
-                <div className="col-12 col-sm-12 col-md-12 col-lg-12 ellipse24">
-                  <img src={group22} />
                 </div>
-                <p className="text-teamHead"><IntlMessages id="challenge.notfriends" /></p>
-                <div className="col-12 col-sm-12 col-md-12 col-lg-12  center2  margin-top-3">
-                  <div className="bottom-teamList">
-                    <button type="button" className="btn bottom-outlineaddTeam " onClick={(e) => this.clickaddfriend(true)}><IntlMessages id="challenge.invitefriends" /></button>
+              </>
+              :
+              <>
+                <div className="box-challengeIn">
+                  {
+                    this.request_friend()
+                  }
+                  <div className="col-12 col-sm-12 col-md-12 col-lg-12 ellipse24">
+                    <img src={group22} />
+                  </div>
+                  <p className="text-teamHead"><IntlMessages id="challenge.notfriends" /></p>
+                  <div className="col-12 col-sm-12 col-md-12 col-lg-12  center2  margin-top-3">
+                    <div className="bottom-teamList">
+                      <button type="button" className="btn bottom-outlineaddTeam " onClick={(e) => this.clickaddfriend(true)}><IntlMessages id="challenge.invitefriends" /></button>
+                    </div>
                   </div>
                 </div>
-              </div>
-            </>
-          :
-          this.addfriendList()
+              </>
+            :
+            this.addfriendList()
 
-        }
-
+          }
+        </div>
+        <div class="col-12 col-sm-12 col-md-12 col-lg-4">
+          {
+            this.pointYou()
+          }
+        </div>
       </>
     )
   }
@@ -1433,96 +1513,103 @@ class Challenge extends Component {
 
     return (
       <>
-        <div className="box-challengeIn">
-          <div className="display_name">
-            <div className="row">
-              <p className="col-12 col-sm-12 col-md-12 col-lg-4 col-xl-4 user_all">ผู้ใช้งานทั้งหมดในระบบ</p>
-              <div className="col-12 col-sm-12 col-md-12   col-lg-8 col-xl-8">
-                <div className="row justify-content-md-center">
-                  <div className="col-8 col-sm-10 col-md-10 col-lg-9 col-xl-9">
-                    <input
-                      type="text" className="form-control"
-                      id="emailOrDisplayName"
-                      value={emailOrDisplayName}
-                      onChange={(event) => this.handleChange(event)}
-                      onKeyUp={this.filterSearch()}
-                      placeholder="ชื่อ หรืออีเมลเพื่อนของคุณที่สมัคร Bebe Stay Fit"
-                    />
-                  </div>
-                  <div className="col-auto col-sm-2 col-md-2   col-lg-2 col-xl-2">
-                    <button className="btn bottom-search" type="button">ค้นหา</button>
+        <div class="col-12 col-sm-12 col-md-12 col-lg-8">
+          <div className="box-challengeIn">
+            <div className="display_name">
+              <div className="row">
+                <p className="col-12 col-sm-12 col-md-12 col-lg-4 col-xl-4 user_all">ผู้ใช้งานทั้งหมดในระบบ</p>
+                <div className="col-12 col-sm-12 col-md-12   col-lg-8 col-xl-8">
+                  <div className="row justify-content-md-center">
+                    <div className="col-8 col-sm-10 col-md-10 col-lg-9 col-xl-9">
+                      <input
+                        type="text" className="form-control"
+                        id="emailOrDisplayName"
+                        value={emailOrDisplayName}
+                        onChange={(event) => this.handleChange(event)}
+                        onKeyUp={this.filterSearch()}
+                        placeholder="ชื่อ หรืออีเมลเพื่อนของคุณที่สมัคร Bebe Stay Fit"
+                      />
+                    </div>
+                    <div className="col-auto col-sm-2 col-md-2   col-lg-3 col-xl-3">
+                      <button className="btn bottom-search" type="button">ค้นหา</button>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
 
 
-            <ul id="myUL" className='myUL'>
-              <div class="container">
+              <ul id="myUL" className='myUL'>
+                <div class="container">
 
-                {
-                  (allMemberStayFitFilter && allMemberStayFitFilter.length > 0) ?
-                    allMemberStayFit &&
-                    allMemberStayFit.map((item, i) =>
-                      <li key={i} className="li">
-                        <div class="row">
-                          <div class="col-12 col-md-auto col-lg-5 col-xl-5  text-left">
-                            <h5>
-                              {item.display_name ? item.display_name : item.email}
-                              <span style={{ display: "none" }}> {item.email}</span>
-                            </h5>
-                          </div>
-                          <div class="col-12 col-lg-2 col-xl-2 text-center">
-                            <span> {item.rank}</span>
-                          </div>
-                          <div class="col-12 col-lg-auto col-xl-auto  text-center">
-                            {
-                              (this.checkFriendStatus(item.user_id)) ? //เช็คว่ามีคนนี้เป็นเพื่อนแล้วหรือยัง
-                                <span style={{ color: "#000000", fontSize: "16px" }} > เพื่อนของคุณ </span>
-                                :
-                                (this.checkFriendRequestStatus(item.user_id)) ? //เช็คว่าเคยส่งคำขอเพื่อนไปหาคนนี้หรือยัง
-                                  <div>
-                                    <span style={{ color: "#D30769", fontSize: "16px" }}> รอการยืนยัน </span>
-                                    {
-                                      (statusCancelFriendRequest !== "loading") && //เช็คเพื่อซ่อนปุ่มในจังหวะ loading ป้องกันการกดยกเลิกรัวๆ
-                                      <span
-                                        style={{ cursor: "pointer" }} className="btn bottom-cancel"
-                                        onClick={() => this.props.cancelFriendRequest(user.user_id, item.user_id)}
-                                      >
-                                        <img src={cancel} className="cancel-H" />
-                                        ยกเลิกคำขอ
-                                      </span>
-                                    }
-                                  </div>
+                  {
+                    (allMemberStayFitFilter && allMemberStayFitFilter.length > 0) ?
+                      allMemberStayFit &&
+                      allMemberStayFit.map((item, i) =>
+                        <li key={i} className="li">
+                          <div class="row">
+                            <div class="col-12 col-md-auto col-lg-5 col-xl-5  text-left">
+                              <h5>
+                                {item.display_name ? item.display_name : item.email}
+                                <span style={{ display: "none" }}> {item.email}</span>
+                              </h5>
+                            </div>
+                            <div class="col-12 col-lg-2 col-xl-2 text-center">
+                              <span> {item.rank}</span>
+                            </div>
+                            <div class="col-12 col-lg-auto col-xl-auto  text-center">
+                              {
+                                (this.checkFriendStatus(item.user_id)) ? //เช็คว่ามีคนนี้เป็นเพื่อนแล้วหรือยัง
+                                  <span style={{ color: "#000000", fontSize: "16px" }} > เพื่อนของคุณ </span>
                                   :
-                                  (statusSendFriendRequest !== "loading" && (item.user_id !== user.user_id)) && //เช็คเพื่อซ่อนปุ่มในจังหวะ loading ป้องกันการกดเพิ่มเพื่อนรัวๆ
-                                  <span className="btn bottom-add"
-                                    style={{ cursor: "pointer" }}
-                                    onClick={() => this.props.sendFriendRequest(user.user_id, item.email)}
-                                  >
-                                    {`เพิ่มเพื่อน`}
-                                  </span>
-                            }
+                                  (this.checkFriendRequestStatus(item.user_id)) ? //เช็คว่าเคยส่งคำขอเพื่อนไปหาคนนี้หรือยัง
+                                    <div>
+                                      <span style={{ color: "#D30769", fontSize: "16px" }}> รอการยืนยัน </span>
+                                      {
+                                        (statusCancelFriendRequest !== "loading") && //เช็คเพื่อซ่อนปุ่มในจังหวะ loading ป้องกันการกดยกเลิกรัวๆ
+                                        <span
+                                          style={{ cursor: "pointer" }} className="btn bottom-cancel"
+                                          onClick={() => this.props.cancelFriendRequest(user.user_id, item.user_id)}
+                                        >
+                                          <img src={cancel} className="cancel-H" />
+                                          ยกเลิกคำขอ
+                                        </span>
+                                      }
+                                    </div>
+                                    :
+                                    (statusSendFriendRequest !== "loading" && (item.user_id !== user.user_id)) && //เช็คเพื่อซ่อนปุ่มในจังหวะ loading ป้องกันการกดเพิ่มเพื่อนรัวๆ
+                                    <span className="btn bottom-add"
+                                      style={{ cursor: "pointer" }}
+                                      onClick={() => this.props.sendFriendRequest(user.user_id, item.email)}
+                                    >
+                                      {`เพิ่มเพื่อน`}
+                                    </span>
+                              }
+                            </div>
                           </div>
+                        </li>
+                      )
+                      :
+                      <h5>
+                        <div className="col-12 col-sm-12 col-md-12 col-lg-12 ellipse24">
+                          <img src={group25} />
                         </div>
-                      </li>
-                    )
-                    :
-                    <h5>
-                      <div className="col-12 col-sm-12 col-md-12 col-lg-12 ellipse24">
-                        <img src={group25} />
-                      </div>
-                      <p className="text-noSystem">ไม่มีชื่ออยู่ในระบบ</p>
-                      {/*  <div className="col-12 col-sm-12 col-md-12 col-lg-12  center2  margin-top-3">
+                        <p className="text-noSystem">ไม่มีชื่ออยู่ในระบบ</p>
+                        {/*  <div className="col-12 col-sm-12 col-md-12 col-lg-12  center2  margin-top-3">
                         <div className="bottom-teamList">
                           <button type="button" className="btn bottom-outlineaddTeam " onClick={(e) => this.clickaddfriend(true)}><IntlMessages id="challenge.invitefriends" /></button>
                         </div>
                       </div> */}
-                    </h5>
-                }
-              </div>
-            </ul>
+                      </h5>
+                  }
+                </div>
+              </ul>
+            </div>
           </div>
+        </div>
+        <div class="col-12 col-sm-12 col-md-12 col-lg-4">
+          {
+            this.pointYou()
+          }
         </div>
       </>
     )
@@ -1544,27 +1631,92 @@ class Challenge extends Component {
       <>
         {
           <>
-            <div className="box-challengeIn">
-              <p className="text-challenge">
-                <div className="container">
+            <div class="col-12 col-sm-12 col-md-12 col-lg-8">
+              <div className="box-challengeIn">
+                <p className="text-challenge">
+                  <div className="container">
 
-                  {
-                    achievementFinisher ?
-                      <>
+                    {
+                      achievementFinisher ?
+                        <>
+                          <div className="row">
+                            <div className="col-12 col-sm-12 col-md-12 col-lg-12 mt-2" >
+                              {/* จอมือถือ */}
+                              <div className="container line-hr" data-bs-toggle="modal" id="achievement8" data-bs-target="#modalAchievement8">
+                                <div className="row">
+                                  <div className="col-4 col-sm-3 col-md-2 col-lg-3 col-xl-2">
+                                    <img src={`./assets/img/icon_achievement/finisher.png`} width="70" height="70" className="icon_rank-img" />
+                                  </div>
+                                  <div className="col-8 col-sm-9 col-md-10 col-lg-9 col-xl-10">
+                                    <div className="container">
+                                      <div className="row">
+                                        <div className="col-12 col-sm-12  col-md-10">
+                                          <p><span className="bold">Finisher</span><br /> ทำภารกิจครบทุกสัปดาห์จนจบฤดูกาล
+                                          </p>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                              {/* จอคอม */}
+                              <div className="container display-btn">
+                                <div className="row">
+                                  <div className="col-4 col-sm-3 col-md-2 col-lg-3 col-xl-2">
+                                    <img src={`./assets/img/icon_achievement/finisher.png`} width="70" height="70" className="icon_rank-img" />
+                                  </div>
+                                  <div className="col-8 col-sm-9 col-md-10 col-lg-9 col-xl-10">
+                                    <div className="container">
+                                      <div className="row">
+                                        <div className="col-12 col-sm-12  col-md-10">
+                                          <p><span className="bold">Finisher</span><br /> ทำภารกิจครบทุกสัปดาห์จนจบฤดูกาล
+                                          </p>
+                                        </div>
+                                        <div class="col-12 col-sm-12 col-md-2" onClick={() => document.getElementById("modalAchievement8Btn") && document.getElementById("modalAchievement8Btn").click()}>
+                                          <button type="button" className="btn btn-achievement ">แชร์</button>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+
+                            </div>
+                          </div>
+                        </>
+                        :
+                        <>
+                          <div className="row">
+                            <div className="col-12 col-sm-12 col-md-12 col-lg-12 mt-2" >
+                              <div className="container">
+                                <div className="row">
+                                  <div className="col-4 col-sm-3 col-md-2 col-lg-3 col-xl-2">
+                                    <img src={`./assets/img/icon_achievement/finisher_grey.png`} width="70" height="70" className="icon_rank-img" />
+                                  </div>
+                                  <div className="col-8 col-sm-9 col-md-10 col-lg-9 col-xl-10">
+                                    <p className="share-text"><span className="bold">Finisher</span><br /> ทำภารกิจครบทุกสัปดาห์จนจบฤดูกาล</p></div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </>
+                    }
+                    <hr className="line-hr" />
+                    {
+                      achievementAce ?
                         <div className="row">
-                          <div className="col-12 col-sm-12 col-md-12 col-lg-12 mt-2" >
+                          <div className="col-12 col-sm-12 col-md-12 col-lg-12 mt-2">
                             {/* จอมือถือ */}
-                            <div className="container line-hr" data-bs-toggle="modal" id="achievement8" data-bs-target="#modalAchievement8">
+                            <div className="container line-hr" data-bs-toggle="modal" id="achievement1" data-bs-target="#modalAchievement1">
                               <div className="row">
                                 <div className="col-4 col-sm-3 col-md-2 col-lg-3 col-xl-2">
-                                  <img src={`./assets/img/icon_achievement/finisher.png`} width="70" height="70" className="icon_rank-img" />
+                                  <img src={`./assets/img/icon_achievement/ace.png`} width="70" height="70" className="icon_rank-img" />
                                 </div>
                                 <div className="col-8 col-sm-9 col-md-10 col-lg-9 col-xl-10">
                                   <div className="container">
                                     <div className="row">
                                       <div className="col-12 col-sm-12  col-md-10">
-                                        <p><span className="bold">Finisher</span><br /> ทำภารกิจครบทุกสัปดาห์จนจบฤดูกาล
-                                        </p>
+                                        <p><span className="bold">Ace</span><br />ได้อันดับคะแนนสูงสุดประจำสัปดาห์</p>
                                       </div>
                                     </div>
                                   </div>
@@ -1575,16 +1727,15 @@ class Challenge extends Component {
                             <div className="container display-btn">
                               <div className="row">
                                 <div className="col-4 col-sm-3 col-md-2 col-lg-3 col-xl-2">
-                                  <img src={`./assets/img/icon_achievement/finisher.png`} width="70" height="70" className="icon_rank-img" />
+                                  <img src={`./assets/img/icon_achievement/ace.png`} width="70" height="70" className="icon_rank-img" />
                                 </div>
-                                <div className="col-8 col-sm-9 col-md-10 col-lg-9 col-xl-10">
+                                <div class="col-8 col-sm-9 col-md-10 col-lg-9 col-xl-10">
                                   <div className="container">
                                     <div className="row">
                                       <div className="col-12 col-sm-12  col-md-10">
-                                        <p><span className="bold">Finisher</span><br /> ทำภารกิจครบทุกสัปดาห์จนจบฤดูกาล
-                                        </p>
+                                        <p><span className="bold">Ace</span><br />ได้อันดับคะแนนสูงสุดประจำสัปดาห์</p>
                                       </div>
-                                      <div class="col-12 col-sm-12 col-md-2" onClick={() => document.getElementById("modalAchievement8Btn") && document.getElementById("modalAchievement8Btn").click()}>
+                                      <div className="col-12 col-sm-12 col-md-2" onClick={() => document.getElementById("modalAchievement1Btn") && document.getElementById("modalAchievement1Btn").click()}>
                                         <button type="button" className="btn btn-achievement ">แชร์</button>
                                       </div>
                                     </div>
@@ -1595,389 +1746,332 @@ class Challenge extends Component {
 
                           </div>
                         </div>
-                      </>
-                      :
-                      <>
+                        :
                         <div className="row">
-                          <div className="col-12 col-sm-12 col-md-12 col-lg-12 mt-2" >
+                          <div className="col-12 col-sm-12 col-md-12 col-lg-12 mt-2">
                             <div className="container">
                               <div className="row">
                                 <div className="col-4 col-sm-3 col-md-2 col-lg-3 col-xl-2">
-                                  <img src={`./assets/img/icon_achievement/finisher_grey.png`} width="70" height="70" className="icon_rank-img" />
+                                  <img src={`./assets/img/icon_achievement/ace_grey.png`} width="70" height="70" className="icon_rank-img" />
                                 </div>
                                 <div className="col-8 col-sm-9 col-md-10 col-lg-9 col-xl-10">
-                                  <p className="share-text"><span className="bold">Finisher</span><br /> ทำภารกิจครบทุกสัปดาห์จนจบฤดูกาล</p></div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </>
-                  }
-                  <hr className="line-hr" />
-                  {
-                    achievementAce ?
-                      <div className="row">
-                        <div className="col-12 col-sm-12 col-md-12 col-lg-12 mt-2">
-                          {/* จอมือถือ */}
-                          <div className="container line-hr" data-bs-toggle="modal" id="achievement1" data-bs-target="#modalAchievement1">
-                            <div className="row">
-                              <div className="col-4 col-sm-3 col-md-2 col-lg-3 col-xl-2">
-                                <img src={`./assets/img/icon_achievement/ace.png`} width="70" height="70" className="icon_rank-img" />
-                              </div>
-                              <div className="col-8 col-sm-9 col-md-10 col-lg-9 col-xl-10">
-                                <div className="container">
-                                  <div className="row">
-                                    <div className="col-12 col-sm-12  col-md-10">
-                                      <p><span className="bold">Ace</span><br />ได้อันดับคะแนนสูงสุดประจำสัปดาห์</p>
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                          {/* จอคอม */}
-                          <div className="container display-btn">
-                            <div className="row">
-                              <div className="col-4 col-sm-3 col-md-2 col-lg-3 col-xl-2">
-                                <img src={`./assets/img/icon_achievement/ace.png`} width="70" height="70" className="icon_rank-img" />
-                              </div>
-                              <div class="col-8 col-sm-9 col-md-10 col-lg-9 col-xl-10">
-                                <div className="container">
-                                  <div className="row">
-                                    <div className="col-12 col-sm-12  col-md-10">
-                                      <p><span className="bold">Ace</span><br />ได้อันดับคะแนนสูงสุดประจำสัปดาห์</p>
-                                    </div>
-                                    <div className="col-12 col-sm-12 col-md-2" onClick={() => document.getElementById("modalAchievement1Btn") && document.getElementById("modalAchievement1Btn").click()}>
-                                      <button type="button" className="btn btn-achievement ">แชร์</button>
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
+                                  <p><span className="bold">Ace</span><br />
+                                    ได้อันดับคะแนนสูงสุดประจำสัปดาห์
+                                  </p>
 
-                        </div>
-                      </div>
-                      :
-                      <div className="row">
-                        <div className="col-12 col-sm-12 col-md-12 col-lg-12 mt-2">
-                          <div className="container">
-                            <div className="row">
-                              <div className="col-4 col-sm-3 col-md-2 col-lg-3 col-xl-2">
-                                <img src={`./assets/img/icon_achievement/ace_grey.png`} width="70" height="70" className="icon_rank-img" />
+                                </div>
                               </div>
-                              <div className="col-8 col-sm-9 col-md-10 col-lg-9 col-xl-10">
-                                <p><span className="bold">Ace</span><br />
-                                  ได้อันดับคะแนนสูงสุดประจำสัปดาห์
-                                </p>
+                            </div>
+                          </div>
+                        </div>
+                    }
+                    <hr className="line-hr" />
+                    {
+                      achievement1st ?
+                        <div className="row">
+                          <div className="col-12 col-sm-12 col-md-12 col-lg-12 mt-2">
+                            {/* จอมือถือ */}
+                            <div className="container line-hr" data-bs-toggle="modal" id="achievement3" data-bs-target="#modalAchievement3">
+                              <div className="row">
+                                <div className="col-4 col-sm-3 col-md-2 col-lg-3 col-xl-2">
+                                  <img src={`./assets/img/icon_achievement/1st.png`} width="70" height="70" className="icon_rank-img" />
+                                </div>
+                                <div className="col-8 col-sm-9 col-md-10 col-lg-9 col-xl-10">
+                                  <div className="container">
+                                    <div className="row">
+                                      <div className="col-12 col-sm-12  col-md-10">
+                                        <p><span className="bold">1st</span><br /> ได้ทีมอันดับที่ 1 ประจำสัปดาห์  </p>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            {/* จอคอม */}
+                            <div className="container  display-btn">
+                              <div className="row">
+                                <div className="col-4 col-sm-3 col-md-2 col-lg-3 col-xl-2">
+                                  <img src={`./assets/img/icon_achievement/1st.png`} width="70" height="70" className="icon_rank-img" />
+                                </div>
+                                <div className="col-8 col-sm-9 col-md-10 col-lg-9 col-xl-10">
+                                  <div className="container">
+                                    <div className="row">
+                                      <div className="col-12 col-sm-12  col-md-10">
+                                        <p><span className="bold">1st</span><br /> ได้ทีมอันดับที่ 1 ประจำสัปดาห์  </p>
+                                      </div>
+                                      <div className="col-12 col-sm-12 col-md-2" onClick={() => document.getElementById("modalAchievement3Btn") && document.getElementById("modalAchievement3Btn").click()}>
+                                        <button type="button" className="btn btn-achievement ">แชร์</button>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        :
+                        <div className="row">
+                          <div className="col-12 col-sm-12 col-md-12 col-lg-12 mt-2">
+                            <div className="container">
+                              <div className="row">
+                                <div className="col-4 col-sm-3 col-md-2 col-lg-3 col-xl-2">
+                                  <img src={`./assets/img/icon_achievement/1st_grey.png`} width="70" height="70" className="icon_rank-img" />
+                                </div>
+                                <div className="col-8 col-sm-9 col-md-10 col-lg-9 col-xl-10">
+                                  <p><span className="bold">1st</span><br /> ได้ทีมอันดับที่ 1 ประจำสัปดาห์</p></div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
 
+                    }
+                    <hr className="line-hr" />
+                    {
+                      achievement2nd ?
+                        <div className="row">
+                          <div className="col-12 col-sm-12 col-md-12 col-lg-12 mt-2">
+                            {/* จอมือถือ */}
+                            <div className="container line-hr" data-bs-toggle="modal" id="achievement4" data-bs-target="#modalAchievement4">
+                              <div className="row">
+                                <div className="col-4 col-sm-3 col-md-2 col-lg-3 col-xl-2">
+                                  <img src={`./assets/img/icon_achievement/2nd.png`} width="70" height="70" className="icon_rank-img" />
+                                </div>
+                                <div className="col-8 col-sm-9 col-md-10 col-lg-9 col-xl-10">
+                                  <div className="container">
+                                    <div className="row">
+                                      <div className="col-12 col-sm-12  col-md-10">
+                                        <p><span className="bold">2nd</span><br /> ได้ทีมอันดับที่ 2 ประจำสัปดาห์</p>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
                               </div>
                             </div>
-                          </div>
-                        </div>
-                      </div>
-                  }
-                  <hr className="line-hr" />
-                  {
-                    achievement1st ?
-                      <div className="row">
-                        <div className="col-12 col-sm-12 col-md-12 col-lg-12 mt-2">
-                          {/* จอมือถือ */}
-                          <div className="container line-hr" data-bs-toggle="modal" id="achievement3" data-bs-target="#modalAchievement3">
-                            <div className="row">
-                              <div className="col-4 col-sm-3 col-md-2 col-lg-3 col-xl-2">
-                                <img src={`./assets/img/icon_achievement/1st.png`} width="70" height="70" className="icon_rank-img" />
-                              </div>
-                              <div className="col-8 col-sm-9 col-md-10 col-lg-9 col-xl-10">
-                                <div className="container">
-                                  <div className="row">
-                                    <div className="col-12 col-sm-12  col-md-10">
-                                      <p><span className="bold">1st</span><br /> ได้ทีมอันดับที่ 1 ประจำสัปดาห์  </p>
+                            {/* จอคอม */}
+                            <div className="container display-btn">
+                              <div className="row">
+                                <div className="col-4 col-sm-3 col-md-2 col-lg-3 col-xl-2">
+                                  <img src={`./assets/img/icon_achievement/2nd.png`} width="70" height="70" className="icon_rank-img" />
+                                </div>
+                                <div className="col-8 col-sm-9 col-md-10 col-lg-9 col-xl-10">
+                                  <div className="container">
+                                    <div className="row">
+                                      <div className="col-12 col-sm-12  col-md-10">
+                                        <p><span className="bold">2nd</span><br /> ได้ทีมอันดับที่ 2 ประจำสัปดาห์</p>
+                                      </div>
+                                      <div className="col-12 col-sm-12 col-md-2" onClick={() => document.getElementById("modalAchievement4Btn") && document.getElementById("modalAchievement4Btn").click()}>
+                                        <button type="button" className="btn btn-achievement ">แชร์</button>
+                                      </div>
                                     </div>
                                   </div>
                                 </div>
                               </div>
                             </div>
                           </div>
-                          {/* จอคอม */}
-                          <div className="container  display-btn">
-                            <div className="row">
-                              <div className="col-4 col-sm-3 col-md-2 col-lg-3 col-xl-2">
-                                <img src={`./assets/img/icon_achievement/1st.png`} width="70" height="70" className="icon_rank-img" />
+                        </div>
+                        :
+                        <div className="row">
+                          <div className="col-12 col-sm-12 col-md-12 col-lg-12 mt-2">
+                            <div className="container">
+                              <div className="row">
+                                <div className="col-4 col-sm-3 col-md-2 col-lg-3 col-xl-2">
+                                  <img src={`./assets/img/icon_achievement/2nd_grey.png`} width="70" height="70" className="icon_rank-img" />
+                                </div>
+                                <div className="col-8 col-sm-9 col-md-10 col-lg-9 col-xl-10"><p><span className="bold">2nd</span><br /> ได้ทีมอันดับที่ 2 ประจำสัปดาห์
+                                </p></div>
                               </div>
-                              <div className="col-8 col-sm-9 col-md-10 col-lg-9 col-xl-10">
-                                <div className="container">
-                                  <div className="row">
-                                    <div className="col-12 col-sm-12  col-md-10">
-                                      <p><span className="bold">1st</span><br /> ได้ทีมอันดับที่ 1 ประจำสัปดาห์  </p>
-                                    </div>
-                                    <div className="col-12 col-sm-12 col-md-2" onClick={() => document.getElementById("modalAchievement3Btn") && document.getElementById("modalAchievement3Btn").click()}>
-                                      <button type="button" className="btn btn-achievement ">แชร์</button>
+                            </div>
+                          </div>
+                        </div>
+                    }
+                    <hr className="line-hr" />
+                    {
+                      achievementTop10 ?
+                        <div className="row">
+                          <div className="col-12 col-sm-12 col-md-12 col-lg-12 mt-2">
+                            {/* จอมอืถือ */}
+                            <div className="container line-hr" data-bs-toggle="modal" id="achievement5" data-bs-target="#modalAchievement5">
+                              <div class="row">
+                                <div class="col-4 col-sm-3 col-md-2 col-lg-3 col-xl-2">
+                                  <img src={`./assets/img/icon_achievement/top10.png`} width="70" height="70" className="icon_rank-img" />
+                                </div>
+                                <div class="col-8 col-sm-9 col-md-10 col-lg-9 col-xl-10">
+                                  <div class="container">
+                                    <div class="row">
+                                      <div class="col-12 col-sm-12  col-md-10">
+                                        <p><span className="bold">Top 10</span><br /> ได้ทีมอันดับที่ 3-10 ประจำสัปดาห์ </p>
+                                      </div>
                                     </div>
                                   </div>
                                 </div>
                               </div>
                             </div>
-                          </div>
-                        </div>
-                      </div>
-                      :
-                      <div className="row">
-                        <div className="col-12 col-sm-12 col-md-12 col-lg-12 mt-2">
-                          <div className="container">
-                            <div className="row">
-                              <div className="col-4 col-sm-3 col-md-2 col-lg-3 col-xl-2">
-                                <img src={`./assets/img/icon_achievement/1st_grey.png`} width="70" height="70" className="icon_rank-img" />
+                            {/* จอคอม */}
+                            <div className="container display-btn">
+                              <div class="row">
+                                <div class="col-4 col-sm-3 col-md-2 col-lg-3 col-xl-2">
+                                  <img src={`./assets/img/icon_achievement/top10.png`} width="70" height="70" className="icon_rank-img" />
+                                </div>
+                                <div class="col-8 col-sm-9 col-md-10 col-lg-9 col-xl-10">
+                                  <div class="container">
+                                    <div class="row">
+                                      <div class="col-12 col-sm-12  col-md-10">
+                                        <p><span className="bold">Top 10</span><br /> ได้ทีมอันดับที่ 3-10 ประจำสัปดาห์ </p>
+                                      </div>
+                                      <div class="col-12 col-sm-12 col-md-2" onClick={() => document.getElementById("modalAchievement5Btn") && document.getElementById("modalAchievement5Btn").click()}>
+                                        <button type="button" className="btn btn-achievement ">แชร์</button>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
                               </div>
-                              <div className="col-8 col-sm-9 col-md-10 col-lg-9 col-xl-10">
-                                <p><span className="bold">1st</span><br /> ได้ทีมอันดับที่ 1 ประจำสัปดาห์</p></div>
                             </div>
-                          </div>
-                        </div>
-                      </div>
 
-                  }
-                  <hr className="line-hr" />
-                  {
-                    achievement2nd ?
-                      <div className="row">
-                        <div className="col-12 col-sm-12 col-md-12 col-lg-12 mt-2">
-                          {/* จอมือถือ */}
-                          <div className="container line-hr" data-bs-toggle="modal" id="achievement4" data-bs-target="#modalAchievement4">
-                            <div className="row">
-                              <div className="col-4 col-sm-3 col-md-2 col-lg-3 col-xl-2">
-                                <img src={`./assets/img/icon_achievement/2nd.png`} width="70" height="70" className="icon_rank-img" />
-                              </div>
-                              <div className="col-8 col-sm-9 col-md-10 col-lg-9 col-xl-10">
-                                <div className="container">
-                                  <div className="row">
-                                    <div className="col-12 col-sm-12  col-md-10">
-                                      <p><span className="bold">2nd</span><br /> ได้ทีมอันดับที่ 2 ประจำสัปดาห์</p>
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
                           </div>
-                          {/* จอคอม */}
-                          <div className="container display-btn">
-                            <div className="row">
-                              <div className="col-4 col-sm-3 col-md-2 col-lg-3 col-xl-2">
-                                <img src={`./assets/img/icon_achievement/2nd.png`} width="70" height="70" className="icon_rank-img" />
-                              </div>
-                              <div className="col-8 col-sm-9 col-md-10 col-lg-9 col-xl-10">
-                                <div className="container">
-                                  <div className="row">
-                                    <div className="col-12 col-sm-12  col-md-10">
-                                      <p><span className="bold">2nd</span><br /> ได้ทีมอันดับที่ 2 ประจำสัปดาห์</p>
-                                    </div>
-                                    <div className="col-12 col-sm-12 col-md-2" onClick={() => document.getElementById("modalAchievement4Btn") && document.getElementById("modalAchievement4Btn").click()}>
-                                      <button type="button" className="btn btn-achievement ">แชร์</button>
-                                    </div>
-                                  </div>
+                        </div>
+                        :
+                        <div className="row">
+                          <div className="col-12 col-sm-12 col-md-12 col-lg-12 mt-2">
+                            <div className="container">
+                              <div className="row">
+                                <div className="col-4 col-sm-3 col-md-2 col-lg-3 col-xl-2">
+                                  <img src={`./assets/img/icon_achievement/top10_grey.png`} width="70" height="70" className="icon_rank-img" />
                                 </div>
+                                <div className="col-8 col-sm-9 col-md-10 col-lg-9 col-xl-10"><p><span className="bold">Top 10</span><br /> ได้ทีมอันดับที่ 3-10 ประจำสัปดาห์
+                                </p></div>
                               </div>
                             </div>
                           </div>
                         </div>
-                      </div>
-                      :
-                      <div className="row">
-                        <div className="col-12 col-sm-12 col-md-12 col-lg-12 mt-2">
-                          <div className="container">
-                            <div className="row">
-                              <div className="col-4 col-sm-3 col-md-2 col-lg-3 col-xl-2">
-                                <img src={`./assets/img/icon_achievement/2nd_grey.png`} width="70" height="70" className="icon_rank-img" />
-                              </div>
-                              <div className="col-8 col-sm-9 col-md-10 col-lg-9 col-xl-10"><p><span className="bold">2nd</span><br /> ได้ทีมอันดับที่ 2 ประจำสัปดาห์
-                              </p></div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                  }
-                  <hr className="line-hr" />
-                  {
-                    achievementTop10 ?
-                      <div className="row">
-                        <div className="col-12 col-sm-12 col-md-12 col-lg-12 mt-2">
-                          {/* จอมอืถือ */}
-                          <div className="container line-hr" data-bs-toggle="modal" id="achievement5" data-bs-target="#modalAchievement5">
-                            <div class="row">
-                              <div class="col-4 col-sm-3 col-md-2 col-lg-3 col-xl-2">
-                                <img src={`./assets/img/icon_achievement/top10.png`} width="70" height="70" className="icon_rank-img" />
-                              </div>
-                              <div class="col-8 col-sm-9 col-md-10 col-lg-9 col-xl-10">
-                                <div class="container">
-                                  <div class="row">
-                                    <div class="col-12 col-sm-12  col-md-10">
-                                      <p><span className="bold">Top 10</span><br /> ได้ทีมอันดับที่ 3-10 ประจำสัปดาห์ </p>
+                    }
+                    <hr className="line-hr" />
+                    {
+                      achievementSocialStar ?
+                        <div className="row">
+                          <div className="col-12 col-sm-12 col-md-12 col-lg-12 mt-2">
+                            {/* จอมือถือ */}
+                            <div className="container line-hr" data-bs-toggle="modal" id="achievement6" data-bs-target="#modalAchievement6">
+                              <div className="row">
+                                <div className="col-4 col-sm-3 col-md-2 col-lg-3 col-xl-2">
+                                  <img src={`./assets/img/icon_achievement/social_star.png`} width="70" height="70" className="icon_rank-img" />
+                                </div>
+                                <div className="col-8 col-sm-9 col-md-10 col-lg-9 col-xl-10">
+                                  <div className="container">
+                                    <div className="row">
+                                      <div className="col-12 col-sm-12  col-md-10">
+                                        <p><span className="bold">Social star</span><br /> มีเพื่อนในรายชื่อ 10 คน </p>
+                                      </div>
                                     </div>
                                   </div>
                                 </div>
                               </div>
                             </div>
-                          </div>
-                          {/* จอคอม */}
-                          <div className="container display-btn">
-                            <div class="row">
-                              <div class="col-4 col-sm-3 col-md-2 col-lg-3 col-xl-2">
-                                <img src={`./assets/img/icon_achievement/top10.png`} width="70" height="70" className="icon_rank-img" />
-                              </div>
-                              <div class="col-8 col-sm-9 col-md-10 col-lg-9 col-xl-10">
-                                <div class="container">
-                                  <div class="row">
-                                    <div class="col-12 col-sm-12  col-md-10">
-                                      <p><span className="bold">Top 10</span><br /> ได้ทีมอันดับที่ 3-10 ประจำสัปดาห์ </p>
-                                    </div>
-                                    <div class="col-12 col-sm-12 col-md-2" onClick={() => document.getElementById("modalAchievement5Btn") && document.getElementById("modalAchievement5Btn").click()}>
-                                      <button type="button" className="btn btn-achievement ">แชร์</button>
+                            {/* จอคอม */}
+                            <div className="container display-btn">
+                              <div className="row">
+                                <div className="col-4 col-sm-3 col-md-2 col-lg-3 col-xl-2">
+                                  <img src={`./assets/img/icon_achievement/social_star.png`} width="70" height="70" className="icon_rank-img" />
+                                </div>
+                                <div className="col-8 col-sm-9 col-md-10 col-lg-9 col-xl-10">
+                                  <div className="container">
+                                    <div className="row">
+                                      <div className="col-12 col-sm-12  col-md-10">
+                                        <p><span className="bold">Social star</span><br /> มีเพื่อนในรายชื่อ 10 คน </p>
+                                      </div>
+                                      <div class="col-12 col-sm-12 col-md-2" onClick={() => document.getElementById("modalAchievement6Btn") && document.getElementById("modalAchievement6Btn").click()}>
+                                        <button type="button" className="btn btn-achievement ">แชร์</button>
+                                      </div>
                                     </div>
                                   </div>
                                 </div>
                               </div>
                             </div>
-                          </div>
 
+                          </div>
                         </div>
-                      </div>
-                      :
-                      <div className="row">
-                        <div className="col-12 col-sm-12 col-md-12 col-lg-12 mt-2">
-                          <div className="container">
-                            <div className="row">
-                              <div className="col-4 col-sm-3 col-md-2 col-lg-3 col-xl-2">
-                                <img src={`./assets/img/icon_achievement/top10_grey.png`} width="70" height="70" className="icon_rank-img" />
+                        :
+                        <div className="row">
+                          <div className="col-12 col-sm-12 col-md-12 col-lg-12 mt-2">
+                            <div className="container">
+                              <div className="row">
+                                <div className="col-4 col-sm-3 col-md-2 col-lg-3 col-xl-2">
+                                  <img src={`./assets/img/icon_achievement/social_star_grey.png`} width="70" height="70" className="icon_rank-img" />
+                                </div>
+                                <div className="col-8 col-sm-9 col-md-10 col-lg-9 col-xl-10"><p><span className="bold">Social star</span><br /> มีเพื่อนในรายชื่อ 10 คน
+                                </p></div>
                               </div>
-                              <div className="col-8 col-sm-9 col-md-10 col-lg-9 col-xl-10"><p><span className="bold">Top 10</span><br /> ได้ทีมอันดับที่ 3-10 ประจำสัปดาห์
-                              </p></div>
                             </div>
                           </div>
                         </div>
-                      </div>
-                  }
-                  <hr className="line-hr" />
-                  {
-                    achievementSocialStar ?
-                      <div className="row">
-                        <div className="col-12 col-sm-12 col-md-12 col-lg-12 mt-2">
-                          {/* จอมือถือ */}
-                          <div className="container line-hr" data-bs-toggle="modal" id="achievement6" data-bs-target="#modalAchievement6">
-                            <div className="row">
-                              <div className="col-4 col-sm-3 col-md-2 col-lg-3 col-xl-2">
-                                <img src={`./assets/img/icon_achievement/social_star.png`} width="70" height="70" className="icon_rank-img" />
-                              </div>
-                              <div className="col-8 col-sm-9 col-md-10 col-lg-9 col-xl-10">
-                                <div className="container">
-                                  <div className="row">
-                                    <div className="col-12 col-sm-12  col-md-10">
-                                      <p><span className="bold">Social star</span><br /> มีเพื่อนในรายชื่อ 10 คน </p>
+                    }
+                    <hr className="line-hr" />
+                    {
+                      achievementSocialStarPlus ?
+                        <div className="row">
+                          <div className="col-12 col-sm-12 col-md-12 col-lg-12 mt-2">
+                            {/* จอมือถือ */}
+                            <div className="container line-hr" data-bs-toggle="modal" id="achievement7" data-bs-target="#modalAchievement7">
+                              <div className="row">
+                                <div className="col-4 col-sm-3 col-md-2 col-lg-3 col-xl-2">
+                                  <img src={`./assets/img/icon_achievement/social_star_plus.png`} width="70" height="70" className="icon_rank-img" />
+                                </div>
+                                <div className="col-8 col-sm-9 col-md-10 col-lg-9 col-xl-10">
+                                  <div className="container">
+                                    <div className="row">
+                                      <div className="col-12 col-sm-12  col-md-10">
+                                        <p><span className="bold">Social star+</span><br />  มีเพื่อนในรายชื่อ 15 คน</p>
+                                      </div>
                                     </div>
                                   </div>
                                 </div>
                               </div>
                             </div>
-                          </div>
-                          {/* จอคอม */}
-                          <div className="container display-btn">
-                            <div className="row">
-                              <div className="col-4 col-sm-3 col-md-2 col-lg-3 col-xl-2">
-                                <img src={`./assets/img/icon_achievement/social_star.png`} width="70" height="70" className="icon_rank-img" />
-                              </div>
-                              <div className="col-8 col-sm-9 col-md-10 col-lg-9 col-xl-10">
-                                <div className="container">
-                                  <div className="row">
-                                    <div className="col-12 col-sm-12  col-md-10">
-                                      <p><span className="bold">Social star</span><br /> มีเพื่อนในรายชื่อ 10 คน </p>
-                                    </div>
-                                    <div class="col-12 col-sm-12 col-md-2" onClick={() => document.getElementById("modalAchievement6Btn") && document.getElementById("modalAchievement6Btn").click()}>
-                                      <button type="button" className="btn btn-achievement ">แชร์</button>
+                            {/* จอคอม */}
+                            <div className="container display-btn">
+                              <div className="row">
+                                <div className="col-4 col-sm-3 col-md-2 col-lg-3 col-xl-2">
+                                  <img src={`./assets/img/icon_achievement/social_star_plus.png`} width="70" height="70" className="icon_rank-img" />
+                                </div>
+                                <div className="col-8 col-sm-9 col-md-10 col-lg-9 col-xl-10">
+                                  <div className="container">
+                                    <div className="row">
+                                      <div className="col-12 col-sm-12  col-md-10">
+                                        <p><span className="bold">Social star+</span><br />  มีเพื่อนในรายชื่อ 15 คน</p>
+                                      </div>
+                                      <div className="col-12 col-sm-12 col-md-2" onClick={() => document.getElementById("modalAchievement7Btn") && document.getElementById("modalAchievement7Btn").click()}>
+                                        <button type="button" className="btn btn-achievement ">แชร์</button>
+                                      </div>
                                     </div>
                                   </div>
                                 </div>
                               </div>
                             </div>
-                          </div>
 
-                        </div>
-                      </div>
-                      :
-                      <div className="row">
-                        <div className="col-12 col-sm-12 col-md-12 col-lg-12 mt-2">
-                          <div className="container">
-                            <div className="row">
-                              <div className="col-4 col-sm-3 col-md-2 col-lg-3 col-xl-2">
-                                <img src={`./assets/img/icon_achievement/social_star_grey.png`} width="70" height="70" className="icon_rank-img" />
-                              </div>
-                              <div className="col-8 col-sm-9 col-md-10 col-lg-9 col-xl-10"><p><span className="bold">Social star</span><br /> มีเพื่อนในรายชื่อ 10 คน
-                              </p></div>
-                            </div>
                           </div>
                         </div>
-                      </div>
-                  }
-                  <hr className="line-hr" />
-                  {
-                    achievementSocialStarPlus ?
-                      <div className="row">
-                        <div className="col-12 col-sm-12 col-md-12 col-lg-12 mt-2">
-                          {/* จอมือถือ */}
-                          <div className="container line-hr" data-bs-toggle="modal" id="achievement7" data-bs-target="#modalAchievement7">
-                            <div className="row">
-                              <div className="col-4 col-sm-3 col-md-2 col-lg-3 col-xl-2">
-                                <img src={`./assets/img/icon_achievement/social_star_plus.png`} width="70" height="70" className="icon_rank-img" />
-                              </div>
-                              <div className="col-8 col-sm-9 col-md-10 col-lg-9 col-xl-10">
-                                <div className="container">
-                                  <div className="row">
-                                    <div className="col-12 col-sm-12  col-md-10">
-                                      <p><span className="bold">Social star+</span><br />  มีเพื่อนในรายชื่อ 15 คน</p>
-                                    </div>
-                                  </div>
+                        :
+                        <div class="row">
+                          <div class="col-12 col-sm-12 col-md-12 col-lg-12 mt-2">
+                            <div class="container">
+                              <div class="row">
+                                <div class="col-4 col-sm-3 col-md-2 col-lg-3 col-xl-2">
+                                  <img src={`./assets/img/icon_achievement/social_star_plus_grey.png`} width="70" height="70" className="icon_rank-img" />
                                 </div>
+                                <div class="col-8 col-sm-9 col-md-10 col-lg-9 col-xl-10"><p><span className="bold">Social star+</span><br />  มีเพื่อนในรายชื่อ 15 คน
+                                </p></div>
                               </div>
-                            </div>
-                          </div>
-                          {/* จอคอม */}
-                          <div className="container display-btn">
-                            <div className="row">
-                              <div className="col-4 col-sm-3 col-md-2 col-lg-3 col-xl-2">
-                                <img src={`./assets/img/icon_achievement/social_star_plus.png`} width="70" height="70" className="icon_rank-img" />
-                              </div>
-                              <div className="col-8 col-sm-9 col-md-10 col-lg-9 col-xl-10">
-                                <div className="container">
-                                  <div className="row">
-                                    <div className="col-12 col-sm-12  col-md-10">
-                                      <p><span className="bold">Social star+</span><br />  มีเพื่อนในรายชื่อ 15 คน</p>
-                                    </div>
-                                    <div className="col-12 col-sm-12 col-md-2" onClick={() => document.getElementById("modalAchievement7Btn") && document.getElementById("modalAchievement7Btn").click()}>
-                                      <button type="button" className="btn btn-achievement ">แชร์</button>
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-
-                        </div>
-                      </div>
-                      :
-                      <div class="row">
-                        <div class="col-12 col-sm-12 col-md-12 col-lg-12 mt-2">
-                          <div class="container">
-                            <div class="row">
-                              <div class="col-4 col-sm-3 col-md-2 col-lg-3 col-xl-2">
-                                <img src={`./assets/img/icon_achievement/social_star_plus_grey.png`} width="70" height="70" className="icon_rank-img" />
-                              </div>
-                              <div class="col-8 col-sm-9 col-md-10 col-lg-9 col-xl-10"><p><span className="bold">Social star+</span><br />  มีเพื่อนในรายชื่อ 15 คน
-                              </p></div>
                             </div>
                           </div>
                         </div>
-                      </div>
-                  }
-                </div>
-              </p>
+                    }
+                  </div>
+                </p>
+              </div>
+            </div>
+            <div class="col-12 col-sm-12 col-md-12 col-lg-4">
+              {
+                this.pointYou()
+              }
             </div>
           </>
         }
@@ -2370,56 +2464,27 @@ class Challenge extends Component {
           <div className="box-challengeManu">
             <div class="container">
               <div class="row justify-content-md-center">
-                <div class="col-12 col-sm-12 col-md-12 col-lg-6">
-                  {challenge === "challenge1" ?
-                    this.allMissions()
+
+                {challenge === "challenge1" ?
+                  this.allMissions()
+                  :
+                  challenge === "challenge2" ?
+                    this.teamList()
                     :
-                    challenge === "challenge2" ?
-                      this.teamList()
+                    challenge === "challenge3" ?
+                      this.scoreboard()
                       :
-                      challenge === "challenge3" ?
-                        this.scoreboard()
+                      challenge === "challenge4" ?
+                        this.friendList()
                         :
-                        challenge === "challenge4" ?
-                          this.friendList()
+                        challenge === "challenge6" ?
+                          this.all_users()
                           :
-                          challenge === "challenge6" ?
-                            this.all_users()
-                            :
-                            this.renderAchievement()
-                  }
-                </div>
-                <div class="col-12 col-sm-12 col-md-12 col-lg-3">
-                  <div className="emblem-box">
-                    <img src={`./assets/img/rank/${rank}.png`} width="200" height="200" />
-                    <p className="circleTextHead color1">
-                      {
-                        rank ?
-                          rank.charAt(0).toUpperCase() + rank.substr(1).toLowerCase()
-                          :
-                          ""
-                      }
-                    </p>
-                    {/* <div className="circle-progress"></div> */}
-                    <div className="progress-barChallenge">
-                      <div className="progressChallenge">
-                        <div className="progress-doneChallenge" id="progress-doneChallenge" style={{ width: `${(scoreInWeek / 41) * 100}%` }}></div>
-                      </div>
-                    </div>
-
-                    <p className="circleTextHead">{scoreInWeek}/41 Point</p>
-                  </div>
-                </div>
-
-                {
-                  user.group_id &&
-                  <div class="col-12 col-sm-12 col-md-12 col-lg-3">
-                    <div className="emblem-box2">
-                      <p className="point-user"> <IntlMessages id="challenge.teampoint" /> </p>
-                      <h3 className=""> {totalScoreOfTeam} Point </h3>
-                    </div>
-                  </div>
+                          this.renderAchievement()
                 }
+
+
+
               </div>
 
               <button
