@@ -1405,7 +1405,6 @@ class Challenge extends Component {
 
   checkFriendStatus(receiver_id) {
     const { friend_list } = this.props;
-    console.log("friend_list :", friend_list);
     if (friend_list) {
       const filter_friend_list = friend_list.filter(item => item.user_id === receiver_id);
       if (filter_friend_list.length > 0) {
@@ -1420,7 +1419,20 @@ class Challenge extends Component {
   all_users() {
     const { allMemberStayFit, user, statusSendFriendRequest, statusCancelFriendRequest } = this.props;
     const { emailOrDisplayName } = this.state;
+
     var allMemberStayFitFilter = allMemberStayFit;
+    var filter, ul, li, a, i, txtValue;
+    filter = emailOrDisplayName && emailOrDisplayName.toUpperCase();
+    ul = document.getElementById("myUL");
+    li = ul && ul.getElementsByTagName('li');
+    if (li) {
+      for (i = 0; i < li.length; i++) {
+        a = li[i].getElementsByTagName("h5")[0];
+        txtValue = a && (a.textContent || a.innerText);
+        allMemberStayFitFilter = allMemberStayFit.filter(item => (item.email.toUpperCase().indexOf(filter) > -1) || (item.display_name && item.display_name.toUpperCase().indexOf(filter) > -1))
+      }
+    }
+
     return (
       <>
         <div className="box-challengeIn">
@@ -1447,51 +1459,54 @@ class Challenge extends Component {
               <div class="container">
 
                 {
-                  allMemberStayFit &&
-                  allMemberStayFit.map((item, i) =>
-                    <li key={i} className="li">
-                      <div class="row">
-                        <div class="col-12 col-md-auto col-lg-5 col-xl-5  text-left">
-                          <h5>
-                            {item.display_name ? item.display_name : item.email}
-                            <span style={{ display: "none" }}> {item.email}</span>
-                          </h5>
-                        </div>
-                        <div class="col-12 col-lg-2 col-xl-2 text-center">
-                          <span> {item.rank}</span>
-                        </div>
-                        <div class="col-12 col-lg-auto col-xl-auto  text-center">
-                          {
-                            (this.checkFriendStatus(item.user_id)) ? //เช็คว่ามีคนนี้เป็นเพื่อนแล้วหรือยัง
-                              <span style={{ color: "#000000" }} > เพื่อนของคุณ </span>
-                              :
-                              (this.checkFriendRequestStatus(item.user_id)) ? //เช็คว่าเคยส่งคำขอเพื่อนไปหาคนนี้หรือยัง
-                                <div>
-                                  <span style={{ color: "#D30769" }}> รอการยืนยัน </span>
-                                  {
-                                    (statusCancelFriendRequest !== "loading") && //เช็คเพื่อซ่อนปุ่มในจังหวะ loading ป้องกันการกดยกเลิกรัวๆ
-                                    <span
-                                      style={{ cursor: "pointer" }} className="btn bottom-cancel"
-                                      onClick={() => this.props.cancelFriendRequest(user.user_id, item.user_id)}
-                                    >
-                                      <img src={cancel} className="cancel-H" />
+                  (allMemberStayFitFilter.length > 0) ?
+                    allMemberStayFit &&
+                    allMemberStayFit.map((item, i) =>
+                      <li key={i} className="li">
+                        <div class="row">
+                          <div class="col-12 col-md-auto col-lg-5 col-xl-5  text-left">
+                            <h5>
+                              {item.display_name ? item.display_name : item.email}
+                              <span style={{ display: "none" }}> {item.email}</span>
+                            </h5>
+                          </div>
+                          <div class="col-12 col-lg-2 col-xl-2 text-center">
+                            <span> {item.rank}</span>
+                          </div>
+                          <div class="col-12 col-lg-auto col-xl-auto  text-center">
+                            {
+                              (this.checkFriendStatus(item.user_id)) ? //เช็คว่ามีคนนี้เป็นเพื่อนแล้วหรือยัง
+                                <span style={{ color: "#000000" }} > เพื่อนของคุณ </span>
+                                :
+                                (this.checkFriendRequestStatus(item.user_id)) ? //เช็คว่าเคยส่งคำขอเพื่อนไปหาคนนี้หรือยัง
+                                  <div>
+                                    <span style={{ color: "#D30769" }}> รอการยืนยัน </span>
+                                    {
+                                      (statusCancelFriendRequest !== "loading") && //เช็คเพื่อซ่อนปุ่มในจังหวะ loading ป้องกันการกดยกเลิกรัวๆ
+                                      <span
+                                        style={{ cursor: "pointer" }} className="btn bottom-cancel"
+                                        onClick={() => this.props.cancelFriendRequest(user.user_id, item.user_id)}
+                                      >
+                                        <img src={cancel} className="cancel-H" />
                                       ยกเลิกคำขอ
                                     </span>
-                                  }
-                                </div>
-                                :
-                                (statusSendFriendRequest !== "loading" && (item.user_id !== user.user_id)) && //เช็คเพื่อซ่อนปุ่มในจังหวะ loading ป้องกันการกดเพิ่มเพื่อนรัวๆ
-                                <span className="btn bottom-add"
-                                  style={{ cursor: "pointer" }}
-                                  onClick={() => this.props.sendFriendRequest(user.user_id, item.email)}
-                                >
-                                  {`เพิ่มเพื่อน`}
-                                </span>
-                          }
+                                    }
+                                  </div>
+                                  :
+                                  (statusSendFriendRequest !== "loading" && (item.user_id !== user.user_id)) && //เช็คเพื่อซ่อนปุ่มในจังหวะ loading ป้องกันการกดเพิ่มเพื่อนรัวๆ
+                                  <span className="btn bottom-add"
+                                    style={{ cursor: "pointer" }}
+                                    onClick={() => this.props.sendFriendRequest(user.user_id, item.email)}
+                                  >
+                                    {`เพิ่มเพื่อน`}
+                                  </span>
+                            }
+                          </div>
                         </div>
-                      </div>
-                    </li>
-                  )
+                      </li>
+                    )
+                    :
+                    <h5>ไม่มีชื่ออยู่ในระบบ</h5>
                 }
               </div>
             </ul>
