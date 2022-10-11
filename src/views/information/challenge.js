@@ -8,6 +8,7 @@ import newbie from '../../assets/img/newbie.png';
 import ellipse24 from '../../assets/img/ellipse24.png';
 import group23 from '../../assets/img/group23.png';
 import group22 from '../../assets/img/group22.png';
+import group25 from '../../assets/img/group25.png';
 import icon_x from '../../assets/img/icon_x.png';
 import group425 from '../../assets/img/group425.png';
 import frame40 from "../../assets/img/frame40.png";
@@ -1231,11 +1232,17 @@ class Challenge extends Component {
             friend_request.map((item, index) =>
 
               <div class="row justify-content-md-center">
-                <div class="col-12 col-sm-12 col-md-6 col-lg-6">
-                  <p>{item.email}</p>
-                  <p>{item.rank}</p>
+                <div class="col-12 col-sm-12 col-md-7 col-lg-7">
+                  <div className="row  justify-content-md-center">
+                    <div class="col-auto col-sm-10 col-md-10 col-lg-10">
+                      <p>{item.email}</p>
+                    </div>
+                    <div class="col-auto col-sm-2 col-md-2 col-lg-2">
+                      <p>{item.rank}</p>
+                    </div>
+                  </div>
                 </div>
-                <div class="col-12 col-sm-12 col-md-6 col-lg-6 text-center">
+                <div class="col-12 col-sm-12 col-md-5 col-lg-5 text-center">
                   {
                     ((this.props.statusAcceptFriend !== "loading" && this.props.statusRejectFriend !== "loading")) &&
                     <>
@@ -1438,21 +1445,25 @@ class Challenge extends Component {
       <>
         <div className="box-challengeIn">
           <div className="display_name">
-            <div className="row justify-content-md-center">
-              <p className="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6 user_all">ผู้ใช้งานทั้งหมดในระบบ</p>
-              <p className="col-12 col-sm-12 col-md-12 col-lg-auto col-xl-auto text-center">
-                <input
-                  type="text"
-                  id="emailOrDisplayName"
-                  value={emailOrDisplayName}
-                  onChange={(event) => this.handleChange(event)}
-                  onKeyUp={this.filterSearch()}
-                  placeholder="ชื่อ หรืออีเมลเพื่อนของคุณที่สมัคร Bebe Stay Fit"
-                />
-                <span>
-                  <button className="btn bottom-search " type="button">ค้นหา</button>
-                </span>
-              </p>
+            <div className="row">
+              <p className="col-12 col-sm-12 col-md-12 col-lg-4 col-xl-4 user_all">ผู้ใช้งานทั้งหมดในระบบ</p>
+              <div className="col-12 col-sm-12 col-md-12   col-lg-8 col-xl-8">
+                <div className="row justify-content-md-center">
+                  <div className="col-8 col-sm-10 col-md-10 col-lg-9 col-xl-9">
+                    <input
+                      type="text" className="form-control"
+                      id="emailOrDisplayName"
+                      value={emailOrDisplayName}
+                      onChange={(event) => this.handleChange(event)}
+                      onKeyUp={this.filterSearch()}
+                      placeholder="ชื่อ หรืออีเมลเพื่อนของคุณที่สมัคร Bebe Stay Fit"
+                    />
+                  </div>
+                  <div className="col-auto col-sm-2 col-md-2   col-lg-2 col-xl-2">
+                    <button className="btn bottom-search" type="button">ค้นหา</button>
+                  </div>
+                </div>
+              </div>
             </div>
 
 
@@ -1477,26 +1488,26 @@ class Challenge extends Component {
                           <div class="col-12 col-lg-auto col-xl-auto  text-center">
                             {
                               (this.checkFriendStatus(item.user_id)) ? //เช็คว่ามีคนนี้เป็นเพื่อนแล้วหรือยัง
-                                <span style={{ color: "#000000" }} > เพื่อนของคุณ </span>
+                                <span style={{ color: "#000000",fontSize: "16px" }} > เพื่อนของคุณ </span>
                                 :
                                 (this.checkFriendRequestStatus(item.user_id)) ? //เช็คว่าเคยส่งคำขอเพื่อนไปหาคนนี้หรือยัง
                                   <div>
-                                    <span style={{ color: "#D30769" }}> รอการยืนยัน </span>
+                                    <span style={{ color: "#D30769",fontSize: "16px" }}> รอการยืนยัน </span>
                                     {
                                       (statusCancelFriendRequest !== "loading") && //เช็คเพื่อซ่อนปุ่มในจังหวะ loading ป้องกันการกดยกเลิกรัวๆ
                                       <span
                                         style={{ cursor: "pointer" }} className="btn bottom-cancel"
                                         onClick={() => this.props.cancelFriendRequest(user.user_id, item.user_id)}
                                       >
-                                        <img src={cancel} className="cancel-H" />
-                                      ยกเลิกคำขอ
-                                    </span>
+                                        <img src={cancel} className="cancel-H" style={{ fontSize: "16px" }} />
+                                        ยกเลิกคำขอ
+                                      </span>
                                     }
                                   </div>
                                   :
                                   (statusSendFriendRequest !== "loading" && (item.user_id !== user.user_id)) && //เช็คเพื่อซ่อนปุ่มในจังหวะ loading ป้องกันการกดเพิ่มเพื่อนรัวๆ
                                   <span className="btn bottom-add"
-                                    style={{ cursor: "pointer" }}
+                                    style={{ cursor: "pointer",fontSize: "16px" }}
                                     onClick={() => this.props.sendFriendRequest(user.user_id, item.email)}
                                   >
                                     {`เพิ่มเพื่อน`}
@@ -1507,7 +1518,17 @@ class Challenge extends Component {
                       </li>
                     )
                     :
-                    <h5>ไม่มีชื่ออยู่ในระบบ</h5>
+                    <h5>
+                      <div className="col-12 col-sm-12 col-md-12 col-lg-12 ellipse24">
+                        <img src={group25} />
+                      </div>
+                      <p className="text-noSystem">ไม่มีชื่ออยู่ในระบบ</p>
+                      {/*  <div className="col-12 col-sm-12 col-md-12 col-lg-12  center2  margin-top-3">
+                        <div className="bottom-teamList">
+                          <button type="button" className="btn bottom-outlineaddTeam " onClick={(e) => this.clickaddfriend(true)}><IntlMessages id="challenge.invitefriends" /></button>
+                        </div>
+                      </div> */}
+                    </h5>
                 }
               </div>
             </ul>

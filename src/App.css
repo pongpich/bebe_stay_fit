@@ -16,6 +16,9 @@
 }
 
 @media only screen and (max-width: 540px) {
+  .bottom-searchRight {
+    margin-right: 5px !important;
+  }
   .myUL {
     margin-left: -20px;
     margin-right: -20px;
@@ -1516,18 +1519,18 @@ a {
   box-shadow: 0 0 0 0.25rem hsl(335, 69%, 63%, 0.25);
 }
 .bottom-search {
-  margin-left: 10px;
   background-color: #e25e96;
-  height: 45px;
+  height: 38px;
+  padding-left: 20px;
+  padding-right: 20px;
   border-color: #e25e96;
   color: #FFFFFF;
   border-radius: 25px;
   font-size: 18px !important;
-  width: 80px;
+/*   width: 80px; */
 }
 .bottom-search:hover {
   background-color: #e25e96;
-  height: 45px;
   border-color: #e25e96;
   color: #FFFFFF;
   border-radius: 25px;
@@ -1535,7 +1538,6 @@ a {
 }
 .bottom-search:focus {
   background-color: #e25e96;
-  height: 45px;
   border-color: #e25e96;
   color: #FFFFFF;
   border-radius: 25px;
@@ -1545,8 +1547,8 @@ a {
   margin-left: 10px;
   background-color: #E25E96;
   height: 40px;
-  padding-left: 15px;
-  padding-right: 15px;
+  padding-left: 20px;
+  padding-right: 20px;
   border-color: #E25E96;
   color: #FFFFFF;
   border-radius: 25px;
@@ -3476,8 +3478,8 @@ tr:last-child td:last-child {
   color: #ffffff;
   margin-bottom: 50px;
   border-radius: 25px;
-  padding-left: 40px;
-  padding-right:40px;
+  padding-left: 30px;
+  padding-right:30px;
   margin-top: -10px;
 /*   width: 160px; */
 }
@@ -3540,8 +3542,8 @@ tr:last-child td:last-child {
   color: #e25e96;
   margin-bottom: 50px;
   border-radius: 25px;
-  padding-left: 40px;
-  padding-right: 40px;
+  padding-left: 30px;
+  padding-right: 30px;
   margin-top:  -10px;
 }
 
@@ -5105,6 +5107,7 @@ tr:last-child td:last-child {
     transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
 }
 .user_all {
+  text-align: left;
   font-size: 20px;
   font-weight: bold;
   font-family: BdCondHe;
@@ -5131,4 +5134,11 @@ tr:last-child td:last-child {
   margin-bottom: 20px;
   padding: 10px;
   background-color: #FFE2F3;
+}
+.text-noSystem {
+  margin-top: 20px;
+  text-align: center;
+  font-size: 24px;
+  font-weight: bold;
+  font-family: BdCondHe;
 }
