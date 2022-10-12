@@ -1191,13 +1191,10 @@ class Challenge extends Component {
                             <span className={(myRankIndexOfFriendList + 1 === 1) ? "color-mvp1" : (myRankIndexOfFriendList + 1 === 2) ? "color-mvp2" : (myRankIndexOfFriendList + 1 === 3) ? "color-mvp3" : ""}>
                               {myRankIndexOfFriendList + 1}. </span>
                             {
-                              myRank[0].facebook ?
-                                myRank[0].facebook
+                              myRank[0].display_name ?
+                                myRank[0].display_name
                                 :
-                                myRank[0].first_name ?
-                                  `${myRank[0].first_name} ${myRank[0].last_name}`
-                                  :
-                                  myRank[0].email
+                                myRank[0].email
                             }
                             {
                               (myRankIndexOfFriendList + 1 === 1) &&
