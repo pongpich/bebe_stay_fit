@@ -2438,22 +2438,22 @@ class Challenge extends Component {
             <div className="video-wh2 wh-bu">
               <ul className="challenge">
                 <li className="video-li">
-                  <a className={allMissions} name="allMissions" onClick={e => this.challengeBottom(e)}> {messages['challenge.allMission']}</a>
+                  <a id="mission_label" className={allMissions} name="allMissions" onClick={e => this.challengeBottom(e)}> {messages['challenge.allMission']}</a>
                 </li>
                 <li className="video-li">
-                  <a className={teamList} name="teamList" onClick={e => this.challengeBottom(e)}>{messages['challenge.teamlist']}</a>
+                  <a id="memberlist_label" className={teamList} name="teamList" onClick={e => this.challengeBottom(e)}>{messages['challenge.teamlist']}</a>
                 </li>
                 <li className="video-li">
-                  <a className={scoreboard} name="scoreboard" onClick={e => this.challengeBottom(e)}>{messages['challenge.teamscoreboard']}</a>
+                  <a id="scoreboard_label" className={scoreboard} name="scoreboard" onClick={e => this.challengeBottom(e)}>{messages['challenge.teamscoreboard']}</a>
                 </li>
                 <li className="video-li">
-                  <a className={friendList} name="friendList" onClick={e => this.challengeBottom(e)}>{messages['challenge.friendlist']}</a>
+                  <a id="friendlist_label" className={friendList} name="friendList" onClick={e => this.challengeBottom(e)}>{messages['challenge.friendlist']}</a>
                 </li>
                 <li className="video-li">
-                  <a className={achievement} name="achievement" onClick={e => this.challengeBottom(e)}>ความสำเร็จ</a>
+                  <a id="achivement_label" className={achievement} name="achievement" onClick={e => this.challengeBottom(e)}>ความสำเร็จ</a>
                 </li>
                 <li className="video-li">
-                  <a className={all_users} name="all_users" onClick={e => this.challengeBottom(e)}>ผู้ใช้งานทั้งหมดในระบบ</a>
+                  <a id="allmember_label" className={all_users} name="all_users" onClick={e => this.challengeBottom(e)}>ผู้ใช้งานทั้งหมดในระบบ</a>
                 </li>
               </ul>
             </div>
