@@ -207,7 +207,7 @@ class EditProfile extends React.Component {
                   <input type="text" name="displayname" value={displayname} className="form-control" id="exampleFormControlInput1" onChange={e => this.onCheckDisplayName(e)} placeholder="ชื่อที่ใช้แสดงในระบบ" />
                   {
                     (validation_displayname) ?
-                      <p style={{ color: "red" }}>อนุญาติให้ใส่ 0-9, A-Z, ก-ฮ เท่านั้น</p>
+                      <p style={{ color: "red" }}>อนุญาตให้ใส่ 0-9, A-Z, ก-ฮ เท่านั้น</p>
                       :
                       null
                   }

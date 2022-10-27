@@ -266,7 +266,7 @@ class Basic_Information extends React.Component {
                     <input type="text" className="form-control right2" id="exampleFormControlInput1" name="displayname" onChange={e => this.onCheckBasix(e)} /* placeholder={messages['basic_information.year']} */ />
                     {
                       validation_displayname === true ?
-                        <p style={{ color: "red" }}>อนุญาติ ให้ใส่ 0-9A-Zก-ฮ เท่านั้น</p>
+                        <p style={{ color: "red" }}>อนุญาต ให้ใส่ 0-9A-Zก-ฮ เท่านั้น</p>
                         : null
                     }
                     {
