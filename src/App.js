@@ -378,7 +378,9 @@ class App extends Component {
                         ออกจากระบบ
                     </a>
                     </li> */}
-                      {this.manuTH_EN()}
+                      <div>
+                        {this.manuTH_EN()}
+                      </div>
                       <li className="nav-item ">
                         <a className="nav-link dropdown-toggle nav-linkHead" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">
                           <img src={user_circle} alt="vector" className="padding-rightIcon" />
@@ -433,7 +435,7 @@ class App extends Component {
                         {/* <a className="nav-link pointer" >สร้างโปรแกรมส่วนตัว</a> */}
                       </li>
                     </ul>
-                    {this.manuTH_EN()}
+                    <div className="mt-0 mb-2">{this.manuTH_EN()}</div>
                     &nbsp; &nbsp;&nbsp;
                     <a className="nav-link nav-linkHead2 pointer bold" onClick={() => this.props.history.push("/programPackage")}><IntlMessages id="navbarHome.register" /></a>
                     &nbsp; &nbsp;&nbsp;
@@ -445,9 +447,9 @@ class App extends Component {
 
                 </>
                 :
-                <>
+                <div className="mt-0 mb-2">
                   {this.manuTH_EN2()}
-                </>
+                </div>
 
           }
 

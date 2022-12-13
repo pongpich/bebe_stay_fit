@@ -103,7 +103,7 @@ class Profile extends React.Component {
                                 <button className="btn bottom-outlinePink3 " type="button" onClick={() => this.props.history.push('/billing_history')}>
                                   <IntlMessages id="profile.billinghistory" />
                                 </button>
-                                {/*  <button className="btn bottom-outlineGrey margin-top-3" type="button" onClick={() => this.props.history.push('/cancel_package')}>
+                     {/*             <button className="btn bottom-outlineGrey margin-top-3" type="button" onClick={() => this.props.history.push('/cancel_package_new')}>
                                   ยกเลิกแพ็กเกจ
                                 </button> */}
                                 {

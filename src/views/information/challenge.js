@@ -455,6 +455,7 @@ class Challenge extends Component {
   allMissions() {
     const { logWeightCount, isReducedWeight, logWeightTeamCount, numberOfMembers, dailyTeamWeightBonusCount, challengePeriod } = this.props;
     const isExerciseCompleted = this.isExerciseCompleted(this.props.exerciseVideo);
+    const { messages } = this.props.intl;
     return (
       <>
         <div class="col-12 col-sm-12 col-md-12 col-lg-6">
@@ -540,7 +541,7 @@ class Challenge extends Component {
     if ((logWeightTeamCount > 0) && logWeightTeamCount >= numberOfMembers * 2) { scoreInWeek += 10 }; //ทีมชั่งน้ำหนักครบ คนละ2ครั้ง
     if (dailyTeamWeightBonusCount > 0) { scoreInWeek += dailyTeamWeightBonusCount * 10 }; //ในแต่ละวันมีสมาชิกชั่งน้ำหนัก
     if (scoreInWeek > 41) { scoreInWeek = 41 }; //เพื่อไม่ให้เกินหลอด
-    const { messages } = this.props.intl;
+
     return (
       <>
 
@@ -1507,14 +1508,14 @@ class Challenge extends Component {
         allMemberStayFitFilter = allMemberStayFit.filter(item => (item.email.toUpperCase().indexOf(filter) > -1) || (item.display_name && item.display_name.toUpperCase().indexOf(filter) > -1))
       }
     }
-
+    const { messages } = this.props.intl;
     return (
       <>
         <div class="col-12 col-sm-12 col-md-12 col-lg-8">
           <div className="box-challengeIn">
             <div className="display_name">
               <div className="row">
-                <p className="col-12 col-sm-12 col-md-12 col-lg-4 col-xl-4 user_all">ผู้ใช้งานทั้งหมดในระบบ</p>
+                <p className="col-12 col-sm-12 col-md-12 col-lg-4 col-xl-4 user_all"><IntlMessages id="challenge.activeUsers" /></p>
                 <div className="col-12 col-sm-12 col-md-12   col-lg-8 col-xl-8">
                   <div className="row justify-content-md-center">
                     <div className="col-8 col-sm-10 col-md-10 col-lg-9 col-xl-9">
@@ -1524,11 +1525,11 @@ class Challenge extends Component {
                         value={emailOrDisplayName}
                         onChange={(event) => this.handleChange(event)}
                         onKeyUp={this.filterSearch()}
-                        placeholder="ชื่อ หรืออีเมลเพื่อนของคุณที่สมัคร Bebe Stay Fit"
+                        placeholder={messages['challenge.name_email']}
                       />
                     </div>
                     <div className="col-auto col-sm-2 col-md-2   col-lg-3 col-xl-3">
-                      <button className="btn bottom-search" type="button">ค้นหา</button>
+                      <button className="btn bottom-search" type="button"> <IntlMessages id="challenge.find" /></button>
                     </div>
                   </div>
                 </div>
@@ -1556,11 +1557,11 @@ class Challenge extends Component {
                             <div class="col-12 col-lg-auto col-xl-auto  text-center">
                               {
                                 (this.checkFriendStatus(item.user_id)) ? //เช็คว่ามีคนนี้เป็นเพื่อนแล้วหรือยัง
-                                  <span style={{ color: "#000000", fontSize: "16px" }} > เพื่อนของคุณ </span>
+                                  <span style={{ color: "#000000", fontSize: "16px" }} >  <IntlMessages id="challenge.addedtoYourFriends" /> </span>
                                   :
                                   (this.checkFriendRequestStatus(item.user_id)) ? //เช็คว่าเคยส่งคำขอเพื่อนไปหาคนนี้หรือยัง
                                     <div>
-                                      <span style={{ color: "#D30769", fontSize: "16px" }}> รอการยืนยัน </span>
+                                      <span style={{ color: "#D30769", fontSize: "16px" }}>  <IntlMessages id="challenge.pending" /> </span>
                                       {
                                         (statusCancelFriendRequest !== "loading") && //เช็คเพื่อซ่อนปุ่มในจังหวะ loading ป้องกันการกดยกเลิกรัวๆ
                                         <span
@@ -1568,7 +1569,7 @@ class Challenge extends Component {
                                           onClick={() => this.props.cancelFriendRequest(user.user_id, item.user_id)}
                                         >
                                           <img src={cancel} className="cancel-H" />
-                                          ยกเลิกคำขอ
+                                          <IntlMessages id="challenge.cancelRequest" />
                                         </span>
                                       }
                                     </div>
@@ -1578,7 +1579,7 @@ class Challenge extends Component {
                                       style={{ cursor: "pointer" }}
                                       onClick={() => this.props.sendFriendRequest(user.user_id, item.email)}
                                     >
-                                      {`เพิ่มเพื่อน`}
+                                      <IntlMessages id="challenge.addFriend" />
                                     </span>
                               }
                             </div>
@@ -1590,7 +1591,7 @@ class Challenge extends Component {
                         <div className="col-12 col-sm-12 col-md-12 col-lg-12 ellipse24">
                           <img src={group25} />
                         </div>
-                        <p className="text-noSystem">ไม่มีชื่ออยู่ในระบบ</p>
+                        <p className="text-noSystem"> <IntlMessages id="challenge.noResultsFound" /></p>
                         {/*  <div className="col-12 col-sm-12 col-md-12 col-lg-12  center2  margin-top-3">
                         <div className="bottom-teamList">
                           <button type="button" className="btn bottom-outlineaddTeam " onClick={(e) => this.clickaddfriend(true)}><IntlMessages id="challenge.invitefriends" /></button>
@@ -2453,7 +2454,7 @@ class Challenge extends Component {
                   <a id="achivement_label" className={achievement} name="achievement" onClick={e => this.challengeBottom(e)}>ความสำเร็จ</a>
                 </li>
                 <li className="video-li">
-                  <a id="allmember_label" className={all_users} name="all_users" onClick={e => this.challengeBottom(e)}>ผู้ใช้งานทั้งหมดในระบบ</a>
+                  <a id="allmember_label" className={all_users} name="all_users" onClick={e => this.challengeBottom(e)}>{messages['challenge.activeUsers']}</a>
                 </li>
               </ul>
             </div>

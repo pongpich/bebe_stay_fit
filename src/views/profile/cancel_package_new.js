@@ -10,10 +10,13 @@ import rectangle472 from "../../assets/img/rectangle472.png";
 import rectangle473 from "../../assets/img/rectangle473.png";
 import { connect } from "react-redux";
 import { cancelRecurring } from "../../redux/auth";
+import IntlMessages from "../../helpers/IntlMessages";
+import { injectIntl } from 'react-intl';
 
-const reason = ["โปรดเลือกเหตุผล", "ได้น้ำหนักหรือรูปร่างตามเป้าหมายแล้ว", "เหตุผลด้านราคา", "ไม่ค่อยได้ใช้บริการนี้", "ไม่พอใจกับโปรแกรมออกกำลังกาย",
-  "ไม่พอใจกับผลิตภัณฑ์", "ไม่พอใจกับผลลัพธ์ที่ได้", "เจอโปรแกรมที่ดีกว่า", "เจอผลิตภัณฑ์ที่ดีกว่า"
-]
+
+
+
+
 
 class Cancel_package_new extends Component {
   constructor(props) {
@@ -91,41 +94,41 @@ class Cancel_package_new extends Component {
   }
   confirm() {
     const { reason_choose } = this.state;
-    if (reason_choose === "โปรดเลือกเหตุผล" || reason_choose === null) {
+    if (reason_choose === "โปรดเลือกเหตุผล"  ||reason_choose === "Select all that apply" || reason_choose === null) {
       this.setState({
         no_reason_choose: true
       })
     }
-    if (reason_choose === "ได้น้ำหนักหรือรูปร่างตามเป้าหมายแล้ว") {
+    if (reason_choose === "ได้น้ำหนักหรือรูปร่างตามเป้าหมายแล้ว" || reason_choose === "Already achieved my dream body") {
       if (this.props.user) {
         this.props.cancelRecurring(this.props.user.user_id);
       }
-    }else if (reason_choose === "เหตุผลด้านราคา") {
+    }else if (reason_choose === "เหตุผลด้านราคา" || reason_choose === "Pricing.") {
       this.setState({
         start_cancel: "price_reason"
       })
-    }else if (reason_choose === "ไม่ค่อยได้ใช้บริการนี้") {
+    }else if (reason_choose === "ไม่ค่อยได้ใช้บริการนี้" || reason_choose === "I’m not really using the service.") {
       if (this.props.user) {
         this.props.cancelRecurring(this.props.user.user_id);
       }
-    }else if (reason_choose === "ไม่พอใจกับโปรแกรมออกกำลังกาย") {
+    }else if (reason_choose === "ไม่พอใจกับโปรแกรมออกกำลังกาย" || reason_choose === "I’m not happy with the workout program.") {
       if (this.props.user) {
         this.props.cancelRecurring(this.props.user.user_id);
 
       }
-    }else if (reason_choose === "ไม่พอใจกับผลิตภัณฑ์") {
+    }else if (reason_choose === "ไม่พอใจกับผลิตภัณฑ์" || reason_choose === "I’m not happy with the product.") {
       this.setState({
         start_cancel: "not_satisfied_product"
       })
-    }else if (reason_choose === "ไม่พอใจกับผลลัพธ์ที่ได้") {
+    }else if (reason_choose === "ไม่พอใจกับผลลัพธ์ที่ได้" || reason_choose === "I’m not happy with the result.") {
       this.setState({
         start_cancel: "dissatisfied_results"
       })
-    }else if (reason_choose === "เจอโปรแกรมที่ดีกว่า") {
+    }else if (reason_choose === "เจอโปรแกรมที่ดีกว่า" || reason_choose === "I’ve found a better workout program (please specify)") {
       this.setState({
         start_cancel: "better_program"
       })
-    }else if (reason_choose === "เจอผลิตภัณฑ์ที่ดีกว่า") {
+    }else if (reason_choose === "เจอผลิตภัณฑ์ที่ดีกว่า"  || reason_choose === "I’ve found a better product (please specify)") {
       this.setState({
         start_cancel: "better_product"
       })
@@ -149,29 +152,38 @@ class Cancel_package_new extends Component {
 
   choose_reason() {
     const { reason_choose, no_reason_choose } = this.state;
+   let reason = null;
+   const { messages } = this.props.intl;
+    if (this.props.locale == 'th') {
+       reason =   ["โปรดเลือกเหตุผล", "ได้น้ำหนักหรือรูปร่างตามเป้าหมายแล้ว", "เหตุผลด้านราคา", "ไม่ค่อยได้ใช้บริการนี้", "ไม่พอใจกับโปรแกรมออกกำลังกาย",
+      "ไม่พอใจกับผลิตภัณฑ์", "ไม่พอใจกับผลลัพธ์ที่ได้", "เจอโปรแกรมที่ดีกว่า", "เจอผลิตภัณฑ์ที่ดีกว่า"];
+    }else{
+       reason =   ["Select all that apply", "Already achieved my dream body", "Pricing.", "I’m not really using the service.", "I’m not happy with the workout program.",
+      "I’m not happy with the product.", "I’m not happy with the result.", "I’ve found a better workout program (please specify)", "I’ve found a better product (please specify)"];
+    }
     return (
       <>
         <div className="padding-top4 ">
-          <p className="font-size8 bold color-protein text-center">ยกเลิกบริการ <br className="line-hr"/> Bebe Stay Fit</p>
+          <p className="font-size8 bold color-protein text-center"><IntlMessages id="cancel_package_new.unsubscribe" /> <br className="line-hr"/> <IntlMessages id="cancel_package_new.bebeStayFit" /></p>
         </div>
         <div className="col-12 col-sm-12 col-md-12 col-lg-12  center2 ">
-          <div className="col-12 col-sm-12 col-md-6 col-lg-6 center2">
+          <div className="col-12 col-sm-12 col-md-7 col-lg-7 center2">
             <div className="box-protein margin-bottom1 padding-top2">
               <div className="padding-top2 text-left2 margin-leftRight">
-                <p className="font-size6 bold">แพ็กเกจของคุณ </p>
-                <p className="font-size5 margin-top-1 bold between">ตามระยะเวลาของโปรแกรม <span className="color1 bold font-size5">1,800 บาท / เดือน</span></p>
+                <p className="font-size6 bold"><IntlMessages id="cancel_package_new.yourPackage" /> </p>
+                <p className="font-size3 margin-top-1  between"><IntlMessages id="cancel_package_new.onceTheSubscription" /> <span className="color1 bold font-size5">1,800 <IntlMessages id="programPackage.baht" /> / <IntlMessages id="cancel_package_new.month" /></span></p>
               </div>
-              <p>*หากยกเลิกตอนนี้ระบบจะทำการหยุดเรียกเก็บเงินอัตโนมัติ</p>
+              <p><IntlMessages id="cancel_package_new.onceTheSubscription" /></p>
             </div>
           </div>
         </div>
         <div className="col-12 col-sm-12 col-md-12 col-lg-12  center2 ">
-          <div className="col-12 col-sm-12 col-md-6 col-lg-6 center2">
+          <div className="col-12 col-sm-12 col-md-7 col-lg-7 center2">
             <div className="box-protein margin-bottom1 padding-top2">
               <div className="padding-top2 text-left2 margin-leftRight">
-                <p className="font-size6 bold">โปรดบอกเหตุผลในการยกเลิก  เพื่อที่เราจะได้พัฒนาสินค้าและบริการให้ดียิ่งขึ้น </p>
+                <p className="font-size6 bold"><IntlMessages id="cancel_package_new.pleaseTellUsTheReaso" /></p>
                 <select className="form-select" name="select-reason" onChange={(e) => this.click_reason(e)} aria-label="Default select example">
-                  {reason.map((index, i) => (
+                  {reason && reason.map((index, i) => (
                     <option key={i} value={index}>{index}</option>
                   )
                   )}
@@ -183,18 +195,18 @@ class Cancel_package_new extends Component {
                     : null
                 }
                 {
-                  reason_choose === "เจอโปรแกรมที่ดีกว่า" ?
+                  reason_choose === "เจอโปรแกรมที่ดีกว่า" || reason_choose === "I’ve found a better workout program (please specify)"  ?
                     <div className="mb-3">
                       <br />
-                      <textarea class="form-control" id="exampleFormControlTextarea1" onChange={(e) => this.comment(e)} name="program" rows="2" placeholder="โปรดบอกชื่อโปรแกรม..."></textarea>
+                      <textarea class="form-control" id="exampleFormControlTextarea1" onChange={(e) => this.comment(e)} name="program" rows="2" placeholder={messages['cancel_package_new.pleaseSpecify_1']}></textarea>
                     </div>
                     : null
                 }
                 {
-                  reason_choose === "เจอผลิตภัณฑ์ที่ดีกว่า" ?
+                  reason_choose === "เจอผลิตภัณฑ์ที่ดีกว่า" || reason_choose === "I’ve found a better product (please specify)" ?
                     <div className="mb-3">
                       <br />
-                      <textarea class="form-control" id="exampleFormControlTextarea2" onChange={(e) => this.comment(e)} name="product" rows="2" placeholder="โปรดบอกชื่อผลิตภัณฑ์..."></textarea>
+                      <textarea class="form-control" id="exampleFormControlTextarea2" onChange={(e) => this.comment(e)} name="product" rows="2" placeholder={messages['cancel_package_new.pleaseSpecify_2']}></textarea>
                     </div>
                     : null
                 }
@@ -202,9 +214,9 @@ class Cancel_package_new extends Component {
             </div>
           </div>
         </div>
-        <div className="d-grid gap-2  mx-auto   col-10 col-sm-10  col-md-10 col-lg-4 margin-top-2 ">
+        <div className="d-grid gap-2  mx-auto   col-10 col-sm-10  col-md-10 col-lg-6 margin-top-2 ">
           <button className="btn bottom-pink" id="reason" type="button" onClick={(e) => this.confirm()} >
-            ยืนยัน
+          <IntlMessages id="cancel_package_new.finishCancellation" />
                     </button>
         </div>
       </>
@@ -666,6 +678,7 @@ class Cancel_package_new extends Component {
   }
 
   render() {
+
     const { start_cancel } = this.state;
     return (
       <>
@@ -707,11 +720,19 @@ class Cancel_package_new extends Component {
   }
 }
 
-const mapStateToProps = ({ get, authUser }) => {
+const mapStateToProps = ({ get, authUser,settings }) => {
   const { register_log } = get;
   const { user, statusCancelRecurring } = authUser;
-  return { user, register_log, statusCancelRecurring };
+  let locale;
+  if (settings) {
+    locale = settings.locale;
+  } else {
+    locale = "th";
+  }
+  return { user, register_log, statusCancelRecurring ,locale};
 };
+
+
 
 const mapActionsToProps = { cancelRecurring };
 
@@ -719,4 +740,4 @@ const mapActionsToProps = { cancelRecurring };
 export default connect(
   mapStateToProps,
   mapActionsToProps
-)(Cancel_package_new);
+)(injectIntl(Cancel_package_new));
