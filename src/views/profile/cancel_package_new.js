@@ -236,11 +236,11 @@ class Cancel_package_new extends Component {
                 </div>
                 <div class="col-12 col-sm-12 col-md-6 col-lg-7">
                   <div className="box-reason2">
-                    <p className="font-reason">ยกเลิกบริการ Bebe Stay Fit สำเร็จ</p>
-                    <p className="font-reason2">ออกกำลังกายและคุมอาหารอย่างสม่ำเสมอ <br className="br" /> เพื่อหุ่นและสุขภาพที่ดีอย่างยั่งยืนกันนะคะ</p>
+                    <p className="font-reason"><IntlMessages id="cancel_package_new.yourSubscription" /></p>
+                    <p className="font-reason2"><IntlMessages id="cancel_package_new.alwaysKeep" /></p>
                     <div className="d-grid gap-2  mx-auto margin-top-4   col-10 col-sm-10  col-md-8 col-lg-8">
                       <button className="btn bottom-pink2 bold-reason" type="button" onClick={() => this.props.history.push('/profile')}>
-                        กลับหน้าโปรไฟล์
+                      <IntlMessages id="cancel_package_new.backProfile" />
                                               </button>
                     </div>
                   </div>
@@ -269,22 +269,23 @@ class Cancel_package_new extends Component {
                   <img src={rectangle473} alt="vector" className="rectangle472 center2" />
                 </div>
                 <div class="col-12 col-sm-12 col-md-7 col-lg-7">
+               {/*  <IntlMessages id="cancel_package_new.yourPackage" />  */}
                   <div className="box-reason3">
                     <p className="font-reason">สมัครต่ออายุบริการวันนี้ <br className="line-hr"/> ลดทันที 5%</p>
                     <p className="font-reason4">โปรโมชั่นพิเศษเฉพาะคุณ! </p>
                       <div className="center reason-top2">
-                        <button type="button" className="btn bottom-reasonLeft2 bold-reason" data-bs-toggle="modal" data-bs-target="#exampleModal" >รับข้อเสนอ</button>
-                        <button type="button" className="btn bottom-reasonRight2 bold-reason " onClick={() => this.props.cancelRecurring(this.props.user && this.props.user.user_id)}>ยกเลิกบริการ</button>
+                        <button type="button" className="btn bottom-reasonLeft2 bold-reason" data-bs-toggle="modal" data-bs-target="#exampleModal" ><IntlMessages id="cancel_package_new.imIn" /></button>
+                        <button type="button" className="btn bottom-reasonRight bold-reason " onClick={() => this.props.cancelRecurring(this.props.user && this.props.user.user_id)}> <IntlMessages id="cancel_package_new.cancelSubscription" /></button>
                     </div>
                     <hr className="br2  center2 col-md-10 col-lg-10 "/> 
                     <div className="box-Line">
                     <p className="font-reason">หรือติดต่อเจ้าหน้าที่</p>
-                    <p className="font-reason4 pad_lR">Line :<span className="pad_R">@fitto (มีแอด)</span></p>
-                    <p className="time-open">ทุกวัน 8:00 - 00:00</p>
+                    <p className="font-reason4 pad_lR">Line :<span className="pad_R">@fitto <IntlMessages id="cancel_package_new.with" /></span></p>
+                    <p className="time-open"><IntlMessages id="cancel_package_new.midnight" /> </p>
                     <p className="font-reason4 pad_lR">Facebook : <span className="pad_R">m.me/fittothai</span></p>
-                    <p className="time-open">ทุกวัน 8:00 - 00:00</p>
-                    <p className="font-reason4 pad_lR">โทร : <span className="pad_R">028216146</span></p>
-                    <p className="time-open">ทุกวัน 8:00 - 00:00</p>
+                    <p className="time-open"><IntlMessages id="cancel_package_new.midnight" /></p>
+                    <p className="font-reason4 pad_lR"><IntlMessages id="cancel_package_new.phone" /> <span className="pad_R">028216146</span></p>
+                    <p className="time-open"><IntlMessages id="cancel_package_new.monFri" /></p>
                     </div>
                   </div>
                 </div>
@@ -302,19 +303,19 @@ class Cancel_package_new extends Component {
                 </div>
                 <div className="modal-bodyChallenge">
                   <div className="text-center">
-                    <p className="font-reason">ติดต่อเจ้าหน้าที่</p>
-                    <p className="font-reason2">เพื่อรับส่วนลด 5%  <br />สำหรับการต่ออายุคอร์ส Bebe Stay Fit</p>
-                    <p className="font-reason2 pad_lR">Line :<span className="pad_R">@fitto (มีแอด)</span></p>
-                    <p className="time-open">ทุกวัน 8:00 - 00:00</p>
+                    <p className="font-reason"><IntlMessages id="cancel_package_new.contactOurStaff" /></p>
+                    <p className="font-reason2"><IntlMessages id="cancel_package_new.get5" />  <br /><IntlMessages id="cancel_package_new.continuingYour" /></p>
+                    <p className="font-reason2 pad_lR">Line :<span className="pad_R">@fitto <IntlMessages id="cancel_package_new.with" /></span></p>
+                    <p className="time-open"><IntlMessages id="cancel_package_new.midnight" /></p>
                     <p className="font-reason2 pad_lR">Facebook : <span className="pad_R">m.me/fittothai</span></p>
-                    <p className="time-open">ทุกวัน 8:00 - 00:00</p>
-                    <p className="font-reason2 pad_lR">โทร : <span className="pad_R">028216146</span></p>
-                    <p className="time-open">ทุกวัน 8:00 - 00:00</p>
+                    <p className="time-open"><IntlMessages id="cancel_package_new.midnight" /></p>
+                    <p className="font-reason2 pad_lR"><IntlMessages id="cancel_package_new.phone" /> <span className="pad_R">028216146</span></p>
+                    <p className="time-open"><IntlMessages id="cancel_package_new.monFri" /></p>
                   </div>
                 </div>
                 <div className="d-grid gap-2  mx-auto   col-10 col-sm-10  col-md-8 col-lg-8 margin-top-2 ">
                   <button className="btn bottom-pink" type="button" data-bs-dismiss="modal" aria-label="Close" >
-                    ปิด
+                  <IntlMessages id="cancel_package_new.close" />
                     </button>
                 </div>
               </div>
@@ -338,11 +339,11 @@ class Cancel_package_new extends Component {
                 </div>
                 <div class="col-12 col-sm-12 col-md-6 col-lg-7">
                   <div className="box-reason2">
-                    <p className="font-reason">ยกเลิกบริการ Bebe Stay Fit สำเร็จ</p>
-                    <p className="font-reason2">หุ่นในฝัน เป็นจริงได้ แค่ออกกำลังกาย  <br className="br" />สัปดาห์ละ 4 วัน เบเบ้เป็นกำลังใจให้นะคะ</p>
+                    <p className="font-reason"> <IntlMessages id="cancel_package_new.yourSubscription" /></p>
+                    <p className="font-reason2"><IntlMessages id="cancel_package_new.ultimate4day" /></p>
                     <div className="d-grid gap-2  mx-auto  margin-top-4  col-10 col-sm-10  col-md-8 col-lg-8">
                       <button className="btn bottom-pink2 bold-reason" type="button" onClick={() => this.props.history.push('/profile')}>
-                        กลับหน้าโปรไฟล์
+                      <IntlMessages id="cancel_package_new.backProfile" />
                                               </button>
                     </div>
                   </div>
@@ -369,14 +370,12 @@ class Cancel_package_new extends Component {
                   </div>
                   <div class="col-12 col-sm-12 col-md-6 col-lg-7">
                     <div className="box-reason2">
-                      <p className="font-reason">ยกเลิกบริการ Bebe Stay Fit สำเร็จ</p>
+                      <p className="font-reason"> <IntlMessages id="cancel_package_new.yourSubscription" /></p>
                       <p className="font-reason2">หุ่นในฝันไม่ไกลเกินเอื้อม คุณทำได้</p>
-                      <p className="font-reason3">โปรแกรมของเราอาจจะเหนื่อย และยากในช่วงแรก<br />
-                                                แต่อย่าเพิ่งท้อนะคะ เพราะคุณจะแข็งแรง <br />
-                                                และทำได้ดีขึ้นอย่างแน่นอน หุ่นในฝันไม่ไกลเกินเอื้อม <br /> เบเบ้เป็นกำลังใจให้ค่ะ :)</p>
+                      <p className="font-reason3"><IntlMessages id="cancel_package_new.ourWorkoutProgram" />)</p>
                       <div className="d-grid gap-2  mx-auto   col-10 col-sm-10  col-md-10 col-lg-10">
                         <button className="btn bottom-pink2 bold-reason" type="button" onClick={() => this.props.history.push('/profile')}>
-                          กลับหน้าโปรไฟล์
+                        <IntlMessages id="cancel_package_new.backProfile" />
                                                 </button>
                       </div>
                     </div>
@@ -401,16 +400,14 @@ class Cancel_package_new extends Component {
                 </div>
                 <div class="col-12 col-sm-12 col-md-7 col-lg-7">
                   <div className="box-reason3">
-                    <p className="font-reason">ติดต่อเจ้าหน้าที่เพื่อขอรับบริการ<br className="br" />
-                        เฉพาะโปรแกรมออกกำลังกายได้นะคะ</p>
-                    <p className="font-reason2">ถ้าคุณยังสนุกกับการออกกำลังกายแต่ไม่อยากใช้<br className="br" />
-                        ผลิตภัณฑ์ของเราสามารถติดต่อเจ้าหน้าที่เพื่อขอรับ<br className="br" />
-                        บริการเฉพาะโปรแกรมออกกำลังกายได้นะคะ </p>
+                    <p className="font-reason"><IntlMessages id="cancel_package_new.contactOurStaffTo" /><br className="br" />
+                    <IntlMessages id="cancel_package_new.yourExercise" /></p>
+                    <p className="font-reason2"><IntlMessages id="cancel_package_new.likeOurProduct" /> </p>
                         <br/>
                     <div className="col-12 col-sm-12 col-md-12 col-lg-12">
                       <div className="center ">
-                        <button type="button" className="btn bottom-reasonLeft bold-reason" data-bs-toggle="modal" data-bs-target="#exampleModal" >ติดต่อเจ้าหน้าที่</button>
-                        <button type="button" className="btn bottom-reasonRight bold-reason " onClick={() => this.props.cancelRecurring(this.props.user && this.props.user.user_id)}>ยกเลิกบริการ</button>
+                        <button type="button" className="btn bottom-reasonLeft bold-reason" data-bs-toggle="modal" data-bs-target="#exampleModal" ><IntlMessages id="cancel_package_new.contactUs" /></button>
+                        <button type="button" className="btn bottom-reasonRight bold-reason " onClick={() => this.props.cancelRecurring(this.props.user && this.props.user.user_id)}><IntlMessages id="cancel_package_new.cancelSubscription" /></button>
                       </div>
                     </div>
                   </div>
@@ -429,19 +426,20 @@ class Cancel_package_new extends Component {
                 </div>
                 <div className="modal-bodyChallenge">
                   <div className="text-center">
-                    <p className="font-reason">ติดต่อเจ้าหน้าที่</p>
-                    <p className="font-reason2">เพื่อรับส่วนลด 5%  <br />สำหรับการต่ออายุคอร์ส Bebe Stay Fit</p>
-                    <p className="font-reason2 pad_lR">Line :<span className="pad_R">@fitto (มีแอด)</span></p>
-                    <p className="time-open">ทุกวัน 8:00 - 00:00</p>
+                    <p className="font-reason"><IntlMessages id="cancel_package_new.contactOurStaff" /></p>
+                    <p className="font-reason2"><IntlMessages id="cancel_package_new.get5" />  <br /><IntlMessages id="cancel_package_new.continuingYour" /></p>
+                    <p className="font-reason2 pad_lR">Line :<span className="pad_R">@fitto <IntlMessages id="cancel_package_new.with" /></span></p>
+                    <p className="time-open"><IntlMessages id="cancel_package_new.midnight" /></p>
                     <p className="font-reason2 pad_lR">Facebook : <span className="pad_R">m.me/fittothai</span></p>
-                    <p className="time-open">ทุกวัน 8:00 - 00:00</p>
-                    <p className="font-reason2 pad_lR">โทร : <span className="pad_R">028216146</span></p>
-                    <p className="time-open">ทุกวัน 8:00 - 00:00</p>
+                    <p className="time-open"><IntlMessages id="cancel_package_new.midnight" /></p>
+                    <p className="font-reason2 pad_lR"><IntlMessages id="cancel_package_new.phone" /> <span className="pad_R">028216146</span></p>
+                    <p className="time-open"><IntlMessages id="cancel_package_new.monFri" /></p>
+                    
                   </div>
                 </div>
                 <div className="d-grid gap-2  mx-auto   col-10 col-sm-10  col-md-8 col-lg-8 margin-top-2 ">
                   <button className="btn bottom-pink" type="button" data-bs-dismiss="modal" aria-label="Close" >
-                    ปิด
+                  <IntlMessages id="cancel_package_new.close" />
                                     </button>
                 </div>
               </div>
@@ -464,16 +462,14 @@ class Cancel_package_new extends Component {
                 </div>
                 <div class="col-12 col-sm-12 col-md-7 col-lg-7">
                   <div className="box-reason3">
-                    <p className="font-reason">ปรึกษาผู้เชี่ยวชาญ<br className="br" />
-                      เพื่อออกแบบโปรแกรมพิเศษเฉพาะคุณ</p>
-                    <p className="font-reason2">ถ้าคุณยังไม่พอใจกับผลลัพธ์ที่ได้แต่อย่าเพิ่งถอดใจ<br className="br" />
-                      นะคะ เพราะการลดน้ำหนักอย่างยั่งยืนนั้นต้องใช้เวลา<br className="br" />
-                      ซึ่งคุณจะทำได้อย่างแน่นอน เบเบ้เป็นกำลังใจให้ค่ะ </p>
+                    <p className="font-reason"><IntlMessages id="cancel_package_new.onsultOurSpecialists" /><br className="br" />
+                    <IntlMessages id="cancel_package_new.customMake" /></p>
+                    <p className="font-reason2"> <IntlMessages id="cancel_package_new.youAreNotSeeing" /></p>
                         <br/>
                     <div className="col-12 col-sm-12 col-md-12 col-lg-12">
                       <div className="center ">
-                        <button type="button" className="btn bottom-reasonLeft bold-reason" data-bs-toggle="modal" data-bs-target="#exampleModal" >ติดต่อเจ้าหน้าที่</button>
-                        <button type="button" className="btn bottom-reasonRight bold-reason " onClick={() => this.props.cancelRecurring(this.props.user && this.props.user.user_id)}>ยกเลิกบริการ</button>
+                        <button type="button" className="btn bottom-reasonLeft bold-reason" data-bs-toggle="modal" data-bs-target="#exampleModal" > <IntlMessages id="cancel_package_new.contactUs" /></button>
+                        <button type="button" className="btn bottom-reasonRight bold-reason " onClick={() => this.props.cancelRecurring(this.props.user && this.props.user.user_id)}> <IntlMessages id="cancel_package_new.cancelSubscription" /></button>
                       </div>
                     </div>
                   </div>
@@ -492,19 +488,19 @@ class Cancel_package_new extends Component {
                 </div>
                 <div className="modal-bodyChallenge">
                   <div className="text-center">
-                    <p className="font-reason">ติดต่อเจ้าหน้าที่</p>
-                    <p className="font-reason2">เพื่อรับส่วนลด 5%  <br />สำหรับการต่ออายุคอร์ส Bebe Stay Fit</p>
-                    <p className="font-reason2 pad_lR">Line :<span className="pad_R">@fitto (มีแอด)</span></p>
-                    <p className="time-open">ทุกวัน 8:00 - 00:00</p>
+                    <p className="font-reason"><IntlMessages id="cancel_package_new.contactOurStaff" /></p>
+                    <p className="font-reason2"><IntlMessages id="cancel_package_new.get5" />  <br /><IntlMessages id="cancel_package_new.continuingYour" /></p>
+                    <p className="font-reason2 pad_lR">Line :<span className="pad_R">@fitto <IntlMessages id="cancel_package_new.with" /></span></p>
+                    <p className="time-open"><IntlMessages id="cancel_package_new.midnight" /></p>
                     <p className="font-reason2 pad_lR">Facebook : <span className="pad_R">m.me/fittothai</span></p>
-                    <p className="time-open">ทุกวัน 8:00 - 00:00</p>
-                    <p className="font-reason2 pad_lR">โทร : <span className="pad_R">028216146</span></p>
-                    <p className="time-open">ทุกวัน 8:00 - 00:00</p>
+                    <p className="time-open"><IntlMessages id="cancel_package_new.midnight" /></p>
+                    <p className="font-reason2 pad_lR"><IntlMessages id="cancel_package_new.phone" /> <span className="pad_R">028216146</span></p>
+                    <p className="time-open"><IntlMessages id="cancel_package_new.monFri" /></p>
                   </div>
                 </div>
                 <div className="d-grid gap-2  mx-auto   col-10 col-sm-10  col-md-8 col-lg-8 margin-top-2 ">
                   <button className="btn bottom-pink" type="button" data-bs-dismiss="modal" aria-label="Close" >
-                    ปิด
+                  <IntlMessages id="cancel_package_new.close" />
                                     </button>
                 </div>
               </div>
@@ -527,16 +523,14 @@ class Cancel_package_new extends Component {
                 </div>
                 <div class="col-12 col-sm-12 col-md-7 col-lg-7">
                   <div className="box-reason3">
-                    <p className="font-reason">ปรึกษาผู้เชี่ยวชาญ<br className="br" />
-                      เพื่อออกแบบโปรแกรมพิเศษเฉพาะคุณ</p>
-                    <p className="font-reason2">ถ้าคุณยังสนุกกับการออกกำลังกายแต่ไม่อยากใช้<br className="br" />
-                    ผลิตภัณฑ์ของเราติดต่อเจ้าหน้าที่เพื่อขอรับบริการ<br className="br" />
-                    เฉพาะโปรแกรมออกกำลังกายได้นะคะ </p>
+                    <p className="font-reason"><IntlMessages id="cancel_package_new.onsultOurSpecialists" /><br className="br" />
+                    <IntlMessages id="cancel_package_new.customMake" /></p>
+                    <p className="font-reason2"><IntlMessages id="cancel_package_new.youAreNotSeeingWorking" /></p>
                         <br/>
                     <div className="col-12 col-sm-12 col-md-12 col-lg-12">
                       <div className="center ">
-                        <button type="button" className="btn bottom-reasonLeft bold-reason" data-bs-toggle="modal" data-bs-target="#exampleModal" >ติดต่อเจ้าหน้าที่</button>
-                        <button type="button" className="btn bottom-reasonRight bold-reason " onClick={() => this.props.cancelRecurring(this.props.user && this.props.user.user_id)}>ยกเลิกบริการ</button>
+                        <button type="button" className="btn bottom-reasonLeft bold-reason" data-bs-toggle="modal" data-bs-target="#exampleModal" ><IntlMessages id="cancel_package_new.contactUs" /></button>
+                        <button type="button" className="btn bottom-reasonRight bold-reason " onClick={() => this.props.cancelRecurring(this.props.user && this.props.user.user_id)}><IntlMessages id="cancel_package_new.cancelSubscription" /></button>
                       </div>
                     </div>
                   </div>
@@ -555,19 +549,19 @@ class Cancel_package_new extends Component {
                 </div>
                 <div className="modal-bodyChallenge">
                   <div className="text-center">
-                    <p className="font-reason">ติดต่อเจ้าหน้าที่</p>
-                    <p className="font-reason2">เพื่อรับส่วนลด 5%  <br />สำหรับการต่ออายุคอร์ส Bebe Stay Fit</p>
-                    <p className="font-reason2 pad_lR">Line :<span className="pad_R">@fitto (มีแอด)</span></p>
-                    <p className="time-open">ทุกวัน 8:00 - 00:00</p>
+                  <p className="font-reason"><IntlMessages id="cancel_package_new.contactOurStaff" /></p>
+                    <p className="font-reason2"><IntlMessages id="cancel_package_new.get5" />  <br /><IntlMessages id="cancel_package_new.continuingYour" /></p>
+                    <p className="font-reason2 pad_lR">Line :<span className="pad_R">@fitto <IntlMessages id="cancel_package_new.with" /></span></p>
+                    <p className="time-open"><IntlMessages id="cancel_package_new.midnight" /></p>
                     <p className="font-reason2 pad_lR">Facebook : <span className="pad_R">m.me/fittothai</span></p>
-                    <p className="time-open">ทุกวัน 8:00 - 00:00</p>
-                    <p className="font-reason2 pad_lR">โทร : <span className="pad_R">028216146</span></p>
-                    <p className="time-open">ทุกวัน 8:00 - 00:00</p>
+                    <p className="time-open"><IntlMessages id="cancel_package_new.midnight" /></p>
+                    <p className="font-reason2 pad_lR"><IntlMessages id="cancel_package_new.phone" /> <span className="pad_R">028216146</span></p>
+                    <p className="time-open"><IntlMessages id="cancel_package_new.monFri" /></p>
                   </div>
                 </div>
                 <div className="d-grid gap-2  mx-auto   col-10 col-sm-10  col-md-8 col-lg-8 margin-top-2 ">
                   <button className="btn bottom-pink" type="button" data-bs-dismiss="modal" aria-label="Close" >
-                    ปิด
+                  <IntlMessages id="cancel_package_new.close" />
                                     </button>
                 </div>
               </div>
@@ -592,16 +586,14 @@ class Cancel_package_new extends Component {
               </div>
               <div class="col-12 col-sm-12 col-md-7 col-lg-7">
                 <div className="box-reason3">
-                  <p className="font-reason">ติดต่อเจ้าหน้าที่เพื่อขอรับบริการ<br className="br" />
-                    เฉพาะโปรแกรมออกกำลังกายได้นะคะ</p>
-                  <p className="font-reason2">ถ้าคุณชื่นชอบผลิตภัณฑ์ของเราแต่ไม่สะดวกที่จะ<br className="br" />
-                    ออกกำลังกายกรุณาติดต่อเจ้าหน้าที่เพื่อรับคำแนะนำ<br className="br" />
-                    พิเศษได้นะคะ</p>
+                  <p className="font-reason"><IntlMessages id="cancel_package_new.contactStaffToCustomise" /><br className="br" />
+                  <IntlMessages id="cancel_package_new.exerciseProgram" /></p>
+                  <p className="font-reason2"><IntlMessages id="cancel_package_new.ifYouLikeOurProduct" /></p>
                       <br/>
                   <div className="col-12 col-sm-12 col-md-12 col-lg-12">
                     <div className="center ">
-                      <button type="button" className="btn bottom-reasonLeft bold-reason" data-bs-toggle="modal" data-bs-target="#exampleModal" >ติดต่อเจ้าหน้าที่</button>
-                      <button type="button" className="btn bottom-reasonRight bold-reason " onClick={() => this.props.cancelRecurring(this.props.user && this.props.user.user_id)}>ยกเลิกบริการ</button>
+                      <button type="button" className="btn bottom-reasonLeft bold-reason" data-bs-toggle="modal" data-bs-target="#exampleModal" ><IntlMessages id="cancel_package_new.contactUs" /></button>
+                      <button type="button" className="btn bottom-reasonRight bold-reason " onClick={() => this.props.cancelRecurring(this.props.user && this.props.user.user_id)}><IntlMessages id="cancel_package_new.cancelSubscription" /></button>
                     </div>
                   </div>
                 </div>
@@ -620,19 +612,19 @@ class Cancel_package_new extends Component {
               </div>
               <div className="modal-bodyChallenge">
                 <div className="text-center">
-                  <p className="font-reason">ติดต่อเจ้าหน้าที่</p>
-                  <p className="font-reason2">เพื่อรับส่วนลด 5%  <br />สำหรับการต่ออายุคอร์ส Bebe Stay Fit</p>
-                  <p className="font-reason2 pad_lR">Line :<span className="pad_R">@fitto (มีแอด)</span></p>
-                  <p className="time-open">ทุกวัน 8:00 - 00:00</p>
-                  <p className="font-reason2 pad_lR">Facebook : <span className="pad_R">m.me/fittothai</span></p>
-                  <p className="time-open">ทุกวัน 8:00 - 00:00</p>
-                  <p className="font-reason2 pad_lR">โทร : <span className="pad_R">028216146</span></p>
-                  <p className="time-open">ทุกวัน 8:00 - 00:00</p>
+                <p className="font-reason"><IntlMessages id="cancel_package_new.contactOurStaff" /></p>
+                    <p className="font-reason2"><IntlMessages id="cancel_package_new.get5" />  <br /><IntlMessages id="cancel_package_new.continuingYour" /></p>
+                    <p className="font-reason2 pad_lR">Line :<span className="pad_R">@fitto <IntlMessages id="cancel_package_new.with" /></span></p>
+                    <p className="time-open"><IntlMessages id="cancel_package_new.midnight" /></p>
+                    <p className="font-reason2 pad_lR">Facebook : <span className="pad_R">m.me/fittothai</span></p>
+                    <p className="time-open"><IntlMessages id="cancel_package_new.midnight" /></p>
+                    <p className="font-reason2 pad_lR"><IntlMessages id="cancel_package_new.phone" /> <span className="pad_R">028216146</span></p>
+                    <p className="time-open"><IntlMessages id="cancel_package_new.monFri" /></p>
                 </div>
               </div>
               <div className="d-grid gap-2  mx-auto   col-10 col-sm-10  col-md-8 col-lg-8 margin-top-2 ">
                 <button className="btn bottom-pink" type="button" data-bs-dismiss="modal" aria-label="Close" >
-                  ปิด
+                <IntlMessages id="cancel_package_new.close" />
                                   </button>
               </div>
             </div>
@@ -656,14 +648,11 @@ class Cancel_package_new extends Component {
                 </div>
                 <div class="col-12 col-sm-12 col-md-6 col-lg-7">
                   <div className="box-reason2">
-                    <p className="font-reason">ยกเลิกบริการ Bebe Stay Fit สำเร็จ</p>
-                    <p className="font-reason2">ขอบคุณที่ใช้บริการของเรา<br className="br" />
-                      Bebe Stay Fit ขอเป็นกำลังใจในการดูแลสุขภาพ<br className="br" />
-                      และฟิตหุ่นตามเป้าหมายของคุณนะคะ
-                      </p>
+                    <p className="font-reason"><IntlMessages id="cancel_package_new.yourSubscription" /></p>
+                    <p className="font-reason2"><IntlMessages id="cancel_package_new.thankYouForTrusting" /></p>
                     <div className="d-grid gap-2  mx-auto   col-10 col-sm-10  col-md-10 col-lg-10">
                       <button className="btn bottom-pink2 bold-reason" type="button" onClick={() => this.props.history.push('/profile')}>
-                        กลับหน้าโปรไฟล์
+                      <IntlMessages id="cancel_package_new.backProfile" />
                                               </button>
                     </div>
                   </div>
