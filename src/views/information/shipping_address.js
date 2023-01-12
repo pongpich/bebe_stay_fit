@@ -247,11 +247,11 @@ class Shipping_Address extends React.Component {
                 <div className="box-proteinAddress padding-top">
                   <div className="row">
                     <div className="col-12 col-sm-12 col-md-6 col-lg-6">
-                      <label className="form-label bold font-size4"><IntlMessages id="shipping_address.surname"/></label>
+                      <label className="form-label bold font-size4"><IntlMessages id="shipping_address.name"/></label>
                       <input type="email" className="form-control" id="exampleFormControlInput1" name="username" value={this.state.username} onChange={e => this.onChange(e)} placeholder="" />
                     </div>
                     <div className="col-12 col-sm-12 col-md-6 col-lg-6">
-                      <label className="form-label bold font-size4"><IntlMessages id="shipping_address.name"/></label>
+                      <label className="form-label bold font-size4"><IntlMessages id="shipping_address.surname"/></label>
                       <input type="email" className="form-control" id="exampleFormControlInput1" name="lastname" value={this.state.lastname} onChange={e => this.onChange(e)} placeholder="" />
                     </div>
                   </div>
@@ -260,8 +260,8 @@ class Shipping_Address extends React.Component {
                     <input type="number" className="form-control" id="exampleFormControlInput1" name="telephone" value={this.state.telephone} onChange={e => this.onChange(e)} placeholder="" />
                   </div>
                   <div className="padding-top2">
-                    <label className="form-label bold font-size4"><IntlMessages id="shipping_address.name"/></label>
-                    <textarea className="form-control" rows="3" placeholder="กรอกบ้านเลขที่, หมู่, ซอย, อาคาร, ถนน และจัดสุงเกต(ถ้ามี)" name="addressUser" onChange={e => this.onChange(e)} value={this.state.addressUser}  ></textarea>
+                    <label className="form-label bold font-size4"><IntlMessages id="shipping_address.address"/></label>
+                    <textarea className="form-control" rows="3" placeholder="กรอกบ้านเลขที่, หมู่, ซอย, อาคาร, ถนน และจุดสังเกต(ถ้ามี)" name="addressUser" onChange={e => this.onChange(e)} value={this.state.addressUser}  ></textarea>
                   </div>
                   <div className="padding-top2 elementStyle">
                     <label className="form-label bold font-size4"><IntlMessages id="shipping_address.subdistrict"/></label>
@@ -417,7 +417,7 @@ class Shipping_Address extends React.Component {
                     <div className=" col-12 col-sm-12  col-md-12 col-lg-12 padding-top2">
                       <div className="mb-3">
                         <label className="form-label bold"><IntlMessages id="shipping_address.address"/></label>
-                        <textarea className="form-control" id="exampleFormControlTextarea1" rows="3" name="InvoiceAddressUser" onChange={e => this.onChange(e)} placeholder="กรอกบ้านเลขที่, หมู่, ซอย, อาคาร, ถนน และจัดสุงเกต(ถ้ามี)"></textarea>
+                        <textarea className="form-control" id="exampleFormControlTextarea1" rows="3" name="InvoiceAddressUser" onChange={e => this.onChange(e)} placeholder="กรอกบ้านเลขที่, หมู่, ซอย, อาคาร, ถนน และจุดสังเกต(ถ้ามี)"></textarea>
                       </div>
                     </div>
                     <div className="row">
