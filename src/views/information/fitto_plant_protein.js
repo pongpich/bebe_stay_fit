@@ -54,7 +54,8 @@ class Fitto_Plant_Protein extends React.Component {
           "คลาสสิค มอลต์",
           "มิลค์ ที",
           "ดับเบิ้ล ช็อคโก้ ฟัดจ์",
-          "สตรอว์เบอร์รี่ ครัช"
+          "สตรอว์เบอร์รี่ ครัช",
+          "นมฮอกไกโด"
         ]
       })
     } else {
@@ -66,7 +67,7 @@ class Fitto_Plant_Protein extends React.Component {
         box2: "box2",
         valuebox2: "Classic Malt",
         box3: "box3",
-        valuebox3: "Classic Maltต์",
+        valuebox3: "Classic Malt",
         box4: "box4",
         valuebox4: "Classic Malt",
         box5: "box5",
@@ -77,7 +78,8 @@ class Fitto_Plant_Protein extends React.Component {
           "Classic Malt",
           "Milk Tea",
           "Double Choco fudge",
-          "Strawberry crush"
+          "Strawberry crush",
+          "Hokkaido Milk"
         ]
       })
     }
