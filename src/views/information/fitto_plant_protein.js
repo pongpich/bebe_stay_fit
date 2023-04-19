@@ -55,7 +55,7 @@ class Fitto_Plant_Protein extends React.Component {
           "มิลค์ ที",
           "ดับเบิ้ล ช็อคโก้ ฟัดจ์",
           "สตรอว์เบอร์รี่ ครัช",
-          "นมฮอกไกโด"
+          "ฮอกไกโด มิลค์"
         ]
       })
     } else {
@@ -91,9 +91,9 @@ class Fitto_Plant_Protein extends React.Component {
 
     this.props.clearSelectProducts()
 
- /*    if (user_program_id) { //ถ้ามี user_program_id แสดงว่าชำระเงินสำเร็จแล้ว
-      this.props.history.push('/welcome_new_nember');
-    } */
+    /*    if (user_program_id) { //ถ้ามี user_program_id แสดงว่าชำระเงินสำเร็จแล้ว
+         this.props.history.push('/welcome_new_nember');
+       } */
     if (locale === "th") {
       this.th_EnProtein()
     } else {
@@ -147,13 +147,13 @@ class Fitto_Plant_Protein extends React.Component {
             <div className="current-position2">
               <p className="border-line2  col-8 col-sm-6 col-md-6 col-lg-6 "></p>
               <div className="ellipse-text col-2 col-sm-2 col-md-2 col-lg-2">
-             {/*    <img src={ellipse_078} alt="vector" /> */}
-              <div className="border-circleWhite"></div>
+                {/*    <img src={ellipse_078} alt="vector" /> */}
+                <div className="border-circleWhite"></div>
                 <p className="img-p"> <IntlMessages id="register.chooseYouPackage" /></p>
               </div>
               <div className="ellipse-text  col-2 col-sm-2 col-md-2 col-lg-2">
-              {/*   <img src={ellipse_078} alt="vector" /> */}
-              <div className="border-circleWhite"></div>
+                {/*   <img src={ellipse_078} alt="vector" /> */}
+                <div className="border-circleWhite"></div>
                 <p className="img-p"> <IntlMessages id="register.chooseYouAccount" /></p>
               </div>
               <div className="ellipse-text  col-2 col-sm-2 col-md-2 col-lg-2">
@@ -179,7 +179,7 @@ class Fitto_Plant_Protein extends React.Component {
                 <p className="font-size6-2 color-protein"> <IntlMessages id="fitto_plant_protein.chooseProtein" /> </p>
                 <p className="font-size4-2"><IntlMessages id="fitto_plant_protein.youAreApplying" /><span className="bold">  <IntlMessages id="fitto_plant_protein.theDuration" /></span>< br /><IntlMessages id="fitto_plant_protein.willBe" /></p>
                 <div className="box-proteinIn padding-top">
-    {/*               <div className="center">
+                  {/*               <div className="center">
                     <p className="font-size5 bold text-center"> <IntlMessages id="fitto_plant_protein.chooseProtein" /></p>
                   </div> */}
                   <br />
