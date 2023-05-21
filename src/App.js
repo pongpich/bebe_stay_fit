@@ -23,7 +23,7 @@ import Cancel_Package_Succeed from "./views/profile/cancel_packag_succeed";
 import Subscription_Success from "./views/information/subscription_success";
 import ProgramPackage from "./views/programPackage";
 import videoList from "./views/information/video_List";
-import logo from "./views/images/logo.png";
+import group49 from "./views/images/group49.png";
 import Shipping_check from './views/profile/shipping_check';
 import Billing_history from './views/profile/billing_history';
 import Food_supplement from './views/information/food_supplement';
@@ -344,7 +344,7 @@ class App extends Component {
       <nav className="navbar navbar-expand-lg bg-light information-box  sticky-top">
         <div className="container-fluid nav-left2">
           <a className="navbar-brand" href="/#" onClick={() => this.props.history.push('/')} style={{ color: "white", cursor: "pointer" }}>
-            <img src={logo} alt="vector" />
+            <img src={group49} alt="vector" />
           </a>
 
           {
@@ -435,11 +435,11 @@ class App extends Component {
                         {/* <a className="nav-link pointer" >สร้างโปรแกรมส่วนตัว</a> */}
                       </li>
                     </ul>
-                    {/* <div className="mt-0 mb-2">{this.manuTH_EN()}</div>
-                    &nbsp; &nbsp;&nbsp; */}
-                    <button className="nav-link nav-linkHead2 pointer bold" onClick={() => this.props.history.push("/programPackage")}><IntlMessages id="navbarHome.register"></IntlMessages></button>
-                                        &nbsp; &nbsp;&nbsp;
-                    <a className="nav-link nav-linkHead3 pointer bold" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                    <div className="mt-0 mb-2">{this.manuTH_EN()}</div>
+                    &nbsp; &nbsp;&nbsp;
+                    <a className="nav-link nav-linkHead2 pointer bold" onClick={() => this.props.history.push("/programPackage")}><IntlMessages id="navbarHome.register" /></a>
+                    &nbsp; &nbsp;&nbsp;
+                    <a className="nav-link nav-linkHead2 pointer bold" data-bs-toggle="modal" data-bs-target="#exampleModal">
                       <img src={user_circle} alt="vector" className="padding-rightIcon" /><IntlMessages id="navbarHome.login" /></a>
                     <div class="dropdown">
                     </div>
