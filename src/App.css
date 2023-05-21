@@ -936,6 +936,18 @@
 }
 
 .nav-linkHead2 {
+  color: #fff;
+  font-family: Regular;
+  font-size: 18px !important;
+  background-color: #EF60A3;
+  border: none;
+  border-radius: 50px;
+  padding: 11px 16px;
+  gap: 8px;
+  width: 200px;
+  height: 50px;
+}
+.nav-linkHead3 {
   color: #4F4F4F;
   font-family: Regular;
   font-size: 18px !important;
@@ -998,6 +1010,7 @@ body {
   background-color: #ffffff !important;
   border: 1px solid #ffffff;
   box-shadow: 1px -1px 9px #c4c4c4;
+  height: 90px;
 }
 
 [type="button"]:not(:disabled),
@@ -2453,7 +2466,7 @@ a:hover {
 }
 
 .nav-left2 {
-  padding-left: 20px !important;
+  padding-left: 64px !important;
 }
 
 .video-ul2 {
