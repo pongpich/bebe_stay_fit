@@ -215,35 +215,35 @@ class Payment extends React.Component {
     return (
       <>
         <div className="col-12 col-sm-12 col-md-12 col-lg-12 App-headerBackground center2 padding-top2 ">
-        <div className="col-10 col-sm-10 col-md-8 col-lg-8 center2">
-           <div className="current-position2">
-                <p className="border-line2  col-8 col-sm-6 col-md-6 col-lg-6 "></p>
-                <div className="ellipse-text col-2 col-sm-2 col-md-2 col-lg-2">
-                  {/* <img src={ellipse_078} alt="vector" /> */}
-                  <div className="border-circleWhite"></div>
-                  <p className="img-p"> <IntlMessages id="register.chooseYouPackage" /></p>
-                </div>
-                <div className="ellipse-text  col-2 col-sm-2 col-md-2 col-lg-2">
-                  {/* <img src={ellipse_078} alt="vector" /> */}
-                  <div className="border-circleWhite"></div>
-                  <p className="img-p"> <IntlMessages id="register.chooseYouAccount" /></p>
-                </div>
-                <div className="ellipse-text  col-2 col-sm-2 col-md-2 col-lg-2">
-                  {/* <img src={ellipse_078} alt="vector" /> */}
-                  <div className="border-circleWhite"></div>
-                  <p className="img-p"> <IntlMessages id="register.chooseYouflavor" /></p>
-                </div>
-                <div className="ellipse-text  col-2 col-sm-2 col-md-2 col-lg-2">
-                 {/*  <img src={ellipse_078} alt="vector" /> */}
-                 <div className="border-circleWhite"></div>
-                  <p className="img-p"> <IntlMessages id="register.deliveryAddress" /></p>
-                </div>
-                <div className="ellipse-text  col-2 col-sm-2 col-md-2 col-lg-2">
-                  {/* <img src={ellipse_077} alt="vector" /> */}
-                  <div className="border-circle"></div>
-                  <p className="img-p"> <IntlMessages id="register.payment" /></p>
-                </div>
+          <div className="col-10 col-sm-10 col-md-8 col-lg-8 center2">
+            <div className="current-position2">
+              <p className="border-line2  col-8 col-sm-6 col-md-6 col-lg-6 "></p>
+              <div className="ellipse-text col-2 col-sm-2 col-md-2 col-lg-2">
+                {/* <img src={ellipse_078} alt="vector" /> */}
+                <div className="border-circleWhite"></div>
+                <p className="img-p"> <IntlMessages id="register.chooseYouPackage" /></p>
               </div>
+              <div className="ellipse-text  col-2 col-sm-2 col-md-2 col-lg-2">
+                {/* <img src={ellipse_078} alt="vector" /> */}
+                <div className="border-circleWhite"></div>
+                <p className="img-p"> <IntlMessages id="register.chooseYouAccount" /></p>
+              </div>
+              <div className="ellipse-text  col-2 col-sm-2 col-md-2 col-lg-2">
+                {/* <img src={ellipse_078} alt="vector" /> */}
+                <div className="border-circleWhite"></div>
+                <p className="img-p"> <IntlMessages id="register.chooseYouflavor" /></p>
+              </div>
+              <div className="ellipse-text  col-2 col-sm-2 col-md-2 col-lg-2">
+                {/*  <img src={ellipse_078} alt="vector" /> */}
+                <div className="border-circleWhite"></div>
+                <p className="img-p"> <IntlMessages id="register.deliveryAddress" /></p>
+              </div>
+              <div className="ellipse-text  col-2 col-sm-2 col-md-2 col-lg-2">
+                {/* <img src={ellipse_077} alt="vector" /> */}
+                <div className="border-circle"></div>
+                <p className="img-p"> <IntlMessages id="register.payment" /></p>
+              </div>
+            </div>
           </div>
           <div className="col-12 col-sm-12 col-md-6 col-lg-6 center2 margin-head">
             {
@@ -296,23 +296,23 @@ class Payment extends React.Component {
                       {programId === "starter_stay_fit_01" ?
                         <>
                           <p className="font-size5 bold"><IntlMessages id="payment.yourPackage" /></p>
-                          <p className="section-sizeLeft"><IntlMessages id="payment.applyProgram"/></p>
+                          <p className="section-sizeLeft"><IntlMessages id="payment.applyProgram" /></p>
                           <p className="font-size5 bold">
                             {this.state.program.price.toLocaleString('en')}  <IntlMessages id="programPackage.baht" />
                           </p>
                           <p className="font-size4">
-                            <IntlMessages id="programPackage.2months"/>
+                            <IntlMessages id="programPackage.2months" />
                           </p>
                         </>
                         :
                         <>
                           <p className="font-size5 bold"><IntlMessages id="payment.yourPackage" /></p>
-                          <p className="section-sizeLeft"><IntlMessages id="payment.applyProgram"/></p>
+                          <p className="section-sizeLeft"><IntlMessages id="payment.applyProgram" /></p>
                           <p className="font-size5 bold">
-                            {this.state.program.price.toLocaleString('en')}  <IntlMessages id="programPackage.baht"/>
+                            {this.state.program.price.toLocaleString('en')}  <IntlMessages id="programPackage.baht" />
                           </p>
                           <p className="font-size4">
-                            <IntlMessages id="programPackage.specialPrice"/>
+                            <IntlMessages id="programPackage.specialPrice" />
                           </p>
 
                         </>
@@ -323,7 +323,7 @@ class Payment extends React.Component {
                   </div>
                   <p className="border-bottom "></p>
                   <div className="padding-top2">
-                    <p className=" bold font-size5 between"><IntlMessages id="shipping_address.shippingAddress"/> <span className="font-size4 light decoration pointer" onClick={() => this.props.history.push('/shipping_address')}>เปลี่ยน</span></p>
+                    <p className=" bold font-size5 between"><IntlMessages id="shipping_address.shippingAddress" /> <span className="font-size4 light decoration pointer" onClick={() => this.props.history.push('/shipping_address')}>เปลี่ยน</span></p>
                     <p>{this.state.username} &nbsp; {this.state.lastname}  </p>
                     <p>{this.state.telephone} </p>
                     <p>{this.state.addressUser} &nbsp;{this.state.subdistrictUser}&nbsp;{this.state.districtUser}</p>
@@ -334,26 +334,26 @@ class Payment extends React.Component {
             </div>
 
             <div className="col-12 col-sm-12 col-md-10 col-lg-10 center2  margin-headText">
-              <p className="font-size6 bold color-protein"> <IntlMessages id="payment.payment"/></p>
+              <p className="font-size6 bold color-protein"> <IntlMessages id="payment.payment" /></p>
             </div>
             {
               this.state.status_payment === "unsuccess" &&
-              <h6 style={{ color: "red" }}><IntlMessages id="payment.errorBilling"/></h6>
+              <h6 style={{ color: "red" }}><IntlMessages id="payment.errorBilling" /></h6>
             }
             <div className="col-12 col-sm-12 col-md-12 col-lg-12">
               <div className="button-mg">
-                <button type="button" className={this.state.creditCardFocus} onClick={e => this.pinkModelFocus("1")}><IntlMessages id="payment.credit"/></button>&nbsp;&nbsp;
-                <button type="button" className={this.state.qrCodeFocus} onClick={e => this.pinkModelFocus("2")}><IntlMessages id="payment.qrcode"/></button>
+                <button type="button" className={this.state.creditCardFocus} onClick={e => this.pinkModelFocus("1")}><IntlMessages id="payment.credit" /></button>&nbsp;&nbsp;
+                <button type="button" className={this.state.qrCodeFocus} onClick={e => this.pinkModelFocus("2")}><IntlMessages id="payment.qrcode" /></button>
               </div>
             </div>
             {
               (this.state.paymentMethod === "qrCode") &&
               <div className="center">
                 <div className="col-11 col-sm-11 col-md-11 col-lg-11 boxText-qrCode" >
-                  <p><IntlMessages id="payment.messagQrcode1"/></p>
-                  <p><IntlMessages id="payment.messagQrcode2"/></p>
-                  <p><IntlMessages id="payment.messagQrcode3"/></p>
-                  <p><IntlMessages id="payment.messagQrcode4"/></p>
+                  <p><IntlMessages id="payment.messagQrcode1" /></p>
+                  <p><IntlMessages id="payment.messagQrcode2" /></p>
+                  <p><IntlMessages id="payment.messagQrcode3" /></p>
+                  <p><IntlMessages id="payment.messagQrcode4" /></p>
                 </div>
               </div>
             }
@@ -377,8 +377,7 @@ class Payment extends React.Component {
                 (this.state.pageUrl.includes("localhost") || this.state.pageUrl.includes("127.0.0.1")) ?
                   "http://localhost:3000/#/qr_checkout"
                   :
-                  "http://localhost:3000/#/qr_checkout"
-                 /*  "https://fit.bebefitroutine.com/#/qr_checkout" */
+                  "https://fit.bebefitroutine.com/#/qr_checkout"
               }
               //action={"https://api.gbprimepay.com/gbp/gateway/qrcode"}
               //method="POST"
