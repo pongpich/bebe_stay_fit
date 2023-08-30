@@ -306,7 +306,7 @@ class ProgramPackage extends React.Component {
                           </p>
                         </div>
                         <div className="font-size4 text-left margin-BoxTop">
-                          <div className="box-heightPackage"> <img src={shaker} alt="vector" className="shaker-71" /> <p className="span-image"><IntlMessages id="programPackage.shaker"/> <br /> <p className="distance-span1">(<IntlMessages id="programPackage.firstonly"/>)</p></p></div>
+                         {/*  <div className="box-heightPackage"> <img src={shaker} alt="vector" className="shaker-71" /> <p className="span-image"><IntlMessages id="programPackage.shaker"/> <br /> <p className="distance-span1">(<IntlMessages id="programPackage.firstonly"/>)</p></p></div> */}
                           <div className="box-heightPackage1"> <img src={lemonade} alt="vector" className="ellipse-71" /> <p className="span-image1">Fitto Pre Workout <p className="distance-span"><IntlMessages id="programPackage.greenLemonade"/></p></p></div>
                           <div className="box-heightPackage1"> <img src={latte2} alt="vector" className="ellipse-71" /> <p className="span-image1">Fitto Drink <p className="distance-span1"><IntlMessages id="programPackage.arabicaLatte"/></p></p></div>
                           <div className="box-heightPackage2"> <img src={lfittocsachet5g} alt="vector" className="ellipse-72" /> <p className="span-image2">Fitto Colla C Unflavored <br /> <p className="distance-span1"><IntlMessages id="programPackage.collaC"/></p></p></div>
