@@ -18,7 +18,7 @@ import part9 from "../../assets/img/home/part9.webp";
 import part10 from "../../assets/img/home/part10.webp";
 import part11 from "../../assets/img/home/part11.webp";
 import review from "../../assets/img/home/review.webp";
-import part13 from "../../assets/img/home/part13.png";
+import part13 from "../../assets/img/home/part13_2.jpg";
 import price from "../../assets/img/home/price.webp";
 import countdown from "../../assets/img/home/countdown.webp";
 import part16 from "../../assets/img/home/part16.webp";
