@@ -29,6 +29,7 @@ import frame3 from "../../assets/img/home/frame3.webp";
 import frame4 from "../../assets/img/home/frame4.webp";
 import frame5 from "../../assets/img/home/frame5.webp";
 import frame6 from "../../assets/img/home/frame6.webp";
+import modal_img from "../../assets/img/modal.jpg";
 
 /*  win-512 */
 
@@ -48,7 +49,9 @@ import price512 from "../../assets/img/home512/price512.webp";
 import countdown512 from "../../assets/img/home512/countdown512.webp";
 import part16512 from "../../assets/img/home512/part16512.webp";
 import rectangle512 from "../../assets/img/home512/rectangle512.webp";
-
+import Modal from './modal.js';
+import Modal_Form from './modal_form.js';
+import Success_Modal from './success_modal.js';
 class Home extends React.Component {
   constructor(props) {
     super(props);
@@ -59,8 +62,44 @@ class Home extends React.Component {
       setPassword: false,
       validationLogin: "default",
       carousel: 0,
+      show: true,
+      modal_show: false,
+      success_modal_show: false
     };
+    this.showModal = this.showModal.bind(this);
+    this.hideModal = this.hideModal.bind(this);
+    this.showModalForm = this.showModalForm.bind(this);
+    this.hideModalForm = this.hideModalForm.bind(this);
+    this.showSuccessModal = this.showSuccessModal.bind(this);
+    this.hideSuccessModal = this.hideSuccessModal.bind(this);
   }
+
+  showModal = () => {
+    this.setState({ show: true });
+  };
+
+  hideModal = () => {
+    this.setState({ show: false });
+  };
+
+  showModalForm = () => {
+    this.setState({ modal_show: true });
+    this.setState({ show: false });
+  };
+
+  hideModalForm = () => {
+    this.setState({ modal_show: false });
+  };
+
+  showSuccessModal = () => {
+    this.setState({ success_modal_show: true });
+    this.setState({ modal_show: false });
+  };
+
+  hideSuccessModal = () => {
+    this.setState({ success_modal_show: false });
+  };
+
 
   onChickprice = (e) => {
     this.props.history.push("/videoList");
@@ -277,9 +316,17 @@ class Home extends React.Component {
 
     return (
       <>
+        <main>
+
+          <Modal show={this.state.show} handleClose={this.hideModal} handleForm={this.showModalForm} />
+          <Modal_Form modal_show={this.state.modal_show} handleClose={this.hideModalForm} handleSuccess={this.showSuccessModal} />
+          <Success_Modal success_modal_show={this.state.success_modal_show} handleClose={this.hideSuccessModal} />
+
+        </main>
         <div className="win-541">
           <img src={head} alt="vector" className="home-image" />
           <div className="box-home">
+
             <div className="top-Home">
               <p className="textHome bold">สนใจสมัคร</p>
               <div className="d-grid gap-2  mx-auto   col-12 col-sm-12  col-md-12 col-lg-12 center ">
@@ -654,6 +701,10 @@ class Home extends React.Component {
     const { messages } = this.props.intl;
     return (
       <>
+        <Modal show={this.state.show} handleClose={this.hideModal} handleForm={this.showModalForm} />
+        <Modal_Form modal_show={this.state.modal_show} handleClose={this.hideModalForm} handleSuccess={this.showSuccessModal} />
+        <Success_Modal success_modal_show={this.state.success_modal_show} handleClose={this.hideSuccessModal} />
+
         <div
           style={{
             backgroundImage: `url(${backgroundImag})`,
@@ -753,6 +804,7 @@ class Home extends React.Component {
     return (
       <>
         {this.homeLogin()}
+
         {/* {this.login()} */}
       </>
     );
